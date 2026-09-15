@@ -12,9 +12,11 @@ if [[ "$MODE" == "smoke" ]]; then
   NEW_TOKENS=8
   PROMPT_TOKENS=256
 elif [[ "$MODE" == "poc" ]]; then
-  OURO_N=128
-  HUGINN_N=48
-  NEW_TOKENS=32
+  # Large offline pool is intentional: one collected trace can simulate many
+  # micro-batch sizes. Ouro reaches B=256; Huginn reaches B=128 by default.
+  OURO_N=256
+  HUGINN_N=128
+  NEW_TOKENS=24
   PROMPT_TOKENS=512
 else
   echo "usage: $0 [smoke|poc]"
