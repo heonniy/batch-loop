@@ -1,60 +1,54 @@
-# Current priority — complete the three-model headroom + runtime study in one bounded block
+# Current priority — run the complete three-model no-refill study in one block
 
 Updated 2026-09-16.
 
-The owner asked to stop splitting characterization and runtime work into many approval stages. The current block therefore combines fair headroom validation, model/threshold generalization, real H100 timing calibration, hardware-calibrated BCT/throughput replay, and integrated no-refill runtime engineering when parity can be established.
+Read [`FULL_E2E_EXPERIMENT_PLAN.md`](FULL_E2E_EXPERIMENT_PLAN.md) for the exact matrix and evidence labels.  The owner requested one combined experiment rather than separate characterization/runtime approval stages.
 
-## Fixed experiment matrix
+## Fixed study
 
 ### Models
 - `ByteDance/Ouro-1.4B`
 - `ByteDance/Ouro-2.6B`
 - `tomg-group-umd/huginn-0125` (Huginn-3.5B)
 
-### Paper-facing batch sizes
+### Batch sizes
 `4, 8, 16, 32, 64`
 
-No B=128/256/512 results are required for the current study. Internal latency calibration may additionally use B=1,2 so shrunk active batches can be priced rather than clamped blindly.
-
 ### Thresholds
-- Ouro-1.4B and Ouro-2.6B: q = `0.2, 0.4, 0.5, 0.7`
-- Huginn-3.5B latent-diff: `0.5, 0.35, 0.26, 0.12`, max depth 16
+- Ouro-1.4B / Ouro-2.6B: `0.2, 0.4, 0.5, 0.7`
+- Huginn-3.5B latent-diff: `0.5, 0.35, 0.26, 0.12`
 
-### Workload
-Start with Alpaca under the existing tokenizer/prompt cap contract. Keep the same prompt cohort across thresholds within each model whenever the collector permits it. Do not silently mix datasets or model revisions inside one comparison table.
+### Current workload
+Alpaca, same seeded prompt cohort within a model.  Default trace pool: 256 requests/model.  Default native-E2E pool: 128 requests/model.
 
-## Required outputs
+## Required measurements in the same run
 
-For every model x threshold x B:
+1. **Fair headroom** — exact same items across FIFO/random/history/oracle; report slot utilization, idle slots and oracle headroom.
+2. **Depth distribution** — every model x threshold.
+3. **Actual native whole-model H100 E2E** — BCT, generated tokens/s, requests/s, p50/p95 micro-batch time, tokenization/H2D, HBM peak for every model x threshold x B.
+4. **Real H100 recurrent timing surface** — active B=1,2,4,8,16,32,64 internally so no-refill shrinkage can be priced.
+5. **Hardware-calibrated no-refill replay** — FIFO/oracle/current causal policies; report BCT/tokens/s opportunity with an explicit replay label.
+6. **Parity / failure evidence** — Huginn batched adaptive execution requires deterministic B-vs-B1 output parity. OOM/unsupported cells are recorded, not dropped.
 
-1. **Depth characterization**: histogram, mean/std depth, request/token denominators.
-2. **Fair trace headroom**: FIFO/random/history/oracle slot utilization, idle-slot ratio, oracle-minus-FIFO headroom. Strategies must share the exact same selected items and total token-loop work.
-3. **Real H100 latency calibration**: fixed-depth first-token and incremental decode latency at representative context lengths; report failed/OOM cells rather than dropping them.
-4. **Hardware-calibrated scheduling outcome**: throughput and offline BCT replay for FIFO, oracle and already-implemented causal grouping. Label these results as hardware-calibrated trace replay, not integrated engine timing.
-5. **Integrated runtime when validated**: physically compact survivors after exits, preserve the selected KV semantics, and report actual tokens/s, BCT, recurrent/boundary/scheduler breakdown. This evidence is publishable as physical speed only after deterministic parity checks pass.
+Refill is not implemented or evaluated in this block.
 
-## Runtime validation gates
+## Critical evidence distinction
 
-Before an integrated timing number is trusted:
-
-- fixed-depth mode matches the native model on a deterministic small cohort;
-- mixed exit-depth execution preserves the intended exit-selected logits/tokens under the chosen KV layout;
-- logged active batch sizes exactly match the runtime's compacted tensors;
-- no exited request continues recurrent arithmetic;
-- prefill/decode token counts, EOS/caps and missing outputs are explicit;
-- timing uses CUDA synchronization/events consistently and excludes one-time model load unless separately reported.
-
-If integrated runtime implementation cannot pass these gates in the current environment, publish the fair headroom + physical calibration + hardware replay honestly and mark integrated runtime `IMPLEMENTATION_INCOMPLETE`; do not manufacture an E2E claim.
+- `native_e2e_all.csv` is **actual whole-model wall-clock** on the H100.
+- Ouro's public HF code still computes every recurrent step and uses the gate post-hoc, so Ouro native threshold timing is a baseline, not physical early-exit speedup.
+- `runtime_replay_all.csv` uses real H100 timing plus real exit traces to estimate no-refill grouping cost; it is not an integrated dynamic compaction engine.
+- Do not convert slot-utilization gain or hardware replay into a claim of measured scheduler E2E speedup.
 
 ## One-command run
 
-`run_h100_full_sweep.sh` is the combined source-bound runner for the three-model trace sweep, B=4..64 fair analysis, H100 latency calibration, and hardware replay. It records source/model/environment receipts into a unique result root.
+```bash
+bash run_h100_full_sweep.sh
+```
 
-## Scientific decision
+The runner performs trace collection, fair analysis, native E2E benchmarking, timing calibration and hardware replay for all three models.
 
-The scheduling direction remains promising only if a realistic threshold has both:
+## Result publication
 
-- material fair oracle headroom, and
-- a material H100 wall-clock opportunity after pricing the actual active-batch latency curve.
+After the run, the executing coding/model agent publishes one result-bound commit containing compact CSVs/plots, `RESULT_REVIEW.md`, and `review_manifest.json`.  It must state what finished, what failed, actual source/model revisions and the evidence kind of every throughput/BCT table.
 
-A positive result on Ouro but not Huginn is acceptable as architecture-dependent evidence, but the paper claim must say so. A predictor that recovers little of the oracle is a method gap, not evidence that the oracle opportunity is false.
+Do not wait for another owner approval between headroom and native E2E measurements.  Stop only for a correctness/resource failure that would make the remaining measurements misleading or unsafe.
