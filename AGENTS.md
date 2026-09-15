@@ -1,63 +1,70 @@
 # AGENTS.md
 
-## Current priority — fair trace characterization, then real no-refill runtime (2026-09-16)
+## Current priority — one combined three-model headroom + runtime block (2026-09-16)
 
 Read in order:
-1. `phase01/README.md` — owner-facing experiment state and research question.
-2. `phase01/CURRENT_RESEARCH_PRIORITY.md` — bounded next block and stop conditions.
-3. `phase01/EXPERIMENT_REVIEW_PROTOCOL.md` — evidence, publication, and review contract.
-4. `phase01/results/20260915_poc/RESULT_REVIEW.md` and `review_manifest.json` — bound review of the first H100 PoC.
+1. `phase01/README.md` — research question and existing evidence.
+2. `phase01/CURRENT_RESEARCH_PRIORITY.md` — exact combined experiment matrix and claim boundary.
+3. `phase01/EXPERIMENT_REVIEW_PROTOCOL.md` — evidence/publication contract.
+4. `phase01/results/20260915_poc/RESULT_REVIEW.md` and `review_manifest.json` — first H100 PoC.
 
-### What is already evidence
+### Existing evidence
 
-The H100 GPU1 PoC published at result commit `4ec78c1f5c0df7925f9888c7db3d75769e494ee7` collected real model exit-depth traces and then ran an offline scheduling simulator. It supports an **exploratory scheduling-opportunity claim**, not a wall-clock speedup claim.
+The first H100 PoC collected real model exit-depth traces and then simulated offline no-refill micro-batch formation. It supports an exploratory scheduling-opportunity claim only.
 
 - Ouro-1.4B showed substantial oracle slot-utilization headroom over FIFO at B=4..64.
 - Huginn at convergence threshold 0.12 started near full slot utilization and showed little oracle room.
-- Simple causal predictors recovered only a small fraction of Ouro's oracle headroom.
-- A comparison defect was identified after publication: each strategy truncated the post-sort remainder independently, so strategy totals were not always based on exactly the same token subset.
+- Previous/recent/sequence-mean causal predictors recovered only a small fraction of Ouro's oracle headroom.
+- The first simulator truncated the remainder after strategy-specific sorting, so strategy totals were not always based on exactly the same token subset. `analyze_fair.py` fixes this by freezing the common subset first.
 
-Commits `a1e8ced` and `0bb63b7` add the fair-subset analyzer and the next H100 sweep runner. They are **source/plan checkpoints only** until a corresponding result publication is committed.
+### Owner-directed combined block
 
-### New-work execution contract
+Do NOT stop after a characterization-only phase. Use one assigned H100 and complete as much of the following block as can be validated from the same source checkpoint:
 
-The next instructed GPU block is Phase01-R1 only:
+1. **Models:** Ouro-1.4B, Ouro-2.6B, Huginn-3.5B.
+2. **Paper-facing micro-batch sizes:** B = 4, 8, 16, 32, 64 only.
+3. **Threshold sweep:**
+   - Ouro q = {0.2, 0.4, 0.5, 0.7} for both 1.4B and 2.6B.
+   - Huginn latent-diff convergence threshold = {0.5, 0.35, 0.26, 0.12} with max depth 16.
+4. **Fair headroom:** FIFO/random/history/oracle must see the identical eligible token/request subset. Report depth distribution, slot utilization, idle-slot ratio and oracle-minus-FIFO headroom for every model/threshold/B.
+5. **Physical timing in the same run:** measure real H100 fixed-depth first-token and incremental decode latency over B=1,2,4,8,16,32,64 (1/2 are internal calibration points) and representative contexts. Fit boundary and recurrent-step latency surfaces and combine them with the observed depth traces to produce hardware-calibrated throughput/BCT replay for every threshold and batching policy.
+6. **Integrated real no-refill runtime:** the final paper claim still requires a custom runtime that physically compacts the active batch after exits while preserving KV semantics. Implement and validate it in this same development cycle when feasible; do not call the hardware-calibrated replay an integrated runtime. Before trusting integrated timing, require fixed-depth parity, token/output parity on a small deterministic cohort, correct KV behavior under mixed exit depths, and agreement between logged active batch sizes and the trace.
+7. **Runtime metrics:** generated tokens/s, total offline BCT, recurrent wall-clock, prefill/boundary time, scheduler/compaction overhead, and speedup versus FIFO no-refill. Compare oracle grouping and any practical causal grouping that is already implemented. CDB refill is a reference baseline when an executable compatible implementation is available; do not fabricate it from paper numbers.
 
-1. **R1-A Fairness:** freeze the same eligible token/request subset before strategy reordering; assert identical token-loop work across strategies.
-2. **R1-B Scale:** Ouro-1.4B request pool >=1024 when practical; sweep B=16,32,64,128,256 and optionally 512.
-3. **R1-C Thresholds:** Ouro q={0.2,0.4,0.5,0.7}; Huginn convergence threshold={0.5,0.35,0.26,0.12}, with threshold semantics checked against the model implementation.
+`run_h100_full_sweep.sh` is the one-command source checkpoint for items 1–5. `runtime_calibrate.py` performs real H100 timing plus hardware-calibrated replay. Those replay numbers MUST carry the evidence label `HARDWARE_CALIBRATED_TRACE_REPLAY_NOT_INTEGRATED_RUNTIME` until item 6 is actually implemented and passes parity.
 
-Stop after R1 and publish/review the result before implementing a predictor or a custom runtime. Do not automatically expand to a broad Cartesian sweep.
+### No artificial stage inflation
 
-If R1 preserves meaningful headroom, the next separately approved block is Phase01-R2: implement **real no-refill recurrent execution** and measure H100 wall-clock recurrent time, throughput, and offline batch-completion time (BCT). Slot utilization alone must never be presented as runtime speedup.
+The owner explicitly asked not to split easily combinable checks into many approval stages. Within this bounded matrix, agents may proceed from fair traces -> physical calibration -> hardware replay -> integrated runtime engineering/validation without waiting for another owner message, provided failures are retained and claim boundaries are respected. Stop only on resource/correctness failure, completion of the matrix, or a result that makes further runtime work scientifically meaningless.
 
 ### Repository / GPU safety
 
-- Use one explicitly assigned H100 only. Never assume a GPU number without checking the owner/run command.
-- Do not kill unknown PIDs, reset GPUs, force-push, rewrite historical results, or silently alter model revisions/datasets.
-- Do not hot-patch an in-flight source tree. Bind each run to a clean source commit and a separate output root.
-- Preserve adverse/negative results. A threshold/model with little headroom is evidence in that measured scope, not a failed experiment to hide.
-- Never invent a launch receipt, completed GPU run, wall-clock result, or missing artifact.
+- Use one explicitly assigned H100 only. Never assume a GPU number without checking the launch environment.
+- Do not kill unknown PIDs, reset GPUs, force-push, rewrite historical results, or silently change model revisions/datasets.
+- Bind each run to a clean source commit and separate output root.
+- Preserve adverse results. A model/threshold with no headroom is evidence, not a failed experiment to hide.
+- Never invent a launch receipt, completed GPU run, physical speedup, BCT, or missing artifact.
 
 ### Commit and publication protocol
 
-Follow the same result-bound discipline used in `sub-moe`:
+Follow the same result-bound discipline as `sub-moe`:
 
-1. **Plan/source checkpoint before a run** — commit the exact plan, runner, model revisions, inputs, metrics, and stop condition.
-2. **Execution** — run only the bounded block from that committed source. Save the source SHA and exact command in the run receipt.
-3. **Result publication commit** — the coding/model agent that executed the block must commit compact results, a human-readable review, and `review_manifest.json`. Do not leave the owner with only untracked server outputs.
-4. **Review checkpoint** — separate implementation/measurement/comparison/hypothesis status. A software PASS is not a scientific GO.
-5. **Next plan only after review** — commit the next bounded plan separately from the result publication.
+1. Commit source/plan before launching.
+2. Save source SHA, exact command, model revisions, environment and GPU identity in the run root.
+3. The agent that executes the experiment publishes compact CSV/JSON/plots plus a human-readable result review and `review_manifest.json`.
+4. Separate measurement, implementation, simulator/replay, comparison and hypothesis status. A software PASS is not a scientific GO.
+5. Large raw traces may remain server-side only if their path/size/hash are recorded; compact derived evidence must be committed.
 
 Preferred commit subjects:
-
 - `phase01: plan <bounded experiment>`
 - `phase01: implement <runner/instrumentation>`
 - `phase01: publish <result block>`
-- `phase01: review <result and next decision>`
+- `phase01: review <result and decision>`
 
-A result commit message should state what actually completed and avoid claims beyond the measured execution kind.
+### Claim boundary
 
-### Artifact policy
+`slot_utilization` = trace geometry.
+`hardware_replay_*` = real H100 latency calibration combined with trace replay.
+`integrated_*` = only a real dynamic no-refill engine that physically executes the compacted batches and passes parity.
 
-Commit compact CSV/JSON summaries, plots needed for review, receipts, hashes, and manifests. Large raw traces may remain on the server when necessary, but then the result commit must record their verified path, size/hash, and the compact derived evidence. Existing tracked PoC traces/results are preserved; do not rewrite them to make later comparisons look cleaner.
+Never promote one evidence level into the next in prose, plots, or commit messages.
