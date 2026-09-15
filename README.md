@@ -1,60 +1,59 @@
 # batch-loop
 
-PoC for **offline no-refill batching in depth-adaptive looped LMs** on a single H100.
+Research PoC for **offline no-refill batching in depth-adaptive looped LMs** on a single H100.
+
+## Current priority — validate the scheduling opportunity fairly
+
+The first H100 result commit (`4ec78c1`) collected real exit-depth traces and then simulated no-refill micro-batch regrouping. Ouro-1.4B showed substantial oracle slot-utilization headroom, while Huginn at threshold 0.12 showed little room and simple causal predictors recovered little of the Ouro oracle gap.
+
+A post-result review identified a fairness defect in the R0 simulator: strategy-specific ordering happened before incomplete-remainder truncation. Therefore the existing headroom is an **exploratory signal**, not yet a final comparison and not a physical speedup result.
+
+The next bounded block is R1 only: fair-subset analysis, a larger Ouro request pool, and Ouro/Huginn threshold sweeps. The already-committed R1 runner/source changes are not themselves new experimental results.
+
+Read before new work:
+
+- [`AGENTS.md`](AGENTS.md) — coding/model-agent execution and commit protocol.
+- [`phase01/README.md`](phase01/README.md) — experiment state and research framing.
+- [`phase01/CURRENT_RESEARCH_PRIORITY.md`](phase01/CURRENT_RESEARCH_PRIORITY.md) — bounded next block.
+- [`phase01/EXPERIMENT_REVIEW_PROTOCOL.md`](phase01/EXPERIMENT_REVIEW_PROTOCOL.md) — evidence/publication contract.
+- [`phase01/results/20260915_poc/RESULT_REVIEW.md`](phase01/results/20260915_poc/RESULT_REVIEW.md) — bound review of the first H100 PoC.
+
+The repository follows the same plan/source -> bounded run -> result publication -> review checkpoint discipline used in `sub-moe`. The model/coding agent that executes a bounded block is expected to commit the compact result handoff and manifest rather than leaving only local GPU artifacts.
 
 ## Hypothesis
 
 In no-refill decoding, a micro-batch starts full but shrinks inside one token-generation interval as tokens exit the recurrent core at different depths. The resulting gray/idle slots form a **recurrent-depth valley**.
 
-The PoC asks a narrow question:
+The research question is:
 
 > If an offline scheduler forms each micro-batch from tokens with compatible recurrent demand, how much of the no-refill valley disappears **without any intra-loop refill**?
 
 The execution semantics stay pure no-refill: a token that exits is never replaced until the next token boundary. We only change micro-batch formation before entering the recurrent core.
 
-## First go/no-go experiment
+## Phase-1 measurements
 
-1. Collect per-request, per-generated-token exit-depth traces.
-2. Reconstruct no-refill micro-batches at each token interval.
-3. Compare:
-   - `fifo`: request order.
-   - `random`: shuffled requests.
-   - `oracle`: sort by the current token's true exit depth (upper bound).
-   - `prev`: sort by previous-token depth.
-   - `recent`: sort by recent mean depth.
-   - `seqmean`: sort by cumulative request-level mean depth.
-4. Sweep batch sizes: `4,8,16,32,64,128,256` (large values are trace-simulation points; runtime feasibility depends on KV/context length).
-5. Repeat across looped architectures.
-
-Primary metric:
+Trace/simulator metric:
 
 ```text
 slot_utilization = sum(actual token-loop work) / sum(B * max_depth_in_microbatch)
 idle_slot_ratio  = 1 - slot_utilization
 ```
 
-For one micro-batch with depths `[d1, ..., dB]`, the total gray area is
+For one micro-batch with depths `[d1, ..., dB]`:
 
 ```text
 idle_slots = B * max(di) - sum(di)
 ```
 
-This directly measures the valley targeted by the idea.
+`slot_utilization` is a logical batching metric, **not GPU hardware utilization** and not throughput.
 
 ## Models
 
-The default H100 sweep uses:
-
 - `ByteDance/Ouro-1.4B` — 4 recurrent steps, learned exit gate.
-- `ByteDance/Ouro-2.6B` — same LoopLM family at a larger size.
-- `tomg-group-umd/huginn-0125` — 3.5B recurrent-depth model; use latent-state convergence for adaptive depth.
+- `ByteDance/Ouro-2.6B` — larger model in the same LoopLM family.
+- `tomg-group-umd/huginn-0125` — 3.5B recurrent-depth model with adaptive convergence criterion.
 
-Important trace caveat:
-
-- The public Ouro Transformers implementation computes all UT steps and applies the learned gate as a **post-hoc readout**. `collect-ouro` records that gate's chosen depth. This is sufficient for the initial batch-shape/oracle-headroom PoC, but it is **not** an end-to-end real-early-exit runtime.
-- Huginn exposes adaptive generation and per-token compute-step traces. We collect it with batch size 1 per request, as its implementation recommends for faithful adaptive-compute traces.
-
-The purpose of Phase 1 is therefore to validate the scheduling opportunity before implementing a custom no-refill runtime.
+Important caveat: the public Ouro Transformers implementation used in R0 computes all UT steps and exposes its learned gate as a post-hoc readout. R0 therefore measures scheduling opportunity from realistic model traces, not real early-exit wall-clock acceleration.
 
 ## Setup
 
@@ -66,101 +65,24 @@ pip install -r requirements.txt
 
 Recommended machine: **1x H100 80GB**.
 
-## Quick smoke test
+## Existing PoC runner
 
 ```bash
 bash run_h100_poc.sh smoke
-```
-
-This collects short traces from Ouro-1.4B and Huginn and runs the scheduler simulation.
-
-## Main PoC
-
-```bash
 bash run_h100_poc.sh poc
 ```
 
-To include the larger Ouro model:
+The repository also contains the R1 fair-subset / scale / threshold runner committed after R0. Its outputs must be published as a separate result commit before being treated as evidence.
 
-```bash
-RUN_OURO_26B=1 bash run_h100_poc.sh poc
-```
+## Result / claim boundary
 
-To additionally run a ShareGPT-like workload:
+Current R0 evidence supports only:
 
-```bash
-RUN_SHAREGPT=1 bash run_h100_poc.sh poc
-```
+- real model exit-depth traces were collected,
+- Ouro displayed an exploratory no-refill grouping opportunity in trace simulation,
+- Huginn threshold 0.12 displayed little scheduling headroom,
+- simple history-based predictors were weak.
 
-Outputs are written under `results/`:
+It does **not** yet support a throughput, BCT, or end-to-end latency improvement claim.
 
-```text
-results/
-  traces/*.jsonl
-  analysis/*/summary.csv
-  analysis/*/predictability.csv
-  analysis/*/slot_utilization.png
-  analysis/*/idle_slot_ratio.png
-  analysis/*/valley_example_b*.png
-```
-
-## Manual commands
-
-### Ouro
-
-```bash
-python poc.py collect-ouro \
-  --model ByteDance/Ouro-1.4B \
-  --dataset alpaca \
-  --num-requests 128 \
-  --max-new-tokens 32 \
-  --exit-threshold 0.2 \
-  --output results/traces/ouro14_alpaca_q02.jsonl
-```
-
-### Huginn
-
-```bash
-python poc.py collect-huginn \
-  --model tomg-group-umd/huginn-0125 \
-  --dataset alpaca \
-  --num-requests 64 \
-  --max-new-tokens 32 \
-  --max-steps 16 \
-  --criterion latent-diff \
-  --exit-threshold 0.12 \
-  --min-steps 1 \
-  --output results/traces/huginn_alpaca_d012.jsonl
-```
-
-### Analyze valley + grouping headroom
-
-```bash
-python poc.py analyze \
-  --traces results/traces/*.jsonl \
-  --batch-sizes 4,8,16,32,64,128,256 \
-  --output-dir results/analysis/poc
-```
-
-## What counts as a positive PoC?
-
-The strongest early signal is not predictor accuracy; it is **oracle headroom**.
-
-Continue the topic if, over a meaningful batch-size range and more than one architecture/workload:
-
-- FIFO/random no-refill shows substantial idle-slot valleys, and
-- oracle depth grouping recovers a clear fraction of those idle slots, and
-- a cheap causal predictor (`prev`, `recent`, or `seqmean`) captures a non-trivial fraction of the oracle gain.
-
-If oracle grouping barely improves slot utilization, there is little reason to build a predictor or a custom runtime.
-
-## Next step after a positive PoC
-
-Only after the trace result is positive:
-
-1. implement real no-refill recurrent execution,
-2. measure H100 recurrent-step latency vs active batch size/context length,
-3. replace slot utilization with wall-clock scheduling cost,
-4. compare against CDB refill as a reference baseline.
-
-The intended paper direction remains **offline no-refill micro-batch formation**, not refill/rebatching inside the recurrent interval.
+After a fair positive R1 review, the next phase is to implement physical no-refill survivor-only execution and measure recurrent wall-clock, generated tokens/s, and offline BCT. The intended paper direction remains **offline no-refill micro-batch formation**, not refill/rebatching inside the recurrent interval.

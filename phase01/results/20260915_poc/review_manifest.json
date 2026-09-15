@@ -1,0 +1,50 @@
+{
+  "result_commit": "4ec78c1f5c0df7925f9888c7db3d75769e494ee7",
+  "source_commit": "830eb5a0259cff9305d55a0cddd23bebb0825faa",
+  "plan_or_priority": "phase01 R0 oracle-headroom PoC; now superseded for new work by phase01/CURRENT_RESEARCH_PRIORITY.md",
+  "execution_kind": ["exit-trace-collection", "trace-sim"],
+  "hardware": "single NVIDIA H100 80GB, physical GPU1 per committed result receipt",
+  "exact_command_or_receipt": "results/run_gpu1_20260915.log and results/repro/run_gpu1_poc_compat.sh",
+  "models": {
+    "ouro": "ByteDance/Ouro-1.4B; pinned working code revision 37bc7e8ff85a90d813dc096383405f521b6a67b0 per result receipt",
+    "huginn": "tomg-group-umd/huginn-0125@bb6621b65e90b6a4b9b29ef88dc83866d450470c"
+  },
+  "dataset": "tatsu-lab/alpaca@dce01c9b08f87459cf36a430d809084718273017",
+  "thresholds": {"ouro": 0.2, "huginn_latent_diff": 0.12},
+  "batch_sizes_simulated": [4, 8, 16, 32, 64, 128, 256],
+  "measurement_status": {
+    "status": "VALID_IN_SCOPE",
+    "evidence": "real single-H100 model/gate traces were committed with environment and run log",
+    "known_missing_fields": ["physical no-refill wall-clock", "throughput", "offline BCT"]
+  },
+  "implementation_status": {
+    "status": "CHECKED_IN_SCOPE",
+    "evidence": "trace collection completed; Ouro public path computes recurrent steps and exposes gate post hoc",
+    "physical_early_exit": false
+  },
+  "simulator_status": {
+    "status": "SIMULATOR_DEFECT",
+    "evidence": "R0 strategy ordering occurred before incomplete-remainder truncation, allowing slightly different evaluated subsets/work",
+    "required_fix": "freeze identical eligible subset before strategy-specific ordering"
+  },
+  "comparison_status": {
+    "status": "COMPARISON_INCOMPLETE",
+    "reason": "fair-subset defect must be corrected before stronger oracle-minus-FIFO effect claims"
+  },
+  "hypothesis_status": {
+    "status": "EXPLORATORY_SIGNAL",
+    "support": "Ouro showed large logical oracle headroom over FIFO at B=4..64 in R0",
+    "counterevidence": ["Huginn threshold 0.12 had little headroom", "simple causal predictors recovered little of Ouro oracle room"]
+  },
+  "artifacts": [
+    "results/README.md",
+    "results/analysis/poc/summary.csv",
+    "results/analysis/poc/predictability.csv",
+    "results/analysis/poc/valley_curves.csv",
+    "results/traces/ouro14_alpaca_q02.jsonl",
+    "results/traces/huginn_alpaca_d012.jsonl",
+    "results/run_gpu1_20260915.log"
+  ],
+  "next_action": "Run bounded R1 fair-subset + Ouro scale + Ouro/Huginn threshold characterization, publish a separate result commit, and stop for review.",
+  "finite_scope": "single H100; no predictor training; no custom runtime; no refill implementation in R1"
+}
