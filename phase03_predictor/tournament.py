@@ -302,6 +302,14 @@ def main() -> None:
     all_ids = [rid for ids in split.values() for rid in ids]
     if len(all_ids) != len(set(all_ids)) or len(all_ids) != labels.shape[1]:
         raise RuntimeError("request split overlap or omission")
+    prompt_hashes = manifest.get("prompt_hashes")
+    if prompt_hashes is not None:
+        if len(prompt_hashes) != labels.shape[1]:
+            raise RuntimeError("prompt hash count does not match request count")
+        hash_sets = {name: {prompt_hashes[rid] for rid in ids} for name, ids in split.items()}
+        if any(hash_sets[a] & hash_sets[b] for a, b in
+               (("train", "validation"), ("train", "test"), ("validation", "test"))):
+            raise RuntimeError("identical prompt content appears across request splits")
     if min(len(split[name]) for name in split) % args.batch_size:
         raise RuntimeError("each request split must be divisible by B")
     feature_sets = _feature_sets(args.feature_root, manifest)
