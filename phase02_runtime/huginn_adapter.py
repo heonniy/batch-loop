@@ -72,6 +72,7 @@ class HuginnAdapter:
         )
         self.position_ids: torch.Tensor | None = None
         self.prev_for_gate: torch.Tensor | None = None
+        self.prefill_logits: torch.Tensor | None = None
         remote = importlib.import_module(model.__class__.__module__)
         rotary = remote.apply_rotary_emb_complex_like
         all_blocks = (
@@ -129,6 +130,7 @@ class HuginnAdapter:
         logits = self.model.lm_head(state[:, -1:, :]).float()
         if not bool(torch.isfinite(logits).all()):
             raise AssertionError("non-finite Huginn prefill logits")
+        self.prefill_logits = logits
         self.backend.finish_prefill()
         return logits.argmax(dim=-1)
 
