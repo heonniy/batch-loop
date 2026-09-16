@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import tempfile
+import gzip
 import unittest
 from pathlib import Path
 
-from phase02_runtime.oracle_ric import characterize, load_depths
+from phase02_runtime.oracle_ric import characterize, load_depths, sha256_file
 
 
 class OracleRicTests(unittest.TestCase):
@@ -29,6 +30,16 @@ class OracleRicTests(unittest.TestCase):
             path.write_text(path.read_text() + '{"request_id":0,"token_idx":0,"depth":2}\n')
             with self.assertRaisesRegex(ValueError, "duplicate depth"):
                 load_depths(path, 1, 1, 4)
+
+    def test_gzip_trace_preserves_raw_hash_and_depths(self):
+        with tempfile.TemporaryDirectory() as directory:
+            raw = Path(directory) / "trace.jsonl"
+            compressed = Path(directory) / "trace.jsonl.gz"
+            raw.write_text('{"request_id":0,"token_idx":0,"depth":2}\n', encoding="utf-8")
+            with raw.open("rb") as source, gzip.open(compressed, "wb") as target:
+                target.write(source.read())
+            self.assertEqual(sha256_file(raw), sha256_file(compressed))
+            self.assertEqual(load_depths(compressed, 1, 1, 4), [[2]])
 
 
 if __name__ == "__main__":

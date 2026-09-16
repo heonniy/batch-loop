@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import gzip
 import hashlib
 import json
 import statistics
@@ -18,7 +19,8 @@ from pathlib import Path
 
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
-    with path.open("rb") as stream:
+    opener = gzip.open if path.suffix == ".gz" else Path.open
+    with opener(path, "rb") as stream:
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
@@ -28,7 +30,8 @@ def load_depths(path: Path, n: int, num_tokens: int, rmax: int) -> list[list[int
     """Require a complete rectangular request-prefix/token-prefix cohort."""
     matrix = [[0] * num_tokens for _ in range(n)]
     seen: set[tuple[int, int]] = set()
-    with path.open(encoding="utf-8") as stream:
+    opener = gzip.open if path.suffix == ".gz" else Path.open
+    with opener(path, "rt", encoding="utf-8") as stream:
         for line_number, line in enumerate(stream, 1):
             if not line.strip():
                 continue
