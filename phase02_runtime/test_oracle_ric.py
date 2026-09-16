@@ -18,6 +18,7 @@ class OracleRicTests(unittest.TestCase):
         self.assertEqual(summary["oracle_ric_reduction_pct"], 37.5)
         self.assertEqual(summary["total_token_loop_work"], 20)
         self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["num_available_requests"], 4)
         control, _ = characterize(matrix, 4, 8)
         self.assertEqual(control["fifo_ric"], control["oracle_ric"])
 

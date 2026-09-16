@@ -118,7 +118,8 @@ def characterize(matrix: list[list[int]], batch_size: int, rmax: int) -> tuple[d
         fifo_ric, fifo_util, batch_count = per_strategy["fifo"]
         oracle_ric, oracle_util, _ = per_strategy["oracle"]
         boundary_rows.append({
-            "token_idx": token_idx, "num_microbatches": batch_count,
+            "token_idx": token_idx, "num_available_requests": n,
+            "num_microbatches": batch_count,
             "token_work": sum(depths), "fifo_ric": fifo_ric, "oracle_ric": oracle_ric,
             "oracle_ric_reduction_pct": 100 * (fifo_ric - oracle_ric) / fifo_ric,
             "fifo_slot_utilization": fifo_util, "oracle_slot_utilization": oracle_util,
