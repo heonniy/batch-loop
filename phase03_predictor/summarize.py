@@ -162,6 +162,9 @@ def summarize(root: Path) -> None:
         "Dataset revisions remain UNKNOWN (cached Hugging Face datasets); prompt content hashes and",
         "request split IDs are frozen in the feature manifests. The Phase-2 Oracle ceiling used a different",
         "first-N cohort, so these held-out FIFO/Oracle numbers are the appropriate denominator.",
+        "The primary collectors started from an uncommitted worktree: their launch Git HEAD predates the",
+        "collector implementation commit. Post-run source-file hashes and that provenance limitation are",
+        "recorded in each feature manifest rather than mislabeling the launch HEAD as the source commit.",
         "",
         "## Model-specific physical results", "",
     ]

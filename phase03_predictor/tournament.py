@@ -14,6 +14,7 @@ import csv
 import hashlib
 import json
 import math
+import subprocess
 import time
 from pathlib import Path
 
@@ -350,7 +351,8 @@ def main() -> None:
         "execution_kind": "saved-data-analysis", "feature_root": str(args.feature_root),
         "feature_manifest_sha256": _sha256(args.feature_root / "feature_manifest.json"),
         "seed": args.seed, "batch_size": args.batch_size, "epochs_max": args.epochs,
-        "source_sha": manifest["source_sha"], "no_model_forward": True,
+        "source_sha": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+        "feature_collection_launch_head": manifest["source_sha"], "no_model_forward": True,
         "candidate_count": len(CANDIDATES), "rows": len(rows),
         "C9_surrogate": "max-sensitive adjacent-B32 swap regret plus 0.25 weighted pairwise",
     }, indent=2) + "\n")
