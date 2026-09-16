@@ -58,7 +58,7 @@ def summarize_run(directory: Path) -> dict:
     if ric["oracle"] > ric["fifo"]:
         raise ValueError(f"Oracle RIC exceeds FIFO: {directory}")
     result = {
-        "run_dir": str(directory.resolve()),
+        "run_dir": str(directory),
         "source_sha": manifest["source_sha"],
         "physical_gpu": manifest["gpu"]["physical_gpu"],
         "gpu_uuid": manifest["gpu"]["gpu_query"].split(", ")[1],
