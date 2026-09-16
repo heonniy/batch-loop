@@ -65,6 +65,8 @@ def run_interval(
     forced_depths: torch.Tensor | None = None,
     threshold: float = 0.2,
     debug_ids: bool = True,
+    trajectory_sink: dict[int, list[float]] | None = None,
+    trajectory_kind: str | None = None,
 ) -> IntervalResult:
     """Execute one recurrent token interval with a genuinely shrinking tensor.
 
@@ -74,6 +76,8 @@ def run_interval(
     """
     if exit_source not in {"trace", "live"}:
         raise ValueError(f"unsupported exit source: {exit_source}")
+    if trajectory_sink is not None and trajectory_kind not in {"huginn_convergence", "ouro_gate"}:
+        raise ValueError("trajectory sink requires a model-specific causal kind")
     if embedded.shape != initial_state.shape or embedded.ndim != 3:
         raise ValueError("embedded and initial_state must have equal [B,S,H] shape")
     n = initial_state.shape[0]
@@ -113,6 +117,15 @@ def run_interval(
         )
         if after.shape != before.shape:
             raise AssertionError("recurrent step changed non-batch tensor shape")
+        if trajectory_sink is not None:
+            if trajectory_kind == "huginn_convergence":
+                values = ((after.float() - before.float()).norm(dim=-1) /
+                          after.float().norm(dim=-1).clamp_min(1e-12)).mean(dim=-1)
+            else:
+                values = torch.sigmoid(adapter.model.model.early_exit_gate(after).squeeze(-1).squeeze(-1)).float()
+            for request_id, value in zip(active_requests.detach().cpu().tolist(),
+                                         values.detach().cpu().tolist()):
+                trajectory_sink.setdefault(int(request_id), []).append(float(value))
         kv_ms = adapter.backend.pop_update_gpu_ms()
         if exit_source == "trace":
             exit_mask = forced_depths.index_select(0, local) == recurrence

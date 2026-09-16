@@ -31,6 +31,7 @@ class OuroAdapter:
         )
         self.position_ids: torch.Tensor | None = None
         self.remaining: torch.Tensor | None = None
+        self.prefill_logits: torch.Tensor | None = None
 
     @classmethod
     def load(cls, num_rows: int, snapshot: Path = OURO14_SNAPSHOT) -> "OuroAdapter":
@@ -72,6 +73,7 @@ class OuroAdapter:
         logits = self.model.lm_head(hidden[:, -1:, :])
         if not bool(torch.isfinite(logits).all()):
             raise AssertionError("non-finite Ouro prefill logits")
+        self.prefill_logits = logits.float()
         return logits.argmax(dim=-1)
 
     def begin_token(self) -> None:
@@ -114,11 +116,15 @@ class OuroAdapter:
         return (1 - remaining) >= threshold if recurrence < self.rmax else torch.ones_like(lam, dtype=torch.bool)
 
     @torch.inference_mode()
-    def coda(self, final_state: torch.Tensor) -> torch.Tensor:
-        logits = self.model.lm_head(final_state)
+    def coda_logits(self, final_state: torch.Tensor) -> torch.Tensor:
+        logits = self.model.lm_head(final_state).float()
         if not bool(torch.isfinite(logits).all()):
             raise AssertionError("non-finite Ouro final logits")
-        return logits.argmax(dim=-1)
+        return logits
+
+    @torch.inference_mode()
+    def coda(self, final_state: torch.Tensor) -> torch.Tensor:
+        return self.coda_logits(final_state).argmax(dim=-1)
 
     def commit_token(self) -> None:
         self.backend.commit_token()

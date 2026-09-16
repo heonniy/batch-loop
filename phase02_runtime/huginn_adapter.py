@@ -168,7 +168,7 @@ class HuginnAdapter:
         return values < threshold if recurrence < self.rmax else torch.ones_like(values, dtype=torch.bool)
 
     @torch.inference_mode()
-    def coda(self, final_state: torch.Tensor) -> torch.Tensor:
+    def coda_logits(self, final_state: torch.Tensor) -> torch.Tensor:
         freqs = self._freqs(self.backend.active_rows)
         state = self.model.transformer.ln_f(final_state)
         for idx, block in enumerate(self.model.transformer.coda, 1):
@@ -177,7 +177,11 @@ class HuginnAdapter:
         logits = self.model.lm_head(state).float()
         if not bool(torch.isfinite(logits).all()):
             raise AssertionError("non-finite Huginn final logits")
-        return logits.argmax(dim=-1)
+        return logits
+
+    @torch.inference_mode()
+    def coda(self, final_state: torch.Tensor) -> torch.Tensor:
+        return self.coda_logits(final_state).argmax(dim=-1)
 
     def commit_token(self) -> None:
         self.backend.commit_token()
