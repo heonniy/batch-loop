@@ -12,6 +12,7 @@ import numpy as np
 
 from phase03_predictor.collect_huginn import SCALARS
 from phase03_predictor.tournament import main
+from phase03_predictor.transfer import evaluate
 
 
 class FullTournamentTests(unittest.TestCase):
@@ -31,6 +32,7 @@ class FullTournamentTests(unittest.TestCase):
             np.save(feature / "embedding.npy", rng.normal(size=(3, 96, 8)).astype(np.float16))
             np.save(feature / "prelude.npy", rng.normal(size=(3, 96, 8)).astype(np.float16))
             np.save(feature / "depth_labels.npy", labels)
+            np.save(feature / "projection.npy", rng.normal(size=(8, 8)).astype(np.float32))
             hashes = {}
             for name in ("scalars.npy", "embedding.npy", "prelude.npy", "depth_labels.npy"):
                 hashes[name] = hashlib.sha256((feature / name).read_bytes()).hexdigest()
@@ -48,6 +50,9 @@ class FullTournamentTests(unittest.TestCase):
             lines = (output / "predictor_tournament.csv").read_text().splitlines()
             self.assertEqual(len(lines), 21)
             self.assertTrue((output / "C9_checkpoint.pt").exists())
+            transfer = root / "transfer"
+            evaluate(feature, output, transfer, 8)
+            self.assertEqual(len((transfer / "transfer_tournament.csv").read_text().splitlines()), 21)
 
 
 if __name__ == "__main__":
