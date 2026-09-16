@@ -78,6 +78,14 @@ def _prompts(num_rows: int, heterogeneous: bool) -> list[str]:
     return [f"Request {i}: " + base * (1 + (i % 4 if heterogeneous else 0)) for i in range(num_rows)]
 
 
+def _load_prompts(dataset: str, num_rows: int, seed: int, heterogeneous: bool) -> list[str]:
+    if dataset == "synthetic":
+        return _prompts(num_rows, heterogeneous)
+    from poc import load_prompts
+
+    return load_prompts(dataset, num_rows, seed)
+
+
 def _strategy_batches(depths: list[int], batch_size: int, strategy: str) -> list[list[int]]:
     order = list(range(len(depths)))
     if strategy == "oracle":
@@ -112,6 +120,9 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, depths_matrix,
     total_prelude = total_coda = total_wall = 0.0
     total_work = 0
     num_intervals = 0
+    recurrent_invocations = 0
+    expected_trace_ric = 0
+    work_receipts: list[tuple[int, int, int]] = []
     start_run = time.perf_counter()
 
     for token_idx in range(args.num_tokens):
@@ -120,6 +131,8 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, depths_matrix,
         if strategy == "full":
             depths = [adapter.rmax] * args.num_rows
         batches = _strategy_batches(depths, args.batch_size, strategy)
+        if args.exit_source == "trace":
+            expected_trace_ric += sum(max(depths[row] for row in batch) for batch in batches)
         next_tokens = torch.empty_like(current_tokens)
         for microbatch_id, row_ids in enumerate(batches):
             rows = torch.tensor(row_ids, dtype=torch.long, device=device)
@@ -145,6 +158,11 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, depths_matrix,
             work = int(result.exit_depths.sum().item())
             total_work += work
             num_intervals += 1
+            recurrent_invocations += len(result.events)
+            work_receipts.extend(
+                (row_id, token_idx, exit_depth)
+                for row_id, exit_depth in zip(row_ids, result.exit_depths.detach().cpu().tolist())
+            )
             total_core += result.core_gpu_ms
             total_gate += result.gate_gpu_ms
             total_compaction += result.compaction_gpu_ms
@@ -168,6 +186,13 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, depths_matrix,
     torch.cuda.synchronize(device)
     elapsed_wall_ms = (time.perf_counter() - start_run) * 1000
     generated = args.num_rows * args.num_tokens
+    if len(work_receipts) != generated or len({(row, token) for row, token, _ in work_receipts}) != generated:
+        raise AssertionError("physical run did not cover each request/token exactly once")
+    if args.exit_source == "trace" and recurrent_invocations != expected_trace_ric:
+        raise AssertionError("actual recurrent-core calls differ from trace RIC")
+    work_digest = hashlib.sha256()
+    for row, token, depth in sorted(work_receipts):
+        work_digest.update(f"{row},{token},{depth}\n".encode())
     summary = {
         "run_kind": run_kind, "strategy": strategy, "repetition": repetition,
         "physical_category": (
@@ -180,6 +205,8 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, depths_matrix,
         "num_rows": args.num_rows, "batch_size": args.batch_size,
         "num_tokens": args.num_tokens, "generated_tokens": generated,
         "num_intervals": num_intervals, "total_token_loop_work": total_work,
+        "recurrent_invocation_count": recurrent_invocations,
+        "same_work_checksum": work_digest.hexdigest(),
         "prefill_gpu_ms_excluded": prefill_gpu_ms,
         "prefill_wall_ms_excluded": prefill_wall_ms,
         "recurrent_pass_gpu_ms_including_kv": total_core,
@@ -216,6 +243,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--state-init", choices=["zero", "native-seeded"], default="zero")
     parser.add_argument("--heterogeneous-prompts", action="store_true")
+    parser.add_argument("--dataset", choices=["synthetic", "alpaca", "sharegpt"], default="synthetic")
     parser.add_argument("--debug-ids", action="store_true")
     parser.add_argument("--emit-live-trace", action="store_true",
                         help="write measured B=1 live exit depths for later forced-depth timing")
@@ -256,7 +284,8 @@ def main() -> None:
             else "provided-trace" if trace_info else "deterministic-synthetic"
         ),
         "trace": trace_info, "threshold": args.threshold, "seed": args.seed,
-        "state_init": args.state_init, "prompt_source": "deterministic-synthetic-text",
+        "state_init": args.state_init, "prompt_source": args.dataset,
+        "dataset_revision": "UNKNOWN (local cached Hugging Face dataset)" if args.dataset != "synthetic" else "not-applicable",
         "heterogeneous_prompts": args.heterogeneous_prompts,
         "num_rows": args.num_rows, "batch_size": args.batch_size,
         "num_tokens": args.num_tokens, "repeats": args.repeats, "warmups": args.warmups,
@@ -274,7 +303,13 @@ def main() -> None:
     adapter_cls = OuroAdapter if args.model == "ouro" else HuginnAdapter
     initial = adapter_cls.load(args.num_rows, state_init=args.state_init) if args.model == "huginn" else adapter_cls.load(args.num_rows)
     loaded, tokenizer = initial.model, initial.tokenizer
-    prompts = _prompts(args.num_rows, args.heterogeneous_prompts)
+    prompts = _load_prompts(args.dataset, args.num_rows, args.seed, args.heterogeneous_prompts)
+    prompt_digest = hashlib.sha256()
+    for request_id, prompt in enumerate(prompts):
+        prompt_digest.update(f"{request_id}:".encode())
+        prompt_digest.update(prompt.encode("utf-8"))
+        prompt_digest.update(b"\n")
+    manifest["prompt_sha256"] = prompt_digest.hexdigest()
     encoded = tokenizer(prompts, return_tensors="pt", padding=True, truncation=True, max_length=64)
     input_ids = encoded["input_ids"].to("cuda")
     prompt_valid = encoded["attention_mask"].to("cuda").bool()
@@ -322,7 +357,8 @@ def main() -> None:
     if args.exit_source == "trace" and len(strategies) == 2:
         for repetition in range(args.repeats):
             pair = [row for row in summaries if row["repetition"] == repetition]
-            if len(pair) != 2 or len({row["total_token_loop_work"] for row in pair}) != 1:
+            if (len(pair) != 2 or len({row["total_token_loop_work"] for row in pair}) != 1
+                    or len({row["same_work_checksum"] for row in pair}) != 1):
                 raise AssertionError("FIFO/Oracle did not execute identical token-loop work")
     fields = [key for key in summaries[0] if key != "last_exited_fill_receipts"]
     with (args.output_dir / "summary.csv").open("w", newline="") as stream:
