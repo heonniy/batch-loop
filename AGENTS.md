@@ -1,59 +1,61 @@
 # AGENTS.md
 
-## Current priority — four-H100 model-specific no-refill study (2026-09-16)
+## Current priority — physical early-exit runtime (2026-09-16)
 
 Read in order:
-1. `phase01/FOUR_GPU_REPLAN_20260916.md` — canonical model/KV/depth/workload contracts and four-GPU lanes.
-2. `phase01/CURRENT_RESEARCH_PRIORITY.md` — compact current scope.
-3. `phase01/EXPERIMENT_REVIEW_PROTOCOL.md` — evidence/publication contract.
-4. `phase01/results/20260915_poc/RESULT_REVIEW.md` and `review_manifest.json` — first PoC evidence.
+1. `phase02/PHYSICAL_EARLY_EXIT_IMPLEMENTATION.md` — canonical implementation contract.
+2. `phase02/AGENT_TASK.md` — concrete coding/execution checklist for GPUs 6 and 7.
+3. `phase01/results/20260916_four_gpu_validation/RESULT_REVIEW.md` — evidence that motivates this phase.
+4. `phase01/EXPERIMENT_REVIEW_PROTOCOL.md` — result/provenance rules that still apply.
 
 ### Research target
 
-Study offline **pure no-refill** micro-batch formation for depth-adaptive looped LMs. Scheduling occurs at token boundaries; an exited recurrent slot is never refilled inside the current recurrent interval.
+Turn the existing trace/headroom evidence into a **physical no-refill runtime**.  Inside one token-generation recurrent interval, tokens that exit must be removed from subsequent recurrent compute so the actual recurrent tensor batch shrinks.  No freed slot is refilled until the next token boundary.
 
-### Important reset
+The scheduling variable remains micro-batch formation at token boundaries.  The runtime mechanism is survivor compaction after each recurrent step.
 
-Do not launch the old one-GPU monolithic matrix unchanged. Huginn's previous generic paths defaulted to `full` KV and exposed a memory-capacity confound at deep/B64 cells. Preserve those OOMs, but select and freeze a model-appropriate adaptive KV contract before the main Huginn scheduling matrix.
+### Model-specific KV contract
 
-Ouro and Huginn must not be forced into one identical KV policy:
+Do **not** force Ouro and Huginn to share one KV design.
 
-- Ouro-1.4B / 2.6B: Rmax=4, learned exit thresholds, native/reference Ouro KV semantics for the main comparison.
-- Huginn-3.5B: Rmax=16, latent-diff thresholds, bounded KV gate over `full`, `latest-m4`, and `latest-m4-compress-s4`; full is capacity/reference only.
+- **Ouro-1.4B first:** physical survivor compaction + **last-exited KV**.  Keep depth-indexed recurrent KV slots.  When a request exits at depth `r`, fill its skipped recurrent-depth KV slots `r+1..Rmax` from the last actually computed recurrent KV for that request.  Do not compute the skipped recurrent blocks merely to create KV.
+- **Huginn-3.5B:** physical survivor compaction + **shared KV**.  Keep one recurrent KV slot per physical recurrent layer/request and overwrite it on every recurrence.  Do not allocate recurrence-indexed KV slots for the shared backend.
 
-Never reduce Huginn Rmax just to avoid OOM.
+Prelude/coda remain model-specific boundary stages.  For pure no-refill, run prelude once, repeatedly run the recurrent core while shrinking the survivor set, then run coda after the current recurrent interval is drained.
 
-### Four logical H100 lanes
+### Scope boundary for this phase
 
-- A: Ouro-1.4B full study.
-- B: Ouro-2.6B full study.
-- C: Huginn canonical adaptive study.
-- D: Huginn KV/HBM/parity/GSM8K gate and confirmation/repeat cells.
+The user explicitly wants to focus on the systems implementation, **not native/full-depth quality comparison**.  Do not spend this phase on GSM8K, perplexity, accuracy recovery, or proving that last-exited/shared KV reproduces native full-depth model quality.
 
-Verify live GPU ownership before binding logical lanes to physical IDs. Use separate worktree/output roots per running lane; do not hot-patch an in-flight tree.
+Still perform implementation correctness checks that are necessary to trust timing: stable request↔KV-row bookkeeping, deterministic/reproducible smoke tests, valid shapes, every request exits exactly once, exited requests receive zero later recurrent-core calls, and cache updates go to the intended request/layer/slot.
 
-### Main measurements
+### GPU ownership
 
-B=`4,8,16,32,64`; workloads Alpaca + ShareGPT. Collect fair headroom, depth distributions, native whole-model H100 BCT/throughput, peak HBM, model-specific timing surfaces, hardware-calibrated replay, and integrated physical no-refill timings after parity gates.
+Use **physical GPU 6 for Ouro** and **physical GPU 7 for Huginn**.  Do not use GPUs 0–5 for Phase 2.  Every runner must fail closed unless exactly its assigned GPU is visible.  Use separate worktrees and result roots for the two lanes; never hot-patch or overwrite Phase-1 result roots.
 
-Evidence labels remain separate:
+Recommended bindings:
+- GPU 6: Ouro-1.4B survivor runtime, last-exited KV, FIFO/Oracle physical timing.
+- GPU 7: Huginn survivor runtime, shared KV, kernel/path repair as needed, FIFO/Oracle physical timing.
 
-- trace/headroom;
-- native whole-model E2E;
-- hardware-calibrated trace replay;
-- integrated no-refill runtime.
+### Required evidence separation
 
-Ouro's native HF gate is post-hoc and cannot be called physical early exit. An integrated Ouro speed claim requires a recurrent-loop adapter that actually skips exited-token work.
+Keep these labels separate:
+- trace/logical headroom;
+- forced-depth physical compaction smoke;
+- live-exit physical runtime;
+- physical FIFO vs Oracle no-refill timing;
+- later practical-predictor timing.
+
+Do not call a trace replay an integrated runtime.  A physical result requires the recurrent core to actually receive the reduced survivor batch on later recurrences.
 
 ### Commit/publication protocol
 
-Follow the result-bound protocol used in `sub-moe`:
-1. plan/source commit before launch;
-2. bind exact source SHA, model revisions, KV policy, dataset contract and GPU identity;
-3. executing agents publish compact results + `RESULT_REVIEW.md` + `review_manifest.json`;
-4. retain OOMs, parity failures and negative cells;
-5. separate software readiness from scientific support.
+1. Make additive changes; preserve all Phase-1 code/results.
+2. Bind source SHA, model revision, KV backend, exit source (`trace` or `live`), GPU identity, and workload in every run manifest.
+3. Record active batch size and recurrent-core time per recurrence, plus compaction/KV/gate overhead.
+4. Preserve failures and unsupported cells.
+5. Publish compact results + `RESULT_REVIEW.md` + `review_manifest.json` before making speed claims.
 
-Preferred subjects: `phase01: plan ...`, `phase01: implement ...`, `phase01: publish ...`, `phase01: review ...`.
+Preferred subjects: `phase02: implement ...`, `phase02: run ...`, `phase02: publish ...`, `phase02: review ...`.
 
-Do not invent completed runs, speedups, cache semantics or missing measurements.
+Do not invent completed runs, speedups, cache semantics, or missing measurements.
