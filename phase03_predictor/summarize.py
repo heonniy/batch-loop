@@ -4,15 +4,21 @@ from __future__ import annotations
 
 import argparse
 import csv
+import gzip
 import hashlib
 import json
 import statistics
 import subprocess
+from collections import Counter, defaultdict
 from pathlib import Path
 
 
 CELLS = (("huginn", "huginn_threshold_0p12_n640_t32"),
          ("ouro", "ouro_q0p2_n640_t32"))
+SECONDARY = (("huginn", "huginn_threshold_0p26_n640_t32", "huginn_threshold_0p26_transfer",
+              "huginn_threshold_0p26_physical"),
+             ("ouro", "ouro_q0p4_n640_t32", "ouro_q0p4_transfer", "ouro_q0p4_physical"))
+CONTROLS = (("huginn", "huginn_n_eq_b_control"), ("ouro", "ouro_n_eq_b_control"))
 
 
 def _sha256(path: Path) -> str:
@@ -32,9 +38,38 @@ def _median(rows: list[dict], key: str) -> float:
     return statistics.median(float(row[key]) for row in rows)
 
 
+def _event_diagnostics(path: Path, model: str, regime: str, rmax: int) -> tuple[list[dict], list[dict], dict]:
+    maxima: dict[tuple, int] = {}
+    widths: dict[tuple, list[int]] = defaultdict(list)
+    with gzip.open(path, "rt", encoding="utf-8") as stream:
+        for line in stream:
+            event = json.loads(line)
+            key = (event["strategy"], event["repetition"], event["token_idx"], event["microbatch_id"])
+            depth = int(event["recurrence"])
+            maxima[key] = max(maxima.get(key, 0), depth)
+            widths[(event["strategy"], depth)].append(int(event["active_batch_size"]))
+    hist = Counter((key[0], depth) for key, depth in maxima.items())
+    totals = Counter(key[0] for key in maxima)
+    distribution = [{"model": model, "regime": regime, "strategy": strategy,
+                     "max_depth": depth, "microbatches": hist[(strategy, depth)],
+                     "fraction": hist[(strategy, depth)] / total}
+                    for strategy, total in sorted(totals.items()) for depth in range(1, rmax + 1)]
+    width_curves = [{"model": model, "regime": regime, "strategy": strategy,
+                     "recurrence": depth, "invocations": len(values),
+                     "mean_active_width": statistics.mean(values),
+                     "min_active_width": min(values), "max_active_width": max(values)}
+                    for (strategy, depth), values in sorted(widths.items())]
+    shallow = {strategy: 1 - hist[(strategy, rmax)] / total for strategy, total in totals.items()}
+    return distribution, width_curves, shallow
+
+
 def summarize(root: Path) -> None:
     combined_tournament: list[dict] = []
     physical_matrix: list[dict] = []
+    secondary_matrix: list[dict] = []
+    control_matrix: list[dict] = []
+    max_depth_rows: list[dict] = []
+    active_width_rows: list[dict] = []
     model_reviews = []
     artifacts: dict[str, str] = {}
     for model, feature_name in CELLS:
@@ -65,6 +100,10 @@ def summarize(root: Path) -> None:
                 raise RuntimeError(f"{model}/{strategy} fewer than two warmups")
         if len({row["same_work_checksum"] for row in physical}) != 1:
             raise RuntimeError(f"{model} strategies did not execute identical work")
+        max_depth, active_width, shallow_fraction = _event_diagnostics(
+            physical_root / "recurrence_events.jsonl.gz", model, feature_name, feature_manifest["rmax"])
+        max_depth_rows.extend(max_depth)
+        active_width_rows.extend(active_width)
         baseline = "STAGED_FIFO" if model == "huginn" else "FIFO"
         b_rows = [row for row in measured if row["strategy"] == baseline]
         o_rows = [row for row in measured if row["strategy"] == "ORACLE"]
@@ -99,6 +138,7 @@ def summarize(root: Path) -> None:
                 "median_prefill_token_match_fraction": _median(rows, "prefill_token_match_fraction"),
                 "median_generated_next_token_match_fraction": _median(rows, "generated_next_token_match_fraction"),
                 "peak_reserved_gib_max": max(float(row["peak_reserved_gib"]) for row in rows),
+                "fraction_microbatches_before_rmax": shallow_fraction[strategy],
                 "same_work_checksum": rows[0]["same_work_checksum"],
                 "run_directory": str(physical_root.relative_to(root)),
                 "gpu_uuid": physical_manifest["gpu"]["uuid"],
@@ -118,8 +158,101 @@ def summarize(root: Path) -> None:
                               "fifo_wall_s": fifo_time, "oracle_wall_s": oracle_time,
                               "fifo_ric": fifo_ric, "oracle_ric": oracle_ric,
                               "gpu_uuid": physical_manifest["gpu"]["uuid"],
-                              "same_work_checksum": rows[0]["same_work_checksum"]})
+                              "same_work_checksum": rows[0]["same_work_checksum"],
+                              "test_ric_recovery_by_candidate": {
+                                  candidate: float(test[candidate]["oracle_ric_recovery"])
+                                  for candidate in sorted(test)}})
         for path in (feature_root / "feature_manifest.json", tournament_root / "predictor_tournament.csv",
+                     physical_root / "run_manifest.json", physical_root / "summary.csv",
+                     physical_root / "recurrence_events.jsonl.gz"):
+            artifacts[str(path.relative_to(root))] = _sha256(path)
+    by_model = {item["model"]: item for item in model_reviews}
+    for model, dirname in CONTROLS:
+        control_root = root / dirname
+        if not (control_root / "run_manifest.json").exists():
+            continue
+        manifest = json.loads((control_root / "run_manifest.json").read_text())
+        if manifest["status"] != "COMPLETE":
+            raise RuntimeError(f"{model} N=B control incomplete")
+        measured = [row for row in _csv(control_root / "summary.csv") if row["run_kind"] == "measured"]
+        fifo = "STAGED_FIFO" if model == "huginn" else "FIFO"
+        first = [row for row in measured if row["strategy"] == fifo]
+        oracle = [row for row in measured if row["strategy"] == "ORACLE"]
+        if len(first) < 5 or len(oracle) < 5:
+            raise RuntimeError(f"{model} N=B control repetition count low")
+        if len({int(row["recurrent_invocations"]) for row in measured}) != 1:
+            raise RuntimeError(f"{model} N=B control must have zero RIC headroom")
+        if len({row["same_work_checksum"] for row in measured}) != 1:
+            raise RuntimeError(f"{model} N=B control work mismatch")
+        control_matrix.append({
+            "model": model, "N": int(first[0]["num_rows"]), "B": int(first[0]["batch_size"]),
+            "num_tokens": int(first[0]["num_tokens"]),
+            "fifo_ric": int(first[0]["recurrent_invocations"]),
+            "oracle_ric": int(oracle[0]["recurrent_invocations"]),
+            "fifo_median_wall_s": _median(first, "decode_wall_s"),
+            "oracle_median_wall_s": _median(oracle, "decode_wall_s"),
+            "same_work_checksum": first[0]["same_work_checksum"],
+            "gpu_uuid": manifest["gpu"]["uuid"],
+        })
+        for path in (control_root / "run_manifest.json", control_root / "summary.csv",
+                     control_root / "recurrence_events.jsonl.gz"):
+            artifacts[str(path.relative_to(root))] = _sha256(path)
+    for model, feature_name, transfer_name, physical_name in SECONDARY:
+        feature_root = root / feature_name
+        transfer_root = root / transfer_name
+        physical_root = root / physical_name
+        if not all(path.exists() for path in (feature_root / "feature_manifest.json",
+                                               transfer_root / "transfer_tournament.csv",
+                                               physical_root / "run_manifest.json")):
+            continue
+        feature_manifest = json.loads((feature_root / "feature_manifest.json").read_text())
+        physical_manifest = json.loads((physical_root / "run_manifest.json").read_text())
+        if feature_manifest["status"] != "COMPLETE" or physical_manifest["status"] != "COMPLETE":
+            raise RuntimeError(f"{model} secondary collection or physical run incomplete")
+        if _sha256(feature_root / "feature_manifest.json") != physical_manifest["feature_manifest_sha256"]:
+            raise RuntimeError(f"{model} secondary feature binding mismatch")
+        frozen_winner = by_model[model]["physical_winner"]
+        baseline = "STAGED_FIFO" if model == "huginn" else "FIFO"
+        if physical_manifest["strategies"] != [baseline, frozen_winner, "ORACLE"]:
+            raise RuntimeError(f"{model} secondary physical did not confirm the frozen primary winner")
+        transfer_rows = _csv(transfer_root / "transfer_tournament.csv")
+        transfer_test = {row["candidate"]: row for row in transfer_rows if row["split"] == "test"}
+        if len(transfer_test) != 10:
+            raise RuntimeError(f"{model} secondary all-ten frozen transfer table missing")
+        physical = _csv(physical_root / "summary.csv")
+        measured = [row for row in physical if row["run_kind"] == "measured"]
+        warmups = [row for row in physical if row["run_kind"] == "warmup"]
+        if len({row["same_work_checksum"] for row in physical}) != 1:
+            raise RuntimeError(f"{model} secondary work mismatch")
+        groups = {strategy: [row for row in measured if row["strategy"] == strategy]
+                  for strategy in (baseline, frozen_winner, "ORACLE")}
+        for strategy, rows in groups.items():
+            if len(rows) < 5 or sum(row["strategy"] == strategy for row in warmups) < 2:
+                raise RuntimeError(f"{model}/{strategy} secondary repetitions insufficient")
+        t_fifo = _median(groups[baseline], "decode_wall_s")
+        t_pred = _median(groups[frozen_winner], "decode_wall_s")
+        t_oracle = _median(groups["ORACLE"], "decode_wall_s")
+        r_fifo = int(groups[baseline][0]["recurrent_invocations"])
+        r_pred = int(groups[frozen_winner][0]["recurrent_invocations"])
+        r_oracle = int(groups["ORACLE"][0]["recurrent_invocations"])
+        row = {
+            "model": model, "regime": feature_name, "frozen_primary_winner": frozen_winner,
+            "transfer_test_ric_recovery": float(transfer_test[frozen_winner]["oracle_ric_recovery"]),
+            "fifo_ric": r_fifo, "predictor_ric": r_pred, "oracle_ric": r_oracle,
+            "physical_ric_recovery": (r_fifo - r_pred) / (r_fifo - r_oracle),
+            "fifo_median_wall_s": t_fifo, "predictor_median_wall_s": t_pred,
+            "oracle_median_wall_s": t_oracle,
+            "physical_wall_recovery": (t_fifo - t_pred) / (t_fifo - t_oracle),
+            "predictor_overhead_wall_s": _median(groups[frozen_winner], "predictor_wall_s"),
+            "sort_overhead_wall_s": _median(groups[frozen_winner], "sort_wall_s"),
+            "generated_next_token_match_fraction": _median(groups[frozen_winner],
+                                                             "generated_next_token_match_fraction"),
+            "gpu_uuid": physical_manifest["gpu"]["uuid"],
+            "same_work_checksum": groups[frozen_winner][0]["same_work_checksum"],
+        }
+        secondary_matrix.append(row)
+        by_model[model]["secondary"] = row
+        for path in (feature_root / "feature_manifest.json", transfer_root / "transfer_tournament.csv",
                      physical_root / "run_manifest.json", physical_root / "summary.csv",
                      physical_root / "recurrence_events.jsonl.gz"):
             artifacts[str(path.relative_to(root))] = _sha256(path)
@@ -133,6 +266,28 @@ def summarize(root: Path) -> None:
         writer.writerows(physical_matrix)
     artifacts["predictor_tournament.csv"] = _sha256(root / "predictor_tournament.csv")
     artifacts["physical_matrix.csv"] = _sha256(root / "physical_matrix.csv")
+    with (root / "microbatch_max_depth_distribution.csv").open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=list(max_depth_rows[0]))
+        writer.writeheader()
+        writer.writerows(max_depth_rows)
+    with (root / "active_width_curves.csv").open("w", newline="") as stream:
+        writer = csv.DictWriter(stream, fieldnames=list(active_width_rows[0]))
+        writer.writeheader()
+        writer.writerows(active_width_rows)
+    artifacts["microbatch_max_depth_distribution.csv"] = _sha256(root / "microbatch_max_depth_distribution.csv")
+    artifacts["active_width_curves.csv"] = _sha256(root / "active_width_curves.csv")
+    if secondary_matrix:
+        with (root / "secondary_matrix.csv").open("w", newline="") as stream:
+            writer = csv.DictWriter(stream, fieldnames=list(secondary_matrix[0]))
+            writer.writeheader()
+            writer.writerows(secondary_matrix)
+        artifacts["secondary_matrix.csv"] = _sha256(root / "secondary_matrix.csv")
+    if control_matrix:
+        with (root / "control_matrix.csv").open("w", newline="") as stream:
+            writer = csv.DictWriter(stream, fieldnames=list(control_matrix[0]))
+            writer.writeheader()
+            writer.writerows(control_matrix)
+        artifacts["control_matrix.csv"] = _sha256(root / "control_matrix.csv")
     lines = [
         "# Phase 03 — Practical predictor tournament review",
         "",
@@ -176,9 +331,47 @@ def summarize(root: Path) -> None:
         lines.append(f"Held-out STAGED_FIFO/FIFO→Oracle: RIC {item['fifo_ric']}→{item['oracle_ric']}; "
                      f"median decode wall {item['fifo_wall_s']:.3f}→{item['oracle_wall_s']:.3f} s. "
                      f"Best measured predictor: {item['physical_winner']}.")
+        recovery = item["test_ric_recovery_by_candidate"]
+        lines.append(f"Trace ablation (Oracle RIC recovery): previous depth C0 {recovery['C0']:.1%}; "
+                     f"history C1 {recovery['C1']:.1%}; trajectory C2 {recovery['C2']:.1%}; "
+                     f"uncertainty C3 {recovery['C3']:.1%}; embedding C4 {recovery['C4']:.1%}; "
+                     f"representation C5 {recovery['C5']:.1%}; fused regression C6 {recovery['C6']:.1%}; "
+                     f"ordinal C7 {recovery['C7']:.1%}; pairwise C8 {recovery['C8']:.1%}; "
+                     f"RIC-aware listwise C9 {recovery['C9']:.1%}.")
+        if item["physical_winner_wall_recovery"] <= 0:
+            lines.append("The best measured physical predictor did not beat staged FIFO/FIFO after overhead.")
+        elif item["physical_winner_wall_recovery"] < 0.25:
+            lines.append("The best measured physical predictor recovered less than 25% of Oracle wall headroom.")
+        lines.append("")
+    if secondary_matrix:
+        lines += ["## Secondary-regime transfer", "",
+                  "The primary physical winner and head weights were frozen before the secondary",
+                  "threshold/q cohort was scored. The full C0–C9 frozen transfer table is retained.",
+                  "Secondary physical runs compare that same frozen winner with FIFO and Oracle using",
+                  "new self-consistent features/labels and the same 2+5 timing protocol.", "",
+                  "| Model / regime | Frozen winner | Transfer test RIC recovery | Physical RIC recovery | Physical wall recovery |",
+                  "| --- | --- | ---: | ---: | ---: |"]
+        for item in secondary_matrix:
+            lines.append(f"| {item['model']} / {item['regime']} | {item['frozen_primary_winner']} | "
+                         f"{item['transfer_test_ric_recovery']:.1%} | {item['physical_ric_recovery']:.1%} | "
+                         f"{item['physical_wall_recovery']:.1%} |")
+        lines.append("")
+    if control_matrix:
+        lines += ["## N=B controls", "",
+                  "With one complete microbatch, FIFO and Oracle execute the same recurrent invocation",
+                  "count. Their small wall differences are timing noise/control overhead, not scheduler gain.", "",
+                  "| Model | N=B | FIFO/Oracle RIC | FIFO wall (s) | Oracle wall (s) |",
+                  "| --- | ---: | ---: | ---: | ---: |"]
+        for item in control_matrix:
+            lines.append(f"| {item['model']} | {item['N']} | {item['fifo_ric']} / {item['oracle_ric']} | "
+                         f"{item['fifo_median_wall_s']:.3f} | {item['oracle_median_wall_s']:.3f} |")
         lines.append("")
     lines += ["## Decision", "",
-              "The best measured candidates and negative competitors are preserved. Interpret positive",
+              "Pairwise C8 versus Huber regression C6, and listwise C9 versus C8, are shown explicitly",
+              "above. On Huginn, the Prelude-only C5 result should be weighed against the staging and",
+              "predictor overhead in the physical matrix; representation predictiveness alone is not a",
+              "physical speed claim. The best measured candidates and negative competitors are preserved.",
+              "Interpret positive",
               "wall recovery as recovery of this trace-forced no-refill Oracle opportunity, not as native",
               "quality or production throughput. The next finite action is secondary-threshold/q",
               "generalization on fresh self-consistent features, then a live-exit quality/trajectory audit.", ""]
@@ -198,8 +391,9 @@ def summarize(root: Path) -> None:
         "comparison_status": "COMPARABLE_WITHIN_EACH_HELD_OUT_COHORT",
         "hypothesis_status": "MEASURED_WITH_PRESERVED_NEGATIVES",
         "model_reviews": model_reviews, "artifacts_sha256": artifacts,
-        "known_missing_fields": ["dataset revisions", "native/full-depth quality", "secondary-threshold generalization"],
-        "next_action": "collect secondary q/threshold cohorts, evaluate frozen winner transfer and quality/trajectory drift",
+        "known_missing_fields": ["dataset revisions", "native/full-depth quality"] +
+                                ([] if len(secondary_matrix) == 2 else ["secondary-threshold generalization"]),
+        "next_action": "audit native live-exit trajectory/quality before any final system claim",
     }
     (root / "review_manifest.json").write_text(json.dumps(review, indent=2) + "\n")
 
