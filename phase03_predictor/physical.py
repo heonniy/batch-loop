@@ -175,7 +175,7 @@ def _features(args, adapter, current_tokens, previous_logits, histories,
 
 @torch.inference_mode()
 def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, frozen_tokens, prompt_lengths,
-              projection, feature_manifest, predictors, strategy, repetition, event_stream) -> dict:
+              projection, feature_manifest, predictors, strategy, repetition) -> tuple[dict, list]:
     n, batch_size = labels.shape[1], args.batch_size
     adapter = (HuginnAdapter(loaded, tokenizer, n, state_init="native-seeded") if args.model == "huginn"
                else OuroAdapter(loaded, tokenizer, n))
@@ -194,6 +194,7 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, frozen_t
     expected_ric = 0
     matching_next_tokens = 0
     work_digest = hashlib.sha256()
+    recorded_events = []
     for token_idx in range(args.num_tokens):
         current_tokens = torch.from_numpy(np.ascontiguousarray(frozen_tokens[token_idx])).to(
             device="cuda", dtype=torch.long).unsqueeze(1)
@@ -253,11 +254,7 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, frozen_t
             if args.model == "ouro":
                 next_hidden.index_copy_(0, rows, result.final_state.float().squeeze(1) @ projection)
             if repetition >= 0:
-                for event in result.events:
-                    event_stream.write(json.dumps({
-                        "strategy": strategy, "repetition": repetition, "token_idx": token_idx,
-                        "microbatch_id": microbatch_id, "row_ids": row_ids.tolist(), **event,
-                    }) + "\n")
+                recorded_events.append((token_idx, microbatch_id, row_ids.tolist(), result.events))
         for request_id in range(n):
             depth = int(labels[token_idx, request_id])
             histories[request_id].append(depth)
@@ -290,7 +287,7 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, frozen_t
         "decode_wall_s": elapsed, "generated_tokens_per_s": n * args.num_tokens / elapsed,
         "peak_reserved_gib": torch.cuda.max_memory_reserved() / 2**30,
         "kv_backend": adapter.kv_policy,
-    }
+    }, recorded_events
 
 
 def main() -> None:
@@ -368,10 +365,16 @@ def main() -> None:
         for repetition in range(-args.warmups, args.repeats):
             for strategy in strategies:
                 torch.cuda.reset_peak_memory_stats()
-                summary = _run_once(args, loaded, tokenizer, input_ids, prompt_valid,
-                                    labels, frozen_tokens, prompt_lengths, projection, feature_manifest,
-                                    predictors, strategy, repetition, events)
+                summary, recorded = _run_once(args, loaded, tokenizer, input_ids, prompt_valid,
+                                              labels, frozen_tokens, prompt_lengths, projection,
+                                              feature_manifest, predictors, strategy, repetition)
                 summaries.append(summary)
+                for token_idx, microbatch_id, row_ids, recurrence_events in recorded:
+                    for event in recurrence_events:
+                        events.write(json.dumps({
+                            "strategy": strategy, "repetition": repetition, "token_idx": token_idx,
+                            "microbatch_id": microbatch_id, "row_ids": row_ids, **event,
+                        }) + "\n")
                 print(json.dumps({key: summary[key] for key in
                                   ("strategy", "repetition", "recurrent_invocations",
                                    "decode_wall_s", "predictor_wall_s")}), flush=True)
