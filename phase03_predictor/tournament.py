@@ -194,10 +194,11 @@ def _listwise_loss(scores: torch.Tensor, depths: torch.Tensor, batch_size: int) 
 
 def _train_one(candidate: str, x: np.ndarray, labels: np.ndarray,
                train_ids: list[int], validation_ids: list[int], batch_size: int,
-               width: int, lr: float, epochs: int, seed: int) -> tuple[Head, dict]:
+               width: int, lr: float, epochs: int, seed: int,
+               rmax: int = 16) -> tuple[Head, dict]:
     torch.manual_seed(seed)
     rng = np.random.default_rng(seed)
-    output_dim = 15 if candidate == "C7" else 1
+    output_dim = rmax - 1 if candidate == "C7" else 1
     head = Head(x.shape[-1], output_dim, width)
     optimizer = torch.optim.AdamW(head.parameters(), lr=lr, weight_decay=1e-4)
     train_x = torch.from_numpy(np.ascontiguousarray(x[:, train_ids]))
@@ -226,7 +227,7 @@ def _train_one(candidate: str, x: np.ndarray, labels: np.ndarray,
                 optimizer.zero_grad()
                 output = head(total[selection])
                 if candidate == "C7":
-                    targets = (truth[selection, None] > torch.arange(1, 16)).float()
+                    targets = (truth[selection, None] > torch.arange(1, rmax)).float()
                     loss = F.binary_cross_entropy_with_logits(output, targets)
                 else:
                     loss = F.huber_loss(output.squeeze(-1), truth[selection], delta=2.0)
@@ -287,6 +288,15 @@ def main() -> None:
         if _sha256(args.feature_root / filename) != expected:
             raise RuntimeError(f"feature artifact checksum mismatch: {filename}")
     labels = np.asarray(np.load(args.feature_root / "depth_labels.npy", mmap_mode="r"), dtype=np.int16)
+    scalar_audit = np.load(args.feature_root / "scalars.npy", mmap_mode="r")
+    names = tuple(manifest["scalar_names"])
+    previous_depth = scalar_audit[..., names.index("previous_depth")]
+    trajectory_length = scalar_audit[..., names.index("previous_trajectory_length")]
+    if not (np.all(previous_depth[0] == 0) and np.array_equal(previous_depth[1:], labels[:-1])
+            and np.array_equal(trajectory_length, previous_depth)):
+        raise RuntimeError("causal previous-depth/trajectory audit failed")
+    if np.any(labels < 1) or np.any(labels > manifest["rmax"]):
+        raise RuntimeError("depth labels outside model recurrent range")
     split = manifest["request_split"]
     all_ids = [rid for ids in split.values() for rid in ids]
     if len(all_ids) != len(set(all_ids)) or len(all_ids) != labels.shape[1]:
@@ -311,7 +321,8 @@ def main() -> None:
         selected = None
         for width, lr in variants:
             head, config = _train_one(candidate, x, labels, split["train"], split["validation"],
-                                      args.batch_size, width, lr, args.epochs, args.seed)
+                                      args.batch_size, width, lr, args.epochs, args.seed,
+                                      manifest["rmax"])
             if selected is None or config["validation_ric_recovery"] > selected[1]["validation_ric_recovery"]:
                 selected = (head, config)
         head, config = selected
@@ -321,7 +332,7 @@ def main() -> None:
                        "max_sensitive_adjacent_group_swap_plus_pairwise" if candidate == "C9" else "huber")})
         checkpoint = args.output_dir / f"{candidate}_checkpoint.pt"
         torch.save({"state_dict": head.state_dict(), "input_dim": x.shape[-1],
-                    "output_dim": 15 if candidate == "C7" else 1,
+                    "output_dim": manifest["rmax"] - 1 if candidate == "C7" else 1,
                     "config": config, "feature_mean": mean, "feature_std": std}, checkpoint)
         (args.output_dir / f"{candidate}_config.json").write_text(json.dumps(config, indent=2) + "\n")
         params = sum(param.numel() for param in head.parameters())

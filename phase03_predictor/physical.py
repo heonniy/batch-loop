@@ -27,7 +27,7 @@ import torch
 from phase02_runtime.common import run_interval
 from phase02_runtime.huginn_adapter import HuginnAdapter
 from phase02_runtime.ouro_adapter import OuroAdapter
-from phase03_predictor.collect_huginn import SCALARS, _history_features, _uncertainty
+from phase03_predictor.collect_huginn import SCALARS, _history_features
 from phase03_predictor.tournament import Head, assemble_candidate_features
 
 
@@ -123,12 +123,26 @@ def _need_trajectory(candidate: str) -> bool:
     return candidate in {"C2", "C6", "C7", "C8", "C9"}
 
 
+def _uncertainty_batch(logits: torch.Tensor, token_ids: torch.Tensor) -> np.ndarray:
+    values = logits.float()
+    log_z = torch.logsumexp(values, dim=-1)
+    probs = torch.exp(values - log_z[:, None])
+    top = torch.topk(values, 2, dim=-1).values
+    surprisal = log_z - values.gather(1, token_ids.long()).squeeze(1)
+    entropy = log_z - (probs * values).sum(dim=-1)
+    top_probs = torch.exp(top - log_z[:, None])
+    return torch.stack((surprisal, entropy, top_probs[:, 0],
+                        top_probs[:, 0] - top_probs[:, 1]), dim=-1).cpu().numpy()
+
+
 def _features(args, adapter, current_tokens, previous_logits, histories,
               previous_trajectories, previous_hidden, staged_embedded,
               prompt_lengths, projection, candidate) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     n = len(histories)
     scalar = np.zeros((n, len(SCALARS)), dtype=np.float32)
     needs_uncertainty = candidate in {"C3", "C6", "C7", "C8", "C9"}
+    uncertainty = (_uncertainty_batch(previous_logits, current_tokens) if needs_uncertainty
+                   else np.zeros((n, 4), dtype=np.float32))
     for request_id in range(n):
         history = histories[request_id]
         trajectory = previous_trajectories[request_id]
@@ -136,8 +150,7 @@ def _features(args, adapter, current_tokens, previous_logits, histories,
                   float(history[-1]) if history else 0.0, float(bool(history))]
         fields += _history_features(history)
         fields += [float(history[-1] - history[-2]) if len(history) > 1 else 0.0]
-        fields += (_uncertainty(previous_logits[request_id], current_tokens[request_id])
-                   if needs_uncertainty else [0.0] * 4)
+        fields += uncertainty[request_id].tolist()
         fields += [float(len(trajectory))]
         fields += trajectory[:16] + [0.0] * (16 - len(trajectory))
         scalar[request_id] = fields
@@ -159,7 +172,7 @@ def _features(args, adapter, current_tokens, previous_logits, histories,
 
 
 @torch.inference_mode()
-def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, prompt_lengths,
+def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, frozen_tokens, prompt_lengths,
               projection, feature_manifest, predictors, strategy, repetition, event_stream) -> dict:
     n, batch_size = labels.shape[1], args.batch_size
     adapter = (HuginnAdapter(loaded, tokenizer, n, state_init="native-seeded") if args.model == "huginn"
@@ -176,8 +189,11 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, prompt_l
     total_core = total_stage = total_predictor = total_sort = 0.0
     actual_ric = total_work = 0
     expected_ric = 0
+    matching_frozen_tokens = 0
     work_digest = hashlib.sha256()
     for token_idx in range(args.num_tokens):
+        matching_frozen_tokens += int((current_tokens.squeeze(1).cpu().numpy() ==
+                                       frozen_tokens[token_idx]).sum())
         adapter.begin_token()
         stage_start = time.perf_counter()
         width = int(adapter.model.transformer.wte.weight.shape[1] if args.model == "huginn"
@@ -260,6 +276,7 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, prompt_l
         "num_rows": n, "batch_size": batch_size, "num_tokens": args.num_tokens,
         "recurrent_invocations": actual_ric, "total_token_loop_work": total_work,
         "same_work_checksum": work_digest.hexdigest(),
+        "frozen_token_match_fraction": matching_frozen_tokens / (n * args.num_tokens),
         "recurrent_gpu_s": total_core, "staging_wall_s": total_stage,
         "predictor_wall_s": total_predictor, "sort_wall_s": total_sort,
         "decode_wall_s": elapsed, "generated_tokens_per_s": n * args.num_tokens / elapsed,
@@ -281,6 +298,7 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--control", action="store_true", help="N=B=32 FIFO/Oracle control")
     args = parser.parse_args()
+    torch.set_num_threads(8)
     identity = _gpu_identity(args.model)
     feature_manifest = json.loads((args.feature_root / "feature_manifest.json").read_text())
     if feature_manifest["status"] != "COMPLETE":
@@ -294,6 +312,8 @@ def main() -> None:
         raise RuntimeError("held-out physical rows must make full microbatches")
     labels = np.asarray(np.load(args.feature_root / "depth_labels.npy", mmap_mode="r")[:args.num_tokens, ids],
                         dtype=np.int16)
+    frozen_tokens = np.asarray(np.load(args.feature_root / "token_ids.npy", mmap_mode="r")[:args.num_tokens, ids],
+                               dtype=np.int32)
     if labels.shape != (args.num_tokens, len(ids)) or np.any(labels < 1):
         raise RuntimeError("held-out frozen labels incomplete")
     prompts = _load_prompts(args.feature_root / "prompts.jsonl.gz", ids)
@@ -324,6 +344,7 @@ def main() -> None:
         "test_request_ids": ids, "prompt_sha256": hashlib.sha256("".join(
             f"{rid}:{prompt}\n" for rid, prompt in zip(ids, prompts)).encode()).hexdigest(),
         "test_labels_sha256": hashlib.sha256(labels.tobytes()).hexdigest(),
+        "test_token_ids_sha256": hashlib.sha256(frozen_tokens.tobytes()).hexdigest(),
         "prompt_cap": 64, "num_tokens": args.num_tokens, "batch_size": args.batch_size,
         "warmups": args.warmups, "repeats": args.repeats,
         "top_three_by_test_RIC": top_three, "strategies": strategies,
@@ -339,7 +360,7 @@ def main() -> None:
             for strategy in strategies:
                 torch.cuda.reset_peak_memory_stats()
                 summary = _run_once(args, loaded, tokenizer, input_ids, prompt_valid,
-                                    labels, prompt_lengths, projection, feature_manifest,
+                                    labels, frozen_tokens, prompt_lengths, projection, feature_manifest,
                                     predictors, strategy, repetition, events)
                 summaries.append(summary)
                 print(json.dumps({key: summary[key] for key in

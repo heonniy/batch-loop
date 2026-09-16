@@ -3,11 +3,21 @@
 import unittest
 
 import numpy as np
+import torch
 
+from phase03_predictor.collect_huginn import _uncertainty
+from phase03_predictor.physical import _uncertainty_batch
 from phase03_predictor.tournament import _metrics, _prepare, _ric, _scores, _train_one
 
 
 class TournamentTests(unittest.TestCase):
+    def test_batched_uncertainty_matches_collection(self):
+        logits = torch.tensor([[0.1, 0.4, -0.2], [2.0, -1.0, 0.7]])
+        tokens = torch.tensor([[1], [0]])
+        batch = _uncertainty_batch(logits, tokens)
+        reference = np.asarray([_uncertainty(logits[row], tokens[row]) for row in range(2)])
+        np.testing.assert_allclose(batch, reference, rtol=1e-5, atol=1e-6)
+
     def test_ric_reordering(self):
         depths = np.array([[1, 4, 1, 4]], dtype=np.int16)
         fifo, predictor, oracle = _ric(depths, np.array([[1, 4, 1, 4]], dtype=np.float32), 2)
