@@ -1,0 +1,139 @@
+{
+  "kind": "adaptive_b1_policy_compare",
+  "threshold": 0.26,
+  "rmax": 16,
+  "fixed_decode_tokens": 32,
+  "policies": [
+    "latest-m4",
+    "latest-m4-compress-s4"
+  ],
+  "rows": {
+    "latest-m4": [
+      {
+        "request_id": 0,
+        "policy": "latest-m4",
+        "prompt_tokens": 15,
+        "generated_tokens": 32,
+        "output_sha256": "9211fda5bfe3b7857f0aae992a24f499904d3aac47fb5642fb0fb811393b2c8d",
+        "status": "OK",
+        "elapsed_s": 2.663683995604515,
+        "allocated_gib": 6.766632556915283,
+        "reserved_gib": 6.783203125,
+        "peak_allocated_gib": 6.767856597900391,
+        "peak_reserved_gib": 6.783203125,
+        "free_gib": 71.73681640625,
+        "total_gib": 79.1888427734375
+      },
+      {
+        "request_id": 1,
+        "policy": "latest-m4",
+        "prompt_tokens": 5,
+        "generated_tokens": 32,
+        "output_sha256": "90066c02b6133333fda190283cdb1a3552322d4ff8c097f8d18bd96b9c6d9ee3",
+        "status": "OK",
+        "elapsed_s": 2.2150700138881803,
+        "allocated_gib": 6.829481601715088,
+        "reserved_gib": 6.849609375,
+        "peak_allocated_gib": 6.830509185791016,
+        "peak_reserved_gib": 6.849609375,
+        "free_gib": 71.67041015625,
+        "total_gib": 79.1888427734375
+      },
+      {
+        "request_id": 2,
+        "policy": "latest-m4",
+        "prompt_tokens": 15,
+        "generated_tokens": 32,
+        "output_sha256": "f83d2a3f6771be66c5a0b4f0e2ab01d14a06d1302a0c7c33d3a8e56e64613eb1",
+        "status": "OK",
+        "elapsed_s": 2.3410004982724786,
+        "allocated_gib": 6.819189548492432,
+        "reserved_gib": 6.83984375,
+        "peak_allocated_gib": 6.820413589477539,
+        "peak_reserved_gib": 6.83984375,
+        "free_gib": 71.68017578125,
+        "total_gib": 79.1888427734375
+      },
+      {
+        "request_id": 3,
+        "policy": "latest-m4",
+        "prompt_tokens": 7,
+        "generated_tokens": 32,
+        "output_sha256": "07a3aa0e3389ac6c773367ee8fafa7655cc37f6ecce2e1d111161ad0dda29f9c",
+        "status": "OK",
+        "elapsed_s": 2.139809259213507,
+        "allocated_gib": 6.821339130401611,
+        "reserved_gib": 6.84375,
+        "peak_allocated_gib": 6.822405815124512,
+        "peak_reserved_gib": 6.84375,
+        "free_gib": 71.67626953125,
+        "total_gib": 79.1888427734375
+      }
+    ],
+    "latest-m4-compress-s4": [
+      {
+        "request_id": 0,
+        "policy": "latest-m4-compress-s4",
+        "prompt_tokens": 15,
+        "generated_tokens": 32,
+        "output_sha256": "5374c22f0a6083564de26648d88605ec174c52b6936a9872a4d03f38f459ff2d",
+        "status": "OK",
+        "elapsed_s": 1.7146737277507782,
+        "allocated_gib": 6.756214618682861,
+        "reserved_gib": 6.775390625,
+        "peak_allocated_gib": 6.757438659667969,
+        "peak_reserved_gib": 6.775390625,
+        "free_gib": 71.74462890625,
+        "total_gib": 79.1888427734375
+      },
+      {
+        "request_id": 1,
+        "policy": "latest-m4-compress-s4",
+        "prompt_tokens": 5,
+        "generated_tokens": 32,
+        "output_sha256": "6fc813aace88c4ae7ab7c7832e95901337a541ca16abdd2d07896441f393a0b8",
+        "status": "OK",
+        "elapsed_s": 1.7352571170777082,
+        "allocated_gib": 6.705488681793213,
+        "reserved_gib": 6.720703125,
+        "peak_allocated_gib": 6.706516265869141,
+        "peak_reserved_gib": 6.720703125,
+        "free_gib": 71.79931640625,
+        "total_gib": 79.1888427734375
+      },
+      {
+        "request_id": 2,
+        "policy": "latest-m4-compress-s4",
+        "prompt_tokens": 15,
+        "generated_tokens": 32,
+        "output_sha256": "260e9b878f2f88a3f1829e531a898ae81703ffa15fd263e8b93e993c4b3a461f",
+        "status": "OK",
+        "elapsed_s": 1.7046885099262,
+        "allocated_gib": 6.705488681793213,
+        "reserved_gib": 6.720703125,
+        "peak_allocated_gib": 6.70671272277832,
+        "peak_reserved_gib": 6.720703125,
+        "free_gib": 71.79931640625,
+        "total_gib": 79.1888427734375
+      },
+      {
+        "request_id": 3,
+        "policy": "latest-m4-compress-s4",
+        "prompt_tokens": 7,
+        "generated_tokens": 32,
+        "output_sha256": "d53de11efd7fdf246be4aad574205eea7b6879351c572021337a1e61205f00e7",
+        "status": "OK",
+        "elapsed_s": 1.5748155387118459,
+        "allocated_gib": 6.706274509429932,
+        "reserved_gib": 6.720703125,
+        "peak_allocated_gib": 6.707341194152832,
+        "peak_reserved_gib": 6.720703125,
+        "free_gib": 71.79931640625,
+        "total_gib": 79.1888427734375
+      }
+    ]
+  },
+  "num_requests": 4,
+  "num_exact": 0,
+  "exact_agreement": 0.0
+}

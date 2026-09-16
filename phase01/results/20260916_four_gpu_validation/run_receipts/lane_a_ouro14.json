@@ -1,0 +1,24 @@
+{
+  "started_utc": "2026-09-16T03:16:17.853761+00:00",
+  "lane": "ouro-fast-shard",
+  "model_key": "ouro14",
+  "thresholds": [
+    "0.2",
+    "0.5"
+  ],
+  "model_revision": "37bc7e8ff85a90d813dc096383405f521b6a67b0",
+  "source_sha": "dbce2e8d1171faf3607f4e8043511c1d1e44ec46",
+  "cuda_visible_devices": "4",
+  "gpu_inventory": "0, GPU-f217c8a0-1142-20f4-d84b-af29f3a47a0d, NVIDIA H100 80GB HBM3, 81559 MiB\n1, GPU-a77f3471-67d4-20b0-9fab-e502d4de5adb, NVIDIA H100 80GB HBM3, 81559 MiB\n2, GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e, NVIDIA H100 80GB HBM3, 81559 MiB\n3, GPU-17488c15-2d4c-5d9e-d503-29b0d959a8a8, NVIDIA H100 80GB HBM3, 81559 MiB\n4, GPU-6076e2f2-5b63-3761-5586-56ceb7df8139, NVIDIA H100 80GB HBM3, 81559 MiB\n5, GPU-a1a1cfcf-93a1-3544-9a5e-e58144b68730, NVIDIA H100 80GB HBM3, 81559 MiB\n6, GPU-e3f3998e-0f1a-e94a-b97c-4abb0e8c2c28, NVIDIA H100 80GB HBM3, 81559 MiB\n7, GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b, NVIDIA H100 80GB HBM3, 81559 MiB",
+  "batch_sizes": [
+    4,
+    8,
+    16,
+    32,
+    64
+  ],
+  "datasets": [
+    "alpaca",
+    "sharegpt"
+  ]
+}

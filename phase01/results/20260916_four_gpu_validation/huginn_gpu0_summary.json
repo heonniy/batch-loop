@@ -1,0 +1,22 @@
+{
+  "model": "/home/hwlee/.cache/huggingface/hub/models--tomg-group-umd--huginn-0125/snapshots/bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "cuda_visible_devices": "0",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "model_load_memory": {
+    "allocated_gib": 6.641760349273682,
+    "reserved_gib": 7.2890625,
+    "peak_allocated_gib": 7.286291599273682,
+    "peak_reserved_gib": 7.2890625,
+    "free_gib": 71.38720703125,
+    "total_gib": 79.1888427734375
+  },
+  "num_memory_cells": 15,
+  "memory_status_counts": {
+    "OK": 11,
+    "OOM": 4
+  },
+  "adaptive_b1_exact_agreement": 0.0,
+  "evidence_kind": "HUGINN_GPU0_ISOLATED_DIAGNOSIS",
+  "claim_boundary": "diagnostic only; not an integrated no-refill runtime or scheduler speed measurement"
+}

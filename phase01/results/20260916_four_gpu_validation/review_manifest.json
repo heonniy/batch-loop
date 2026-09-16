@@ -1,0 +1,134 @@
+{
+  "packet": "20260916_four_gpu_validation",
+  "result_commit": "PENDING_PUBLICATION_COMMIT",
+  "plan_or_priority": [
+    "phase01/FOUR_GPU_REPLAN_20260916.md",
+    "phase01/CURRENT_RESEARCH_PRIORITY.md",
+    "phase01/EXPERIMENT_REVIEW_PROTOCOL.md",
+    "phase01/HUGINN_GPU0_DIAGNOSTIC_20260916.md"
+  ],
+  "source_commits": {
+    "ouro_calibration": "b15a3765c4517cf0d8ab1a9f33cfe083c098f41a",
+    "ouro_trace_fair_native": "dbce2e8d1171faf3607f4e8043511c1d1e44ec46",
+    "huginn_corrected_kv_gate": "d10c6b7bccec23f0e39834f63421305091827093",
+    "huginn_gpu0_diagnosis": "af049175aa05034779796d6e2fea0ee26e52685c",
+    "posthoc_packet_and_replay": "af049175aa05034779796d6e2fea0ee26e52685c plus publication commit"
+  },
+  "source_binding_caveats": [
+    "Ouro calibration b15a376 is inferred from file timestamps and commit chronology; the original lane manifest was overwritten at the dbce shard restart",
+    "Two Ouro-2.6B ShareGPT native follow-ups have no self-contained per-run manifest; their GPU/source binding is from launch context and pinned worktree"
+  ],
+  "execution_kind": [
+    "exit-trace-collection",
+    "trace-sim",
+    "native-whole-model-e2e-posthoc-exit-baseline",
+    "fixed-depth-h100-calibration",
+    "hardware-calibrated-trace-replay-not-integrated",
+    "huginn-capacity-and-parity-diagnosis"
+  ],
+  "hardware": {
+    "type": "NVIDIA H100 80GB HBM3",
+    "ouro_trace_shard_physical_gpus": {
+      "ouro14_q02_q05": 4,
+      "ouro14_q04_q07": 6,
+      "ouro26_q02_q05": 5,
+      "ouro26_q04_q07": 7
+    },
+    "ouro26_sharegpt_native_followup_physical_gpus": {
+      "q02_q05": 4,
+      "q04_q07": 6
+    },
+    "huginn_gate_physical_gpus": {
+      "latest_m4": 6,
+      "latest_m4_compress_s4": 7
+    },
+    "huginn_isolated_diagnosis_physical_gpu": 0
+  },
+  "exact_command_or_receipt": {
+    "ouro_shards": "run_ouro_matrix_shard.sh <ouro14|ouro26> <comma-separated thresholds>; per-lane run_manifest.json and status/steps.jsonl are hashed in raw_source_inventory.json",
+    "ouro_native_followup": "e2e_benchmark.py with pinned Ouro-2.6B snapshot, --dataset sharegpt --num-requests 256 --max-new-tokens 128 --max-prompt-tokens 2048 --thresholds 0.2,0.5 or 0.4,0.7 --batch-sizes 4,8,16,32,64 --seed 1 --fixed-output-tokens --no-validate-parity; separate run manifests were not written",
+    "huginn_gate": "run_huginn_gate_lane.sh; corrected per-lane run manifests and target/parity CSVs hashed in raw_source_inventory.json",
+    "huginn_gpu0": "run_huginn_gpu0_diagnose.sh; exact run_manifest.json and summary.json hashed in raw_source_inventory.json",
+    "posthoc_replay": "runtime_calibrate.py replay --batch-sizes 4,8 --seed 1 with four complete traces/model/workload and same-model H100 fit"
+  },
+  "model_revisions": {
+    "ByteDance/Ouro-1.4B": "37bc7e8ff85a90d813dc096383405f521b6a67b0",
+    "ByteDance/Ouro-2.6B": "f8e38372d72a8aa7f4ea9f14b98739a311589088",
+    "tomg-group-umd/huginn-0125": "bb6621b65e90b6a4b9b29ef88dc83866d450470c"
+  },
+  "dataset_revision": {
+    "alpaca": "UNKNOWN_UNPINNED_AT_RUN; post-hoc local cache snapshot dce01c9b08f87459cf36a430d809084718273017",
+    "sharegpt": "UNKNOWN_UNPINNED_AT_RUN; post-hoc local cache snapshot d4b3c8d85e6b9e0dd4e3ba85f046a9517a847d0c"
+  },
+  "dataset_contract": {
+    "seed": 1,
+    "requests_per_workload": 256,
+    "alpaca": {"repo": "tatsu-lab/alpaca", "split": "train", "prompt_cap": 512, "fixed_decode_tokens": 64},
+    "sharegpt": {"repo": "ewof/sharegpt-instruct-unfiltered-deduped", "split": "train", "prompt_cap": 2048, "fixed_decode_tokens": 128}
+  },
+  "thresholds": {
+    "ouro_learned_gate": [0.2, 0.4, 0.5, 0.7],
+    "huginn_latent_diff_parity_probe": 0.26
+  },
+  "batch_sizes": [4, 8, 16, 32, 64],
+  "kv_and_depth": {
+    "ouro": {"kv_policy": "native-reference", "rmax": 4},
+    "huginn_gate": {"kv_policies": ["latest-m4", "latest-m4-compress-s4"], "rmax": 16}
+  },
+  "measurement_status": {
+    "trace": "VALID_IN_SCOPE: 16 traces x 256 requests; fixed 64/128 positions; 393216 unique request/token positions; 80/80 fair checks",
+    "native_e2e": "60 COMPLETE; 20 ShareGPT OOM_PARTIAL. Raw EOS-truncated generated_tokens and raw tokens/s are invalid fixed-work denominators; corrected contract tokens/s only on complete cells",
+    "huginn": "CORRECTED_GATE_CAPACITY_AND_PARITY_STOP; 23/168 surface OOM, two explicit target OOM, B4 adaptive errors under both policies; GPU0 11 OK / 4 OOM diagnosis",
+    "known_missing_fields": ["run-bound dataset revisions", "self-contained run manifest for two Ouro-2.6B ShareGPT E2E follow-ups", "Huginn GSM8K quality check", "integrated no-refill runtime timing"]
+  },
+  "implementation_status": {
+    "ouro": "CHECKED_IN_SCOPE for trace/native path; public HF gate is post-hoc and not physical early exit; survivor-skipping integrated adapter absent",
+    "huginn": "CORRECTNESS_STOP: adaptive B4 path raises E=96 unsupported embedding-dimension error under both tested policies"
+  },
+  "simulator_status": {
+    "status": "CHECKED_IN_SCOPE_TRACE_SIM_ONLY",
+    "fairness_subset_checks": "80/80 true; identical selected token counts and total token-loop work across six strategies per model/workload/threshold/B",
+    "replay_scope": "160 rows, B=4,8 only where full-depth fit coverage exists; modeled wall-clock, not physical no-refill"
+  },
+  "comparison_status": {
+    "trace_grouping": "COMPARABLE within each fixed trace/q/B",
+    "native_vs_no_refill": "COMPARISON_INCOMPLETE: no integrated survivor-only runtime; do not interpret replay/native ratio as observed speedup",
+    "oom_partial": "UNMATCHED: excludes failed batches and requests"
+  },
+  "hypothesis_status": {
+    "status": "EXPLORATORY_SIGNAL for Ouro q=0.2-0.5; NEGATIVE_IN_SCOPE for q=0.7 and weak history-only predictors",
+    "effect_sizes": "At B64 oracle-minus-FIFO slot-utilization gain 4.3-28.0 percentage points; best history-only gain <=3.21 pp. B8/q0.2 modeled oracle/FIFO BCT ratio 1.40-1.61, not observed runtime",
+    "counterevidence": "No integrated GPU speed measurement; Huginn gate failed; 20/80 native cells partial OOM"
+  },
+  "environment_observed_at_publication_not_run_bound": {
+    "python": "3.11.15",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.54.1",
+    "accelerate": "1.15.0",
+    "datasets": "5.0.1",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5"
+  },
+  "artifacts": [
+    "RESULT_REVIEW.md",
+    "ouro_trace_audit.csv",
+    "ouro_headroom_fair.csv",
+    "ouro_fairness_validation.csv",
+    "ouro_native_e2e.csv",
+    "ouro_calibration.csv",
+    "ouro_calibration_fit.csv",
+    "ouro_hardware_replay_b4_b8.csv",
+    "huginn_gate_capacity.csv",
+    "huginn_gate_batch_parity.csv",
+    "huginn_gpu0_memory.csv",
+    "huginn_gpu0_memory_cells.json",
+    "huginn_gpu0_adaptive_b1_policy_compare.json",
+    "huginn_gpu0_summary.json",
+    "lane_c2_huginn_latest_gate_b1_full_vs_latest_m4.json",
+    "lane_d2_huginn_compress_gate_b1_latest_m4_vs_compress_s4.json",
+    "run_receipts/*.json",
+    "raw_source_inventory.json"
+  ],
+  "hashes_or_paths": "raw_source_inventory.json has SHA-256 and repo-relative path for every audited local source; compact artifacts are colocated with this manifest",
+  "next_action": "Pin dataset snapshots; repair Huginn B>1 adaptive parity and gate KV quality without reducing Rmax=16; implement survivor-skipping Ouro adapter and collect repeated synchronized physical no-refill timing only after correctness gates"
+}

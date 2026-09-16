@@ -1,0 +1,429 @@
+{
+  "model": "/home/hwlee/.cache/huggingface/hub/models--tomg-group-umd--huginn-0125/snapshots/bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "depth": 16,
+  "model_load_memory": {
+    "allocated_gib": 6.641760349273682,
+    "reserved_gib": 7.2890625,
+    "peak_allocated_gib": 7.286291599273682,
+    "peak_reserved_gib": 7.2890625,
+    "free_gib": 71.38720703125,
+    "total_gib": 79.1888427734375
+  },
+  "rows": [
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 8,
+      "context_len": 512,
+      "depth": 16,
+      "kv_policy": "full",
+      "new_tokens": 1,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.641821384429932,
+        "reserved_gib": 6.64453125,
+        "peak_allocated_gib": 6.641821384429932,
+        "peak_reserved_gib": 6.64453125,
+        "free_gib": 71.94189453125,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        8,
+        513
+      ],
+      "elapsed_s": 1.1781633254140615,
+      "allocated_gib": 6.673102378845215,
+      "reserved_gib": 27.53515625,
+      "peak_allocated_gib": 22.032909870147705,
+      "peak_reserved_gib": 27.53515625,
+      "free_gib": 50.98486328125,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 8,
+      "context_len": 512,
+      "depth": 16,
+      "kv_policy": "latest-m4",
+      "new_tokens": 1,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.673071384429932,
+        "reserved_gib": 6.685546875,
+        "peak_allocated_gib": 6.673071384429932,
+        "peak_reserved_gib": 6.685546875,
+        "free_gib": 71.83447265625,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        8,
+        513
+      ],
+      "elapsed_s": 0.6036094399169087,
+      "allocated_gib": 6.673102378845215,
+      "reserved_gib": 27.580078125,
+      "peak_allocated_gib": 22.033642292022705,
+      "peak_reserved_gib": 27.580078125,
+      "free_gib": 50.93994140625,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 8,
+      "context_len": 512,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.673071384429932,
+        "reserved_gib": 6.685546875,
+        "peak_allocated_gib": 6.673071384429932,
+        "peak_reserved_gib": 6.685546875,
+        "free_gib": 71.83447265625,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        8,
+        513
+      ],
+      "elapsed_s": 0.5921457521617413,
+      "allocated_gib": 6.673102378845215,
+      "reserved_gib": 11.173828125,
+      "peak_allocated_gib": 9.948681354522705,
+      "peak_reserved_gib": 11.173828125,
+      "free_gib": 67.34619140625,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 64,
+      "context_len": 512,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.673498630523682,
+        "reserved_gib": 6.685546875,
+        "peak_allocated_gib": 6.673498630523682,
+        "peak_reserved_gib": 6.685546875,
+        "free_gib": 71.83447265625,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        64,
+        513
+      ],
+      "elapsed_s": 4.479166010394692,
+      "allocated_gib": 6.67374324798584,
+      "reserved_gib": 43.599609375,
+      "peak_allocated_gib": 32.85361909866333,
+      "peak_reserved_gib": 43.599609375,
+      "free_gib": 34.92041015625,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 64,
+      "context_len": 1024,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.673986911773682,
+        "reserved_gib": 6.685546875,
+        "peak_allocated_gib": 6.673986911773682,
+        "peak_reserved_gib": 6.685546875,
+        "free_gib": 71.83447265625,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        64,
+        1025
+      ],
+      "elapsed_s": 9.213545445352793,
+      "allocated_gib": 6.67447566986084,
+      "reserved_gib": 70.982421875,
+      "peak_allocated_gib": 59.034225940704346,
+      "peak_reserved_gib": 70.982421875,
+      "free_gib": 7.53759765625,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 64,
+      "context_len": 1536,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OOM",
+      "after_inputs": {
+        "allocated_gib": 6.674475193023682,
+        "reserved_gib": 6.6875,
+        "peak_allocated_gib": 6.674475193023682,
+        "peak_reserved_gib": 6.6875,
+        "free_gib": 71.83251953125,
+        "total_gib": 79.1888427734375
+      },
+      "error": "CUDA out of memory. Tried to allocate 12.00 GiB. GPU 0 has a total capacity of 79.19 GiB of which 11.39 GiB is free. Including non-PyTorch memory, this process has 67.79 GiB memory in use. Of the allocated memory 49.21 GiB is allocated by PyTorch, and 17.91 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+      "elapsed_s": 13.874019815586507,
+      "allocated_gib": 6.674475193023682,
+      "reserved_gib": 67.12890625,
+      "peak_allocated_gib": 65.24022340774536,
+      "peak_reserved_gib": 74.86328125,
+      "free_gib": 11.39111328125,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 64,
+      "context_len": 2048,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OOM",
+      "after_inputs": {
+        "allocated_gib": 6.674963474273682,
+        "reserved_gib": 6.6875,
+        "peak_allocated_gib": 6.674963474273682,
+        "peak_reserved_gib": 6.6875,
+        "free_gib": 71.83251953125,
+        "total_gib": 79.1888427734375
+      },
+      "error": "CUDA out of memory. Tried to allocate 5.16 GiB. GPU 0 has a total capacity of 79.19 GiB of which 4.88 GiB is free. Including non-PyTorch memory, this process has 74.30 GiB memory in use. Of the allocated memory 60.82 GiB is allocated by PyTorch, and 12.83 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+      "elapsed_s": 1.4797916794195771,
+      "allocated_gib": 6.674963474273682,
+      "reserved_gib": 73.642578125,
+      "peak_allocated_gib": 65.97356462478638,
+      "peak_reserved_gib": 74.931640625,
+      "free_gib": 4.87744140625,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 16,
+      "context_len": 2048,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.673498630523682,
+        "reserved_gib": 6.685546875,
+        "peak_allocated_gib": 6.673498630523682,
+        "peak_reserved_gib": 6.685546875,
+        "free_gib": 71.83447265625,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        16,
+        2049
+      ],
+      "elapsed_s": 4.6963669285178185,
+      "allocated_gib": 6.67374324798584,
+      "reserved_gib": 43.599609375,
+      "peak_allocated_gib": 32.85417985916138,
+      "peak_reserved_gib": 43.599609375,
+      "free_gib": 34.92041015625,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 32,
+      "context_len": 2048,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.673986911773682,
+        "reserved_gib": 6.685546875,
+        "peak_allocated_gib": 6.673986911773682,
+        "peak_reserved_gib": 6.685546875,
+        "free_gib": 71.83447265625,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        32,
+        2049
+      ],
+      "elapsed_s": 9.451445871964097,
+      "allocated_gib": 6.67447566986084,
+      "reserved_gib": 70.982421875,
+      "peak_allocated_gib": 59.03459978103638,
+      "peak_reserved_gib": 70.982421875,
+      "free_gib": 7.53759765625,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 48,
+      "context_len": 2048,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OOM",
+      "after_inputs": {
+        "allocated_gib": 6.674475193023682,
+        "reserved_gib": 6.6875,
+        "peak_allocated_gib": 6.674475193023682,
+        "peak_reserved_gib": 6.6875,
+        "free_gib": 71.83251953125,
+        "total_gib": 79.1888427734375
+      },
+      "error": "CUDA out of memory. Tried to allocate 12.00 GiB. GPU 0 has a total capacity of 79.19 GiB of which 11.39 GiB is free. Including non-PyTorch memory, this process has 67.79 GiB memory in use. Of the allocated memory 49.22 GiB is allocated by PyTorch, and 17.91 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+      "elapsed_s": 14.022261768579483,
+      "allocated_gib": 6.674475193023682,
+      "reserved_gib": 67.12890625,
+      "peak_allocated_gib": 65.24041032791138,
+      "peak_reserved_gib": 74.86328125,
+      "free_gib": 11.39111328125,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 64,
+      "context_len": 2048,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OOM",
+      "after_inputs": {
+        "allocated_gib": 6.674963474273682,
+        "reserved_gib": 6.6875,
+        "peak_allocated_gib": 6.674963474273682,
+        "peak_reserved_gib": 6.6875,
+        "free_gib": 71.83251953125,
+        "total_gib": 79.1888427734375
+      },
+      "error": "CUDA out of memory. Tried to allocate 5.16 GiB. GPU 0 has a total capacity of 79.19 GiB of which 4.88 GiB is free. Including non-PyTorch memory, this process has 74.30 GiB memory in use. Of the allocated memory 60.82 GiB is allocated by PyTorch, and 12.83 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)",
+      "elapsed_s": 1.4859065292403102,
+      "allocated_gib": 6.674963474273682,
+      "reserved_gib": 73.642578125,
+      "peak_allocated_gib": 65.97356462478638,
+      "peak_reserved_gib": 74.931640625,
+      "free_gib": 4.87744140625,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 16,
+      "context_len": 2048,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.673498630523682,
+        "reserved_gib": 6.685546875,
+        "peak_allocated_gib": 6.673498630523682,
+        "peak_reserved_gib": 6.685546875,
+        "free_gib": 71.83447265625,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        16,
+        2049
+      ],
+      "elapsed_s": 4.713397704996169,
+      "allocated_gib": 6.67374324798584,
+      "reserved_gib": 43.599609375,
+      "peak_allocated_gib": 32.85417985916138,
+      "peak_reserved_gib": 43.599609375,
+      "free_gib": 34.92041015625,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 16,
+      "context_len": 2048,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 8,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.673498630523682,
+        "reserved_gib": 6.685546875,
+        "peak_allocated_gib": 6.673498630523682,
+        "peak_reserved_gib": 6.685546875,
+        "free_gib": 71.83447265625,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        16,
+        2056
+      ],
+      "elapsed_s": 6.697308922186494,
+      "allocated_gib": 6.673743724822998,
+      "reserved_gib": 43.6484375,
+      "peak_allocated_gib": 32.85417985916138,
+      "peak_reserved_gib": 43.6484375,
+      "free_gib": 34.87158203125,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 32,
+      "context_len": 1024,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 1,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.673498630523682,
+        "reserved_gib": 6.685546875,
+        "peak_allocated_gib": 6.673498630523682,
+        "peak_reserved_gib": 6.685546875,
+        "free_gib": 71.83447265625,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        32,
+        1025
+      ],
+      "elapsed_s": 4.58520224224776,
+      "allocated_gib": 6.67374324798584,
+      "reserved_gib": 43.599609375,
+      "peak_allocated_gib": 32.853806018829346,
+      "peak_reserved_gib": 43.599609375,
+      "free_gib": 34.92041015625,
+      "total_gib": 79.1888427734375
+    },
+    {
+      "kind": "fixed_depth_memory",
+      "batch_size": 32,
+      "context_len": 1024,
+      "depth": 16,
+      "kv_policy": "latest-m4-compress-s4",
+      "new_tokens": 8,
+      "status": "OK",
+      "after_inputs": {
+        "allocated_gib": 6.673498630523682,
+        "reserved_gib": 6.685546875,
+        "peak_allocated_gib": 6.673498630523682,
+        "peak_reserved_gib": 6.685546875,
+        "free_gib": 71.83447265625,
+        "total_gib": 79.1888427734375
+      },
+      "generated_shape": [
+        32,
+        1032
+      ],
+      "elapsed_s": 6.001712645404041,
+      "allocated_gib": 6.6737446784973145,
+      "reserved_gib": 43.70703125,
+      "peak_allocated_gib": 32.853806018829346,
+      "peak_reserved_gib": 43.70703125,
+      "free_gib": 34.81298828125,
+      "total_gib": 79.1888427734375
+    }
+  ],
+  "interpretation_contract": {
+    "one_token_oom": "initial full-prompt/prefill-side peak is sufficient to OOM; decode growth is not required",
+    "one_token_ok_multi_token_oom": "decode/cache growth contributes materially after the initial full-prompt forward",
+    "latest_m4_similar_to_full": "expected: latest-m4 is a missing-KV lookup policy, not recurrence-slot compression",
+    "compress_s4_lower_peak": "expected: recurrence cache indices are reused modulo the 4-layer core"
+  }
+}
