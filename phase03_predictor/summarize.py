@@ -315,7 +315,8 @@ def summarize(root: Path) -> None:
     lines = [
         "# Phase 03 — Practical predictor tournament review",
         "",
-        "This packet covers two request-disjoint held-out N256/B32, 32-token cohorts. Both lanes used",
+        "This packet covers two models at primary and secondary thresholds, with request-disjoint",
+        "train/validation/test splits and held-out N256/B32, 32-token physical cohorts. Both lanes used",
         "frozen B=1 live depth labels and physically shrinking survivor batches. The user corrected the",
         "Phase-3 GPU assignment to GPU6=Ouro and GPU7=Huginn, overriding the main-branch GPU8 plan",
         "for this execution; no other GPU was used for model work.",
@@ -341,7 +342,9 @@ def summarize(root: Path) -> None:
         "or an output-quality comparison. The generated-next-token match fraction in the physical matrix",
         "quantifies output drift from the B=1 feature collector, despite frozen input tokens.",
         "Dataset revisions remain UNKNOWN (cached Hugging Face datasets); prompt content hashes and",
-        "request split IDs are frozen in the feature manifests. The Phase-2 Oracle ceiling used a different",
+        "request split IDs are frozen in the feature manifests. The secondary thresholds reuse the same",
+        "prompt pool and split IDs, but have newly collected self-consistent features/labels; this is",
+        "threshold transfer, not generalization to a new prompt sample. The Phase-2 Oracle ceiling used a different",
         "first-N cohort, so these held-out FIFO/Oracle numbers are the appropriate denominator.",
         "The primary collectors started from an uncommitted worktree: their launch Git HEAD predates the",
         "collector implementation commit. Post-run source-file hashes and that provenance limitation are",
@@ -429,7 +432,9 @@ def summarize(root: Path) -> None:
         "hardware": {item["model"]: item["gpu_uuid"] for item in model_reviews},
         "model_revisions": {model: json.loads((root / name / "feature_manifest.json").read_text())["model_revision"]
                             for model, name in CELLS},
-        "dataset_revision": "UNKNOWN", "regimes": [item["feature_name"] for item in model_reviews],
+        "dataset_revision": "UNKNOWN",
+        "regimes": ([item["feature_name"] for item in model_reviews] +
+                    [item["regime"] for item in secondary_matrix]),
         "measurement_status": "VALID_FOR_FROZEN_TRACE_FORCED_WORK",
         "implementation_status": "CHECKED_IN_SCOPE_FOR_SURVIVOR_RUNTIME",
         "simulator_status": "CHECKED_IN_SCOPE_SAME_WORK",
@@ -437,7 +442,8 @@ def summarize(root: Path) -> None:
         "hypothesis_status": "MEASURED_WITH_PRESERVED_NEGATIVES",
         "phase03_decision": decision,
         "model_reviews": model_reviews, "artifacts_sha256": artifacts,
-        "known_missing_fields": ["dataset revisions", "native/full-depth quality"] +
+        "known_missing_fields": ["dataset revisions", "native/full-depth quality",
+                                 "independent prompt-cohort transfer"] +
                                 ([] if len(secondary_matrix) == 2 else ["secondary-threshold generalization"]),
         "next_action": "audit native live-exit trajectory/quality before any final system claim",
     }
