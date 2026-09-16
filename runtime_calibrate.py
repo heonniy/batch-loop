@@ -28,7 +28,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from poc import add_causal_predictors, order_token_group, read_traces
+from poc import add_causal_predictors, force_fixed_huginn_decode, order_token_group, read_traces
 
 
 def csv_ints(s: str) -> list[int]:
@@ -125,6 +125,8 @@ def calibrate(args):
     if not torch.cuda.is_available():
         raise RuntimeError("calibrate requires CUDA")
     model, tokenizer = load_model(args.model, args.revision or None)
+    if args.family == "huginn" and not force_fixed_huginn_decode(model):
+        raise RuntimeError("Huginn fixed-decode adapter could not find model._get_stops")
     device = torch.device("cuda")
     batches = csv_ints(args.batch_sizes)
     contexts = csv_ints(args.context_lengths)
@@ -147,6 +149,7 @@ def calibrate(args):
                     "kv_policy": kv_policy,
                     "decode_tokens": args.decode_tokens,
                     "evidence_kind": "H100_FIXED_DEPTH_CALIBRATION",
+                    "huginn_private_stop_tokens_suppressed": args.family == "huginn",
                     "status": "OK",
                 }
                 try:

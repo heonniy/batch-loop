@@ -43,6 +43,10 @@ if [[ "$POLICY" == "latest-m4" ]]; then
   run_keep b1_policy_output_probe "$PY" huginn_policy_probe.py --model "$MODEL" --model-revision "$REV" \
     --policies full,latest-m4 --dataset alpaca --num-requests 4 --max-prompt-tokens 2048 \
     --max-new-tokens 64 --threshold 0.26 --max-steps 16 --output "$OUT/parity/b1_full_vs_latest_m4.json"
+elif [[ "$POLICY" == "latest-m4-compress-s4" ]]; then
+  run_keep b1_policy_output_probe "$PY" huginn_policy_probe.py --model "$MODEL" --model-revision "$REV" \
+    --policies latest-m4,latest-m4-compress-s4 --dataset alpaca --num-requests 4 --max-prompt-tokens 2048 \
+    --max-new-tokens 64 --threshold 0.26 --max-steps 16 --output "$OUT/parity/b1_latest_m4_vs_compress_s4.json"
 fi
 
 run_keep capacity_surface "$PY" runtime_calibrate.py calibrate --model "$MODEL" --family huginn \

@@ -26,7 +26,7 @@ from typing import Any
 
 import numpy as np
 
-from poc import load_prompts
+from poc import force_fixed_huginn_decode, load_prompts
 
 
 def _csv_list(text: str, cast):
@@ -96,6 +96,9 @@ def _generation_kwargs(args, tokenizer, model, threshold: float):
         gc.min_new_tokens = args.max_new_tokens
     return {
         "generation_config": gc,
+        # The pinned Huginn dispatcher reads this from model kwargs rather than
+        # GenerationConfig when its adaptive path is selected.
+        "max_new_tokens": args.max_new_tokens,
         "tokenizer": tokenizer,
         "criterion": args.criterion,
         "exit_threshold": float(threshold),
@@ -173,6 +176,11 @@ def benchmark(args) -> None:
         torch_dtype=torch.bfloat16,
         device_map="cuda",
     ).eval()
+    huginn_stop_tokens_suppressed = False
+    if args.family == "huginn" and args.fixed_output_tokens:
+        huginn_stop_tokens_suppressed = force_fixed_huginn_decode(model)
+        if not huginn_stop_tokens_suppressed:
+            raise RuntimeError("Huginn fixed-decode adapter could not find model._get_stops")
     _sync(torch)
     load_s = time.perf_counter() - t_load
 
@@ -297,6 +305,7 @@ def benchmark(args) -> None:
                 "peak_gpu_reserved_gib": peak_reserved_gib,
                 "model_load_s_excluded": load_s,
                 "fixed_output_tokens": args.fixed_output_tokens,
+                "huginn_private_stop_tokens_suppressed": huginn_stop_tokens_suppressed,
                 "parity_ok": parity_ok,
                 "parity_fraction": parity_fraction,
                 "parity_kind": parity_kind,

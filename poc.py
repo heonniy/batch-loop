@@ -18,6 +18,7 @@ import math
 import os
 import random
 import re
+import types
 from collections import defaultdict
 from pathlib import Path
 from typing import Any, Iterable
@@ -42,6 +43,28 @@ def _seed_everything(seed: int) -> None:
 def _slug(s: str) -> str:
     s = re.sub(r"[^A-Za-z0-9._-]+", "_", s)
     return s.strip("_")[:180]
+
+
+def force_fixed_huginn_decode(model) -> bool:
+    """Disable Huginn's private stop tokens for an exact-token benchmark.
+
+    The pinned remote implementation terminates on three hard-coded tokens and
+    does not honor GenerationConfig.min_new_tokens.  Returning an empty tensor
+    from its stop-token helper is the smallest process-local adaptation that
+    makes the fixed-decode workload contract real; model source stays untouched.
+    """
+    if not hasattr(model, "_get_stops"):
+        return False
+    if not hasattr(model, "_batch_loop_original_get_stops"):
+        model._batch_loop_original_get_stops = model._get_stops
+
+        def _no_stop_tokens(_self, _generation_config, _tokenizer, _model_kwargs):
+            import torch
+
+            return torch.empty(0, dtype=torch.long)
+
+        model._get_stops = types.MethodType(_no_stop_tokens, model)
+    return True
 
 
 def _write_jsonl(path: str | Path, rows: Iterable[dict[str, Any]], append: bool = False) -> None:
@@ -268,6 +291,9 @@ def collect_huginn(args: argparse.Namespace) -> None:
         device_map="cuda",
     ).eval()
 
+    if not force_fixed_huginn_decode(model):
+        raise RuntimeError("Huginn fixed-decode adapter could not find model._get_stops")
+
     output_path = Path(args.output)
     receipt_path = output_path.with_suffix(".requests.jsonl")
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -297,6 +323,7 @@ def collect_huginn(args: argparse.Namespace) -> None:
             out = model.generate(
                 **enc,
                 generation_config=generation_config,
+                max_new_tokens=args.max_new_tokens,
                 tokenizer=tokenizer,
                 criterion=args.criterion,
                 exit_threshold=("auto" if args.exit_threshold == "auto" else float(args.exit_threshold)),
@@ -333,6 +360,7 @@ def collect_huginn(args: argparse.Namespace) -> None:
                         "kv_policy": args.cache_lookup_strategy,
                         "rmax": int(args.max_steps),
                         "fixed_decode_tokens": True,
+                        "huginn_private_stop_tokens_suppressed": True,
                         "seed": args.seed,
                     }
                 )
@@ -351,6 +379,7 @@ def collect_huginn(args: argparse.Namespace) -> None:
                     "kv_policy": args.cache_lookup_strategy,
                     "rmax": int(args.max_steps),
                     "status": "OK" if len(rows) == generated_len else "TRACE_LENGTH_MISMATCH",
+                    "huginn_private_stop_tokens_suppressed": True,
                 }],
                 append=True,
             )

@@ -7,7 +7,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from poc import load_prompts
+from poc import force_fixed_huginn_decode, load_prompts
 
 
 def main() -> None:
@@ -41,6 +41,8 @@ def main() -> None:
         torch_dtype=torch.bfloat16,
         device_map="cuda",
     ).eval()
+    if not force_fixed_huginn_decode(model):
+        raise RuntimeError("Huginn fixed-decode adapter could not find model._get_stops")
 
     gc = GenerationConfig.from_model_config(model.config)
     gc.do_sample = False
@@ -70,6 +72,7 @@ def main() -> None:
                     out = model.generate(
                         **enc,
                         generation_config=gc,
+                        max_new_tokens=args.max_new_tokens,
                         tokenizer=tokenizer,
                         criterion="latent-diff",
                         exit_threshold=args.threshold,
@@ -107,6 +110,7 @@ def main() -> None:
                 "peak_gpu_allocated_gib": torch.cuda.max_memory_allocated() / (1024**3),
                 "peak_gpu_reserved_gib": torch.cuda.max_memory_reserved() / (1024**3),
                 "evidence_kind": "HUGINN_B1_KV_POLICY_OUTPUT_PROBE",
+                "huginn_private_stop_tokens_suppressed": True,
             }
             rows.append(row)
             policy_outputs.append(token_ids)
