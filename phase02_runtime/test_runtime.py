@@ -110,6 +110,30 @@ class SurvivorTests(unittest.TestCase):
         self.assertEqual(len(backend.history), 8)
         self.assertEqual(backend.history[("core", 0)][0][:, 0, -1, 0].tolist(), [1, 2, 4, 2])
 
+    def test_token_boundary_grows_history_without_changing_stable_rows(self):
+        ouro = OuroLastExitedKV(2, torch.device("cpu"), num_layers=1, rmax=2)
+        huginn = HuginnSharedKV(2, torch.device("cpu"))
+        valid = torch.tensor([[False, True], [True, True]])
+        for backend in (ouro, huginn):
+            backend.begin_prefill(valid)
+            slots = (0, 1) if backend is ouro else (0, 1, 2, 3, 4, 5, -1, -2)
+            for slot in slots:
+                tensor = torch.ones((2, 1, 2, 1))
+                backend.update(tensor, tensor, slot)
+            backend.finish_prefill()
+            for token_idx in (1, 2):
+                backend.begin_token()
+                backend.set_active(torch.tensor([1, 0]))
+                for slot in slots:
+                    tensor = torch.tensor([token_idx + 10, token_idx + 20], dtype=torch.float32).view(2, 1, 1, 1)
+                    backend.update(tensor, tensor, slot)
+                backend.commit_token()
+            self.assertEqual(backend.key_valid.shape, (2, 4))
+            for key, (k, v) in backend.history.items():
+                self.assertEqual(k.shape, (2, 1, 4, 1), key)
+                self.assertTrue(torch.equal(k, v), key)
+                self.assertEqual(k[:, 0, -1, 0].tolist(), [22.0, 12.0], key)
+
 
 if __name__ == "__main__":
     unittest.main()

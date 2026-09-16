@@ -170,6 +170,11 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, depths_matrix,
     generated = args.num_rows * args.num_tokens
     summary = {
         "run_kind": run_kind, "strategy": strategy, "repetition": repetition,
+        "physical_category": (
+            "PHYSICAL_SURVIVOR_LIVE" if args.exit_source == "live"
+            else "PHYSICAL_SURVIVOR_ORACLE" if strategy == "oracle"
+            else "PHYSICAL_SURVIVOR_FIFO"
+        ),
         "model": args.model, "exit_source": args.exit_source,
         "kv_backend": adapter.kv_policy, "threshold": args.threshold,
         "num_rows": args.num_rows, "batch_size": args.batch_size,
@@ -241,6 +246,7 @@ def main() -> None:
     )
     manifest = {
         "source_sha": source_sha, "argv": sys.argv, "gpu": identity,
+        "stage": args.stage, "peak_hbm_includes_prefill": True,
         "model": args.model,
         "model_revision": OuroAdapter.model_revision if args.model == "ouro" else HuginnAdapter.model_revision,
         "kv_backend": OuroAdapter.kv_policy if args.model == "ouro" else HuginnAdapter.kv_policy,
