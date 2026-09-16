@@ -398,10 +398,28 @@ def summarize(root: Path) -> None:
               "above. On Huginn, the Prelude-only C5 result should be weighed against the staging and",
               "predictor overhead in the physical matrix; representation predictiveness alone is not a",
               "physical speed claim. The best measured candidates and negative competitors are preserved.",
-              "Interpret positive",
-              "wall recovery as recovery of this trace-forced no-refill Oracle opportunity, not as native",
-              "quality or production throughput. The next finite action is a live-exit",
-              "quality/trajectory audit once the secondary-threshold/q transfer is complete.", ""]
+              "Interpret positive wall recovery as recovery of this trace-forced no-refill Oracle",
+              "opportunity, not as native quality or production throughput."]
+    if len(secondary_matrix) == 2:
+        # The plan's qualitative 25% band is the lower boundary of a useful result.
+        useful = all(item["physical_winner_wall_recovery"] >= 0.25 for item in model_reviews)
+        useful &= all(item["physical_wall_recovery"] >= 0.25 for item in secondary_matrix)
+        shared = len({item["physical_winner"] for item in model_reviews}) == 1
+        if useful and shared:
+            decision = "1 — one shared predictor design works well for both model families"
+        elif useful:
+            decision = ("2 — model-specific feature heads are needed, with a shared "
+                        "RIC-aware scheduling objective")
+        else:
+            decision = ("3 — lightweight predictors recover too little physical Oracle room; "
+                        "a new predictor architecture or problem framing is warranted")
+        lines += ["", f"Plan decision: **{decision}**. The 25% useful-band threshold must be met",
+                  "on both primary and frozen-head secondary physical cohorts; a single positive",
+                  "model is not a claim that the method works across both families."]
+    else:
+        decision = "PENDING_SECONDARY"
+    lines += ["", "The next finite action is a live-exit quality/trajectory audit; it is outside",
+              "this phase's scope.", ""]
     (root / "RESULT_REVIEW.md").write_text("\n".join(lines))
     review = {
         "result_commit": "PENDING_REVIEW_COMMIT",
@@ -417,6 +435,7 @@ def summarize(root: Path) -> None:
         "simulator_status": "CHECKED_IN_SCOPE_SAME_WORK",
         "comparison_status": "COMPARABLE_WITHIN_EACH_HELD_OUT_COHORT",
         "hypothesis_status": "MEASURED_WITH_PRESERVED_NEGATIVES",
+        "phase03_decision": decision,
         "model_reviews": model_reviews, "artifacts_sha256": artifacts,
         "known_missing_fields": ["dataset revisions", "native/full-depth quality"] +
                                 ([] if len(secondary_matrix) == 2 else ["secondary-threshold generalization"]),
