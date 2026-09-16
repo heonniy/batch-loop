@@ -1,5 +1,7 @@
 # Four-GPU model validation: Ouro trace headroom survives; Huginn main lane stops at the KV/batch gate
 
+Bound result publication: `9a7755a6e2c7cc32af21a14e1ac7a485ef99070b`.
+
 ## Executive summary
 
 - Ouro-1.4B and Ouro-2.6B each completed all 8 Alpaca/ShareGPT × threshold exit traces: **16 traces, 256 requests each, 393,216 recorded token positions**. All 80 fair-subset checks passed. At B=64 the oracle-minus-FIFO *logical slot-utilization* gain spans **4.3–28.0 percentage points**; the best tested history-only grouping gains at most **3.2 pp**. This is scheduling headroom, not GPU speedup.
