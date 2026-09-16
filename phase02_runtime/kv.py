@@ -193,6 +193,8 @@ class HuginnSharedKV(_StableRowKV):
         self.history: dict[tuple[str, int], KV] = {}
         self.current: dict[tuple[str, int], KV] = {}
         self.valid_current: dict[tuple[str, int], torch.Tensor] = {}
+        self.history_length = 0
+        self.history_capacity = 0
 
     def _slot(self, block_idx: int | torch.Tensor) -> tuple[str, int]:
         idx = int(block_idx)
@@ -228,8 +230,8 @@ class HuginnSharedKV(_StableRowKV):
         elif self.phase == "token":
             history_k, history_v = self.history[slot]
             output = (
-                torch.cat([history_k.index_select(0, self.active_rows), key_states], dim=2),
-                torch.cat([history_v.index_select(0, self.active_rows), value_states], dim=2),
+                torch.cat([history_k[:, :, :self.history_length].index_select(0, self.active_rows), key_states], dim=2),
+                torch.cat([history_v[:, :, :self.history_length].index_select(0, self.active_rows), value_states], dim=2),
             )
         else:
             raise RuntimeError("Huginn KV update outside prefill/token")
@@ -244,12 +246,30 @@ class HuginnSharedKV(_StableRowKV):
         if any(not bool(mask.all()) for mask in self.valid_current.values()):
             raise AssertionError("incomplete Huginn prefill KV")
         self.history = self.current
+        lengths = {k.shape[2] for k, _ in self.history.values()}
+        if len(lengths) != 1:
+            raise AssertionError("Huginn prefill layer lengths differ")
+        self.history_length = self.history_capacity = lengths.pop()
         self.current = {}
         self.valid_current = {}
         self.phase = "ready"
 
+    def _reserve_history(self, required_length: int) -> None:
+        if required_length <= self.history_capacity:
+            return
+        new_capacity = max(required_length, self.history_capacity * 2)
+        for slot, (old_k, old_v) in tuple(self.history.items()):
+            shape = (self.num_rows, old_k.shape[1], new_capacity, old_k.shape[3])
+            new_k = torch.empty(shape, dtype=old_k.dtype, device=self.device)
+            new_v = torch.empty(shape, dtype=old_v.dtype, device=self.device)
+            new_k[:, :, :self.history_length].copy_(old_k[:, :, :self.history_length])
+            new_v[:, :, :self.history_length].copy_(old_v[:, :, :self.history_length])
+            self.history[slot] = (new_k, new_v)
+        self.history_capacity = new_capacity
+
     def begin_token(self) -> None:
         super().begin_token()
+        self._reserve_history(self.history_length + 1)
         self.current.clear()
         self.valid_current.clear()
 
@@ -263,9 +283,11 @@ class HuginnSharedKV(_StableRowKV):
         for slot in self.history:
             if slot not in self.current or not bool(self.valid_current[slot].all()):
                 raise AssertionError(f"incomplete shared Huginn KV slot {slot}")
-            old_k, old_v = self.history[slot]
+            history_k, history_v = self.history[slot]
             new_k, new_v = self.current[slot]
-            self.history[slot] = (torch.cat([old_k, new_k], dim=2), torch.cat([old_v, new_v], dim=2))
+            history_k[:, :, self.history_length:self.history_length + 1].copy_(new_k)
+            history_v[:, :, self.history_length:self.history_length + 1].copy_(new_v)
+        self.history_length += 1
         self.current.clear()
         self.valid_current.clear()
         self.phase = "ready"

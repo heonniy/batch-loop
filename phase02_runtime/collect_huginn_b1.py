@@ -90,6 +90,10 @@ def collect_one(adapter: HuginnAdapter, input_ids: torch.Tensor, prompt_valid: t
         "boundary_mean_depth_min": min(boundary_means),
         "boundary_mean_depth_max": max(boundary_means),
         "elapsed_wall_s": time.perf_counter() - start,
+        "kv_history_length": adapter.backend.history_length,
+        "kv_history_capacity": adapter.backend.history_capacity,
+        "peak_allocated_gib": torch.cuda.max_memory_allocated(device) / 2**30,
+        "peak_reserved_gib": torch.cuda.max_memory_reserved(device) / 2**30,
         "trace_file": trace_path.name,
     }
 
@@ -139,6 +143,7 @@ def main() -> None:
     for threshold in args.thresholds:
         torch.manual_seed(args.seed)
         torch.cuda.manual_seed_all(args.seed)
+        torch.cuda.reset_peak_memory_stats()
         adapter = HuginnAdapter(model, tokenizer, args.num_rows, state_init="native-seeded")
         name = f"huginn_{args.dataset}_threshold_{str(threshold).replace('.', 'p')}_b1.jsonl"
         summary = collect_one(adapter, input_ids, prompt_valid, args.num_tokens, threshold,

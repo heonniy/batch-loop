@@ -222,6 +222,8 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, depths_matrix,
         "actual_kv_writes": adapter.backend.actual_writes,
         "last_exited_fill_operations": adapter.backend.fill_operations,
         "shared_kv_overwrites": adapter.backend.overwrites,
+        "kv_history_length": getattr(adapter.backend, "history_length", None),
+        "kv_history_capacity": getattr(adapter.backend, "history_capacity", None),
     }
     if args.model == "ouro" and run_kind == "m0":
         summary["last_exited_fill_receipts"] = adapter.backend.fill_receipts

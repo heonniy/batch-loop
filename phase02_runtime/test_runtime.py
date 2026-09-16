@@ -108,7 +108,7 @@ class SurvivorTests(unittest.TestCase):
             backend.update(values, values, idx)
         backend.commit_token()
         self.assertEqual(len(backend.history), 8)
-        self.assertEqual(backend.history[("core", 0)][0][:, 0, -1, 0].tolist(), [1, 2, 4, 2])
+        self.assertEqual(backend.history[("core", 0)][0][:, 0, backend.history_length - 1, 0].tolist(), [1, 2, 4, 2])
 
     def test_token_boundary_grows_history_without_changing_stable_rows(self):
         ouro = OuroLastExitedKV(2, torch.device("cpu"), num_layers=1, rmax=2)
@@ -121,18 +121,28 @@ class SurvivorTests(unittest.TestCase):
                 tensor = torch.ones((2, 1, 2, 1))
                 backend.update(tensor, tensor, slot)
             backend.finish_prefill()
+            reserved_ptrs = None
             for token_idx in (1, 2):
                 backend.begin_token()
+                if backend is huginn and token_idx == 2:
+                    self.assertEqual(
+                        reserved_ptrs,
+                        {slot: values[0].data_ptr() for slot, values in backend.history.items()},
+                    )
                 backend.set_active(torch.tensor([1, 0]))
                 for slot in slots:
                     tensor = torch.tensor([token_idx + 10, token_idx + 20], dtype=torch.float32).view(2, 1, 1, 1)
-                    backend.update(tensor, tensor, slot)
+                    visible_k, _ = backend.update(tensor, tensor, slot)
+                    self.assertEqual(visible_k.shape[2], 2 + token_idx)
                 backend.commit_token()
+                if backend is huginn and token_idx == 1:
+                    reserved_ptrs = {slot: values[0].data_ptr() for slot, values in backend.history.items()}
             self.assertEqual(backend.key_valid.shape, (2, 4))
             for key, (k, v) in backend.history.items():
-                self.assertEqual(k.shape, (2, 1, 4, 1), key)
+                self.assertGreaterEqual(k.shape[2], backend.key_valid.shape[1], key)
                 self.assertTrue(torch.equal(k, v), key)
-                self.assertEqual(k[:, 0, -1, 0].tolist(), [22.0, 12.0], key)
+                logical_last = backend.history_length - 1 if backend is huginn else -1
+                self.assertEqual(k[:, 0, logical_last, 0].tolist(), [22.0, 12.0], key)
 
 
 if __name__ == "__main__":
