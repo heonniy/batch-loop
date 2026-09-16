@@ -44,7 +44,8 @@ def summarize_run(directory: Path) -> dict:
         if sorted(int(row["repetition"]) for row in group) != list(range(manifest["repeats"])):
             raise ValueError(f"nonconsecutive {strategy} repeats: {directory}")
     invariant_fields = ("generated_tokens", "num_intervals", "total_token_loop_work",
-                        "same_work_checksum", "actual_kv_writes", "last_exited_fill_operations")
+                        "same_work_checksum", "actual_kv_writes", "last_exited_fill_operations",
+                        "shared_kv_overwrites")
     for field in invariant_fields:
         if len({row[field] for row in rows}) != 1:
             raise ValueError(f"FIFO/Oracle work differs in {field}: {directory}")
