@@ -1,0 +1,14 @@
+{
+  "execution_kind": "saved-data-analysis",
+  "feature_root": "phase03/predictor_tournament_results_20260916/ouro_q0p2_n640_t32",
+  "feature_manifest_sha256": "7614c70056ca1bd308ca4b9fbacc0712fe8d45ae466c662a955a44b9423964cc",
+  "seed": 1,
+  "batch_size": 32,
+  "epochs_max": 20,
+  "source_sha": "a73a4d1799e7a876947e0eb5438e900cba4ab192",
+  "feature_collection_launch_head": "5370373bfaa3c5fbeb3271738207e93565d02d2e",
+  "no_model_forward": true,
+  "candidate_count": 10,
+  "rows": 20,
+  "C9_surrogate": "max-sensitive adjacent-B32 swap regret plus 0.25 weighted pairwise"
+}

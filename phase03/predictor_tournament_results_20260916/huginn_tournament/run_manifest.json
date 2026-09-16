@@ -1,0 +1,14 @@
+{
+  "execution_kind": "saved-data-analysis",
+  "feature_root": "phase03/predictor_tournament_results_20260916/huginn_threshold_0p12_n640_t32",
+  "feature_manifest_sha256": "c9a4b91fad3c486d36ef105ef6c955a48717e120e8ed6f6240853ca5fa0744e3",
+  "seed": 1,
+  "batch_size": 32,
+  "epochs_max": 20,
+  "source_sha": "a73a4d1799e7a876947e0eb5438e900cba4ab192",
+  "feature_collection_launch_head": "5370373bfaa3c5fbeb3271738207e93565d02d2e",
+  "no_model_forward": true,
+  "candidate_count": 10,
+  "rows": 20,
+  "C9_surrogate": "max-sensitive adjacent-B32 swap regret plus 0.25 weighted pairwise"
+}

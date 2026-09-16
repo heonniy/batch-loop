@@ -1,0 +1,13 @@
+{
+  "width": 256,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "best_epoch": 16,
+  "validation_ric_recovery": 0.16731517509727625,
+  "selection": "maximum validation RIC recovery, early-stop patience 5",
+  "candidate": "C6",
+  "features": "C6",
+  "base_model_frozen": true,
+  "split_by_request": true,
+  "loss": "huber"
+}
