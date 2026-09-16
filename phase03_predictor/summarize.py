@@ -15,9 +15,10 @@ from pathlib import Path
 
 CELLS = (("huginn", "huginn_threshold_0p12_n640_t32"),
          ("ouro", "ouro_q0p2_n640_t32"))
-SECONDARY = (("huginn", "huginn_threshold_0p26_n640_t32", "huginn_threshold_0p26_transfer",
-              "huginn_threshold_0p26_physical"),
-             ("ouro", "ouro_q0p4_n640_t32", "ouro_q0p4_transfer", "ouro_q0p4_physical"))
+SECONDARY = (("huginn", "huginn_threshold_0p26_n640_t32", "huginn_threshold_0p26_tournament",
+              "huginn_threshold_0p26_transfer", "huginn_threshold_0p26_physical"),
+             ("ouro", "ouro_q0p4_n640_t32", "ouro_q0p4_tournament",
+              "ouro_q0p4_transfer", "ouro_q0p4_physical"))
 CONTROLS = (("huginn", "huginn_n_eq_b_control"), ("ouro", "ouro_n_eq_b_control"))
 
 
@@ -107,6 +108,7 @@ def summarize(root: Path) -> None:
         baseline = "STAGED_FIFO" if model == "huginn" else "FIFO"
         b_rows = [row for row in measured if row["strategy"] == baseline]
         o_rows = [row for row in measured if row["strategy"] == "ORACLE"]
+        baseline_by_repetition = {int(row["repetition"]): float(row["decode_wall_s"]) for row in b_rows}
         fifo_time, oracle_time = _median(b_rows, "decode_wall_s"), _median(o_rows, "decode_wall_s")
         fifo_ric, oracle_ric = int(b_rows[0]["recurrent_invocations"]), int(o_rows[0]["recurrent_invocations"])
         if fifo_ric <= oracle_ric:
@@ -119,6 +121,8 @@ def summarize(root: Path) -> None:
                 raise RuntimeError(f"{model}/{strategy} RIC changed across repeats")
             elapsed = _median(rows, "decode_wall_s")
             ric = next(iter(ric_values))
+            paired_gains = [baseline_by_repetition[int(row["repetition"])] - float(row["decode_wall_s"])
+                            for row in rows]
             matrix_row = {
                 "model": model, "regime": feature_name, "strategy": strategy,
                 "num_rows": int(rows[0]["num_rows"]), "batch_size": int(rows[0]["batch_size"]),
@@ -129,6 +133,9 @@ def summarize(root: Path) -> None:
                 "frozen_trace_test_ric": (int(test[strategy]["predictor_ric"])
                                           if strategy in test else None),
                 "median_decode_wall_s": elapsed,
+                "median_paired_wall_gain_s": statistics.median(paired_gains),
+                "min_paired_wall_gain_s": min(paired_gains),
+                "max_paired_wall_gain_s": max(paired_gains),
                 "wall_recovery": ((fifo_time - elapsed) / (fifo_time - oracle_time)
                                   if fifo_time != oracle_time else float("nan")),
                 "median_recurrent_gpu_s": _median(rows, "recurrent_gpu_s"),
@@ -197,11 +204,13 @@ def summarize(root: Path) -> None:
         for path in (control_root / "run_manifest.json", control_root / "summary.csv",
                      control_root / "recurrence_events.jsonl.gz"):
             artifacts[str(path.relative_to(root))] = _sha256(path)
-    for model, feature_name, transfer_name, physical_name in SECONDARY:
+    for model, feature_name, tournament_name, transfer_name, physical_name in SECONDARY:
         feature_root = root / feature_name
+        tournament_root = root / tournament_name
         transfer_root = root / transfer_name
         physical_root = root / physical_name
         if not all(path.exists() for path in (feature_root / "feature_manifest.json",
+                                               tournament_root / "predictor_tournament.csv",
                                                transfer_root / "transfer_tournament.csv",
                                                physical_root / "run_manifest.json")):
             continue
@@ -219,6 +228,10 @@ def summarize(root: Path) -> None:
         transfer_test = {row["candidate"]: row for row in transfer_rows if row["split"] == "test"}
         if len(transfer_test) != 10:
             raise RuntimeError(f"{model} secondary all-ten frozen transfer table missing")
+        tournament_rows = _csv(tournament_root / "predictor_tournament.csv")
+        tournament_test = {row["candidate"]: row for row in tournament_rows if row["split"] == "test"}
+        if len(tournament_test) != 10:
+            raise RuntimeError(f"{model} secondary all-ten refit tournament table missing")
         physical = _csv(physical_root / "summary.csv")
         measured = [row for row in physical if row["run_kind"] == "measured"]
         warmups = [row for row in physical if row["run_kind"] == "warmup"]
@@ -235,14 +248,24 @@ def summarize(root: Path) -> None:
         r_fifo = int(groups[baseline][0]["recurrent_invocations"])
         r_pred = int(groups[frozen_winner][0]["recurrent_invocations"])
         r_oracle = int(groups["ORACLE"][0]["recurrent_invocations"])
+        if r_fifo <= r_oracle:
+            raise RuntimeError(f"{model} secondary cohort has no Oracle RIC headroom")
+        baseline_by_repetition = {int(item["repetition"]): float(item["decode_wall_s"])
+                                  for item in groups[baseline]}
+        paired_gains = [baseline_by_repetition[int(item["repetition"])] - float(item["decode_wall_s"])
+                        for item in groups[frozen_winner]]
         row = {
             "model": model, "regime": feature_name, "frozen_primary_winner": frozen_winner,
             "transfer_test_ric_recovery": float(transfer_test[frozen_winner]["oracle_ric_recovery"]),
+            "secondary_refit_test_ric_recovery": float(tournament_test[frozen_winner]["oracle_ric_recovery"]),
             "fifo_ric": r_fifo, "predictor_ric": r_pred, "oracle_ric": r_oracle,
             "physical_ric_recovery": (r_fifo - r_pred) / (r_fifo - r_oracle),
             "fifo_median_wall_s": t_fifo, "predictor_median_wall_s": t_pred,
             "oracle_median_wall_s": t_oracle,
             "physical_wall_recovery": (t_fifo - t_pred) / (t_fifo - t_oracle),
+            "median_paired_wall_gain_s": statistics.median(paired_gains),
+            "min_paired_wall_gain_s": min(paired_gains),
+            "max_paired_wall_gain_s": max(paired_gains),
             "predictor_overhead_wall_s": _median(groups[frozen_winner], "predictor_wall_s"),
             "sort_overhead_wall_s": _median(groups[frozen_winner], "sort_wall_s"),
             "generated_next_token_match_fraction": _median(groups[frozen_winner],
@@ -252,7 +275,8 @@ def summarize(root: Path) -> None:
         }
         secondary_matrix.append(row)
         by_model[model]["secondary"] = row
-        for path in (feature_root / "feature_manifest.json", transfer_root / "transfer_tournament.csv",
+        for path in (feature_root / "feature_manifest.json", tournament_root / "predictor_tournament.csv",
+                     transfer_root / "transfer_tournament.csv",
                      physical_root / "run_manifest.json", physical_root / "summary.csv",
                      physical_root / "recurrence_events.jsonl.gz"):
             artifacts[str(path.relative_to(root))] = _sha256(path)
@@ -346,14 +370,17 @@ def summarize(root: Path) -> None:
     if secondary_matrix:
         lines += ["## Secondary-regime transfer", "",
                   "The primary physical winner and head weights were frozen before the secondary",
-                  "threshold/q cohort was scored. The full C0–C9 frozen transfer table is retained.",
+                  "threshold/q cohort was scored. The full C0–C9 frozen transfer and independently",
+                  "refit secondary tables are retained; refitting is diagnostic, not the transfer claim.",
                   "Secondary physical runs compare that same frozen winner with FIFO and Oracle using",
                   "new self-consistent features/labels and the same 2+5 timing protocol.", "",
-                  "| Model / regime | Frozen winner | Transfer test RIC recovery | Physical RIC recovery | Physical wall recovery |",
-                  "| --- | --- | ---: | ---: | ---: |"]
+                  "| Model / regime | Frozen winner | Transfer test RIC recovery | Refit test RIC recovery | Physical RIC recovery | Physical wall recovery |",
+                  "| --- | --- | ---: | ---: | ---: | ---: |"]
         for item in secondary_matrix:
             lines.append(f"| {item['model']} / {item['regime']} | {item['frozen_primary_winner']} | "
-                         f"{item['transfer_test_ric_recovery']:.1%} | {item['physical_ric_recovery']:.1%} | "
+                         f"{item['transfer_test_ric_recovery']:.1%} | "
+                         f"{item['secondary_refit_test_ric_recovery']:.1%} | "
+                         f"{item['physical_ric_recovery']:.1%} | "
                          f"{item['physical_wall_recovery']:.1%} |")
         lines.append("")
     if control_matrix:
@@ -373,8 +400,8 @@ def summarize(root: Path) -> None:
               "physical speed claim. The best measured candidates and negative competitors are preserved.",
               "Interpret positive",
               "wall recovery as recovery of this trace-forced no-refill Oracle opportunity, not as native",
-              "quality or production throughput. The next finite action is secondary-threshold/q",
-              "generalization on fresh self-consistent features, then a live-exit quality/trajectory audit.", ""]
+              "quality or production throughput. The next finite action is a live-exit",
+              "quality/trajectory audit once the secondary-threshold/q transfer is complete.", ""]
     (root / "RESULT_REVIEW.md").write_text("\n".join(lines))
     review = {
         "result_commit": "PENDING_REVIEW_COMMIT",
