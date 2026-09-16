@@ -302,6 +302,8 @@ def main() -> None:
     parser.add_argument("--repeats", type=int, default=5)
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--control", action="store_true", help="N=B=32 FIFO/Oracle control")
+    parser.add_argument("--candidates", nargs="+", choices=tuple(f"C{i}" for i in range(10)),
+                        help="frozen primary candidate(s) for a secondary-regime confirmation")
     args = parser.parse_args()
     torch.set_num_threads(8)
     identity = _gpu_identity(args.model)
@@ -333,7 +335,11 @@ def main() -> None:
     prompt_valid = encoded["attention_mask"].cuda().bool()
     prompt_lengths = prompt_valid.sum(dim=1).cpu().tolist()
     projection = torch.from_numpy(np.load(args.feature_root / "projection.npy")).cuda()
-    top_three = [] if args.control else _top_three(args.tournament_root / "predictor_tournament.csv")
+    top_three = ([] if args.control else
+                 list(args.candidates) if args.candidates else
+                 _top_three(args.tournament_root / "predictor_tournament.csv"))
+    if len(set(top_three)) != len(top_three):
+        raise RuntimeError("duplicate candidate strategy")
     predictors = {candidate: Predictor(candidate, args.tournament_root, feature_manifest)
                   for candidate in top_three}
     fifo = "STAGED_FIFO" if args.model == "huginn" else "FIFO"
@@ -352,7 +358,11 @@ def main() -> None:
         "test_token_ids_sha256": hashlib.sha256(frozen_tokens.tobytes()).hexdigest(),
         "prompt_cap": 64, "num_tokens": args.num_tokens, "batch_size": args.batch_size,
         "warmups": args.warmups, "repeats": args.repeats,
-        "top_three_by_test_RIC": top_three, "strategies": strategies,
+        "selected_candidates": top_three,
+        "candidate_selection_basis": ("N=B control" if args.control else
+                                      "explicit frozen primary winner" if args.candidates else
+                                      "top three primary held-out test RIC"),
+        "strategies": strategies,
         "same_staging_path_for_all_strategies": True,
         "physical_labels": "frozen B1 live depths; trace-forced identical work",
         "token_trajectory_policy": "frozen B1 token IDs teacher-forced at each boundary",
