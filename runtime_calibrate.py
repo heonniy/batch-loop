@@ -48,7 +48,7 @@ def make_inputs(tokenizer, batch_size: int, context_len: int, device):
     ids = (base * reps)[:context_len]
     input_ids = torch.tensor(ids, dtype=torch.long, device=device).unsqueeze(0).repeat(batch_size, 1)
     attention_mask = torch.ones_like(input_ids)
-    return input_ids, attention_mask
+    return {"input_ids": input_ids, "attention_mask": attention_mask}
 
 
 def load_model(model_name: str, revision: str | None):
