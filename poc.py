@@ -186,8 +186,13 @@ def collect_ouro(args: argparse.Namespace) -> None:
     if receipt_path.exists() and not args.append:
         receipt_path.unlink()
 
+    if not 0 <= args.start_request_id <= len(prompts):
+        raise ValueError(f"start_request_id={args.start_request_id} outside 0..{len(prompts)}")
+    selected_prompts = prompts[args.start_request_id :]
     with torch.inference_mode():
-        for request_id, prompt in enumerate(tqdm(prompts, desc=f"Ouro {args.model}")):
+        for request_id, prompt in enumerate(
+            tqdm(selected_prompts, desc=f"Ouro {args.model}"), start=args.start_request_id
+        ):
             enc = tokenizer(
                 prompt,
                 return_tensors="pt",
@@ -311,8 +316,13 @@ def collect_huginn(args: argparse.Namespace) -> None:
     generation_config.pad_token_id = tokenizer.pad_token_id
 
     # Huginn's own source warns that faithful adaptive-compute evaluation should use batch_size=1.
+    if not 0 <= args.start_request_id <= len(prompts):
+        raise ValueError(f"start_request_id={args.start_request_id} outside 0..{len(prompts)}")
+    selected_prompts = prompts[args.start_request_id :]
     with torch.inference_mode():
-        for request_id, prompt in enumerate(tqdm(prompts, desc=f"Huginn {args.model}")):
+        for request_id, prompt in enumerate(
+            tqdm(selected_prompts, desc=f"Huginn {args.model}"), start=args.start_request_id
+        ):
             enc = tokenizer(
                 prompt,
                 return_tensors="pt",
@@ -732,6 +742,12 @@ def build_parser() -> argparse.ArgumentParser:
     common_collect.add_argument("--seed", type=int, default=1)
     common_collect.add_argument("--output", required=True)
     common_collect.add_argument("--append", action="store_true")
+    common_collect.add_argument(
+        "--start-request-id",
+        type=int,
+        default=0,
+        help="Resume from this deterministic shuffled-prompt index; use with --append.",
+    )
 
     po = sub.add_parser("collect-ouro", parents=[common_collect])
     po.add_argument("--exit-threshold", type=float, default=0.2)
