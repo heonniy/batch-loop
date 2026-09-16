@@ -4,7 +4,9 @@ Huginn uses a common Prelude stage for every strategy. Ouro has no Prelude,
 but uses the same pre-group embedding stage for all strategies. Exit labels are
 frozen B=1 live labels from the held-out feature cohort; recurrent work is
 identical across strategies. The model still physically executes only survivor
-rows. Predictor feature extraction, CPU head inference, and sorting are inside
+rows. Frozen token IDs are teacher-forced at every boundary to keep the input
+trajectory identical despite strategy-specific KV/output drift. Predictor
+feature extraction, CPU head inference, and sorting are inside
 the prefill-excluded decode wall timer.
 """
 
@@ -180,6 +182,7 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, frozen_t
     torch.manual_seed(args.seed)
     torch.cuda.manual_seed_all(args.seed)
     current_tokens = adapter.prefill(input_ids, prompt_valid)
+    prefill_match = float((current_tokens.squeeze(1).cpu().numpy() == frozen_tokens[0]).mean())
     previous_logits = adapter.prefill_logits[:, -1, :]
     previous_hidden = torch.zeros((n, projection.shape[1]), dtype=torch.float32, device="cuda")
     histories: list[list[int]] = [[] for _ in range(n)]
@@ -189,11 +192,11 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, frozen_t
     total_core = total_stage = total_predictor = total_sort = 0.0
     actual_ric = total_work = 0
     expected_ric = 0
-    matching_frozen_tokens = 0
+    matching_next_tokens = 0
     work_digest = hashlib.sha256()
     for token_idx in range(args.num_tokens):
-        matching_frozen_tokens += int((current_tokens.squeeze(1).cpu().numpy() ==
-                                       frozen_tokens[token_idx]).sum())
+        current_tokens = torch.from_numpy(np.ascontiguousarray(frozen_tokens[token_idx])).to(
+            device="cuda", dtype=torch.long).unsqueeze(1)
         adapter.begin_token()
         stage_start = time.perf_counter()
         width = int(adapter.model.transformer.wte.weight.shape[1] if args.model == "huginn"
@@ -262,6 +265,9 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, frozen_t
             if trajectory_sink is not None:
                 previous_trajectories[request_id] = trajectory_sink[request_id]
         adapter.commit_token()
+        if token_idx + 1 < args.num_tokens:
+            matching_next_tokens += int((next_tokens.squeeze(1).cpu().numpy() ==
+                                         frozen_tokens[token_idx + 1]).sum())
         current_tokens = next_tokens
         previous_logits = next_logits
         previous_hidden = next_hidden
@@ -276,7 +282,9 @@ def _run_once(args, loaded, tokenizer, input_ids, prompt_valid, labels, frozen_t
         "num_rows": n, "batch_size": batch_size, "num_tokens": args.num_tokens,
         "recurrent_invocations": actual_ric, "total_token_loop_work": total_work,
         "same_work_checksum": work_digest.hexdigest(),
-        "frozen_token_match_fraction": matching_frozen_tokens / (n * args.num_tokens),
+        "prefill_token_match_fraction": prefill_match,
+        "generated_next_token_match_fraction": (
+            matching_next_tokens / (n * (args.num_tokens - 1)) if args.num_tokens > 1 else float("nan")),
         "recurrent_gpu_s": total_core, "staging_wall_s": total_stage,
         "predictor_wall_s": total_predictor, "sort_wall_s": total_sort,
         "decode_wall_s": elapsed, "generated_tokens_per_s": n * args.num_tokens / elapsed,
@@ -350,6 +358,7 @@ def main() -> None:
         "top_three_by_test_RIC": top_three, "strategies": strategies,
         "same_staging_path_for_all_strategies": True,
         "physical_labels": "frozen B1 live depths; trace-forced identical work",
+        "token_trajectory_policy": "frozen B1 token IDs teacher-forced at each boundary",
         "quality_equivalence_claimed": False,
     }
     manifest_path = args.output_dir / "run_manifest.json"
