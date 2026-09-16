@@ -1,0 +1,45 @@
+{
+  "source_sha": "dddb9923f02391c0efa56274a4c0ea99dc3d59be",
+  "argv": [
+    "/home/hwlee/batch-loop-worktrees/phase02_gpu6_ouro_dddb992/phase02_runtime/benchmark.py",
+    "--stage",
+    "m0",
+    "--debug-ids",
+    "--heterogeneous-prompts",
+    "--model",
+    "ouro",
+    "--output-dir",
+    "/home/hwlee/batch-loop-worktrees/phase02_gpu6_ouro_dddb992/results/phase02_physical_gpu6_ouro_20260916T121854Z_4070681"
+  ],
+  "gpu": {
+    "physical_gpu": 6,
+    "visible_device": 0,
+    "gpu_query": "6, GPU-e3f3998e-0f1a-e94a-b97c-4abb0e8c2c28, NVIDIA H100 80GB HBM3, 81559 MiB"
+  },
+  "model": "ouro",
+  "model_revision": "37bc7e8ff85a90d813dc096383405f521b6a67b0",
+  "kv_backend": "last-exited-depth-indexed",
+  "exit_source": "trace",
+  "forced_depth_source": "deterministic-synthetic",
+  "trace": null,
+  "threshold": 0.2,
+  "seed": 1,
+  "state_init": "zero",
+  "prompt_source": "deterministic-synthetic-text",
+  "heterogeneous_prompts": true,
+  "num_rows": 4,
+  "batch_size": 4,
+  "num_tokens": 1,
+  "repeats": 1,
+  "warmups": 0,
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "evidence_kind": "PHYSICAL_SURVIVOR_COMPACTION_NOT_QUALITY_EVALUATION",
+  "tokenized_prompt_width": 45,
+  "prompt_token_counts": [
+    15,
+    25,
+    35,
+    45
+  ]
+}

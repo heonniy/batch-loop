@@ -1,0 +1,15 @@
+{
+  "source_sha": "2f14398",
+  "gpu": "7, GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b, NVIDIA H100 80GB HBM3",
+  "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "attention_backend": "explicit-additive-mask-sdpa-math-D96",
+  "state_init": "zero",
+  "batch_size": 4,
+  "batched_prompt_width": 26,
+  "checks": [
+    {"row": 0, "prompt_tokens": 6, "batch_token_id": 10, "b1_token_id": 10, "top1_equal": true, "normalized_logit_rms": 0.005762952845543623},
+    {"row": 1, "prompt_tokens": 14, "batch_token_id": 10, "b1_token_id": 10, "top1_equal": true, "normalized_logit_rms": 0.005486766807734966},
+    {"row": 2, "prompt_tokens": 20, "batch_token_id": 10, "b1_token_id": 10, "top1_equal": true, "normalized_logit_rms": 0.006611953489482403},
+    {"row": 3, "prompt_tokens": 26, "batch_token_id": 10, "b1_token_id": 10, "top1_equal": true, "normalized_logit_rms": 0.006053210236132145}
+  ]
+}

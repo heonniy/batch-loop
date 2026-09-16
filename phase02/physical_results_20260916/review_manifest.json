@@ -1,0 +1,48 @@
+{
+  "phase": "02-physical-no-refill-survivor-runtime",
+  "date_utc": "2026-09-16",
+  "pulled_main_before_implementation": "94b0245",
+  "implementation_sources": {
+    "m0": "dddb9923f02391c0efa56274a4c0ea99dc3d59be",
+    "m1_and_b1_traces": "2c6e0d34eb0985bc33decc1e8f301fc42b03fcc3",
+    "m2": "f60307131c034890d9d56a78b27fdeed37ead08e",
+    "huginn_padding_check": "2f14398c62bdd8eaa7ff59e9e8d95c6a45a7722d"
+  },
+  "gpu_assignments": {
+    "ouro": {"physical_index": 6, "uuid": "GPU-e3f3998e-0f1a-e94a-b97c-4abb0e8c2c28", "model_revision": "37bc7e8ff85a90d813dc096383405f521b6a67b0", "kv_backend": "last-exited-depth-indexed"},
+    "huginn": {"physical_index": 7, "uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b", "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c", "kv_backend": "shared-physical-layer"}
+  },
+  "artifact_layout": {
+    "gpu6_ouro": "10 unmodified Phase-2 run directories copied from the isolated GPU6 worktree",
+    "gpu7_huginn": "13 unmodified Phase-2 run directories copied from the isolated GPU7 worktree",
+    "m1_matrix.csv": "selected warmed physical FIFO/Oracle one-token medians",
+    "m2_matrix.csv": "selected warmed physical FIFO/Oracle 16/32-token medians",
+    "huginn_padding_check.json": "B4-vs-B1 heterogeneous-prompt D96 correctness receipt",
+    "trace_inputs": "unmodified Phase-1 Ouro Alpaca q0.2/q0.4 trace inputs"
+  },
+  "trace_sha256": {
+    "ouro_alpaca_q0p2": "7a495c63954b260949bb3ab9f0df4ce9992edabc893e41d0a6c6f90c9f2ef819",
+    "ouro_alpaca_q0p4": "734a636328550f359b797cdcbdaec4b68a53d9a1546a8c0017824b8cabf39e9b",
+    "huginn_b1_q0p5_1token": "bc7e94e0e1c8035a581f84335a497f67e63432e29b0661de2e5c32fa84cda68f",
+    "huginn_b1_q0p35_1token": "a478dfd13bcec0395ee0b2398e44c27a4c7fac1b6f8598517a428827313d5656",
+    "huginn_b1_q0p5_32token": "444f23a36555305b88229a6e84746f7452e1399d7cee77ea09b7527ba0471b57"
+  },
+  "measurement_contract": {
+    "prompt_source": "deterministic synthetic text with heterogeneous lengths; traces supply exit depths only",
+    "exit_source_for_comparison": "trace-forced, with actual physical recurrent computation and survivor gather",
+    "scheduling": "FIFO versus perfect-depth Oracle at each token boundary; no refill inside intervals",
+    "core_time": "sum of synchronized CUDA-event recurrent passes, including their KV updates but excluding prelude/coda/compaction/exit-copy",
+    "decode_wall_time": "instrumented token-loop wall time; prefill and model load excluded",
+    "reduction_pct": "100 * (FIFO - Oracle) / FIFO, computed from per-strategy medians",
+    "peak_hbm": "includes prefill; see each run summary"
+  },
+  "selection": {
+    "m1": "12 cells: both models, two thresholds each, B8/B16/B32, N32, one token; 2 warmups per strategy then 3-5 repeats",
+    "m2": "four cells: Ouro q0.4 and Huginn threshold0.5, B16, N32, 16/32 tokens; one warmup per strategy then two repeats",
+    "excluded_from_matrices_but_preserved": [
+      "initial Ouro q0.2 B16 two-repeat M1 with insufficient warmup (run 20260916T121941Z_4072140)",
+      "initial Huginn B16 synthetic-depth M1 before B1 shared-KV traces existed (run 20260916T121941Z_4072141)"
+    ]
+  },
+  "scope_limits": ["No model-quality evaluation", "No native full-depth quality or latency baseline", "Oracle uses true forced depths rather than a practical predictor", "M2 has only two warmed repeats per strategy"]
+}

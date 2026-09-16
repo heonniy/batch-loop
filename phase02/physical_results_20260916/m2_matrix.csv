@@ -1,0 +1,5 @@
+model,threshold,B,requests,tokens,repeats,total_recurrent_work,fifo_core_gpu_ms_median,oracle_core_gpu_ms_median,oracle_core_reduction_pct,fifo_decode_wall_ms_median,oracle_decode_wall_ms_median,oracle_wall_reduction_pct,run_id
+ouro,0.4,16,32,16,2,1536,2717.81,2408.07,11.4,3059.67,2705.10,11.6,phase02_physical_gpu6_ouro_20260916T122616Z_4083753
+ouro,0.4,16,32,32,2,2951,4982.23,4561.88,8.4,5657.39,5150.67,9.0,phase02_physical_gpu6_ouro_20260916T122703Z_4085072
+huginn,0.5,16,32,16,2,2050,944.79,887.60,6.1,1314.53,1250.81,4.8,phase02_physical_gpu7_huginn_20260916T122713Z_4085460
+huginn,0.5,16,32,32,2,4106,1797.16,1694.42,5.7,2511.79,2397.61,4.5,phase02_physical_gpu7_huginn_20260916T122751Z_4086354

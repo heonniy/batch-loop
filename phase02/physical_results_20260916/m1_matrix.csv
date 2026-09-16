@@ -1,0 +1,13 @@
+model,threshold,B,requests,tokens,repeats,total_recurrent_work,fifo_core_gpu_ms_median,oracle_core_gpu_ms_median,oracle_core_reduction_pct,fifo_decode_wall_ms_median,oracle_decode_wall_ms_median,run_id
+ouro,0.2,8,32,1,5,97,292.43,271.17,7.3,324.62,300.39,phase02_physical_gpu6_ouro_20260916T122328Z_4079234
+ouro,0.2,16,32,1,5,97,149.84,149.65,0.1,173.51,170.64,phase02_physical_gpu6_ouro_20260916T122218Z_4076871
+ouro,0.2,32,32,1,3,97,162.08,162.44,-0.2,184.89,185.43,phase02_physical_gpu6_ouro_20260916T122418Z_4081314
+ouro,0.4,8,32,1,5,106,484.36,423.83,12.5,521.39,456.83,phase02_physical_gpu6_ouro_20260916T122301Z_4078156
+ouro,0.4,16,32,1,3,106,163.90,143.27,12.6,182.28,160.81,phase02_physical_gpu6_ouro_20260916T122140Z_4075621
+ouro,0.4,32,32,1,3,106,88.32,88.60,-0.3,102.51,102.08,phase02_physical_gpu6_ouro_20260916T122356Z_4080308
+huginn,0.35,8,32,1,5,147,130.04,123.28,5.2,178.82,171.00,phase02_physical_gpu7_huginn_20260916T122328Z_4079239
+huginn,0.35,16,32,1,5,147,64.04,63.78,0.4,87.92,87.66,phase02_physical_gpu7_huginn_20260916T122218Z_4076872
+huginn,0.35,32,32,1,3,147,37.56,37.25,0.8,51.34,50.97,phase02_physical_gpu7_huginn_20260916T122418Z_4081319
+huginn,0.5,8,32,1,5,114,99.10,93.22,5.9,142.77,136.10,phase02_physical_gpu7_huginn_20260916T122301Z_4078160
+huginn,0.5,16,32,1,3,114,54.93,54.86,0.1,78.68,79.01,phase02_physical_gpu7_huginn_20260916T122140Z_4075625
+huginn,0.5,32,32,1,3,114,29.68,29.75,-0.2,42.17,42.22,phase02_physical_gpu7_huginn_20260916T122355Z_4080307
