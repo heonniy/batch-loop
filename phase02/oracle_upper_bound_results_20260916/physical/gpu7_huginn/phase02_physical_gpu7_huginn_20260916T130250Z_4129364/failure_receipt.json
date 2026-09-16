@@ -1,0 +1,13 @@
+{
+  "status": "INTERRUPTED_MEMORY_GROWTH",
+  "source_sha": "f94387f73f2cbc983cc574cc95d62a5da2522b69",
+  "model": "huginn",
+  "physical_gpu": 7,
+  "workload": "Alpaca, N256, B1, 64-token target, live threshold 0.5",
+  "observed_nvidia_smi_memory_used_mib": 74219,
+  "observation": "GPU7 memory rose from about 17 GiB to 74 GiB during token-boundary shared-KV growth; run was stopped before H100 OOM",
+  "action": "SIGTERM sent to the exact collector PID 4129364; process exited 143",
+  "trace_complete": false,
+  "suspected_cause": "HuginnSharedKV.commit_token repeatedly concatenated every history tensor; the resulting growing allocations are consistent with CUDA allocator reservation increasing across token boundaries",
+  "repair_commit": "48ed8d994834c77e3ed5ec280fa2b2ad0501c6b3"
+}

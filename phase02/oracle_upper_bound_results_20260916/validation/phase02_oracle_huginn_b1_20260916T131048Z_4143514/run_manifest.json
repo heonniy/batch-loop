@@ -1,0 +1,51 @@
+{
+  "execution_kind": "exit-trace-collection",
+  "status": "COMPLETE",
+  "source_sha": "48ed8d994834c77e3ed5ec280fa2b2ad0501c6b3",
+  "gpu": "7, GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b, NVIDIA H100 80GB HBM3, 81559 MiB",
+  "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "kv_backend": "shared-physical-layer",
+  "exit_rule": "latent-diff convergence, B1 shared-KV",
+  "Rmax": 16,
+  "dataset": "alpaca",
+  "dataset_revision": "UNKNOWN (local cached Hugging Face dataset)",
+  "prompt_sha256": "9afdd4718c5bae1f582649b28a84aa69517997f9dc8245ee673ac1bfbd2ad080",
+  "seed": 1,
+  "prompt_max_tokens": 64,
+  "state_init": "native-seeded",
+  "num_rows": 4,
+  "num_tokens": 2,
+  "thresholds_requested": [
+    0.5
+  ],
+  "completed": [
+    {
+      "threshold": 0.5,
+      "request_count": 4,
+      "decode_tokens": 2,
+      "trace_rows": 8,
+      "depth_histogram": {
+        "3": 1,
+        "4": 6,
+        "6": 1
+      },
+      "mean_depth": 4.125,
+      "boundary_mean_depth_min": 3.75,
+      "boundary_mean_depth_max": 4.5,
+      "elapsed_wall_s": 0.2943239938467741,
+      "kv_history_length": 17,
+      "kv_history_capacity": 30,
+      "peak_allocated_gib": 6.703036785125732,
+      "peak_reserved_gib": 7.302734375,
+      "trace_file": "huginn_alpaca_threshold_0p5_b1.jsonl"
+    }
+  ],
+  "not_a_timing_result": true,
+  "tokenized_prompt_width": 15,
+  "prompt_token_counts": [
+    15,
+    5,
+    15,
+    7
+  ]
+}
