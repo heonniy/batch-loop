@@ -70,7 +70,14 @@ def load_model(model_name: str, revision: str | None):
     return model, tokenizer
 
 
-def generation_kwargs(family: str, model, depth: int, new_tokens: int, tokenizer) -> dict[str, Any]:
+def generation_kwargs(
+    family: str,
+    model,
+    depth: int,
+    new_tokens: int,
+    tokenizer,
+    cache_lookup_strategy: str,
+) -> dict[str, Any]:
     kw: dict[str, Any] = dict(
         max_new_tokens=new_tokens,
         min_new_tokens=new_tokens,
@@ -92,7 +99,7 @@ def generation_kwargs(family: str, model, depth: int, new_tokens: int, tokenizer
         # No adaptive criterion -> Huginn follows the regular HF generation path
         # while forwarding this fixed recurrence count into model.forward.
         kw["num_steps"] = int(depth)
-        kw["cache_lookup_strategy"] = "full"
+        kw["cache_lookup_strategy"] = cache_lookup_strategy
     else:
         raise ValueError(f"unknown family={family}")
     return kw
@@ -128,6 +135,7 @@ def calibrate(args):
         for B in batches:
             inputs = make_inputs(tokenizer, B, L, device)
             for depth in depths:
+                kv_policy = "native-reference" if args.family == "ouro" else args.cache_lookup_strategy
                 row = {
                     "model": args.model,
                     "family": args.family,
@@ -135,16 +143,23 @@ def calibrate(args):
                     "batch_size": B,
                     "context_len": L,
                     "depth": depth,
+                    "rmax": max(depths),
+                    "kv_policy": kv_policy,
                     "decode_tokens": args.decode_tokens,
+                    "evidence_kind": "H100_FIXED_DEPTH_CALIBRATION",
                     "status": "OK",
                 }
                 try:
+                    torch.cuda.empty_cache()
+                    torch.cuda.reset_peak_memory_stats()
                     # Warm once.  The timed calls are fresh generate() calls so
                     # cache state cannot leak across repetitions.
                     _ = timed_generate(
                         model,
                         inputs,
-                        generation_kwargs(args.family, model, depth, 2, tokenizer),
+                        generation_kwargs(
+                            args.family, model, depth, 2, tokenizer, args.cache_lookup_strategy
+                        ),
                     )
                     first_times = []
                     multi_times = []
@@ -153,14 +168,23 @@ def calibrate(args):
                             timed_generate(
                                 model,
                                 inputs,
-                                generation_kwargs(args.family, model, depth, 1, tokenizer),
+                                generation_kwargs(
+                                    args.family, model, depth, 1, tokenizer, args.cache_lookup_strategy
+                                ),
                             )
                         )
                         multi_times.append(
                             timed_generate(
                                 model,
                                 inputs,
-                                generation_kwargs(args.family, model, depth, args.decode_tokens, tokenizer),
+                                generation_kwargs(
+                                    args.family,
+                                    model,
+                                    depth,
+                                    args.decode_tokens,
+                                    tokenizer,
+                                    args.cache_lookup_strategy,
+                                ),
                             )
                         )
                     first_ms = float(np.median(first_times))
@@ -176,6 +200,11 @@ def calibrate(args):
                     row.update(status="OOM", first_token_ms=np.nan, multi_token_ms=np.nan, incremental_decode_ms=np.nan)
                 except Exception as exc:
                     row.update(status=f"ERROR:{type(exc).__name__}:{exc}", first_token_ms=np.nan, multi_token_ms=np.nan, incremental_decode_ms=np.nan)
+                finally:
+                    row.update(
+                        peak_gpu_allocated_gib=torch.cuda.max_memory_allocated() / (1024**3),
+                        peak_gpu_reserved_gib=torch.cuda.max_memory_reserved() / (1024**3),
+                    )
                 rows.append(row)
                 print(row, flush=True)
 
@@ -204,6 +233,9 @@ def calibrate(args):
             {
                 "model": args.model,
                 "family": args.family,
+                "revision": args.revision or "default",
+                "kv_policy": "native-reference" if args.family == "ouro" else args.cache_lookup_strategy,
+                "rmax": max(depths),
                 "batch_size": int(B),
                 "context_len": int(L),
                 "boundary_ms": max(0.0, float(intercept)),
@@ -266,6 +298,11 @@ def replay(args):
 
     all_rows = []
     for (source_file, model), raw in traces.groupby(["source_file", "model"], dropna=False):
+        metadata = {
+            key: raw.iloc[0][key]
+            for key in ("family", "dataset", "exit_threshold", "kv_policy", "rmax")
+            if key in raw.columns
+        }
         model_fit = fit[fit.model == model]
         if model_fit.empty:
             # Allow calibration file to contain a local snapshot path while trace
@@ -314,6 +351,7 @@ def replay(args):
                     {
                         "run": run,
                         "model": model,
+                        **metadata,
                         "batch_size": B,
                         "strategy": strategy,
                         "selected_generated_tokens": ntokens,
@@ -351,6 +389,7 @@ def build_parser():
     c.add_argument("--batch-sizes", default="1,2,4,8,16,32,64")
     c.add_argument("--context-lengths", default="32,128,512")
     c.add_argument("--depths", required=True)
+    c.add_argument("--cache-lookup-strategy", default="full")
     c.add_argument("--decode-tokens", type=int, default=6)
     c.add_argument("--repeats", type=int, default=3)
     c.add_argument("--output", required=True)

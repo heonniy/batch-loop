@@ -103,22 +103,29 @@ def main():
 
     for (source_file, model), raw in df.groupby(["source_file", "model"], dropna=False):
         run = Path(str(source_file)).stem
+        metadata = {
+            key: raw.iloc[0][key]
+            for key in ("family", "dataset", "exit_threshold", "kv_policy", "rmax")
+            if key in raw.columns
+        }
         d = add_causal_predictors(raw, args.recent_k)
         for b in batches:
             per_strategy = []
             for strategy in strategies:
                 m, c = simulate_fair(d, b, strategy, args.seed)
-                m.update({"run": run, "model": model, "source_file": source_file})
+                m.update({"run": run, "model": model, "source_file": source_file, **metadata})
                 per_strategy.append(m)
                 if not c.empty:
                     c.insert(0, "run", run)
                     c["model"] = model
+                    for key, value in metadata.items():
+                        c[key] = value
                     all_curves.append(c)
             # Fairness invariant: every strategy must see identical work/subset.
             work = {m["selected_work_checksum"] for m in per_strategy}
             ntok = {m["num_selected_tokens"] for m in per_strategy}
             fair = (len(work) == 1 and len(ntok) == 1)
-            validation.append({"run": run, "model": model, "batch_size": b, "fair": fair,
+            validation.append({"run": run, "model": model, **metadata, "batch_size": b, "fair": fair,
                                "selected_work_checksum": next(iter(work)) if len(work) == 1 else None,
                                "num_selected_tokens": next(iter(ntok)) if len(ntok) == 1 else None})
             if not fair:

@@ -252,23 +252,30 @@ def benchmark(args) -> None:
             model_s_total = float(sum(batch_times))
             accounted_e2e_s = float(sum(e2e_times))
             peak_gib = torch.cuda.max_memory_allocated() / (1024**3)
+            peak_reserved_gib = torch.cuda.max_memory_reserved() / (1024**3)
 
             if args.family == "ouro":
                 adaptive_realized = False
                 evidence_kind = "NATIVE_WHOLE_MODEL_POSTHOC_EXIT_BASELINE"
             else:
                 adaptive_realized = bool(parity_ok) if args.validate_parity else None
-                evidence_kind = (
-                    "NATIVE_WHOLE_MODEL_ADAPTIVE_GENERATION_PARITY_CHECKED"
-                    if parity_ok
-                    else "NATIVE_WHOLE_MODEL_ADAPTIVE_GENERATION_PARITY_UNVERIFIED"
-                )
+                if parity_ok:
+                    evidence_kind = "NATIVE_WHOLE_MODEL_ADAPTIVE_GENERATION_PARITY_CHECKED"
+                elif args.validate_parity:
+                    evidence_kind = "NATIVE_WHOLE_MODEL_ADAPTIVE_GENERATION_PARITY_FAILED"
+                else:
+                    evidence_kind = "NATIVE_WHOLE_MODEL_ADAPTIVE_GENERATION_PARITY_UNVERIFIED"
 
             row = {
                 "family": args.family,
                 "model": args.model,
+                "model_revision": args.model_revision or "default",
                 "dataset": args.dataset,
                 "threshold": threshold,
+                "kv_policy": (
+                    "native-reference" if args.family == "ouro" else args.cache_lookup_strategy
+                ),
+                "rmax": 4 if args.family == "ouro" else args.max_steps,
                 "batch_size": b,
                 "num_requests_target": len(prompts),
                 "completed_requests": completed_requests,
@@ -287,6 +294,7 @@ def benchmark(args) -> None:
                 "tokenization_s": float(sum(tokenization_times)),
                 "h2d_s": float(sum(h2d_times)),
                 "peak_gpu_allocated_gib": peak_gib,
+                "peak_gpu_reserved_gib": peak_reserved_gib,
                 "model_load_s_excluded": load_s,
                 "fixed_output_tokens": args.fixed_output_tokens,
                 "parity_ok": parity_ok,
@@ -310,6 +318,7 @@ def benchmark(args) -> None:
 def build_parser():
     p = argparse.ArgumentParser()
     p.add_argument("--model", required=True)
+    p.add_argument("--model-revision", default="")
     p.add_argument("--family", required=True, choices=["ouro", "huginn"])
     p.add_argument("--dataset", default="alpaca", choices=["alpaca", "sharegpt"])
     p.add_argument("--prompts-jsonl", default=None)

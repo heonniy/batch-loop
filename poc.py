@@ -156,9 +156,12 @@ def collect_ouro(args: argparse.Namespace) -> None:
 
     total_steps = int(getattr(model.model, "total_ut_steps", 4))
     output_path = Path(args.output)
+    receipt_path = output_path.with_suffix(".requests.jsonl")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     if output_path.exists() and not args.append:
         output_path.unlink()
+    if receipt_path.exists() and not args.append:
+        receipt_path.unlink()
 
     with torch.inference_mode():
         for request_id, prompt in enumerate(tqdm(prompts, desc=f"Ouro {args.model}")):
@@ -179,6 +182,7 @@ def collect_ouro(args: argparse.Namespace) -> None:
                 out = model.generate(
                     **enc,
                     max_new_tokens=args.max_new_tokens,
+                    min_new_tokens=args.max_new_tokens,
                     do_sample=False,
                     use_cache=True,
                     return_dict_in_generate=True,
@@ -216,10 +220,28 @@ def collect_ouro(args: argparse.Namespace) -> None:
                         "prompt_tokens": prompt_len,
                         "exit_rule": "learned_gate_posthoc",
                         "exit_threshold": float(args.exit_threshold),
+                        "kv_policy": "native-reference",
+                        "rmax": total_steps,
+                        "fixed_decode_tokens": True,
                         "seed": args.seed,
                     }
                 )
             _write_jsonl(output_path, rows, append=True)
+            _write_jsonl(
+                receipt_path,
+                [{
+                    "request_id": request_id,
+                    "prompt_tokens": prompt_len,
+                    "generated_tokens": gen_len,
+                    "trace_rows": len(rows),
+                    "eos_observed": bool(tokenizer.eos_token_id is not None and tokenizer.eos_token_id in generated.tolist()),
+                    "hit_decode_cap": gen_len == args.max_new_tokens,
+                    "kv_policy": "native-reference",
+                    "rmax": total_steps,
+                    "status": "OK",
+                }],
+                append=True,
+            )
 
     print(f"wrote {output_path}")
 
@@ -247,14 +269,19 @@ def collect_huginn(args: argparse.Namespace) -> None:
     ).eval()
 
     output_path = Path(args.output)
+    receipt_path = output_path.with_suffix(".requests.jsonl")
     output_path.parent.mkdir(parents=True, exist_ok=True)
     if output_path.exists() and not args.append:
         output_path.unlink()
+    if receipt_path.exists() and not args.append:
+        receipt_path.unlink()
 
     generation_config = GenerationConfig.from_model_config(model.config)
     generation_config.do_sample = False
     generation_config.max_new_tokens = args.max_new_tokens
+    generation_config.min_new_tokens = args.max_new_tokens
     generation_config.return_dict_in_generate = True
+    generation_config.output_scores = True
     generation_config.pad_token_id = tokenizer.pad_token_id
 
     # Huginn's own source warns that faithful adaptive-compute evaluation should use batch_size=1.
@@ -303,10 +330,30 @@ def collect_huginn(args: argparse.Namespace) -> None:
                         "exit_rule": args.criterion,
                         "exit_threshold": args.exit_threshold,
                         "exit_values": exit_values_per_seq[0],
+                        "kv_policy": args.cache_lookup_strategy,
+                        "rmax": int(args.max_steps),
+                        "fixed_decode_tokens": True,
                         "seed": args.seed,
                     }
                 )
             _write_jsonl(output_path, rows, append=True)
+            generated_len = int(sequences.shape[1] - prompt_len)
+            generated_ids = sequences[0, prompt_len:].tolist()
+            _write_jsonl(
+                receipt_path,
+                [{
+                    "request_id": request_id,
+                    "prompt_tokens": prompt_len,
+                    "generated_tokens": generated_len,
+                    "trace_rows": len(rows),
+                    "eos_observed": bool(tokenizer.eos_token_id is not None and tokenizer.eos_token_id in generated_ids),
+                    "hit_decode_cap": generated_len == args.max_new_tokens,
+                    "kv_policy": args.cache_lookup_strategy,
+                    "rmax": int(args.max_steps),
+                    "status": "OK" if len(rows) == generated_len else "TRACE_LENGTH_MISMATCH",
+                }],
+                append=True,
+            )
 
     print(f"wrote {output_path}")
 
