@@ -6,7 +6,7 @@ Updated 2026-09-16.
 
 Can offline micro-batch formation reduce the recurrent-depth valley of **pure no-refill** looped-LM inference, and is the opportunity large enough to matter in real H100 end-to-end execution?
 
-Refill is intentionally out of scope.  Scheduling occurs only at token boundaries; a token that exits a recurrent interval is not replaced inside that interval.
+Refill is intentionally out of scope. Scheduling occurs only at token boundaries; a token that exits a recurrent interval is not replaced inside that interval.
 
 ## Fixed matrix
 
@@ -15,8 +15,6 @@ Refill is intentionally out of scope.  Scheduling occurs only at token boundarie
 - `ByteDance/Ouro-2.6B`
 - `tomg-group-umd/huginn-0125` (Huginn-3.5B)
 
-Use the pinned revisions recorded by `run_h100_full_sweep.sh` unless a compatibility failure is documented and a replacement revision is explicitly committed.
-
 ### Batch sizes
 Paper-facing B = `4, 8, 16, 32, 64` only.
 
@@ -24,57 +22,36 @@ Paper-facing B = `4, 8, 16, 32, 64` only.
 - Ouro-1.4B / Ouro-2.6B: `0.2, 0.4, 0.5, 0.7`
 - Huginn-3.5B latent-diff: `0.5, 0.35, 0.26, 0.12`, max recurrent depth 16
 
-### Workload
-Primary: Alpaca, fixed seed and prompt cohort within each model.  Default trace pool is 256 requests/model; default native-E2E pool is 128 requests/model so the full 3-model x threshold x B block fits one H100 session.  Increase only by explicit environment override, not by silently changing the plan.
+### Workloads: Alpaca + ShareGPT
 
-## What is measured
+Both workloads are required so the scheduling claim is not tied only to short instructions.
 
-### A. Real exit traces and fair scheduling headroom
+- **Alpaca**: short/tightly concentrated workload. Default bounded run: 256 trace requests, 128 native-E2E requests, prompt cap 512, generation cap 24.
+- **ShareGPT**: longer/heavier-tailed chatbot workload. Default bounded run: 128 trace requests, 64 native-E2E requests, prompt cap 2048, generation cap 64.
 
-Collect per-request/per-token exit depths from the official model code.  For each threshold and B, compare the exact same selected token/request set under:
+The ShareGPT collector reuses the existing `ewof/sharegpt-instruct-unfiltered-deduped` loader and first-user-message extraction in `poc.py`. The caps are explicit PoC resource bounds, not claims about the full original ShareGPT output-length distribution. They can be overridden with `SHAREGPT_*` environment variables, but every result publication must record the actual values.
 
-- FIFO
-- random
-- previous-depth
-- recent-depth
-- sequence-mean
-- oracle current-token depth
+Alpaca and ShareGPT artifacts stay in separate dataset subdirectories. Cross-workload CSVs are derived only after each dataset-specific run is complete.
 
-Report slot utilization, idle-slot ratio, depth variance, and oracle-minus-FIFO headroom.  Oracle is an upper bound, not an implementable policy.
+## What is measured for every model x threshold x B x workload
 
-### B. Actual whole-model E2E / throughput / BCT
+1. **Depth characterization**: histogram, mean/std depth, request/token denominators.
+2. **Fair trace headroom**: FIFO/random/history/oracle slot utilization, idle-slot ratio, oracle-minus-FIFO headroom. Strategies must share the exact same selected items and total token-loop work.
+3. **Actual native whole-model E2E**: H100 offline BCT, generated tokens/s, requests/s, model generation time, batch p50/p95, tokenization/H2D, and peak HBM.
+4. **Real H100 latency surface**: fixed-depth timing at active B=1,2,4,8,16,32,64 and contexts 32/128/512/2048. OOM/error cells are evidence and must remain visible.
+5. **Hardware-calibrated no-refill replay**: FIFO/oracle/causal grouping BCT and tokens/s using the observed exit traces and measured latency surface.
 
-Use the official/native generation implementation for each model, loaded once per model, and sweep every threshold and B.  Measure actual H100 wall-clock:
+## Evidence boundaries
 
-- whole offline batch-completion time (BCT)
-- generated tokens/s
-- requests/s
-- model-generation wall time
-- tokenization and H2D time
-- p50/p95 micro-batch generation time
-- peak allocated HBM
+- `slot_utilization` is trace geometry, not physical GPU utilization.
+- `native_e2e_*` is actual whole-model wall-clock execution.
+- Ouro native code still computes all recurrent steps and exposes exit depth post-hoc, so threshold-dependent Ouro E2E is a real baseline but not physical early-exit speedup.
+- Huginn adaptive E2E is trusted only where deterministic batched-vs-B1 parity passes.
+- `hardware_replay_*` uses real H100 calibration plus real exit traces, but is not an integrated dynamic compaction engine.
 
-One-time model load is recorded separately and excluded from BCT.  Performance runs force the same output-token cap/length contract to avoid comparing different amounts of generation work.
+## Why two workloads matter
 
-For Huginn, run a small deterministic batched-vs-B1 output parity check at each `(threshold, B)`.  Batched adaptive timing is not promoted to trusted evidence if parity fails.
-
-For Ouro, the current public HF implementation computes all recurrent steps and applies the exit gate post-hoc.  Its native E2E measurement is therefore a **real whole-model baseline**, but threshold changes must not be described as physical early-exit speedup.
-
-### C. Real H100 recurrent-step latency surface
-
-Measure fixed-depth generation at internal active batch sizes `1,2,4,8,16,32,64` and representative context lengths.  These measurements price the cost of a no-refill batch shrinking from B to smaller survivor counts.
-
-### D. Hardware-calibrated no-refill scheduling replay
-
-Replay FIFO/oracle/causal-grouping traces against the measured H100 latency surface and report estimated no-refill BCT and tokens/s.  Label this evidence exactly as hardware-calibrated trace replay; it is not an integrated compaction runtime.
-
-## Why both B and D are needed
-
-`native_e2e_all.csv` answers **how expensive the complete model is on the real H100** across model/threshold/B.
-
-`runtime_replay_all.csv` answers **how much of that cost structure could change if the observed no-refill survivor pattern were physically compacted/grouped**.
-
-They must not be merged into a single unsupported speedup claim.  A future integrated compaction engine is needed before claiming measured scheduler E2E speedup for Ouro.
+Alpaca tests the short-context regime where weight reload and recurrent batch shape can dominate. ShareGPT tests whether the same valley/headroom survives longer context and heavier KV traffic. A method that only helps one regime must be reported as workload-dependent rather than generalized silently.
 
 ## One-command execution
 
@@ -82,35 +59,16 @@ They must not be merged into a single unsupported speedup claim.  A future integ
 bash run_h100_full_sweep.sh
 ```
 
-The runner records source commit, exact model revisions, environment, launch command and a unique output root.
+Useful explicit overrides:
 
-Primary outputs:
-
-```text
-results/full_sweep_*/analysis/fair/oracle_vs_fifo.csv
-results/full_sweep_*/analysis/depth_distribution.csv
-results/full_sweep_*/e2e/native_e2e_all.csv
-results/full_sweep_*/calibration/*_fit.csv
-results/full_sweep_*/analysis/runtime_replay_all.csv
+```bash
+SHAREGPT_N_REQUESTS=256 SHAREGPT_E2E_N_REQUESTS=128 \
+SHAREGPT_PROMPT_TOKENS=2048 SHAREGPT_NEW_TOKENS=96 \
+bash run_h100_full_sweep.sh
 ```
+
+The runner records source SHA, exact launch command, model revisions, environment, and the dataset-specific cap contract into the result root.
 
 ## Result publication
 
-The executing agent must commit a compact result packet after completion:
-
-1. `RESULT_REVIEW.md` — what actually ran, key tables, failures, limitations.
-2. `review_manifest.json` — source SHA, run root, model revisions, execution kinds, measurement/comparison/hypothesis status.
-3. compact CSVs/plots required to reproduce the review.
-4. hashes/paths for any large raw traces that remain server-side.
-
-Do not publish only favorable cells.  OOM/unsupported/parity-failed cells remain in the result table.
-
-## Decision criterion
-
-The idea has system-level room when a realistic threshold simultaneously shows:
-
-- substantial fair FIFO -> oracle headroom over B=4..64;
-- a corresponding material reduction in hardware-calibrated no-refill BCT / increase in tokens/s;
-- native whole-model BCT demonstrating that recurrent decode cost is a meaningful part of total execution.
-
-A positive Ouro result with weak Huginn room is acceptable, but the conclusion must be architecture-specific.  Weak simple predictors are a method problem, not evidence against oracle headroom.
+The executing model/coding agent must publish compact dataset-specific and cross-workload CSV/JSON/plots, a human-readable `RESULT_REVIEW.md`, and `review_manifest.json`. Keep positive and negative model/threshold/workload results. Do not promote replay estimates into integrated-runtime claims.
