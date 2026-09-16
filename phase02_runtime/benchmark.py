@@ -212,6 +212,8 @@ def main() -> None:
     parser.add_argument("--state-init", choices=["zero", "native-seeded"], default="zero")
     parser.add_argument("--heterogeneous-prompts", action="store_true")
     parser.add_argument("--debug-ids", action="store_true")
+    parser.add_argument("--emit-live-trace", action="store_true",
+                        help="write measured B=1 live exit depths for later forced-depth timing")
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
     if args.num_rows < 1 or args.batch_size < 1 or args.num_tokens < 1 or args.repeats < 1:
@@ -224,6 +226,9 @@ def main() -> None:
         parser.error("live stage requires --exit-source live")
     if args.exit_source == "live" and args.stage not in {"live", "m0"}:
         parser.error("live-exit timing must be a separately labelled stage")
+    if args.emit_live_trace and (args.stage != "live" or args.batch_size != 1 or
+                                 args.repeats != 1 or not args.debug_ids):
+        parser.error("--emit-live-trace requires live stage, B=1, one repeat, and --debug-ids")
     if args.model == "huginn" and args.stage == "m1" and args.trace_file is None:
         print("[scope] Huginn M1 forced depths are synthetic until B1 shared-KV trace exists", flush=True)
 
@@ -240,7 +245,10 @@ def main() -> None:
         "model_revision": OuroAdapter.model_revision if args.model == "ouro" else HuginnAdapter.model_revision,
         "kv_backend": OuroAdapter.kv_policy if args.model == "ouro" else HuginnAdapter.kv_policy,
         "exit_source": args.exit_source,
-        "forced_depth_source": "phase01-trace" if trace_info else "deterministic-synthetic",
+        "forced_depth_source": (
+            "not-applicable-live" if args.exit_source == "live"
+            else "provided-trace" if trace_info else "deterministic-synthetic"
+        ),
         "trace": trace_info, "threshold": args.threshold, "seed": args.seed,
         "state_init": args.state_init, "prompt_source": "deterministic-synthetic-text",
         "heterogeneous_prompts": args.heterogeneous_prompts,
@@ -272,6 +280,7 @@ def main() -> None:
     if args.stage == "m0":
         strategies = ["fifo"]
     summaries = []
+    live_trace: dict[tuple[int, int], int] = {}
     with (args.output_dir / "recurrence_events.jsonl").open("w") as event_file:
         for repetition in range(-args.warmups, args.repeats):
             for strategy in strategies:
@@ -285,6 +294,24 @@ def main() -> None:
                     summaries.append(summary)
                     for event in events:
                         event_file.write(json.dumps(event) + "\n")
+                        if args.emit_live_trace:
+                            for request_id in event["exited_request_ids"]:
+                                key = (int(request_id), int(event["token_idx"]))
+                                if key in live_trace:
+                                    raise AssertionError(f"duplicate live exit {key}")
+                                live_trace[key] = int(event["recurrence"])
+
+    if args.emit_live_trace:
+        if len(live_trace) != args.num_rows * args.num_tokens:
+            raise AssertionError("live trace has missing request-token exits")
+        with (args.output_dir / "live_exit_depth_trace.jsonl").open("w") as stream:
+            for (request_id, token_idx), depth in sorted(live_trace.items()):
+                stream.write(json.dumps({
+                    "request_id": request_id, "token_idx": token_idx, "depth": depth,
+                    "model": args.model, "threshold": args.threshold,
+                    "exit_source": "live-b1-shared-kv" if args.model == "huginn" else "live-b1-last-exited-kv",
+                    "source_sha": source_sha,
+                }) + "\n")
 
     if args.exit_source == "trace" and len(strategies) == 2:
         for repetition in range(args.repeats):
