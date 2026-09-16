@@ -1,0 +1,13 @@
+{
+  "width": 256,
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "best_epoch": 18,
+  "validation_ric_recovery": 0.23728813559322035,
+  "selection": "maximum validation RIC recovery, early-stop patience 5",
+  "candidate": "C7",
+  "features": "C7",
+  "base_model_frozen": true,
+  "split_by_request": true,
+  "loss": "ordinal_cumulative_bce"
+}

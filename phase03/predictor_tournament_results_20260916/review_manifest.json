@@ -1,6 +1,6 @@
 {
-  "result_commit": "a0146fbb7fab189147f4e8020b473970d4af0e9a",
-  "source_commit": "a0146fbb7fab189147f4e8020b473970d4af0e9a",
+  "result_commit": "PENDING_REVIEW_COMMIT",
+  "source_commit": "a3ca0d2100fafa99576ba5d007bb95d8607ed8c0",
   "plan_or_priority": "phase03/PREDICTOR_TOURNAMENT_PLAN.md and user GPU6/7 correction",
   "execution_kind": [
     "exit-trace-collection",
@@ -18,13 +18,16 @@
   "dataset_revision": "UNKNOWN",
   "regimes": [
     "huginn_threshold_0p12_n640_t32",
-    "ouro_q0p2_n640_t32"
+    "ouro_q0p2_n640_t32",
+    "huginn_threshold_0p26_n640_t32",
+    "ouro_q0p4_n640_t32"
   ],
   "measurement_status": "VALID_FOR_FROZEN_TRACE_FORCED_WORK",
   "implementation_status": "CHECKED_IN_SCOPE_FOR_SURVIVOR_RUNTIME",
   "simulator_status": "CHECKED_IN_SCOPE_SAME_WORK",
   "comparison_status": "COMPARABLE_WITHIN_EACH_HELD_OUT_COHORT",
   "hypothesis_status": "MEASURED_WITH_PRESERVED_NEGATIVES",
+  "phase03_decision": "3 \u2014 lightweight predictors recover too little physical Oracle room; a new predictor architecture or problem framing is warranted",
   "model_reviews": [
     {
       "model": "huginn",
@@ -52,6 +55,29 @@
         "C7": 0.18778625954198475,
         "C8": 0.20916030534351146,
         "C9": 0.19541984732824427
+      },
+      "secondary": {
+        "model": "huginn",
+        "regime": "huginn_threshold_0p26_n640_t32",
+        "frozen_primary_winner": "C8",
+        "transfer_test_ric_recovery": 0.17941952506596306,
+        "secondary_refit_test_ric_recovery": 0.20844327176781002,
+        "fifo_ric": 2075,
+        "predictor_ric": 2010,
+        "oracle_ric": 1696,
+        "physical_ric_recovery": 0.17150395778364116,
+        "fifo_median_wall_s": 17.702980442903936,
+        "predictor_median_wall_s": 18.162963238544762,
+        "oracle_median_wall_s": 15.240682069212198,
+        "physical_wall_recovery": -0.18681033970353944,
+        "median_paired_wall_gain_s": -0.5142019568011165,
+        "min_paired_wall_gain_s": -1.3079757075756788,
+        "max_paired_wall_gain_s": -0.3673060815781355,
+        "predictor_overhead_wall_s": 0.47920328564941883,
+        "sort_overhead_wall_s": 0.000997527502477169,
+        "generated_next_token_match_fraction": 0.9542590725806451,
+        "gpu_uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b",
+        "same_work_checksum": "225428b16d8320a0fcbb991c879f5e26305d79b31cdbdab2cf579fbf7f477cd0"
       }
     },
     {
@@ -80,6 +106,29 @@
         "C7": 0.17663817663817663,
         "C8": 0.1794871794871795,
         "C9": 0.17094017094017094
+      },
+      "secondary": {
+        "model": "ouro",
+        "regime": "ouro_q0p4_n640_t32",
+        "frozen_primary_winner": "C8",
+        "transfer_test_ric_recovery": 0.20463320463320464,
+        "secondary_refit_test_ric_recovery": 0.20463320463320464,
+        "fifo_ric": 1022,
+        "predictor_ric": 969,
+        "oracle_ric": 763,
+        "physical_ric_recovery": 0.20463320463320464,
+        "fifo_median_wall_s": 25.3993321955204,
+        "predictor_median_wall_s": 24.820872315205634,
+        "oracle_median_wall_s": 19.05978281237185,
+        "physical_wall_recovery": 0.0912462141003899,
+        "median_paired_wall_gain_s": 0.5847136173397303,
+        "min_paired_wall_gain_s": -1.0090118162333965,
+        "max_paired_wall_gain_s": 0.8309587556868792,
+        "predictor_overhead_wall_s": 0.48298225924372673,
+        "sort_overhead_wall_s": 0.0009359689429402351,
+        "generated_next_token_match_fraction": 0.9930695564516129,
+        "gpu_uuid": "GPU-e3f3998e-0f1a-e94a-b97c-4abb0e8c2c28",
+        "same_work_checksum": "c05838c3afbc5cd63f0aeec3b490435f9240912bb1534faa56be4c2c363a4fa7"
       }
     }
   ],
@@ -100,16 +149,29 @@
     "ouro_n_eq_b_control/run_manifest.json": "a574750f93e585f9a782175429ec38760213f9bce61373344053327012287184",
     "ouro_n_eq_b_control/summary.csv": "f2fff4616d516e27a32a34dee9b2af73a46b2fe08e55a85b495cd09993e5e6b5",
     "ouro_n_eq_b_control/recurrence_events.jsonl.gz": "d4b2e850512c656906c3d0ccb51a48f79a48bad8a172fdae4a92d9e729cdedb9",
+    "huginn_threshold_0p26_n640_t32/feature_manifest.json": "b6c4289d9e616bd9728f8524c3e62f65273c1a308b3875125f2db06e33f0581e",
+    "huginn_threshold_0p26_tournament/predictor_tournament.csv": "e25099ed95484b992843ea268f5bc931a82ca17d64783d4552d334a95aa73003",
+    "huginn_threshold_0p26_transfer/transfer_tournament.csv": "5328cce4472bf2824136b7d47f169047e4b8d18d7109be87c18937daed8e0ce8",
+    "huginn_threshold_0p26_physical/run_manifest.json": "846228e77fb97ff9dc5dd95a2c1aa293b49003bf1d1987e546f02da082ff7ab8",
+    "huginn_threshold_0p26_physical/summary.csv": "8ea3b3200a1960a2ba71c85691c56233bab05641e9267eb8e4f8521bc1b74ade",
+    "huginn_threshold_0p26_physical/recurrence_events.jsonl.gz": "6d2ff42cb8a4abd087c8d1e01850ae65241047313e4af82c4ccb47b534e259a1",
+    "ouro_q0p4_n640_t32/feature_manifest.json": "10446ad595a635821fb39efc20db59fb7f8652cc9a8a8488890366e3e033fa33",
+    "ouro_q0p4_tournament/predictor_tournament.csv": "48392f5b2a611dacf03b77eecc0f3adffa1d55965b2909f150164fccd791086b",
+    "ouro_q0p4_transfer/transfer_tournament.csv": "1ee295bfc75b643cd8574e49fbc7017a16cb0e0dcdc38a51781de4464e70d0e1",
+    "ouro_q0p4_physical/run_manifest.json": "732f9508ab1ca767871c8725bbc931608dcd476170f665fe0138a6648df40bef",
+    "ouro_q0p4_physical/summary.csv": "e573b379bae17d9fb76abdd4df63405fdb64c75de536c90bfc14e3eedb55afcd",
+    "ouro_q0p4_physical/recurrence_events.jsonl.gz": "1d11263b24c74667627077a24ee82f55f9a1a47d110ec06b6a9707caa270ed43",
     "predictor_tournament.csv": "4e9e9ee4373b509ff4104d9b29191aa4aec003bd95a45c8b34d3ea22cc937aa6",
-    "physical_matrix.csv": "c0bcd2c4e706296c7d3ce703bfb631078271255a67f2dea1ba146d48bf25c9b6",
+    "physical_matrix.csv": "3ae26973398766d8fcda20a88ecd0bac08c50beffa4a83450457c13697120e26",
     "microbatch_max_depth_distribution.csv": "23527b6fbab8620385b1c6d59d58cd12890608e08e95857793460da0e9b69c93",
     "active_width_curves.csv": "6794e9060031e4beccdc81fa2d71fd78ba3aeef2dc410cf983e938fed69097dd",
+    "secondary_matrix.csv": "a2aa6d07b9b11b7023eb6e82f86f68f1e77e3b6f67b81ad7c791b60cc501765c",
     "control_matrix.csv": "a96ce959ae3996061cd06686c9e20dfbfb0605414fe2f1953e3f0045be7f3e50"
   },
   "known_missing_fields": [
     "dataset revisions",
     "native/full-depth quality",
-    "secondary-threshold generalization"
+    "independent prompt-cohort transfer"
   ],
   "next_action": "audit native live-exit trajectory/quality before any final system claim"
 }
