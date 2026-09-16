@@ -1,0 +1,105 @@
+{
+  "phase": "02-oracle-recurrent-invocation-headroom",
+  "date_utc": "2026-09-16",
+  "result_commit": "f545540c1a7ea58ccf78233541d4f46fae61a097",
+  "latest_analysis_source_commit": "2d394719823ba0e346659d234edf27b4ac26bc17",
+  "pulled_main_before_work": "fd7b936c8ea7dbbfb6461fa12e066b0d49a59bcb",
+  "plan_or_priority": "phase02/ORACLE_UPPER_BOUND_PLAN.md and AGENTS.md at fd7b936",
+  "execution_kinds": {
+    "huginn_b1_depths": "exit-trace-collection; live B=1 shared-KV model execution, not speed timing",
+    "ouro_depths": "existing Phase-1 native-reference, post-hoc gate exit-trace-collection",
+    "ric_sweeps": "trace-sim; logical RIC and slot metrics only, not speed timing",
+    "physical_matrix": "real-no-refill-runtime; trace-forced physical survivor FIFO versus perfect-depth Oracle"
+  },
+  "source_commits": {
+    "physical_ouro_and_ric_instrumentation": "f94387f73f2cbc983cc574cc95d62a5da2522b69",
+    "huginn_b1_collector": "366fe54875fb475114f9c6f68812703dfe096597",
+    "shared_kv_capacity_fix_and_physical_huginn": "48ed8d994834c77e3ed5ec280fa2b2ad0501c6b3",
+    "published_trace_sweeps": "b559b0e07830ed206b4504af438a99d927be5680",
+    "published_physical_summary_utility": "2d394719823ba0e346659d234edf27b4ac26bc17"
+  },
+  "hardware": {
+    "gpu6_ouro_only": "GPU-e3f3998e-0f1a-e94a-b97c-4abb0e8c2c28, NVIDIA H100 80GB HBM3",
+    "gpu7_huginn_only": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b, NVIDIA H100 80GB HBM3",
+    "new_gpu_0_to_5_executions": 0,
+    "torch": "2.6.0+cu124",
+    "cuda": "12.4",
+    "transformers": "4.54.1",
+    "datasets": "5.0.1"
+  },
+  "models_and_workloads": {
+    "ouro": {
+      "model_and_tokenizer_revision": "37bc7e8ff85a90d813dc096383405f521b6a67b0",
+      "precision": "bfloat16",
+      "Rmax": 4,
+      "kv_backend": "last-exited-depth-indexed",
+      "depth_source": "Phase-1 native-reference post-hoc learned gate, thresholds 0.2/0.4/0.5/0.7, Alpaca and ShareGPT",
+      "physical_prompt_max_tokens": 64,
+      "source_trace_prompt_policy": "uncapped; four Alpaca and 80 ShareGPT prompts in selected N256 physical cells exceed 64 tokens"
+    },
+    "huginn": {
+      "model_and_tokenizer_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+      "precision": "bfloat16",
+      "Rmax": 16,
+      "kv_backend": "shared-physical-layer",
+      "depth_source": "live B=1 latent-difference convergence, thresholds 0.50/0.35/0.26/0.12, native-seeded state",
+      "attention_backend": "head-dim-96 explicit mask with SDPA math",
+      "prompt_max_tokens": 64,
+      "prompt_sha256_n256": "9a5984717b832827aee9e6faf84847dabf079a6a3b83aabac2c4df5658def998"
+    },
+    "datasets": {
+      "alpaca": "tatsu-lab/alpaca; dataset revision UNKNOWN (not pinned in raw run manifests)",
+      "sharegpt": "ewof/sharegpt-instruct-unfiltered-deduped; dataset revision UNKNOWN (not pinned in raw run manifests)",
+      "sampling_seed": 1,
+      "sharegpt_physical_prompt_sha256_n256": "c1a757c8272fdb13a7479f8664c156eda2fd46375ae99d8342c9dbef999dddc0"
+    }
+  },
+  "measurement_status": {
+    "status": "VALID_IN_SCOPE",
+    "evidence": "Four complete Huginn N256/B1/64-token traces (16,384 rows each); eight reused Ouro Phase-1 traces; nine selected physical 32-token cells with two warmups and three or five measured repetitions per strategy, final N256 and controls using five; synchronized CUDA-event recurrent time and prefill-excluded decode wall time; physical_matrix.csv and raw run manifests/summary files",
+    "known_missing_fields": "No pinned Hugging Face dataset revisions in raw manifests, no native full-depth quality/latency comparison, no output-quality equality check, no confidence interval beyond repeat distributions",
+    "fixed_decode_contract": "exactly N times num_tokens generated positions, no EOS stop; prefill excluded from wall time but included in peak HBM"
+  },
+  "implementation_status": {
+    "status": "CHECKED_IN_SCOPE",
+    "evidence": "Physical survivor-only recurrent calls and stable logical KV rows; Ouro last-exited depth-indexed KV; Huginn shared physical-layer KV; complete Huginn trace collector uses the same adapter/exit/KV semantics as live runtime; N4 x 2-token validation matches all eight exit depths and prompt hash; shared-KV capacity fix prevents old growing reservation; eight CPU invariant tests passed",
+    "failure_preserved": "physical/gpu7_huginn/phase02_physical_gpu7_huginn_20260916T130250Z_4129364/failure_receipt.json; interrupted at observed 74,219 MiB before H100 OOM, not counted as a complete trace"
+  },
+  "simulator_status": {
+    "status": "CHECKED_IN_SCOPE",
+    "evidence": "12 source traces x N32/64/128/256 x B4/8/16/32 = 192 complete divisible cells at each 64- and 32-token horizon; same frozen first-N request IDs, true-depth Oracle sort with stable request-ID ties, no refill or partial microbatches; all N=B controls have zero RIC delta; all 12 published compressed trace input hashes match decompressed source hashes; all nine physical cells match the 32-token trace-sim FIFO/Oracle RIC and same-work checksum",
+    "metric_scope": "RIC and logical slot utilization only; not throughput or BCT"
+  },
+  "comparison_status": {
+    "status": "COMPARABLE_WITHIN_EACH_PHYSICAL_FIFO_ORACLE_PAIR; CROSS_EVIDENCE_OURO_CONTEXT_INCOMPLETE",
+    "baselines": "FIFO versus perfect-current-depth Oracle on the same selected requests, model, threshold, B, prompts, generation count, exit-depth work, and KV backend; zero-headroom N=B controls for both models",
+    "denominator_checks": "Physical request/token work SHA and total request-recurrence work equal within each pair; nine of nine physical calls/checksums equal 32-token trace-sim; N256 Huginn physical Alpaca prompt SHA equals its B=1 collector SHA in three of three selected cells",
+    "known_mismatch": "Ouro Phase-1 native-reference depths came from uncapped prompts, while physical model prompts were capped at 64 tokens: four of 256 Alpaca and 80 of 256 ShareGPT selected prompts were truncated. Thus Ouro physical comparisons prove forced-depth hardware behavior, not original-context live dataset throughput. Huginn prompt cap and content match."
+  },
+  "hypothesis_status": {
+    "status": "EXPLORATORY_SIGNAL_FOR_LARGE_POOL_ORACLE_RIC; NOT_A_PREDICTOR_OR_QUALITY_GO",
+    "huginn_trace_64tok_n256_b32_ric_reduction_pct": {"0.50": 15.0, "0.35": 18.0, "0.26": 19.6, "0.12": 22.0},
+    "huginn_0p12_b32_ready_pool_ric_reduction_pct": {"N32": 0.0, "N64": 11.8, "N128": 18.7, "N256": 22.0},
+    "huginn_physical_32tok_n256_b32_wall_reduction_pct": {"0.12": 16.2, "0.26": 12.6, "0.50": 11.0},
+    "huginn_n_equals_b_physical_wall_difference_pct": 0.5,
+    "ouro_0p2_alpaca_physical_32tok_n256_b32_wall_reduction_pct": 30.9,
+    "counterevidence": "The Huginn threshold-0.50 64-token RIC reduction is only 15.0%; even at threshold 0.12 physical wall improvement (16.2%) is smaller than 32-token RIC reduction (20.6%); N=B controls show no material gain"
+  },
+  "artifacts": {
+    "result_review": "RESULT_REVIEW.md",
+    "trace_inputs": "trace_inputs/*.jsonl.gz; raw-byte hashes after decompression listed in trace_sim_64tok/run_manifest.json",
+    "trace_collection_receipt": "trace_inputs/provenance/huginn_b1_run_manifest.json",
+    "trace_sim_64tok": "trace_sim_64tok/",
+    "trace_sim_32tok": "trace_sim_32tok/",
+    "physical_matrix": "physical_matrix.csv",
+    "physical_raw": "physical/gpu6_ouro/ and physical/gpu7_huginn/; recurrence_events.jsonl.gz is lossless, summary CSV line endings normalized to LF",
+    "collector_validation": "validation/",
+    "oracle_ric_sweep_64tok_sha256": "aeb3219d6436fd0160012aed327e99b9b7d3d19fb1782a4178e1e27813b91699",
+    "depth_distributions_64tok_sha256": "edd967ee381c1708ec497bdb3b9b01570ac3627c65483ac5460804b422d8c2d2",
+    "token_boundary_ric_64tok_sha256": "5e00d9151ce000e33764a885a5f68f73affa17606c725250b1e5dc8d9a6be208",
+    "oracle_ric_sweep_32tok_sha256": "7eede2babdf3e157920a00e5aab36e08de041541f68cea603116a73e27fdaf80",
+    "physical_matrix_sha256": "09b5ec907b89e34a92085b860176afb0df41ebc9285362bb385cd70bff995e5f"
+  },
+  "exact_command_or_receipt": "The run_manifest.json in each physical directory contains the runner argv and source/GPU/model/trace/prompt bindings; trace_sim_64tok/run_manifest.json and trace_sim_32tok/run_manifest.json contain the complete trace inputs, N/B grid, horizon, source SHA, and metric scope. Reproduce the CPU checks with python -m unittest phase02_runtime.test_oracle_ric phase02_runtime.test_summarize_oracle_physical phase02_runtime.test_runtime -v.",
+  "next_action": "One bounded predictor block: predict expected microbatch maxima/RIC for the strongest N256/B32 Huginn and Ouro regimes, compare practical wall-time recovery against these physical Oracle/FIFO ceilings and N=B controls, and profile fixed prelude/coda/KV overhead; do not infer quality or deployment readiness."
+}
