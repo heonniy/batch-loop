@@ -7,12 +7,45 @@ import unittest
 import torch
 
 from phase02_runtime.kv import OuroLastExitedKV
+from phase02_runtime.common import run_interval
 from phase04_runtime.data_contract import audit_splits, effective_token_hashes
 from phase04_runtime.identity import HuginnStateIdentity, state_sha256
 from phase04_runtime.policy import huginn_decision, ouro_decision
 
 
 class Phase04ContractTests(unittest.TestCase):
+    def test_live_survivor_compaction_with_permuted_rows(self):
+        class Backend:
+            def set_active(self, rows):
+                self.rows = rows
+
+            def pop_update_gpu_ms(self):
+                return 0.0
+
+            def on_exit(self, rows, depth):
+                del rows, depth
+
+        class Adapter:
+            rmax = 4
+            backend = Backend()
+            desired = torch.tensor([4, 2, 2, 1])
+
+            def recurrent_step(self, state, embedded, recurrence):
+                del embedded, recurrence
+                return state + 1
+
+            def live_exit(self, before, after, rows, recurrence, threshold):
+                del before, after, threshold
+                return self.desired[rows] <= recurrence
+
+        values = torch.zeros((4, 1, 2))
+        result = run_interval(Adapter(), values, values, torch.tensor([3, 1, 0, 2]),
+                              torch.tensor([13, 11, 10, 12]), exit_source="live",
+                              instrumentation="benchmark")
+        self.assertEqual(result.exit_depths.tolist(), [1, 2, 4, 2])
+        self.assertEqual([item["active_batch_size"] for item in result.events], [4, 3, 1, 1])
+        self.assertEqual(result.final_state[:, 0, 0].tolist(), [1, 2, 4, 2])
+
     def test_huginn_rowwise_strict_tie_and_cap(self):
         before = torch.tensor([[[0.0, 0.0]], [[1.0, 0.0]], [[0.0, 0.0]]])
         after = torch.tensor([[[0.0, 0.0]], [[2.0, 0.0]], [[1.0, 0.0]]])

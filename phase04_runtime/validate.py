@@ -67,6 +67,7 @@ def _reference(model_key: str, model, tokenizer, prompts: list[str], tokens: int
     records = {}
     input_tokens = [[0] * len(prompts) for _ in range(tokens)]
     adapters = []
+    prefill_logits = {}
     for request_id, prompt in enumerate(prompts):
         adapter = _adapter(model_key, model, tokenizer, [request_id], seed, "profile")
         encoded = tokenizer([prompt], return_tensors="pt",
@@ -74,6 +75,7 @@ def _reference(model_key: str, model, tokenizer, prompts: list[str], tokens: int
                             truncation=True, max_length=cohort_width or 64)
         current = adapter.prefill(encoded["input_ids"].cuda(),
                                   encoded["attention_mask"].cuda().bool())
+        prefill_logits[request_id] = adapter.prefill_logits[0, -1].detach().cpu().float()
         adapters.append((adapter, current))
     states = {}
     for token_idx in range(tokens):
@@ -104,7 +106,7 @@ def _reference(model_key: str, model, tokenizer, prompts: list[str], tokens: int
                 "scores": scores, "margins": margins, "logits": logits[0].detach().cpu().float(),
             }
             adapters[request_id] = (adapter, next_token)
-    return {"records": records, "states": states}, input_tokens, adapters
+    return {"records": records, "states": states, "prefill_logits": prefill_logits}, input_tokens, adapters
 
 
 @torch.inference_mode()
@@ -114,6 +116,8 @@ def _compact(model_key: str, model, tokenizer, prompts: list[str], input_tokens:
     adapter = _adapter(model_key, model, tokenizer, list(range(n)), seed, "profile")
     encoded = tokenizer(prompts, return_tensors="pt", padding=True, truncation=True, max_length=64)
     adapter.prefill(encoded["input_ids"].cuda(), encoded["attention_mask"].cuda().bool())
+    prefill_logits = {request_id: adapter.prefill_logits[request_id, -1].detach().cpu().float()
+                      for request_id in range(n)}
     records = {}
     states = {}
     widths = {}
@@ -147,7 +151,8 @@ def _compact(model_key: str, model, tokenizer, prompts: list[str], input_tokens:
                                 for event in result.events if request_id in event["active_request_ids"]],
                 }
         adapter.commit_token()
-    return {"records": records, "states": states, "widths": widths}, adapter
+    return {"records": records, "states": states, "widths": widths,
+            "prefill_logits": prefill_logits}, adapter
 
 
 def _kv_compare(reference_adapters: list, compact_adapter, atol: float, rtol: float) -> tuple[float, list]:
@@ -177,6 +182,14 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
              atol: float, rtol: float) -> dict:
     mismatches = []
     max_hidden = max_logits = max_gate = 0.0
+    prefill_errors = {}
+    for request_id, old in reference["prefill_logits"].items():
+        new = compact["prefill_logits"][request_id]
+        error = (old - new).abs()
+        prefill_errors[request_id] = float(error.max())
+        if not torch.allclose(old, new, atol=atol, rtol=rtol) and len(mismatches) < 100:
+            mismatches.append({"request_id": request_id, "field": "prefill_logits",
+                               "max_abs_error": float(error.max())})
     for key, expected in reference["records"].items():
         actual = compact["records"][key]
         for field in ("depth", "next_token"):
@@ -219,6 +232,7 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
             "mismatch_count": len(mismatches), "first_mismatches": mismatches[:30],
             "h0_mismatches": h0_mismatches[:30], "kv_mismatches": kv_mismatches,
             "max_hidden_abs_error": max_hidden, "max_logit_abs_error": max_logits,
+            "max_prefill_logit_abs_error_by_request": prefill_errors,
             "max_gate_abs_error": max_gate, "max_kv_abs_error": kv_max,
             "active_widths": {f"{token},{first}": values for (token, first), values in compact["widths"].items()}}
 
