@@ -63,7 +63,8 @@ def _capture(store: dict, token_idx: int):
 
 @torch.inference_mode()
 def _reference(model_key: str, model, tokenizer, prompts: list[str], tokens: int,
-               threshold: float, seed: int, cohort_width: int | None) -> tuple[dict, list[list[int]], list]:
+               threshold: float, seed: int, cohort_width: int | None,
+               before_token=None) -> tuple[dict, list[list[int]], list]:
     records = {}
     input_tokens = [[0] * len(prompts) for _ in range(tokens)]
     adapters = []
@@ -82,6 +83,8 @@ def _reference(model_key: str, model, tokenizer, prompts: list[str], tokens: int
         for request_id, (adapter, current) in enumerate(adapters):
             row = torch.tensor([0], dtype=torch.long, device="cuda")
             input_tokens[token_idx][request_id] = int(current.item())
+            if before_token is not None:
+                before_token(token_idx, request_id, adapter)
             adapter.begin_token()
             adapter.backend.set_active(row)
             embedded, state = adapter.prelude(current)
@@ -111,7 +114,8 @@ def _reference(model_key: str, model, tokenizer, prompts: list[str], tokens: int
 
 @torch.inference_mode()
 def _compact(model_key: str, model, tokenizer, prompts: list[str], input_tokens: list[list[int]],
-             threshold: float, seed: int, batch_size: int, ordering: str) -> tuple[dict, object]:
+             threshold: float, seed: int, batch_size: int, ordering: str,
+             capture_events: bool = False) -> tuple[dict, object]:
     n = len(prompts)
     adapter = _adapter(model_key, model, tokenizer, list(range(n)), seed, "profile")
     encoded = tokenizer(prompts, return_tensors="pt", padding=True, truncation=True, max_length=64)
@@ -121,6 +125,7 @@ def _compact(model_key: str, model, tokenizer, prompts: list[str], input_tokens:
     records = {}
     states = {}
     widths = {}
+    captured_events = {}
     for token_idx, known in enumerate(input_tokens):
         adapter.begin_token()
         order = list(range(n)) if ordering == "fifo" else list(reversed(range(n)))
@@ -140,6 +145,8 @@ def _compact(model_key: str, model, tokenizer, prompts: list[str], input_tokens:
             logits = adapter.coda_logits(result.final_state)[:, -1, :]
             next_ids = logits.argmax(dim=-1)
             widths[(token_idx, first)] = [event["active_batch_size"] for event in result.events]
+            if capture_events:
+                captured_events[(token_idx, first)] = result.events
             for local, request_id in enumerate(selected):
                 records[(token_idx, request_id)] = {
                     "depth": int(result.exit_depths[local]),
@@ -152,6 +159,7 @@ def _compact(model_key: str, model, tokenizer, prompts: list[str], input_tokens:
                 }
         adapter.commit_token()
     return {"records": records, "states": states, "widths": widths,
+            "events": captured_events,
             "prefill_logits": prefill_logits}, adapter
 
 
