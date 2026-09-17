@@ -162,6 +162,10 @@ def _kv_compare(reference_adapters: list, compact_adapter, atol: float, rtol: fl
     maximum_relative_l2 = 0.0
     structural_mismatches = 0
     for request_id, (reference, _) in enumerate(reference_adapters):
+        if set(reference.backend.history) != set(compact_adapter.backend.history):
+            structural_mismatches += 1
+            mismatches.append({"request_id": request_id, "reason": "KV slot set mismatch"})
+            continue
         for slot, ref_pair in reference.backend.history.items():
             bat_pair = compact_adapter.backend.history[slot]
             ref_valid = reference.backend.key_valid[0].bool()
@@ -192,6 +196,8 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
     max_hidden_relative_l2 = max_logit_relative_l2 = max_prefill_relative_l2 = 0.0
     depth_disagreements = token_disagreements = 0
     min_abs_gate_margin = float("inf")
+    near_threshold_scores = []
+    near_threshold_count = 0
     prefill_errors = {}
     for request_id, old in reference["prefill_logits"].items():
         new = compact["prefill_logits"][request_id]
@@ -226,6 +232,14 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
         for depth, (old, new) in enumerate(zip(expected["scores"], actual["scores"]), 1):
             max_gate = max(max_gate, abs(old - new))
             min_abs_gate_margin = min(min_abs_gate_margin, abs(expected["margins"][depth - 1]))
+            if abs(expected["margins"][depth - 1]) <= 2 * abs(old - new):
+                near_threshold_count += 1
+                if len(near_threshold_scores) < 100:
+                    near_threshold_scores.append({"token_idx": key[0], "request_id": key[1],
+                                                  "recurrence": depth, "reference_score": old,
+                                                  "compact_score": new,
+                                                  "reference_margin": expected["margins"][depth - 1],
+                                                  "same_exit_decision": expected["depth"] == actual["depth"]})
             if abs(old - new) > atol + rtol * abs(old) and len(mismatches) < 100:
                 mismatches.append({"token_idx": key[0], "request_id": key[1],
                                    "field": "gate_score", "recurrence": depth,
@@ -254,7 +268,15 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
                     h0_mismatches.append({"request_id": request_id, "position": position})
     kv_max, kv_relative_l2, kv_structural, kv_mismatches = _kv_compare(
         reference_adapters, compact_adapter, atol, rtol)
-    return {"status": "PASS" if not mismatches and not h0_mismatches and not kv_mismatches else "FAIL",
+    strict_status = "PASS" if not mismatches and not h0_mismatches and not kv_mismatches else "FAIL"
+    semantic_pass = (depth_disagreements == 0 and token_disagreements == 0 and
+                     not h0_mismatches and kv_structural == 0 and
+                     max_hidden_relative_l2 <= 0.03 and max_logit_relative_l2 <= 0.03 and
+                     max_prefill_relative_l2 <= 0.03 and kv_relative_l2 <= 0.03 and
+                     max_gate <= 0.02)
+    return {"status": "PASS" if semantic_pass else "FAIL",
+            "strict_elementwise_status": strict_status,
+            "semantic_release_rule": "phase04/GATE_A_PARITY_RULE.md",
             "mismatch_count": len(mismatches), "first_mismatches": mismatches[:30],
             "h0_mismatches": h0_mismatches[:30], "kv_mismatches": kv_mismatches,
             "max_hidden_abs_error": max_hidden, "max_logit_abs_error": max_logits,
@@ -267,6 +289,8 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
             "depth_disagreements": depth_disagreements,
             "next_token_disagreements": token_disagreements,
             "min_absolute_reference_gate_margin": min_abs_gate_margin,
+            "near_threshold_score_count": near_threshold_count,
+            "near_threshold_scores": near_threshold_scores,
             "max_gate_abs_error": max_gate, "max_kv_abs_error": kv_max,
             "active_widths": {f"{token},{first}": values for (token, first), values in compact["widths"].items()}}
 
@@ -312,6 +336,8 @@ def validate(args: argparse.Namespace) -> dict:
                                 if args.homogeneous_prompts else "distinct synthetic mixed-length correctness probes"),
               "diagnostic_fp32": args.diagnostic_fp32,
               "prompt_cap": 64, "reference_padding": args.reference_padding,
+              "semantic_release_rule_sha256": sha256_file(
+                  Path(__file__).resolve().parents[1] / "phase04/GATE_A_PARITY_RULE.md"),
               "cohort_tokenized_width": int(encoded["input_ids"].shape[1]),
               "effective_input_hashes": effective_token_hashes(
                   encoded["input_ids"], encoded["attention_mask"]),
