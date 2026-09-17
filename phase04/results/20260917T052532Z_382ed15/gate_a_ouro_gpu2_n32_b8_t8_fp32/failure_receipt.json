@@ -1,0 +1,11 @@
+{
+  "status": "ERROR",
+  "source_sha": "382ed1507fc6400211c088ad169d691a5514f641",
+  "model": "ouro",
+  "physical_gpu": 2,
+  "diagnostic_fp32": true,
+  "stage": "compact prefill profiling event drain",
+  "error": "RuntimeError: CUDA error: device not ready",
+  "stack": "phase02_runtime/kv.py:pop_update_gpu_ms -> _drain_update_events -> start.elapsed_time(end)",
+  "interpretation": "The diagnostic was aborted before comparison; it supplies no FP32 parity result. Profile CUDA events were read before completion. Source fix and CPU regression test followed in a separate commit."
+}

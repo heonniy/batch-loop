@@ -57,5 +57,51 @@
     "other_batch_sizes_orderings_and_N64x32": "BLOCKED",
     "clean_FIFO_Oracle_rebenchmark": "BLOCKED",
     "predictor_data_collection_and_search": "BLOCKED"
+  },
+  "post_failure_diagnostics": {
+    "not_a_BF16_release_retest": true,
+    "profile_event_error": {
+      "status": "ERROR before comparison",
+      "source_sha": "382ed1507fc6400211c088ad169d691a5514f641",
+      "receipt": "../20260917T052532Z_382ed15/gate_a_ouro_gpu2_n32_b8_t8_fp32/failure_receipt.json"
+    },
+    "FP32_N32x8_after_profile_fix": {
+      "source_sha": "2ff6ab18cc289f5161ed9af4aaf03d8059c6ed4b",
+      "ouro": {
+        "status": "PASS",
+        "depth_disagreements": 0,
+        "next_token_disagreements": 0,
+        "reference_recurrent_calls": 616,
+        "compact_recurrent_calls": 616,
+        "receipt": "../20260917T052700Z_2ff6ab1/gate_a_ouro_gpu2_n32_b8_t8_fp32/runtime_validation.json"
+      },
+      "huginn": {
+        "status": "PASS",
+        "depth_disagreements": 0,
+        "next_token_disagreements": 0,
+        "reference_recurrent_calls": 2097,
+        "compact_recurrent_calls": 2097,
+        "receipt": "../20260917T052700Z_2ff6ab1/gate_a_huginn_gpu7_n32_b8_t8_fp32/runtime_validation.json"
+      }
+    },
+    "BF16_N32x8_after_profile_fix": {
+      "source_sha": "2ff6ab18cc289f5161ed9af4aaf03d8059c6ed4b",
+      "ouro": {
+        "status": "FAIL",
+        "depth_disagreements": 2,
+        "next_token_disagreements": 0,
+        "reference_recurrent_calls": 617,
+        "compact_recurrent_calls": 615,
+        "receipt": "../20260917T052824Z_2ff6ab1/gate_a_ouro_gpu2_n32_b8_t8_bf16/runtime_validation.json"
+      },
+      "huginn": {
+        "status": "FAIL",
+        "depth_disagreements": 7,
+        "next_token_disagreements": 3,
+        "reference_recurrent_calls": 2108,
+        "compact_recurrent_calls": 2105,
+        "receipt": "../20260917T052824Z_2ff6ab1/gate_a_huginn_gpu7_n32_b8_t8_bf16/runtime_validation.json"
+      }
+    }
   }
 }
