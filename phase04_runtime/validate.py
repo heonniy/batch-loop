@@ -208,7 +208,7 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
                                "field": "hidden", "recurrence": key[2],
                                "max_abs_error": float(error.max())})
     h0_mismatches = []
-    if compact_adapter.identity is not None:
+    if getattr(compact_adapter, "identity", None) is not None:
         for request_id, (adapter, _) in enumerate(reference_adapters):
             for (_, position), digest in adapter.state_hashes.items():
                 if compact_adapter.state_hashes.get((request_id, position)) != digest:
