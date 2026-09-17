@@ -115,7 +115,8 @@ def freeze(model_key: str, role: str, output_dir: Path) -> dict:
         first = (request_id // 8) * 8
         events = compact["events"][(token_idx, first)]
         adapter = ref_adapters[request_id][0]
-        current_hashes = {f"{rid}:{pos}": digest for (rid, pos), digest in adapter.state_hashes.items()}
+        current_hashes = {f"{rid}:{pos}": digest for (rid, pos), digest in
+                          getattr(adapter, "state_hashes", {}).items()}
         saved_hashes = {name: digest for name, digest in old_rng["reference_state_hashes"].items()
                         if name.startswith(f"{request_id}:")}
         for name, digest in saved_hashes.items():
