@@ -1,0 +1,68 @@
+{
+  "result_commit": "512cc7cebd541e5d311e6f9ca0b9d0eb13a97917",
+  "source_commit": "e4113e593445c80dfdbbf1b709b722b5aac2cf40",
+  "plan_or_priority": {
+    "commit": "4552a29857fcd395f71e4c2c33714f881280aac7",
+    "files": [
+      "AGENTS.md",
+      "phase04/DEPTH_RANK_STABILITY_CPU_PLAN.md",
+      "phase04/DEPTH_RANK_STABILITY_AGENT_TASK.md",
+      "phase01/EXPERIMENT_REVIEW_PROTOCOL.md"
+    ]
+  },
+  "execution_kind": "saved-data-analysis",
+  "hardware": "CPU only; no CUDA/model/GPU execution",
+  "exact_command_or_receipt": "python -m phase04_analysis.depth_rank_stability --output-dir phase04/results/20260917T065413Z_e4113e5_rank_stability_cpu",
+  "model_revisions": {
+    "Ouro-1.4B": "37bc7e8ff85a90d813dc096383405f521b6a67b0",
+    "Huginn-3.5B": "bb6621b65e90b6a4b9b29ef88dc83866d450470c"
+  },
+  "dataset_revision": "Previously committed Phase-04R fresh synthetic correctness cohort: 32 unique effective requests/model × 8 B1-teacher-forced decode positions; input hashes in each validation_manifest.json; no new collection",
+  "thresholds": {"Ouro-1.4B": 0.2, "Huginn-3.5B": 0.12},
+  "batch_sizes": {"canonical_profiling_reference": 1, "observed_live": [2, 4, 8]},
+  "measurement_status": {
+    "status": "VALID_FOR_BOUNDED_SAVED_DATA_ORDERING; INSUFFICIENT_FOR_SPEED",
+    "evidence": "Both models: 2,304 exact-keyed condition observations, 256 unique request-token positions, nine repeated B/order conditions, complete receipt/summary integrity checks",
+    "known_missing_fields": ["independent non-synthetic cohort", "B16/B32/B64 live observations", "physical wall time", "predictor measurements"]
+  },
+  "implementation_status": {
+    "status": "CPU_METRICS_CHECKED_IN_SCOPE; ORIGINAL_BF16_GATE_A_FAIL",
+    "evidence": "Source-committed deterministic analysis; unit tests for ties, constant pools, all pair classifications, empty gap bins, missing requests and duplicate identities; saved work and RIC independently recomputed",
+    "known_missing_fields": ["new runtime semantic validation", "approved B2 contract", "fresh R5 Gate A"]
+  },
+  "simulator_status": {
+    "status": "NOT_RUN",
+    "fairness_subset_checks": "Actual live RIC is recomputed only for executed B/order groupings; frozen B1-depth grouping RIC remains separately labeled; no unexecuted live Oracle"
+  },
+  "comparison_status": {
+    "status": "COMPARABLE_FOR_SAME_INPUT_DEPTH_RANK; NOT_EQUAL_WORK_OR_SPEED",
+    "baselines": ["canonical B1 profiling depths", "executed B2/B4/B8 FIFO/seed-17/seed-29 live depths"],
+    "denominator_checks": "Pairwise ranks only within the same token_idx ready pool; nine conditions share one 32-request cohort; no pairwise-independence inference"
+  },
+  "hypothesis_status": {
+    "status": "SUPPORTS_RANKING_CONTRACT_DISCUSSION_IN_SCOPE; PREDICTOR_NOT_TESTED",
+    "effect_sizes": "Ouro 25/2304 depth changes, all |delta|=1; Huginn 38/2304, all |delta|=1; one unique adjacent-depth inverted pair per model repeated over B8 three orders; zero observed gap>=2 inversions; max live range 1",
+    "counterevidence": "Adjacent-depth ties and inversions exist; Ouro flips occur outside the <0.005 margin bin; N32/T8 synthetic B<=8 does not establish broad stability or speed"
+  },
+  "artifacts": {
+    "analysis_manifest": "analysis_manifest.json",
+    "authoritative_csvs": [
+      "depth_delta_histogram.csv",
+      "depth_delta_summary.csv",
+      "rank_stability_by_step.csv",
+      "pairwise_gap_stability.csv",
+      "position_depth_range.csv",
+      "rank_stability_summary.csv"
+    ],
+    "figures": [
+      "ouro_depth_delta_histogram.png",
+      "ouro_pairwise_gap_preservation.png",
+      "huginn_depth_delta_histogram.png",
+      "huginn_pairwise_gap_preservation.png"
+    ],
+    "sha256_reference": "analysis_manifest.json#inputs,#context_files,#outputs,#figures",
+    "review": "RESULT_REVIEW.md"
+  },
+  "next_action": "Obtain an explicit research-contract decision on amending draft B2/ranking; do not automatically activate B2 or collect/train predictors",
+  "predictor_and_speed_work": "BLOCKED"
+}
