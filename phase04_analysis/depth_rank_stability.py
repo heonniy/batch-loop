@@ -12,6 +12,7 @@ import json
 import math
 import platform
 import random
+import shlex
 import subprocess
 import sys
 from collections import Counter, defaultdict
@@ -433,14 +434,22 @@ def analyze(root: Path, output: Path, *, bootstrap_reps: int = BOOTSTRAP_REPS) -
         plot_delta(model, hist, output / f"{model}_depth_delta_histogram.png")
         plot_pairs(model, pairs, output / f"{model}_pairwise_gap_preservation.png")
     source_sha = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO, text=True).strip()
+    context_paths = (
+        "AGENTS.md", "phase04/DEPTH_RANK_STABILITY_CPU_PLAN.md",
+        "phase04/DEPTH_RANK_STABILITY_AGENT_TASK.md",
+        "phase04/results/20260917T060824Z_50910e6_bf16_resolution/CAUSE_REVIEW.md",
+        "phase04/results/20260917T060824Z_50910e6_bf16_resolution/PROPOSED_B2_CONTRACT.md",
+        "phase01/EXPERIMENT_REVIEW_PROTOCOL.md",
+    )
     manifest = {
         "status": "CPU_SAVED_DATA_ANALYSIS_COMPLETE", "execution_kind": "saved-data-analysis",
         "source_sha": source_sha, "source_file_sha256": sha256(Path(__file__)),
         "generated_utc": datetime.now(timezone.utc).isoformat(),
-        "exact_command": " ".join(sys.argv), "gpu_execution": False,
+        "exact_command": shlex.join(sys.orig_argv), "gpu_execution": False,
         "bootstrap": {"unit": "request ID jointly resampled across token pools and repeated B/order conditions", "seed": BOOTSTRAP_SEED, "repetitions": bootstrap_reps, "interval": "2.5%-97.5% percentile of median per-pool Kendall tau-b"},
         "versions": {"python": platform.python_version(), "numpy": np.__version__, "scipy": scipy.__version__, "matplotlib": matplotlib.__version__},
         "inputs": input_manifest, "integrity": model_facts,
+        "context_files": {path: sha256(REPO / path) for path in context_paths},
         "outputs": {name: {"rows": len(data), "sha256": sha256(output / name)} for name, (data, _) in specs.items()},
     }
     manifest["figures"] = {path.name: sha256(path) for path in sorted(output.glob("*.png"))}
