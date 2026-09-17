@@ -1,0 +1,66 @@
+{
+  "status": "PASS",
+  "mismatch_count": 0,
+  "first_mismatches": [],
+  "h0_mismatches": [],
+  "kv_mismatches": [],
+  "max_hidden_abs_error": 8.985400199890137e-06,
+  "max_logit_abs_error": 1.7642974853515625e-05,
+  "max_prefill_logit_abs_error_by_request": {
+    "0": 2.6702880859375e-05,
+    "1": 2.9802322387695312e-05,
+    "2": 2.2649765014648438e-05,
+    "3": 2.2530555725097656e-05
+  },
+  "max_gate_abs_error": 2.2351741790771484e-07,
+  "max_kv_abs_error": 2.8133392333984375e-05,
+  "active_widths": {
+    "0,0": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      1
+    ],
+    "1,0": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      1
+    ]
+  },
+  "execution_kind": "real-no-refill-runtime-correctness",
+  "model": "huginn",
+  "num_rows": 4,
+  "batch_size": 4,
+  "num_tokens": 2,
+  "ordering": "fifo",
+  "reference_padding": "cohort",
+  "input_policy": "B1-generated token IDs teacher-forced into live compact gate",
+  "depth_policy": "live threshold; never forced",
+  "atol": 0.05,
+  "rtol": 0.02,
+  "elapsed_wall_s": 9.30076506268233,
+  "reference_work": 66,
+  "compact_work": 66,
+  "source_sha": "98891b20be7c6a43cb1058f60814c473152fd7c5",
+  "gpu": {
+    "physical_index": 7,
+    "uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "7",
+    "cuda_ordinal": 0,
+    "role": "huginn_primary",
+    "assignment_sha256": "2d6bf45cb47ed81f6fd355cc72a8f4b2e53976b6db060fc4a5713b5a94fbb28d"
+  }
+}

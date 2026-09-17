@@ -1,0 +1,266 @@
+{
+  "status": "FAIL",
+  "mismatch_count": 39,
+  "first_mismatches": [
+    {
+      "token_idx": 0,
+      "request_id": 0,
+      "field": "logits",
+      "max_abs_error": 0.125
+    },
+    {
+      "token_idx": 0,
+      "request_id": 1,
+      "field": "logits",
+      "max_abs_error": 0.125
+    },
+    {
+      "token_idx": 0,
+      "request_id": 2,
+      "field": "logits",
+      "max_abs_error": 0.1015625
+    },
+    {
+      "token_idx": 0,
+      "request_id": 3,
+      "field": "logits",
+      "max_abs_error": 0.101318359375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 0,
+      "field": "logits",
+      "max_abs_error": 0.09375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "logits",
+      "max_abs_error": 0.125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 2,
+      "field": "logits",
+      "max_abs_error": 0.09375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 3,
+      "field": "logits",
+      "max_abs_error": 0.1103515625
+    },
+    {
+      "token_idx": 0,
+      "request_id": 0,
+      "field": "hidden",
+      "recurrence": 7,
+      "max_abs_error": 0.078125
+    },
+    {
+      "token_idx": 0,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 4,
+      "max_abs_error": 0.078125
+    },
+    {
+      "token_idx": 0,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 7,
+      "max_abs_error": 0.078125
+    },
+    {
+      "token_idx": 0,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 9,
+      "max_abs_error": 0.0859375
+    },
+    {
+      "token_idx": 0,
+      "request_id": 3,
+      "field": "hidden",
+      "recurrence": 8,
+      "max_abs_error": 0.0625
+    },
+    {
+      "token_idx": 1,
+      "request_id": 0,
+      "field": "hidden",
+      "recurrence": 2,
+      "max_abs_error": 0.0703125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 0,
+      "field": "hidden",
+      "recurrence": 3,
+      "max_abs_error": 0.0703125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 0,
+      "field": "hidden",
+      "recurrence": 4,
+      "max_abs_error": 0.068359375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 0,
+      "field": "hidden",
+      "recurrence": 5,
+      "max_abs_error": 0.0654296875
+    },
+    {
+      "token_idx": 1,
+      "request_id": 0,
+      "field": "hidden",
+      "recurrence": 9,
+      "max_abs_error": 0.078125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "hidden",
+      "recurrence": 3,
+      "max_abs_error": 0.09375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "hidden",
+      "recurrence": 4,
+      "max_abs_error": 0.08203125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "hidden",
+      "recurrence": 5,
+      "max_abs_error": 0.078125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "hidden",
+      "recurrence": 6,
+      "max_abs_error": 0.109375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "hidden",
+      "recurrence": 7,
+      "max_abs_error": 0.078125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "hidden",
+      "recurrence": 9,
+      "max_abs_error": 0.078125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "hidden",
+      "recurrence": 10,
+      "max_abs_error": 0.078125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 2,
+      "max_abs_error": 0.0859375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 3,
+      "max_abs_error": 0.08203125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 5,
+      "max_abs_error": 0.08203125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 7,
+      "max_abs_error": 0.109375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 8,
+      "max_abs_error": 0.09375
+    }
+  ],
+  "h0_mismatches": [],
+  "kv_mismatches": [],
+  "max_hidden_abs_error": 0.109375,
+  "max_logit_abs_error": 0.125,
+  "max_gate_abs_error": 0.003251314163208008,
+  "max_kv_abs_error": 0.0625,
+  "active_widths": {
+    "0,0": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      2,
+      2
+    ],
+    "1,0": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      3,
+      1,
+      1
+    ]
+  },
+  "execution_kind": "real-no-refill-runtime-correctness",
+  "model": "huginn",
+  "num_rows": 4,
+  "batch_size": 4,
+  "num_tokens": 2,
+  "ordering": "fifo",
+  "reference_padding": "cohort",
+  "input_policy": "B1-generated token IDs teacher-forced into live compact gate",
+  "depth_policy": "live threshold; never forced",
+  "atol": 0.05,
+  "rtol": 0.02,
+  "elapsed_wall_s": 8.596216147765517,
+  "reference_work": 73,
+  "compact_work": 73,
+  "source_sha": "a39d1887c51ffe17bdd698e4c9cd1ba55be3a42e",
+  "gpu": {
+    "physical_index": 7,
+    "uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "7",
+    "cuda_ordinal": 0,
+    "role": "huginn_primary",
+    "assignment_sha256": "2d6bf45cb47ed81f6fd355cc72a8f4b2e53976b6db060fc4a5713b5a94fbb28d"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "status": "FAIL_HARNESS",
+  "source_commit": "553d916af8675b133e124cb3281f835872d7ca4f",
+  "model": "ouro",
+  "physical_gpu": 2,
+  "command": "CUDA_VISIBLE_DEVICES=2 .venv/bin/python -m phase04_runtime.validate --model ouro --role ouro_primary --output-dir phase04/results/20260917T050654Z_553d916/gate_a_small_ouro_gpu2 --num-rows 4 --batch-size 4 --num-tokens 2 --threshold 0.2",
+  "error": "AttributeError: OuroAdapter has no identity attribute in validation comparison",
+  "interpretation": "Validation harness failed after model execution; no runtime correctness verdict was produced. The output root is preserved and will not be reused."
+}

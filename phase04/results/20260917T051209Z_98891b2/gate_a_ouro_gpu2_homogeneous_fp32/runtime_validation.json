@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "mismatch_count": 0,
+  "first_mismatches": [],
+  "h0_mismatches": [],
+  "kv_mismatches": [],
+  "max_hidden_abs_error": 1.33514404296875e-05,
+  "max_logit_abs_error": 1.2189149856567383e-05,
+  "max_prefill_logit_abs_error_by_request": {
+    "0": 1.33514404296875e-05,
+    "1": 1.1444091796875e-05,
+    "2": 7.62939453125e-06,
+    "3": 9.953975677490234e-06
+  },
+  "max_gate_abs_error": 4.76837158203125e-07,
+  "max_kv_abs_error": 2.422928810119629e-05,
+  "active_widths": {
+    "0,0": [
+      4,
+      4,
+      4
+    ],
+    "1,0": [
+      4,
+      4,
+      2
+    ]
+  },
+  "execution_kind": "real-no-refill-runtime-correctness",
+  "model": "ouro",
+  "num_rows": 4,
+  "batch_size": 4,
+  "num_tokens": 2,
+  "ordering": "fifo",
+  "reference_padding": "cohort",
+  "input_policy": "B1-generated token IDs teacher-forced into live compact gate",
+  "depth_policy": "live threshold; never forced",
+  "atol": 0.05,
+  "rtol": 0.02,
+  "elapsed_wall_s": 5.511878934688866,
+  "reference_work": 22,
+  "compact_work": 22,
+  "source_sha": "98891b20be7c6a43cb1058f60814c473152fd7c5",
+  "gpu": {
+    "physical_index": 2,
+    "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "2",
+    "cuda_ordinal": 0,
+    "role": "ouro_primary",
+    "assignment_sha256": "2d6bf45cb47ed81f6fd355cc72a8f4b2e53976b6db060fc4a5713b5a94fbb28d"
+  }
+}

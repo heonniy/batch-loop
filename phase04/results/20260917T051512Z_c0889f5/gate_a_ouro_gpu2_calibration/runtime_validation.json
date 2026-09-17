@@ -1,0 +1,291 @@
+{
+  "status": "FAIL",
+  "mismatch_count": 17,
+  "first_mismatches": [
+    {
+      "request_id": 1,
+      "field": "prefill_logits",
+      "max_abs_error": 0.125
+    },
+    {
+      "request_id": 3,
+      "field": "prefill_logits",
+      "max_abs_error": 0.125
+    },
+    {
+      "token_idx": 0,
+      "request_id": 0,
+      "field": "logits",
+      "max_abs_error": 0.125
+    },
+    {
+      "token_idx": 0,
+      "request_id": 1,
+      "field": "logits",
+      "max_abs_error": 0.15625
+    },
+    {
+      "token_idx": 0,
+      "request_id": 2,
+      "field": "logits",
+      "max_abs_error": 0.15625
+    },
+    {
+      "token_idx": 0,
+      "request_id": 3,
+      "field": "logits",
+      "max_abs_error": 0.25
+    },
+    {
+      "token_idx": 1,
+      "request_id": 0,
+      "field": "logits",
+      "max_abs_error": 0.125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "logits",
+      "max_abs_error": 0.125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 2,
+      "field": "logits",
+      "max_abs_error": 0.162109375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 3,
+      "field": "logits",
+      "max_abs_error": 0.1875
+    },
+    {
+      "token_idx": 0,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 2,
+      "max_abs_error": 0.1875
+    },
+    {
+      "token_idx": 0,
+      "request_id": 3,
+      "field": "hidden",
+      "recurrence": 2,
+      "max_abs_error": 0.125
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "hidden",
+      "recurrence": 2,
+      "max_abs_error": 0.1875
+    },
+    {
+      "token_idx": 1,
+      "request_id": 1,
+      "field": "hidden",
+      "recurrence": 3,
+      "max_abs_error": 0.0859375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 1,
+      "max_abs_error": 0.09375
+    },
+    {
+      "token_idx": 1,
+      "request_id": 2,
+      "field": "hidden",
+      "recurrence": 2,
+      "max_abs_error": 0.171875
+    },
+    {
+      "token_idx": 1,
+      "request_id": 3,
+      "field": "hidden",
+      "recurrence": 2,
+      "max_abs_error": 0.15625
+    }
+  ],
+  "h0_mismatches": [],
+  "kv_mismatches": [
+    {
+      "request_id": 0,
+      "slot": "(1, 17)",
+      "kind": 0,
+      "max_abs_error": 0.0595703125
+    },
+    {
+      "request_id": 0,
+      "slot": "(2, 1)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(2, 13)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(2, 16)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(2, 17)",
+      "kind": 0,
+      "max_abs_error": 0.0791015625
+    },
+    {
+      "request_id": 0,
+      "slot": "(2, 19)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(2, 21)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(3, 1)",
+      "kind": 0,
+      "max_abs_error": 0.0703125
+    },
+    {
+      "request_id": 0,
+      "slot": "(3, 2)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(3, 3)",
+      "kind": 0,
+      "max_abs_error": 0.078125
+    },
+    {
+      "request_id": 0,
+      "slot": "(3, 6)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(3, 7)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(3, 11)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(3, 12)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(4, 1)",
+      "kind": 0,
+      "max_abs_error": 0.0703125
+    },
+    {
+      "request_id": 0,
+      "slot": "(4, 2)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(4, 3)",
+      "kind": 0,
+      "max_abs_error": 0.078125
+    },
+    {
+      "request_id": 0,
+      "slot": "(4, 6)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(4, 7)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    },
+    {
+      "request_id": 0,
+      "slot": "(4, 11)",
+      "kind": 0,
+      "max_abs_error": 0.0625
+    }
+  ],
+  "max_hidden_abs_error": 0.375,
+  "max_logit_abs_error": 0.25,
+  "max_prefill_logit_abs_error_by_request": {
+    "0": 0.0,
+    "1": 0.125,
+    "2": 0.0,
+    "3": 0.125
+  },
+  "max_hidden_relative_l2": 0.01996496319770813,
+  "max_logit_relative_l2": 0.012552102096378803,
+  "max_prefill_logit_relative_l2": 0.01059972308576107,
+  "max_kv_relative_l2": 0.016100352630019188,
+  "kv_structural_mismatch_count": 0,
+  "depth_disagreements": 0,
+  "next_token_disagreements": 0,
+  "min_absolute_reference_gate_margin": 0.057146117091178894,
+  "max_gate_abs_error": 0.005120396614074707,
+  "max_kv_abs_error": 0.125,
+  "active_widths": {
+    "0,0": [
+      4,
+      4,
+      4
+    ],
+    "1,0": [
+      4,
+      4,
+      2
+    ]
+  },
+  "execution_kind": "real-no-refill-runtime-correctness",
+  "model": "ouro",
+  "num_rows": 4,
+  "batch_size": 4,
+  "num_tokens": 2,
+  "ordering": "fifo",
+  "reference_padding": "cohort",
+  "input_policy": "B1-generated token IDs teacher-forced into live compact gate",
+  "depth_policy": "live threshold; never forced",
+  "atol": 0.05,
+  "rtol": 0.02,
+  "elapsed_wall_s": 6.2870291052386165,
+  "reference_work": 22,
+  "compact_work": 22,
+  "source_sha": "c0889f509b7dfc85da9db9253db2e2a4f4e58739",
+  "gpu": {
+    "physical_index": 2,
+    "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "2",
+    "cuda_ordinal": 0,
+    "role": "ouro_primary",
+    "assignment_sha256": "2d6bf45cb47ed81f6fd355cc72a8f4b2e53976b6db060fc4a5713b5a94fbb28d"
+  }
+}

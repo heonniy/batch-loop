@@ -1,0 +1,61 @@
+{
+  "source_sha": "c591671c497f47b23de52d005197685b5efcb6b8",
+  "plan_commit": "3f8eeb7",
+  "execution_kind": "real-model-live-exit-correctness-validation; not a speed benchmark",
+  "release_rule": "phase04/GATE_A_PARITY_RULE.md",
+  "input_contract": "32 distinct synthetic mixed-length prompts; prompt cap 64; 8 fixed generated-token positions; B1-generated token IDs teacher-forced into the compact live gate for same-input comparison; no EOS handling",
+  "anchor": {
+    "N": 32,
+    "B": 8,
+    "tokens_per_request": 8,
+    "reference_padding": "cohort",
+    "ordering": "fifo"
+  },
+  "ouro": {
+    "status": "FAIL",
+    "physical_gpu": 2,
+    "threshold": 0.2,
+    "Rmax": 4,
+    "KV": "last-exited-depth-indexed",
+    "depth_disagreements": 2,
+    "next_token_disagreements": 0,
+    "KV_structural_disagreements": 0,
+    "reference_recurrent_calls": 617,
+    "compact_recurrent_calls": 615,
+    "max_hidden_relative_L2": 0.10823360085487366,
+    "max_logit_relative_L2": 0.22162380814552307,
+    "max_KV_relative_L2": 0.31507083773612976,
+    "max_gate_absolute_difference": 0.012893855571746826,
+    "first_decision_difference": "token 6, request 22, reference depth 2 versus compact depth 1; first-step cumulative gate 0.199307978 versus 0.200557709 across q=0.2",
+    "receipt": "../20260917T051944Z_c591671/gate_a_ouro_gpu2_n32_b8_t8/runtime_validation.json"
+  },
+  "huginn": {
+    "status": "FAIL",
+    "physical_gpu": 7,
+    "threshold": 0.12,
+    "Rmax": 16,
+    "KV": "shared-physical-layer",
+    "h0_hash_disagreements": 0,
+    "depth_disagreements": 7,
+    "next_token_disagreements": 3,
+    "KV_structural_disagreements": 0,
+    "reference_recurrent_calls": 2108,
+    "compact_recurrent_calls": 2105,
+    "max_hidden_relative_L2": 0.05524533987045288,
+    "max_logit_relative_L2": 0.09239382296800613,
+    "max_KV_relative_L2": 0.027797065675258636,
+    "max_gate_absolute_difference": 0.007175341248512268,
+    "first_decision_difference": "token 0, request 7, same depth but reference next token 32 versus compact next token 18370",
+    "receipt": "../20260917T051944Z_c591671/gate_a_huginn_gpu7_n32_b8_t8/runtime_validation.json"
+  },
+  "release_conditions": {
+    "exact_exit_depth_and_next_token": "FAIL both models",
+    "Huginn_request_keyed_h0": "PASS in tested anchor",
+    "logical_KV_structure": "PASS in tested anchor",
+    "relative_L2_at_most_0_03": "FAIL both models",
+    "gate_absolute_difference_at_most_0_02": "PASS in tested anchor",
+    "other_batch_sizes_orderings_and_N64x32": "BLOCKED",
+    "clean_FIFO_Oracle_rebenchmark": "BLOCKED",
+    "predictor_data_collection_and_search": "BLOCKED"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "status": "FAIL_HARNESS_AFTER_COMPARISON",
+  "source_commit": "3e66d70",
+  "model": "ouro",
+  "physical_gpu": 2,
+  "error": "AttributeError: OuroAdapter has no state_hashes attribute while writing N/A RNG report",
+  "comparison_file": "runtime_validation.json",
+  "comparison_status": "FAIL at prespecified floating-point tolerance; exit depths and next-token IDs matched, but hidden/logit/KV numerical differences were recorded",
+  "interpretation": "The GPU comparison completed and was saved; final report writing failed. Preserve this root and rerun only after a source fix in a new root."
+}
