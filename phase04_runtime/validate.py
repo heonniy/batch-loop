@@ -195,6 +195,7 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
     max_hidden = max_logits = max_gate = 0.0
     max_hidden_relative_l2 = max_logit_relative_l2 = max_prefill_relative_l2 = 0.0
     depth_disagreements = token_disagreements = 0
+    decision_mismatches = []
     min_abs_gate_margin = float("inf")
     near_threshold_scores = []
     near_threshold_count = 0
@@ -217,6 +218,13 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
                     depth_disagreements += 1
                 else:
                     token_disagreements += 1
+                decision_mismatches.append({"token_idx": key[0], "request_id": key[1],
+                                            "field": field, "reference": expected[field],
+                                            "compact": actual[field],
+                                            "reference_scores": expected["scores"],
+                                            "compact_scores": actual["scores"],
+                                            "reference_margins": expected["margins"],
+                                            "compact_margins": actual["margins"]})
             if actual[field] != expected[field] and len(mismatches) < 100:
                 mismatches.append({"token_idx": key[0], "request_id": key[1],
                                    "field": field, "reference": expected[field], "compact": actual[field],
@@ -288,6 +296,10 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
             "kv_structural_mismatch_count": kv_structural,
             "depth_disagreements": depth_disagreements,
             "next_token_disagreements": token_disagreements,
+            "decision_mismatches": decision_mismatches,
+            "first_decision_divergence": (min(decision_mismatches,
+                                              key=lambda item: (item["token_idx"], item["request_id"]))
+                                          if decision_mismatches else None),
             "min_absolute_reference_gate_margin": min_abs_gate_margin,
             "near_threshold_score_count": near_threshold_count,
             "near_threshold_scores": near_threshold_scores,
@@ -296,6 +308,7 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
 
 
 def validate(args: argparse.Namespace) -> dict:
+    torch.set_num_threads(8)
     gpu = gpu_identity(args.model, args.role)
     if args.num_rows < 1 or args.batch_size < 1 or args.num_tokens < 1:
         raise ValueError("rows, B, and tokens must be positive")
