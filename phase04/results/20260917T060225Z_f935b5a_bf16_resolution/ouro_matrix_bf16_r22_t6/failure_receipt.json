@@ -1,0 +1,8 @@
+{
+  "status": "ERROR_BEFORE_MODEL_MATRIX",
+  "source_sha": "f935b5afd60febaf69561c0fb4c1ae6ed537506f",
+  "physical_gpu": 2,
+  "model": "ouro",
+  "error": "RuntimeError: insufficient frozen fillers for B8 control",
+  "interpretation": "The original 32 unique effective inputs contain only five other rows with the target's exact prompt length. The matrix must mark B8 equal-length cells blocked, not synthesize new or duplicate frozen filler requests."
+}

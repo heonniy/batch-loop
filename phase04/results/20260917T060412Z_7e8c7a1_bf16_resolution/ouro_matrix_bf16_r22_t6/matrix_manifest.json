@@ -1,0 +1,64 @@
+{
+  "status": "MATRIX_RECORDED",
+  "model": "ouro",
+  "precision": "BF16",
+  "source_sha": "7e8c7a16695d6c578f7d12e0af56d3a2642e1153",
+  "gpu": {
+    "physical_index": 2,
+    "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "2",
+    "cuda_ordinal": 0,
+    "role": "ouro_primary",
+    "assignment_sha256": "2d6bf45cb47ed81f6fd355cc72a8f4b2e53976b6db060fc4a5713b5a94fbb28d"
+  },
+  "imported_model_source_sha256": "59e7523e9fe23f75bde78bb914d1a4d24f3997ae02bca510bbaef947356c447b",
+  "counterexample_manifest_sha256": "ab5050f86b00b390f96831ff9ada70e570d98ae9a90cb65ca175a3ca29b41b68",
+  "target_request_id": 22,
+  "token_idx": 6,
+  "frozen_history_source": "per-request B1 live execution, same pinned precision and policy",
+  "target_B1_history_sha256": "235209da4609bc03eeab8ce6eae07aff789fabd4dd1f8f0c7305b3218d3379fb",
+  "filler_ids": {
+    "original_mixed": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23
+    ],
+    "equal_length": [
+      10,
+      14,
+      18,
+      26,
+      30
+    ]
+  },
+  "threshold": 0.2,
+  "baseline": {
+    "request_id": 22,
+    "depth": 2,
+    "next_token": 282,
+    "scores": [
+      0.19930797815322876,
+      0.4589207172393799
+    ],
+    "margins": [
+      -0.000692024827003479,
+      0.25892072916030884
+    ],
+    "h0_sha256": null,
+    "final_hidden_sha256": "fe822220b4b86c12fe86ce08bca47cb8adfb36bb2d678965c85f858e0a2fb07d"
+  },
+  "grid_rows": 48,
+  "unique_live_batch_compositions": 23,
+  "depth_flip_grid_rows": 12,
+  "next_token_flip_grid_rows": 0,
+  "blocked_grid_rows": 6,
+  "duplicate_target_invariant": "duplicate_target_invariant.json",
+  "matrix": "batch_shape_matrix.csv",
+  "note": "Repeated grid rows are controls, not independent samples; no fresh validation rate or speed claim."
+}

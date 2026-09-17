@@ -1,0 +1,10 @@
+model,B,order,positions,depth_flips,depth_flip_rate,next_token_flips,next_token_flip_rate,reference_margin_lt_0.005,reference_B1_work,actual_live_work,actual_live_RIC,frozen_B1_depth_grouping_RIC
+ouro,2,fifo,256,3,0.01171875,1,0.00390625,9,636,639,343,341
+ouro,2,permutation_seed_17,256,2,0.0078125,2,0.0078125,9,636,638,343,341
+ouro,2,permutation_seed_29,256,2,0.0078125,3,0.01171875,9,636,638,341,341
+ouro,4,fifo,256,3,0.01171875,1,0.00390625,9,636,639,181,180
+ouro,4,permutation_seed_17,256,3,0.01171875,0,0.0,9,636,639,182,179
+ouro,4,permutation_seed_29,256,3,0.01171875,0,0.0,9,636,639,181,181
+ouro,8,fifo,256,3,0.01171875,1,0.00390625,9,636,637,91,91
+ouro,8,permutation_seed_17,256,3,0.01171875,1,0.00390625,9,636,637,93,93
+ouro,8,permutation_seed_29,256,3,0.01171875,2,0.0078125,9,636,637,94,95

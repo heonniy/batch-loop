@@ -1,0 +1,60 @@
+{
+  "status": "FIRST_DECODE_DIFFERENCE_IDENTIFIED",
+  "model": "huginn",
+  "target_request_id": 7,
+  "token_idx": 0,
+  "precision": "torch.bfloat16",
+  "source_sha": "682a9e7f409a12765832f81e35c4c248684b07bc",
+  "counterexample_manifest_sha256": "a876da44bc328d4c62e3e96abb54aa3337163d23f8b64e3fe658b5257eeb957c",
+  "gpu": {
+    "physical_index": 7,
+    "uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "7",
+    "cuda_ordinal": 0,
+    "role": "huginn_primary",
+    "assignment_sha256": "2d6bf45cb47ed81f6fd355cc72a8f4b2e53976b6db060fc4a5713b5a94fbb28d"
+  },
+  "imported_model_source_sha256": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa",
+  "B1_event_count": 180,
+  "packed_event_count": 180,
+  "comparable_event_count": 180,
+  "capture_limit": 180,
+  "first_difference": {
+    "event": 37,
+    "module": "transformer.core_block.1.attn.proj",
+    "occurrence": 0,
+    "module_type": "Linear",
+    "input_exact_equal": false,
+    "input_max_abs": 9.5367431640625e-07,
+    "output_exact_equal": false,
+    "output_max_abs": 5.960464477539063e-08,
+    "output_relative_l2": 4.202785675033738e-09,
+    "output_B1_sha256": "f1cc9c02b82c14b1e28bb813c5aea70cd3291ba718e455537d622222c912fa62",
+    "output_packed_sha256": "570ed73bf35d08ccc168bfa8f9e5fea66f735a5bec22747bf4f6d03836210adb"
+  },
+  "isolated_operator": {
+    "module": "transformer.core_block.1.attn.proj",
+    "occurrence": 0,
+    "B1_input_sha256": "7521af038f7f773a565dbc4825b58915ac8e8921a2ad387142597e41d7e982bc",
+    "packed_input_sha256": "fb460925e786c21745173ef9866009f6f67578c730f6724121b225899a9c6be8",
+    "target_input_difference": {
+      "exact_equal": false,
+      "max_abs": 9.5367431640625e-07,
+      "relative_l2": 3.4623795386323764e-08,
+      "left_sha256": "7521af038f7f773a565dbc4825b58915ac8e8921a2ad387142597e41d7e982bc",
+      "right_sha256": "597856c2d906c48fed1d6829f3987f332a3039d7df32dd003c92b351c2b93e74"
+    },
+    "target_output_difference": {
+      "exact_equal": false,
+      "max_abs": 5.960464477539063e-08,
+      "relative_l2": 4.202785675033738e-09,
+      "left_sha256": "f1cc9c02b82c14b1e28bb813c5aea70cd3291ba718e455537d622222c912fa62",
+      "right_sha256": "570ed73bf35d08ccc168bfa8f9e5fea66f735a5bec22747bf4f6d03836210adb"
+    },
+    "B1_forward_reproduced": true,
+    "packed_forward_reproduced": true,
+    "isolated_inputs": "isolated_operator_inputs.pt"
+  }
+}

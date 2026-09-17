@@ -1,0 +1,84 @@
+{
+  "status": "ISOLATED_SDPA_REPRODUCED",
+  "model": "huginn",
+  "target_request_id": 7,
+  "token_idx": 0,
+  "source_sha": "b337ed38cd8893b491eb39202aa24414be6434c5",
+  "counterexample_manifest_sha256": "a876da44bc328d4c62e3e96abb54aa3337163d23f8b64e3fe658b5257eeb957c",
+  "gpu": {
+    "physical_index": 7,
+    "uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "7",
+    "cuda_ordinal": 0,
+    "role": "huginn_primary",
+    "assignment_sha256": "2d6bf45cb47ed81f6fd355cc72a8f4b2e53976b6db060fc4a5713b5a94fbb28d"
+  },
+  "precision": "torch.bfloat16",
+  "imported_model_source_sha256": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa",
+  "operator": "torch.nn.functional.scaled_dot_product_attention",
+  "backend": "SDPBackend.MATH",
+  "dropout_p": 0.0,
+  "is_causal": false,
+  "torch_allow_tf32": false,
+  "target_field_differences": {
+    "q": {
+      "exact_equal": true,
+      "max_abs": 0.0,
+      "relative_l2": 0.0,
+      "left_sha256": "8601a3c25b2e1081747f40cc576e126663bc273c658b9599c45fe9089d9eed51",
+      "right_sha256": "8601a3c25b2e1081747f40cc576e126663bc273c658b9599c45fe9089d9eed51"
+    },
+    "k": {
+      "exact_equal": true,
+      "max_abs": 0.0,
+      "relative_l2": 0.0,
+      "left_sha256": "93950dea0332177bb875832da02f968744f3ab60eb61fb5a4e3195e6f35c2588",
+      "right_sha256": "93950dea0332177bb875832da02f968744f3ab60eb61fb5a4e3195e6f35c2588"
+    },
+    "v": {
+      "exact_equal": true,
+      "max_abs": 0.0,
+      "relative_l2": 0.0,
+      "left_sha256": "39f6737d099d0610e34a525b2d9a53a28cf76c213c7122937572e4d22d9a77ab",
+      "right_sha256": "39f6737d099d0610e34a525b2d9a53a28cf76c213c7122937572e4d22d9a77ab"
+    },
+    "mask": {
+      "exact_equal": true,
+      "max_abs": 0.0,
+      "relative_l2": 0.0,
+      "left_sha256": "93a018d39ab044ab216760e88353337faea488ea125e0b47254d4095b35b5fb8",
+      "right_sha256": "93a018d39ab044ab216760e88353337faea488ea125e0b47254d4095b35b5fb8"
+    },
+    "output": {
+      "exact_equal": false,
+      "max_abs": 9.5367431640625e-07,
+      "relative_l2": 3.4623795386323764e-08,
+      "left_sha256": "7521af038f7f773a565dbc4825b58915ac8e8921a2ad387142597e41d7e982bc",
+      "right_sha256": "597856c2d906c48fed1d6829f3987f332a3039d7df32dd003c92b351c2b93e74"
+    }
+  },
+  "direct_output_difference": {
+    "exact_equal": false,
+    "max_abs": 9.5367431640625e-07,
+    "relative_l2": 3.4623795386323764e-08,
+    "left_sha256": "7521af038f7f773a565dbc4825b58915ac8e8921a2ad387142597e41d7e982bc",
+    "right_sha256": "597856c2d906c48fed1d6829f3987f332a3039d7df32dd003c92b351c2b93e74"
+  },
+  "direct_reproduces_attached_B1": true,
+  "direct_reproduces_attached_packed": true,
+  "B1_input_hashes": {
+    "q": "8601a3c25b2e1081747f40cc576e126663bc273c658b9599c45fe9089d9eed51",
+    "k": "93950dea0332177bb875832da02f968744f3ab60eb61fb5a4e3195e6f35c2588",
+    "v": "39f6737d099d0610e34a525b2d9a53a28cf76c213c7122937572e4d22d9a77ab",
+    "mask": "93a018d39ab044ab216760e88353337faea488ea125e0b47254d4095b35b5fb8"
+  },
+  "packed_input_hashes": {
+    "q": "b3090df52067a9f0800a1cb1c6991577acc1709d299e6fb0720c3a77f52ff763",
+    "k": "05657062e91d815746df97a2444c7bc791e2f33d72740076d45bc531cb7524e9",
+    "v": "4418c8ebddb912787f789b787b963a198f2b8e8736f6fb78b3f9d8bda1e03982",
+    "mask": "6edae9675d3378ba493b824a5f4a929b27e43e83f849744a794d2df576d040f8"
+  },
+  "isolated_inputs": "isolated_attention_inputs.pt"
+}

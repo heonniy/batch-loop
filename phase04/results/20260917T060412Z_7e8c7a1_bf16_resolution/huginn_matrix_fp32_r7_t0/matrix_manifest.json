@@ -1,0 +1,76 @@
+{
+  "status": "MATRIX_RECORDED",
+  "model": "huginn",
+  "precision": "FP32",
+  "source_sha": "7e8c7a16695d6c578f7d12e0af56d3a2642e1153",
+  "gpu": {
+    "physical_index": 7,
+    "uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "7",
+    "cuda_ordinal": 0,
+    "role": "huginn_primary",
+    "assignment_sha256": "2d6bf45cb47ed81f6fd355cc72a8f4b2e53976b6db060fc4a5713b5a94fbb28d"
+  },
+  "imported_model_source_sha256": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa",
+  "counterexample_manifest_sha256": "a876da44bc328d4c62e3e96abb54aa3337163d23f8b64e3fe658b5257eeb957c",
+  "target_request_id": 7,
+  "token_idx": 0,
+  "frozen_history_source": "per-request B1 live execution, same pinned precision and policy",
+  "target_B1_history_sha256": "b3b92fdbfd14538c43c1f0a61537ff55eebefec7bbdac2a8658f388dc244550c",
+  "filler_ids": {
+    "original_mixed": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "equal_length": [
+      3
+    ]
+  },
+  "threshold": 0.12,
+  "baseline": {
+    "request_id": 7,
+    "depth": 10,
+    "next_token": 18370,
+    "scores": [
+      1.0518982410430908,
+      0.9175630211830139,
+      0.6689392924308777,
+      0.4572025537490845,
+      0.32406577467918396,
+      0.24436764419078827,
+      0.20592086017131805,
+      0.16909514367580414,
+      0.1258980929851532,
+      0.09541541337966919
+    ],
+    "margins": [
+      -0.9318982362747192,
+      -0.7975630164146423,
+      -0.5489392876625061,
+      -0.3372025489807129,
+      -0.20406576991081238,
+      -0.12436764687299728,
+      -0.08592086285352707,
+      -0.04909514635801315,
+      -0.005898095667362213,
+      0.024584583938121796
+    ],
+    "h0_sha256": "195802698691c8961dde250d858e5503fc2c0e727828642bf7d497fb8fd6b4df",
+    "final_hidden_sha256": "7598ecc4d8c99a22b9f82f6a37f4be02f20b8d39e158512ba8c5707f098d1000"
+  },
+  "grid_rows": 48,
+  "unique_live_batch_compositions": 17,
+  "depth_flip_grid_rows": 0,
+  "next_token_flip_grid_rows": 0,
+  "blocked_grid_rows": 12,
+  "duplicate_target_invariant": "duplicate_target_invariant.json",
+  "matrix": "batch_shape_matrix.csv",
+  "note": "Repeated grid rows are controls, not independent samples; no fresh validation rate or speed claim."
+}

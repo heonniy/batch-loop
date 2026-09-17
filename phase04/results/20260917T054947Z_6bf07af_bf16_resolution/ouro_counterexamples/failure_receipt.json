@@ -1,0 +1,9 @@
+{
+  "status": "ERROR_BEFORE_PACKET",
+  "model": "ouro",
+  "source_sha": "6bf07afa0d8eb8f76a91c983f405a6b4a04cd2c1",
+  "physical_gpu": 2,
+  "stage": "manifest serialization after completed replay",
+  "error": "AttributeError: 'OuroAdapter' object has no attribute 'state_hashes'",
+  "interpretation": "Ouro has no stochastic h0; the manifest writer incorrectly required a Huginn-only attribute. No counterexample manifest was emitted from this attempt."
+}

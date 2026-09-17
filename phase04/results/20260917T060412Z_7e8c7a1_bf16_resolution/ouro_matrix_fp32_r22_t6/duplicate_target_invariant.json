@@ -1,0 +1,37 @@
+{
+  "bookkeeping_ids_distinct": true,
+  "history_copied_from_same_target": true,
+  "current_input_token_identical": true,
+  "Huginn_h0_explicitly_cloned_for_diagnostic": false,
+  "prelude_embedding_exact_equal": true,
+  "depth_exact_equal": true,
+  "next_token_exact_equal": true,
+  "gate_scores_exact_equal": true,
+  "final_hidden_exact_equal": true,
+  "left": {
+    "request_id": 22,
+    "depth": 1,
+    "next_token": 282,
+    "scores": [
+      0.201194167137146
+    ],
+    "margins": [
+      0.0011941641569137573
+    ],
+    "h0_sha256": null,
+    "final_hidden_sha256": "28a7483652cc5cd4f4f5defeb0b54c69d6a0aef1c01c4255dd696f1ae630e3b1"
+  },
+  "right": {
+    "request_id": 1022,
+    "depth": 1,
+    "next_token": 282,
+    "scores": [
+      0.201194167137146
+    ],
+    "margins": [
+      0.0011941641569137573
+    ],
+    "h0_sha256": null,
+    "final_hidden_sha256": "28a7483652cc5cd4f4f5defeb0b54c69d6a0aef1c01c4255dd696f1ae630e3b1"
+  }
+}

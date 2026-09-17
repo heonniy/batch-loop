@@ -1,0 +1,8 @@
+{
+  "status": "ERROR_BEFORE_MATRIX_COMPARISON",
+  "source_sha": "292eedb60727a5530447dc6f4dccc1fe37f776c1",
+  "physical_gpu": 2,
+  "model": "ouro",
+  "error": "AssertionError: OuroAdapter.position_ids was not initialized",
+  "interpretation": "The diagnostic used backend.begin_token directly after importing fixed KV history. Adapter.begin_token is required to initialize position IDs and the per-token gate accumulator. No matrix result was emitted."
+}

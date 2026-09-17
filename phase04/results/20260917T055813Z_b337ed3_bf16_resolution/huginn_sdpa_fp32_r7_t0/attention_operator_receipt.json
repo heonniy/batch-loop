@@ -1,0 +1,84 @@
+{
+  "status": "ISOLATED_SDPA_REPRODUCED",
+  "model": "huginn",
+  "target_request_id": 7,
+  "token_idx": 0,
+  "source_sha": "b337ed38cd8893b491eb39202aa24414be6434c5",
+  "counterexample_manifest_sha256": "a876da44bc328d4c62e3e96abb54aa3337163d23f8b64e3fe658b5257eeb957c",
+  "gpu": {
+    "physical_index": 7,
+    "uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "7",
+    "cuda_ordinal": 0,
+    "role": "huginn_primary",
+    "assignment_sha256": "2d6bf45cb47ed81f6fd355cc72a8f4b2e53976b6db060fc4a5713b5a94fbb28d"
+  },
+  "precision": "torch.float32",
+  "imported_model_source_sha256": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa",
+  "operator": "torch.nn.functional.scaled_dot_product_attention",
+  "backend": "SDPBackend.MATH",
+  "dropout_p": 0.0,
+  "is_causal": false,
+  "torch_allow_tf32": false,
+  "target_field_differences": {
+    "q": {
+      "exact_equal": false,
+      "max_abs": 3.4570693969726562e-06,
+      "relative_l2": 6.29429280252225e-07,
+      "left_sha256": "7bdf57fec39683db8ac2294c4a9304e9e1b5bca67c6983c9f55cc64f0e6b58bf",
+      "right_sha256": "79f20ac00052f906af3c227df09671fd47e384e22d43c3b3086c030026734f6c"
+    },
+    "k": {
+      "exact_equal": false,
+      "max_abs": 4.208087921142578e-05,
+      "relative_l2": 2.5005435873026727e-06,
+      "left_sha256": "c33a32cfc4ead282f7de6e9c4519662ed51d454faabac430ef820b540dc27f86",
+      "right_sha256": "f3822a8c616cd419b9e8f978ef0ff2284287bc218f698581aedcc7a98b841a9c"
+    },
+    "v": {
+      "exact_equal": false,
+      "max_abs": 3.170967102050781e-05,
+      "relative_l2": 4.045951754960697e-06,
+      "left_sha256": "510b5c2cc007bb0b195a69eca73ee81fa58db6b27ad11f25dde77b1ae749bac6",
+      "right_sha256": "136a6120baf8ef7be42dd7696f266f437f52802a6911d82735959e2c08a77c35"
+    },
+    "mask": {
+      "exact_equal": true,
+      "max_abs": 0.0,
+      "relative_l2": 0.0,
+      "left_sha256": "95f28e6cba5e7113e4d12aa598f510d211252bce535ebeef7a10672a9a5d2898",
+      "right_sha256": "95f28e6cba5e7113e4d12aa598f510d211252bce535ebeef7a10672a9a5d2898"
+    },
+    "output": {
+      "exact_equal": false,
+      "max_abs": 8.821487426757812e-06,
+      "relative_l2": 3.056885589103331e-06,
+      "left_sha256": "eecfa5ee235e41c64cdbf899e00976c634d923db588aa4a557f628e40ba39671",
+      "right_sha256": "8f61d45c3b312c8174bd91dd004ef6c0367d9f00df75adcf07810c36f26ceec0"
+    }
+  },
+  "direct_output_difference": {
+    "exact_equal": false,
+    "max_abs": 8.821487426757812e-06,
+    "relative_l2": 3.056885589103331e-06,
+    "left_sha256": "eecfa5ee235e41c64cdbf899e00976c634d923db588aa4a557f628e40ba39671",
+    "right_sha256": "8f61d45c3b312c8174bd91dd004ef6c0367d9f00df75adcf07810c36f26ceec0"
+  },
+  "direct_reproduces_attached_B1": true,
+  "direct_reproduces_attached_packed": true,
+  "B1_input_hashes": {
+    "q": "7bdf57fec39683db8ac2294c4a9304e9e1b5bca67c6983c9f55cc64f0e6b58bf",
+    "k": "c33a32cfc4ead282f7de6e9c4519662ed51d454faabac430ef820b540dc27f86",
+    "v": "510b5c2cc007bb0b195a69eca73ee81fa58db6b27ad11f25dde77b1ae749bac6",
+    "mask": "95f28e6cba5e7113e4d12aa598f510d211252bce535ebeef7a10672a9a5d2898"
+  },
+  "packed_input_hashes": {
+    "q": "5bfa382776c66bb413ebbe019e5a0f808d19511aeda4010c06fa14a41e3da80d",
+    "k": "fa3cd91f6b2af5926ab09bdb1d64849bac81651ff10c5d64b08fd9be353ee9bf",
+    "v": "ae6b98740fce85c922cc5b9f3886c57c0b518754b5a29bde6dfcc3147d5f3f00",
+    "mask": "07b66f2062521a22e6082f54a9419d094cf3217c5e3b3b5cad207462cf18231e"
+  },
+  "isolated_inputs": "isolated_attention_inputs.pt"
+}

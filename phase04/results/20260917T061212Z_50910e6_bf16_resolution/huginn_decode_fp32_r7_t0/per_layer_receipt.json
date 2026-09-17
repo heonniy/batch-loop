@@ -1,0 +1,60 @@
+{
+  "status": "FIRST_DECODE_DIFFERENCE_IDENTIFIED",
+  "model": "huginn",
+  "target_request_id": 7,
+  "token_idx": 0,
+  "precision": "torch.float32",
+  "source_sha": "50910e645c4acf0a9d1c9ca232ca1b8fb81352fe",
+  "counterexample_manifest_sha256": "a876da44bc328d4c62e3e96abb54aa3337163d23f8b64e3fe658b5257eeb957c",
+  "gpu": {
+    "physical_index": 7,
+    "uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "7",
+    "cuda_ordinal": 0,
+    "role": "huginn_primary",
+    "assignment_sha256": "2d6bf45cb47ed81f6fd355cc72a8f4b2e53976b6db060fc4a5713b5a94fbb28d"
+  },
+  "imported_model_source_sha256": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa",
+  "B1_event_count": 180,
+  "packed_event_count": 180,
+  "comparable_event_count": 180,
+  "capture_limit": 180,
+  "first_difference": {
+    "event": 2,
+    "module": "transformer.prelude.0.attn.Wqkv",
+    "occurrence": 0,
+    "module_type": "Linear",
+    "input_exact_equal": true,
+    "input_max_abs": 0.0,
+    "output_exact_equal": false,
+    "output_max_abs": 1.0728836059570312e-06,
+    "output_relative_l2": 3.8309184446916333e-07,
+    "output_B1_sha256": "d5f6636fdaf922c805acba5a554047a3aaa386074dee12e4e3ffbfc9a0f03669",
+    "output_packed_sha256": "74d64951c3ab7b9dd7b772191cd486256313696c684ff49ed4a465c055b61617"
+  },
+  "isolated_operator": {
+    "module": "transformer.prelude.0.attn.Wqkv",
+    "occurrence": 0,
+    "B1_input_sha256": "5400d8bd9dd0e56d3cbf5488d7220b81e6eba211eb8664173b4089cb600b250f",
+    "packed_input_sha256": "6fdaa9107ed7f61538703a423945ddd730bed208b87a763bd320afe7cd40012f",
+    "target_input_difference": {
+      "exact_equal": true,
+      "max_abs": 0.0,
+      "relative_l2": 0.0,
+      "left_sha256": "5400d8bd9dd0e56d3cbf5488d7220b81e6eba211eb8664173b4089cb600b250f",
+      "right_sha256": "5400d8bd9dd0e56d3cbf5488d7220b81e6eba211eb8664173b4089cb600b250f"
+    },
+    "target_output_difference": {
+      "exact_equal": false,
+      "max_abs": 1.0728836059570312e-06,
+      "relative_l2": 3.8309184446916333e-07,
+      "left_sha256": "d5f6636fdaf922c805acba5a554047a3aaa386074dee12e4e3ffbfc9a0f03669",
+      "right_sha256": "74d64951c3ab7b9dd7b772191cd486256313696c684ff49ed4a465c055b61617"
+    },
+    "B1_forward_reproduced": true,
+    "packed_forward_reproduced": true,
+    "isolated_inputs": "isolated_operator_inputs.pt"
+  }
+}
