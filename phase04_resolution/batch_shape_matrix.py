@@ -108,7 +108,7 @@ def _history_digest(snapshot) -> str:
 def _one(model_key, model, tokenizer, packet, snapshots, copies, token_idx, clone_h0=False):
     adapter = _merge(model_key, model, tokenizer, snapshots, copies)
     backend = adapter.backend
-    backend.begin_token()
+    adapter.begin_token()
     rows = torch.arange(len(copies), dtype=torch.long, device="cuda")
     backend.set_active(rows)
     token_ids = torch.tensor([[packet["input_tokens_by_boundary"][token_idx][source]]
