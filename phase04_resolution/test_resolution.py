@@ -6,11 +6,20 @@ import unittest
 
 import torch
 
+from phase04_resolution.batch_shape_matrix import _selected
 from phase04_resolution.counterexamples import _mismatch_map
 from phase04_resolution.trace_prefill import _diff
 
 
 class ResolutionTests(unittest.TestCase):
+    def test_fixed_fillers_change_only_target_position_and_order(self):
+        fillers = [1, 2, 3, 4, 5, 6, 7]
+        first = _selected(22, fillers, 4, 0, False)
+        last = _selected(22, fillers, 4, 3, True)
+        self.assertEqual(first, [22, 1, 2, 3])
+        self.assertEqual(last, [3, 2, 1, 22])
+        self.assertEqual(set(first), set(last))
+
     def test_mismatch_map_keeps_depth_and_token_fields(self):
         rows = [{"token_idx": 1, "request_id": 7, "field": "depth"},
                 {"token_idx": 1, "request_id": 7, "field": "next_token"}]
