@@ -180,8 +180,6 @@ def matrix(model_key: str, role: str, manifest_path: Path, target: int,
         "equal_length": [rid for rid, row in enumerate(packet["cohort_effective_inputs"])
                          if rid != target and sum(row["attention_mask"]) == length][:7],
     }
-    if any(len(values) < 7 for values in fillers.values()):
-        raise RuntimeError("insufficient frozen fillers for B8 control")
     needed = sorted({target} | set(fillers["original_mixed"]) | set(fillers["equal_length"]))
     snapshots = _canonical_histories(model_key, model, tokenizer, packet, needed, token_idx, not fp32)
     baseline = _one(model_key, model, tokenizer, packet, snapshots, [(target, target)], token_idx)["rows"][0]
@@ -197,6 +195,21 @@ def matrix(model_key: str, role: str, manifest_path: Path, target: int,
             for label, position in (("first", 0), ("middle", batch_size // 2),
                                     ("last", batch_size - 1)):
                 for order in ("fifo", "fixed_permutation"):
+                    if len(pool) < batch_size - 1:
+                        lines.append({"model": model_key, "precision": "FP32" if fp32 else "BF16",
+                                      "target_request_id": target, "token_idx": token_idx,
+                                      "padding_condition": padding, "B": batch_size,
+                                      "target_position": label, "order": order,
+                                      "selected_request_ids": "", "target_local_row": None,
+                                      "target_depth": None, "B1_depth": baseline["depth"],
+                                      "depth_flip": None, "target_next_token": None,
+                                      "B1_next_token": baseline["next_token"],
+                                      "next_token_flip": None,
+                                      "min_absolute_target_margin": None,
+                                      "max_common_gate_score_delta": None,
+                                      "h0_same_as_B1": "NA", "target_KV_merge_exact": None,
+                                      "status": "BLOCKED_INSUFFICIENT_UNIQUE_EQUAL_LENGTH_FILLERS"})
+                        continue
                     selected = _selected(target, pool, batch_size, position,
                                          order == "fixed_permutation")
                     key = tuple(selected)
@@ -222,7 +235,7 @@ def matrix(model_key: str, role: str, manifest_path: Path, target: int,
                                        for i in range(common)), default=0.0),
                                   "h0_same_as_B1": ("NA" if row["h0_sha256"] is None else
                                                     str(row["h0_sha256"] == baseline["h0_sha256"])),
-                                  "target_KV_merge_exact": True})
+                                  "target_KV_merge_exact": True, "status": "MEASURED"})
     duplicate = _one(model_key, model, tokenizer, packet, snapshots,
                      [(target, target), (1000 + target, target)], token_idx, clone_h0=True)
     left, right = duplicate["rows"]
@@ -254,8 +267,9 @@ def matrix(model_key: str, role: str, manifest_path: Path, target: int,
                "filler_ids": fillers, "threshold": packet["threshold"],
                "baseline": baseline, "grid_rows": len(lines),
                "unique_live_batch_compositions": len(cached),
-               "depth_flip_grid_rows": sum(row["depth_flip"] for row in lines),
-               "next_token_flip_grid_rows": sum(row["next_token_flip"] for row in lines),
+               "depth_flip_grid_rows": sum(row["depth_flip"] or 0 for row in lines),
+               "next_token_flip_grid_rows": sum(row["next_token_flip"] or 0 for row in lines),
+               "blocked_grid_rows": sum(row["status"] != "MEASURED" for row in lines),
                "duplicate_target_invariant": "duplicate_target_invariant.json",
                "matrix": "batch_shape_matrix.csv",
                "note": "Repeated grid rows are controls, not independent samples; no fresh validation rate or speed claim."}
