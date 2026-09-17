@@ -14,13 +14,18 @@ KV = tuple[torch.Tensor, torch.Tensor]
 
 
 class _StableRowKV:
-    def __init__(self, num_rows: int, device: torch.device):
+    def __init__(self, num_rows: int, device: torch.device,
+                 *, instrumentation: str = "profile"):
+        if instrumentation not in {"profile", "benchmark"}:
+            raise ValueError("KV instrumentation must be profile or benchmark")
         self.num_rows = num_rows
         self.device = device
+        self.instrumentation = instrumentation
         self.active_rows = torch.arange(num_rows, device=device, dtype=torch.long)
         self.key_valid: torch.Tensor | None = None
         self.phase = "new"
         self._update_events: list[tuple[torch.cuda.Event, torch.cuda.Event]] = []
+        self._update_gpu_ms_accum = 0.0
         self.actual_writes = 0
         self.fill_operations = 0
         self.overwrites = 0
@@ -28,12 +33,13 @@ class _StableRowKV:
     def set_active(self, rows: torch.Tensor) -> None:
         if rows.dtype != torch.long or rows.ndim != 1:
             raise ValueError("active KV rows must be a one-dimensional LongTensor")
-        if rows.numel() and (int(rows.min()) < 0 or int(rows.max()) >= self.num_rows):
+        if self.instrumentation == "profile" and rows.numel() and (
+                int(rows.min()) < 0 or int(rows.max()) >= self.num_rows):
             raise ValueError("active KV row outside persistent cache")
         self.active_rows = rows
 
     def _event_start(self):
-        if self.device.type != "cuda":
+        if self.device.type != "cuda" or self.instrumentation != "profile":
             return None
         event = torch.cuda.Event(enable_timing=True)
         event.record()
@@ -44,10 +50,17 @@ class _StableRowKV:
             end = torch.cuda.Event(enable_timing=True)
             end.record()
             self._update_events.append((start, end))
+            if len(self._update_events) >= 256:
+                self._drain_update_events()
+
+    def _drain_update_events(self) -> None:
+        self._update_gpu_ms_accum += sum(start.elapsed_time(end) for start, end in self._update_events)
+        self._update_events.clear()
 
     def pop_update_gpu_ms(self) -> float:
-        total = sum(start.elapsed_time(end) for start, end in self._update_events)
-        self._update_events.clear()
+        self._drain_update_events()
+        total = self._update_gpu_ms_accum
+        self._update_gpu_ms_accum = 0.0
         return total
 
     def begin_prefill(self, prompt_valid: torch.Tensor) -> None:
@@ -87,14 +100,16 @@ class _StableRowKV:
 class OuroLastExitedKV(_StableRowKV):
     """Depth-indexed KV; skipped slots inherit the last actual recurrence KV."""
 
-    def __init__(self, num_rows: int, device: torch.device, num_layers: int, rmax: int = 4):
-        super().__init__(num_rows, device)
+    def __init__(self, num_rows: int, device: torch.device, num_layers: int, rmax: int = 4,
+                 *, instrumentation: str = "profile"):
+        super().__init__(num_rows, device, instrumentation=instrumentation)
         self.num_layers = num_layers
         self.rmax = rmax
         self.history: dict[tuple[int, int], KV] = {}
         self.current: dict[tuple[int, int], KV] = {}
         self.valid_current: dict[tuple[int, int], torch.Tensor] = {}
         self.fill_receipts: list[dict] = []
+        self.fill_receipts_truncated = 0
 
     def update(self, key_states: torch.Tensor, value_states: torch.Tensor,
                flat_layer_idx: int, cache_kwargs: dict | None = None) -> KV:
@@ -138,6 +153,7 @@ class OuroLastExitedKV(_StableRowKV):
     def finish_prefill(self) -> None:
         if len(self.history) != self.rmax * self.num_layers:
             raise AssertionError("Ouro prefill did not populate all depth/layer slots")
+        self.pop_update_gpu_ms()  # Prefill events cannot be attributed to decode.
         self.phase = "ready"
 
     def begin_token(self) -> None:
@@ -162,10 +178,14 @@ class OuroLastExitedKV(_StableRowKV):
                 target[1].index_copy_(0, rows, source[1].index_select(0, rows))
                 self.valid_current[target_slot].index_fill_(0, rows, True)
                 self.fill_operations += int(rows.numel())
-                self.fill_receipts.append({
-                    "rows": rows.detach().cpu().tolist(), "from_depth": depth,
-                    "to_depth": next_depth, "physical_layer": layer,
-                })
+                if self.instrumentation == "profile":
+                    if len(self.fill_receipts) < 4096:
+                        self.fill_receipts.append({
+                            "rows": rows.detach().cpu().tolist(), "from_depth": depth,
+                            "to_depth": next_depth, "physical_layer": layer,
+                        })
+                    else:
+                        self.fill_receipts_truncated += 1
 
     def commit_token(self) -> None:
         if self.phase != "token":
@@ -185,8 +205,9 @@ class HuginnSharedKV(_StableRowKV):
     """One recurrent slot per *physical* layer and logical request."""
 
     def __init__(self, num_rows: int, device: torch.device, n_prelude: int = 2,
-                 n_recurrent: int = 4, n_coda: int = 2):
-        super().__init__(num_rows, device)
+                 n_recurrent: int = 4, n_coda: int = 2,
+                 *, instrumentation: str = "profile"):
+        super().__init__(num_rows, device, instrumentation=instrumentation)
         self.n_prelude = n_prelude
         self.n_recurrent = n_recurrent
         self.n_coda = n_coda
@@ -250,6 +271,7 @@ class HuginnSharedKV(_StableRowKV):
         if len(lengths) != 1:
             raise AssertionError("Huginn prefill layer lengths differ")
         self.history_length = self.history_capacity = lengths.pop()
+        self.pop_update_gpu_ms()  # Exclude prefill/Prelude from later decode attribution.
         self.current = {}
         self.valid_current = {}
         self.phase = "ready"

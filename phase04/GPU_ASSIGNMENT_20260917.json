@@ -1,0 +1,12 @@
+{
+  "authorization": "User message in this executor turn explicitly permits physical GPUs 2, 3, 5, and 7 for Phase 4",
+  "source_plan_commit": "3f8eeb7f52ab57cda2c98fc0213402c7dd2c5861",
+  "device_map": {
+    "ouro_primary": {"physical_index": 2, "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e"},
+    "ouro_replication": {"physical_index": 3, "uuid": "GPU-17488c15-2d4c-5d9e-d503-29b0d959a8a8"},
+    "huginn_replication": {"physical_index": 5, "uuid": "GPU-a1a1cfcf-93a1-3544-9a5e-e58144b68730"},
+    "huginn_primary": {"physical_index": 7, "uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b"}
+  },
+  "launch_rule": "Each model runner must match one listed model-specific physical index and UUID, expose exactly one CUDA ordinal, and leave all other devices untouched",
+  "background_soak_authorized": false
+}

@@ -79,11 +79,11 @@ def _load_prompts(path: Path, ids: list[int]) -> list[str]:
 def _top_three(path: Path) -> list[str]:
     with path.open(newline="") as stream:
         rows = list(csv.DictReader(stream))
-    ranked = sorted((row for row in rows if row["split"] == "test"),
+    ranked = sorted((row for row in rows if row["split"] == "validation"),
                     key=lambda row: (-float(row["oracle_ric_recovery"]),
                                      float(row["prediction_cpu_s"]), row["candidate"]))
     if len(ranked) != 10 or len({row["candidate"] for row in ranked}) != 10:
-        raise RuntimeError("full C0-C9 held-out tournament is required")
+        raise RuntimeError("full C0-C9 validation tournament is required")
     return [row["candidate"] for row in ranked[:3]]
 
 
@@ -361,7 +361,7 @@ def main() -> None:
         "selected_candidates": top_three,
         "candidate_selection_basis": ("N=B control" if args.control else
                                       "explicit frozen primary winner" if args.candidates else
-                                      "top three primary held-out test RIC"),
+                                      "top three primary validation RIC"),
         "strategies": strategies,
         "same_staging_path_for_all_strategies": True,
         "physical_labels": "frozen B1 live depths; trace-forced identical work",

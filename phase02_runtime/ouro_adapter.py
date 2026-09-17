@@ -8,6 +8,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 from phase02_runtime.kv import OuroLastExitedKV
+from phase04_runtime.policy import ouro_decision
 
 
 OURO14_REVISION = "37bc7e8ff85a90d813dc096383405f521b6a67b0"
@@ -21,20 +22,30 @@ class OuroAdapter:
     kv_policy = "last-exited-depth-indexed"
     model_revision = OURO14_REVISION
 
-    def __init__(self, model, tokenizer, num_rows: int):
+    def __init__(self, model, tokenizer, num_rows: int, *, instrumentation: str = "profile"):
         self.model = model.eval()
         self.tokenizer = tokenizer
         self.device = next(model.parameters()).device
         self.num_rows = num_rows
+        if model.config.total_ut_steps != self.rmax:
+            raise ValueError("Ouro configured UT steps do not match the physical Rmax")
+        if any(kind != "full_attention" for kind in model.config.layer_types):
+            raise ValueError("Ouro sliding/local attention requires a separately validated mask")
+        if model.config.num_attention_heads != model.config.num_key_value_heads:
+            raise ValueError("Ouro eager attention path requires matched Q/KV heads")
+        self.instrumentation = instrumentation
+        self.last_exit_decision = None
         self.backend = OuroLastExitedKV(
-            num_rows, self.device, num_layers=model.config.num_hidden_layers, rmax=self.rmax
+            num_rows, self.device, num_layers=model.config.num_hidden_layers, rmax=self.rmax,
+            instrumentation=instrumentation,
         )
         self.position_ids: torch.Tensor | None = None
         self.remaining: torch.Tensor | None = None
         self.prefill_logits: torch.Tensor | None = None
 
     @classmethod
-    def load(cls, num_rows: int, snapshot: Path = OURO14_SNAPSHOT) -> "OuroAdapter":
+    def load(cls, num_rows: int, snapshot: Path = OURO14_SNAPSHOT,
+             *, instrumentation: str = "profile") -> "OuroAdapter":
         if not snapshot.exists():
             raise FileNotFoundError(snapshot)
         tokenizer = AutoTokenizer.from_pretrained(snapshot, trust_remote_code=True)
@@ -47,7 +58,7 @@ class OuroAdapter:
         )
         # Both FIFO and Oracle use this exact, explicit attention path.
         model.config._attn_implementation = "eager"
-        return cls(model, tokenizer, num_rows)
+        return cls(model, tokenizer, num_rows, instrumentation=instrumentation)
 
     @torch.inference_mode()
     def prefill(self, input_ids: torch.Tensor, prompt_valid: torch.Tensor) -> torch.Tensor:
@@ -109,11 +120,15 @@ class OuroAdapter:
                   recurrence: int, threshold: float) -> torch.Tensor:
         del before
         assert self.remaining is not None
-        lam = torch.sigmoid(self.model.model.early_exit_gate(after).squeeze(-1).squeeze(-1)).float()
         previous = self.remaining.index_select(0, rows)
-        remaining = previous * (1 - lam)
+        decision, remaining = ouro_decision(
+            self.model.model.early_exit_gate(after), previous,
+            recurrence, self.rmax, threshold,
+            validate_finite=self.instrumentation != "benchmark",
+        )
         self.remaining.index_copy_(0, rows, remaining)
-        return (1 - remaining) >= threshold if recurrence < self.rmax else torch.ones_like(lam, dtype=torch.bool)
+        self.last_exit_decision = decision
+        return decision.mask
 
     @torch.inference_mode()
     def coda_logits(self, final_state: torch.Tensor) -> torch.Tensor:

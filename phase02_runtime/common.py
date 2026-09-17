@@ -12,8 +12,15 @@ import torch
 T = TypeVar("T")
 
 
-def timed(device: torch.device, fn: Callable[[], T]) -> tuple[T, float, float]:
-    """Return value, synchronized GPU milliseconds, and wall milliseconds."""
+def timed(device: torch.device, fn: Callable[[], T],
+          *, instrumentation: str = "profile") -> tuple[T, float, float]:
+    """Return value, GPU milliseconds (profile only), and CPU dispatch wall ms."""
+    if instrumentation not in {"profile", "benchmark"}:
+        raise ValueError("timing instrumentation must be profile or benchmark")
+    if instrumentation == "benchmark":
+        start = time.perf_counter()
+        value = fn()
+        return value, 0.0, (time.perf_counter() - start) * 1000
     if device.type != "cuda":
         start = time.perf_counter()
         value = fn()
@@ -67,6 +74,8 @@ def run_interval(
     debug_ids: bool = True,
     trajectory_sink: dict[int, list[float]] | None = None,
     trajectory_kind: str | None = None,
+    instrumentation: str = "profile",
+    debug_hook: Callable[[int, torch.Tensor, torch.Tensor, SurvivorAdapter], None] | None = None,
 ) -> IntervalResult:
     """Execute one recurrent token interval with a genuinely shrinking tensor.
 
@@ -76,6 +85,8 @@ def run_interval(
     """
     if exit_source not in {"trace", "live"}:
         raise ValueError(f"unsupported exit source: {exit_source}")
+    if instrumentation not in {"profile", "benchmark"}:
+        raise ValueError("instrumentation must be profile or benchmark")
     if trajectory_sink is not None and trajectory_kind not in {"huginn_convergence", "ouro_gate"}:
         raise ValueError("trajectory sink requires a model-specific causal kind")
     if embedded.shape != initial_state.shape or embedded.ndim != 3:
@@ -83,7 +94,8 @@ def run_interval(
     n = initial_state.shape[0]
     if n < 1 or global_rows.shape != (n,) or request_ids.shape != (n,):
         raise ValueError("stable row and request ID vectors must match B")
-    if torch.unique(global_rows).numel() != n or torch.unique(request_ids).numel() != n:
+    if instrumentation == "profile" and (
+            torch.unique(global_rows).numel() != n or torch.unique(request_ids).numel() != n):
         raise ValueError("duplicate persistent row or request ID")
     if exit_source == "trace":
         if forced_depths is None or forced_depths.shape != (n,):
@@ -107,16 +119,19 @@ def run_interval(
     for recurrence in range(1, adapter.rmax + 1):
         if local.numel() == 0:
             break
-        if bool(seen.index_select(0, local).any()):
+        if instrumentation == "profile" and bool(seen.index_select(0, local).any()):
             raise AssertionError("exited request reached a later recurrent step")
         assert active_state.shape[0] == local.numel()
         adapter.backend.set_active(active_rows)
         before = active_state
         after, core_ms, core_wall_ms = timed(
-            device, lambda: adapter.recurrent_step(before, active_embedded, recurrence)
+            device, lambda: adapter.recurrent_step(before, active_embedded, recurrence),
+            instrumentation=instrumentation,
         )
         if after.shape != before.shape:
             raise AssertionError("recurrent step changed non-batch tensor shape")
+        if debug_hook is not None:
+            debug_hook(recurrence, active_requests, after, adapter)
         if trajectory_sink is not None:
             if trajectory_kind == "huginn_convergence":
                 values = ((after.float() - before.float()).norm(dim=-1) /
@@ -132,7 +147,8 @@ def run_interval(
             gate_ms = gate_wall_ms = 0.0
         else:
             exit_mask, gate_ms, gate_wall_ms = timed(
-                device, lambda: adapter.live_exit(before, after, active_rows, recurrence, threshold)
+                device, lambda: adapter.live_exit(before, after, active_rows, recurrence, threshold),
+                instrumentation=instrumentation,
             )
         if recurrence == adapter.rmax:
             exit_mask = torch.ones_like(exit_mask, dtype=torch.bool)
@@ -140,7 +156,8 @@ def run_interval(
             raise AssertionError("exit mask must be one bool per active row")
         exiting_rows = active_rows[exit_mask]
         _, exit_kv_ms, exit_kv_wall_ms = timed(
-            device, lambda: adapter.backend.on_exit(exiting_rows, recurrence)
+            device, lambda: adapter.backend.on_exit(exiting_rows, recurrence),
+            instrumentation=instrumentation,
         )
 
         def scatter_and_compact():
@@ -158,8 +175,9 @@ def run_interval(
                 active_embedded.index_select(0, keep),
             )
 
-        nxt, compaction_ms, compaction_wall_ms = timed(device, scatter_and_compact)
-        events.append({
+        nxt, compaction_ms, compaction_wall_ms = timed(
+            device, scatter_and_compact, instrumentation=instrumentation)
+        event = {
             "recurrence": recurrence,
             "active_batch_size": int(local.numel()),
             "active_request_ids": active_requests.detach().cpu().tolist() if debug_ids else None,
@@ -174,7 +192,12 @@ def run_interval(
             "exit_kv_wall_ms": exit_kv_wall_ms,
             "compaction_gpu_ms": compaction_ms,
             "compaction_wall_ms": compaction_wall_ms,
-        })
+        }
+        if debug_ids and exit_source == "live" and getattr(adapter, "last_exit_decision", None) is not None:
+            decision = adapter.last_exit_decision
+            event["exit_score"] = decision.score.detach().cpu().tolist()
+            event["exit_margin"] = decision.margin.detach().cpu().tolist()
+        events.append(event)
         total_core += core_ms
         total_gate += gate_ms
         total_kv += kv_ms
@@ -189,6 +212,8 @@ def run_interval(
     widths = [row["active_batch_size"] for row in events]
     if widths != sorted(widths, reverse=True):
         raise AssertionError("survivor batch grew inside recurrent interval")
+    if instrumentation == "benchmark" and device.type == "cuda":
+        torch.cuda.synchronize(device)
     return IntervalResult(
         final_state=final, exit_depths=final_depth, events=events,
         core_gpu_ms=total_core, gate_gpu_ms=total_gate,
