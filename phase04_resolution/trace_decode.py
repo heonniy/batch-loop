@@ -33,7 +33,8 @@ def _score_for(events, request_id):
 
 @torch.inference_mode()
 def _run_target(model_key, model, tokenizer, manifest, target, token_idx, packed,
-                book: TraceBook, *, full_name=None, full_occurrence=None):
+                book: TraceBook, *, full_name=None, full_occurrence=None,
+                require_saved_decision=True):
     cohort = manifest["cohort_effective_inputs"]
     known = manifest["input_tokens_by_boundary"]
     requests = list(range(len(cohort))) if packed else [target]
@@ -43,7 +44,7 @@ def _run_target(model_key, model, tokenizer, manifest, target, token_idx, packed
     mask = torch.tensor([cohort[rid]["attention_mask"] for rid in requests], dtype=torch.bool, device="cuda")
     adapter = _new_adapter(model_key, model, tokenizer, requests)
     current = adapter.prefill(ids, mask)
-    if not packed and int(current[0]) != known[0][target]:
+    if require_saved_decision and not packed and int(current[0]) != known[0][target]:
         raise RuntimeError("frozen B1 first token did not replay")
     captured = None
     for current_idx in range(token_idx + 1):
@@ -87,14 +88,17 @@ def _run_target(model_key, model, tokenizer, manifest, target, token_idx, packed
                 local = selected.index(target)
                 expected_depth = target_packet["compact_depth" if packed else "reference_depth"]
                 expected_next = target_packet["compact_next_token" if packed else "reference_next_token"]
-                if int(result.exit_depths[local]) != expected_depth or int(next_ids[local]) != expected_next:
+                if require_saved_decision and (
+                        int(result.exit_depths[local]) != expected_depth or
+                        int(next_ids[local]) != expected_next):
                     raise RuntimeError("frozen target decision did not replay")
                 expected_scores = target_packet["compact_scores" if packed else "reference_scores"]
                 observed_scores = _score_for(result.events, target)
-                if len(expected_scores) != len(observed_scores) or any(
-                        abs(a - b) > 1e-7 for a, b in zip(expected_scores, observed_scores)):
+                if require_saved_decision and (len(expected_scores) != len(observed_scores) or any(
+                        abs(a - b) > 1e-7 for a, b in zip(expected_scores, observed_scores))):
                     raise RuntimeError("frozen target gate scores did not replay")
-            if not packed and current_idx < token_idx and int(next_ids[0]) != known[current_idx + 1][target]:
+            if require_saved_decision and not packed and current_idx < token_idx and (
+                    int(next_ids[0]) != known[current_idx + 1][target]):
                 raise RuntimeError("frozen B1 prior token did not replay")
         adapter.commit_token()
     if captured is None:
@@ -123,9 +127,9 @@ def trace(model_key: str, role: str, manifest_path: Path, target: int, token_idx
         model.float()
     book = TraceBook(model, model_key, limit)
     ref_events, _ = _run_target(model_key, model, tokenizer, manifest, target, token_idx,
-                                False, book)
+                                False, book, require_saved_decision=not fp32)
     bat_events, _ = _run_target(model_key, model, tokenizer, manifest, target, token_idx,
-                                True, book)
+                                True, book, require_saved_decision=not fp32)
     valid = torch.ones(1, dtype=torch.bool)
     lines = []
     first_difference = None
@@ -156,9 +160,11 @@ def trace(model_key: str, role: str, manifest_path: Path, target: int, token_idx
     if first_difference is not None and first_difference["module_type"] in {"Linear", "Embedding"}:
         name, occurrence = first_difference["module"], first_difference["occurrence"]
         _, ref_full = _run_target(model_key, model, tokenizer, manifest, target, token_idx,
-                                  False, book, full_name=name, full_occurrence=occurrence)
+                                  False, book, full_name=name, full_occurrence=occurrence,
+                                  require_saved_decision=not fp32)
         _, bat_full = _run_target(model_key, model, tokenizer, manifest, target, token_idx,
-                                  True, book, full_name=name, full_occurrence=occurrence)
+                                  True, book, full_name=name, full_occurrence=occurrence,
+                                  require_saved_decision=not fp32)
         if ref_full is None or bat_full is None:
             raise RuntimeError("isolated operator capture failed")
         module = book.modules[name]

@@ -49,6 +49,9 @@ def _sdpa_head96_forward(attn, x, freqs_cis, block_idx, mask=None, past_key_valu
     bias = past_key_values.attention_bias(seq, k.shape[2], q.dtype)
     with sdpa_kernel(backends=[SDPBackend.MATH]):
         y = F.scaled_dot_product_attention(q, k, v, attn_mask=bias, dropout_p=0.0, is_causal=False)
+    diagnostic_observer = getattr(attn, "_phase04_sdpa_observer", None)
+    if diagnostic_observer is not None:
+        diagnostic_observer(q, k, v, bias, y)
     y = y.transpose(1, 2).reshape(batch, seq, emb).contiguous()
     return attn.proj(y)
 
