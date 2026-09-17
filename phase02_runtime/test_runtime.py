@@ -42,6 +42,27 @@ class _FakeAdapter:
 
 
 class SurvivorTests(unittest.TestCase):
+    def test_profile_event_drain_waits_for_completion(self):
+        backend = OuroLastExitedKV(1, torch.device("cpu"), num_layers=1)
+
+        class EndEvent:
+            ready = False
+
+            def synchronize(self):
+                self.ready = True
+
+        class StartEvent:
+            def elapsed_time(self, end):
+                if not end.ready:
+                    raise RuntimeError("device not ready")
+                return 1.25
+
+        end = EndEvent()
+        backend._update_events.append((StartEvent(), end))
+        self.assertEqual(backend.pop_update_gpu_ms(), 1.25)
+        self.assertTrue(end.ready)
+        self.assertEqual(backend.pop_update_gpu_ms(), 0.0)
+
     def test_forced_compaction_and_scatter(self):
         adapter = _FakeAdapter()
         state = torch.zeros((4, 1, 2))

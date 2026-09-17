@@ -54,6 +54,10 @@ class _StableRowKV:
                 self._drain_update_events()
 
     def _drain_update_events(self) -> None:
+        # Profile events are asynchronous. Their durations are only available
+        # after completion; benchmark mode never creates these events.
+        for _, end in self._update_events:
+            end.synchronize()
         self._update_gpu_ms_accum += sum(start.elapsed_time(end) for start, end in self._update_events)
         self._update_events.clear()
 
