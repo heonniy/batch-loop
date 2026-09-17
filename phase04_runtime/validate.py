@@ -250,12 +250,14 @@ def validate(args: argparse.Namespace) -> dict:
     initial = (adapter_type.load(1, state_init="native-seeded") if args.model == "huginn"
                else adapter_type.load(1))
     model, tokenizer = initial.model, initial.tokenizer
+    if args.diagnostic_fp32:
+        model.float()
     imported_module = importlib.import_module(model.__class__.__module__)
     imported_path = Path(imported_module.__file__).resolve()
     snapshot = HUGINN_SNAPSHOT if args.model == "huginn" else OURO14_SNAPSHOT
     snapshot_source = snapshot / ("raven_modeling_minimal.py" if args.model == "huginn" else "modeling_ouro.py")
     config = model.config.to_dict()
-    prompts = _prompts(args.num_rows, heterogeneous=True)
+    prompts = _prompts(args.num_rows, heterogeneous=not args.homogeneous_prompts)
     encoded = tokenizer(prompts, return_tensors="pt", padding=True, truncation=True, max_length=64)
     policy = {"model": args.model, "model_revision": adapter_type.model_revision,
               "source_sha": source_sha, "argv": sys.argv, "gpu": gpu,
@@ -272,7 +274,9 @@ def validate(args: argparse.Namespace) -> dict:
               "threshold": args.threshold, "rmax": initial.rmax, "kv_policy": initial.kv_policy,
               "h0_policy": "request-keyed truncated normal" if args.model == "huginn" else "not applicable",
               "test_time_noise": getattr(model.config, "test_time_noise", None),
-              "prompt_source": "distinct synthetic mixed-length correctness probes",
+              "prompt_source": ("distinct synthetic equal-length diagnostic probes"
+                                if args.homogeneous_prompts else "distinct synthetic mixed-length correctness probes"),
+              "diagnostic_fp32": args.diagnostic_fp32,
               "prompt_cap": 64, "reference_padding": args.reference_padding,
               "cohort_tokenized_width": int(encoded["input_ids"].shape[1]),
               "effective_input_hashes": effective_token_hashes(
@@ -330,6 +334,8 @@ def main() -> None:
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--ordering", choices=("fifo", "reverse"), default="fifo")
     parser.add_argument("--reference-padding", choices=("native", "cohort"), default="cohort")
+    parser.add_argument("--homogeneous-prompts", action="store_true")
+    parser.add_argument("--diagnostic-fp32", action="store_true")
     parser.add_argument("--atol", type=float, default=0.05)
     parser.add_argument("--rtol", type=float, default=0.02)
     args = parser.parse_args()
