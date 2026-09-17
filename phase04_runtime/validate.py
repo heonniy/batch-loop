@@ -63,14 +63,15 @@ def _capture(store: dict, token_idx: int):
 
 @torch.inference_mode()
 def _reference(model_key: str, model, tokenizer, prompts: list[str], tokens: int,
-               threshold: float, seed: int) -> tuple[dict, list[list[int]], list]:
+               threshold: float, seed: int, cohort_width: int | None) -> tuple[dict, list[list[int]], list]:
     records = {}
     input_tokens = [[0] * len(prompts) for _ in range(tokens)]
     adapters = []
     for request_id, prompt in enumerate(prompts):
         adapter = _adapter(model_key, model, tokenizer, [request_id], seed, "profile")
-        encoded = tokenizer([prompt], return_tensors="pt", padding=True,
-                            truncation=True, max_length=64)
+        encoded = tokenizer([prompt], return_tensors="pt",
+                            padding="max_length" if cohort_width is not None else True,
+                            truncation=True, max_length=cohort_width or 64)
         current = adapter.prefill(encoded["input_ids"].cuda(),
                                   encoded["attention_mask"].cuda().bool())
         adapters.append((adapter, current))
@@ -258,12 +259,15 @@ def validate(args: argparse.Namespace) -> dict:
               "h0_policy": "request-keyed truncated normal" if args.model == "huginn" else "not applicable",
               "test_time_noise": getattr(model.config, "test_time_noise", None),
               "prompt_source": "distinct synthetic mixed-length correctness probes",
-              "prompt_cap": 64, "effective_input_hashes": effective_token_hashes(
+              "prompt_cap": 64, "reference_padding": args.reference_padding,
+              "cohort_tokenized_width": int(encoded["input_ids"].shape[1]),
+              "effective_input_hashes": effective_token_hashes(
                   encoded["input_ids"], encoded["attention_mask"]),
               "fixed_horizon": args.num_tokens, "EOS_handling": "not applied in correctness probe"}
     (args.output_dir / "policy_manifest.json").write_text(json.dumps(policy, indent=2) + "\n")
     reference, known_tokens, reference_adapters = _reference(
-        args.model, model, tokenizer, prompts, args.num_tokens, args.threshold, args.seed)
+        args.model, model, tokenizer, prompts, args.num_tokens, args.threshold, args.seed,
+        int(encoded["input_ids"].shape[1]) if args.reference_padding == "cohort" else None)
     compact, compact_adapter = _compact(
         args.model, model, tokenizer, prompts, known_tokens, args.threshold, args.seed,
         args.batch_size, args.ordering)
@@ -272,6 +276,7 @@ def validate(args: argparse.Namespace) -> dict:
     comparison.update({"execution_kind": "real-no-refill-runtime-correctness",
                        "model": args.model, "num_rows": args.num_rows, "batch_size": args.batch_size,
                        "num_tokens": args.num_tokens, "ordering": args.ordering,
+                       "reference_padding": args.reference_padding,
                        "input_policy": "B1-generated token IDs teacher-forced into live compact gate",
                        "depth_policy": "live threshold; never forced",
                        "atol": args.atol, "rtol": args.rtol,
@@ -285,9 +290,9 @@ def validate(args: argparse.Namespace) -> dict:
         "model": args.model, "seed": args.seed,
         "reference_state_hashes": {f"{rid}:{pos}": digest
                                    for adapter, _ in reference_adapters
-                                   for (rid, pos), digest in adapter.state_hashes.items()},
+                                   for (rid, pos), digest in getattr(adapter, "state_hashes", {}).items()},
         "compact_state_hashes": {f"{rid}:{pos}": digest
-                                 for (rid, pos), digest in compact_adapter.state_hashes.items()},
+                                 for (rid, pos), digest in getattr(compact_adapter, "state_hashes", {}).items()},
         "mismatches": comparison["h0_mismatches"],
     }, indent=2) + "\n")
     print(json.dumps({"status": comparison["status"], "model": args.model,
@@ -310,6 +315,7 @@ def main() -> None:
     parser.add_argument("--threshold", type=float)
     parser.add_argument("--seed", type=int, default=1)
     parser.add_argument("--ordering", choices=("fifo", "reverse"), default="fifo")
+    parser.add_argument("--reference-padding", choices=("native", "cohort"), default="cohort")
     parser.add_argument("--atol", type=float, default=0.05)
     parser.add_argument("--rtol", type=float, default=0.02)
     args = parser.parse_args()
