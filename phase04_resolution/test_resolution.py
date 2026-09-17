@@ -8,10 +8,21 @@ import torch
 
 from phase04_resolution.batch_shape_matrix import _selected
 from phase04_resolution.counterexamples import _mismatch_map
+from phase04_resolution.fresh_validation import _fresh_prompts, _margin_bin, _orders
 from phase04_resolution.trace_prefill import _diff
 
 
 class ResolutionTests(unittest.TestCase):
+    def test_fresh_validation_cohort_and_predeclared_bins(self):
+        prompts = _fresh_prompts()
+        self.assertEqual(len(prompts), 32)
+        self.assertEqual(len(set(prompts)), 32)
+        self.assertTrue(prompts[0].startswith("Validation request 1000:"))
+        self.assertEqual(_margin_bin(0.001), "[0.001,0.005)")
+        self.assertEqual(_margin_bin(0.005), "[0.005,0.02)")
+        for order in _orders().values():
+            self.assertEqual(sorted(order), list(range(32)))
+
     def test_fixed_fillers_change_only_target_position_and_order(self):
         fillers = [1, 2, 3, 4, 5, 6, 7]
         first = _selected(22, fillers, 4, 0, False)
