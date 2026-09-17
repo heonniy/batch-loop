@@ -76,6 +76,7 @@ def run_interval(
     trajectory_kind: str | None = None,
     instrumentation: str = "profile",
     debug_hook: Callable[[int, torch.Tensor, torch.Tensor, SurvivorAdapter], None] | None = None,
+    debug_pre_hook: Callable[[int, torch.Tensor, torch.Tensor, SurvivorAdapter], None] | None = None,
 ) -> IntervalResult:
     """Execute one recurrent token interval with a genuinely shrinking tensor.
 
@@ -124,6 +125,8 @@ def run_interval(
         assert active_state.shape[0] == local.numel()
         adapter.backend.set_active(active_rows)
         before = active_state
+        if debug_pre_hook is not None:
+            debug_pre_hook(recurrence, active_requests, before, adapter)
         after, core_ms, core_wall_ms = timed(
             device, lambda: adapter.recurrent_step(before, active_embedded, recurrence),
             instrumentation=instrumentation,

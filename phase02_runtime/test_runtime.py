@@ -66,15 +66,20 @@ class SurvivorTests(unittest.TestCase):
     def test_forced_compaction_and_scatter(self):
         adapter = _FakeAdapter()
         state = torch.zeros((4, 1, 2))
+        entered = []
         result = run_interval(
             adapter, state, state, torch.tensor([3, 1, 0, 2]),
             torch.tensor([10, 11, 12, 13]), exit_source="trace",
             forced_depths=torch.tensor([1, 2, 4, 2]),
+            debug_pre_hook=lambda depth, requests, before, _: entered.append(
+                (depth, requests.tolist(), before.shape[0])),
         )
         self.assertEqual([x["active_batch_size"] for x in result.events], [4, 3, 1, 1])
         self.assertEqual(adapter.backend.active_history, [[3, 1, 0, 2], [1, 0, 2], [0], [0]])
         self.assertEqual(result.final_state[:, 0, 0].tolist(), [1, 2, 4, 2])
         self.assertEqual(result.exit_depths.tolist(), [1, 2, 4, 2])
+        self.assertEqual(entered, [(1, [10, 11, 12, 13], 4),
+                                   (2, [11, 12, 13], 3), (3, [12], 1), (4, [12], 1)])
 
     def test_ouro_last_exited_fills_only_own_rows(self):
         backend = OuroLastExitedKV(4, torch.device("cpu"), num_layers=2, rmax=4)
