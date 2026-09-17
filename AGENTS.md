@@ -1,143 +1,79 @@
 # AGENTS.md
 
-## Current priority — practical recurrent-depth predictor tournament (2026-09-16)
+## Current priority — Phase 04: implementation validation, depth patterns, prior + hidden predictors (2026-09-17)
 
 Read in order:
-1. `phase03/PREDICTOR_TOURNAMENT_PLAN.md` — canonical Phase-3 predictor/search contract.
-2. `phase02/oracle_upper_bound_results_20260916/RESULT_REVIEW.md` — physical FIFO/Oracle ceilings that the predictor must recover.
-3. `phase02/ORACLE_UPPER_BOUND_PLAN.md` — RIC definition and Oracle methodology.
-4. `phase02/PHYSICAL_EARLY_EXIT_IMPLEMENTATION.md` — survivor runtime/KV contract.
-5. `phase01/EXPERIMENT_REVIEW_PROTOCOL.md` — provenance/result-review rules.
+1. `phase04/IMPLEMENTATION_AUDIT.md` — reviewed implementation findings and evidence limits.
+2. `phase04/DEPTH_PATTERN_PREDICTOR_PLAN.md` — canonical validation, data-analysis, predictor and timing contract.
+3. `phase04/AGENT_TASK.md` — bounded executor handoff.
+4. `phase01/EXPERIMENT_REVIEW_PROTOCOL.md` — provenance, result publication and five-axis review.
+5. Prior Phase-2/3 reviews for historical evidence only.
 
-### Research target
+This priority supersedes the earlier Phase-3 instruction to choose candidates using test RIC. Select on validation, freeze choices, then confirm on a fresh test cohort. The earlier selection instruction was itself flawed; do not blame only the executor or silently rewrite historical outcomes.
 
-The physical Oracle opportunity is now established. Move to a bounded practical-predictor study.
+### Research question
 
-The task is **not** primarily to predict the exact integer recurrence depth. The task is to produce a causal pre-recurrence difficulty score that makes the recurrent microbatch ordering approximate the perfect-current-depth Oracle and minimizes the resulting microbatch maximum depths / RIC.
+Can information available BEFORE the current token's recurrence — offline token/policy depth priors, previous exit hidden, current token embedding, causal history and Huginn Prelude/initial state — support better depth-compatible microbatch formation in offline no-refill Looped-LM inference?
 
-Run the full lightweight candidate tournament in `phase03/PREDICTOR_TOURNAMENT_PLAN.md`; do not stop after the first positive method. Identify the best measured predictor for each model family and then confirm the top methods in the physical survivor runtime.
+First establish implementation correctness and measurement integrity, then determine which features explain useful depth differences, then train and confirm practical predictors. The old lightweight tournament is not a proven pre-loop predictability ceiling.
 
-### GPU ownership
+### Scope locks
 
-Use exactly these physical GPUs for Phase 3 model execution:
+- Strict no-refill. At the token boundary, choose the microbatch membership; after it starts, remove exited rows only. No new rows or cross-microbatch survivor merging during that interval.
+- No after-r1/r2 regrouping or prediction-free repacking pivot.
+- Predictor determines grouping, never the actual exit decision.
+- Ouro-1.4B: last-exited depth-indexed KV; Huginn-3.5B: shared physical-layer KV.
+- Freeze model weights, checkpoint, KV/exit/init policy and thresholds within comparisons.
+- Previous hidden is a predictor feature, not a warm-start change to model recurrence.
+- Defer independent Prelude/Core/Coda batch-size optimization, mixed prefill/decode and dynamic initial B until predictor validation.
+- No task-quality, GSM8K, perplexity or native/full-depth quality comparison. Same-policy state/KV/logit/gate correctness checks remain mandatory.
 
-- **GPU 7 — Huginn-3.5B only**
-- **GPU 8 — Ouro-1.4B only**
+### Gate A comes before expensive collection
 
-Do not use GPU 0–6 for Phase 3. Every GPU runner must fail closed unless exactly the assigned physical GPU is visible and must log physical index, UUID, CUDA_VISIBLE_DEVICES mapping, source SHA, model revision, and run arguments.
+Address the audit's reproducibility, live-versus-replayed exit, timing instrumentation and selection issues. In particular:
+- match realized per-request/token Huginn stochastic states across collector, reference and batched runtime; a seed alone is insufficient;
+- compare physical compaction with an independent reference under the SAME chosen semantics;
+- separate bounded debug/profile instrumentation from scored benchmark execution;
+- verify effective tokenized-input split disjointness and every consumed artifact;
+- re-establish clean FIFO/Oracle timing under the corrected runtime.
 
-If GPU 8 is unavailable or not the expected accelerator, stop that lane and record the failure instead of silently moving to another GPU.
+Do not announce that existing GPU forced-depth tests certify live adaptive behavior. Record unexecuted/blocked checks honestly. A source-inspection concern is not automatically a reproduced model bug.
 
-### Strong reference regimes
+### GPU ownership and existing work
 
-Start from the validated large-pool Oracle regimes, not the old N32 smoke.
+No GPU launch is performed by this planning commit. Before any new model execution, require an explicit authorized model-to-physical-GPU/UUID mapping in the executor's current task or launch manifest.
 
-Huginn primary:
+Historical instructions conflict: the previous AGENTS specified GPU7=Huginn, GPU8=Ouro; Phase-3 source hard-codes GPU7=Huginn, GPU6=Ouro and claims an override. Do not infer permission from that code, invent a correction, or silently fallback to GPU6/GPU8. If authorization or hardware identity is unresolved, stop GPU execution for that lane and continue CPU/source work. Use only the authorized devices, validate CUDA_VISIBLE_DEVICES versus physical identity, and leave all existing jobs untouched. No background soak or indefinite run is authorized.
 
-```text
-threshold = 0.12
-N = 256
-B = 32
-shared physical-layer KV
-```
+### Data and selection
 
-Physical Phase-2 reference: FIFO→Oracle recurrent calls 2995→2377 and prefill-excluded decode wall 24.30→20.37 s (16.2% reduction) for the selected 32-token run.
+Use new versioned result roots. Split by request/conversation/document family and hash actual model-input tokens after templating/truncation, not only raw prompt text. No current/future exit information enters practical predictor features. Canonical IDs are bookkeeping, not predictive features.
 
-Ouro primary:
+The detailed plan starts with a train256/validation128 pilot and bounded expansion to offline priors, raw-hidden probes and prior-plus-context residual prediction. Primary policies remain Huginn threshold0.12/Rmax16/shared and Ouro q0.2/Rmax4/last-exited, with fixed secondary policies and fresh ShareGPT transfer. Never tune thresholds/test cohorts to manufacture recovery.
 
-```text
-q = 0.2 and/or 0.4
-N = 256
-B = 32
-last-exited depth-indexed KV
-```
+Validation chooses models, hyperparameters, calibration/grouping settings and physical finalists. Freeze choices before opening new confirmation requests. Existing Phase-3 test results are exploratory selection evidence, not untouched confirmation for new methods.
 
-For Phase 3, collect self-consistent predictor features/labels under the same prompt/runtime contract. Do not train on mismatched uncapped depth labels and capped prompt features without explicitly labeling that as an exploratory ablation.
+### Metrics and fairness
 
-### Ten-candidate tournament
+Use fixed-B FIFO/Predictor/Oracle comparisons on identical eligible cohorts. RIC is a structural diagnostic, not latency. For equal fixed W and B, logical idle slots = B*RIC-W. N=B and B=1 have no composition RIC opportunity.
 
-The canonical candidate definitions are in `phase03/PREDICTOR_TOURNAMENT_PLAN.md`:
+Report:
+- RIC reduction and Oracle RIC recovery;
+- actual executed token-loop work and active tensor widths;
+- decode-only wall and throughput;
+- full-workload BCT only when prefill and all relevant scheduling are timed;
+- feature maintenance, predictor, ordering, KV and compaction overhead.
 
-- C0 previous depth;
-- C1 recent depth-history statistics;
-- C2 previous gate/convergence trajectory;
-- C3 current token uncertainty;
-- C4 current token embedding probe;
-- C5 representation probe (Huginn Prelude hidden; Ouro previous exit hidden + current embedding);
-- C6 fused-feature depth regression;
-- C7 ordinal depth distribution;
-- C8 weighted pairwise ranking;
-- C9 RIC-aware listwise ranking.
+Use the same Prelude staging for all Huginn strategies. Compare to an Oracle measured on the SAME corrected runtime and cohort, not a historical denominator. Label frozen-depth/input replay, live-exit verification and free generation separately. Recovery with a zero Oracle-FIFO denominator is NA. Preserve negative recovery and failed capacity points.
 
-Base LMs remain frozen.
+### EasyBalance inspiration
 
-### Causality / no leakage
+Borrow ready/deferred/RunSet selection of work BEFORE the recurrent interval. Do not import cross-layer execution, device load-balance formulas, or a no-overhead guarantee. Reordering already fixed microbatches alone cannot reduce their sum of maximum depths; a claimed gain needs a change in actual pre-interval composition or another explicitly measured mechanism.
 
-At token `t`, a practical predictor may use only data available before current recurrence begins. The true current depth and current recurrent/gate state are labels only and must never enter runtime features.
+### Execution and publication protocol
 
-Split datasets by **request**, not by token. No request may occur in both train and held-out test.
+Publish source commits before execution, then result and review commits separately. Preserve all Phase-1/2/3 sources and result roots. Use `phase04/results/<timestamp>_<source_sha>/` for new artifacts. Prefer subjects `phase04: audit ...`, `phase04: implement ...`, `phase04: collect ...`, `phase04: publish ...`, `phase04: review ...`.
 
-### Primary evaluation
+The executing agent must provide exact commands, source/model/config hashes, GPU identities, test PASS/FAIL/BLOCKED status, frozen splits and artifact hashes, all candidate outcomes, repeated physical timings and a five-axis review. Never fill unknown metadata from intended plan values.
 
-The trace-side primary metric is Oracle RIC recovery:
-
-```text
-RIC_recovery = (FIFO_RIC - PRED_RIC) / (FIFO_RIC - ORACLE_RIC)
-```
-
-The final physical metric is Oracle wall-time recovery including predictor/sort/staging overhead:
-
-```text
-wall_recovery = (T_FIFO - T_PRED) / (T_FIFO - T_ORACLE)
-```
-
-Depth MAE, exact accuracy, Spearman, and Kendall tau are diagnostics only. A predictor with worse MAE may still be better if it creates lower-RIC microbatches.
-
-### Huginn Prelude staging fairness
-
-Prelude-hidden candidates require Prelude to run before recurrent grouping. Therefore physical Huginn comparisons must include a **STAGED_FIFO** control using the exact same Prelude staging/cache path but no predictor reordering. Compare Predictor and Oracle against that control; do not attribute a Prelude-runtime restructuring gain to the predictor.
-
-### Search and selection protocol
-
-1. Collect/freeze causal features and true-depth labels once on GPU7/GPU8.
-2. Train/evaluate all ten candidates on the same request split.
-3. Rank by held-out test RIC recovery, preserving all negative methods.
-4. Take the top three distinct candidates into physical timing.
-5. Use >=2 warmups and >=5 measured repeats per final strategy where feasible.
-6. Include predictor inference/sort overhead in wall time.
-7. Declare the final winner by held-out **physical wall-time recovery**, with trace RIC recovery as explanatory support.
-
-Always identify the best measured candidate even if all candidates are weak, but never manufacture a positive result by changing splits/thresholds after looking at test outcomes.
-
-### Runtime/KV contracts remain unchanged
-
-- Pure no-refill.
-- Ouro: physical survivor compaction + last-exited depth-indexed KV.
-- Huginn: physical survivor compaction + shared physical-layer KV.
-- Stable logical request↔KV-row identities while active tensors shrink.
-- Huginn head-dim-96/padding systems checks must remain valid.
-
-### Scope boundary
-
-Continue to exclude native/full-depth quality comparison, GSM8K/perplexity, refill, and base-LM fine-tuning. This phase studies scheduling prediction and systems recovery of the measured Oracle bound.
-
-### Required result packet
-
-Publish under a new Phase-3 result root:
-
-- frozen feature/split manifest;
-- all-ten-method `predictor_tournament.csv`;
-- validation/test metrics;
-- top-candidate configs/checkpoints;
-- physical FIFO/Predictor/Oracle matrix;
-- raw manifests/repeat summaries;
-- `RESULT_REVIEW.md`;
-- `review_manifest.json`.
-
-The review must answer: **Which predictor wins on Huginn? Which wins on Ouro? How much Oracle RIC and physical wall-time opportunity does each recover, after overhead?**
-
-### Evidence discipline
-
-Do not call trace-only RIC recovery a speedup. Do not call training/validation performance a held-out result. Do not omit negative candidates or failed runs. Do not invent GPU runs, predictor gains, or unavailable measurements.
-
-Preferred subjects: `phase03: collect ...`, `phase03: implement predictors ...`, `phase03: run tournament ...`, `phase03: publish predictor ...`, `phase03: review predictor ...`.
+A completed bounded study must identify the best measured candidate, even if weak, without guaranteeing a positive result or changing the problem after viewing confirmation data.
