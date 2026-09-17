@@ -155,9 +155,12 @@ def _compact(model_key: str, model, tokenizer, prompts: list[str], input_tokens:
             "prefill_logits": prefill_logits}, adapter
 
 
-def _kv_compare(reference_adapters: list, compact_adapter, atol: float, rtol: float) -> tuple[float, list]:
+def _kv_compare(reference_adapters: list, compact_adapter, atol: float, rtol: float
+                ) -> tuple[float, float, int, list]:
     mismatches = []
     maximum = 0.0
+    maximum_relative_l2 = 0.0
+    structural_mismatches = 0
     for request_id, (reference, _) in enumerate(reference_adapters):
         for slot, ref_pair in reference.backend.history.items():
             bat_pair = compact_adapter.backend.history[slot]
@@ -167,43 +170,62 @@ def _kv_compare(reference_adapters: list, compact_adapter, atol: float, rtol: fl
                 ref_seq = ref[0, :, :len(ref_valid), :][:, ref_valid, :].float()
                 bat_seq = bat[request_id, :, :len(bat_valid), :][:, bat_valid, :].float()
                 if ref_seq.shape != bat_seq.shape:
+                    structural_mismatches += 1
                     mismatches.append({"request_id": request_id, "slot": str(slot),
                                        "kind": kind, "reason": "shape mismatch"})
                     continue
                 error = (ref_seq - bat_seq).abs()
                 maximum = max(maximum, float(error.max()))
+                maximum_relative_l2 = max(maximum_relative_l2,
+                                          float(torch.linalg.vector_norm(error) /
+                                                torch.linalg.vector_norm(ref_seq).clamp_min(1e-12)))
                 if not torch.allclose(ref_seq, bat_seq, atol=atol, rtol=rtol) and len(mismatches) < 20:
                     mismatches.append({"request_id": request_id, "slot": str(slot),
                                        "kind": kind, "max_abs_error": float(error.max())})
-    return maximum, mismatches
+    return maximum, maximum_relative_l2, structural_mismatches, mismatches
 
 
 def _compare(reference: dict, compact: dict, reference_adapters: list, compact_adapter,
              atol: float, rtol: float) -> dict:
     mismatches = []
     max_hidden = max_logits = max_gate = 0.0
+    max_hidden_relative_l2 = max_logit_relative_l2 = max_prefill_relative_l2 = 0.0
+    depth_disagreements = token_disagreements = 0
+    min_abs_gate_margin = float("inf")
     prefill_errors = {}
     for request_id, old in reference["prefill_logits"].items():
         new = compact["prefill_logits"][request_id]
         error = (old - new).abs()
         prefill_errors[request_id] = float(error.max())
+        max_prefill_relative_l2 = max(max_prefill_relative_l2,
+                                      float(torch.linalg.vector_norm(error) /
+                                            torch.linalg.vector_norm(old).clamp_min(1e-12)))
         if not torch.allclose(old, new, atol=atol, rtol=rtol) and len(mismatches) < 100:
             mismatches.append({"request_id": request_id, "field": "prefill_logits",
                                "max_abs_error": float(error.max())})
     for key, expected in reference["records"].items():
         actual = compact["records"][key]
         for field in ("depth", "next_token"):
+            if actual[field] != expected[field]:
+                if field == "depth":
+                    depth_disagreements += 1
+                else:
+                    token_disagreements += 1
             if actual[field] != expected[field] and len(mismatches) < 100:
                 mismatches.append({"token_idx": key[0], "request_id": key[1],
                                    "field": field, "reference": expected[field], "compact": actual[field],
                                    "reference_exit_margin": expected["margins"][-1]})
         logits_error = (actual["logits"] - expected["logits"]).abs()
         max_logits = max(max_logits, float(logits_error.max()))
+        max_logit_relative_l2 = max(max_logit_relative_l2,
+                                    float(torch.linalg.vector_norm(logits_error) /
+                                          torch.linalg.vector_norm(expected["logits"]).clamp_min(1e-12)))
         if not torch.allclose(actual["logits"], expected["logits"], atol=atol, rtol=rtol) and len(mismatches) < 100:
             mismatches.append({"token_idx": key[0], "request_id": key[1],
                                "field": "logits", "max_abs_error": float(logits_error.max())})
         for depth, (old, new) in enumerate(zip(expected["scores"], actual["scores"]), 1):
             max_gate = max(max_gate, abs(old - new))
+            min_abs_gate_margin = min(min_abs_gate_margin, abs(expected["margins"][depth - 1]))
             if abs(old - new) > atol + rtol * abs(old) and len(mismatches) < 100:
                 mismatches.append({"token_idx": key[0], "request_id": key[1],
                                    "field": "gate_score", "recurrence": depth,
@@ -217,6 +239,9 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
             continue
         error = (old - new).abs()
         max_hidden = max(max_hidden, float(error.max()))
+        max_hidden_relative_l2 = max(max_hidden_relative_l2,
+                                     float(torch.linalg.vector_norm(error) /
+                                           torch.linalg.vector_norm(old).clamp_min(1e-12)))
         if not torch.allclose(old, new, atol=atol, rtol=rtol) and len(mismatches) < 100:
             mismatches.append({"token_idx": key[0], "request_id": key[1],
                                "field": "hidden", "recurrence": key[2],
@@ -227,12 +252,21 @@ def _compare(reference: dict, compact: dict, reference_adapters: list, compact_a
             for (_, position), digest in adapter.state_hashes.items():
                 if compact_adapter.state_hashes.get((request_id, position)) != digest:
                     h0_mismatches.append({"request_id": request_id, "position": position})
-    kv_max, kv_mismatches = _kv_compare(reference_adapters, compact_adapter, atol, rtol)
+    kv_max, kv_relative_l2, kv_structural, kv_mismatches = _kv_compare(
+        reference_adapters, compact_adapter, atol, rtol)
     return {"status": "PASS" if not mismatches and not h0_mismatches and not kv_mismatches else "FAIL",
             "mismatch_count": len(mismatches), "first_mismatches": mismatches[:30],
             "h0_mismatches": h0_mismatches[:30], "kv_mismatches": kv_mismatches,
             "max_hidden_abs_error": max_hidden, "max_logit_abs_error": max_logits,
             "max_prefill_logit_abs_error_by_request": prefill_errors,
+            "max_hidden_relative_l2": max_hidden_relative_l2,
+            "max_logit_relative_l2": max_logit_relative_l2,
+            "max_prefill_logit_relative_l2": max_prefill_relative_l2,
+            "max_kv_relative_l2": kv_relative_l2,
+            "kv_structural_mismatch_count": kv_structural,
+            "depth_disagreements": depth_disagreements,
+            "next_token_disagreements": token_disagreements,
+            "min_absolute_reference_gate_margin": min_abs_gate_margin,
             "max_gate_abs_error": max_gate, "max_kv_abs_error": kv_max,
             "active_widths": {f"{token},{first}": values for (token, first), values in compact["widths"].items()}}
 
