@@ -1,0 +1,93 @@
+{
+  "result_commit": "8708596067f72c5b3b8f016a5eaf384c614de6c4",
+  "source_commit": "50910e645c4acf0a9d1c9ca232ca1b8fb81352fe",
+  "source_commits_for_bounded_runs": [
+    "6bf07afa0d8eb8f76a91c983f405a6b4a04cd2c1",
+    "8e6ce7b9ff33b1699d43acceccd49876f8526ba1",
+    "682a9e7f409a12765832f81e35c4c248684b07bc",
+    "b337ed38cd8893b491eb39202aa24414be6434c5",
+    "f935b5afd60febaf69561c0fb4c1ae6ed537506f",
+    "292eedb60727a5530447dc6f4dccc1fe37f776c1",
+    "7e8c7a16695d6c578f7d12e0af56d3a2642e1153",
+    "50910e645c4acf0a9d1c9ca232ca1b8fb81352fe"
+  ],
+  "plan_or_priority": {
+    "commit": "c635f75c7bf22ffe460ebfd84df59552e98b730e",
+    "files": [
+      "AGENTS.md",
+      "phase04/BF16_DIVERGENCE_RESOLUTION_PLAN.md",
+      "phase04/BF16_DIVERGENCE_AGENT_TASK.md",
+      "phase04/BF16_NUMERICAL_VALIDATION_PROTOCOL_20260917.md",
+      "phase04/GATE_A_PARITY_RULE.md",
+      "phase01/EXPERIMENT_REVIEW_PROTOCOL.md"
+    ]
+  },
+  "execution_kind": "real-no-refill-runtime correctness/operator diagnostics plus saved-data analysis; no scored physical wall-time benchmark",
+  "hardware": [
+    {"physical_gpu": 2, "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e", "model": "Ouro-1.4B", "role": "authorized primary"},
+    {"physical_gpu": 7, "uuid": "GPU-4cc26b88-19fc-1988-f9e0-17858aa7a99b", "model": "Huginn-3.5B", "role": "authorized primary"}
+  ],
+  "exact_command_or_receipt": {
+    "Ouro_frozen_packet": "CUDA_VISIBLE_DEVICES=2 .venv/bin/python -m phase04_resolution.counterexamples --model ouro --role ouro_primary --output-dir phase04/results/20260917T055047Z_8e6ce7b_bf16_resolution/ouro_counterexamples",
+    "Huginn_frozen_packet": "CUDA_VISIBLE_DEVICES=7 .venv/bin/python -m phase04_resolution.counterexamples --model huginn --role huginn_primary --output-dir phase04/results/20260917T055047Z_8e6ce7b_bf16_resolution/huginn_counterexamples",
+    "Ouro_first_operator": "../20260917T055047Z_8e6ce7b_bf16_resolution/ouro_prefill_bf16_N32/per_layer_receipt.json",
+    "Huginn_first_operator": "../20260917T055813Z_b337ed3_bf16_resolution/huginn_sdpa_bf16_r7_t0/attention_operator_receipt.json",
+    "frozen_history_matrices": "../20260917T060412Z_7e8c7a1_bf16_resolution/*/matrix_manifest.json and batch_shape_matrix.csv",
+    "fresh_Ouro": "../20260917T060824Z_50910e6_bf16_resolution/ouro_fresh_validation/validation_manifest.json#argv",
+    "fresh_Huginn": "../20260917T060824Z_50910e6_bf16_resolution/huginn_fresh_validation/validation_manifest.json#argv"
+  },
+  "model_revisions": {
+    "Ouro-1.4B": "37bc7e8ff85a90d813dc096383405f521b6a67b0",
+    "Huginn-3.5B": "bb6621b65e90b6a4b9b29ef88dc83866d450470c"
+  },
+  "imported_model_source_sha256": {
+    "Ouro-1.4B": "59e7523e9fe23f75bde78bb914d1a4d24f3997ae02bca510bbaef947356c447b",
+    "Huginn-3.5B": "a1d447da93c605a6dc11fbc17cbc7185663f4a41ae12335b34b5847edf0f84aa"
+  },
+  "dataset_revision": "synthetic deterministic Validation request 1000..1031 cohort at source 50910e6; 32/32 unique effective inputs, disjoint from the old 32-request Gate-A inputs; exact hashes in each validation_manifest.json; no predictor dataset",
+  "thresholds": {"Ouro-1.4B": 0.2, "Huginn-3.5B": 0.12},
+  "batch_sizes": {"frozen_history_matrix": [1, 2, 4, 8], "fresh_validation": [1, 2, 4, 8], "original_prefill": [1, 32]},
+  "measurement_status": {
+    "status": "VALID_FOR_BOUNDED_CAUSE_AND_LIVE_WORK; INSUFFICIENT_FOR_SPEED",
+    "evidence": "Saved decision and input-hash replay; fresh N32 x T8 per model, 256 positions per legal B/ordering condition, 9 repeated-composition conditions/model; actual live work/RIC and per-token margins retained",
+    "known_missing_fields": ["independent non-synthetic corpus", "scored wall-time repeats", "full-workload BCT", "new predictor data", "fresh R5 confirmation"]
+  },
+  "implementation_status": {
+    "status": "BRANCH_B_NUMERICAL_MECHANISM_SUPPORTED_FOR_SELECTED_FIRST_DIFFERENCES; ORIGINAL_BF16_GATE_A_FAIL",
+    "evidence": "Ouro equal-input BF16 q_proj output difference reproduced in isolated Linear; Huginn equal Q/K/V/mask SDPA MATH output difference reproduced in isolated current backend; selected h0, KV merge, duplicate target and order/position invariants checked",
+    "known_missing_fields": ["all configuration/row paths certified", "approved replacement semantic contract", "fresh R5 Gate-A outcome"]
+  },
+  "simulator_status": {
+    "status": "TRACE_SIM_ONLY_FOR_FROZEN_B1_DEPTH_RIC",
+    "fairness_subset_checks": "Each fresh ordering uses the same 32 request IDs at every one of 8 boundaries; actual live RIC/work separately recorded; frozen-depth RIC is not an equal-work live Oracle"
+  },
+  "comparison_status": {
+    "status": "COMPARABLE_FOR_SAME_INPUT_LIVE_GATE; NOT_EQUAL_WORK_FOR_SPEED",
+    "baselines": ["independent B1 live reference", "B2/B4/B8 physical survivor-only live execution", "separate FP32 operator/matrix controls"],
+    "denominator_checks": "256 request-token positions per model/condition; orderings reuse the same cohort, not independent samples; same checkpoint/threshold/KV/input tokens within BF16 model comparisons"
+  },
+  "hypothesis_status": {
+    "status": "BATCH_SHAPE_NUMERICAL_DEPENDENCE_SUPPORTED_IN_SCOPE; PREDICTOR_NOT_TESTED",
+    "effect_sizes": "Ouro depth flips 2-3/256 per fresh condition, live work 637-639 versus B1 636; Huginn depth flips 2-7/256, live work 2114-2118 versus B1 2118; next-token flips also nonzero",
+    "counterevidence": "One unique Ouro depth flip outside predeclared 0.005 exit-margin bin; no observed implementation row/KV bug in selected checks; exact universal cause beyond these paths is not claimed"
+  },
+  "artifacts": [
+    {"path": "../20260917T055047Z_8e6ce7b_bf16_resolution/ouro_counterexamples/COUNTEREXAMPLE_MANIFEST.json", "sha256": "ab5050f86b00b390f96831ff9ada70e570d98ae9a90cb65ca175a3ca29b41b68"},
+    {"path": "../20260917T055047Z_8e6ce7b_bf16_resolution/huginn_counterexamples/COUNTEREXAMPLE_MANIFEST.json", "sha256": "a876da44bc328d4c62e3e96abb54aa3337163d23f8b64e3fe658b5257eeb957c"},
+    {"path": "../20260917T055047Z_8e6ce7b_bf16_resolution/ouro_prefill_bf16_N32/per_layer_receipt.json", "sha256": "cf9eaba5275abedc6744692c40c44ad13775747e45e75b13343ea2a91086c925"},
+    {"path": "../20260917T055047Z_8e6ce7b_bf16_resolution/huginn_prefill_bf16_N32_full/per_layer_receipt.json", "sha256": "0bd75795a9124e4aa7d7f8bd49a5061428a110c345aecc184162025db604431f"},
+    {"path": "../20260917T055507Z_682a9e7_bf16_resolution/huginn_decode_bf16_r7_t0/per_layer_receipt.json", "sha256": "ac58feac39638dbf18db7a3d897acf2b296551372e1b4eb889390c580b123a73"},
+    {"path": "../20260917T055813Z_b337ed3_bf16_resolution/huginn_sdpa_bf16_r7_t0/attention_operator_receipt.json", "sha256": "bb64cbf77d530f969a5fc00f5c54aa5334bf8ad812d280bad3c000a1a47f1b6f"},
+    {"path": "../20260917T060412Z_7e8c7a1_bf16_resolution/ouro_matrix_bf16_r22_t6/matrix_manifest.json", "sha256": "c01db540b937779e52c151c631af75ea12ba382fcf4af6c2d1eaeba1767c1ff7"},
+    {"path": "../20260917T060412Z_7e8c7a1_bf16_resolution/huginn_matrix_bf16_r7_t0/matrix_manifest.json", "sha256": "056adcb70aba3e1af22c08eee129c7851331aabb3923c1fed5ddfb7972d1a1fe"},
+    {"path": "ouro_fresh_validation/validation_manifest.json", "sha256": "df62ae6e2be03a5acc0631d7ca70f84314d866185c1d03d5acc4d85a37e65d59"},
+    {"path": "huginn_fresh_validation/validation_manifest.json", "sha256": "2e3d0aec6c42750118d716a597ccf9145f912878447f86e427ad65ab0aa35276"},
+    {"path": "../20260917T055047Z_8e6ce7b_bf16_resolution/ouro_prefill_bf16_N32/isolated_operator_inputs.pt"},
+    {"path": "../20260917T055813Z_b337ed3_bf16_resolution/huginn_sdpa_bf16_r7_t0/isolated_attention_inputs.pt"},
+    {"path": "CAUSE_REVIEW.md"},
+    {"path": "PROPOSED_B2_CONTRACT.md"},
+    {"path": "RESULT_REVIEW.md"}
+  ],
+  "next_action": "Obtain explicit research approval or amendment of the draft B2 contract; if approved, commit a prospective implementation release rule and evaluate a disjoint fresh N32/B8/T8 confirmation before reopening either predictor lane",
+  "predictor_and_speed_work": "BLOCKED"
+}
