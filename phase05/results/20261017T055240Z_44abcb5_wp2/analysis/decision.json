@@ -1,0 +1,269 @@
+{
+  "rule": "phase05/WP2_PREREGISTRATION.md",
+  "verdict": {
+    "huginn": {
+      "WP3": "GO",
+      "per_dataset": {
+        "alpaca": {
+          "oracle_present_B": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "best_causal_policy": "history_last"
+        },
+        "sharegpt": {
+          "oracle_present_B": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "best_causal_policy": "history_last"
+        }
+      }
+    },
+    "ouro": {
+      "WP3": "GO",
+      "per_dataset": {
+        "alpaca": {
+          "oracle_present_B": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "best_causal_policy": "history_mean"
+        },
+        "sharegpt": {
+          "oracle_present_B": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "best_causal_policy": "history_last"
+        }
+      }
+    }
+  },
+  "cells": [
+    {
+      "model": "huginn",
+      "dataset": "alpaca",
+      "B": 4,
+      "oracle_headroom": 0.10165993847285171,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.007549018433285037,
+      "history_recovery": 0.07425755461480044
+    },
+    {
+      "model": "huginn",
+      "dataset": "alpaca",
+      "B": 8,
+      "oracle_headroom": 0.13531812314706415,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.007824121849530075,
+      "history_recovery": 0.05782020669195061
+    },
+    {
+      "model": "huginn",
+      "dataset": "alpaca",
+      "B": 16,
+      "oracle_headroom": 0.14959801437560083,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.023235133240236294,
+      "history_recovery": 0.155317123273435
+    },
+    {
+      "model": "huginn",
+      "dataset": "alpaca",
+      "B": 32,
+      "oracle_headroom": 0.13877598940471458,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.017594843295018148,
+      "history_recovery": 0.12678593300247373
+    },
+    {
+      "model": "huginn",
+      "dataset": "alpaca",
+      "B": 64,
+      "oracle_headroom": 0.10610361735659002,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.015862507531351433,
+      "history_recovery": 0.14950015773770622
+    },
+    {
+      "model": "huginn",
+      "dataset": "sharegpt",
+      "B": 4,
+      "oracle_headroom": 0.10060903181116043,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.014177819637873235,
+      "history_recovery": 0.14091994906068173
+    },
+    {
+      "model": "huginn",
+      "dataset": "sharegpt",
+      "B": 8,
+      "oracle_headroom": 0.13566764847609714,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.012235514104331768,
+      "history_recovery": 0.09018741197159842
+    },
+    {
+      "model": "huginn",
+      "dataset": "sharegpt",
+      "B": 16,
+      "oracle_headroom": 0.14986170519270925,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.024154941725596513,
+      "history_recovery": 0.16118154864536832
+    },
+    {
+      "model": "huginn",
+      "dataset": "sharegpt",
+      "B": 32,
+      "oracle_headroom": 0.1379608429914967,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.018315419677132794,
+      "history_recovery": 0.1327581020816296
+    },
+    {
+      "model": "huginn",
+      "dataset": "sharegpt",
+      "B": 64,
+      "oracle_headroom": 0.11729207558929267,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.020175264837135054,
+      "history_recovery": 0.1720087630453426
+    },
+    {
+      "model": "ouro",
+      "dataset": "alpaca",
+      "B": 4,
+      "oracle_headroom": 0.2961837071626824,
+      "oracle_present": true,
+      "best_causal_policy": "history_mean",
+      "best_causal_headroom": 0.010355590188821373,
+      "history_recovery": 0.03496340257208491
+    },
+    {
+      "model": "ouro",
+      "dataset": "alpaca",
+      "B": 8,
+      "oracle_headroom": 0.34022490674065875,
+      "oracle_present": true,
+      "best_causal_policy": "history_mean",
+      "best_causal_headroom": 0.016217240103424513,
+      "history_recovery": 0.04766623425305642
+    },
+    {
+      "model": "ouro",
+      "dataset": "alpaca",
+      "B": 16,
+      "oracle_headroom": 0.3479959551901266,
+      "oracle_present": true,
+      "best_causal_policy": "history_mean",
+      "best_causal_headroom": 0.012514131467011413,
+      "history_recovery": 0.03596056586397492
+    },
+    {
+      "model": "ouro",
+      "dataset": "alpaca",
+      "B": 32,
+      "oracle_headroom": 0.31226499713034517,
+      "oracle_present": true,
+      "best_causal_policy": "history_mean",
+      "best_causal_headroom": -0.0010178765946795565,
+      "history_recovery": -0.003259656394516341
+    },
+    {
+      "model": "ouro",
+      "dataset": "alpaca",
+      "B": 64,
+      "oracle_headroom": 0.2475513441801901,
+      "oracle_present": true,
+      "best_causal_policy": "history_mean",
+      "best_causal_headroom": 0.0032771293204252316,
+      "history_recovery": 0.013238180270351684
+    },
+    {
+      "model": "ouro",
+      "dataset": "sharegpt",
+      "B": 4,
+      "oracle_headroom": 0.2697506854542232,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.02504469355494643,
+      "history_recovery": 0.09284385510559351
+    },
+    {
+      "model": "ouro",
+      "dataset": "sharegpt",
+      "B": 8,
+      "oracle_headroom": 0.3127296451957532,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.0259471314505465,
+      "history_recovery": 0.08296984903463465
+    },
+    {
+      "model": "ouro",
+      "dataset": "sharegpt",
+      "B": 16,
+      "oracle_headroom": 0.31955149463415244,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.02332367183852757,
+      "history_recovery": 0.07298877404792094
+    },
+    {
+      "model": "ouro",
+      "dataset": "sharegpt",
+      "B": 32,
+      "oracle_headroom": 0.2915944928561294,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": 0.014986649511352312,
+      "history_recovery": 0.051395516302657394
+    },
+    {
+      "model": "ouro",
+      "dataset": "sharegpt",
+      "B": 64,
+      "oracle_headroom": 0.19742472454834692,
+      "oracle_present": true,
+      "best_causal_policy": "history_last",
+      "best_causal_headroom": -0.0027015024054284353,
+      "history_recovery": -0.013683708621646678
+    }
+  ],
+  "b1_control_decode_wall_s": {
+    "ouro/alpaca": 872.6595588065684,
+    "huginn/alpaca": 945.8315207427368,
+    "ouro/sharegpt": 898.7799799134955,
+    "huginn/sharegpt": 934.0349318627268
+  },
+  "input_sha256": {
+    "lane_A_ouro_alpaca_gpu0/runs.csv": "25c8d2ebc8c0dd2bb64550d565a2bd454e49fc24bc14d22a2d0edd5b87d524b2",
+    "lane_A_ouro_alpaca_gpu0/b1_reference.csv.gz": "07cb326d5bb56052d7f3528778dc45d913319333a13681c3d64a70dbc310c10e",
+    "lane_B_huginn_alpaca_gpu1/runs.csv": "7c4bca8347a8515548b0c69447b0b980bfb97dd69c6a4edb710a6ef32a9aecad",
+    "lane_B_huginn_alpaca_gpu1/b1_reference.csv.gz": "b09ae2fa220db5568b3ff05140ac07cade5076bc85b0c474214e547cacbe0d96",
+    "lane_C_ouro_sharegpt_gpu2/runs.csv": "5c7a7b81337217a82f857280165f91514d8d612958fac5242a987b26d3df8b82",
+    "lane_C_ouro_sharegpt_gpu2/b1_reference.csv.gz": "900a960709b1e704c778f8560352bb599fd059b798aa14c1f0056adfee86bddd",
+    "lane_D_huginn_sharegpt_gpu3/runs.csv": "7ba6266c16894ad2c8c958880c9c93256c1fffa985fea730928ec904e462d729",
+    "lane_D_huginn_sharegpt_gpu3/b1_reference.csv.gz": "d861561dc79e1816d3f9050108294981d21aa379afc40735baf64f55ccf76a4e"
+  }
+}

@@ -1,8 +1,12 @@
 # AGENTS.md
 
-## Current priority — Phase 05 WP1 (2026-10-17)
+## Current priority — Phase 05 (2026-10-17)
 
-The user approved `PROPOSED_B2_CONTRACT.md` without amendment and authorized **WP1 only** on physical H100 GPUs 0-3 (`phase05/GPU_ASSIGNMENT_20261017.json`). The preregistered semantic Gate A is `phase05/WP1_PREREGISTRATION.md`. WP2/WP3, predictor work and speed/Oracle claims remain blocked pending a decision on the WP1 review. The Phase 04R notes below are historical context; their "no GPU" rule is superseded only for this WP1 scope.
+The user approved `PROPOSED_B2_CONTRACT.md` without amendment and authorized WP1 and then WP2 on physical H100 GPUs 0-3 (`phase05/GPU_ASSIGNMENT_20261017.json`).
+- WP1 (`phase05/WP1_PREREGISTRATION.md`): B2 semantic Gate A PASS 4/4 lanes — `phase05/results/20261017T052501Z_b82d7ed_wp1/RESULT_REVIEW.md`.
+- WP2 (`phase05/WP2_PREREGISTRATION.md`): oracle headroom 20-35% (Ouro) / 10-15% (Huginn), causal history policies <=2.6%; preregistered rule says WP3 GO — `phase05/results/20261017T055240Z_44abcb5_wp2/RESULT_REVIEW.md`.
+- **WP3 (predictor) is NOT started**: it needs an explicit user decision on its scope. The `wp3_*` request splits declared in WP2 must stay untouched until then.
+The Phase 04R notes below are historical context; their "no GPU" rule is superseded only for the authorized Phase 05 scopes.
 
 ## Current priority — Phase 04R: quantify BF16 depth-rank stability from existing traces (2026-09-17)
 
