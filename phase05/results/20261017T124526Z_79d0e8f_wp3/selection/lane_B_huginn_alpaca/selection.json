@@ -1,0 +1,24 @@
+{
+  "winner": "C8",
+  "winner_mean_validation_recovery": 0.2806098923899861,
+  "rule": "max mean frozen-label lockstep RIC recovery over B in {8,16,32,64} on wp3_validation; tie -> fewer params",
+  "test_arrays_opened": false,
+  "seed": 1,
+  "epochs_max": 20,
+  "source_sha": "79d0e8fd7449ea04e250b23f841f3f3fe11f7fc1",
+  "checkpoint_sha256": {
+    "C1_checkpoint.pt": "02f4bdf26ce008a9afb868e2d3cb893e8c5ca0b5c8739bf746c8d5025f1d192b",
+    "C2_checkpoint.pt": "b80fc6d081b880ce4da46104cbe65372d1919d9703ffe40fd72f7970846d1c5c",
+    "C3_checkpoint.pt": "0ed9536e4d678fa23ebf1eeb3a6151347277d4ba1fc0b396264b9d57adda1a2b",
+    "C4_checkpoint.pt": "5b9c4f07f09127d136ebcf101010cda0e6f43b8c6f78d0c99da8b21f5d932cc0",
+    "C5_checkpoint.pt": "0cd8346cab961200a342478225b3fadc34418e81757441f5a44c330f4ea4986e",
+    "C6_checkpoint.pt": "7fae955e398d1bbab66a4012ae792b5efa689f526173d3fca5a3298ddf307fa0",
+    "C7_checkpoint.pt": "feac2ca23ad2bb9b3119807782ad83ce6ea575e0e340651a3b9fb7897093fc12",
+    "C8_checkpoint.pt": "d90a69b962e77c4ef22e1b5d2f248ffc8434fdfbb7ec9c3e3e5f3c8148045005",
+    "C9_checkpoint.pt": "c0d1571c09b315799b566d191fdb2813c683a4b9e40a3380b10c8fc64f55355e"
+  },
+  "feature_manifest_sha256": {
+    "wp3_train": "eed222780ece89514e767c2fa1002f0e43033e13039ad2d7741cf0433865166e",
+    "wp3_validation": "ba8a1c10462bb9064187f10b37504e41b7df7e3ffacd2b61f4360f282c841294"
+  }
+}
