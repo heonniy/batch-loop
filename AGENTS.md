@@ -1,5 +1,9 @@
 # AGENTS.md
 
+## Current priority — Phase 05 WP1 (2026-10-17)
+
+The user approved `PROPOSED_B2_CONTRACT.md` without amendment and authorized **WP1 only** on physical H100 GPUs 0-3 (`phase05/GPU_ASSIGNMENT_20261017.json`). The preregistered semantic Gate A is `phase05/WP1_PREREGISTRATION.md`. WP2/WP3, predictor work and speed/Oracle claims remain blocked pending a decision on the WP1 review. The Phase 04R notes below are historical context; their "no GPU" rule is superseded only for this WP1 scope.
+
 ## Current priority — Phase 04R: quantify BF16 depth-rank stability from existing traces (2026-09-17)
 
 Read in order:
