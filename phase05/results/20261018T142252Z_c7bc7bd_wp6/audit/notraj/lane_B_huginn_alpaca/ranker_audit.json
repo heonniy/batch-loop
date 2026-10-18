@@ -1,0 +1,128 @@
+{
+  "execution_kind": "UNTIMED Gate-0 ranker audit",
+  "preregistration": "phase05/WP6_PREREGISTRATION.md",
+  "study": "transfer_notraj",
+  "source_sha": "c8fd0e0b3352e858e2cbd8098d02991cf164fcf5",
+  "argv": [
+    "/home/hwlee/batch-loop-worktrees/phase05_no_refill/phase05/wp6_runner.py",
+    "--model",
+    "huginn",
+    "--role",
+    "gpu1",
+    "--dataset",
+    "alpaca",
+    "--split",
+    "wp3_validation",
+    "--study",
+    "transfer_notraj",
+    "--feature-root",
+    "phase05/results/20261018T060712Z_fa5272d_wp5/features/lane_B_huginn_alpaca",
+    "--ranker",
+    "notraj=phase05/results/20261018T142252Z_c7bc7bd_wp6/ranker/notraj/lane_B_huginn_alpaca",
+    "--audit-ranker",
+    "notraj",
+    "--output-dir",
+    "phase05/results/20261018T142252Z_c7bc7bd_wp6/audit/notraj/lane_B_huginn_alpaca"
+  ],
+  "gpu": {
+    "role": "huginn_gpu1",
+    "lane": "gpu1",
+    "physical_index": 1,
+    "uuid": "GPU-a77f3471-67d4-20b0-9fab-e502d4de5adb",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "memory_used_at_start": "0 MiB",
+    "CUDA_VISIBLE_DEVICES": "1",
+    "assignment_sha256": "27e07a27fc5ba70a21d62707c2c6179affa98cc19ebca99f3db8848521b0eaa4"
+  },
+  "cpu_affinity": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "huginn",
+  "dataset": "alpaca",
+  "split": "wp3_validation",
+  "threshold": 0.12,
+  "eos_lengths": false,
+  "rankers": {
+    "notraj": {
+      "root": "phase05/results/20261018T142252Z_c7bc7bd_wp6/ranker/notraj/lane_B_huginn_alpaca",
+      "model": "huginn",
+      "dataset": "alpaca",
+      "grid": [
+        {
+          "proj": 64,
+          "width": 256,
+          "lr": 0.001,
+          "best_epoch": 3,
+          "validation_mean_recovery": 0.3556741634510659,
+          "ablate_full": false
+        },
+        {
+          "proj": 128,
+          "width": 256,
+          "lr": 0.0003,
+          "best_epoch": 3,
+          "validation_mean_recovery": 0.3623589887045113,
+          "ablate_full": false
+        },
+        {
+          "proj": 256,
+          "width": 512,
+          "lr": 0.0003,
+          "best_epoch": 3,
+          "validation_mean_recovery": 0.36074531099170837,
+          "ablate_full": false
+        }
+      ],
+      "selected": {
+        "proj": 128,
+        "width": 256,
+        "lr": 0.0003,
+        "best_epoch": 3,
+        "validation_mean_recovery": 0.3623589887045113,
+        "ablate_full": false
+      },
+      "validation_recovery_by_B": {
+        "8": 0.3486868153622806,
+        "16": 0.3556605711937538,
+        "32": 0.3698235505941664,
+        "64": 0.37526501766784454
+      },
+      "ablation_without_full_dim_states": {
+        "proj": 128,
+        "width": 256,
+        "lr": 0.0003,
+        "best_epoch": 7,
+        "validation_mean_recovery": 0.28180924814164876,
+        "ablate_full": true
+      },
+      "selection_rule": "max mean validation lockstep RIC recovery over B in {8,16,32,64}",
+      "test_arrays_opened": false,
+      "seed": 1,
+      "epochs_max": 20,
+      "drop_trajectory": true,
+      "feature_root": "phase05/results/20261018T060712Z_fa5272d_wp5/features/lane_B_huginn_alpaca",
+      "train_wall_s": 60.596665693446994,
+      "source_sha": "c8fd0e0b3352e858e2cbd8098d02991cf164fcf5",
+      "checkpoint_sha256": "ae9af71f5083abc2fa35f4d9e9b90c32f8496fd176fb28f042e82ac00e3ca216"
+    }
+  },
+  "label_manifest_sha256": "0a9cc34c18d16fba7665f4b8db7e8af21c632b2cdbf7bf48d387fd850596ff5e",
+  "torch": "2.6.0+cu124",
+  "audit_ranker": "notraj",
+  "random_lengths": false,
+  "B": 8,
+  "steps_compared": 64,
+  "n_hard_errors": 0,
+  "hard_errors": [],
+  "mean_spearman_live_vs_offline": 0.9995635644061854,
+  "min_spearman": 0.9986295490959027,
+  "status": "PASS"
+}

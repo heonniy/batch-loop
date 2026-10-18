@@ -1,0 +1,189 @@
+{
+  "rule": "phase05/WP6_PREREGISTRATION.md",
+  "gate0": {
+    "audit/eos/lane_A_ouro_alpaca/ranker_audit.json": "PASS",
+    "audit/eos/lane_C_ouro_sharegpt/ranker_audit.json": "PASS",
+    "audit/notraj/lane_A_ouro_alpaca/ranker_audit.json": "PASS",
+    "audit/notraj/lane_B_huginn_alpaca/ranker_audit.json": "PASS",
+    "audit/notraj/lane_C_ouro_sharegpt/ranker_audit.json": "PASS",
+    "audit/notraj/lane_D_huginn_sharegpt/ranker_audit.json": "PASS",
+    "audit/q04/lane_A_ouro_alpaca/ranker_audit.json": "PASS",
+    "audit/q04/lane_C_ouro_sharegpt/ranker_audit.json": "PASS"
+  },
+  "verdicts": {
+    "eos/ouro/ranker_same": {
+      "GO": {
+        "alpaca/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "threshold/ouro/ranker_q02": {
+      "GO": {
+        "alpaca/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "threshold/ouro/ranker_q04": {
+      "GO": {
+        "alpaca/cohort0": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "transfer_notraj/huginn/ranker_cross": {
+      "NO-GO": {
+        "alpaca/cohort0": [],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [],
+        "sharegpt/cohort1": []
+      }
+    },
+    "transfer_notraj/huginn/ranker_notraj": {
+      "NO-GO": {
+        "alpaca/cohort0": [
+          8,
+          64
+        ],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [
+          32
+        ],
+        "sharegpt/cohort1": []
+      }
+    },
+    "transfer_notraj/huginn/ranker_same": {
+      "NO-GO": {
+        "alpaca/cohort0": [
+          8
+        ],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [],
+        "sharegpt/cohort1": []
+      }
+    },
+    "transfer_notraj/ouro/ranker_cross": {
+      "GO": {
+        "alpaca/cohort0": [
+          16,
+          32
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "transfer_notraj/ouro/ranker_notraj": {
+      "GO": {
+        "alpaca/cohort0": [
+          8,
+          16
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "transfer_notraj/ouro/ranker_same": {
+      "NO-GO": {
+        "alpaca/cohort0": [],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    }
+  },
+  "transfer_retention_ouro": 0.899372535927235,
+  "notraj_faster_than_same_fraction_ouro": 0.75,
+  "transfer_retention_huginn": 0.8760867582248246,
+  "notraj_faster_than_same_fraction_huginn": 1.0,
+  "trajectory_cost_hypothesis": "supported"
+}

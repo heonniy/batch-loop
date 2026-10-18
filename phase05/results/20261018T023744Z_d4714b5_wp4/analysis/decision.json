@@ -1,0 +1,45 @@
+{
+  "rule": "phase05/WP4_PREREGISTRATION.md",
+  "gate0_equivalence": {
+    "lane_A_ouro_alpaca": "PASS",
+    "lane_B_huginn_alpaca": "PASS",
+    "lane_C_ouro_sharegpt": "PASS",
+    "lane_D_huginn_sharegpt": "PASS"
+  },
+  "verdict": {
+    "ouro": {
+      "practical_predictor": "NO-GO",
+      "winning_B_per_block": {
+        "alpaca/cohort0": [
+          8
+        ],
+        "alpaca/cohort1": [
+          16
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16
+        ]
+      }
+    },
+    "huginn": {
+      "practical_predictor": "NO-GO",
+      "winning_B_per_block": {
+        "alpaca/cohort0": [],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [],
+        "sharegpt/cohort1": []
+      }
+    }
+  },
+  "serving_cost_hypothesis": {
+    "gpu_faster_than_host_fraction": 0.84375,
+    "mean_translation_host": -0.11309582890910846,
+    "mean_translation_gpu": 0.16858306635390158,
+    "status": "supported"
+  }
+}

@@ -1,5 +1,17 @@
 # AGENTS.md
 
+## Current priority — Phase 05 (2026-10-17)
+
+The user approved `PROPOSED_B2_CONTRACT.md` without amendment and authorized WP1 and then WP2 on physical H100 GPUs 0-3 (`phase05/GPU_ASSIGNMENT_20261017.json`).
+- WP1 (`phase05/WP1_PREREGISTRATION.md`): B2 semantic Gate A PASS 4/4 lanes — `phase05/results/20261017T052501Z_b82d7ed_wp1/RESULT_REVIEW.md`.
+- WP2 (`phase05/WP2_PREREGISTRATION.md`): oracle headroom 20-35% (Ouro) / 10-15% (Huginn), causal history policies <=2.6%; preregistered rule says WP3 GO — `phase05/results/20261017T055240Z_44abcb5_wp2/RESULT_REVIEW.md`.
+- WP3 (`phase05/WP3_PREREGISTRATION.md`): validation-selected current-token predictors (C7/C8/C9) recover 17-30% of oracle RIC offline but win only Ouro B=8 (6.4-7.8% wall); **practical predictor NO-GO** for both models — `phase05/results/20261017T124526Z_79d0e8f_wp3/RESULT_REVIEW.md`.
+- WP4 (`phase05/WP4_PREREGISTRATION.md`): the same frozen predictors served with host-sync-free GPU features (Gate-0 equivalence PASS 4/4). Serving-cost hypothesis **supported** (GPU < host in 84% of cells), but practical predictor still **NO-GO**: Huginn <= 3.4%; Ouro x ShareGPT passes at B=8/16 (5.3-6.0%); the Ouro x Alpaca lane had unexplained timing disturbance — `phase05/results/20261018T023744Z_d4714b5_wp4/RESULT_REVIEW.md`.
+- WP5 (`phase05/WP5_PREREGISTRATION.md`): ranker R (full-dimensional pre-recurrence states + token encodings, GPU-served). **Ouro practical GO** (10.0-14.8% wall at B=8/16, 6.5-8.6% at B=32, all 4 sealed blocks); **Huginn NO-GO** (2.9-4.7%). Stronger-ranker hypothesis supported (32/32 cells) — `phase05/results/20261018T060712Z_fa5272d_wp5/RESULT_REVIEW.md`.
+- WP6 (`phase05/WP6_PREREGISTRATION.md`): Ouro ranker gain is robust — cross-dataset transfer GO (retention 0.90), no-trajectory ranker GO, q=0.4 GO (new and transferred ranker), EOS variable-length GO; Huginn still below 5% (no-trajectory ranker best, 4-5.5%; trajectory features add no ranking signal). Upstream optimized engine scoped out (single cohort per wave). GPU1 timing disturbance flagged — `phase05/results/20261018T142252Z_c7bc7bd_wp6/RESULT_REVIEW.md`.
+- Phase 05 is complete. Any follow-up (sync-free features, B-constrained deployment, optimized engine) needs a new explicit user decision and preregistration. All `wp3_*` splits, `wp4_confirm` and `wp5_test` and `wp6_*` are now used; new work needs a fresh split (pool index >= 4864).
+The Phase 04R notes below are historical context; their "no GPU" rule is superseded only for the authorized Phase 05 scopes.
+
 ## Current priority — Phase 04R: quantify BF16 depth-rank stability from existing traces (2026-09-17)
 
 Read in order:

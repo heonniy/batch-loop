@@ -1,0 +1,103 @@
+{
+  "source_commits": {
+    "preregistration_and_runner": "44abcb5",
+    "analysis": "7e8ecf4"
+  },
+  "raw_result_commit": "17b9a3dc15cc3cce6c309bff01fb3ade1aed6248",
+  "preregistration": "phase05/WP2_PREREGISTRATION.md",
+  "authorization": "user 2026-10-17: WP2 plan approved, proceed",
+  "execution_kind": "physical no-refill lockstep regrouping, live BF16 exits, teacher-forced B1 tokens; scored decode wall",
+  "hardware": [
+    {
+      "lane": "A",
+      "gpu": 0,
+      "model": "Ouro-1.4B",
+      "dataset": "alpaca"
+    },
+    {
+      "lane": "B",
+      "gpu": 1,
+      "model": "Huginn-3.5B",
+      "dataset": "alpaca"
+    },
+    {
+      "lane": "C",
+      "gpu": 2,
+      "model": "Ouro-1.4B",
+      "dataset": "sharegpt"
+    },
+    {
+      "lane": "D",
+      "gpu": 3,
+      "model": "Huginn-3.5B",
+      "dataset": "sharegpt"
+    }
+  ],
+  "runs": {
+    "total": 376,
+    "ok": 376,
+    "oom": 0,
+    "hard_check_fail": 0
+  },
+  "decision": {
+    "huginn": {
+      "WP3": "GO",
+      "per_dataset": {
+        "alpaca": {
+          "oracle_present_B": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "best_causal_policy": "history_last"
+        },
+        "sharegpt": {
+          "oracle_present_B": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "best_causal_policy": "history_last"
+        }
+      }
+    },
+    "ouro": {
+      "WP3": "GO",
+      "per_dataset": {
+        "alpaca": {
+          "oracle_present_B": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "best_causal_policy": "history_mean"
+        },
+        "sharegpt": {
+          "oracle_present_B": [
+            8,
+            16,
+            32,
+            64
+          ],
+          "best_causal_policy": "history_last"
+        }
+      }
+    }
+  },
+  "headline": {
+    "ouro_oracle_headroom_range": [
+      0.197,
+      0.348
+    ],
+    "huginn_oracle_headroom_range": [
+      0.101,
+      0.15
+    ],
+    "best_causal_headroom_max": 0.026
+  },
+  "measurement_status": "VALID_FOR_FIXED_B_DECODE_WALL",
+  "go_no_go": "WP3 GO (both models) by preregistered rule; WP3 not started"
+}

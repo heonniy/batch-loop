@@ -1,0 +1,44 @@
+{
+  "source_commit": "b82d7ed",
+  "raw_result_commit": "4704c33107cf4c81ef1b2fa731ffda49a60f6510",
+  "preregistration": "phase05/WP1_PREREGISTRATION.md",
+  "contract": "PROPOSED_B2_CONTRACT.md approved 2026-10-17 (user), WP1 only",
+  "execution_kind": "real-no-refill-runtime BF16 correctness confirmation; no scored wall time",
+  "hardware": [
+    {
+      "lane": "A",
+      "physical_gpu": 0,
+      "model": "Ouro-1.4B"
+    },
+    {
+      "lane": "B",
+      "physical_gpu": 1,
+      "model": "Huginn-3.5B"
+    },
+    {
+      "lane": "C",
+      "physical_gpu": 2,
+      "model": "Ouro-1.4B replica"
+    },
+    {
+      "lane": "D",
+      "physical_gpu": 3,
+      "model": "Huginn-3.5B replica"
+    }
+  ],
+  "exact_commands": "lane_*/run_manifest.json#argv; replica comparison: python -m phase05.wp1_confirmation compare",
+  "gate_status": {
+    "A": "PASS",
+    "B": "PASS",
+    "C": "PASS",
+    "D": "PASS"
+  },
+  "original_bf16_gate_a": "FAIL (unchanged)",
+  "ordering_flag": {
+    "ouro": "ordering stable at observed scope",
+    "huginn": "ordering stable at observed scope"
+  },
+  "replica_bit_identical": true,
+  "measurement_status": "VALID_FOR_BOUNDED_CORRECTNESS; INSUFFICIENT_FOR_SPEED",
+  "go_no_go": "GO to request WP2 decision; WP2 not started"
+}

@@ -1,0 +1,5 @@
+model,lane,condition,B,positions,depth_flips,next_token_flips,reference_B1_work,actual_live_work,actual_live_RIC,frozen_B1_depth_grouping_RIC,max_abs_depth_delta,gap_ge2_inversions,ordering_status,max_hidden_relative_l2,max_logit_relative_l2,max_kv_relative_l2,max_kv_abs_error,max_gate_abs_diff,hard_check_errors,condition_wall_s
+huginn,B,fifo,8,256,3,2,2119,2120,313,312,1,0,ordering stable at observed scope,0.03853340819478035,0.03068966045975685,0.028459778055548668,0.56640625,0.0077599287033081055,0,3.4750650664791465
+huginn,B,permutation_seed_41,8,256,5,2,2119,2122,313,313,1,0,ordering stable at observed scope,0.05270087346434593,0.040658969432115555,0.03365553170442581,0.56640625,0.00903327763080597,0,3.415027759037912
+huginn,B,permutation_seed_53,8,256,5,2,2119,2122,314,313,1,0,ordering stable at observed scope,0.05270087346434593,0.040658969432115555,0.03365553170442581,0.56640625,0.00903327763080597,0,3.454979119822383
+huginn,B,fifo_repeat,8,256,3,2,2119,2120,313,312,1,0,ordering stable at observed scope,0.03853340819478035,0.03068966045975685,0.028459778055548668,0.56640625,0.0077599287033081055,0,3.47144032176584

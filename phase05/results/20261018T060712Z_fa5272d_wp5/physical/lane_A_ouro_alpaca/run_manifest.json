@@ -1,0 +1,135 @@
+{
+  "execution_kind": "sealed wp5_test physical no-refill, live BF16 exits",
+  "preregistration": "phase05/WP5_PREREGISTRATION.md",
+  "source_sha": "0596e3129018dd8a26a01e76d79516c07f681979",
+  "argv": [
+    "/home/hwlee/batch-loop-worktrees/phase05_no_refill/phase05/wp5_ranker.py",
+    "physical",
+    "--model",
+    "ouro",
+    "--role",
+    "primary",
+    "--dataset",
+    "alpaca",
+    "--feature-root",
+    "phase05/results/20261018T060712Z_fa5272d_wp5/features/lane_A_ouro_alpaca",
+    "--ranker-root",
+    "phase05/results/20261018T060712Z_fa5272d_wp5/ranker/lane_A_ouro_alpaca",
+    "--wp3-feature-root",
+    "phase05/results/20261017T124526Z_79d0e8f_wp3/features/lane_A_ouro_alpaca",
+    "--wp3-selection-root",
+    "phase05/results/20261017T124526Z_79d0e8f_wp3/selection/lane_A_ouro_alpaca",
+    "--output-dir",
+    "phase05/results/20261018T060712Z_fa5272d_wp5/physical/lane_A_ouro_alpaca"
+  ],
+  "gpu": {
+    "role": "ouro_primary",
+    "lane": "A",
+    "physical_index": 0,
+    "uuid": "GPU-f217c8a0-1142-20f4-d84b-af29f3a47a0d",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "memory_used_at_start": "0 MiB",
+    "CUDA_VISIBLE_DEVICES": "0",
+    "assignment_sha256": "21003243aeb6ef1393735b7d2e761a7e2a1da0c6cbb098abe71f93b2b45104f3"
+  },
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "model": "ouro",
+  "dataset": "alpaca",
+  "ranker_selection": {
+    "model": "ouro",
+    "dataset": "alpaca",
+    "grid": [
+      {
+        "proj": 64,
+        "width": 256,
+        "lr": 0.001,
+        "best_epoch": 6,
+        "validation_mean_recovery": 0.29186532785641034,
+        "ablate_full": false
+      },
+      {
+        "proj": 128,
+        "width": 256,
+        "lr": 0.0003,
+        "best_epoch": 3,
+        "validation_mean_recovery": 0.3009255613242068,
+        "ablate_full": false
+      },
+      {
+        "proj": 256,
+        "width": 512,
+        "lr": 0.0003,
+        "best_epoch": 6,
+        "validation_mean_recovery": 0.2969270216628554,
+        "ablate_full": false
+      }
+    ],
+    "selected": {
+      "proj": 128,
+      "width": 256,
+      "lr": 0.0003,
+      "best_epoch": 3,
+      "validation_mean_recovery": 0.3009255613242068,
+      "ablate_full": false
+    },
+    "validation_recovery_by_B": {
+      "8": 0.4085090361445783,
+      "16": 0.3471216821785591,
+      "32": 0.2786312849162011,
+      "64": 0.16944024205748864
+    },
+    "ablation_without_full_dim_states": {
+      "proj": 128,
+      "width": 256,
+      "lr": 0.0003,
+      "best_epoch": 4,
+      "validation_mean_recovery": 0.17165374388034754,
+      "ablate_full": true
+    },
+    "selection_rule": "max mean validation lockstep RIC recovery over B in {8,16,32,64}",
+    "test_arrays_opened": false,
+    "seed": 1,
+    "epochs_max": 20,
+    "train_wall_s": 49.90065789222717,
+    "source_sha": "506523e054a0f7ff5c702b8f9c36af1e6f6b6fd1",
+    "checkpoint_sha256": "3535ad0efcd3e991c7e0abf29e46783a61d46bb3b0fc897501e79dd6e9b662dd"
+  },
+  "wp3_predictor": "C7",
+  "split": "wp5_test",
+  "torch": "2.6.0+cu124",
+  "cohorts": [
+    [
+      0,
+      256
+    ],
+    [
+      256,
+      512
+    ]
+  ],
+  "policies": [
+    "fifo",
+    "history_last",
+    "predictor_gpu",
+    "ranker_gpu",
+    "oracle_b1"
+  ],
+  "B": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "repeats": 3,
+  "T": 64
+}

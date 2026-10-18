@@ -1,0 +1,142 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.24s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.16s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.12s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.27it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.08it/s]
+Using the latest cached version of the dataset since ewof/sharegpt-instruct-unfiltered-deduped couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/ewof___sharegpt-instruct-unfiltered-deduped/default/0.0.0/d4b3c8d85e6b9e0dd4e3ba85f046a9517a847d0c (last modified on Wed Sep 16 10:33:34 2026).
+{"event": "collect_progress", "split_dir": "wp4_confirm", "done": 64, "of": 512, "elapsed_s": 261.6}
+{"event": "collect_progress", "split_dir": "wp4_confirm", "done": 128, "of": 512, "elapsed_s": 546.6}
+{"event": "collect_progress", "split_dir": "wp4_confirm", "done": 192, "of": 512, "elapsed_s": 861.6}
+{"event": "collect_progress", "split_dir": "wp4_confirm", "done": 256, "of": 512, "elapsed_s": 1181.4}
+{"event": "collect_progress", "split_dir": "wp4_confirm", "done": 320, "of": 512, "elapsed_s": 1500.7}
+{"event": "collect_progress", "split_dir": "wp4_confirm", "done": 384, "of": 512, "elapsed_s": 1812.8}
+{"event": "collect_progress", "split_dir": "wp4_confirm", "done": 448, "of": 512, "elapsed_s": 2159.7}
+{"event": "collect_progress", "split_dir": "wp4_confirm", "done": 512, "of": 512, "elapsed_s": 2477.2}
+{"event": "split_done", "split": "wp4_confirm", "elapsed_s": 2477.8}
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.18s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.12s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.09s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.27it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.10it/s]
+Using the latest cached version of the dataset since ewof/sharegpt-instruct-unfiltered-deduped couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/ewof___sharegpt-instruct-unfiltered-deduped/default/0.0.0/d4b3c8d85e6b9e0dd4e3ba85f046a9517a847d0c (last modified on Wed Sep 16 10:33:34 2026).
+{"status": "PASS", "mean_score_spearman": 0.9999999999999998, "min_score_spearman": 0.9999999999999998, "mean_identical_cohort_fraction": 1.0, "max_abs_feature_diff": 9.5367431640625e-07, "max_abs_score_diff": 1.9073486328125e-06}
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.18s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.12s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.10s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.28it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.10it/s]
+Using the latest cached version of the dataset since ewof/sharegpt-instruct-unfiltered-deduped couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/ewof___sharegpt-instruct-unfiltered-deduped/default/0.0.0/d4b3c8d85e6b9e0dd4e3ba85f046a9517a847d0c (last modified on Wed Sep 16 10:33:34 2026).
+{"run_id": 0, "kind": "warmup", "cohort": 0, "B": 32, "policy": "fifo", "rep": -1, "status": "OK", "decode_wall_s": 47.689822430722415, "live_RIC": 6179, "error": ""}
+{"run_id": 1, "kind": "scored", "cohort": 0, "B": 16, "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 80.36896312329918, "live_RIC": 11564, "error": ""}
+{"run_id": 2, "kind": "scored", "cohort": 0, "B": 16, "policy": "history_last", "rep": 0, "status": "OK", "decode_wall_s": 78.9030307168141, "live_RIC": 11313, "error": ""}
+{"run_id": 3, "kind": "scored", "cohort": 0, "B": 16, "policy": "predictor_gpu", "rep": 0, "status": "OK", "decode_wall_s": 78.71012490335852, "live_RIC": 11010, "error": ""}
+{"run_id": 4, "kind": "scored", "cohort": 0, "B": 16, "policy": "predictor_host", "rep": 0, "status": "OK", "decode_wall_s": 79.79048230312765, "live_RIC": 11010, "error": ""}
+{"run_id": 5, "kind": "scored", "cohort": 0, "B": 16, "policy": "oracle_b1", "rep": 0, "status": "OK", "decode_wall_s": 67.71449688542634, "live_RIC": 9419, "error": ""}
+{"run_id": 6, "kind": "scored", "cohort": 0, "B": 8, "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 141.46952970139682, "live_RIC": 21737, "error": ""}
+{"run_id": 7, "kind": "scored", "cohort": 0, "B": 8, "policy": "history_last", "rep": 0, "status": "OK", "decode_wall_s": 138.95674117840827, "live_RIC": 21313, "error": ""}
+{"run_id": 8, "kind": "scored", "cohort": 0, "B": 8, "policy": "predictor_gpu", "rep": 0, "status": "OK", "decode_wall_s": 138.84130468592048, "live_RIC": 20790, "error": ""}
+{"run_id": 9, "kind": "scored", "cohort": 0, "B": 8, "policy": "predictor_host", "rep": 0, "status": "OK", "decode_wall_s": 140.70452282577753, "live_RIC": 20790, "error": ""}
+{"run_id": 10, "kind": "scored", "cohort": 0, "B": 8, "policy": "oracle_b1", "rep": 0, "status": "OK", "decode_wall_s": 121.35177610814571, "live_RIC": 18315, "error": ""}
+{"run_id": 11, "kind": "scored", "cohort": 0, "B": 32, "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 47.531402396038175, "live_RIC": 6179, "error": ""}
+{"run_id": 12, "kind": "scored", "cohort": 0, "B": 32, "policy": "history_last", "rep": 0, "status": "OK", "decode_wall_s": 46.65492101851851, "live_RIC": 6035, "error": ""}
+{"run_id": 13, "kind": "scored", "cohort": 0, "B": 32, "policy": "predictor_gpu", "rep": 0, "status": "OK", "decode_wall_s": 46.513901327736676, "live_RIC": 5849, "error": ""}
+{"run_id": 14, "kind": "scored", "cohort": 0, "B": 32, "policy": "predictor_host", "rep": 0, "status": "OK", "decode_wall_s": 47.803800956346095, "live_RIC": 5849, "error": ""}
+{"run_id": 15, "kind": "scored", "cohort": 0, "B": 32, "policy": "oracle_b1", "rep": 0, "status": "OK", "decode_wall_s": 40.59879980236292, "live_RIC": 4952, "error": ""}
+{"run_id": 16, "kind": "scored", "cohort": 0, "B": 64, "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 30.50256689824164, "live_RIC": 3298, "error": ""}
+{"run_id": 17, "kind": "scored", "cohort": 0, "B": 64, "policy": "history_last", "rep": 0, "status": "OK", "decode_wall_s": 30.257334251888096, "live_RIC": 3245, "error": ""}
+{"run_id": 18, "kind": "scored", "cohort": 0, "B": 64, "policy": "predictor_gpu", "rep": 0, "status": "OK", "decode_wall_s": 30.052602485753596, "live_RIC": 3139, "error": ""}
+{"run_id": 19, "kind": "scored", "cohort": 0, "B": 64, "policy": "predictor_host", "rep": 0, "status": "OK", "decode_wall_s": 31.374960392713547, "live_RIC": 3139, "error": ""}
+{"run_id": 20, "kind": "scored", "cohort": 0, "B": 64, "policy": "oracle_b1", "rep": 0, "status": "OK", "decode_wall_s": 27.13566987309605, "live_RIC": 2684, "error": ""}
+{"run_id": 21, "kind": "scored", "cohort": 1, "B": 16, "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 79.7284584660083, "live_RIC": 11500, "error": ""}
+{"run_id": 22, "kind": "scored", "cohort": 1, "B": 16, "policy": "history_last", "rep": 0, "status": "OK", "decode_wall_s": 78.47849055100232, "live_RIC": 11239, "error": ""}
+{"run_id": 23, "kind": "scored", "cohort": 1, "B": 16, "policy": "predictor_gpu", "rep": 0, "status": "OK", "decode_wall_s": 78.49761441722512, "live_RIC": 10991, "error": ""}
+{"run_id": 24, "kind": "scored", "cohort": 1, "B": 16, "policy": "predictor_host", "rep": 0, "status": "OK", "decode_wall_s": 80.03421193175018, "live_RIC": 10991, "error": ""}
+{"run_id": 25, "kind": "scored", "cohort": 1, "B": 16, "policy": "oracle_b1", "rep": 0, "status": "OK", "decode_wall_s": 68.1585691170767, "live_RIC": 9449, "error": ""}
+{"run_id": 26, "kind": "scored", "cohort": 1, "B": 8, "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 141.6675524469465, "live_RIC": 21647, "error": ""}
+{"run_id": 27, "kind": "scored", "cohort": 1, "B": 8, "policy": "history_last", "rep": 0, "status": "OK", "decode_wall_s": 139.12331284862012, "live_RIC": 21288, "error": ""}
+{"run_id": 28, "kind": "scored", "cohort": 1, "B": 8, "policy": "predictor_gpu", "rep": 0, "status": "OK", "decode_wall_s": 139.9970029713586, "live_RIC": 20839, "error": ""}
+{"run_id": 29, "kind": "scored", "cohort": 1, "B": 8, "policy": "predictor_host", "rep": 0, "status": "OK", "decode_wall_s": 141.77148060966283, "live_RIC": 20839, "error": ""}
+{"run_id": 30, "kind": "scored", "cohort": 1, "B": 8, "policy": "oracle_b1", "rep": 0, "status": "OK", "decode_wall_s": 122.14512507710606, "live_RIC": 18353, "error": ""}
+{"run_id": 31, "kind": "scored", "cohort": 1, "B": 64, "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 30.360136304982007, "live_RIC": 3248, "error": ""}
+{"run_id": 32, "kind": "scored", "cohort": 1, "B": 64, "policy": "history_last", "rep": 0, "status": "OK", "decode_wall_s": 29.936037074774504, "live_RIC": 3179, "error": ""}
+{"run_id": 33, "kind": "scored", "cohort": 1, "B": 64, "policy": "predictor_gpu", "rep": 0, "status": "OK", "decode_wall_s": 29.75235020648688, "live_RIC": 3074, "error": ""}
+{"run_id": 34, "kind": "scored", "cohort": 1, "B": 64, "policy": "predictor_host", "rep": 0, "status": "OK", "decode_wall_s": 31.015142555348575, "live_RIC": 3074, "error": ""}
+{"run_id": 35, "kind": "scored", "cohort": 1, "B": 64, "policy": "oracle_b1", "rep": 0, "status": "OK", "decode_wall_s": 27.15361195243895, "live_RIC": 2671, "error": ""}
+{"run_id": 36, "kind": "scored", "cohort": 1, "B": 32, "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 47.19398912321776, "live_RIC": 6094, "error": ""}
+{"run_id": 37, "kind": "scored", "cohort": 1, "B": 32, "policy": "history_last", "rep": 0, "status": "OK", "decode_wall_s": 46.53951296582818, "live_RIC": 5953, "error": ""}
+{"run_id": 38, "kind": "scored", "cohort": 1, "B": 32, "policy": "predictor_gpu", "rep": 0, "status": "OK", "decode_wall_s": 46.78016287833452, "live_RIC": 5802, "error": ""}
+{"run_id": 39, "kind": "scored", "cohort": 1, "B": 32, "policy": "predictor_host", "rep": 0, "status": "OK", "decode_wall_s": 48.11315635126084, "live_RIC": 5802, "error": ""}
+{"run_id": 40, "kind": "scored", "cohort": 1, "B": 32, "policy": "oracle_b1", "rep": 0, "status": "OK", "decode_wall_s": 40.9024130217731, "live_RIC": 4945, "error": ""}
+{"run_id": 41, "kind": "scored", "cohort": 0, "B": 32, "policy": "history_last", "rep": 1, "status": "OK", "decode_wall_s": 47.21472299192101, "live_RIC": 6035, "error": ""}
+{"run_id": 42, "kind": "scored", "cohort": 0, "B": 32, "policy": "predictor_gpu", "rep": 1, "status": "OK", "decode_wall_s": 47.175723808817565, "live_RIC": 5849, "error": ""}
+{"run_id": 43, "kind": "scored", "cohort": 0, "B": 32, "policy": "predictor_host", "rep": 1, "status": "OK", "decode_wall_s": 48.45204666815698, "live_RIC": 5849, "error": ""}
+{"run_id": 44, "kind": "scored", "cohort": 0, "B": 32, "policy": "oracle_b1", "rep": 1, "status": "OK", "decode_wall_s": 41.01589759904891, "live_RIC": 4952, "error": ""}
+{"run_id": 45, "kind": "scored", "cohort": 0, "B": 32, "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 47.850191165693104, "live_RIC": 6179, "error": ""}
+{"run_id": 46, "kind": "scored", "cohort": 0, "B": 8, "policy": "history_last", "rep": 1, "status": "OK", "decode_wall_s": 140.244577457197, "live_RIC": 21313, "error": ""}
+{"run_id": 47, "kind": "scored", "cohort": 0, "B": 8, "policy": "predictor_gpu", "rep": 1, "status": "OK", "decode_wall_s": 141.12056209798902, "live_RIC": 20790, "error": ""}
+{"run_id": 48, "kind": "scored", "cohort": 0, "B": 8, "policy": "predictor_host", "rep": 1, "status": "OK", "decode_wall_s": 142.13655049912632, "live_RIC": 20790, "error": ""}
+{"run_id": 49, "kind": "scored", "cohort": 0, "B": 8, "policy": "oracle_b1", "rep": 1, "status": "OK", "decode_wall_s": 122.99283467512578, "live_RIC": 18315, "error": ""}
+{"run_id": 50, "kind": "scored", "cohort": 0, "B": 8, "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 142.19225258938968, "live_RIC": 21737, "error": ""}
+{"run_id": 51, "kind": "scored", "cohort": 0, "B": 64, "policy": "history_last", "rep": 1, "status": "OK", "decode_wall_s": 30.443112381733954, "live_RIC": 3245, "error": ""}
+{"run_id": 52, "kind": "scored", "cohort": 0, "B": 64, "policy": "predictor_gpu", "rep": 1, "status": "OK", "decode_wall_s": 30.24381026532501, "live_RIC": 3139, "error": ""}
+{"run_id": 53, "kind": "scored", "cohort": 0, "B": 64, "policy": "predictor_host", "rep": 1, "status": "OK", "decode_wall_s": 31.54130580276251, "live_RIC": 3139, "error": ""}
+{"run_id": 54, "kind": "scored", "cohort": 0, "B": 64, "policy": "oracle_b1", "rep": 1, "status": "OK", "decode_wall_s": 27.26165538467467, "live_RIC": 2684, "error": ""}
+{"run_id": 55, "kind": "scored", "cohort": 0, "B": 64, "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 30.681591102853417, "live_RIC": 3298, "error": ""}
+{"run_id": 56, "kind": "scored", "cohort": 0, "B": 16, "policy": "history_last", "rep": 1, "status": "OK", "decode_wall_s": 79.35008306894451, "live_RIC": 11313, "error": ""}
+{"run_id": 57, "kind": "scored", "cohort": 0, "B": 16, "policy": "predictor_gpu", "rep": 1, "status": "OK", "decode_wall_s": 78.98123397212476, "live_RIC": 11010, "error": ""}
+{"run_id": 58, "kind": "scored", "cohort": 0, "B": 16, "policy": "predictor_host", "rep": 1, "status": "OK", "decode_wall_s": 80.63428817689419, "live_RIC": 11010, "error": ""}
+{"run_id": 59, "kind": "scored", "cohort": 0, "B": 16, "policy": "oracle_b1", "rep": 1, "status": "OK", "decode_wall_s": 68.3687005629763, "live_RIC": 9419, "error": ""}
+{"run_id": 60, "kind": "scored", "cohort": 0, "B": 16, "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 80.35887732822448, "live_RIC": 11564, "error": ""}
+{"run_id": 61, "kind": "scored", "cohort": 1, "B": 16, "policy": "history_last", "rep": 1, "status": "OK", "decode_wall_s": 78.81788880378008, "live_RIC": 11239, "error": ""}
+{"run_id": 62, "kind": "scored", "cohort": 1, "B": 16, "policy": "predictor_gpu", "rep": 1, "status": "OK", "decode_wall_s": 79.05527371168137, "live_RIC": 10991, "error": ""}
+{"run_id": 63, "kind": "scored", "cohort": 1, "B": 16, "policy": "predictor_host", "rep": 1, "status": "OK", "decode_wall_s": 80.44285649247468, "live_RIC": 10991, "error": ""}
+{"run_id": 64, "kind": "scored", "cohort": 1, "B": 16, "policy": "oracle_b1", "rep": 1, "status": "OK", "decode_wall_s": 68.47082745656371, "live_RIC": 9449, "error": ""}
+{"run_id": 65, "kind": "scored", "cohort": 1, "B": 16, "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 80.24291773233563, "live_RIC": 11500, "error": ""}
+{"run_id": 66, "kind": "scored", "cohort": 1, "B": 32, "policy": "history_last", "rep": 1, "status": "OK", "decode_wall_s": 46.40836613345891, "live_RIC": 5953, "error": ""}
+{"run_id": 67, "kind": "scored", "cohort": 1, "B": 32, "policy": "predictor_gpu", "rep": 1, "status": "OK", "decode_wall_s": 46.5488346517086, "live_RIC": 5802, "error": ""}
+{"run_id": 68, "kind": "scored", "cohort": 1, "B": 32, "policy": "predictor_host", "rep": 1, "status": "OK", "decode_wall_s": 47.89119862485677, "live_RIC": 5802, "error": ""}
+{"run_id": 69, "kind": "scored", "cohort": 1, "B": 32, "policy": "oracle_b1", "rep": 1, "status": "OK", "decode_wall_s": 40.88168523926288, "live_RIC": 4945, "error": ""}
+{"run_id": 70, "kind": "scored", "cohort": 1, "B": 32, "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 47.30478767864406, "live_RIC": 6094, "error": ""}
+{"run_id": 71, "kind": "scored", "cohort": 1, "B": 64, "policy": "history_last", "rep": 1, "status": "OK", "decode_wall_s": 29.895333759486675, "live_RIC": 3179, "error": ""}
+{"run_id": 72, "kind": "scored", "cohort": 1, "B": 64, "policy": "predictor_gpu", "rep": 1, "status": "OK", "decode_wall_s": 29.764561119489372, "live_RIC": 3074, "error": ""}
+{"run_id": 73, "kind": "scored", "cohort": 1, "B": 64, "policy": "predictor_host", "rep": 1, "status": "OK", "decode_wall_s": 31.101819172501564, "live_RIC": 3074, "error": ""}
+{"run_id": 74, "kind": "scored", "cohort": 1, "B": 64, "policy": "oracle_b1", "rep": 1, "status": "OK", "decode_wall_s": 27.24938922096044, "live_RIC": 2671, "error": ""}
+{"run_id": 75, "kind": "scored", "cohort": 1, "B": 64, "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 30.354700945317745, "live_RIC": 3248, "error": ""}
+{"run_id": 76, "kind": "scored", "cohort": 1, "B": 8, "policy": "history_last", "rep": 1, "status": "OK", "decode_wall_s": 139.80500513408333, "live_RIC": 21288, "error": ""}
+{"run_id": 77, "kind": "scored", "cohort": 1, "B": 8, "policy": "predictor_gpu", "rep": 1, "status": "OK", "decode_wall_s": 140.7462246036157, "live_RIC": 20839, "error": ""}
+{"run_id": 78, "kind": "scored", "cohort": 1, "B": 8, "policy": "predictor_host", "rep": 1, "status": "OK", "decode_wall_s": 142.30551316961646, "live_RIC": 20839, "error": ""}
+{"run_id": 79, "kind": "scored", "cohort": 1, "B": 8, "policy": "oracle_b1", "rep": 1, "status": "OK", "decode_wall_s": 122.9013513373211, "live_RIC": 18353, "error": ""}
+{"run_id": 80, "kind": "scored", "cohort": 1, "B": 8, "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 141.71615586802363, "live_RIC": 21647, "error": ""}
+{"run_id": 81, "kind": "scored", "cohort": 0, "B": 32, "policy": "predictor_gpu", "rep": 2, "status": "OK", "decode_wall_s": 46.62652130331844, "live_RIC": 5849, "error": ""}
+{"run_id": 82, "kind": "scored", "cohort": 0, "B": 32, "policy": "predictor_host", "rep": 2, "status": "OK", "decode_wall_s": 47.937003618106246, "live_RIC": 5849, "error": ""}
+{"run_id": 83, "kind": "scored", "cohort": 0, "B": 32, "policy": "oracle_b1", "rep": 2, "status": "OK", "decode_wall_s": 40.77200789749622, "live_RIC": 4952, "error": ""}
+{"run_id": 84, "kind": "scored", "cohort": 0, "B": 32, "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 47.74633661005646, "live_RIC": 6179, "error": ""}
+{"run_id": 85, "kind": "scored", "cohort": 0, "B": 32, "policy": "history_last", "rep": 2, "status": "OK", "decode_wall_s": 46.932991994544864, "live_RIC": 6035, "error": ""}
+{"run_id": 86, "kind": "scored", "cohort": 0, "B": 8, "policy": "predictor_gpu", "rep": 2, "status": "OK", "decode_wall_s": 139.9764622952789, "live_RIC": 20790, "error": ""}
+{"run_id": 87, "kind": "scored", "cohort": 0, "B": 8, "policy": "predictor_host", "rep": 2, "status": "OK", "decode_wall_s": 142.47681640740484, "live_RIC": 20790, "error": ""}
+{"run_id": 88, "kind": "scored", "cohort": 0, "B": 8, "policy": "oracle_b1", "rep": 2, "status": "OK", "decode_wall_s": 122.8163590123877, "live_RIC": 18315, "error": ""}
+{"run_id": 89, "kind": "scored", "cohort": 0, "B": 8, "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 142.7477381983772, "live_RIC": 21737, "error": ""}
+{"run_id": 90, "kind": "scored", "cohort": 0, "B": 8, "policy": "history_last", "rep": 2, "status": "OK", "decode_wall_s": 140.39242488052696, "live_RIC": 21313, "error": ""}
+{"run_id": 91, "kind": "scored", "cohort": 0, "B": 64, "policy": "predictor_gpu", "rep": 2, "status": "OK", "decode_wall_s": 30.365950170904398, "live_RIC": 3139, "error": ""}
+{"run_id": 92, "kind": "scored", "cohort": 0, "B": 64, "policy": "predictor_host", "rep": 2, "status": "OK", "decode_wall_s": 31.450857291929424, "live_RIC": 3139, "error": ""}
+{"run_id": 93, "kind": "scored", "cohort": 0, "B": 64, "policy": "oracle_b1", "rep": 2, "status": "OK", "decode_wall_s": 27.19843277335167, "live_RIC": 2684, "error": ""}
+{"run_id": 94, "kind": "scored", "cohort": 0, "B": 64, "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 30.637128709815443, "live_RIC": 3298, "error": ""}
+{"run_id": 95, "kind": "scored", "cohort": 0, "B": 64, "policy": "history_last", "rep": 2, "status": "OK", "decode_wall_s": 30.35298901516944, "live_RIC": 3245, "error": ""}
+{"run_id": 96, "kind": "scored", "cohort": 0, "B": 16, "policy": "predictor_gpu", "rep": 2, "status": "OK", "decode_wall_s": 78.93657815176994, "live_RIC": 11010, "error": ""}
+{"run_id": 97, "kind": "scored", "cohort": 0, "B": 16, "policy": "predictor_host", "rep": 2, "status": "OK", "decode_wall_s": 80.71657257992774, "live_RIC": 11010, "error": ""}
+{"run_id": 98, "kind": "scored", "cohort": 0, "B": 16, "policy": "oracle_b1", "rep": 2, "status": "OK", "decode_wall_s": 68.39836377371103, "live_RIC": 9419, "error": ""}
+{"run_id": 99, "kind": "scored", "cohort": 0, "B": 16, "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 80.59904362075031, "live_RIC": 11564, "error": ""}
+{"run_id": 100, "kind": "scored", "cohort": 0, "B": 16, "policy": "history_last", "rep": 2, "status": "OK", "decode_wall_s": 78.78699045535177, "live_RIC": 11313, "error": ""}
+{"run_id": 101, "kind": "scored", "cohort": 1, "B": 8, "policy": "predictor_gpu", "rep": 2, "status": "OK", "decode_wall_s": 139.90763190947473, "live_RIC": 20839, "error": ""}
+{"run_id": 102, "kind": "scored", "cohort": 1, "B": 8, "policy": "predictor_host", "rep": 2, "status": "OK", "decode_wall_s": 142.42614468559623, "live_RIC": 20839, "error": ""}
+{"run_id": 103, "kind": "scored", "cohort": 1, "B": 8, "policy": "oracle_b1", "rep": 2, "status": "OK", "decode_wall_s": 122.96729257237166, "live_RIC": 18353, "error": ""}
+{"run_id": 104, "kind": "scored", "cohort": 1, "B": 8, "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 142.13849108945578, "live_RIC": 21647, "error": ""}
+{"run_id": 105, "kind": "scored", "cohort": 1, "B": 8, "policy": "history_last", "rep": 2, "status": "OK", "decode_wall_s": 139.86390625033528, "live_RIC": 21288, "error": ""}
+{"run_id": 106, "kind": "scored", "cohort": 1, "B": 64, "policy": "predictor_gpu", "rep": 2, "status": "OK", "decode_wall_s": 29.790759805589914, "live_RIC": 3074, "error": ""}
+{"run_id": 107, "kind": "scored", "cohort": 1, "B": 64, "policy": "predictor_host", "rep": 2, "status": "OK", "decode_wall_s": 31.026102134026587, "live_RIC": 3074, "error": ""}
+{"run_id": 108, "kind": "scored", "cohort": 1, "B": 64, "policy": "oracle_b1", "rep": 2, "status": "OK", "decode_wall_s": 27.18989623617381, "live_RIC": 2671, "error": ""}
+{"run_id": 109, "kind": "scored", "cohort": 1, "B": 64, "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 30.37714146077633, "live_RIC": 3248, "error": ""}
+{"run_id": 110, "kind": "scored", "cohort": 1, "B": 64, "policy": "history_last", "rep": 2, "status": "OK", "decode_wall_s": 29.984411163255572, "live_RIC": 3179, "error": ""}
+{"run_id": 111, "kind": "scored", "cohort": 1, "B": 16, "policy": "predictor_gpu", "rep": 2, "status": "OK", "decode_wall_s": 78.96385281905532, "live_RIC": 10991, "error": ""}
+{"run_id": 112, "kind": "scored", "cohort": 1, "B": 16, "policy": "predictor_host", "rep": 2, "status": "OK", "decode_wall_s": 80.61929559800774, "live_RIC": 10991, "error": ""}
+{"run_id": 113, "kind": "scored", "cohort": 1, "B": 16, "policy": "oracle_b1", "rep": 2, "status": "OK", "decode_wall_s": 68.52256930526346, "live_RIC": 9449, "error": ""}
+{"run_id": 114, "kind": "scored", "cohort": 1, "B": 16, "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 80.297576950863, "live_RIC": 11500, "error": ""}
+{"run_id": 115, "kind": "scored", "cohort": 1, "B": 16, "policy": "history_last", "rep": 2, "status": "OK", "decode_wall_s": 78.72296028956771, "live_RIC": 11239, "error": ""}
+{"run_id": 116, "kind": "scored", "cohort": 1, "B": 32, "policy": "predictor_gpu", "rep": 2, "status": "OK", "decode_wall_s": 46.69862627610564, "live_RIC": 5802, "error": ""}
+{"run_id": 117, "kind": "scored", "cohort": 1, "B": 32, "policy": "predictor_host", "rep": 2, "status": "OK", "decode_wall_s": 47.97749870363623, "live_RIC": 5802, "error": ""}
+{"run_id": 118, "kind": "scored", "cohort": 1, "B": 32, "policy": "oracle_b1", "rep": 2, "status": "OK", "decode_wall_s": 40.99097232334316, "live_RIC": 4945, "error": ""}
+{"run_id": 119, "kind": "scored", "cohort": 1, "B": 32, "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 47.373248752206564, "live_RIC": 6094, "error": ""}
+{"run_id": 120, "kind": "scored", "cohort": 1, "B": 32, "policy": "history_last", "rep": 2, "status": "OK", "decode_wall_s": 46.548682952299714, "live_RIC": 5953, "error": ""}
+{"event": "lane_done", "hard_failures": 0}
+pipeline_exit=0

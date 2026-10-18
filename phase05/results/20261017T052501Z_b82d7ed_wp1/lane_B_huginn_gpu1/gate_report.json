@@ -1,0 +1,564 @@
+{
+  "status": "PASS",
+  "gate": "phase05/WP1_PREREGISTRATION.md semantic Gate A (B2)",
+  "model": "huginn",
+  "lane": "B",
+  "failed_checks": {},
+  "check_names": [
+    "condition:fifo",
+    "condition:fifo_repeat",
+    "condition:permutation_seed_41",
+    "condition:permutation_seed_53",
+    "duplicate_control",
+    "input_identity",
+    "provenance",
+    "reference_checks"
+  ],
+  "conditions": {
+    "fifo": {
+      "ordering_flags": {
+        "delta_histogram": {
+          "-1": 1,
+          "0": 253,
+          "1": 2
+        },
+        "max_abs_delta": 1,
+        "gap_ge2_inversions": [],
+        "status": "ordering stable at observed scope"
+      },
+      "kv_value_mismatches_first20": [
+        {
+          "request_id": 0,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 2,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.076171875
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.09375
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 2)",
+          "kind": 0,
+          "max_abs_error": 0.0703125
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 3)",
+          "kind": 0,
+          "max_abs_error": 0.078125
+        },
+        {
+          "request_id": 3,
+          "slot": "('coda', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0546875
+        },
+        {
+          "request_id": 3,
+          "slot": "('coda', 1)",
+          "kind": 1,
+          "max_abs_error": 0.052490234375
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0634765625
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 2)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 6,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 6,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 6,
+          "slot": "('coda', 1)",
+          "kind": 1,
+          "max_abs_error": 0.05517578125
+        },
+        {
+          "request_id": 9,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0859375
+        },
+        {
+          "request_id": 9,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.06640625
+        },
+        {
+          "request_id": 12,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 12,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.06640625
+        },
+        {
+          "request_id": 12,
+          "slot": "('coda', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 12,
+          "slot": "('coda', 1)",
+          "kind": 1,
+          "max_abs_error": 0.064453125
+        }
+      ],
+      "h0_mismatches": [],
+      "hard_errors": []
+    },
+    "permutation_seed_41": {
+      "ordering_flags": {
+        "delta_histogram": {
+          "-1": 1,
+          "0": 251,
+          "1": 4
+        },
+        "max_abs_delta": 1,
+        "gap_ge2_inversions": [],
+        "status": "ordering stable at observed scope"
+      },
+      "kv_value_mismatches_first20": [
+        {
+          "request_id": 0,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 2,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.076171875
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.09375
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 2)",
+          "kind": 0,
+          "max_abs_error": 0.0703125
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 3)",
+          "kind": 0,
+          "max_abs_error": 0.078125
+        },
+        {
+          "request_id": 3,
+          "slot": "('coda', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0546875
+        },
+        {
+          "request_id": 3,
+          "slot": "('coda', 1)",
+          "kind": 1,
+          "max_abs_error": 0.052490234375
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0634765625
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 2)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 5,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0703125
+        },
+        {
+          "request_id": 5,
+          "slot": "('core', 3)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 6,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 6,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.060546875
+        },
+        {
+          "request_id": 6,
+          "slot": "('coda', 1)",
+          "kind": 1,
+          "max_abs_error": 0.05517578125
+        },
+        {
+          "request_id": 9,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0859375
+        },
+        {
+          "request_id": 9,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.06640625
+        },
+        {
+          "request_id": 10,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.5
+        },
+        {
+          "request_id": 10,
+          "slot": "('core', 0)",
+          "kind": 1,
+          "max_abs_error": 0.26953125
+        },
+        {
+          "request_id": 10,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.4375
+        }
+      ],
+      "h0_mismatches": [],
+      "hard_errors": []
+    },
+    "permutation_seed_53": {
+      "ordering_flags": {
+        "delta_histogram": {
+          "-1": 1,
+          "0": 251,
+          "1": 4
+        },
+        "max_abs_delta": 1,
+        "gap_ge2_inversions": [],
+        "status": "ordering stable at observed scope"
+      },
+      "kv_value_mismatches_first20": [
+        {
+          "request_id": 0,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0751953125
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.109375
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 1)",
+          "kind": 1,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 2)",
+          "kind": 0,
+          "max_abs_error": 0.125
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 3)",
+          "kind": 0,
+          "max_abs_error": 0.06640625
+        },
+        {
+          "request_id": 3,
+          "slot": "('coda', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0546875
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0634765625
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 2)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 5,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.064453125
+        },
+        {
+          "request_id": 5,
+          "slot": "('coda', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0556640625
+        },
+        {
+          "request_id": 9,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0859375
+        },
+        {
+          "request_id": 9,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.06640625
+        },
+        {
+          "request_id": 10,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.46875
+        },
+        {
+          "request_id": 10,
+          "slot": "('core', 0)",
+          "kind": 1,
+          "max_abs_error": 0.26953125
+        },
+        {
+          "request_id": 10,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.4140625
+        },
+        {
+          "request_id": 10,
+          "slot": "('core', 1)",
+          "kind": 1,
+          "max_abs_error": 0.3203125
+        },
+        {
+          "request_id": 10,
+          "slot": "('core', 2)",
+          "kind": 0,
+          "max_abs_error": 0.375
+        },
+        {
+          "request_id": 10,
+          "slot": "('core', 2)",
+          "kind": 1,
+          "max_abs_error": 0.3125
+        }
+      ],
+      "h0_mismatches": [],
+      "hard_errors": []
+    },
+    "fifo_repeat": {
+      "ordering_flags": {
+        "delta_histogram": {
+          "-1": 1,
+          "0": 253,
+          "1": 2
+        },
+        "max_abs_delta": 1,
+        "gap_ge2_inversions": [],
+        "status": "ordering stable at observed scope"
+      },
+      "kv_value_mismatches_first20": [
+        {
+          "request_id": 0,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 2,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.076171875
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.09375
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 2)",
+          "kind": 0,
+          "max_abs_error": 0.0703125
+        },
+        {
+          "request_id": 3,
+          "slot": "('core', 3)",
+          "kind": 0,
+          "max_abs_error": 0.078125
+        },
+        {
+          "request_id": 3,
+          "slot": "('coda', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0546875
+        },
+        {
+          "request_id": 3,
+          "slot": "('coda', 1)",
+          "kind": 1,
+          "max_abs_error": 0.052490234375
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0634765625
+        },
+        {
+          "request_id": 4,
+          "slot": "('core', 2)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 6,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 6,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 6,
+          "slot": "('coda', 1)",
+          "kind": 1,
+          "max_abs_error": 0.05517578125
+        },
+        {
+          "request_id": 9,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0859375
+        },
+        {
+          "request_id": 9,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.06640625
+        },
+        {
+          "request_id": 12,
+          "slot": "('core', 0)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 12,
+          "slot": "('core', 1)",
+          "kind": 0,
+          "max_abs_error": 0.06640625
+        },
+        {
+          "request_id": 12,
+          "slot": "('coda', 1)",
+          "kind": 0,
+          "max_abs_error": 0.0625
+        },
+        {
+          "request_id": 12,
+          "slot": "('coda', 1)",
+          "kind": 1,
+          "max_abs_error": 0.064453125
+        }
+      ],
+      "h0_mismatches": [],
+      "hard_errors": []
+    }
+  },
+  "note": "Depth/next-token flips vs B1 are measured outcomes under B2, not gate failures."
+}

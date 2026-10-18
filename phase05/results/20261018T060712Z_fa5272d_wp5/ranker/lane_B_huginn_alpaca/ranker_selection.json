@@ -1,0 +1,59 @@
+{
+  "model": "huginn",
+  "dataset": "alpaca",
+  "grid": [
+    {
+      "proj": 64,
+      "width": 256,
+      "lr": 0.001,
+      "best_epoch": 3,
+      "validation_mean_recovery": 0.3579971497890694,
+      "ablate_full": false
+    },
+    {
+      "proj": 128,
+      "width": 256,
+      "lr": 0.0003,
+      "best_epoch": 3,
+      "validation_mean_recovery": 0.36310449432348474,
+      "ablate_full": false
+    },
+    {
+      "proj": 256,
+      "width": 512,
+      "lr": 0.0003,
+      "best_epoch": 3,
+      "validation_mean_recovery": 0.3576036842526586,
+      "ablate_full": false
+    }
+  ],
+  "selected": {
+    "proj": 128,
+    "width": 256,
+    "lr": 0.0003,
+    "best_epoch": 3,
+    "validation_mean_recovery": 0.36310449432348474,
+    "ablate_full": false
+  },
+  "validation_recovery_by_B": {
+    "8": 0.34829088029563154,
+    "16": 0.3548387096774194,
+    "32": 0.3676629456247749,
+    "64": 0.38162544169611307
+  },
+  "ablation_without_full_dim_states": {
+    "proj": 128,
+    "width": 256,
+    "lr": 0.0003,
+    "best_epoch": 17,
+    "validation_mean_recovery": 0.2859699915331056,
+    "ablate_full": true
+  },
+  "selection_rule": "max mean validation lockstep RIC recovery over B in {8,16,32,64}",
+  "test_arrays_opened": false,
+  "seed": 1,
+  "epochs_max": 20,
+  "train_wall_s": 60.42676297388971,
+  "source_sha": "506523e054a0f7ff5c702b8f9c36af1e6f6b6fd1",
+  "checkpoint_sha256": "0a641f9dd37c3702187774afa83cf0287d597b0d9bcc9f8cd00d59396a8402ff"
+}
