@@ -496,7 +496,7 @@ def main() -> None:
     c.add_argument("--model", required=True, choices=("ouro", "huginn"))
     c.add_argument("--role", required=True, choices=("primary", "replication"))
     c.add_argument("--dataset", required=True, choices=("alpaca", "sharegpt"))
-    c.add_argument("--splits", nargs="+", required=True, choices=("wp3_train", "wp3_validation", "wp3_test"))
+    c.add_argument("--splits", nargs="+", required=True, choices=("wp3_train", "wp3_validation", "wp3_test", "wp4_confirm"))
     c.add_argument("--output-dir", required=True, type=Path)
     c.add_argument("--smoke", action="store_true")
     s = sub.add_parser("select")
