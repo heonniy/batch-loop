@@ -88,14 +88,15 @@ def scalar_features(t: int, history, prompt_lengths, unc, prev_traj):
 
 
 def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy, predictor, projection,
-            audit_predictor=None) -> dict:
+            audit_predictor=None, ranker=None, capture_scores=False) -> dict:
     import torch
     from phase02_runtime.common import run_interval
     from phase05.wp2_headroom import _new_adapter
     n, steps = labels.shape[1], len(tokens)
     adapter = _new_adapter(key, model, tokenizer, n, list(range(n)), "benchmark")
     width = int(model.transformer.wte.weight.shape[1] if key == "huginn" else model.model.embed_tokens.weight.shape[1])
-    want = policy == "predictor_gpu"
+    want = policy in ("predictor_gpu", "ranker_gpu")
+    captured = []
     audit = audit_predictor is not None
     audit_rows = []
     torch.cuda.reset_peak_memory_stats()
@@ -110,6 +111,7 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
         prev_traj = torch.zeros((n, 16), device="cuda")
         cur_traj = torch.zeros((n, 16), device="cuda")
         prev_hidden = torch.zeros((n, PROJECTION_DIM), device="cuda")
+        prev_final = torch.zeros((n, width), device="cuda") if policy == "ranker_gpu" else None
         host_logits = adapter.prefill_logits[:, -1, :].clone() if audit else None
         host_traj = [[] for _ in range(n)]
         holder = {}
@@ -146,6 +148,15 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
                 order = torch.argsort(oracle[t], stable=True)
             elif policy == "history_last":
                 order = torch.argsort(history[t - 1], stable=True) if t else ids
+            elif policy == "ranker_gpu":  # WP5 ranker: scalars + token encodings + full-dimensional states
+                emb_raw = embedded_all if key == "ouro" else model.transformer.wte(current) * model.emb_scale
+                fulls = {"emb_full": emb_raw.float().squeeze(1), "prevh_full": prev_final,
+                         "pre_full": embedded_all.float().squeeze(1)}
+                prev_tok = known[t - 1] if t else torch.full((n,), ranker.vocab, dtype=torch.long, device="cuda")
+                scores = ranker.score(scalar_features(t, history, plen, unc, prev_traj), known[t], prev_tok, fulls)
+                order = torch.argsort(scores, stable=True)
+                if capture_scores:
+                    captured.append(scores.float())
             else:
                 emb_raw = embedded_all if key == "ouro" else model.transformer.wte(current) * model.emb_scale
                 emb = emb_raw.float().squeeze(1) @ projection
@@ -178,6 +189,8 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
                         unc.index_copy_(0, rows, uncertainty(logits, known[t + 1].index_select(0, rows)))
                     if key == "ouro":
                         prev_hidden.index_copy_(0, rows, result.final_state.float().squeeze(1) @ projection)
+                    if prev_final is not None:
+                        prev_final.index_copy_(0, rows, result.final_state.float().squeeze(1))
                     if audit:
                         host_logits.index_copy_(0, rows, logits)
                 widths_t.append([e["active_batch_size"] for e in result.events])
@@ -194,6 +207,7 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
         live = history.cpu().numpy()
         nexts = next_out.cpu().numpy()
         orders = [o.cpu().numpy() for o in orders]
+        captured = [c.cpu().numpy() for c in captured]
     errors, executed = [], []
     ric = frozen = 0
     for t in range(steps):
@@ -210,7 +224,8 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
             "frozen_b1_RIC_same_grouping": frozen, "depth_flips": int((live != labels).sum()),
             "next_token_flips": int((nexts[:-1] != tokens[1:]).sum()),
             "peak_allocated_gib": torch.cuda.max_memory_allocated() / 2**30,
-            "n_hard_errors": len(errors), "hard_check_errors": errors[:20], "live_depth": live, "audit": audit_rows}
+            "n_hard_errors": len(errors), "hard_check_errors": errors[:20], "live_depth": live, "audit": audit_rows,
+            "scores": captured}
 
 
 def _audit_step(t, key, adapter, current, host_logits, history, host_traj, prev_hidden, embedded_all, plen,
