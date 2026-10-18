@@ -1,0 +1,267 @@
+{
+  "execution_kind": "sealed physical no-refill, live BF16 exits",
+  "preregistration": "phase05/WP6_PREREGISTRATION.md",
+  "study": "transfer_notraj",
+  "source_sha": "c8fd0e0b3352e858e2cbd8098d02991cf164fcf5",
+  "argv": [
+    "/home/hwlee/batch-loop-worktrees/phase05_no_refill/phase05/wp6_runner.py",
+    "--model",
+    "ouro",
+    "--role",
+    "gpu1",
+    "--dataset",
+    "alpaca",
+    "--study",
+    "transfer_notraj",
+    "--split",
+    "wp6_test",
+    "--feature-root",
+    "phase05/results/20261018T142252Z_c7bc7bd_wp6/features/wp6/lane_A_ouro_alpaca",
+    "--ranker",
+    "same=phase05/results/20261018T060712Z_fa5272d_wp5/ranker/lane_A_ouro_alpaca",
+    "--ranker",
+    "cross=phase05/results/20261018T060712Z_fa5272d_wp5/ranker/lane_C_ouro_sharegpt",
+    "--ranker",
+    "notraj=phase05/results/20261018T142252Z_c7bc7bd_wp6/ranker/notraj/lane_A_ouro_alpaca",
+    "--output-dir",
+    "phase05/results/20261018T142252Z_c7bc7bd_wp6/physical/transfer_notraj/lane_A_ouro_alpaca"
+  ],
+  "gpu": {
+    "role": "ouro_gpu1",
+    "lane": "gpu1",
+    "physical_index": 1,
+    "uuid": "GPU-a77f3471-67d4-20b0-9fab-e502d4de5adb",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "memory_used_at_start": "0 MiB",
+    "CUDA_VISIBLE_DEVICES": "1",
+    "assignment_sha256": "27e07a27fc5ba70a21d62707c2c6179affa98cc19ebca99f3db8848521b0eaa4"
+  },
+  "cpu_affinity": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "model": "ouro",
+  "dataset": "alpaca",
+  "split": "wp6_test",
+  "threshold": 0.2,
+  "eos_lengths": false,
+  "rankers": {
+    "same": {
+      "root": "phase05/results/20261018T060712Z_fa5272d_wp5/ranker/lane_A_ouro_alpaca",
+      "model": "ouro",
+      "dataset": "alpaca",
+      "grid": [
+        {
+          "proj": 64,
+          "width": 256,
+          "lr": 0.001,
+          "best_epoch": 6,
+          "validation_mean_recovery": 0.29186532785641034,
+          "ablate_full": false
+        },
+        {
+          "proj": 128,
+          "width": 256,
+          "lr": 0.0003,
+          "best_epoch": 3,
+          "validation_mean_recovery": 0.3009255613242068,
+          "ablate_full": false
+        },
+        {
+          "proj": 256,
+          "width": 512,
+          "lr": 0.0003,
+          "best_epoch": 6,
+          "validation_mean_recovery": 0.2969270216628554,
+          "ablate_full": false
+        }
+      ],
+      "selected": {
+        "proj": 128,
+        "width": 256,
+        "lr": 0.0003,
+        "best_epoch": 3,
+        "validation_mean_recovery": 0.3009255613242068,
+        "ablate_full": false
+      },
+      "validation_recovery_by_B": {
+        "8": 0.4085090361445783,
+        "16": 0.3471216821785591,
+        "32": 0.2786312849162011,
+        "64": 0.16944024205748864
+      },
+      "ablation_without_full_dim_states": {
+        "proj": 128,
+        "width": 256,
+        "lr": 0.0003,
+        "best_epoch": 4,
+        "validation_mean_recovery": 0.17165374388034754,
+        "ablate_full": true
+      },
+      "selection_rule": "max mean validation lockstep RIC recovery over B in {8,16,32,64}",
+      "test_arrays_opened": false,
+      "seed": 1,
+      "epochs_max": 20,
+      "train_wall_s": 49.90065789222717,
+      "source_sha": "506523e054a0f7ff5c702b8f9c36af1e6f6b6fd1",
+      "checkpoint_sha256": "3535ad0efcd3e991c7e0abf29e46783a61d46bb3b0fc897501e79dd6e9b662dd"
+    },
+    "cross": {
+      "root": "phase05/results/20261018T060712Z_fa5272d_wp5/ranker/lane_C_ouro_sharegpt",
+      "model": "ouro",
+      "dataset": "sharegpt",
+      "grid": [
+        {
+          "proj": 64,
+          "width": 256,
+          "lr": 0.001,
+          "best_epoch": 3,
+          "validation_mean_recovery": 0.2685040847604151,
+          "ablate_full": false
+        },
+        {
+          "proj": 128,
+          "width": 256,
+          "lr": 0.0003,
+          "best_epoch": 3,
+          "validation_mean_recovery": 0.27260079498546175,
+          "ablate_full": false
+        },
+        {
+          "proj": 256,
+          "width": 512,
+          "lr": 0.0003,
+          "best_epoch": 2,
+          "validation_mean_recovery": 0.26984094373358825,
+          "ablate_full": false
+        }
+      ],
+      "selected": {
+        "proj": 128,
+        "width": 256,
+        "lr": 0.0003,
+        "best_epoch": 3,
+        "validation_mean_recovery": 0.27260079498546175,
+        "ablate_full": false
+      },
+      "validation_recovery_by_B": {
+        "8": 0.36348751534997953,
+        "16": 0.31808278867102396,
+        "32": 0.2543478260869565,
+        "64": 0.15448504983388706
+      },
+      "ablation_without_full_dim_states": {
+        "proj": 128,
+        "width": 256,
+        "lr": 0.0003,
+        "best_epoch": 10,
+        "validation_mean_recovery": 0.16831287389562383,
+        "ablate_full": true
+      },
+      "selection_rule": "max mean validation lockstep RIC recovery over B in {8,16,32,64}",
+      "test_arrays_opened": false,
+      "seed": 1,
+      "epochs_max": 20,
+      "train_wall_s": 47.82787541486323,
+      "source_sha": "506523e054a0f7ff5c702b8f9c36af1e6f6b6fd1",
+      "checkpoint_sha256": "9190cdba515dec15d1ae98544b620c315cd7a2c9c59dabe82abfca53eb8bf417"
+    },
+    "notraj": {
+      "root": "phase05/results/20261018T142252Z_c7bc7bd_wp6/ranker/notraj/lane_A_ouro_alpaca",
+      "model": "ouro",
+      "dataset": "alpaca",
+      "grid": [
+        {
+          "proj": 64,
+          "width": 256,
+          "lr": 0.001,
+          "best_epoch": 6,
+          "validation_mean_recovery": 0.29052668299964657,
+          "ablate_full": false
+        },
+        {
+          "proj": 128,
+          "width": 256,
+          "lr": 0.0003,
+          "best_epoch": 6,
+          "validation_mean_recovery": 0.296747387104476,
+          "ablate_full": false
+        },
+        {
+          "proj": 256,
+          "width": 512,
+          "lr": 0.0003,
+          "best_epoch": 6,
+          "validation_mean_recovery": 0.30102203332139676,
+          "ablate_full": false
+        }
+      ],
+      "selected": {
+        "proj": 256,
+        "width": 512,
+        "lr": 0.0003,
+        "best_epoch": 6,
+        "validation_mean_recovery": 0.30102203332139676,
+        "ablate_full": false
+      },
+      "validation_recovery_by_B": {
+        "8": 0.40568524096385544,
+        "16": 0.3509134781109962,
+        "32": 0.276536312849162,
+        "64": 0.17095310136157338
+      },
+      "ablation_without_full_dim_states": {
+        "proj": 256,
+        "width": 512,
+        "lr": 0.0003,
+        "best_epoch": 13,
+        "validation_mean_recovery": 0.17602185109310062,
+        "ablate_full": true
+      },
+      "selection_rule": "max mean validation lockstep RIC recovery over B in {8,16,32,64}",
+      "test_arrays_opened": false,
+      "seed": 1,
+      "epochs_max": 20,
+      "drop_trajectory": true,
+      "feature_root": "phase05/results/20261018T060712Z_fa5272d_wp5/features/lane_A_ouro_alpaca",
+      "train_wall_s": 69.72741010412574,
+      "source_sha": "c8fd0e0b3352e858e2cbd8098d02991cf164fcf5",
+      "checkpoint_sha256": "af09679f94ed0087ccb8a1332cdbd5a812c29424477a645f46c95f0c04ea0c27"
+    }
+  },
+  "label_manifest_sha256": "59a0c4c39b8457d761931b58ec8e50bbcb8859155f918938f7d85f4ad94dae60",
+  "torch": "2.6.0+cu124",
+  "cohorts": [
+    [
+      0,
+      256
+    ],
+    [
+      256,
+      512
+    ]
+  ],
+  "policies": [
+    "fifo",
+    "history_last",
+    "ranker_same",
+    "ranker_cross",
+    "ranker_notraj",
+    "oracle_b1"
+  ],
+  "B": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "repeats": 3,
+  "T": 64
+}
