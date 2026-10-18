@@ -88,7 +88,7 @@ def scalar_features(t: int, history, prompt_lengths, unc, prev_traj):
 
 
 def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy, predictor, projection,
-            audit_predictor=None, ranker=None, capture_scores=False) -> dict:
+            audit_predictor=None, ranker=None, capture_scores=False, lengths=None) -> dict:
     import torch
     from phase02_runtime.common import run_interval
     from phase05.wp2_headroom import _new_adapter
@@ -96,6 +96,9 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
     adapter = _new_adapter(key, model, tokenizer, n, list(range(n)), "benchmark")
     width = int(model.transformer.wte.weight.shape[1] if key == "huginn" else model.model.embed_tokens.weight.shape[1])
     want = policy in ("predictor_gpu", "ranker_gpu")
+    need_traj = policy == "predictor_gpu" or (policy == "ranker_gpu" and ranker.uses_trajectory)
+    lengths = np.full(n, steps) if lengths is None else np.asarray(lengths)
+    active_np = [np.nonzero(lengths > t)[0] for t in range(steps)]  # requests still decoding (EOS-causal)
     captured = []
     audit = audit_predictor is not None
     audit_rows = []
@@ -132,29 +135,35 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
         torch.cuda.synchronize()
         start = time.perf_counter()
         for t in range(steps):
+            if not len(active_np[t]):
+                orders.append(ids[:0])
+                step_widths.append([])
+                continue
+            act = torch.as_tensor(active_np[t], device="cuda")
+            n_act = len(active_np[t])
             current = known[t].unsqueeze(1)
             adapter.begin_token()
             embedded_all = torch.empty((n, 1, width), dtype=torch.bfloat16, device="cuda")
             state_all = torch.empty_like(embedded_all)
-            for first in range(0, n, B):  # common staged Prelude, FIFO chunks of B, every policy
-                rows = ids[first:first + B]
+            for first in range(0, n_act, B):  # common staged Prelude, FIFO chunks of B, every policy
+                rows = act[first:first + B]
                 adapter.backend.set_active(rows)
                 e, s = adapter.prelude(current.index_select(0, rows))
                 embedded_all.index_copy_(0, rows, e)
                 state_all.index_copy_(0, rows, s)
             if policy == "fifo":
-                order = ids
+                order = act
             elif policy == "oracle_b1":
-                order = torch.argsort(oracle[t], stable=True)
+                order = act[torch.argsort(oracle[t][act], stable=True)]
             elif policy == "history_last":
-                order = torch.argsort(history[t - 1], stable=True) if t else ids
+                order = act[torch.argsort(history[t - 1][act], stable=True)] if t else act
             elif policy == "ranker_gpu":  # WP5 ranker: scalars + token encodings + full-dimensional states
                 emb_raw = embedded_all if key == "ouro" else model.transformer.wte(current) * model.emb_scale
                 fulls = {"emb_full": emb_raw.float().squeeze(1), "prevh_full": prev_final,
                          "pre_full": embedded_all.float().squeeze(1)}
                 prev_tok = known[t - 1] if t else torch.full((n,), ranker.vocab, dtype=torch.long, device="cuda")
                 scores = ranker.score(scalar_features(t, history, plen, unc, prev_traj), known[t], prev_tok, fulls)
-                order = torch.argsort(scores, stable=True)
+                order = act[torch.argsort(scores[act], stable=True)]
                 if capture_scores:
                     captured.append(scores.float())
             else:
@@ -163,7 +172,7 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
                 rep = prev_hidden if key == "ouro" else embedded_all.float().squeeze(1) @ projection
                 x = torch.cat((scalar_features(t, history, plen, unc, prev_traj), emb, rep), dim=1)
                 scores = predictor.score(x)
-                order = torch.argsort(scores, stable=True)
+                order = act[torch.argsort(scores[act], stable=True)]
                 if audit:
                     audit_rows.append(_audit_step(t, key, adapter, current, host_logits, history, host_traj,
                                                   prev_hidden, embedded_all, plen, projection, audit_predictor,
@@ -171,15 +180,15 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
             orders.append(order)
             widths_t = []
             step_sink: dict[int, list[float]] | None = {} if audit else None
-            for first in range(0, n, B):
+            for first in range(0, n_act, B):
                 rows = order[first:first + B]
                 result = run_interval(adapter, embedded_all.index_select(0, rows), state_all.index_select(0, rows),
                                       rows, rows, exit_source="live", threshold=threshold, instrumentation="benchmark",
                                       debug_ids=False, trajectory_sink=step_sink,
                                       trajectory_kind=("huginn_convergence" if key == "huginn" else "ouro_gate")
                                       if audit else None,
-                                      debug_pre_hook=pre_hook if want else None,
-                                      debug_hook=post_hook if want else None)
+                                      debug_pre_hook=pre_hook if need_traj else None,
+                                      debug_hook=post_hook if need_traj else None)
                 adapter.backend.set_active(rows)
                 logits = adapter.coda_logits(result.final_state)[:, -1, :]
                 next_out[t].index_copy_(0, rows, logits.argmax(dim=-1))
@@ -194,8 +203,11 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
                     if audit:
                         host_logits.index_copy_(0, rows, logits)
                 widths_t.append([e["active_batch_size"] for e in result.events])
+            if n_act < n:  # EOS-finished requests: masked placeholder position (WP6 variable length)
+                done = np.setdiff1d(np.arange(n), active_np[t])
+                adapter.backend.retire_rows(torch.as_tensor(done, device="cuda"))
             adapter.commit_token()
-            if want:
+            if need_traj:
                 prev_traj, cur_traj = cur_traj, prev_traj
                 cur_traj.zero_()
                 if audit:
@@ -211,18 +223,22 @@ def gpu_run(key, model, tokenizer, encoded, labels, tokens, threshold, B, policy
     errors, executed = [], []
     ric = frozen = 0
     for t in range(steps):
-        for k, first in enumerate(range(0, n, B)):
+        for k, first in enumerate(range(0, len(orders[t]), B)):
             members = orders[t][first:first + B].tolist()
             depths = [int(live[t, r]) for r in members]
             executed += [(t, r) for r in members]
             errors += cohort_errors(members, depths, step_widths[t][k], [], [], len(members))
             ric += max(depths)
             frozen += max(int(labels[t, r]) for r in members)
-    errors = row_identity_errors(executed, steps, n) + errors
+    expected = {(t, int(r)) for t in range(steps) for r in active_np[t]}
+    if sorted(executed) != sorted(expected):
+        errors.insert(0, f"active request-tokens executed != expected ({len(executed)} vs {len(expected)})")
+    valid = np.array([[lengths[r] > t for r in range(n)] for t in range(steps)])
+    nxt_valid = valid[:-1] & valid[1:]
     return {"decode_wall_s": decode_s, "feature_and_predict_s": 0.0, "sort_s": 0.0,
-            "live_work": int(live.sum()), "b1_work": int(labels.sum()), "live_RIC": ric,
-            "frozen_b1_RIC_same_grouping": frozen, "depth_flips": int((live != labels).sum()),
-            "next_token_flips": int((nexts[:-1] != tokens[1:]).sum()),
+            "live_work": int(live[valid].sum()), "b1_work": int(labels[valid].sum()), "live_RIC": ric,
+            "frozen_b1_RIC_same_grouping": frozen, "depth_flips": int((live != labels)[valid].sum()),
+            "next_token_flips": int((nexts[:-1] != tokens[1:])[nxt_valid].sum()), "active_tokens": int(valid.sum()),
             "peak_allocated_gib": torch.cuda.max_memory_allocated() / 2**30,
             "n_hard_errors": len(errors), "hard_check_errors": errors[:20], "live_depth": live, "audit": audit_rows,
             "scores": captured}
@@ -267,7 +283,7 @@ def main() -> None:
     from phase05.wp1_confirmation import gpu_identity
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", required=True, choices=("ouro", "huginn"))
-    parser.add_argument("--role", required=True, choices=("primary", "replication"))
+    parser.add_argument("--role", required=True, choices=("primary", "replication", "gpu0", "gpu1", "gpu2", "gpu3"))
     parser.add_argument("--dataset", required=True, choices=("alpaca", "sharegpt"))
     parser.add_argument("--feature-root", required=True, type=Path, help="WP3 lane feature dir (projection)")
     parser.add_argument("--confirm-root", required=True, type=Path, help="collected wp4_confirm B1 labels")

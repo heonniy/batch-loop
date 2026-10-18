@@ -31,7 +31,8 @@ N, T, REPEATS, PROMPT_CAP = 256, 64, 3, 64
 SPLIT_SEED, PRIOR_SEED, PRIOR_PREFIX, H0_SEED = 20261017, 1, 4096, 1
 SPLITS = {"wp2_headroom": (0, 256), "wp3_train": (256, 1280),
           "wp3_validation": (1280, 1792), "wp3_test": (1792, 2304),
-          "wp4_confirm": (2304, 2816), "wp5_test": (2816, 3328)}
+          "wp4_confirm": (2304, 2816), "wp5_test": (2816, 3328),
+          "wp6_test": (3328, 3840), "wp6_q_test": (3840, 4352), "wp6_eos_test": (4352, 4864)}
 
 
 # ---------------------------------------------------------------- pure parts

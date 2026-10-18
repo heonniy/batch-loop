@@ -29,6 +29,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BIGRAM_BUCKETS = 1 << 21
 TE_SMOOTHING = 20.0
 FOLDS = 5
+TRAJECTORY_START = 21  # phase03 SCALARS: previous_trajectory_length + 16 convergence/gate values follow
 GRID = ({"proj": 64, "width": 256, "lr": 1e-3}, {"proj": 128, "width": 256, "lr": 3e-4},
         {"proj": 256, "width": 512, "lr": 3e-4})
 
@@ -187,6 +188,8 @@ def cmd_train(args) -> None:
     vocab = int(args.vocab)
     s_tr, f_tr, tok_tr, y_tr = load_split(lane / "wp3_train", full_names)
     s_va, f_va, tok_va, y_va = load_split(lane / "wp3_validation", full_names)
+    if args.drop_trajectory:  # WP6b: no previous-token trajectory -> no per-recurrence hook when serving
+        s_tr, s_va = s_tr[..., :TRAJECTORY_START], s_va[..., :TRAJECTORY_START]
     k_tr, k_va = token_keys(tok_tr, vocab), token_keys(tok_va, vocab)
     sizes = te_sizes(vocab)
     tables = {k: te_table(k_tr[k], y_tr, sizes[k]) for k in k_tr}
@@ -214,13 +217,15 @@ def cmd_train(args) -> None:
     torch.save({"state_dict": model.state_dict(), "config": info, "scalar_dim": int(s_tr.shape[-1]),
                 "full_names": full_names, "full_dims": [int(f.shape[-1]) for f in f_tr],
                 "scalar_mean": s_mean, "scalar_std": s_std, "full_stats": f_stats,
-                "te_tables": {k: tables[k] for k in tables}, "vocab": vocab, "bigram_buckets": BIGRAM_BUCKETS},
+                "te_tables": {k: tables[k] for k in tables}, "vocab": vocab, "bigram_buckets": BIGRAM_BUCKETS,
+                "drop_trajectory": bool(args.drop_trajectory)},
                args.output_dir / "ranker_checkpoint.pt")
     summary = {"model": key, "dataset": manifest["dataset"], "grid": rows, "selected": info,
                "validation_recovery_by_B": {str(b): v for b, v in rec.items()},
                "ablation_without_full_dim_states": ablation,
                "selection_rule": "max mean validation lockstep RIC recovery over B in {8,16,32,64}",
                "test_arrays_opened": False, "seed": args.seed, "epochs_max": args.epochs,
+               "drop_trajectory": bool(args.drop_trajectory), "feature_root": str(lane),
                "train_wall_s": time.perf_counter() - started,
                "source_sha": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True, cwd=ROOT).strip()}
     summary["checkpoint_sha256"] = hashlib.sha256((args.output_dir / "ranker_checkpoint.pt").read_bytes()).hexdigest()
@@ -247,11 +252,14 @@ class GpuRanker:
         self.full_names = ckpt["full_names"]
         self.tables = {k: (dev(v[0]), dev(v[1])) for k, v in ckpt["te_tables"].items()}
         self.vocab, self.buckets = int(ckpt["vocab"]), int(ckpt["bigram_buckets"])
+        self.uses_trajectory = not ckpt.get("drop_trajectory", False)
 
     def score(self, scalar38, cur_tok, prev_tok, fulls: dict):
         import torch
         keys = {"cur": cur_tok, "prev": prev_tok, "bigram": (prev_tok * 1000003 + cur_tok) % self.buckets}
         te = torch.stack([self.tables[k][j][keys[k]] for k in ("cur", "prev", "bigram") for j in (0, 1)], dim=-1)
+        if not self.uses_trajectory:
+            scalar38 = scalar38[..., :TRAJECTORY_START]
         scalar = (torch.cat((scalar38, te), dim=-1) - self.s_mean) / self.s_std
         xs = [(fulls[name] - m) / s for name, (m, s) in zip(self.full_names, self.f_stats)]
         return self.model(scalar, xs)
@@ -395,9 +403,10 @@ def main() -> None:
     t.add_argument("--vocab", required=True, type=int)
     t.add_argument("--epochs", type=int, default=20)
     t.add_argument("--seed", type=int, default=1)
+    t.add_argument("--drop-trajectory", action="store_true")
     p = sub.add_parser("physical")
     p.add_argument("--model", required=True, choices=("ouro", "huginn"))
-    p.add_argument("--role", required=True, choices=("primary", "replication"))
+    p.add_argument("--role", required=True, choices=("primary", "replication", "gpu0", "gpu1", "gpu2", "gpu3"))
     p.add_argument("--dataset", required=True, choices=("alpaca", "sharegpt"))
     p.add_argument("--feature-root", required=True, type=Path, help="WP5 lane features (wp3_validation, wp5_test)")
     p.add_argument("--ranker-root", required=True, type=Path)

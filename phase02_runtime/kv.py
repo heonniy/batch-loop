@@ -82,6 +82,20 @@ class _StableRowKV:
             [self.key_valid, torch.ones((self.num_rows, 1), dtype=torch.bool, device=self.device)], dim=1
         )
 
+    def retire_rows(self, rows: torch.Tensor) -> None:
+        """Mark finished (EOS) requests for the current token: their new position is a masked
+        placeholder that no query can attend to, so the shared cache length can still grow."""
+        if self.phase != "token" or self.key_valid is None:
+            raise RuntimeError("retire rows only inside a token")
+        if rows.numel() == 0:
+            return
+        self.key_valid[rows, -1] = False
+        for slot in self.history:
+            if slot in self.current:
+                self.current[slot][0].index_fill_(0, rows, 0)
+                self.current[slot][1].index_fill_(0, rows, 0)
+                self.valid_current[slot].index_fill_(0, rows, True)
+
     def attention_bias(self, q_len: int, k_len: int, dtype: torch.dtype) -> torch.Tensor:
         """Additive causal/key-padding mask for the active rows, including pad self-loops."""
         if self.key_valid is None or self.key_valid.shape[1] != k_len:

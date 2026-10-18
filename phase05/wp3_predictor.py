@@ -97,7 +97,7 @@ def _check_source(allow_dirty: bool) -> str:
 # ---------------------------------------------------------------- collect
 
 def collect_split(key, model, tokenizer, prompts, out: Path, threshold, projection, smoke_tokens=None,
-                  full_dim: bool = False) -> dict:
+                  full_dim: bool = False, eos_ids: tuple[int, ...] = ()) -> dict:
     import torch
     from phase02_runtime.common import run_interval
     from phase03_predictor.collect_huginn import SCALARS
@@ -117,6 +117,7 @@ def collect_split(key, model, tokenizer, prompts, out: Path, threshold, projecti
     tokens_arr = np.zeros(shape, dtype=np.int32)
     next_arr = np.zeros(shape, dtype=np.int32)
     labels = np.zeros(shape, dtype=np.int16)
+    lengths = np.full(n, tokens, dtype=np.int32)  # decode steps executed per request (EOS stop when eos_ids)
     encoded = _encode(tokenizer, prompts)
     prompt_lengths = encoded["attention_mask"].sum(dim=1).tolist()
     ns = SimpleNamespace(model=key)
@@ -163,6 +164,9 @@ def collect_split(key, model, tokenizer, prompts, out: Path, threshold, projecti
                 trajectory[0] = sink[0]
                 prev_final = result.final_state.float().reshape(1, -1)
                 current = nxt
+                if eos_ids and int(nxt[0, 0]) in eos_ids:  # request finished after this step
+                    lengths[rid] = t + 1
+                    break
             del adapter
             if (rid + 1) % 64 == 0:
                 print(json.dumps({"event": "collect_progress", "split_dir": out.name, "done": rid + 1, "of": n,
@@ -172,7 +176,9 @@ def collect_split(key, model, tokenizer, prompts, out: Path, threshold, projecti
     np.save(out / "token_ids.npy", tokens_arr)
     np.save(out / "b1_next_token.npy", next_arr)
     np.save(out / "depth_labels.npy", labels)
-    return {"requests": n, "tokens": tokens, "prompt_token_counts": prompt_lengths,
+    np.save(out / "lengths.npy", lengths)
+    return {"eos_ids": list(eos_ids), "lengths_summary": {"mean": float(lengths.mean()), "min": int(lengths.min()),
+                                                          "ended_by_eos": int((lengths < tokens).sum())},"requests": n, "tokens": tokens, "prompt_token_counts": prompt_lengths,
             "prompt_sha256": [hashlib.sha256(p.encode()).hexdigest() for p in prompts],
             "elapsed_wall_s": time.perf_counter() - began,
             "full_dim_arrays": list(full_names),
@@ -202,12 +208,19 @@ def cmd_collect(args) -> None:
             "feature_causality": "all features computed after Prelude/embedding, before current-token recurrence",
             "prompt_cap": PROMPT_CAP, "padding": "max_length 64", "T": T, "splits_rule": SPLITS,
             "smoke": args.smoke}
+    threshold = args.threshold if args.threshold is not None else CONTRACT[key]["threshold"]
+    base["threshold"] = threshold
+    base["threshold_is_contract"] = threshold == CONTRACT[key]["threshold"]
     for split in args.splits:
         prompts = split_prompts(texts, split)
         if args.smoke:
             prompts = prompts[:64]
-        meta = collect_split(key, model, tokenizer, prompts, args.output_dir / split,
-                             CONTRACT[key]["threshold"], projection, 4 if args.smoke else None, args.full_dim)
+        eos_ids = ()
+        if args.stop_at_eos:
+            vocab = tokenizer.get_vocab()
+            eos_ids = tuple(sorted({tokenizer.eos_token_id} | ({vocab["<|im_end|>"]} if "<|im_end|>" in vocab else set())))
+        meta = collect_split(key, model, tokenizer, prompts, args.output_dir / split, threshold, projection,
+                             4 if args.smoke else None, args.full_dim, eos_ids)
         manifest = {**base, "split": split, "status": "COMPLETE", **meta}
         (args.output_dir / split / "feature_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
         print(json.dumps({"event": "split_done", "split": split, "elapsed_s": round(meta["elapsed_wall_s"], 1)}),
@@ -509,12 +522,14 @@ def main() -> None:
     sub = parser.add_subparsers(dest="command", required=True)
     c = sub.add_parser("collect")
     c.add_argument("--model", required=True, choices=("ouro", "huginn"))
-    c.add_argument("--role", required=True, choices=("primary", "replication"))
+    c.add_argument("--role", required=True, choices=("primary", "replication", "gpu0", "gpu1", "gpu2", "gpu3"))
     c.add_argument("--dataset", required=True, choices=("alpaca", "sharegpt"))
-    c.add_argument("--splits", nargs="+", required=True, choices=("wp3_train", "wp3_validation", "wp3_test", "wp4_confirm", "wp5_test"))
+    c.add_argument("--splits", nargs="+", required=True, choices=("wp3_train", "wp3_validation", "wp3_test", "wp4_confirm", "wp5_test", "wp6_test", "wp6_q_test", "wp6_eos_test"))
     c.add_argument("--output-dir", required=True, type=Path)
     c.add_argument("--smoke", action="store_true")
     c.add_argument("--full-dim", action="store_true", help="also store full-dimensional pre-recurrence states (fp16)")
+    c.add_argument("--threshold", type=float, help="override the WP1 contract exit threshold (WP6 threshold study)")
+    c.add_argument("--stop-at-eos", action="store_true", help="end a request after it generates EOS (WP6 EOS study)")
     s = sub.add_parser("select")
     s.add_argument("--feature-root", required=True, type=Path)
     s.add_argument("--output-dir", required=True, type=Path)
@@ -522,7 +537,7 @@ def main() -> None:
     s.add_argument("--seed", type=int, default=1)
     p = sub.add_parser("physical")
     p.add_argument("--model", required=True, choices=("ouro", "huginn"))
-    p.add_argument("--role", required=True, choices=("primary", "replication"))
+    p.add_argument("--role", required=True, choices=("primary", "replication", "gpu0", "gpu1", "gpu2", "gpu3"))
     p.add_argument("--dataset", required=True, choices=("alpaca", "sharegpt"))
     p.add_argument("--feature-root", required=True, type=Path)
     p.add_argument("--selection-root", required=True, type=Path)
