@@ -96,7 +96,8 @@ def _check_source(allow_dirty: bool) -> str:
 
 # ---------------------------------------------------------------- collect
 
-def collect_split(key, model, tokenizer, prompts, out: Path, threshold, projection, smoke_tokens=None) -> dict:
+def collect_split(key, model, tokenizer, prompts, out: Path, threshold, projection, smoke_tokens=None,
+                  full_dim: bool = False) -> dict:
     import torch
     from phase02_runtime.common import run_interval
     from phase03_predictor.collect_huginn import SCALARS
@@ -109,6 +110,10 @@ def collect_split(key, model, tokenizer, prompts, out: Path, threshold, projecti
     scalar_arr = np.lib.format.open_memmap(out / "scalars.npy", mode="w+", dtype="float32", shape=(*shape, len(SCALARS)))
     emb_arr = np.lib.format.open_memmap(out / "embedding.npy", mode="w+", dtype="float16", shape=(*shape, PROJECTION_DIM))
     rep_arr = np.lib.format.open_memmap(out / "prelude.npy", mode="w+", dtype="float16", shape=(*shape, PROJECTION_DIM))
+    hidden = int(model.transformer.wte.weight.shape[1] if key == "huginn" else model.model.embed_tokens.weight.shape[1])
+    full_names = (("emb_full", "prevh_full") + (("pre_full",) if key == "huginn" else ())) if full_dim else ()
+    full = {name: np.lib.format.open_memmap(out / f"{name}.npy", mode="w+", dtype="float16", shape=(*shape, hidden))
+            for name in full_names}
     tokens_arr = np.zeros(shape, dtype=np.int32)
     next_arr = np.zeros(shape, dtype=np.int32)
     labels = np.zeros(shape, dtype=np.int16)
@@ -127,12 +132,19 @@ def collect_split(key, model, tokenizer, prompts, out: Path, threshold, projecti
             previous_hidden = torch.zeros((1, PROJECTION_DIM), dtype=torch.float32, device="cuda")
             history, trajectory = [[]], [[]]
             row = torch.tensor([0], dtype=torch.long, device="cuda")
+            prev_final = torch.zeros((1, hidden), dtype=torch.float32, device="cuda")
             for t in range(tokens):
                 adapter.begin_token()
                 adapter.backend.set_active(row)
                 embedded, state = adapter.prelude(current)
                 scalar, emb, rep = _features(ns, adapter, current, previous_logits, history, trajectory,
                                              previous_hidden, embedded, [prompt_lengths[rid]], projection, "C9")
+                if full_dim:  # full-dimensional pre-recurrence states (WP5 ranker study)
+                    raw = embedded if key == "ouro" else model.transformer.wte(current) * model.emb_scale
+                    full["emb_full"][t, rid] = raw.float().reshape(-1).cpu().numpy()
+                    full["prevh_full"][t, rid] = prev_final.reshape(-1).cpu().numpy()
+                    if key == "huginn":
+                        full["pre_full"][t, rid] = embedded.float().reshape(-1).cpu().numpy()
                 sink: dict[int, list[float]] = {}
                 result = run_interval(adapter, embedded, state, row, row, exit_source="live", threshold=threshold,
                                       instrumentation="benchmark", debug_ids=False,
@@ -149,12 +161,13 @@ def collect_split(key, model, tokenizer, prompts, out: Path, threshold, projecti
                     previous_hidden = result.final_state.float().squeeze(1) @ projection
                 history[0].append(depth)
                 trajectory[0] = sink[0]
+                prev_final = result.final_state.float().reshape(1, -1)
                 current = nxt
             del adapter
             if (rid + 1) % 64 == 0:
                 print(json.dumps({"event": "collect_progress", "split_dir": out.name, "done": rid + 1, "of": n,
                                   "elapsed_s": round(time.perf_counter() - began, 1)}), flush=True)
-    for arr in (scalar_arr, emb_arr, rep_arr):
+    for arr in (scalar_arr, emb_arr, rep_arr, *full.values()):
         arr.flush()
     np.save(out / "token_ids.npy", tokens_arr)
     np.save(out / "b1_next_token.npy", next_arr)
@@ -162,8 +175,10 @@ def collect_split(key, model, tokenizer, prompts, out: Path, threshold, projecti
     return {"requests": n, "tokens": tokens, "prompt_token_counts": prompt_lengths,
             "prompt_sha256": [hashlib.sha256(p.encode()).hexdigest() for p in prompts],
             "elapsed_wall_s": time.perf_counter() - began,
+            "full_dim_arrays": list(full_names),
             "artifact_sha256": {f: _sha(out / f) for f in ("scalars.npy", "embedding.npy", "prelude.npy",
-                                                           "token_ids.npy", "b1_next_token.npy", "depth_labels.npy")}}
+                                                           "token_ids.npy", "b1_next_token.npy", "depth_labels.npy")
+                                + tuple(f"{name}.npy" for name in full_names)}}
 
 
 def cmd_collect(args) -> None:
@@ -192,7 +207,7 @@ def cmd_collect(args) -> None:
         if args.smoke:
             prompts = prompts[:64]
         meta = collect_split(key, model, tokenizer, prompts, args.output_dir / split,
-                             CONTRACT[key]["threshold"], projection, 4 if args.smoke else None)
+                             CONTRACT[key]["threshold"], projection, 4 if args.smoke else None, args.full_dim)
         manifest = {**base, "split": split, "status": "COMPLETE", **meta}
         (args.output_dir / split / "feature_manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
         print(json.dumps({"event": "split_done", "split": split, "elapsed_s": round(meta["elapsed_wall_s"], 1)}),
@@ -496,9 +511,10 @@ def main() -> None:
     c.add_argument("--model", required=True, choices=("ouro", "huginn"))
     c.add_argument("--role", required=True, choices=("primary", "replication"))
     c.add_argument("--dataset", required=True, choices=("alpaca", "sharegpt"))
-    c.add_argument("--splits", nargs="+", required=True, choices=("wp3_train", "wp3_validation", "wp3_test", "wp4_confirm"))
+    c.add_argument("--splits", nargs="+", required=True, choices=("wp3_train", "wp3_validation", "wp3_test", "wp4_confirm", "wp5_test"))
     c.add_argument("--output-dir", required=True, type=Path)
     c.add_argument("--smoke", action="store_true")
+    c.add_argument("--full-dim", action="store_true", help="also store full-dimensional pre-recurrence states (fp16)")
     s = sub.add_parser("select")
     s.add_argument("--feature-root", required=True, type=Path)
     s.add_argument("--output-dir", required=True, type=Path)
