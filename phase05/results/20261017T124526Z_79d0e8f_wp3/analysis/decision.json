@@ -1,0 +1,31 @@
+{
+  "rule": "phase05/WP3_PREREGISTRATION.md",
+  "verdict": {
+    "ouro": {
+      "practical_predictor": "NO-GO",
+      "winning_B_per_block": {
+        "alpaca/cohort0": [
+          8
+        ],
+        "alpaca/cohort1": [
+          8
+        ],
+        "sharegpt/cohort0": [
+          8
+        ],
+        "sharegpt/cohort1": [
+          8
+        ]
+      }
+    },
+    "huginn": {
+      "practical_predictor": "NO-GO",
+      "winning_B_per_block": {
+        "alpaca/cohort0": [],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [],
+        "sharegpt/cohort1": []
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "source_commits": {
+    "preregistration_and_runner": "79d0e8f",
+    "selection_frozen": "33e6ade",
+    "analysis": "84fb759"
+  },
+  "raw_result_commit": "11450bf78f6c451a399f9cc391f45b5d07580890",
+  "preregistration": "phase05/WP3_PREREGISTRATION.md",
+  "authorization": "user 2026-10-17: proceed with proposed WP3 direction",
+  "execution_kind": "B1 feature collection + validation-only selection + sealed-test physical no-refill, live BF16 exits",
+  "selected": {
+    "ouro/alpaca": "C7",
+    "huginn/alpaca": "C8",
+    "ouro/sharegpt": "C9",
+    "huginn/sharegpt": "C8"
+  },
+  "runs": {
+    "physical_total": 388,
+    "ok": 388,
+    "oom": 0,
+    "hard_check_fail": 0
+  },
+  "decision": {
+    "ouro": {
+      "practical_predictor": "NO-GO",
+      "winning_B_per_block": {
+        "alpaca/cohort0": [
+          8
+        ],
+        "alpaca/cohort1": [
+          8
+        ],
+        "sharegpt/cohort0": [
+          8
+        ],
+        "sharegpt/cohort1": [
+          8
+        ]
+      }
+    },
+    "huginn": {
+      "practical_predictor": "NO-GO",
+      "winning_B_per_block": {
+        "alpaca/cohort0": [],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [],
+        "sharegpt/cohort1": []
+      }
+    }
+  },
+  "local_only_artifacts": "features/*/*/{scalars,embedding,prelude}.npy (SHA-256 in feature_manifest.json)",
+  "measurement_status": "VALID_FOR_FIXED_B_DECODE_WALL",
+  "go_no_go": "practical predictor NO-GO (both models)"
+}
