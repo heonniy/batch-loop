@@ -1,0 +1,5 @@
+{"event": "grid", "proj": 64, "width": 256, "lr": 0.001, "best_epoch": 3, "validation_mean_recovery": 0.32523977133996745, "ablate_full": false}
+{"event": "grid", "proj": 128, "width": 256, "lr": 0.0003, "best_epoch": 2, "validation_mean_recovery": 0.3265179553043402, "ablate_full": false}
+{"event": "grid", "proj": 256, "width": 512, "lr": 0.0003, "best_epoch": 2, "validation_mean_recovery": 0.324507342024776, "ablate_full": false}
+{"event": "ablation_no_full_dim", "proj": 128, "width": 256, "lr": 0.0003, "best_epoch": 12, "validation_mean_recovery": 0.25453318056908636, "ablate_full": true}
+{"event": "selected", "validation_mean_recovery": 0.3265179553043402, "by_B": {"8": 0.29985068548934435, "16": 0.3120833333333333, "32": 0.3352152434721242, "64": 0.3589225589225589}}
