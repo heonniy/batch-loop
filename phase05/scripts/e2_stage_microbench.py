@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import gc
 import hashlib
 import json
 import os
@@ -42,7 +43,7 @@ WARMUP, REPS = 2, 10
 REL_L2_TOL = 0.03  # predeclared: phase04 semantic tolerance for state outputs
 FIELDS = ["model", "B", "L", "trial", "status", "prelude_ms", "core_ms", "core_kv_update_ms", "core_dispatch_ms",
           "core_wall_ms", "gate_ms", "exit_kv_ms", "compaction_ms", "coda_blocks_ms", "lm_head_ms",
-          "peak_alloc_gib", "peak_reserved_gib", "error"]
+          "peak_alloc_gib", "peak_reserved_gib", "free_gib_after_cleanup", "error"]
 
 
 def gpu_identity() -> dict:
@@ -208,9 +209,11 @@ def run(args) -> None:
         prompt_hashes[L] = hashlib.sha256(json.dumps(prompts).encode()).hexdigest()
         reference = None
         for B in b_grid:
+            gc.collect()
             torch.cuda.empty_cache()
             torch.cuda.reset_peak_memory_stats()
             status, err, row0 = "OK", "", None
+            a = tok = None  # never let a previous cell's cache survive into this one
             try:
                 a, tok = bench.build(B, prompts[: min(SEED_ROWS, B)] if B < SEED_ROWS else prompts)
                 if a.backend.key_valid.shape != (B, L):
@@ -221,13 +224,17 @@ def run(args) -> None:
                         writer.writerow({"model": args.model, "B": B, "L": L, "trial": t - WARMUP, "status": "OK",
                                          **res, "peak_alloc_gib": torch.cuda.max_memory_allocated() / 2**30,
                                          "peak_reserved_gib": torch.cuda.max_memory_reserved() / 2**30, "error": ""})
-                del a
             except torch.cuda.OutOfMemoryError as e:
                 status, err = "OOM", str(e).splitlines()[0][:240]
             except Exception as e:  # retained as a result
                 status, err = "ERROR", f"{type(e).__name__}: {e}"[:240]
+            finally:
+                a = tok = None
+                gc.collect()
+                torch.cuda.empty_cache()
             if status != "OK":
                 writer.writerow({"model": args.model, "B": B, "L": L, "trial": -1, "status": status, "error": err,
+                                 "free_gib_after_cleanup": torch.cuda.mem_get_info()[0] / 2**30,
                                  "peak_alloc_gib": torch.cuda.max_memory_allocated() / 2**30,
                                  "peak_reserved_gib": torch.cuda.max_memory_reserved() / 2**30})
                 gates.append({"model": args.model, "B": B, "L": L, "status": status})

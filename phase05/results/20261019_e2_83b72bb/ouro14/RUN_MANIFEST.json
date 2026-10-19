@@ -1,0 +1,66 @@
+{
+  "experiment": "E2",
+  "evidence_class": "PHYSICAL_FORCED_DEPTH (stage timing at fixed state)",
+  "model": "ouro14",
+  "model_revision": "37bc7e8ff85a90d813dc096383405f521b6a67b0",
+  "snapshot": "/home/hwlee/.cache/huggingface/hub/models--ByteDance--Ouro-1.4B/snapshots/37bc7e8ff85a90d813dc096383405f521b6a67b0",
+  "source_sha": "83b72bbc7709a3a66aa5fb0d7612fb353b8a0b77",
+  "argv": [
+    "phase05/scripts/e2_stage_microbench.py",
+    "--model",
+    "ouro14",
+    "--output-dir",
+    "phase05/results/20261019_e2_83b72bb/ouro14"
+  ],
+  "gpu": {
+    "physical_index": 0,
+    "uuid": "GPU-f217c8a0-1142-20f4-d84b-af29f3a47a0d",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "0"
+  },
+  "dtype": "bfloat16",
+  "attention": "Ouro: HF eager with explicit additive mask; Huginn: SDPA math (phase02 head96 wrapper)",
+  "kv_policy": "Ouro last-exited depth-indexed; Huginn shared physical-layer",
+  "B_grid": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128
+  ],
+  "L_grid": [
+    32,
+    64,
+    128,
+    256,
+    512,
+    1024,
+    2048
+  ],
+  "seed_rows": 4,
+  "warmup": 2,
+  "reps": 10,
+  "prompt_source": "tatsu-lab/alpaca train[0:4000] instruction+output concatenated per row, cut to L tokens",
+  "prompt_hashes": {
+    "32": "843c3ab7feb516d02bdad0e6509a49f7ccaee9ebfcf861f506d32ac3ed2784e4",
+    "64": "b825c75153bbdfff030a73e3a0f848171c3f47a7006eca80c9bca9f387efca33",
+    "128": "4317a0caa22ee7fd8fffbec664e9e924fa53e48bcf9b2e0f27e124b95550f3cd",
+    "256": "f01ea1b4611f0ffeab61ba4f5e23de0672309f2996cea5cbeea9bf2063cb42fe",
+    "512": "4b539e05fcac2750407b6461f7c8eae98b719ae35fcb9e834f3d343025ef1c92",
+    "1024": "aa4b7e45e83788bda16d43a374b7992efdc73129aa6a5f9cbe53cb3e2c08c801",
+    "2048": "126537fc6fb1327c233b6c3f0b16a0129ebf31e219800094a5fa38e48e02bc6e"
+  },
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "notes": [
+    "KV of SEED_ROWS real prefilled rows replicated to B rows",
+    "Huginn history allocated at L+slack (no amortized doubling) inside the benchmark",
+    "core_ms: CUDA-event time of one full recurrent Core invocation at r=1 incl. KV writes",
+    "core_dispatch_ms: host time until Core call returns, before synchronize (KV event instrumentation off)",
+    "core_kv_update_ms: KV-update CUDA events from a separate profiled Core call (same state)"
+  ]
+}
