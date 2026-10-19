@@ -1,0 +1,13 @@
+WARNING: CPU IP/backtrace sampling not supported, disabling.
+Try the 'nsys status --environment' command to learn more.
+
+WARNING: CPU context switch tracing not supported, disabling.
+Try the 'nsys status --environment' command to learn more.
+
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+Collecting data...
+Generating '/tmp/nsys-report-3f27.qdstrm'
+[1/1] [0%                          ] ouro14_B1_L512.nsys-rep[1/1] [0%                          ] ouro14_B1_L512.nsys-rep[1/1] [===24%                      ] ouro14_B1_L512.nsys-rep[1/1] [====26%                     ] ouro14_B1_L512.nsys-rep[1/1] [====28%                     ] ouro14_B1_L512.nsys-rep[1/1] [===========53%              ] ouro14_B1_L512.nsys-rep[1/1] [=============58%            ] ouro14_B1_L512.nsys-rep[1/1] [==============63%           ] ouro14_B1_L512.nsys-rep[1/1] [==============64%           ] ouro14_B1_L512.nsys-rep[1/1] [===============65%          ] ouro14_B1_L512.nsys-rep[1/1] [===============66%          ] ouro14_B1_L512.nsys-rep[1/1] [===================80%      ] ouro14_B1_L512.nsys-rep[1/1] [========================100%] ouro14_B1_L512.nsys-rep[1/1] [========================100%] ouro14_B1_L512.nsys-rep
+Generated:
+    /home/hwlee/batch-loop-worktrees/regime_oracle/phase05/results/20261019_e2_d6b8674/nsys/ouro14_B1_L512.nsys-rep

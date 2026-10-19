@@ -1,0 +1,66 @@
+{
+  "experiment": "E2",
+  "evidence_class": "PHYSICAL_FORCED_DEPTH (stage timing at fixed state)",
+  "model": "huginn",
+  "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "snapshot": "/home/hwlee/.cache/huggingface/hub/models--tomg-group-umd--huginn-0125/snapshots/bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+  "source_sha": "d6b8674cd227972d45139e20f23ba42972284f93",
+  "argv": [
+    "phase05/scripts/e2_stage_microbench.py",
+    "--model",
+    "huginn",
+    "--output-dir",
+    "phase05/results/20261019_e2_d6b8674/huginn"
+  ],
+  "gpu": {
+    "physical_index": 2,
+    "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "2"
+  },
+  "dtype": "bfloat16",
+  "attention": "Ouro: HF eager with explicit additive mask; Huginn: SDPA math (phase02 head96 wrapper)",
+  "kv_policy": "Ouro last-exited depth-indexed; Huginn shared physical-layer",
+  "B_grid": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    32,
+    64,
+    128
+  ],
+  "L_grid": [
+    32,
+    64,
+    128,
+    256,
+    512,
+    1024,
+    2048
+  ],
+  "seed_rows": 4,
+  "warmup": 2,
+  "reps": 10,
+  "prompt_source": "tatsu-lab/alpaca train[0:4000] instruction+output concatenated per row, cut to L tokens",
+  "prompt_hashes": {
+    "32": "2c08b970d27f611ccbe39613de4d86f323ba803555be2f4d331a2b078f531feb",
+    "64": "4024bc9fbed1006d7867f03b10a378610cc33e8833e693568117cfb30f2ffdc6",
+    "128": "eb306aba70515f71b165f9140f9b97e4ba00e08086f27a1828b26cdc769fd9e1",
+    "256": "9cc083910c44d05eb23aacce52d5e763924d3ad0232b9ade1d22d0ee4e1d7ea3",
+    "512": "d772ab739ddcd0648cc66edd458cdc2b5b0e1e9c7ebe5cc627a82249553aab88",
+    "1024": "ecfdc450815e124542f15319303ab97930b9743ac2eb88f0965ebd0a95430585",
+    "2048": "27144460344ac7846f288663474221525335b3eb0fd2adbdc6e34ddc43873151"
+  },
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "notes": [
+    "KV of SEED_ROWS real prefilled rows replicated to B rows",
+    "Huginn history allocated at L+slack (no amortized doubling) inside the benchmark",
+    "core_ms: CUDA-event time of one full recurrent Core invocation at r=1 incl. KV writes",
+    "core_dispatch_ms: host time until Core call returns, before synchronize (KV event instrumentation off)",
+    "core_kv_update_ms: KV-update CUDA events from a separate profiled Core call (same state)"
+  ]
+}
