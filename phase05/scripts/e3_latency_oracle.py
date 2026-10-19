@@ -81,6 +81,7 @@ class CoreModel:
         self.table = {k: statistics.median(v) for k, v in cells.items()}
         self.Ls = sorted({L for L, _ in self.table})
         self.source = str(raw_csv)
+        self._memo: dict = {}
 
     def _at_L(self, w: float, L: int) -> float:
         bs = sorted(b for (l, b) in self.table if l == L)
@@ -94,6 +95,12 @@ class CoreModel:
         return (1 - f) * self.table[(L, lo)] + f * self.table[(L, hi)]
 
     def __call__(self, w: int, L: int) -> float:
+        key = (w, L)
+        if key not in self._memo:
+            self._memo[key] = self._predict(w, L)
+        return self._memo[key]
+
+    def _predict(self, w: int, L: int) -> float:
         if L < self.Ls[0] or L > self.Ls[-1]:
             raise ValueError(f"L={L} outside measured support {self.Ls}")
         hi = next(x for x in self.Ls if x >= L)
@@ -104,7 +111,17 @@ class CoreModel:
         return (1 - f) * self._at_L(w, lo) + f * self._at_L(w, hi)
 
 
+_GROUP_MEMO: dict = {}
+
+
 def group_cost(depths, L, model) -> float:
+    key = (model, L, tuple(sorted(depths)))  # object key keeps the model alive: no id reuse
+    if key not in _GROUP_MEMO:
+        _GROUP_MEMO[key] = _group_cost(depths, L, model)
+    return _GROUP_MEMO[key]
+
+
+def _group_cost(depths, L, model) -> float:
     ds = sorted(depths, reverse=True)
     total, w = 0.0, len(ds)
     for r in range(1, ds[0] + 1):

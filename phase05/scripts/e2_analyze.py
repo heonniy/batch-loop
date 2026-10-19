@@ -2,9 +2,10 @@
 
 Bottleneck labels are assigned only where two independent signals agree:
   launch/host-dominated : Nsight Systems GPU busy fraction < 0.5 for the cell (profiled subset only), or
-                          Core time within 10% of B=1 while achieved weight bandwidth < 25% of HBM peak;
+                          Core time within 10% of B=1 and KV-update share < 50%;
   weight-memory-bound   : busy >= 0.5 AND achieved (weights+KV) bandwidth >= 50% of HBM peak AND AI < ridge;
-  KV-dominated          : KV bytes > weight bytes AND marginal latency grows with L at fixed B;
+  KV-path-dominated     : measured KV-update CUDA time >= 50% of the Core invocation (the phase02 KV backends
+                          gather/concatenate history on every call, so traffic exceeds the ideal KV bytes);
   compute-bound         : achieved FLOP rate >= 50% of BF16 dense peak.
 Otherwise the label is `unresolved`. H100 SXM peaks used: 3.35 TB/s HBM3, 989 TFLOP/s BF16 dense.
 """
@@ -120,12 +121,15 @@ def main() -> None:
                                           if prev else None)
         busy = r["nsys_gpu_busy_fraction"]
         flat = r["core_rel_to_B1"] is not None and r["core_rel_to_B1"] <= 1.10
-        if (busy is not None and busy < 0.5) or (flat and r["achieved_bw_frac_of_peak"] < 0.25):
+        r["kv_update_share_of_core"] = r["core_kv_update_ms_median"] / r["core_ms_median"]
+        if busy is not None and busy < 0.5:
+            label = "launch/host-dominated"
+        elif r["kv_update_share_of_core"] >= 0.5:
+            label = "KV-path-dominated"
+        elif flat:
             label = "launch/host-dominated"
         elif r["achieved_flops_frac_of_peak"] >= 0.5:
             label = "compute-bound"
-        elif r["kv_bytes"] > r["weight_bytes"] and r["achieved_bw_frac_of_peak"] >= 0.5:
-            label = "KV-bandwidth-bound"
         elif (busy is not None and busy >= 0.5) and r["achieved_bw_frac_of_peak"] >= 0.5 and r["arithmetic_intensity"] < RIDGE:
             label = "weight-memory-bound"
         else:
