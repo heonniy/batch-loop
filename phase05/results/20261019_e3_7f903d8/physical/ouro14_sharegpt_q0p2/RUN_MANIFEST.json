@@ -1,0 +1,245 @@
+{
+  "experiment": "E3 physical",
+  "evidence_class": "PHYSICAL_FORCED_DEPTH (frozen B=1 trace depths; NOT live-exit)",
+  "trace": "phase02/oracle_upper_bound_results_20260916/trace_inputs/ouro14_sharegpt_q0p2.jsonl.gz",
+  "trace_sha256": "8eb5bd8c2473c2ff0e4e505cd8dc6fcbd4dd4eff84efab693c94d3beb6c60f40",
+  "exit_rule_of_trace": "learned_gate_posthoc",
+  "model": "ouro14",
+  "gpu": {
+    "physical_index": 2,
+    "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "CUDA_VISIBLE_DEVICES": "2"
+  },
+  "argv": [
+    "phase05/scripts/e3_latency_oracle.py",
+    "physical",
+    "--trace",
+    "ouro14_sharegpt_q0p2.jsonl.gz",
+    "--e2-root",
+    "phase05/results/20261019_e2_d6b8674",
+    "--output-dir",
+    "phase05/results/20261019_e3_7f903d8/physical/ouro14_sharegpt_q0p2"
+  ],
+  "cells": [
+    [
+      256,
+      8,
+      32
+    ],
+    [
+      256,
+      32,
+      32
+    ],
+    [
+      64,
+      8,
+      32
+    ],
+    [
+      64,
+      32,
+      32
+    ],
+    [
+      32,
+      32,
+      32
+    ]
+  ],
+  "policies": [
+    "fifo",
+    "depth_oracle",
+    "latency_oracle",
+    "random"
+  ],
+  "warmups": 2,
+  "reps": 5,
+  "source_sha": "7f903d8302891eb601881a73b25e59987c86c3ee",
+  "core_model": "phase05/results/20261019_e2_d6b8674/ouro14/e2_stage_latency_raw.csv",
+  "torch": "2.6.0+cu124",
+  "cells_detail": {
+    "N256_B8_T32": {
+      "W": 64,
+      "prompt_count": 256,
+      "plans": {
+        "fifo": {
+          "solver": {},
+          "RIC": 3431,
+          "work": 19595,
+          "slot_utilization": 0.7138953657825707,
+          "pred_core_ms": 82260.09690369666
+        },
+        "depth_oracle": {
+          "solver": {},
+          "RIC": 2492,
+          "work": 19595,
+          "slot_utilization": 0.982895264847512,
+          "pred_core_ms": 59698.03531843424
+        },
+        "latency_oracle": {
+          "solver": {
+            "local_search_swaps": 32
+          },
+          "RIC": 2492,
+          "work": 19595,
+          "slot_utilization": 0.982895264847512,
+          "pred_core_ms": 59697.53715771437
+        },
+        "random": {
+          "solver": {},
+          "RIC": 3415,
+          "work": 19595,
+          "slot_utilization": 0.7172401171303074,
+          "pred_core_ms": 81897.71725480258
+        }
+      }
+    },
+    "N256_B32_T32": {
+      "W": 64,
+      "prompt_count": 256,
+      "plans": {
+        "fifo": {
+          "solver": {},
+          "RIC": 954,
+          "work": 19595,
+          "slot_utilization": 0.6418697589098532,
+          "pred_core_ms": 23035.334251871333
+        },
+        "depth_oracle": {
+          "solver": {},
+          "RIC": 667,
+          "work": 19595,
+          "slot_utilization": 0.9180565967016492,
+          "pred_core_ms": 16160.598419267684
+        },
+        "latency_oracle": {
+          "solver": {
+            "local_search_swaps": 32
+          },
+          "RIC": 667,
+          "work": 19595,
+          "slot_utilization": 0.9180565967016492,
+          "pred_core_ms": 16157.603078864515
+        },
+        "random": {
+          "solver": {},
+          "RIC": 962,
+          "work": 19595,
+          "slot_utilization": 0.6365319646569647,
+          "pred_core_ms": 23217.829252092168
+        }
+      }
+    },
+    "N64_B8_T32": {
+      "W": 64,
+      "prompt_count": 64,
+      "plans": {
+        "fifo": {
+          "solver": {},
+          "RIC": 859,
+          "work": 4854,
+          "slot_utilization": 0.7063445867287543,
+          "pred_core_ms": 20589.08294801414
+        },
+        "depth_oracle": {
+          "solver": {},
+          "RIC": 655,
+          "work": 4854,
+          "slot_utilization": 0.9263358778625954,
+          "pred_core_ms": 15693.381839320064
+        },
+        "latency_oracle": {
+          "solver": {
+            "local_search_swaps": 32
+          },
+          "RIC": 655,
+          "work": 4854,
+          "slot_utilization": 0.9263358778625954,
+          "pred_core_ms": 15693.057440385222
+        },
+        "random": {
+          "solver": {},
+          "RIC": 858,
+          "work": 4854,
+          "slot_utilization": 0.7071678321678322,
+          "pred_core_ms": 20567.014906913042
+        }
+      }
+    },
+    "N64_B32_T32": {
+      "W": 64,
+      "prompt_count": 64,
+      "plans": {
+        "fifo": {
+          "solver": {},
+          "RIC": 244,
+          "work": 4854,
+          "slot_utilization": 0.6216700819672131,
+          "pred_core_ms": 5887.457699902356
+        },
+        "depth_oracle": {
+          "solver": {},
+          "RIC": 198,
+          "work": 4854,
+          "slot_utilization": 0.7660984848484849,
+          "pred_core_ms": 4789.623663516715
+        },
+        "latency_oracle": {
+          "solver": {
+            "exhaustive_2group": 32
+          },
+          "RIC": 198,
+          "work": 4854,
+          "slot_utilization": 0.7660984848484849,
+          "pred_core_ms": 4789.226928643882
+        },
+        "random": {
+          "solver": {},
+          "RIC": 244,
+          "work": 4854,
+          "slot_utilization": 0.6216700819672131,
+          "pred_core_ms": 5888.147149058059
+        }
+      }
+    },
+    "N32_B32_T32": {
+      "W": 64,
+      "prompt_count": 32,
+      "plans": {
+        "fifo": {
+          "solver": {},
+          "RIC": 120,
+          "work": 2391,
+          "slot_utilization": 0.62265625,
+          "pred_core_ms": 2894.8215154632926
+        },
+        "depth_oracle": {
+          "solver": {},
+          "RIC": 120,
+          "work": 2391,
+          "slot_utilization": 0.62265625,
+          "pred_core_ms": 2894.8215154632926
+        },
+        "latency_oracle": {
+          "solver": {
+            "trivial": 32
+          },
+          "RIC": 120,
+          "work": 2391,
+          "slot_utilization": 0.62265625,
+          "pred_core_ms": 2894.8215154632926
+        },
+        "random": {
+          "solver": {},
+          "RIC": 120,
+          "work": 2391,
+          "slot_utilization": 0.62265625,
+          "pred_core_ms": 2894.8215154632926
+        }
+      }
+    }
+  }
+}

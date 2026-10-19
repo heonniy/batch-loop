@@ -1,0 +1,121 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.30s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.24s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.22s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.16it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.00s/it]
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"cell": "N256_B8_T32", "policy": "fifo", "rep": -1, "status": "OK", "decode_wall_s": 62.38461208343506, "core_ms": 45215.957498550415, "pred_core_ms": 49978.83757023141, "RIC": 7436}
+{"cell": "N256_B8_T32", "policy": "fifo", "rep": -2, "status": "OK", "decode_wall_s": 62.20190616790205, "core_ms": 45285.9199256897, "pred_core_ms": 49978.83757023141, "RIC": 7436}
+{"cell": "N256_B8_T32", "policy": "depth_oracle", "rep": 0, "status": "OK", "decode_wall_s": 51.43017032369971, "core_ms": 37696.11264228821, "pred_core_ms": 43393.32649611961, "RIC": 6442}
+{"cell": "N256_B8_T32", "policy": "latency_oracle", "rep": 0, "status": "OK", "decode_wall_s": 50.8777064466849, "core_ms": 37563.58544111252, "pred_core_ms": 43392.588488028385, "RIC": 6442}
+{"cell": "N256_B8_T32", "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 57.063493127934635, "core_ms": 42994.82202386856, "pred_core_ms": 49978.83757023141, "RIC": 7436}
+{"cell": "N256_B8_T32", "policy": "random", "rep": 0, "status": "OK", "decode_wall_s": 58.57489929627627, "core_ms": 43663.12349700928, "pred_core_ms": 50097.64228840545, "RIC": 7454}
+{"cell": "N256_B8_T32", "policy": "depth_oracle", "rep": 1, "status": "OK", "decode_wall_s": 53.033890562132, "core_ms": 37806.06127786636, "pred_core_ms": 43393.32649611961, "RIC": 6442}
+{"cell": "N256_B8_T32", "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 59.976542989723384, "core_ms": 44640.429062366486, "pred_core_ms": 49978.83757023141, "RIC": 7436}
+{"cell": "N256_B8_T32", "policy": "latency_oracle", "rep": 1, "status": "OK", "decode_wall_s": 52.67240516655147, "core_ms": 37833.10785531998, "pred_core_ms": 43392.588488028385, "RIC": 6442}
+{"cell": "N256_B8_T32", "policy": "random", "rep": 1, "status": "OK", "decode_wall_s": 58.900216489098966, "core_ms": 43856.945637226105, "pred_core_ms": 50097.64228840545, "RIC": 7454}
+{"cell": "N256_B8_T32", "policy": "random", "rep": 2, "status": "OK", "decode_wall_s": 60.68939964938909, "core_ms": 45042.88153743744, "pred_core_ms": 50097.64228840545, "RIC": 7454}
+{"cell": "N256_B8_T32", "policy": "depth_oracle", "rep": 2, "status": "OK", "decode_wall_s": 53.52711717784405, "core_ms": 37804.3078827858, "pred_core_ms": 43393.32649611961, "RIC": 6442}
+{"cell": "N256_B8_T32", "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 59.33742999006063, "core_ms": 43728.233446121216, "pred_core_ms": 49978.83757023141, "RIC": 7436}
+{"cell": "N256_B8_T32", "policy": "latency_oracle", "rep": 2, "status": "OK", "decode_wall_s": 52.624348448589444, "core_ms": 37834.42136621475, "pred_core_ms": 43392.588488028385, "RIC": 6442}
+{"cell": "N256_B8_T32", "policy": "random", "rep": 3, "status": "OK", "decode_wall_s": 59.923860295675695, "core_ms": 43633.79658699036, "pred_core_ms": 50097.64228840545, "RIC": 7454}
+{"cell": "N256_B8_T32", "policy": "depth_oracle", "rep": 3, "status": "OK", "decode_wall_s": 50.52103325352073, "core_ms": 37354.21726226807, "pred_core_ms": 43393.32649611961, "RIC": 6442}
+{"cell": "N256_B8_T32", "policy": "latency_oracle", "rep": 3, "status": "OK", "decode_wall_s": 50.78988274373114, "core_ms": 37113.38377904892, "pred_core_ms": 43392.588488028385, "RIC": 6442}
+{"cell": "N256_B8_T32", "policy": "fifo", "rep": 3, "status": "OK", "decode_wall_s": 58.44845214486122, "core_ms": 43287.854345321655, "pred_core_ms": 49978.83757023141, "RIC": 7436}
+{"cell": "N256_B8_T32", "policy": "latency_oracle", "rep": 4, "status": "OK", "decode_wall_s": 54.781849436461926, "core_ms": 37481.74410152435, "pred_core_ms": 43392.588488028385, "RIC": 6442}
+{"cell": "N256_B8_T32", "policy": "depth_oracle", "rep": 4, "status": "OK", "decode_wall_s": 53.307065202854574, "core_ms": 37972.80096101761, "pred_core_ms": 43393.32649611961, "RIC": 6442}
+{"cell": "N256_B8_T32", "policy": "fifo", "rep": 4, "status": "OK", "decode_wall_s": 58.24142007436603, "core_ms": 43888.389263153076, "pred_core_ms": 49978.83757023141, "RIC": 7436}
+{"cell": "N256_B8_T32", "policy": "random", "rep": 4, "status": "OK", "decode_wall_s": 58.798803023062646, "core_ms": 44120.4558801651, "pred_core_ms": 50097.64228840545, "RIC": 7454}
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"cell": "N256_B32_T32", "policy": "fifo", "rep": -1, "status": "OK", "decode_wall_s": 18.450352620333433, "core_ms": 13859.969024181366, "pred_core_ms": 17608.718436885625, "RIC": 2054}
+{"cell": "N256_B32_T32", "policy": "fifo", "rep": -2, "status": "OK", "decode_wall_s": 19.75855582859367, "core_ms": 13966.556582450867, "pred_core_ms": 17608.718436885625, "RIC": 2054}
+{"cell": "N256_B32_T32", "policy": "depth_oracle", "rep": 0, "status": "OK", "decode_wall_s": 17.57043178845197, "core_ms": 11999.954148292542, "pred_core_ms": 15365.008437939454, "RIC": 1707}
+{"cell": "N256_B32_T32", "policy": "random", "rep": 0, "status": "OK", "decode_wall_s": 24.061340622603893, "core_ms": 18257.87272119522, "pred_core_ms": 17644.821140969172, "RIC": 2060}
+{"cell": "N256_B32_T32", "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 22.49313852749765, "core_ms": 14646.126874446869, "pred_core_ms": 17608.718436885625, "RIC": 2054}
+{"cell": "N256_B32_T32", "policy": "latency_oracle", "rep": 0, "status": "OK", "decode_wall_s": 18.17987312376499, "core_ms": 12077.501938819885, "pred_core_ms": 15361.098438181914, "RIC": 1707}
+{"cell": "N256_B32_T32", "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 19.114396009594202, "core_ms": 14598.868861675262, "pred_core_ms": 17608.718436885625, "RIC": 2054}
+{"cell": "N256_B32_T32", "policy": "random", "rep": 1, "status": "OK", "decode_wall_s": 18.249390243552625, "core_ms": 13911.052290916443, "pred_core_ms": 17644.821140969172, "RIC": 2060}
+{"cell": "N256_B32_T32", "policy": "depth_oracle", "rep": 1, "status": "OK", "decode_wall_s": 18.988487934693694, "core_ms": 12191.788405895233, "pred_core_ms": 15365.008437939454, "RIC": 1707}
+{"cell": "N256_B32_T32", "policy": "latency_oracle", "rep": 1, "status": "OK", "decode_wall_s": 17.078326555900276, "core_ms": 11967.159080028534, "pred_core_ms": 15361.098438181914, "RIC": 1707}
+{"cell": "N256_B32_T32", "policy": "depth_oracle", "rep": 2, "status": "OK", "decode_wall_s": 17.252791818231344, "core_ms": 12196.365443229675, "pred_core_ms": 15365.008437939454, "RIC": 1707}
+{"cell": "N256_B32_T32", "policy": "random", "rep": 2, "status": "OK", "decode_wall_s": 19.16183004528284, "core_ms": 13910.317465305328, "pred_core_ms": 17644.821140969172, "RIC": 2060}
+{"cell": "N256_B32_T32", "policy": "latency_oracle", "rep": 2, "status": "OK", "decode_wall_s": 18.879876075312495, "core_ms": 12395.558628082275, "pred_core_ms": 15361.098438181914, "RIC": 1707}
+{"cell": "N256_B32_T32", "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 17.773943762294948, "core_ms": 13673.21999502182, "pred_core_ms": 17608.718436885625, "RIC": 2054}
+{"cell": "N256_B32_T32", "policy": "fifo", "rep": 3, "status": "OK", "decode_wall_s": 17.948498763144016, "core_ms": 13703.813550949097, "pred_core_ms": 17608.718436885625, "RIC": 2054}
+{"cell": "N256_B32_T32", "policy": "depth_oracle", "rep": 3, "status": "OK", "decode_wall_s": 15.868637764826417, "core_ms": 11807.097497463226, "pred_core_ms": 15365.008437939454, "RIC": 1707}
+{"cell": "N256_B32_T32", "policy": "latency_oracle", "rep": 3, "status": "OK", "decode_wall_s": 15.870567766018212, "core_ms": 11768.18982219696, "pred_core_ms": 15361.098438181914, "RIC": 1707}
+{"cell": "N256_B32_T32", "policy": "random", "rep": 3, "status": "OK", "decode_wall_s": 17.9536825530231, "core_ms": 13732.608607292175, "pred_core_ms": 17644.821140969172, "RIC": 2060}
+{"cell": "N256_B32_T32", "policy": "fifo", "rep": 4, "status": "OK", "decode_wall_s": 19.02145636547357, "core_ms": 13821.238385677338, "pred_core_ms": 17608.718436885625, "RIC": 2054}
+{"cell": "N256_B32_T32", "policy": "depth_oracle", "rep": 4, "status": "OK", "decode_wall_s": 17.974438494071364, "core_ms": 12162.634430885315, "pred_core_ms": 15365.008437939454, "RIC": 1707}
+{"cell": "N256_B32_T32", "policy": "latency_oracle", "rep": 4, "status": "OK", "decode_wall_s": 15.983981278724968, "core_ms": 11885.897723674774, "pred_core_ms": 15361.098438181914, "RIC": 1707}
+{"cell": "N256_B32_T32", "policy": "random", "rep": 4, "status": "OK", "decode_wall_s": 18.20535091869533, "core_ms": 13769.579626560211, "pred_core_ms": 17644.821140969172, "RIC": 2060}
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"cell": "N64_B8_T32", "policy": "fifo", "rep": -1, "status": "OK", "decode_wall_s": 14.790965238586068, "core_ms": 11068.608986377716, "pred_core_ms": 12673.90568706207, "RIC": 1886}
+{"cell": "N64_B8_T32", "policy": "fifo", "rep": -2, "status": "OK", "decode_wall_s": 17.053787855431437, "core_ms": 11697.762365818024, "pred_core_ms": 12673.90568706207, "RIC": 1886}
+{"cell": "N64_B8_T32", "policy": "random", "rep": 0, "status": "OK", "decode_wall_s": 14.317705411463976, "core_ms": 10943.784828186035, "pred_core_ms": 12620.913767277263, "RIC": 1878}
+{"cell": "N64_B8_T32", "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 14.359723630361259, "core_ms": 10918.98154258728, "pred_core_ms": 12673.90568706207, "RIC": 1886}
+{"cell": "N64_B8_T32", "policy": "depth_oracle", "rep": 0, "status": "OK", "decode_wall_s": 13.057828089222312, "core_ms": 9738.568189620972, "pred_core_ms": 11236.543960037641, "RIC": 1669}
+{"cell": "N64_B8_T32", "policy": "latency_oracle", "rep": 0, "status": "OK", "decode_wall_s": 13.094663651660085, "core_ms": 9751.270233154297, "pred_core_ms": 11236.10551154241, "RIC": 1669}
+{"cell": "N64_B8_T32", "policy": "random", "rep": 1, "status": "OK", "decode_wall_s": 14.374965318478644, "core_ms": 10964.6383061409, "pred_core_ms": 12620.913767277263, "RIC": 1878}
+{"cell": "N64_B8_T32", "policy": "latency_oracle", "rep": 1, "status": "OK", "decode_wall_s": 13.047754298895597, "core_ms": 9729.487749576569, "pred_core_ms": 11236.10551154241, "RIC": 1669}
+{"cell": "N64_B8_T32", "policy": "depth_oracle", "rep": 1, "status": "OK", "decode_wall_s": 13.054188143461943, "core_ms": 9752.668406486511, "pred_core_ms": 11236.543960037641, "RIC": 1669}
+{"cell": "N64_B8_T32", "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 14.545473267324269, "core_ms": 11075.07881307602, "pred_core_ms": 12673.90568706207, "RIC": 1886}
+{"cell": "N64_B8_T32", "policy": "random", "rep": 2, "status": "OK", "decode_wall_s": 14.376448013819754, "core_ms": 11008.748808383942, "pred_core_ms": 12620.913767277263, "RIC": 1878}
+{"cell": "N64_B8_T32", "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 14.489080666564405, "core_ms": 11039.443064689636, "pred_core_ms": 12673.90568706207, "RIC": 1886}
+{"cell": "N64_B8_T32", "policy": "depth_oracle", "rep": 2, "status": "OK", "decode_wall_s": 13.08241008874029, "core_ms": 9772.405594348907, "pred_core_ms": 11236.543960037641, "RIC": 1669}
+{"cell": "N64_B8_T32", "policy": "latency_oracle", "rep": 2, "status": "OK", "decode_wall_s": 13.079706436954439, "core_ms": 9810.834245204926, "pred_core_ms": 11236.10551154241, "RIC": 1669}
+{"cell": "N64_B8_T32", "policy": "depth_oracle", "rep": 3, "status": "OK", "decode_wall_s": 12.910946061834693, "core_ms": 9680.451842784882, "pred_core_ms": 11236.543960037641, "RIC": 1669}
+{"cell": "N64_B8_T32", "policy": "latency_oracle", "rep": 3, "status": "OK", "decode_wall_s": 12.971819125115871, "core_ms": 9639.069662094116, "pred_core_ms": 11236.10551154241, "RIC": 1669}
+{"cell": "N64_B8_T32", "policy": "random", "rep": 3, "status": "OK", "decode_wall_s": 15.284939378499985, "core_ms": 11154.83356809616, "pred_core_ms": 12620.913767277263, "RIC": 1878}
+{"cell": "N64_B8_T32", "policy": "fifo", "rep": 3, "status": "OK", "decode_wall_s": 15.761983120813966, "core_ms": 11402.96196269989, "pred_core_ms": 12673.90568706207, "RIC": 1886}
+{"cell": "N64_B8_T32", "policy": "random", "rep": 4, "status": "OK", "decode_wall_s": 14.989279779605567, "core_ms": 11132.809288978577, "pred_core_ms": 12620.913767277263, "RIC": 1878}
+{"cell": "N64_B8_T32", "policy": "fifo", "rep": 4, "status": "OK", "decode_wall_s": 14.914490120485425, "core_ms": 11251.865344524384, "pred_core_ms": 12673.90568706207, "RIC": 1886}
+{"cell": "N64_B8_T32", "policy": "latency_oracle", "rep": 4, "status": "OK", "decode_wall_s": 13.186187672428787, "core_ms": 9794.325539588928, "pred_core_ms": 11236.10551154241, "RIC": 1669}
+{"cell": "N64_B8_T32", "policy": "depth_oracle", "rep": 4, "status": "OK", "decode_wall_s": 13.225647842511535, "core_ms": 9756.522465229034, "pred_core_ms": 11236.543960037641, "RIC": 1669}
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"cell": "N64_B32_T32", "policy": "fifo", "rep": -1, "status": "OK", "decode_wall_s": 4.793012601323426, "core_ms": 3681.2080030441284, "pred_core_ms": 4520.617616518401, "RIC": 531}
+{"cell": "N64_B32_T32", "policy": "fifo", "rep": -2, "status": "OK", "decode_wall_s": 4.647209249436855, "core_ms": 3619.197060108185, "pred_core_ms": 4520.617616518401, "RIC": 531}
+{"cell": "N64_B32_T32", "policy": "depth_oracle", "rep": 0, "status": "OK", "decode_wall_s": 4.3773841401562095, "core_ms": 3316.745792388916, "pred_core_ms": 4220.044420435559, "RIC": 482}
+{"cell": "N64_B32_T32", "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 4.955670442432165, "core_ms": 3677.407675743103, "pred_core_ms": 4520.617616518401, "RIC": 531}
+{"cell": "N64_B32_T32", "policy": "random", "rep": 0, "status": "OK", "decode_wall_s": 4.634627857245505, "core_ms": 3614.027069091797, "pred_core_ms": 4553.186147497036, "RIC": 536}
+{"cell": "N64_B32_T32", "policy": "latency_oracle", "rep": 0, "status": "OK", "decode_wall_s": 4.359339904971421, "core_ms": 3328.4311995506287, "pred_core_ms": 4219.957226412371, "RIC": 482}
+{"cell": "N64_B32_T32", "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 4.817673313431442, "core_ms": 3634.999011516571, "pred_core_ms": 4520.617616518401, "RIC": 531}
+{"cell": "N64_B32_T32", "policy": "depth_oracle", "rep": 1, "status": "OK", "decode_wall_s": 4.383988137356937, "core_ms": 3332.816198348999, "pred_core_ms": 4220.044420435559, "RIC": 482}
+{"cell": "N64_B32_T32", "policy": "latency_oracle", "rep": 1, "status": "OK", "decode_wall_s": 4.296592986211181, "core_ms": 3289.0083479881287, "pred_core_ms": 4219.957226412371, "RIC": 482}
+{"cell": "N64_B32_T32", "policy": "random", "rep": 1, "status": "OK", "decode_wall_s": 4.994171946309507, "core_ms": 3706.954882621765, "pred_core_ms": 4553.186147497036, "RIC": 536}
+{"cell": "N64_B32_T32", "policy": "depth_oracle", "rep": 2, "status": "OK", "decode_wall_s": 4.308195777237415, "core_ms": 3274.095519065857, "pred_core_ms": 4220.044420435559, "RIC": 482}
+{"cell": "N64_B32_T32", "policy": "latency_oracle", "rep": 2, "status": "OK", "decode_wall_s": 4.315476725809276, "core_ms": 3298.6310057640076, "pred_core_ms": 4219.957226412371, "RIC": 482}
+{"cell": "N64_B32_T32", "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 4.565200814977288, "core_ms": 3555.100477218628, "pred_core_ms": 4520.617616518401, "RIC": 531}
+{"cell": "N64_B32_T32", "policy": "random", "rep": 2, "status": "OK", "decode_wall_s": 4.6521922731772065, "core_ms": 3613.064863204956, "pred_core_ms": 4553.186147497036, "RIC": 536}
+{"cell": "N64_B32_T32", "policy": "fifo", "rep": 3, "status": "OK", "decode_wall_s": 4.951066691428423, "core_ms": 3676.4223351478577, "pred_core_ms": 4520.617616518401, "RIC": 531}
+{"cell": "N64_B32_T32", "policy": "random", "rep": 3, "status": "OK", "decode_wall_s": 4.730612647719681, "core_ms": 3658.918878555298, "pred_core_ms": 4553.186147497036, "RIC": 536}
+{"cell": "N64_B32_T32", "policy": "latency_oracle", "rep": 3, "status": "OK", "decode_wall_s": 4.343322253786027, "core_ms": 3350.4711995124817, "pred_core_ms": 4219.957226412371, "RIC": 482}
+{"cell": "N64_B32_T32", "policy": "depth_oracle", "rep": 3, "status": "OK", "decode_wall_s": 4.444656392559409, "core_ms": 3366.9561257362366, "pred_core_ms": 4220.044420435559, "RIC": 482}
+{"cell": "N64_B32_T32", "policy": "depth_oracle", "rep": 4, "status": "OK", "decode_wall_s": 4.359844420105219, "core_ms": 3349.0871691703796, "pred_core_ms": 4220.044420435559, "RIC": 482}
+{"cell": "N64_B32_T32", "policy": "random", "rep": 4, "status": "OK", "decode_wall_s": 4.772593392059207, "core_ms": 3656.886625766754, "pred_core_ms": 4553.186147497036, "RIC": 536}
+{"cell": "N64_B32_T32", "policy": "fifo", "rep": 4, "status": "OK", "decode_wall_s": 4.92412883695215, "core_ms": 3667.7796840667725, "pred_core_ms": 4520.617616518401, "RIC": 531}
+{"cell": "N64_B32_T32", "policy": "latency_oracle", "rep": 4, "status": "OK", "decode_wall_s": 4.3318932028487325, "core_ms": 3307.378881931305, "pred_core_ms": 4219.957226412371, "RIC": 482}
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"cell": "N32_B32_T32", "policy": "fifo", "rep": -1, "status": "OK", "decode_wall_s": 2.2299404377117753, "core_ms": 1723.4537920951843, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "fifo", "rep": -2, "status": "OK", "decode_wall_s": 2.2069853506982327, "core_ms": 1693.6237421035767, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "depth_oracle", "rep": 0, "status": "OK", "decode_wall_s": 2.315046798437834, "core_ms": 1717.588737487793, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "latency_oracle", "rep": 0, "status": "OK", "decode_wall_s": 2.3012691028416157, "core_ms": 1721.6906876564026, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "random", "rep": 0, "status": "OK", "decode_wall_s": 2.2224965961650014, "core_ms": 1713.695966243744, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "fifo", "rep": 0, "status": "OK", "decode_wall_s": 2.2360727973282337, "core_ms": 1704.5272951126099, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "depth_oracle", "rep": 1, "status": "OK", "decode_wall_s": 2.637597003020346, "core_ms": 1810.7405104637146, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "fifo", "rep": 1, "status": "OK", "decode_wall_s": 3.751344883814454, "core_ms": 2055.4759011268616, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "random", "rep": 1, "status": "OK", "decode_wall_s": 2.581972826272249, "core_ms": 1860.401346206665, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "latency_oracle", "rep": 1, "status": "OK", "decode_wall_s": 2.1967733558267355, "core_ms": 1687.6040630340576, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "depth_oracle", "rep": 2, "status": "OK", "decode_wall_s": 2.5535201327875257, "core_ms": 1808.8391361236572, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "random", "rep": 2, "status": "OK", "decode_wall_s": 2.180336369201541, "core_ms": 1677.0184998512268, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "latency_oracle", "rep": 2, "status": "OK", "decode_wall_s": 2.4674976263195276, "core_ms": 1833.7686772346497, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "fifo", "rep": 2, "status": "OK", "decode_wall_s": 2.24845018517226, "core_ms": 1709.792031288147, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "random", "rep": 3, "status": "OK", "decode_wall_s": 2.321286339312792, "core_ms": 1749.366497039795, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "latency_oracle", "rep": 3, "status": "OK", "decode_wall_s": 3.8232988510280848, "core_ms": 2199.4940419197083, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "fifo", "rep": 3, "status": "OK", "decode_wall_s": 2.334311372600496, "core_ms": 1724.3434233665466, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "depth_oracle", "rep": 3, "status": "OK", "decode_wall_s": 2.2109665535390377, "core_ms": 1686.425308227539, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "fifo", "rep": 4, "status": "OK", "decode_wall_s": 2.1661416087299585, "core_ms": 1683.7550406455994, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "depth_oracle", "rep": 4, "status": "OK", "decode_wall_s": 2.2266616486012936, "core_ms": 1693.0158743858337, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "latency_oracle", "rep": 4, "status": "OK", "decode_wall_s": 2.206274786964059, "core_ms": 1682.0862703323364, "pred_core_ms": 2140.451329995878, "RIC": 248}
+{"cell": "N32_B32_T32", "policy": "random", "rep": 4, "status": "OK", "decode_wall_s": 2.194547578692436, "core_ms": 1676.3676772117615, "pred_core_ms": 2140.451329995878, "RIC": 248}

@@ -1,0 +1,50 @@
+{
+  "phase": "05 regime/architecture/oracle",
+  "date": "2026-10-19",
+  "branch": "research/regime-architecture-oracle-20261019",
+  "gpu_assignment": "phase05/GPU_ASSIGNMENT_20261019.json",
+  "gpus_used": {
+    "E2": {
+      "ouro14": 0,
+      "ouro26": 1,
+      "huginn": 2,
+      "nsys_subset": 3
+    },
+    "E3": {
+      "ouro14_alpaca_q0p2": 0,
+      "huginn_alpaca_0p12": 1,
+      "ouro14_sharegpt_q0p2": 2,
+      "huginn_alpaca_0p26": 3
+    }
+  },
+  "runs": {
+    "E1": "phase05/results/20261019_e1",
+    "E2": "phase05/results/20261019_e2_d6b8674",
+    "E2_superseded": "phase05/results/20261019_e2_83b72bb",
+    "E3": "phase05/results/20261019_e3_7f903d8"
+  },
+  "models": {
+    "Ouro-1.4B": "37bc7e8ff85a90d813dc096383405f521b6a67b0",
+    "Ouro-2.6B": "f8e38372d72a8aa7f4ea9f14b98739a311589088",
+    "Huginn-3.5B": "bb6621b65e90b6a4b9b29ef88dc83866d450470c"
+  },
+  "evidence_classes": {
+    "e1_regime_cells.csv": "mixed, per-row evidence_class",
+    "e2_stage_latency.csv": "PHYSICAL_FORCED_DEPTH (stage timing at fixed state)",
+    "e3_oracle_comparison.csv": "RIC TRACE_ONLY; pred LATENCY_MODEL (calibration REJECTED); core/wall PHYSICAL_FORCED_DEPTH"
+  },
+  "counts": {
+    "E2_cells": 168,
+    "E2_oom": 19,
+    "E2_gate_fail": 0,
+    "E3_physical_runs": 440,
+    "E3_physical_ok": 440,
+    "E3_replay_rows": 2016
+  },
+  "files_sha256": {
+    "e1_regime_cells.csv": "e50fdbbd6a01ff0ab267526e081488a324a6a957dc14a3d9af9327f37cbaa240",
+    "e2_stage_latency.csv": "33f5c89b42a84c23f38b7b4bdf13ba3322aa0c15d29dfa94cc9de8e4ea18a78c",
+    "e3_oracle_comparison.csv": "1193005155a844b12a374dab1984a0b1fdbe446230565d96098e53eb57cfbbe4",
+    "summary_table.csv": "d98b16d492afe9d75af3959c80c290b46b1eb43e2d02cc2b421bc14d90f1ab5d"
+  }
+}

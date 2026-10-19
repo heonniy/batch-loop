@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/hwlee/batch-loop-worktrees/regime_oracle/phase05/scripts/e3_latency_oracle.py", line 448, in <module>
+    main()
+  File "/home/hwlee/batch-loop-worktrees/regime_oracle/phase05/scripts/e3_latency_oracle.py", line 444, in main
+    {"replay": cmd_replay, "physical": cmd_physical}[a.cmd](a)
+  File "/home/hwlee/batch-loop-worktrees/regime_oracle/phase05/scripts/e3_latency_oracle.py", line 356, in cmd_physical
+    tr = load_trace(TRACES / args.trace)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hwlee/batch-loop-worktrees/regime_oracle/phase05/scripts/e3_latency_oracle.py", line 56, in load_trace
+    return {"depth": depth, "family": first["family"], "dataset": first["dataset"],
+                                      ~~~~~^^^^^^^^^^
+KeyError: 'family'

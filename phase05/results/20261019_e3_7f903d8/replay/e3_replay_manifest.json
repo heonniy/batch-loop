@@ -1,0 +1,10 @@
+{
+  "evidence": "TRACE_ONLY (RIC/work) and LATENCY_MODEL (pred_core_ms from E2 medians, interpolation only inside support)",
+  "core_models": {
+    "ouro14": "phase05/results/20261019_e2_d6b8674/ouro14/e2_stage_latency_raw.csv",
+    "huginn": "phase05/results/20261019_e2_d6b8674/huginn/e2_stage_latency_raw.csv"
+  },
+  "source_sha": "869a8111f7051d8f840121af37effe80b325208a",
+  "context_rule": "phase02 runtime pads all rows to the cohort-wide prompt width W (max_length 64); step t attends W+t+1 keys",
+  "B_equal_N_rows": "control: grouping cannot change RIC"
+}

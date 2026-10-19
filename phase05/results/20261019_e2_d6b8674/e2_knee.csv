@@ -1,0 +1,22 @@
+model,L,objective,B_star,B_star_conservative,B_star_optimistic,max_B_measured,core_B1_ms,core_maxB_ms
+ouro14,32,largest B with Core median <= 1.10 x Core(B=1),32,32,128,128,23.619135856628418,26.659472465515137
+ouro14,64,largest B with Core median <= 1.10 x Core(B=1),64,32,128,128,23.56279945373535,25.921311378479004
+ouro14,128,largest B with Core median <= 1.10 x Core(B=1),32,16,128,128,23.28859233856201,25.98911952972412
+ouro14,256,largest B with Core median <= 1.10 x Core(B=1),8,8,8,128,22.953344345092773,42.23969650268555
+ouro14,512,largest B with Core median <= 1.10 x Core(B=1),32,32,32,64,24.323071479797363,42.33054542541504
+ouro14,1024,largest B with Core median <= 1.10 x Core(B=1),16,1,16,32,24.607952117919922,42.65188789367676
+ouro14,2048,largest B with Core median <= 1.10 x Core(B=1),8,2,8,16,24.888736724853516,35.849008560180664
+ouro26,32,largest B with Core median <= 1.10 x Core(B=1),32,16,128,128,45.15580940246582,50.94262504577637
+ouro26,64,largest B with Core median <= 1.10 x Core(B=1),32,32,128,128,45.38046455383301,50.89801597595215
+ouro26,128,largest B with Core median <= 1.10 x Core(B=1),32,32,32,128,45.17168045043945,51.3308162689209
+ouro26,256,largest B with Core median <= 1.10 x Core(B=1),32,16,32,64,44.72494316101074,51.10918426513672
+ouro26,512,largest B with Core median <= 1.10 x Core(B=1),16,16,16,32,44.613840103149414,50.556705474853516
+ouro26,1024,largest B with Core median <= 1.10 x Core(B=1),16,8,16,16,45.60158348083496,49.17793655395508
+ouro26,2048,largest B with Core median <= 1.10 x Core(B=1),8,8,8,8,45.01611328125,46.7553768157959
+huginn,32,largest B with Core median <= 1.10 x Core(B=1),32,32,32,128,6.616528034210205,8.869551658630371
+huginn,64,largest B with Core median <= 1.10 x Core(B=1),8,8,8,128,6.605664014816284,11.46790361404419
+huginn,128,largest B with Core median <= 1.10 x Core(B=1),8,8,8,128,6.59119987487793,18.222576141357422
+huginn,256,largest B with Core median <= 1.10 x Core(B=1),1,1,4,128,6.601664066314697,32.25726318359375
+huginn,512,largest B with Core median <= 1.10 x Core(B=1),2,2,2,128,6.596287965774536,60.433231353759766
+huginn,1024,largest B with Core median <= 1.10 x Core(B=1),1,1,1,64,6.622720003128052,60.29172706604004
+huginn,2048,largest B with Core median <= 1.10 x Core(B=1),1,1,1,32,7.076272010803223,59.86336135864258

@@ -1,5 +1,9 @@
 # AGENTS.md
 
+## Current priority — Phase 05 regime/architecture/oracle study (2026-10-19)
+
+The user asked for E1–E3 of `phase05/AGENT_TASK.md` and confirmed GPU ownership: they stopped their own load job on GPUs 0–3 for this study (`phase05/GPU_ASSIGNMENT_20261019.json`). GPUs 4–7 belong to other users. E1 (CPU), E2 (H100 stage microbenchmark) and E3 (latency-aware Oracle; replay plus PHYSICAL_FORCED_DEPTH runs) are complete. Start at `phase05/results/20261019/RESULTS.md` and `REVIEW.md`. Nothing in Phase 05 is live-exit performance. The Phase-04 BF16 Gate A remains FAIL, and the predictor block below still applies. The Phase 04R "no GPU" rule is superseded only for this authorized Phase 05 scope.
+
 ## Current priority — Phase 04R: quantify BF16 depth-rank stability from existing traces (2026-09-17)
 
 Read in order:
