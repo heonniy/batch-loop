@@ -53,8 +53,14 @@ def load_trace(path: Path) -> dict:
     if len(seen) != n * t or (depth < 1).any():
         raise ValueError("incomplete trace")
     first = rows[0]
-    return {"depth": depth, "family": first["family"], "dataset": first["dataset"],
-            "threshold": first["exit_threshold"], "rmax": first["rmax"], "exit_rule": first["exit_rule"],
+    huginn = first.get("model") == "huginn"  # phase02 Huginn B1 traces use a shorter schema
+    meta = ({"family": "huginn", "dataset": "alpaca" if "alpaca" in path.name else "sharegpt",
+             "threshold": first["threshold"], "rmax": 16, "exit_rule": first["exit_source"]} if huginn else
+            {"family": first["family"], "dataset": first["dataset"], "threshold": first["exit_threshold"],
+             "rmax": first["rmax"], "exit_rule": first["exit_rule"]})
+    if depth.max() > meta["rmax"]:
+        raise ValueError("depth above Rmax")
+    return {"depth": depth, **meta,
             "sha256": hashlib.sha256(gzip.open(path, "rb").read()).hexdigest(), "path": str(path.relative_to(ROOT))}
 
 
