@@ -1,0 +1,11 @@
+{
+  "authorization": "User (2026-10-19) confirmed: stop the user's own load job on GPUs 0-3 and use GPUs 0-3 for E2/E3. GPUs 4-7 belong to other users and are never touched.",
+  "pre_launch_observation": "2026-10-19T10:11Z: gpu_workload_full.py stopped; GPUs 0-3 at 0 MiB and no compute processes",
+  "devices": {
+    "0": "GPU-f217c8a0-1142-20f4-d84b-af29f3a47a0d",
+    "1": "GPU-a77f3471-67d4-20b0-9fab-e502d4de5adb",
+    "2": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e",
+    "3": "GPU-17488c15-2d4c-5d9e-d503-29b0d959a8a8"
+  },
+  "rule": "one GPU per independent benchmark via CUDA_VISIBLE_DEVICES; no multi-GPU communication"
+}
