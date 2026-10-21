@@ -1,0 +1,8 @@
+{
+  "authorization": "User confirmed on 2026-10-21 (Phase 07 start): use GPUs 0-3. GPUs 4-7 run another user's jobs and are never touched.",
+  "pre_launch_observation": "2026-10-21: GPUs 0-3 0 MiB / 0% with no compute processes; GPUs 4-7 ~71.5 GB each (foreign PIDs 523618-523706)",
+  "devices": {"0": "GPU-f217c8a0-1142-20f4-d84b-af29f3a47a0d", "1": "GPU-a77f3471-67d4-20b0-9fab-e502d4de5adb",
+              "2": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e", "3": "GPU-17488c15-2d4c-5d9e-d503-29b0d959a8a8"},
+  "lanes": {"A": "GPU0 Ouro-1.4B q=0.2", "B": "GPU1 Ouro-2.6B q=0.2", "C": "GPU2 Huginn tau=0.12",
+            "D": "GPU3 alternate thresholds (Ouro-1.4B q=0.4, Huginn tau=0.26; Alpaca) then E0 parity / physical E4"}
+}
