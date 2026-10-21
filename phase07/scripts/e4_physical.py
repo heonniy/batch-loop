@@ -33,8 +33,8 @@ WARMUPS, REPS = 2, 5
 
 def overhead(dim: int, hidden: int, K: int, N: int, reps: int = 200) -> dict:
     import torch
-    W1 = torch.randn(dim, hidden, device="cuda", dtype=torch.float32)
-    W2 = torch.randn(hidden, K, device="cuda", dtype=torch.float32)
+    W1 = torch.randn(dim, max(hidden, 1), device="cuda", dtype=torch.float32)
+    W2 = torch.randn(max(hidden, 1), K, device="cuda", dtype=torch.float32)
     feats = torch.randn(N, dim, device="cuda", dtype=torch.float32)
     src = torch.randn(N, dim, device="cuda", dtype=torch.bfloat16)  # stand-in for gathered pre-core states
     r = torch.arange(1, K + 1, device="cuda", dtype=torch.float32)
@@ -45,9 +45,12 @@ def overhead(dim: int, hidden: int, K: int, N: int, reps: int = 200) -> dict:
         t0 = time.perf_counter()
         s.record()
         feats.copy_(src)  # gather/convert features
-        h = torch.nn.functional.gelu(feats @ W1) if hidden else feats
-        p = torch.softmax(h @ W2 if hidden else feats @ W1[:, :K], -1)
-        order = torch.argsort(p @ r, stable=True)
+        if hidden:
+            p = torch.softmax(torch.nn.functional.gelu(feats @ W1) @ W2, -1)
+            score = p @ r
+        else:  # previous-depth policy: the score already exists; only the sort is paid
+            score = feats[:, 0]
+        order = torch.argsort(score, stable=True)
         e.record()
         e.synchronize()
         wall = (time.perf_counter() - t0) * 1000
@@ -109,11 +112,11 @@ def main() -> None:
             print(json.dumps({k: row[k] for k in ("N", "B", "policy", "rep", "decode_wall_s", "RIC", "n_errors")}), flush=True)
         eng = None
         torch.cuda.empty_cache()
-    oh = [overhead(a.feature_dim, a.hidden, K, 256), overhead(1, 0, 1, 256)]  # MLP predictor; prev-depth sort only
-    with (a.out / "e4_physical_runs.csv").open("w", newline="") as f:
+    with (a.out / "e4_physical_runs.csv").open("w", newline="") as f:  # write raw rows before anything else can fail
         w = csv.DictWriter(f, fieldnames=list(rows[0]))
         w.writeheader()
         w.writerows(rows)
+    oh = [overhead(a.feature_dim, a.hidden, K, 256), overhead(1, 0, 1, 256)]  # MLP predictor; prev-depth sort only
     (a.out / "RUN_MANIFEST.json").write_text(json.dumps({
         "evidence_class": "PHYSICAL_FORCED_DEPTH; predictor overhead measured separately (PHYSICAL microbenchmark)",
         "model": a.model, "lane": a.lane, "pred_key": a.pred_key, "cells": CELLS, "policies": POLICIES,
