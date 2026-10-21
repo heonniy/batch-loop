@@ -1,0 +1,60 @@
+Loading weights:   0%|          | 0/271 [00:00<?, ?it/s]Loading weights: 100%|██████████| 271/271 [00:00<00:00, 3841.52it/s]
+[transformers] [1mOuroForCausalLM LOAD REPORT[0m from: /home/hwlee/.cache/huggingface/hub/models--KristianS7--Ouro-1.4B/snapshots/a27316f37f1f10b3395017c4fec0fea96f28150c
+Key                            | Status  | 
+-------------------------------+---------+-
+model.preloop_exit_gate.weight | MISSING | 
+model.preloop_exit_gate.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+{"N": 256, "B": 8, "policy": "fifo", "rep": -1, "decode_wall_s": 18.848758499138057, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": -2, "decode_wall_s": 19.27437657210976, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 0, "decode_wall_s": 19.264527631923556, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 0, "decode_wall_s": 13.310309237800539, "RIC": 2559, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 0, "decode_wall_s": 17.723030153661966, "RIC": 3387, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 1, "decode_wall_s": 17.46865624282509, "RIC": 3387, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 1, "decode_wall_s": 19.2957269474864, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 1, "decode_wall_s": 13.164919218979776, "RIC": 2559, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 2, "decode_wall_s": 13.137633283622563, "RIC": 2559, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 2, "decode_wall_s": 17.722240303643048, "RIC": 3387, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 2, "decode_wall_s": 19.305898523889482, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 3, "decode_wall_s": 13.41205777041614, "RIC": 2559, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 3, "decode_wall_s": 18.973121146671474, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 3, "decode_wall_s": 17.16921776626259, "RIC": 3387, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 4, "decode_wall_s": 17.015548386611044, "RIC": 3387, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 4, "decode_wall_s": 18.835916307754815, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 4, "decode_wall_s": 13.120663972571492, "RIC": 2559, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": -1, "decode_wall_s": 5.800264330580831, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": -2, "decode_wall_s": 5.810280359350145, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 0, "decode_wall_s": 5.40592029877007, "RIC": 951, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 0, "decode_wall_s": 5.809043705463409, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 0, "decode_wall_s": 4.058962691575289, "RIC": 679, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 1, "decode_wall_s": 5.440613318234682, "RIC": 951, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 1, "decode_wall_s": 4.046109997667372, "RIC": 679, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 1, "decode_wall_s": 5.8226438872516155, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 2, "decode_wall_s": 4.038314822129905, "RIC": 679, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 2, "decode_wall_s": 5.83596208691597, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 2, "decode_wall_s": 5.451333832927048, "RIC": 951, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 3, "decode_wall_s": 5.6175145376473665, "RIC": 951, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 3, "decode_wall_s": 4.051612879149616, "RIC": 679, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 3, "decode_wall_s": 5.837195428088307, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 4, "decode_wall_s": 6.003433759324253, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 4, "decode_wall_s": 4.0862217685207725, "RIC": 679, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 4, "decode_wall_s": 5.443316116929054, "RIC": 951, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": -1, "decode_wall_s": 1.2255316143855453, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": -2, "decode_wall_s": 1.2250168705359101, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 0, "decode_wall_s": 1.2309583611786366, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 1, "decode_wall_s": 1.2283731158822775, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 2, "decode_wall_s": 1.2241414953023195, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 3, "decode_wall_s": 1.2228075889870524, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 4, "decode_wall_s": 1.223884828388691, "RIC": 128, "n_errors": 0}
+Traceback (most recent call last):
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/scripts/e4_physical.py", line 126, in <module>
+    main()
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/scripts/e4_physical.py", line 112, in main
+    oh = [overhead(a.feature_dim, a.hidden, K, 256), overhead(1, 0, 1, 256)]  # MLP predictor; prev-depth sort only
+                                                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/scripts/e4_physical.py", line 50, in overhead
+    order = torch.argsort(p @ r, stable=True)
+                          ~~^~~
+RuntimeError: size mismatch, got input (256), mat (256x0), vec (1)

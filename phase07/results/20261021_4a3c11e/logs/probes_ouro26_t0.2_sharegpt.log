@@ -1,0 +1,30 @@
+{"set": "cheap", "hidden": 0, "weighted": false, "nll": 1.1629271109898884, "rec16": 0.10217640320733105, "t": 5}
+{"set": "cheap", "hidden": 64, "weighted": false, "nll": 1.1212413311004639, "rec16": 0.12096219931271478, "t": 10}
+{"set": "cheap", "hidden": 128, "weighted": false, "nll": 1.1189496119817097, "rec16": 0.11592210767468498, "t": 13}
+{"set": "cheap+tok", "hidden": 0, "weighted": false, "nll": 1.0960088968276978, "rec16": 0.1117983963344788, "t": 16}
+{"set": "cheap+tok", "hidden": 64, "weighted": false, "nll": 1.0483876864115398, "rec16": 0.13951890034364262, "t": 20}
+{"set": "cheap+tok", "hidden": 128, "weighted": false, "nll": 1.0458807150522869, "rec16": 0.1427262313860252, "t": 24}
+{"set": "emb", "hidden": 0, "weighted": false, "nll": 1.2808796962102253, "rec16": 0.06689576174112256, "t": 29}
+{"set": "emb", "hidden": 64, "weighted": false, "nll": 1.193186640739441, "rec16": 0.07033218785796105, "t": 31}
+{"set": "emb", "hidden": 128, "weighted": false, "nll": 1.199612816174825, "rec16": 0.07147766323024056, "t": 34}
+{"set": "prevh", "hidden": 0, "weighted": false, "nll": 1.0719743172327678, "rec16": 0.2609392898052692, "t": 39}
+{"set": "prevh", "hidden": 64, "weighted": false, "nll": 0.9635037779808044, "rec16": 0.27056128293241694, "t": 42}
+{"set": "prevh", "hidden": 128, "weighted": false, "nll": 0.958826998869578, "rec16": 0.2719358533791523, "t": 44}
+{"set": "cheap+tok+emb", "hidden": 0, "weighted": false, "nll": 1.177379051844279, "rec16": 0.12004581901489118, "t": 50}
+{"set": "cheap+tok+emb", "hidden": 64, "weighted": false, "nll": 1.1250056028366089, "rec16": 0.1129438717067583, "t": 52}
+{"set": "cheap+tok+emb", "hidden": 128, "weighted": false, "nll": 1.124449094136556, "rec16": 0.11477663230240549, "t": 55}
+{"set": "cheap+tok+prevh", "hidden": 0, "weighted": false, "nll": 1.032669464747111, "rec16": 0.274914089347079, "t": 61}
+{"set": "cheap+tok+prevh", "hidden": 64, "weighted": false, "nll": 0.9388557275136312, "rec16": 0.29644902634593356, "t": 64}
+{"set": "cheap+tok+prevh", "hidden": 128, "weighted": false, "nll": 0.9339646498362223, "rec16": 0.2941580756013746, "t": 67}
+{"set": "all_precore", "hidden": 0, "weighted": false, "nll": 1.0592084725697835, "rec16": 0.26368843069874, "t": 75}
+{"set": "all_precore", "hidden": 64, "weighted": false, "nll": 0.9270196358362833, "rec16": 0.27537227949599086, "t": 80}
+{"set": "all_precore", "hidden": 64, "weighted": true, "nll": 0.97108260790507, "rec16": 0.29736540664375716, "t": 85}
+{"set": "all_precore", "hidden": 128, "weighted": false, "nll": 0.9169982075691223, "rec16": 0.2801832760595647, "t": 90}
+{"E3 stage": 1, "set": "precore", "hidden": 0, "nll": 0.9244927763938904, "acc": 0.5963121501481725}
+{"E3 stage": 1, "set": "precore", "hidden": 64, "nll": 0.7766224145889282, "acc": 0.6261112940401712}
+{"E3 stage": 1, "set": "early", "hidden": 0, "nll": 0.6371985673904419, "acc": 0.7472011853803096}
+{"E3 stage": 1, "set": "early", "hidden": 64, "nll": 0.5228521227836609, "acc": 0.7758478761936121}
+{"E3 stage": 2, "set": "precore", "hidden": 0, "nll": 0.6092679500579834, "acc": 0.6871875}
+{"E3 stage": 2, "set": "precore", "hidden": 64, "nll": 0.4162207543849945, "acc": 0.82234375}
+{"E3 stage": 2, "set": "early", "hidden": 0, "nll": 0.546633243560791, "acc": 0.7553125}
+{"E3 stage": 2, "set": "early", "hidden": 64, "nll": 0.29905399680137634, "acc": 0.8734375}

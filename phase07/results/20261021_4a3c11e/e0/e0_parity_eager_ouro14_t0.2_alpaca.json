@@ -1,0 +1,43 @@
+{
+  "lane": "ouro14_t0.2_alpaca",
+  "gpu": {
+    "physical_index": 0,
+    "uuid": "GPU-f217c8a0-1142-20f4-d84b-af29f3a47a0d",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_used_at_start": "6905 MiB"
+  },
+  "n": 64,
+  "T": 64,
+  "threshold": 0.2,
+  "widths": {
+    "8": {
+      "depth_flips": 54,
+      "positions": 4096,
+      "depth_flip_rate": 0.01318359375,
+      "delta_histogram": {
+        "-1": 31,
+        "0": 4042,
+        "1": 23
+      },
+      "next_token_flips": 49,
+      "next_token_flip_rate": 0.011962890625,
+      "b1_work": 9905,
+      "live_work": 9897
+    },
+    "32": {
+      "depth_flips": 49,
+      "positions": 4096,
+      "depth_flip_rate": 0.011962890625,
+      "delta_histogram": {
+        "-1": 27,
+        "0": 4047,
+        "1": 22
+      },
+      "next_token_flips": 56,
+      "next_token_flip_rate": 0.013671875,
+      "b1_work": 9905,
+      "live_work": 9900
+    }
+  },
+  "gate_semantic": "FAIL (batch-shape-dependent live depths persist; Phase-04 result reproduced)"
+}

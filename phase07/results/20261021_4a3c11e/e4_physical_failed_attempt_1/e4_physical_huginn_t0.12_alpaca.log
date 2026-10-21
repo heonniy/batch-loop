@@ -1,0 +1,53 @@
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:17,  4.21it/s]Loading weights:  32%|███▏      | 24/76 [00:00<00:00, 81.63it/s]Loading weights:  55%|█████▌    | 42/76 [00:00<00:00, 109.71it/s]Loading weights:  80%|████████  | 61/76 [00:00<00:00, 120.11it/s]Loading weights: 100%|██████████| 76/76 [00:00<00:00, 110.47it/s]
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+{"N": 256, "B": 8, "policy": "fifo", "rep": -1, "decode_wall_s": 24.559077412821352, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": -2, "decode_wall_s": 24.66439775377512, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 0, "decode_wall_s": 24.564717927016318, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 0, "decode_wall_s": 20.988822936080396, "RIC": 8978, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 0, "decode_wall_s": 23.827814740128815, "RIC": 10259, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 1, "decode_wall_s": 23.663390102796257, "RIC": 10259, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 1, "decode_wall_s": 24.546837138943374, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 1, "decode_wall_s": 21.124058390036225, "RIC": 8978, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 2, "decode_wall_s": 20.994833934120834, "RIC": 8978, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 2, "decode_wall_s": 23.62616192176938, "RIC": 10259, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 2, "decode_wall_s": 24.682655518874526, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 3, "decode_wall_s": 20.94997230451554, "RIC": 8978, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 3, "decode_wall_s": 24.563742008060217, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 3, "decode_wall_s": 23.830747839063406, "RIC": 10259, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 4, "decode_wall_s": 23.6868246961385, "RIC": 10259, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 4, "decode_wall_s": 24.534661303274333, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 4, "decode_wall_s": 21.106833601370454, "RIC": 8978, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": -1, "decode_wall_s": 8.05627331789583, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": -2, "decode_wall_s": 8.055167645215988, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 0, "decode_wall_s": 7.840692364610732, "RIC": 2835, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 0, "decode_wall_s": 8.0380137860775, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 0, "decode_wall_s": 6.693778303451836, "RIC": 2371, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 1, "decode_wall_s": 7.7137353252619505, "RIC": 2835, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 1, "decode_wall_s": 6.727408545091748, "RIC": 2371, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 1, "decode_wall_s": 8.048880402930081, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 2, "decode_wall_s": 6.690965413115919, "RIC": 2371, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 2, "decode_wall_s": 8.206980913877487, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 2, "decode_wall_s": 7.69838594738394, "RIC": 2835, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 3, "decode_wall_s": 7.699580878019333, "RIC": 2835, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 3, "decode_wall_s": 6.694922658614814, "RIC": 2371, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 3, "decode_wall_s": 8.058754947036505, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 4, "decode_wall_s": 8.302315368317068, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 4, "decode_wall_s": 6.692332310602069, "RIC": 2371, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 4, "decode_wall_s": 7.704569596797228, "RIC": 2835, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": -1, "decode_wall_s": 2.4485606951639056, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": -2, "decode_wall_s": 2.4504681369289756, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 0, "decode_wall_s": 2.4519835533574224, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 1, "decode_wall_s": 2.458224049769342, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 2, "decode_wall_s": 2.453886049799621, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 3, "decode_wall_s": 2.448737765662372, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 4, "decode_wall_s": 2.455986740067601, "RIC": 447, "n_errors": 0}
+Traceback (most recent call last):
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/scripts/e4_physical.py", line 126, in <module>
+    main()
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/scripts/e4_physical.py", line 112, in main
+    oh = [overhead(a.feature_dim, a.hidden, K, 256), overhead(1, 0, 1, 256)]  # MLP predictor; prev-depth sort only
+                                                     ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/scripts/e4_physical.py", line 50, in overhead
+    order = torch.argsort(p @ r, stable=True)
+                          ~~^~~
+RuntimeError: size mismatch, got input (256), mat (256x0), vec (1)

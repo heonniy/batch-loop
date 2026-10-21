@@ -1,0 +1,1 @@
+Attempt 1 (source 37e69fe): all physical runs completed (see logs), but the prev-depth overhead microbenchmark crashed (zero-width matrix) before e4_physical_runs.csv was written. Fixed: rows are written first; the sort-only overhead path no longer builds a matrix.

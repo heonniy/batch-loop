@@ -1,0 +1,50 @@
+Loading weights:   0%|          | 0/271 [00:00<?, ?it/s]Loading weights: 100%|██████████| 271/271 [00:00<00:00, 6012.24it/s]
+[transformers] [1mOuroForCausalLM LOAD REPORT[0m from: /home/hwlee/.cache/huggingface/hub/models--KristianS7--Ouro-1.4B/snapshots/a27316f37f1f10b3395017c4fec0fea96f28150c
+Key                            | Status  | 
+-------------------------------+---------+-
+model.preloop_exit_gate.weight | MISSING | 
+model.preloop_exit_gate.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+{"N": 256, "B": 8, "policy": "fifo", "rep": -1, "decode_wall_s": 19.01687199342996, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": -2, "decode_wall_s": 18.994087078608572, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 0, "decode_wall_s": 18.960358142852783, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 0, "decode_wall_s": 13.208601411432028, "RIC": 2559, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 0, "decode_wall_s": 17.3524528183043, "RIC": 3387, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 1, "decode_wall_s": 17.154184472747147, "RIC": 3387, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 1, "decode_wall_s": 18.97546734660864, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 1, "decode_wall_s": 13.199699195101857, "RIC": 2559, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 2, "decode_wall_s": 13.22187012527138, "RIC": 2559, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 2, "decode_wall_s": 17.380886955186725, "RIC": 3387, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 2, "decode_wall_s": 19.019111149013042, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 3, "decode_wall_s": 13.212949474342167, "RIC": 2559, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 3, "decode_wall_s": 19.010777744464576, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 3, "decode_wall_s": 17.171668670140207, "RIC": 3387, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 4, "decode_wall_s": 17.168877828866243, "RIC": 3387, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 4, "decode_wall_s": 18.969636876136065, "RIC": 3758, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 4, "decode_wall_s": 13.210090645588934, "RIC": 2559, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": -1, "decode_wall_s": 5.8474097503349185, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": -2, "decode_wall_s": 5.846220901235938, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 0, "decode_wall_s": 5.455423628911376, "RIC": 951, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 0, "decode_wall_s": 5.856416715309024, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 0, "decode_wall_s": 4.085013988427818, "RIC": 679, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 1, "decode_wall_s": 5.466854512691498, "RIC": 951, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 1, "decode_wall_s": 4.076912106946111, "RIC": 679, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 1, "decode_wall_s": 5.855134437792003, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 2, "decode_wall_s": 4.079920848831534, "RIC": 679, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 2, "decode_wall_s": 5.853286847472191, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 2, "decode_wall_s": 5.48203428927809, "RIC": 951, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 3, "decode_wall_s": 5.635336791165173, "RIC": 951, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 3, "decode_wall_s": 4.070200325921178, "RIC": 679, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 3, "decode_wall_s": 5.791617976501584, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 4, "decode_wall_s": 5.974184156395495, "RIC": 1020, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 4, "decode_wall_s": 4.041184241883457, "RIC": 679, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 4, "decode_wall_s": 5.453444452956319, "RIC": 951, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": -1, "decode_wall_s": 1.2215872928500175, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": -2, "decode_wall_s": 1.2235930664464831, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 0, "decode_wall_s": 1.2276045298203826, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 1, "decode_wall_s": 1.228688302449882, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 2, "decode_wall_s": 1.225107830017805, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 3, "decode_wall_s": 1.2210768107324839, "RIC": 128, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 4, "decode_wall_s": 1.223410278558731, "RIC": 128, "n_errors": 0}

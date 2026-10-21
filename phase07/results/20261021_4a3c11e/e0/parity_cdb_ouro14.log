@@ -1,0 +1,11 @@
+Loading weights:   0%|          | 0/271 [00:00<?, ?it/s]Loading weights: 100%|██████████| 271/271 [00:00<00:00, 4317.90it/s]
+[transformers] [1mOuroForCausalLM LOAD REPORT[0m from: /home/hwlee/.cache/huggingface/hub/models--KristianS7--Ouro-1.4B/snapshots/a27316f37f1f10b3395017c4fec0fea96f28150c
+Key                            | Status  | 
+-------------------------------+---------+-
+model.preloop_exit_gate.weight | MISSING | 
+model.preloop_exit_gate.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+{"width": 8, "identical_token_requests": 15, "exit_flips": 71, "positions": 512}
+{"width": 32, "identical_token_requests": 22, "exit_flips": 45, "positions": 512}

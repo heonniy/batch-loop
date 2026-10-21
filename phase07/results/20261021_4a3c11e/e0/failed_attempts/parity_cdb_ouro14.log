@@ -1,0 +1,35 @@
+Loading weights:   0%|          | 0/271 [00:00<?, ?it/s]Loading weights: 100%|██████████| 271/271 [00:00<00:00, 4283.95it/s]
+[transformers] [1mOuroForCausalLM LOAD REPORT[0m from: /home/hwlee/.cache/huggingface/hub/models--KristianS7--Ouro-1.4B/snapshots/a27316f37f1f10b3395017c4fec0fea96f28150c
+Key                            | Status  | 
+-------------------------------+---------+-
+model.preloop_exit_gate.bias   | MISSING | 
+model.preloop_exit_gate.weight | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+Traceback (most recent call last):
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/scripts/e0_parity_cdb.py", line 88, in <module>
+    main()
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/scripts/e0_parity_cdb.py", line 53, in main
+    eng.generate_batch(ids[:min(width, 4)], max_new_tokens=4, eos_token_id=None, warmup=True)
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/third_party/continuous-depth-batching/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/third_party/continuous-depth-batching/src/looped_cdb/continuous_depth_batching/continuous_api.py", line 410, in generate_batch
+    self.runner.warmup(self.model, model_kwargs)
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/third_party/continuous-depth-batching/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/third_party/continuous-depth-batching/src/looped_cdb/continuous_batching/model_runner.py", line 368, in warmup
+    prefill_seconds = self._warmup_prefill_graphs(model, self._prefill_model_kwargs(model_kwargs))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/third_party/continuous-depth-batching/src/looped_cdb/continuous_batching/model_runner.py", line 401, in _warmup_prefill_graphs
+    if not self._warmup_one_prefill_bucket(model, bucket, model_kwargs):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/third_party/continuous-depth-batching/src/looped_cdb/continuous_batching/model_runner.py", line 430, in _warmup_one_prefill_bucket
+    self.compute_batch(model, batch_data)
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/third_party/continuous-depth-batching/src/looped_cdb/continuous_batching/model_runner.py", line 183, in compute_batch
+    self._run_prefill_graph(forward_fn, model, batch_data, carry_over_ids, prev_output_ids, output_ids)
+  File "/home/hwlee/batch-loop-worktrees/phase07/phase07/third_party/continuous-depth-batching/src/looped_cdb/continuous_batching/model_runner.py", line 263, in _run_prefill_graph
+    raise RuntimeError(
+RuntimeError: prefill launch samples 2 rows, more than the 1 its graph gathers

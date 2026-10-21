@@ -1,0 +1,43 @@
+Loading weights:   0%|          | 0/76 [00:00<?, ?it/s]Loading weights:   1%|▏         | 1/76 [00:00<00:27,  2.68it/s]Loading weights:  32%|███▏      | 24/76 [00:00<00:00, 52.71it/s]Loading weights:  43%|████▎     | 33/76 [00:00<00:00, 56.26it/s]Loading weights:  67%|██████▋   | 51/76 [00:00<00:00, 71.51it/s]Loading weights:  92%|█████████▏| 70/76 [00:01<00:00, 85.15it/s]Loading weights: 100%|██████████| 76/76 [00:01<00:00, 69.27it/s]
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+{"N": 256, "B": 8, "policy": "fifo", "rep": -1, "decode_wall_s": 24.535065709613264, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": -2, "decode_wall_s": 24.650352546945214, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 0, "decode_wall_s": 24.445341874845326, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 0, "decode_wall_s": 20.913738768547773, "RIC": 8978, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 0, "decode_wall_s": 23.717667393386364, "RIC": 10259, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 1, "decode_wall_s": 23.602363450452685, "RIC": 10259, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 1, "decode_wall_s": 24.44971078261733, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 1, "decode_wall_s": 21.07280709128827, "RIC": 8978, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 2, "decode_wall_s": 20.93004472926259, "RIC": 8978, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 2, "decode_wall_s": 23.60838535707444, "RIC": 10259, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 2, "decode_wall_s": 24.617946568876505, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 3, "decode_wall_s": 20.98479620553553, "RIC": 8978, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 3, "decode_wall_s": 24.564567116089165, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 3, "decode_wall_s": 23.76323088351637, "RIC": 10259, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "predicted", "rep": 4, "decode_wall_s": 23.617427279241383, "RIC": 10259, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "fifo", "rep": 4, "decode_wall_s": 24.44959795475006, "RIC": 10679, "n_errors": 0}
+{"N": 256, "B": 8, "policy": "depth_oracle", "rep": 4, "decode_wall_s": 21.101056185550988, "RIC": 8978, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": -1, "decode_wall_s": 8.033148783259094, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": -2, "decode_wall_s": 8.03002030774951, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 0, "decode_wall_s": 7.824861876666546, "RIC": 2835, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 0, "decode_wall_s": 8.027513790875673, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 0, "decode_wall_s": 6.691636978648603, "RIC": 2371, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 1, "decode_wall_s": 7.700793637894094, "RIC": 2835, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 1, "decode_wall_s": 6.686314290389419, "RIC": 2371, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 1, "decode_wall_s": 8.043194715864956, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 2, "decode_wall_s": 6.681877839379013, "RIC": 2371, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 2, "decode_wall_s": 8.19110069051385, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 2, "decode_wall_s": 7.6859812922775745, "RIC": 2835, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 3, "decode_wall_s": 7.698180241510272, "RIC": 2835, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 3, "decode_wall_s": 6.674371951259673, "RIC": 2371, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 3, "decode_wall_s": 8.036298157647252, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "fifo", "rep": 4, "decode_wall_s": 8.199580118991435, "RIC": 2999, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "depth_oracle", "rep": 4, "decode_wall_s": 6.657708046026528, "RIC": 2371, "n_errors": 0}
+{"N": 256, "B": 32, "policy": "predicted", "rep": 4, "decode_wall_s": 7.683729097247124, "RIC": 2835, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": -1, "decode_wall_s": 2.464134163223207, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": -2, "decode_wall_s": 2.4461565678939223, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 0, "decode_wall_s": 2.4469380313530564, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 1, "decode_wall_s": 2.4408608889207244, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 2, "decode_wall_s": 2.4436361948028207, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 3, "decode_wall_s": 2.4491261122748256, "RIC": 447, "n_errors": 0}
+{"N": 256, "B": 256, "policy": "native_single_cohort", "rep": 4, "decode_wall_s": 2.465092621743679, "RIC": 447, "n_errors": 0}

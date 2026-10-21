@@ -1,0 +1,20 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.22s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.21s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.22s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.14it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.00s/it]
+Using the latest cached version of the dataset since ewof/sharegpt-instruct-unfiltered-deduped couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/ewof___sharegpt-instruct-unfiltered-deduped/default/0.0.0/d4b3c8d85e6b9e0dd4e3ba85f046a9517a847d0c (last modified on Wed Sep 16 10:33:34 2026).
+{"split": "train", "done": 64, "of": 512, "elapsed_s": 313.1}
+{"split": "train", "done": 128, "of": 512, "elapsed_s": 663.2}
+{"split": "train", "done": 192, "of": 512, "elapsed_s": 942.4}
+{"split": "train", "done": 256, "of": 512, "elapsed_s": 1228.8}
+{"split": "train", "done": 320, "of": 512, "elapsed_s": 1511.6}
+{"split": "train", "done": 384, "of": 512, "elapsed_s": 1783.1}
+{"split": "train", "done": 448, "of": 512, "elapsed_s": 2061.0}
+{"split": "train", "done": 512, "of": 512, "elapsed_s": 2356.0}
+{"event": "split_done", "split": "train", "elapsed_s": 2363.0}
+{"split": "val", "done": 64, "of": 128, "elapsed_s": 289.6}
+{"split": "val", "done": 128, "of": 128, "elapsed_s": 564.7}
+{"event": "split_done", "split": "val", "elapsed_s": 570.8}
+{"split": "test", "done": 64, "of": 256, "elapsed_s": 281.0}
+{"split": "test", "done": 128, "of": 256, "elapsed_s": 556.8}
+{"split": "test", "done": 192, "of": 256, "elapsed_s": 837.1}
+{"split": "test", "done": 256, "of": 256, "elapsed_s": 1119.0}
+{"event": "split_done", "split": "test", "elapsed_s": 1121.4}

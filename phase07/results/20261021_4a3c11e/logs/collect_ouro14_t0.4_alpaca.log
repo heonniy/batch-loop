@@ -1,0 +1,19 @@
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"split": "train", "done": 64, "of": 512, "elapsed_s": 260.3}
+{"split": "train", "done": 128, "of": 512, "elapsed_s": 583.3}
+{"split": "train", "done": 192, "of": 512, "elapsed_s": 891.2}
+{"split": "train", "done": 256, "of": 512, "elapsed_s": 1143.8}
+{"split": "train", "done": 320, "of": 512, "elapsed_s": 1401.5}
+{"split": "train", "done": 384, "of": 512, "elapsed_s": 1673.1}
+{"split": "train", "done": 448, "of": 512, "elapsed_s": 1943.1}
+{"split": "train", "done": 512, "of": 512, "elapsed_s": 2202.7}
+{"event": "split_done", "split": "train", "elapsed_s": 2204.7}
+{"split": "val", "done": 64, "of": 128, "elapsed_s": 305.3}
+{"split": "val", "done": 128, "of": 128, "elapsed_s": 575.9}
+{"event": "split_done", "split": "val", "elapsed_s": 578.3}
+{"split": "test", "done": 64, "of": 256, "elapsed_s": 272.1}
+{"split": "test", "done": 128, "of": 256, "elapsed_s": 544.5}
+{"split": "test", "done": 192, "of": 256, "elapsed_s": 867.4}
+{"split": "test", "done": 256, "of": 256, "elapsed_s": 1135.5}
+{"event": "split_done", "split": "test", "elapsed_s": 1142.5}

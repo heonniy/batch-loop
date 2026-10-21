@@ -1,0 +1,30 @@
+{"set": "cheap", "hidden": 0, "weighted": false, "nll": 0.896768053372701, "rec16": 0.16666666666666666, "t": 6}
+{"set": "cheap", "hidden": 64, "weighted": false, "nll": 0.8132684032122294, "rec16": 0.19558154645873946, "t": 12}
+{"set": "cheap", "hidden": 128, "weighted": false, "nll": 0.8126347263654073, "rec16": 0.18551007147498375, "t": 18}
+{"set": "cheap+tok", "hidden": 0, "weighted": false, "nll": 0.8261107206344604, "rec16": 0.1871345029239766, "t": 22}
+{"set": "cheap+tok", "hidden": 64, "weighted": false, "nll": 0.7335515220959982, "rec16": 0.22677063027940222, "t": 28}
+{"set": "cheap+tok", "hidden": 128, "weighted": false, "nll": 0.7320314645767212, "rec16": 0.22677063027940222, "t": 34}
+{"set": "emb", "hidden": 0, "weighted": false, "nll": 1.0584490696589153, "rec16": 0.09909031838856401, "t": 42}
+{"set": "emb", "hidden": 64, "weighted": false, "nll": 0.8752090334892273, "rec16": 0.11306042884990253, "t": 45}
+{"set": "emb", "hidden": 128, "weighted": false, "nll": 0.8740190664927164, "rec16": 0.11435997400909681, "t": 48}
+{"set": "prevh", "hidden": 0, "weighted": false, "nll": 0.8230825861295065, "rec16": 0.2664067576348278, "t": 55}
+{"set": "prevh", "hidden": 64, "weighted": false, "nll": 0.6659665107727051, "rec16": 0.3037686809616634, "t": 58}
+{"set": "prevh", "hidden": 128, "weighted": false, "nll": 0.6624192595481873, "rec16": 0.30636777128005194, "t": 61}
+{"set": "cheap+tok+emb", "hidden": 0, "weighted": false, "nll": 0.9664806127548218, "rec16": 0.1806367771280052, "t": 70}
+{"set": "cheap+tok+emb", "hidden": 64, "weighted": false, "nll": 0.810396134853363, "rec16": 0.17186484730344379, "t": 73}
+{"set": "cheap+tok+emb", "hidden": 128, "weighted": false, "nll": 0.8087087074915568, "rec16": 0.1705653021442495, "t": 76}
+{"set": "cheap+tok+prevh", "hidden": 0, "weighted": false, "nll": 0.7798305551211039, "rec16": 0.31059129304743344, "t": 84}
+{"set": "cheap+tok+prevh", "hidden": 64, "weighted": false, "nll": 0.6408718029657999, "rec16": 0.33073424301494475, "t": 87}
+{"set": "cheap+tok+prevh", "hidden": 128, "weighted": false, "nll": 0.6363822023073832, "rec16": 0.33300844704353477, "t": 90}
+{"set": "all_precore", "hidden": 0, "weighted": false, "nll": 0.9126168489456177, "rec16": 0.301819363222872, "t": 98}
+{"set": "all_precore", "hidden": 64, "weighted": false, "nll": 0.6302639643351237, "rec16": 0.3359324236517219, "t": 103}
+{"set": "all_precore", "hidden": 64, "weighted": true, "nll": 0.6766325632731119, "rec16": 0.3567251461988304, "t": 108}
+{"set": "all_precore", "hidden": 128, "weighted": false, "nll": 0.6200713713963827, "rec16": 0.345679012345679, "t": 113}
+{"E3 stage": 1, "set": "precore", "hidden": 0, "nll": 0.7732611894607544, "acc": 0.67974853515625}
+{"E3 stage": 1, "set": "precore", "hidden": 64, "nll": 0.6225888729095459, "acc": 0.72454833984375}
+{"E3 stage": 1, "set": "early", "hidden": 0, "nll": 0.34291312098503113, "acc": 0.8603515625}
+{"E3 stage": 1, "set": "early", "hidden": 64, "nll": 0.30298906564712524, "acc": 0.8682861328125}
+{"E3 stage": 2, "set": "precore", "hidden": 0, "nll": 0.5063560605049133, "acc": 0.7987297611593166}
+{"E3 stage": 2, "set": "precore", "hidden": 64, "nll": 0.3735184371471405, "acc": 0.8348689507111549}
+{"E3 stage": 2, "set": "early", "hidden": 0, "nll": 0.4201154112815857, "acc": 0.8538330798819215}
+{"E3 stage": 2, "set": "early", "hidden": 64, "nll": 0.21635107696056366, "acc": 0.9087574917255569}

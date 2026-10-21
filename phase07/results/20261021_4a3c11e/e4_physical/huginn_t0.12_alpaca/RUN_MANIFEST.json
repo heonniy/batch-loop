@@ -1,0 +1,90 @@
+{
+  "evidence_class": "PHYSICAL_FORCED_DEPTH; predictor overhead measured separately (PHYSICAL microbenchmark)",
+  "model": "huginn",
+  "lane": "huginn_t0.12_alpaca",
+  "pred_key": "all_precore|h64|w0",
+  "cells": [
+    [
+      256,
+      8,
+      32
+    ],
+    [
+      256,
+      32,
+      32
+    ],
+    [
+      256,
+      256,
+      32
+    ]
+  ],
+  "policies": [
+    "fifo",
+    "predicted",
+    "depth_oracle"
+  ],
+  "warmups": 2,
+  "reps": 5,
+  "gpu": {
+    "physical_index": 2,
+    "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e",
+    "name": "NVIDIA H100 80GB HBM3",
+    "driver": "570.211.01",
+    "memory_used_at_start": "0 MiB",
+    "other_processes_on_gpu_at_start": []
+  },
+  "env": {
+    "python": "3.12.15",
+    "torch": "2.11.0+cu129",
+    "torch_cuda": "12.9",
+    "transformers": "5.9.0",
+    "flash_attention": "flash-attn-3==3.0.0 (lockfile)",
+    "attn_implementation": "paged|flash_attention_3",
+    "upstream_sha": "abdfae0adbdd12be8c6123ccb34eee98a38afb39",
+    "upstream_uv_lock_sha256": "c71a58bfc82f5607aed59b5c86a2fc53bb2880e5090f6ae41b09dbe12beb33fc",
+    "local_sha": "f36941cf716fa220444acb4c1429baa44593a7f4",
+    "local_dirty_phase06_sources": ""
+  },
+  "argv": [
+    "phase07/scripts/e4_physical.py",
+    "--model",
+    "huginn",
+    "--lane",
+    "huginn_t0.12_alpaca",
+    "--features-root",
+    "phase07/results/20261021_4a3c11e/features",
+    "--predictions",
+    "phase07/results/20261021_4a3c11e/probes/huginn_t0.12_alpaca/test_predictions.npz",
+    "--pred-key",
+    "all_precore|h64|w0",
+    "--feature-dim",
+    "15867",
+    "--hidden",
+    "64",
+    "--out",
+    "phase07/results/20261021_4a3c11e/e4_physical/huginn_t0.12_alpaca"
+  ],
+  "predictor_overhead": [
+    {
+      "dim": 15867,
+      "hidden": 64,
+      "K": 16,
+      "N": 256,
+      "gpu_ms_median": 0.1395680010318756,
+      "sync_wall_ms_median": 0.15525612980127335,
+      "params": 1016512
+    },
+    {
+      "dim": 1,
+      "hidden": 0,
+      "K": 1,
+      "N": 256,
+      "gpu_ms_median": 0.06779200211167336,
+      "sync_wall_ms_median": 0.08242111653089523,
+      "params": 1
+    }
+  ],
+  "labels": "Phase-07 canonical B=1 test labels (eager runtime, ByteDance weights == upstream checkpoint tensors)"
+}

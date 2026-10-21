@@ -1,0 +1,55 @@
+{
+  "lane": "huginn_t0.26_alpaca",
+  "gpu": {
+    "physical_index": 3,
+    "uuid": "GPU-17488c15-2d4c-5d9e-d503-29b0d959a8a8",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_used_at_start": "7991 MiB"
+  },
+  "n": 64,
+  "T": 64,
+  "threshold": 0.26,
+  "widths": {
+    "8": {
+      "depth_flips": 131,
+      "positions": 4096,
+      "depth_flip_rate": 0.031982421875,
+      "delta_histogram": {
+        "-5": 2,
+        "-4": 3,
+        "-2": 5,
+        "-1": 66,
+        "0": 3965,
+        "1": 49,
+        "2": 4,
+        "3": 1,
+        "4": 1
+      },
+      "next_token_flips": 27,
+      "next_token_flip_rate": 0.006591796875,
+      "b1_work": 25943,
+      "live_work": 25909
+    },
+    "32": {
+      "depth_flips": 104,
+      "positions": 4096,
+      "depth_flip_rate": 0.025390625,
+      "delta_histogram": {
+        "-5": 1,
+        "-4": 1,
+        "-2": 3,
+        "-1": 46,
+        "0": 3992,
+        "1": 50,
+        "2": 1,
+        "3": 1,
+        "4": 1
+      },
+      "next_token_flips": 30,
+      "next_token_flip_rate": 0.00732421875,
+      "b1_work": 25943,
+      "live_work": 25941
+    }
+  },
+  "gate_semantic": "FAIL (batch-shape-dependent live depths persist; Phase-04 result reproduced)"
+}

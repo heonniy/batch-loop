@@ -1,0 +1,20 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.29s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.26s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.24s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.12it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.03s/it]
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"split": "train", "done": 64, "of": 512, "elapsed_s": 284.5}
+{"split": "train", "done": 128, "of": 512, "elapsed_s": 544.1}
+{"split": "train", "done": 192, "of": 512, "elapsed_s": 761.3}
+{"split": "train", "done": 256, "of": 512, "elapsed_s": 977.0}
+{"split": "train", "done": 320, "of": 512, "elapsed_s": 1194.7}
+{"split": "train", "done": 384, "of": 512, "elapsed_s": 1420.5}
+{"split": "train", "done": 448, "of": 512, "elapsed_s": 1636.6}
+{"split": "train", "done": 512, "of": 512, "elapsed_s": 1854.7}
+{"event": "split_done", "split": "train", "elapsed_s": 1863.1}
+{"split": "val", "done": 64, "of": 128, "elapsed_s": 220.5}
+{"split": "val", "done": 128, "of": 128, "elapsed_s": 455.6}
+{"event": "split_done", "split": "val", "elapsed_s": 460.4}
+{"split": "test", "done": 64, "of": 256, "elapsed_s": 221.9}
+{"split": "test", "done": 128, "of": 256, "elapsed_s": 432.8}
+{"split": "test", "done": 192, "of": 256, "elapsed_s": 648.1}
+{"split": "test", "done": 256, "of": 256, "elapsed_s": 878.6}
+{"event": "split_done", "split": "test", "elapsed_s": 888.8}

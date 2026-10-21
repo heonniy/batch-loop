@@ -1,0 +1,52 @@
+{
+  "lane": "huginn_t0.12_alpaca",
+  "family": "huginn",
+  "K": 16,
+  "sets": {
+    "cheap": [
+      "cheap"
+    ],
+    "cheap+tok": [
+      "cheap",
+      "tok"
+    ],
+    "emb": [
+      "emb"
+    ],
+    "prevh": [
+      "prevh"
+    ],
+    "cheap+tok+emb": [
+      "cheap",
+      "tok",
+      "emb"
+    ],
+    "cheap+tok+prevh": [
+      "cheap",
+      "tok",
+      "prevh"
+    ],
+    "all_precore": [
+      "cheap",
+      "tok",
+      "emb",
+      "prevh",
+      "pre"
+    ],
+    "pre": [
+      "pre"
+    ]
+  },
+  "hiddens": [
+    0,
+    64,
+    128
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "device": "cuda",
+  "elapsed_s": 466.9985740967095
+}

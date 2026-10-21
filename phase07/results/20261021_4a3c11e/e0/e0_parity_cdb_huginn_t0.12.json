@@ -1,0 +1,83 @@
+{
+  "model": "huginn",
+  "threshold": 0.12,
+  "gpu": {
+    "physical_index": 3,
+    "uuid": "GPU-17488c15-2d4c-5d9e-d503-29b0d959a8a8",
+    "name": "NVIDIA H100 80GB HBM3",
+    "driver": "570.211.01",
+    "memory_used_at_start": "11371 MiB",
+    "other_processes_on_gpu_at_start": [
+      "GPU-17488c15-2d4c-5d9e-d503-29b0d959a8a8, 1056365"
+    ]
+  },
+  "env": {
+    "python": "3.12.15",
+    "torch": "2.11.0+cu129",
+    "torch_cuda": "12.9",
+    "transformers": "5.9.0",
+    "flash_attention": "flash-attn-3==3.0.0 (lockfile)",
+    "attn_implementation": "paged|flash_attention_3",
+    "upstream_sha": "abdfae0adbdd12be8c6123ccb34eee98a38afb39",
+    "upstream_uv_lock_sha256": "c71a58bfc82f5607aed59b5c86a2fc53bb2880e5090f6ae41b09dbe12beb33fc",
+    "local_sha": "4a3c11e9f8af76c3e1c3fd3f576876f4e4988f3c",
+    "local_dirty_phase06_sources": ""
+  },
+  "n": 32,
+  "decode_tokens": 16,
+  "widths": {
+    "8": {
+      "requests_with_identical_tokens": 28,
+      "requests": 32,
+      "exit_step_flips": 35,
+      "exit_positions_compared": 512,
+      "exit_hist": {
+        "11": 18,
+        "8": 194,
+        "9": 171,
+        "10": 70,
+        "12": 10,
+        "7": 46,
+        "6": 1,
+        "13": 2
+      },
+      "b1_exit_hist": {
+        "11": 18,
+        "8": 186,
+        "9": 166,
+        "10": 76,
+        "12": 11,
+        "7": 52,
+        "6": 1,
+        "13": 2
+      }
+    },
+    "32": {
+      "requests_with_identical_tokens": 26,
+      "requests": 32,
+      "exit_step_flips": 46,
+      "exit_positions_compared": 512,
+      "exit_hist": {
+        "11": 15,
+        "8": 188,
+        "9": 169,
+        "10": 75,
+        "12": 12,
+        "7": 50,
+        "6": 1,
+        "13": 2
+      },
+      "b1_exit_hist": {
+        "11": 18,
+        "8": 186,
+        "9": 166,
+        "10": 76,
+        "12": 11,
+        "7": 52,
+        "6": 1,
+        "13": 2
+      }
+    }
+  },
+  "live_parity": "FAIL"
+}

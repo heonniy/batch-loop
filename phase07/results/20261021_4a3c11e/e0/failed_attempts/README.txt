@@ -1,0 +1,2 @@
+Upstream abdfae0 with max_num_seqs=1: prefill-graph warmup raises 'prefill launch samples 2 rows, more than the 1 its graph gathers' (model_runner.py:264). B=1 reference therefore uses a max_num_seqs=2 engine fed one request per generate call (effective decode cohort width 1).
+A max_num_seqs=2 engine fails the same way ('3 rows, more than the 2'). Final parity runs disable use_cuda_graph_prefill for every width (decode CUDA graphs stay ON), so all widths share the eager prefill path.
