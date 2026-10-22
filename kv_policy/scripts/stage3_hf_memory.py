@@ -22,7 +22,8 @@ import torch  # noqa: E402
 
 from kvp.jobs import ModelContext, batches, gpu_identity, protocol  # noqa: E402
 
-CELLS = [("full", "decode"), ("last", "decode"), ("average", "decode"), ("last", "strict"), ("average", "strict")]
+CELLS = [("full", "decode"), ("last", "convert"), ("average", "convert"), ("last", "decode"), ("average", "decode"),
+         ("last", "strict"), ("average", "strict")]
 
 
 def main():
@@ -55,10 +56,13 @@ def main():
             agree = sum(r == g[: len(r)] for r, g in pairs) / len(pairs)
         P, T = res.stats["P"], res.stats["T_alloc"]
         rec = bb.n_rec * plane * len(batch)
-        analytic = {"full": rec * bb.R * T, "decode": rec * (bb.R * P + (T - P)), "strict": rec * T}
+        # retained after prefill; "convert" additionally holds R prompt planes transiently during prefill
+        analytic = {"full": rec * bb.R * T, "decode": rec * (bb.R * P + (T - P)), "strict": rec * T,
+                    "convert": rec * T}
         rep["cells"].append({
             "policy": pol, "mode": mode, "P": P, "T_alloc": T,
             "kv_store_bytes_measured": res.stats["kv_store_bytes"],
+            "kv_store_bytes_at_alloc": res.stats.get("kv_store_bytes_at_alloc"),
             "recurrent_kv_bytes_analytic": analytic["full" if pol == "full" else mode],
             "non_recurrent_kv_bytes": bb.n_plain * plane * T * len(batch),
             "cuda_peak_bytes": res.stats["peak_mem_bytes"], "wall_s": res.stats["total_s"],

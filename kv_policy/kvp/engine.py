@@ -390,6 +390,7 @@ class Runner:
         t0 = time.perf_counter()
         self._reset_peak()
         ids, pos_full, valid, kv, aux, P, T = self._setup(prompts, max_new, policy, mode, uids)
+        bytes_at_alloc = kv.bytes_allocated()
         logits = self._prefill(ids, pos_full, valid, kv, aux, P, mode)
         self._sync()
         t_prefill = time.perf_counter() - t0
@@ -418,6 +419,7 @@ class Runner:
         self._sync()
         res.stats = {"B": B, "P": P, "T_alloc": T, "decode_steps": steps, "prefill_s": t_prefill,
                      "total_s": time.perf_counter() - t0, "kv_store_bytes": kv.bytes_allocated(),
+                     "kv_store_bytes_at_alloc": bytes_at_alloc,
                      "peak_mem_bytes": self._peak()}
         return res
 
