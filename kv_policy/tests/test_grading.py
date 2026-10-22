@@ -162,3 +162,8 @@ def test_math_fallback_not_used_when_truncated():
 def test_format_answer_takes_priority_over_fallback():
     g = grade_math("\\boxed{3} so the area is $4$.", _doc("3"), finish_reason="eos")
     assert g["extract_method"] == "boxed" and g["correct"] and g["correct_format_only"]
+
+
+def test_math_fallback_ignores_escaped_dollar():
+    g = grade_math("Therefore, the units digit of $4\\$$ is $0$.", _doc("0"), finish_reason="eos")
+    assert g["pred"] == "0" and g["correct"], g

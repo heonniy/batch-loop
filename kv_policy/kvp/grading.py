@@ -209,7 +209,8 @@ def _norm_str(s: str) -> str:
     return s.strip("$.")
 
 
-_MATH_SEG = re.compile(r"\$\$(.+?)\$\$|\$(.+?)\$|\\\[(.+?)\\\]|\\\((.+?)\\\)", re.S)
+# math delimiters; an escaped dollar (\$, a currency sign) is never a delimiter
+_MATH_SEG = re.compile(r"(?<!\\)\$\$(.+?)(?<!\\)\$\$|(?<!\\)\$(.+?)(?<!\\)\$|\\\[(.+?)\\\]|\\\((.+?)\\\)", re.S)
 
 
 def math_fallback(text: str) -> tuple[str | None, str]:
