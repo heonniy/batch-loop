@@ -45,6 +45,7 @@ def main():
     log = open(run / "logs" / f"worker{args.worker}.log", "a", buffering=1)
     log.write(f"start gpu={os.environ.get('CUDA_VISIBLE_DEVICES')} pid={os.getpid()}\n")
     while True:
+        jobs = json.loads((run / "jobs.json").read_text())  # re-read: control jobs may be appended
         pending = [j for j in jobs if not (out / f"{job_name(j)}.jsonl").exists()
                    and not (run / "claims" / f"{job_name(j)}.lock").exists()]
         if not pending:

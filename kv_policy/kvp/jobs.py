@@ -5,7 +5,9 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import random
 import socket
+import subprocess
 import time
 from pathlib import Path
 
@@ -22,13 +24,21 @@ from .specs import MODELS
 BATCH_SIZE = {"gsm8k": 32, "math500": 16}
 QUALITY_POLICIES = [("full", "decode"), ("last", "decode"), ("average", "decode"),
                     ("last", "strict"), ("average", "strict")]
+# Controls (added after Stage-1 bf16 parity showed token-by-token prompt numerics differ from the
+# parallel prefill): FULL/strict isolates the numerical path of strict cells; FULL/decode with an
+# alternative seeded batch composition measures the bf16 batch-shape noise floor.
+CONTROL_CELLS = [("full", "strict", "main"), ("full", "decode", "alt")]
+
+
+SOURCE_SHA = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True,
+                            cwd=os.path.dirname(os.path.abspath(__file__))).stdout.strip()
 
 
 def sha(s: str) -> str:
     return hashlib.sha256(s.encode()).hexdigest()
 
 
-def prepare_items(model_key: str, dataset: str, tok) -> tuple[list[dict], dict]:
+def prepare_items(model_key: str, dataset: str, tok, batching: str = "main") -> tuple[list[dict], dict]:
     spec = MODELS[model_key]
     docs, meta = load_subset(dataset)
     proto = protocol(spec.family, dataset)
@@ -46,6 +56,9 @@ def prepare_items(model_key: str, dataset: str, tok) -> tuple[list[dict], dict]:
                       "target_ids": tgt_ids, "target_tokenization": tgt_mode})
     # deterministic, policy-independent batch composition: longest prompts first, chunks of B
     order = sorted(range(len(items)), key=lambda i: (-len(items[i]["prompt_ids"]), items[i]["uid"]))
+    if batching == "alt":  # same items, seeded random composition (control only)
+        order = list(range(len(items)))
+        random.Random(20261023).shuffle(order)
     for rank, i in enumerate(order):
         items[i]["batch"], items[i]["batch_pos"] = divmod(rank, BATCH_SIZE[dataset])
     return items, {"dataset_meta": meta, "protocol": proto.__dict__}
@@ -74,15 +87,16 @@ class ModelContext:
         self.eos_strings = sorted({self.tok.decode([e], skip_special_tokens=False) for e in self.eos})
         self.items: dict[str, tuple[list[dict], dict]] = {}
 
-    def dataset(self, dataset: str):
-        if dataset not in self.items:
-            self.items[dataset] = prepare_items(self.key, dataset, self.tok)
-        return self.items[dataset]
+    def dataset(self, dataset: str, batching: str = "main"):
+        if (dataset, batching) not in self.items:
+            self.items[(dataset, batching)] = prepare_items(self.key, dataset, self.tok, batching)
+        return self.items[(dataset, batching)]
 
 
 def run_job(ctx: ModelContext, job: dict, out_dir: Path) -> dict:
     dataset, task, policy, mode, b = job["dataset"], job["task"], job["policy"], job["mode"], job["batch"]
-    items, meta = ctx.dataset(dataset)
+    batching = job.get("batching", "main")
+    items, meta = ctx.dataset(dataset, batching)
     batch = batches(items)[b]
     proto = protocol(ctx.spec.family, dataset)
     uids = [it["uid"] for it in batch]
@@ -116,10 +130,11 @@ def run_job(ctx: ModelContext, job: dict, out_dir: Path) -> dict:
                             "sum_logprob": float(sum(lps)), "nll_mean": float(-sum(lps) / len(lps)),
                             "token_logprobs": [round(x, 6) for x in lps]})
     job_meta = {**job, "model_revision": ctx.spec.revision, "n_items": len(records),
-                "wall_s": time.time() - t0, "engine_stats": res.stats, "gpu": gpu_identity(),
+                "wall_s": time.time() - t0, "source_sha": SOURCE_SHA, "engine_stats": res.stats, "gpu": gpu_identity(),
                 "finished_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
     for r in records:
-        r.update({"model": ctx.key, "dataset": dataset, "task": task, "policy": policy, "mode": mode})
+        r.update({"model": ctx.key, "dataset": dataset, "task": task, "policy": policy, "mode": mode,
+                  "batching": batching})
     out_dir.mkdir(parents=True, exist_ok=True)
     stem = job_name(job)
     tmp = out_dir / f".{stem}.tmp"
@@ -132,4 +147,6 @@ def run_job(ctx: ModelContext, job: dict, out_dir: Path) -> dict:
 
 
 def job_name(job: dict) -> str:
-    return f"{job['model']}__{job['dataset']}__{job['task']}__{job['policy']}-{job['mode']}__b{job['batch']:02d}"
+    alt = "" if job.get("batching", "main") == "main" else f"-{job['batching']}"
+    return (f"{job['model']}__{job['dataset']}__{job['task']}__{job['policy']}-{job['mode']}{alt}"
+            f"__b{job['batch']:02d}")
