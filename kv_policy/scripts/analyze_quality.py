@@ -35,7 +35,7 @@ GRADE_FIELDS = ("gold", "pred", "pred_raw", "extract_method", "answer_source", "
                 "math_verify", "minerva_is_equiv", "normalized_string_equal")
 
 
-def regrade(gen: list[dict]) -> str:
+def regrade(gen: list[dict]) -> tuple[str, dict]:
     """Re-score every stored generation with the current kvp.grading (raw files are not modified)."""
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
     from kvp.data import load_subset
@@ -50,7 +50,7 @@ def regrade(gen: list[dict]) -> str:
             r.pop(k, None)
         r.update(grade(r["dataset"], r["answer_text"], docs[(r["dataset"], r["uid"])], r["finish_reason"]))
     grading = Path(__file__).resolve().parents[1] / "kvp" / "grading.py"
-    return hashlib.sha256(grading.read_bytes()).hexdigest()
+    return hashlib.sha256(grading.read_bytes()).hexdigest(), docs
 
 
 def load_raw(run: Path):
@@ -120,6 +120,86 @@ def paired_row(g, n, m, d, base_cell, cell, rng):
     return row
 
 
+# ----------------------------------------------------------------------------- degeneration analysis
+STOP_RULE = "\n\n\n"  # secondary, policy-independent stop rule applied post hoc to every cell
+NLL_BUCKETS = [(0, 64), (64, 128), (128, 256), (256, 512), (512, 100000)]
+
+
+def degenerate(raw: str) -> bool:
+    """Tail is a long run of newlines or a short loop (<= 3 distinct non-blank lines in the last 400 chars)."""
+    tail = raw[-400:]
+    if "\n" * 16 in tail:
+        return True
+    lines = [ln for ln in tail.splitlines() if ln.strip()]
+    return len(tail) >= 400 and len(lines) >= 8 and len(set(lines)) <= 3
+
+
+def degeneration_tables(gen, nll, docs, rng):
+    from kvp.grading import grade
+
+    rows, per_item = [], {}
+    for r in gen:
+        text = r["answer_text"]
+        cut = text.find(STOP_RULE)
+        if cut >= 0:
+            g = grade(r["dataset"], text[:cut], docs[(r["dataset"], r["uid"])], "stop_string")
+        else:
+            g = {"correct": r["correct"]}
+        key = (r["model"], r["dataset"], r["policy"], r["mode"])
+        per_item.setdefault(key, {})[r["uid"]] = (bool(r["correct"]), bool(g["correct"]),
+                                                   degenerate(r["raw_generation"]), r["finish_reason"])
+    for key, items in sorted(per_item.items()):
+        main_c = np.array([v[0] for v in items.values()])
+        stop_c = np.array([v[1] for v in items.values()])
+        deg = np.array([v[2] for v in items.values()])
+        length = np.array([v[3] == "length" for v in items.values()])
+        row = {"model": key[0], "dataset": key[1], "policy": key[2], "mode": key[3], "n": len(items),
+               "degenerate_rate": deg.mean(), "hit_max_tokens_rate": length.mean(),
+               "acc_main": main_c.mean(), "acc_stop_rule": stop_c.mean(),
+               "answered_then_degenerated": int((deg & stop_c).sum()),
+               "degenerated_without_correct_answer": int((deg & ~stop_c).sum())}
+        base = per_item.get((key[0], key[1], "full", "decode"))
+        if base is not None and key[2:] != ("full", "decode"):
+            common = sorted(set(base) & set(items))
+            d = np.array([items[u][1] for u in common], float) - np.array([base[u][1] for u in common], float)
+            lo, hi = boot_ci(d, rng)
+            row.update({"delta_acc_stop_rule_vs_full": d.mean(), "ci95_lo": lo, "ci95_hi": hi})
+        rows.append(row)
+    deg_df = pd.DataFrame(rows)
+
+    # teacher-forced NLL by target position bucket, paired vs FULL/decode on identical gold tokens
+    lps = {}
+    for r in nll:
+        lps[(r["model"], r["dataset"], r["policy"], r["mode"], r["uid"])] = np.array(r["token_logprobs"])
+    brows = []
+    cells = sorted({k[:4] for k in lps})
+    for cell in cells:
+        if cell[2:] == ("full", "decode"):
+            continue
+        for lo_b, hi_b in NLL_BUCKETS:
+            diffs, ntok = [], 0
+            for k, v in lps.items():
+                if k[:4] != cell:
+                    continue
+                b = lps.get((cell[0], cell[1], "full", "decode", k[4]))
+                if b is None or len(v) <= lo_b:
+                    continue
+                seg = slice(lo_b, min(hi_b, len(v)))
+                diffs.append((-(v[seg]).sum() + b[seg].sum(), seg.stop - seg.start))
+                ntok += seg.stop - seg.start
+            if not diffs:
+                continue
+            dn = np.array([x[0] for x in diffs])
+            tn = np.array([x[1] for x in diffs])
+            idx = rng.integers(0, len(dn), size=(BOOT, len(dn)))
+            draws = dn[idx].sum(1) / tn[idx].sum(1)
+            brows.append({"model": cell[0], "dataset": cell[1], "policy": cell[2], "mode": cell[3],
+                          "positions": f"{lo_b}-{hi_b - 1}", "n_problems": len(dn), "n_tokens": ntok,
+                          "delta_nll_per_token_vs_full": dn.sum() / tn.sum(),
+                          "ci95_lo": float(np.percentile(draws, 2.5)), "ci95_hi": float(np.percentile(draws, 97.5))})
+    return deg_df, pd.DataFrame(brows)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-dir", required=True)
@@ -128,7 +208,7 @@ def main():
     out = run / "analysis"
     out.mkdir(exist_ok=True)
     gen, nll, metas = load_raw(run)
-    grader_sha = regrade(gen)
+    grader_sha, docs = regrade(gen)
 
     keep_gen = ["model", "dataset", "policy", "mode", "uid", "batch", "batch_pos", "prompt_tokens",
                 "n_gen_tokens", "finish_reason", "correct", "correct_format_only", "parse_ok", "answer_source",
@@ -204,7 +284,9 @@ def main():
     dv = pd.DataFrame(div)
     if len(dv):
         agg = dv.groupby(["model", "dataset", "policy", "mode"]).agg(
-            identical_rate=("identical", "mean"), median_first_divergence=("first_div", "median")).reset_index()
+            identical_rate=("identical", "mean"), q25_first_divergence=("first_div", lambda x: x.quantile(.25)),
+            median_first_divergence=("first_div", "median"), q75_first_divergence=("first_div", lambda x: x.quantile(.75)),
+            frac_diverged_within_16=("first_div", lambda x: float((x < 16).mean()))).reset_index()
         agg.to_csv(out / "generation_divergence_vs_full.csv", index=False)
 
     # ---------------- scorer audit
@@ -239,6 +321,11 @@ def main():
                                       for k, v in by_cell.items()}
     (out / "scorer_audit.json").write_text(json.dumps(audit, indent=1, default=str))
 
+    # ---------------- degeneration / error-accumulation diagnostics
+    deg_df, pos_df = degeneration_tables(gen, nll, docs, rng)
+    deg_df.to_csv(out / "degeneration.csv", index=False)
+    pos_df.to_csv(out / "nll_by_position_vs_full.csv", index=False)
+
     # ---------------- markdown
     def fmt(x, nd=3):
         return "" if x is None or (isinstance(x, float) and math.isnan(x)) else (f"{x:.{nd}f}" if isinstance(x, float) else str(x))
@@ -262,6 +349,22 @@ def main():
         md.append(f"| {r.model} | {r.dataset} | {r.baseline} | {r.policy} | {r['mode']} | {r.delta_acc:+.3f} "
                   f"[{r.delta_acc_ci95_lo:+.3f}, {r.delta_acc_ci95_hi:+.3f}] | {r.base_only_correct} / "
                   f"{r.policy_only_correct} | {r.mcnemar_exact_p:.3g} | {dn} |")
+    md += ["\n## Degeneration and a policy-independent stop rule (secondary)\n",
+           f"Stop rule: cut every generation at the first {STOP_RULE!r} and re-score (identical for all cells; "
+           "greedy decoding makes this equal to stopping online). Main accuracy is unchanged.\n",
+           "| model | dataset | policy | mode | degenerate | hit max | acc main | acc stop-rule | "
+           "Δ stop-rule vs FULL [95% CI] | answered→degenerated | degenerated w/o answer |", "|" + "---|" * 11]
+    for _, r in deg_df.iterrows():
+        dl = "" if pd.isna(r.get("delta_acc_stop_rule_vs_full")) else \
+            f"{r.delta_acc_stop_rule_vs_full:+.3f} [{r.ci95_lo:+.3f}, {r.ci95_hi:+.3f}]"
+        md.append(f"| {r.model} | {r.dataset} | {r.policy} | {r['mode']} | {r.degenerate_rate:.3f} | "
+                  f"{r.hit_max_tokens_rate:.3f} | {r.acc_main:.3f} | {r.acc_stop_rule:.3f} | {dl} | "
+                  f"{r.answered_then_degenerated} | {r.degenerated_without_correct_answer} |")
+    md += ["\n## Teacher-forced ΔNLL per token vs FULL/decode by gold-target position\n",
+           "| model | dataset | policy | mode | positions | problems | ΔNLL/token [95% CI] |", "|" + "---|" * 7]
+    for _, r in pos_df.iterrows():
+        md.append(f"| {r.model} | {r.dataset} | {r.policy} | {r['mode']} | {r.positions} | {r.n_problems} | "
+                  f"{r.delta_nll_per_token_vs_full:+.4f} [{r.ci95_lo:+.4f}, {r.ci95_hi:+.4f}] |")
     (out / "summary.md").write_text("\n".join(md) + "\n")
     print("\n".join(md))
     print(json.dumps({k: v for k, v in comp.items() if "incomplete" in k or k.startswith("n_") or k == "failed_jobs"},
