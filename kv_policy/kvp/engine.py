@@ -80,6 +80,67 @@ class PolicyKV:
         return sum(t.numel() * t.element_size() for t in (*self.rk, *self.rv, *self.pk, *self.pv))
 
 
+class CompactPolicyKV(PolicyKV):
+    """Policy-sized storage for LAST / AVERAGE (memory check; same semantics as PolicyKV).
+
+    Recurrent layers keep R loop planes only for the full region [0, region_start) and ONE plane
+    for the policy region. The current token's per-loop K/V live in an R-slot scratch until
+    finalize() writes the policy version. Attention concatenates [full-region plane r | policy plane
+    | own current K/V], so reads differ from PolicyKV only by kernel input layout.
+    """
+
+    def __init__(self, policy, R, n_rec, n_plain, B, H, T, D, dtype, device, region_start):
+        if policy == "full":
+            raise ValueError("FULL is already policy-sized in PolicyKV")
+        self.policy, self.R, self.region_start = policy, R, region_start
+        F_, G = region_start, T - region_start
+        self.rk = [torch.zeros(R, B, H, F_, D, dtype=dtype, device=device) for _ in range(n_rec)]
+        self.rv = [torch.zeros(R, B, H, F_, D, dtype=dtype, device=device) for _ in range(n_rec)]
+        self.ck = [torch.zeros(B, H, G, D, dtype=dtype, device=device) for _ in range(n_rec)]
+        self.cv = [torch.zeros(B, H, G, D, dtype=dtype, device=device) for _ in range(n_rec)]
+        self.sk = [torch.zeros(R, B, H, 1, D, dtype=dtype, device=device) for _ in range(n_rec)]
+        self.sv = [torch.zeros(R, B, H, 1, D, dtype=dtype, device=device) for _ in range(n_rec)]
+        self.pk = [torch.zeros(B, H, T, D, dtype=dtype, device=device) for _ in range(n_plain)]
+        self.pv = [torch.zeros(B, H, T, D, dtype=dtype, device=device) for _ in range(n_plain)]
+        self.reads = {}
+
+    def attend(self, layer, q, k, v, c0, c1, mask):
+        kind, idx, r = layer
+        if kind != "rec":
+            return super().attend(layer, q, k, v, c0, c1, mask)
+        F_ = self.region_start
+        if c1 <= F_:  # parallel prefill of the full region
+            self.rk[idx][r][:, :, c0:c1] = k
+            self.rv[idx][r][:, :, c0:c1] = v
+            return F.scaled_dot_product_attention(q, self.rk[idx][r][:, :, :c1], self.rv[idx][r][:, :, :c1],
+                                                  attn_mask=mask)
+        assert c1 == c0 + 1 and c0 >= F_, "policy region is processed one column at a time"
+        self.sk[idx][r], self.sv[idx][r] = k, v
+        g = c0 - F_
+        keys = torch.cat([self.rk[idx][r], self.ck[idx][:, :, :g], k], dim=2)
+        vals = torch.cat([self.rv[idx][r], self.cv[idx][:, :, :g], v], dim=2)
+        return F.scaled_dot_product_attention(q, keys, vals, attn_mask=mask)
+
+    def finalize(self, c: int):
+        if c < self.region_start:
+            return
+        g = c - self.region_start
+        for sk, sv, ck, cv in zip(self.sk, self.sv, self.ck, self.cv):
+            for scratch, plane in ((sk, ck), (sv, cv)):
+                if self.policy == "last":
+                    ver = scratch[self.R - 1]
+                else:
+                    ver = scratch.to(torch.promote_types(scratch.dtype, torch.float32)).mean(0).to(scratch.dtype)
+                plane[:, :, g: g + 1] = ver
+
+    def bytes_allocated(self) -> int:
+        return sum(t.numel() * t.element_size()
+                   for t in (*self.rk, *self.rv, *self.ck, *self.cv, *self.pk, *self.pv))
+
+    def scratch_bytes(self) -> int:
+        return sum(t.numel() * t.element_size() for t in (*self.sk, *self.sv))
+
+
 # ----------------------------------------------------------------------------- backbones
 
 
@@ -221,8 +282,9 @@ class BatchResult:
 
 
 class Runner:
-    def __init__(self, backbone, pad_id: int):
+    def __init__(self, backbone, pad_id: int, store: str = "broadcast"):
         self.bb = backbone
+        self.store = store
         p = next(backbone.model.parameters())
         self.device, self.dtype = p.device, p.dtype
         self.pad_id = pad_id
@@ -251,8 +313,9 @@ class Runner:
         pos_full = (cols[None, :] - torch.tensor(pads)[:, None]).clamp_min(0)
         valid = cols[None, :] >= torch.tensor(pads)[:, None]
         region = P if mode == "decode" else 0
-        kv = PolicyKV(policy, self.bb.R, self.bb.n_rec, self.bb.n_plain, B, self.bb.H, T, self.bb.D,
-                      self.dtype, self.device, region)
+        cls = CompactPolicyKV if (self.store == "compact" and policy != "full") else PolicyKV
+        kv = cls(policy, self.bb.R, self.bb.n_rec, self.bb.n_plain, B, self.bb.H, T, self.bb.D,
+                 self.dtype, self.device, region)
         aux = self.bb.make_aux(uids, pads, T)
         return ids.to(self.device), pos_full.to(self.device), valid.to(self.device), kv, aux, P, T
 
