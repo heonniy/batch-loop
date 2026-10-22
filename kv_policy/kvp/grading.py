@@ -115,20 +115,37 @@ def lm_eval_gsm8k(text: str, answer_field: str) -> tuple[bool, bool]:
     return _lm_norm(strict_pred) == gold, _lm_norm(flex_pred) == gold
 
 
-def grade_gsm8k(text: str, doc: dict) -> dict:
+_LAST_NUM = re.compile(_NUM)
+
+
+def _failure(raw_found: bool, finish_reason: str | None) -> str:
+    if raw_found:
+        return "unparseable_answer"
+    return "truncated_no_answer" if finish_reason == "length" else "finished_no_answer"
+
+
+def grade_gsm8k(text: str, doc: dict, finish_reason: str | None = None) -> dict:
+    """Format extraction first; if the generation terminated on its own (EOS / stop string) and no
+    answer pattern exists, fall back to the last number (lm-eval flexible-extract style). Truncated
+    generations (finish_reason == "length") never use the fallback: a number in the middle of an
+    unfinished derivation is not an answer."""
     gold = gsm8k_gold(doc["answer"])
     value, method, raw = gsm8k_extract(text)
+    strict_value = value
+    source = "format" if value is not None else None
+    if value is None and raw is None and finish_reason != "length":
+        nums = _LAST_NUM.findall(text)
+        if nums:
+            raw, method = nums[-1], "fallback_last_number"
+            value = canon_number(raw)
+            source = "fallback" if value is not None else None
     strict, flex = lm_eval_gsm8k(text, doc["answer"])
-    if raw is None:
-        reason = "no_answer_pattern"
-    elif value is None:
-        reason = "unparseable_number"
-    else:
-        reason = None
     return {
         "gold": str(gold), "pred": None if value is None else str(value), "pred_raw": raw,
-        "extract_method": method, "parse_ok": value is not None,
-        "correct": bool(value is not None and value == gold), "failure_reason": reason,
+        "extract_method": method, "answer_source": source, "parse_ok": value is not None,
+        "correct": bool(value is not None and value == gold),
+        "correct_format_only": bool(strict_value is not None and strict_value == gold),
+        "failure_reason": None if value is not None else _failure(raw is not None, finish_reason),
         "lm_eval_strict_match": strict, "lm_eval_flexible_extract": flex,
     }
 
@@ -192,22 +209,63 @@ def _norm_str(s: str) -> str:
     return s.strip("$.")
 
 
-def grade_math(text: str, doc: dict) -> dict:
+_MATH_SEG = re.compile(r"\$\$(.+?)\$\$|\$(.+?)\$|\\\[(.+?)\\\]|\\\((.+?)\\\)", re.S)
+
+
+def math_fallback(text: str) -> tuple[str | None, str]:
+    """For naturally terminated generations without a boxed / 'Final Answer' / 'answer is' line:
+    the last math segment of the last non-empty line (right-hand side of its last '='), else the
+    complement of 'is ...' in that line (plain-text answers such as 'Angela' / 'a circle')."""
+    lines = [ln.strip() for ln in text.strip().splitlines() if ln.strip()]
+    if not lines:
+        return None, "none"
+    last = lines[-1]
+    segs = [next(g for g in m.groups() if g is not None) for m in _MATH_SEG.finditer(last)]
+    if segs:
+        seg = segs[-1].strip()
+        if "=" in seg:
+            seg = seg.rsplit("=", 1)[1].strip()
+        seg = seg.rstrip(".,; ")
+        if seg:
+            return seg, "fallback_last_math"
+    m = re.search(r"\b(?:is|are|equals|be)\s+(?:the\s+|a\s+|an\s+)?([^.,;]+?)\s*\.?$", last)
+    if m and m.group(1).strip():
+        return m.group(1).strip(), "fallback_is_phrase"
+    return None, "none"
+
+
+def grade_math(text: str, doc: dict, finish_reason: str | None = None) -> dict:
     gold = doc["answer"]
     pred, method = math_extract(text)
-    out = {"gold": gold, "pred": pred, "pred_raw": pred, "extract_method": method, "parse_ok": pred is not None}
+    source = "format" if pred is not None else None
+    if pred is None and finish_reason != "length":
+        pred, method = math_fallback(text)
+        source = "fallback" if pred is not None else None
+    out = {"gold": gold, "pred": pred, "pred_raw": pred, "extract_method": method, "answer_source": source,
+           "parse_ok": pred is not None}
     if pred is None:
-        out.update({"correct": False, "failure_reason": "no_answer_found", "minerva_is_equiv": False,
+        out.update({"correct": False, "correct_format_only": False,
+                    "failure_reason": _failure(False, finish_reason), "minerva_is_equiv": False,
                     "normalized_string_equal": False})
+        return out
+    if method == "fallback_is_phrase":
+        pred = re.sub(r"^(?:\\text\{)?(.*?)\}?$", r"\1", pred)
+        gold_cmp = re.sub(r"^\\text\{(.*)\}$", r"\1", gold.strip())
+        same = pred.lower().strip() == gold_cmp.lower().strip()
+        out.update({"math_verify": False, "minerva_is_equiv": same, "normalized_string_equal": same,
+                    "correct": same, "correct_format_only": False, "failure_reason": None})
         return out
     mv, info = math_equiv(pred, gold)
     # Primary = math_verify OR exact normalised string match (guards verifier parse failures on
     # plain-text answers such as \text{Evelyn}); disagreements with minerva are audited.
     correct = mv or info["normalized_string_equal"]
     out.update(info)
-    out.update({"math_verify": mv, "correct": bool(correct), "failure_reason": None})
+    out.update({"math_verify": mv, "correct": bool(correct),
+                "correct_format_only": bool(correct) and source == "format", "failure_reason": None})
     return out
 
 
-def grade(dataset: str, text: str, doc: dict) -> dict:
-    return grade_gsm8k(text, doc) if dataset == "gsm8k" else grade_math(text, doc)
+def grade(dataset: str, text: str, doc: dict, finish_reason: str | None = None) -> dict:
+    if dataset == "gsm8k":
+        return grade_gsm8k(text, doc, finish_reason)
+    return grade_math(text, doc, finish_reason)

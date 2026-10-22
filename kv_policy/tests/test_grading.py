@@ -47,14 +47,14 @@ def test_gsm8k_first_answer_is_wins():
 
 
 def test_gsm8k_parse_failure_distinct_from_wrong():
-    g = grade_gsm8k("I am not sure how to solve this problem", GSM_DOC)
-    assert not g["parse_ok"] and g["failure_reason"] == "no_answer_pattern" and not g["correct"]
+    g = grade_gsm8k("I am not sure how to solve this problem", GSM_DOC, finish_reason="eos")
+    assert not g["parse_ok"] and g["failure_reason"] == "finished_no_answer" and not g["correct"]
     g = grade_gsm8k("The answer is 999.", GSM_DOC)
     assert g["parse_ok"] and not g["correct"] and g["failure_reason"] is None
 
 
-def test_gsm8k_no_last_number_fallback_in_primary():
-    g = grade_gsm8k("We get 1234 apples in total.", GSM_DOC)
+def test_gsm8k_no_last_number_fallback_when_truncated():
+    g = grade_gsm8k("We get 1234 apples in total.", GSM_DOC, finish_reason="length")
     assert not g["parse_ok"] and g["lm_eval_flexible_extract"]
 
 
@@ -121,10 +121,44 @@ def test_math_negative(text, gold):
 
 
 def test_math_parse_failure():
-    g = grade_math("I could not finish the computation", _doc("3"))
-    assert not g["parse_ok"] and g["failure_reason"] == "no_answer_found"
+    g = grade_math("I could not finish the computation", _doc("3"), finish_reason="length")
+    assert not g["parse_ok"] and g["failure_reason"] == "truncated_no_answer"
 
 
 def test_math_minerva_priority_over_boxed():
     pred, method = math_extract("\\boxed{1} ... Final Answer: The final answer is $2$. I hope it is correct.")
     assert (pred, method) == ("$2$", "minerva_final")
+
+
+# ----------------------------------------------------------------------------- fallbacks / taxonomy
+
+def test_gsm8k_fallback_only_for_natural_termination():
+    text = "So in total she pays 1234 dollars"
+    g = grade_gsm8k(text, GSM_DOC, finish_reason="eos")
+    assert g["correct"] and g["answer_source"] == "fallback" and not g["correct_format_only"]
+    g = grade_gsm8k(text, GSM_DOC, finish_reason="length")
+    assert not g["parse_ok"] and g["failure_reason"] == "truncated_no_answer"
+    g = grade_gsm8k("I do not know", GSM_DOC, finish_reason="stop_string")
+    assert g["failure_reason"] == "finished_no_answer"
+
+
+@pytest.mark.parametrize("text,gold,ok", [
+    ("The diagonal is $\\sqrt{576}=24$.", "24", True),
+    ("Hence the area is $\\frac{3}{4}$.", "\\frac{3}{4}", True),
+    ("Therefore the graph is a circle.", "\\text{circle}", True),
+    ("The student with the greatest average speed is Angela.", "\\text{Angela}", True),
+    ("So $x = 5$, which is the answer.\nThe result is $7$.", "5", False),
+])
+def test_math_fallback(text, gold, ok):
+    g = grade_math(text, _doc(gold), finish_reason="eos")
+    assert g["parse_ok"] and g["answer_source"] == "fallback" and g["correct"] == ok, g
+
+
+def test_math_fallback_not_used_when_truncated():
+    g = grade_math("The diagonal is $\\sqrt{576}=24$.", _doc("24"), finish_reason="length")
+    assert not g["parse_ok"] and g["failure_reason"] == "truncated_no_answer"
+
+
+def test_format_answer_takes_priority_over_fallback():
+    g = grade_math("\\boxed{3} so the area is $4$.", _doc("3"), finish_reason="eos")
+    assert g["extract_method"] == "boxed" and g["correct"] and g["correct_format_only"]

@@ -114,7 +114,7 @@ def run_job(ctx: ModelContext, job: dict, out_dir: Path) -> dict:
         for it, ids, fin in zip(batch, res.gen_ids, res.finish):
             raw = ctx.tok.decode(ids, skip_special_tokens=False)
             text = truncate_at_stops(raw, stops)
-            g = grade(dataset, text, it["doc"])
+            g = grade(dataset, text, it["doc"], fin)
             records.append({"uid": it["uid"], "batch": b, "batch_pos": it["batch_pos"],
                             "prompt_sha256": sha(it["prompt"]), "prompt_tokens": len(it["prompt_ids"]),
                             "gen_token_ids": ids, "n_gen_tokens": len(ids), "finish_reason": fin,

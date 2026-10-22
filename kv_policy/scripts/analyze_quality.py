@@ -11,7 +11,9 @@ Outputs (in <run>/analysis/):
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import sys
 import math
 import random
 from collections import Counter, defaultdict
@@ -22,10 +24,33 @@ import pandas as pd
 
 BOOT = 10000
 SEED = 20261022
-ORDER = [("full", "decode"), ("last", "decode"), ("average", "decode"), ("last", "strict"), ("average", "strict"),
-         ("full", "strict"), ("full_altbatch", "decode")]
+ORDER = [("full", "decode"), ("last", "convert"), ("average", "convert"), ("last", "decode"), ("average", "decode"),
+         ("last", "strict"), ("average", "strict"), ("full", "strict"), ("full_altbatch", "decode")]
 # strict cells are additionally compared against the FULL/strict numerical-path control
 STRICT_BASE = ("full", "strict")
+
+
+GRADE_FIELDS = ("gold", "pred", "pred_raw", "extract_method", "answer_source", "parse_ok", "correct",
+                "correct_format_only", "failure_reason", "lm_eval_strict_match", "lm_eval_flexible_extract",
+                "math_verify", "minerva_is_equiv", "normalized_string_equal")
+
+
+def regrade(gen: list[dict]) -> str:
+    """Re-score every stored generation with the current kvp.grading (raw files are not modified)."""
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+    from kvp.data import load_subset
+    from kvp.grading import grade
+
+    docs = {}
+    for ds in ("gsm8k", "math500"):
+        for d in load_subset(ds)[0]:
+            docs[(ds, d["uid"])] = d
+    for r in gen:
+        for k in GRADE_FIELDS:
+            r.pop(k, None)
+        r.update(grade(r["dataset"], r["answer_text"], docs[(r["dataset"], r["uid"])], r["finish_reason"]))
+    grading = Path(__file__).resolve().parents[1] / "kvp" / "grading.py"
+    return hashlib.sha256(grading.read_bytes()).hexdigest()
 
 
 def load_raw(run: Path):
@@ -103,9 +128,11 @@ def main():
     out = run / "analysis"
     out.mkdir(exist_ok=True)
     gen, nll, metas = load_raw(run)
+    grader_sha = regrade(gen)
 
     keep_gen = ["model", "dataset", "policy", "mode", "uid", "batch", "batch_pos", "prompt_tokens",
-                "n_gen_tokens", "finish_reason", "correct", "parse_ok", "failure_reason", "extract_method",
+                "n_gen_tokens", "finish_reason", "correct", "correct_format_only", "parse_ok", "answer_source",
+                "failure_reason", "extract_method",
                 "pred", "gold", "lm_eval_strict_match", "lm_eval_flexible_extract", "math_verify",
                 "minerva_is_equiv", "normalized_string_equal"]
     g = pd.DataFrame([{k: r.get(k) for k in keep_gen} for r in gen])
@@ -115,7 +142,7 @@ def main():
     n.to_csv(out / "items_nll.csv", index=False)
 
     # ---------------- completeness
-    comp = {"n_gen_records": len(g), "n_nll_records": len(n), "jobs_finished": len(metas),
+    comp = {"grader_sha256": grader_sha, "n_gen_records": len(g), "n_nll_records": len(n), "jobs_finished": len(metas),
             "failed_jobs": sorted(p.name for p in (run / "errors").glob("*.json")) if (run / "errors").exists() else []}
     for name, df in (("gen", g), ("nll", n)):
         cnt = df.groupby(["model", "dataset", "policy", "mode"]).uid.agg(["count", "nunique"]).reset_index()
@@ -128,7 +155,12 @@ def main():
     for (m, d, p, mo), df in g.groupby(["model", "dataset", "policy", "mode"]):
         nd = n[(n.model == m) & (n.dataset == d) & (n.policy == p) & (n["mode"] == mo)]
         row = {"model": m, "dataset": d, "policy": p, "mode": mo, "n": len(df),
-               "accuracy": df.correct.mean(), "parse_fail_rate": 1 - df.parse_ok.mean(),
+               "accuracy": df.correct.mean(), "accuracy_format_only": df.correct_format_only.mean(),
+               "fallback_answer_rate": (df.answer_source == "fallback").mean(),
+               "parse_fail_rate": 1 - df.parse_ok.mean(),
+               "fail_truncated_no_answer": int((df.failure_reason == "truncated_no_answer").sum()),
+               "fail_finished_no_answer": int((df.failure_reason == "finished_no_answer").sum()),
+               "fail_unparseable_answer": int((df.failure_reason == "unparseable_answer").sum()),
                "wrong_but_parsed": int(((~df.correct.astype(bool)) & df.parse_ok.astype(bool)).sum()),
                "parse_failures": int((~df.parse_ok.astype(bool)).sum()),
                "mean_gen_tokens": df.n_gen_tokens.mean(),
@@ -187,6 +219,11 @@ def main():
             audit["math_primary_vs_minerva"].append(
                 {k: r.get(k) for k in ("model", "policy", "mode", "uid", "pred", "gold", "correct",
                                        "math_verify", "minerva_is_equiv", "normalized_string_equal")})
+    fb = [r for r in gen if r.get("answer_source") == "fallback"]
+    audit["fallback_samples"] = [
+        {k: r.get(k) for k in ("model", "dataset", "policy", "mode", "uid", "extract_method", "pred", "gold",
+                               "correct", "finish_reason")} | {"last_line": r["answer_text"].strip().splitlines()[-1][-250:]}
+        for r in rnd.sample(fb, min(40, len(fb)))]
     fails = [r for r in gen if not r["parse_ok"]]
     by_cell = defaultdict(list)
     for r in fails:
@@ -206,12 +243,15 @@ def main():
     def fmt(x, nd=3):
         return "" if x is None or (isinstance(x, float) and math.isnan(x)) else (f"{x:.{nd}f}" if isinstance(x, float) else str(x))
 
-    md = ["## Per-cell summary\n", "| model | dataset | policy | mode | n | acc | parse fail | ref scorer | "
-          "NLL tok-w | NLL/problem | mean gen tok | hit max |", "|" + "---|" * 12]
+    md = [f"Grader: kvp/grading.py sha256 {grader_sha[:12]} (all generations re-scored at analysis time)\n",
+          "## Per-cell summary\n", "| model | dataset | policy | mode | n | acc | acc (format only) | fallback | "
+          "no answer: truncated / finished | ref scorer | NLL tok-w | NLL/problem | mean gen tok | hit max |",
+          "|" + "---|" * 14]
     for _, r in summ.iterrows():
         ref = r.get("lm_eval_strict_match") if r.dataset == "gsm8k" else r.get("minerva_is_equiv")
         md.append(f"| {r.model} | {r.dataset} | {r.policy} | {r['mode']} | {r.n} | {fmt(r.accuracy)} | "
-                  f"{fmt(r.parse_fail_rate)} | {fmt(ref)} | {fmt(r.nll_token_weighted, 4)} | "
+                  f"{fmt(r.accuracy_format_only)} | {fmt(r.fallback_answer_rate)} | "
+                  f"{r.fail_truncated_no_answer} / {r.fail_finished_no_answer} | {fmt(ref)} | {fmt(r.nll_token_weighted, 4)} | "
                   f"{fmt(r.nll_mean_per_problem, 4)} | {fmt(r.mean_gen_tokens, 1)} | {fmt(r.hit_max_tokens_rate)} |")
     md += ["\n## Paired deltas vs baseline\n",
            "| model | dataset | baseline | policy | mode | Δacc [95% CI] | base-only / policy-only | McNemar p | "
