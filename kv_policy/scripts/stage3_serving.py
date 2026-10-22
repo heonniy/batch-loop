@@ -16,6 +16,7 @@ Per (model, layout):
 from __future__ import annotations
 
 import argparse
+import dataclasses
 import gc
 import json
 import statistics
@@ -61,22 +62,29 @@ def hf_reference(model_key, prompts, policy, mode):
     return out
 
 
-def build_engine(model_key, layout, max_seqs, kv_bytes):
+def build_engine(model_key, layout, max_seqs, kv_bytes, dtype=torch.bfloat16, backend="triton"):
     from vllm_rlt import CacheConfig, ExecutionConfig, ExitConfig, SchedulerConfig
     from vllm_rlt.engine.stage_engine import StageEngine
     from vllm_rlt.models import AutoModelForCausalLM
 
     spec = MODELS[model_key]
     path = snapshot_download(spec.repo, revision=spec.revision)
-    model = AutoModelForCausalLM.from_pretrained(path, revision=None, device="cuda", dtype=torch.bfloat16)
+    model = AutoModelForCausalLM.from_pretrained(path, revision=None, device="cuda", dtype=dtype)
+    override = None
+    if spec.family == "huginn" and model.config.total_ut_steps != spec.native_depth:
+        # vllm-rlt runs prompt prefill at config depth (mean_recurrence=32) and sizes the KV pool
+        # with one plane per config depth; align both with the fixed depth under test.
+        override = {"mean_recurrence": [model.config.mean_recurrence, spec.native_depth]}
+        model.config = dataclasses.replace(model.config, mean_recurrence=spec.native_depth)
     engine = StageEngine(
         model,
         cache_config=CacheConfig(layout=layout, kv_cache_memory_bytes=kv_bytes),
         scheduler_config=SchedulerConfig(max_num_seqs=max_seqs, max_num_batched_tokens=4096, mode="refill"),
-        attention_backend="triton",
+        attention_backend=backend,
         exit_config=ExitConfig(mode="ouro"),
         execution_config=ExecutionConfig(async_scheduling=False, cuda_graphs=False, multi_stream=False),
     )
+    engine.config_override = override
     return model, engine
 
 
@@ -142,6 +150,7 @@ def main():
     kv_bytes = int(args.kv_gib * 2**30)
     model, engine = build_engine(args.model, args.layout, max(PERF_BATCHES), kv_bytes)
     cm = engine.cache_manager
+    rep["config_override"] = engine.config_override
     rep["pool"] = {"num_blocks": cm.num_blocks, "block_size": cm.block_size, "storage_depths": cm.storage_depths,
                    "bytes_per_block": cm.bytes_per_block, "num_layers_in_cache": cm.num_layers,
                    "num_kv_heads": cm.num_kv_heads, "head_dim": cm.head_dim,
