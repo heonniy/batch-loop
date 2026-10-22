@@ -68,7 +68,7 @@ def tiny(request):
 
 
 @pytest.mark.parametrize("policy", ["full", "last", "average"])
-@pytest.mark.parametrize("mode", ["decode", "strict"])
+@pytest.mark.parametrize("mode", ["decode", "convert", "strict"])
 def test_engine_matches_reference(tiny, policy, mode):
     family, model, run = tiny
     ref = reference_logits(model, family, run.bb.R, PROMPT, CONT, policy, mode, _noise(run, 64))
@@ -115,7 +115,7 @@ def test_no_future_leakage(tiny, policy):
 
 
 @pytest.mark.parametrize("policy", ["full", "last", "average"])
-@pytest.mark.parametrize("mode", ["decode", "strict"])
+@pytest.mark.parametrize("mode", ["decode", "convert", "strict"])
 def test_batched_left_padding_matches_b1(tiny, policy, mode):
     """Positions/masks: a short prompt left-padded in a batch must equal its B=1 run."""
     family, model, run = tiny
@@ -171,3 +171,25 @@ def test_last_history_written_only_after_final_loop(tiny):
     with torch.inference_mode():
         run._prefill(ids, pos, valid, kv, aux, P, "strict")
     assert seen and all(seen)
+
+
+def test_convert_reads_policy_versions_of_prompt(tiny):
+    """convert: same prefill as decode/full, but later tokens see the prompt's policy version."""
+    family, model, run = tiny
+    P = len(PROMPT)
+    full = run.teacher_forced_logits(PROMPT, CONT, "u", "full", "decode")
+    for pol in ("last", "average"):
+        conv = run.teacher_forced_logits(PROMPT, CONT, "u", pol, "convert")
+        dec = run.teacher_forced_logits(PROMPT, CONT, "u", pol, "decode")
+        assert torch.allclose(conv[:P], full[:P])          # prompt logits: per-loop prefill
+        assert (conv[P:] - dec[P:]).abs().max() > 1e-6       # first decode step already differs
+
+
+def test_convert_buffer_holds_single_version(tiny):
+    family, model, run = tiny
+    ids, pos, valid, kv, aux, P, T = run._setup([PROMPT], 2, "last", "convert", ["u"])
+    with torch.inference_mode():
+        run._prefill(ids, pos, valid, kv, aux, P, "convert")
+    for kb in kv.rk:
+        for r in range(run.bb.R):
+            assert torch.equal(kb[r, :, :, :P], kb[run.bb.R - 1, :, :, :P])

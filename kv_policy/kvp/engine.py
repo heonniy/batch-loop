@@ -7,8 +7,14 @@ Terminology
                    4-layer core block). Non-recurrent Huginn prelude/coda layers have ordinary
                    single-version caches and are not affected by the policy.
 * policy region -- columns whose historical K/V is subject to the policy:
-                   mode "decode": c >= P (generated / teacher-forced tokens; prompt keeps every loop)
-                   mode "strict": every column (prompt is then processed token-by-token).
+                   mode "convert": every column. The prompt is prefilled in parallel with its own
+                                   per-loop K/V (as FULL), then the prompt K/V is converted to the
+                                   policy version; decoding reads only policy versions. Retained
+                                   memory = one plane (the Ouro paper's 4x claim / plan definition).
+                   mode "decode":  c >= P only (generated / teacher-forced tokens); the prompt
+                                   keeps every loop version (hybrid, less memory saving).
+                   mode "strict":  every column; the prompt is processed token-by-token so that
+                                   prompt tokens already read policy versions (vllm-rlt `shared`).
 
 Semantics (per recurrent physical layer l, query of current token t at loop r):
 * own position t: reads its own loop-r K/V for every policy (the only causally available version).
@@ -76,6 +82,18 @@ class PolicyKV:
                     ver = buf[:, :, :, c].to(torch.promote_types(buf.dtype, torch.float32)).mean(0).to(buf.dtype)
                 buf[:, :, :, c] = ver.unsqueeze(0)
 
+    def convert_prefix(self, P: int):
+        """Mode "convert": after the parallel prefill, replace prompt K/V by the policy version."""
+        if self.policy == "full":
+            return
+        for kbuf, vbuf in zip(self.rk, self.rv):
+            for buf in (kbuf, vbuf):
+                if self.policy == "last":
+                    ver = buf[self.R - 1, :, :, :P]
+                else:
+                    ver = buf[:, :, :, :P].to(torch.promote_types(buf.dtype, torch.float32)).mean(0).to(buf.dtype)
+                buf[:, :, :, :P] = ver.unsqueeze(0)
+
     def bytes_allocated(self) -> int:
         return sum(t.numel() * t.element_size() for t in (*self.rk, *self.rv, *self.pk, *self.pv))
 
@@ -89,11 +107,14 @@ class CompactPolicyKV(PolicyKV):
     | own current K/V], so reads differ from PolicyKV only by kernel input layout.
     """
 
-    def __init__(self, policy, R, n_rec, n_plain, B, H, T, D, dtype, device, region_start):
+    def __init__(self, policy, R, n_rec, n_plain, B, H, T, D, dtype, device, region_start, prefill_cols=None):
         if policy == "full":
             raise ValueError("FULL is already policy-sized in PolicyKV")
         self.policy, self.R, self.region_start = policy, R, region_start
-        F_, G = region_start, T - region_start
+        # per-loop planes exist for the prompt in "decode" (kept) and "convert" (transient) modes
+        F_ = region_start if prefill_cols is None else prefill_cols
+        self.offset = region_start  # first column held in the single policy plane
+        G = T - region_start
         self.rk = [torch.zeros(R, B, H, F_, D, dtype=dtype, device=device) for _ in range(n_rec)]
         self.rv = [torch.zeros(R, B, H, F_, D, dtype=dtype, device=device) for _ in range(n_rec)]
         self.ck = [torch.zeros(B, H, G, D, dtype=dtype, device=device) for _ in range(n_rec)]
@@ -103,28 +124,43 @@ class CompactPolicyKV(PolicyKV):
         self.pk = [torch.zeros(B, H, T, D, dtype=dtype, device=device) for _ in range(n_plain)]
         self.pv = [torch.zeros(B, H, T, D, dtype=dtype, device=device) for _ in range(n_plain)]
         self.reads = {}
+        self.transient_peak_bytes = self.bytes_allocated()
 
     def attend(self, layer, q, k, v, c0, c1, mask):
         kind, idx, r = layer
         if kind != "rec":
             return super().attend(layer, q, k, v, c0, c1, mask)
-        F_ = self.region_start
-        if c1 <= F_:  # parallel prefill of the full region
+        F_ = self.rk[idx].shape[3]
+        if c1 <= F_:  # parallel prompt prefill (per-loop prompt planes still present)
             self.rk[idx][r][:, :, c0:c1] = k
             self.rv[idx][r][:, :, c0:c1] = v
             return F.scaled_dot_product_attention(q, self.rk[idx][r][:, :, :c1], self.rv[idx][r][:, :, :c1],
                                                   attn_mask=mask)
-        assert c1 == c0 + 1 and c0 >= F_, "policy region is processed one column at a time"
+        assert c1 == c0 + 1 and c0 >= self.offset, "policy region is processed one column at a time"
         self.sk[idx][r], self.sv[idx][r] = k, v
-        g = c0 - F_
-        keys = torch.cat([self.rk[idx][r], self.ck[idx][:, :, :g], k], dim=2)
-        vals = torch.cat([self.rv[idx][r], self.cv[idx][:, :, :g], v], dim=2)
+        g = c0 - self.offset
+        full = self.rk[idx][r][:, :, :self.offset], self.rv[idx][r][:, :, :self.offset]
+        keys = torch.cat([full[0], self.ck[idx][:, :, :g], k], dim=2)
+        vals = torch.cat([full[1], self.cv[idx][:, :, :g], v], dim=2)
         return F.scaled_dot_product_attention(q, keys, vals, attn_mask=mask)
+
+    def convert_prefix(self, P: int):
+        for i in range(len(self.rk)):
+            for planes, plane in ((self.rk, self.ck), (self.rv, self.cv)):
+                buf = planes[i][:, :, :, :P]
+                if self.policy == "last":
+                    ver = buf[self.R - 1]
+                else:
+                    ver = buf.to(torch.promote_types(buf.dtype, torch.float32)).mean(0).to(buf.dtype)
+                plane[i][:, :, :P] = ver
+            # drop the transient per-loop prompt planes
+            self.rk[i] = self.rk[i][:, :, :, :0].contiguous()
+            self.rv[i] = self.rv[i][:, :, :, :0].contiguous()
 
     def finalize(self, c: int):
         if c < self.region_start:
             return
-        g = c - self.region_start
+        g = c - self.offset
         for sk, sv, ck, cv in zip(self.sk, self.sv, self.ck, self.cv):
             for scratch, plane in ((sk, ck), (sv, cv)):
                 if self.policy == "last":
@@ -312,10 +348,15 @@ class Runner:
         cols = torch.arange(T)
         pos_full = (cols[None, :] - torch.tensor(pads)[:, None]).clamp_min(0)
         valid = cols[None, :] >= torch.tensor(pads)[:, None]
+        if mode not in ("decode", "strict", "convert"):
+            raise ValueError(mode)
         region = P if mode == "decode" else 0
-        cls = CompactPolicyKV if (self.store == "compact" and policy != "full") else PolicyKV
-        kv = cls(policy, self.bb.R, self.bb.n_rec, self.bb.n_plain, B, self.bb.H, T, self.bb.D,
-                 self.dtype, self.device, region)
+        if self.store == "compact" and policy != "full":
+            kv = CompactPolicyKV(policy, self.bb.R, self.bb.n_rec, self.bb.n_plain, B, self.bb.H, T, self.bb.D,
+                                 self.dtype, self.device, region, prefill_cols=P if mode != "strict" else 0)
+        else:
+            kv = PolicyKV(policy, self.bb.R, self.bb.n_rec, self.bb.n_plain, B, self.bb.H, T, self.bb.D,
+                          self.dtype, self.device, region)
         aux = self.bb.make_aux(uids, pads, T)
         return ids.to(self.device), pos_full.to(self.device), valid.to(self.device), kv, aux, P, T
 
@@ -331,8 +372,10 @@ class Runner:
         return self.bb.forward(tok[:, None], pos_full[:, c: c + 1], kv, c, c + 1, mask, aux, finalize=True)
 
     def _prefill(self, ids, pos_full, valid, kv, aux, P, mode, keep_all=False):
-        if mode == "decode":
+        if mode in ("decode", "convert"):
             logits = self._prefill_parallel(ids, pos_full, valid, kv, aux, P)
+            if mode == "convert":
+                kv.convert_prefix(P)
             return logits if keep_all else logits[:, -1]
         outs = []
         for c in range(P):
@@ -409,8 +452,8 @@ class Runner:
 
     @torch.inference_mode()
     def teacher_forced_logits(self, prompt, cont, uid, policy, mode):
-        """B=1 logits for every position of prompt+cont (for parity tests). mode "decode" uses
-        the parallel prompt prefill, "strict" feeds the prompt token-by-token."""
+        """B=1 logits for every position of prompt+cont (for parity tests). Modes "decode" and
+        "convert" use the parallel prompt prefill, "strict" feeds the prompt token-by-token."""
         n = len(cont)
         ids, pos_full, valid, kv, aux, P, T = self._setup([prompt], n, policy, mode, [uid])
         outs = [self._prefill(ids, pos_full, valid, kv, aux, P, mode, keep_all=True)[0]]

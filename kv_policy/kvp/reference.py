@@ -77,8 +77,10 @@ class HuginnRefCache:
 def reference_logits(model, family: str, R: int, prompt: list[int], cont: list[int], policy: str,
                      mode: str, noise: torch.Tensor | None = None) -> torch.Tensor:
     """Native-forward logits for every position of prompt+cont under (policy, mode).
-    mode "decode": prompt in one parallel call, policy region = continuation.
-    mode "strict": every token in its own call, policy region = everything."""
+    mode "decode":  prompt in one parallel call, policy region = continuation.
+    mode "convert": prompt in one parallel call, policy region = everything (the prompt's per-loop
+                    entries are used only inside its own call, later calls read policy versions).
+    mode "strict":  every token in its own call, policy region = everything."""
     dev = next(model.parameters()).device
     P = len(prompt)
     store = _DictPolicyStore(policy, R, P if mode == "decode" else 0)
@@ -88,7 +90,7 @@ def reference_logits(model, family: str, R: int, prompt: list[int], cont: list[i
         tr = model.transformer
         cache = HuginnRefCache(store, len(tr.prelude), len(tr.core_block))
     seq = prompt + cont
-    calls = [(0, P)] + [(p, p + 1) for p in range(P, len(seq))] if mode == "decode" else \
+    calls = [(0, P)] + [(p, p + 1) for p in range(P, len(seq))] if mode in ("decode", "convert") else \
         [(p, p + 1) for p in range(len(seq))]
     outs = []
     for a, b in calls:

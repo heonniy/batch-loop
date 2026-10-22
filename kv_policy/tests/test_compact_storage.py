@@ -8,7 +8,7 @@ from tests.test_policy_semantics import CONT, PROMPT, _tiny
 
 @pytest.mark.parametrize("family", ["ouro", "huginn"])
 @pytest.mark.parametrize("policy", ["last", "average"])
-@pytest.mark.parametrize("mode", ["decode", "strict"])
+@pytest.mark.parametrize("mode", ["decode", "convert", "strict"])
 def test_compact_equals_broadcast(family, policy, mode):
     model, run = _tiny(family, 3)
     ref = run.teacher_forced_logits(PROMPT, CONT, "u", policy, mode)
