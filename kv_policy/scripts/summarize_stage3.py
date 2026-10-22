@@ -55,6 +55,46 @@ def main():
     md += [f"| {r['model']} | {r['layout']} | {r['gpu']} | {r['B']} | {r['tpot_ms_mean']:.2f} "
            f"[{r['tpot_ms_min']:.2f}, {r['tpot_ms_max']:.2f}] | {r['decode_tok_s_mean']:.1f} | {r['e2e_tok_s_mean']:.1f} | "
            f"{r['ttft_s_mean']:.3f} | {r['peak_used_kv_GiB']:.2f} GiB ({r['peak_used_blocks']} blk) |" for r in rows]
+    aligned = sorted(run.glob("aligned_serving_*.json"))
+    if aligned:
+        md += ["\n## Huginn re-run with depth alignment (config mean_recurrence 32 -> 16, 100 GiB pool)\n",
+               "| gpu | parity exact | mean first div | depths fixed | B | TPOT ms [min,max] | decode tok/s | TTFT s | peak KV |",
+               "|---|---|---|---|---|---|---|---|---|"]
+        for f in aligned:
+            r = json.loads(f.read_text())
+            p = r["parity"]
+            for B in sorted({x["B"] for x in r["perf"]}):
+                xs = [x for x in r["perf"] if x["B"] == B]
+                md.append(f"| {f.stem.rsplit('_', 1)[-1]} | {p['exact_match_rate']:.3f} | {p['mean_first_divergence']:.1f} | "
+                          f"{p['all_depths_fixed']} | {B} | {statistics.mean(x['mean_tpot_ms'] for x in xs):.2f} "
+                          f"[{min(x['mean_tpot_ms'] for x in xs):.2f}, {max(x['mean_tpot_ms'] for x in xs):.2f}] | "
+                          f"{statistics.mean(x['decode_throughput_tok_s'] for x in xs):.1f} | "
+                          f"{statistics.mean(x['mean_ttft_s'] for x in xs):.2f} | "
+                          f"{max(x['peak_used_kv_bytes'] for x in xs) / 2**30:.2f} GiB |")
+    for f in sorted(run.glob("semantics_fp32_*.json")):
+        r = json.loads(f.read_text())
+        md += [f"\n## fp32 layout semantics ({r['model']}, backend {r['backend']}, {r['n_tokens']} greedy tokens)\n",
+               "| vllm-rlt layout | HF cell | exact / n | first divergences |", "|---|---|---|---|"]
+        md += [f"| {x['layout']} | {x['hf_cell']} | {x['exact']} / {x['n']} | {x['first_divergence']} |"
+               for x in r["results"]]
+    mem = sorted((run / "hf_memory_v2").glob("hf_memory_*.json"))
+    if mem:
+        md += ["\n## Measured KV residency of every policy (HF engine, compact policy-sized store)\n",
+               "First frozen GSM8K batch (B=32, 256 new tokens, no early stop). Bytes are the retained store "
+               "after prefill (recurrent + non-recurrent K/V); `alloc` includes convert-mode transient prompt "
+               "planes. The HF engine is a reference implementation, not a serving engine.\n",
+               "| model | policy | mode | P | KV retained GiB | ratio vs FULL | analytic recurrent GiB | KV at alloc GiB | "
+               "CUDA peak GiB | prefix agreement vs stage-2 |", "|---|---|---|---|---|---|---|---|---|---|"]
+        for f in mem:
+            r = json.loads(f.read_text())
+            full = next(c for c in r["cells"] if c["policy"] == "full")["kv_store_bytes_measured"]
+            for c in r["cells"]:
+                ag = c["token_prefix_agreement_vs_stage2_broadcast"]
+                md.append(f"| {r['model']} | {c['policy']} | {c['mode']} | {c['P']} | "
+                          f"{c['kv_store_bytes_measured'] / 2**30:.2f} | {c['kv_store_bytes_measured'] / full:.3f} | "
+                          f"{c['recurrent_kv_bytes_analytic'] / 2**30:.2f} | "
+                          f"{(c.get('kv_store_bytes_at_alloc') or 0) / 2**30:.2f} | {c['cuda_peak_bytes'] / 2**30:.2f} | "
+                          f"{'' if ag is None else f'{ag:.3f}'} |")
     (run / "SUMMARY.md").write_text("\n".join(md) + "\n")
     print("\n".join(md))
 

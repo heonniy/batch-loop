@@ -1,0 +1,116 @@
+{
+ "model": "ouro-1.4b",
+ "dtype": "float32",
+ "backend": "torch",
+ "n_tokens": 24,
+ "results": [
+  {
+   "layout": "last_exited",
+   "hf_cell": "full/decode",
+   "first_divergence": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "exact": 8,
+   "n": 8,
+   "rlt_text": [
+    " 8\nB: 10\nC: 12\nD: 15\nE: ",
+    " Paris.\n\n## Step 2: Evaluate the Options\nLet's evaluate each option to see which one matches the",
+    " 180 miles\nB: 150 miles\nC: 120 miles\nD:",
+    "\tif n <= 0:\n\t\treturn \"Input should be a positive integer.\"\n\telif n == ",
+    " To compute $7 \\times 8$, we can use the standard multiplication method:\n\n$$\n7 \\times",
+    " red, blue, and yellow.\n\nThe final answer is A.<|endoftext|>B. and C.<|endoftext|> but since",
+    " 6\nB: 8\nC: 10\nD: 12\nE: 1",
+    " there lived a young girl named NAME_1. She was known for her kindness, intelligence, and adventurous spirit."
+   ],
+   "hf_text": [
+    " 8\nB: 10\nC: 12\nD: 15\nE: ",
+    " Paris.\n\n## Step 2: Evaluate the Options\nLet's evaluate each option to see which one matches the",
+    " 180 miles\nB: 150 miles\nC: 120 miles\nD:",
+    "\tif n <= 0:\n\t\treturn \"Input should be a positive integer.\"\n\telif n == ",
+    " To compute $7 \\times 8$, we can use the standard multiplication method:\n\n$$\n7 \\times",
+    " red, blue, and yellow.\n\nThe final answer is A.<|endoftext|>B. and C.<|endoftext|> but since",
+    " 6\nB: 8\nC: 10\nD: 12\nE: 1",
+    " there lived a young girl named NAME_1. She was known for her kindness, intelligence, and adventurous spirit."
+   ]
+  },
+  {
+   "layout": "shared",
+   "hf_cell": "last/strict",
+   "first_divergence": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "exact": 8,
+   "n": 8,
+   "rlt_text": [
+    " have\n, have\n, have.\n, , , , , , , .",
+    " 100,0000. and and and and 100,000, ,",
+    " |.\nA,3 hours.  hours,3 hours,3 hours,3 hours,3 hours,",
+    "\tif n <= 0:\n\n\nreturn 0\n\n\nelif n == 1':\n\n",
+    " To\n=\n=\n,|boxed{56}\n the\n,\n, is|\n,",
+    " red, green, and blue. and and and , , , , , , , ,, ,, ,, ,",
+    " 10, what, x.\nA, /10, what, x.\nA, /1",
+    " there lived a a a a, a, a, a, a, a, a, a, a, a"
+   ],
+   "hf_text": [
+    " have\n, have\n, have.\n, , , , , , , .",
+    " 100,0000. and and and and 100,000, ,",
+    " |.\nA,3 hours.  hours,3 hours,3 hours,3 hours,3 hours,",
+    "\tif n <= 0:\n\n\nreturn 0\n\n\nelif n == 1':\n\n",
+    " To\n=\n=\n,|boxed{56}\n the\n,\n, is|\n,",
+    " red, green, and blue. and and and , , , , , , , ,, ,, ,, ,",
+    " 10, what, x.\nA, /10, what, x.\nA, /1",
+    " there lived a a a a, a, a, a, a, a, a, a, a, a"
+   ]
+  },
+  {
+   "layout": "shared",
+   "hf_cell": "last/decode",
+   "first_divergence": [
+    0,
+    0,
+    1,
+    7,
+    1,
+    2,
+    1,
+    3
+   ],
+   "exact": 0,
+   "n": 8,
+   "rlt_text": [
+    " have\n, have\n, have.\n, , , , , , , .",
+    " 100,0000. and and and and 100,000, ,",
+    " |.\nA,3 hours.  hours,3 hours,3 hours,3 hours,3 hours,",
+    "\tif n <= 0:\n\n\nreturn 0\n\n\nelif n == 1':\n\n",
+    " To\n=\n=\n,|boxed{56}\n the\n,\n, is|\n,",
+    " red, green, and blue. and and and , , , , , , , ,, ,, ,, ,",
+    " 10, what, x.\nA, /10, what, x.\nA, /1",
+    " there lived a a a a, a, a, a, a, a, a, a, a, a"
+   ],
+   "hf_text": [
+    " 8\nB: 10\nC: 15\nD: 20\n\n\n\n",
+    " Paris.\n\nThe capital of France is Paris.\n\n\nThe capital of France is Paris.\n\n\n",
+    " 180 miles\nB: 150 miles\nC: 120 miles\nD:",
+    "\tif n <= 0:\n\t\treturn \"Input should be a positive integer.\"\n\telif n == ",
+    " To compute $7 \\times 8$, we can use the standard multiplication method:\n\n\n\n\n\n\n",
+    " red, blue, and yellow.\n\nThe final answer is: $\\boxed{red, blue, yellow}$",
+    " 6\nB: 4\nC: 10\nD: 14\n\n\n\n\n",
+    " there lived a young girl named NAME_1. She was known for her kindness and her love for animals. One"
+   ]
+  }
+ ]
+}

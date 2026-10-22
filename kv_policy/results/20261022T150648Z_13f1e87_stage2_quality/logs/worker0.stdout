@@ -1,0 +1,24 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.27it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.21it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.19it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.64it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.45it/s]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 1539.34it/s]
+[Task: kvp_math500_minerva] metric exact_match is defined, but aggregation is not. using default aggregation=mean
+[Task: kvp_math500_minerva] metric exact_match is defined, but higher_is_better is not. using default higher_is_better=True
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 1604.29it/s]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 1515.42it/s]
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 2239.01it/s]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 1343.90it/s]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 1698.44it/s]
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 2447.49it/s]
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 2297.17it/s]
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 1399.15it/s]
+[Task: kvp_math500_minerva] metric exact_match is defined, but aggregation is not. using default aggregation=mean
+[Task: kvp_math500_minerva] metric exact_match is defined, but higher_is_better is not. using default higher_is_better=True
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 1765.92it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.19it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.09it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.01it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.37it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.24it/s]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 848.19it/s]
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 2126.77it/s]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 1722.15it/s]
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 1886.17it/s]

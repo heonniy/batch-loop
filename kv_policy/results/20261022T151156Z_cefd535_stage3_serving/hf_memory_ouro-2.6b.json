@@ -1,0 +1,85 @@
+{
+ "model": "ouro-2.6b",
+ "gpu": {
+  "host": "henn-0",
+  "cuda_visible_devices": "3",
+  "name": "NVIDIA H200",
+  "uuid": "37163db1-5a6b-5702-e7dd-7791d5cb601b",
+  "total_mem": 150109880320
+ },
+ "batch": 0,
+ "B": 32,
+ "max_new_tokens": 256,
+ "cells": [
+  {
+   "policy": "full",
+   "mode": "decode",
+   "P": 393,
+   "T_alloc": 649,
+   "kv_store_bytes_measured": 32665239552,
+   "recurrent_kv_bytes_analytic": 32665239552,
+   "non_recurrent_kv_bytes": 0,
+   "cuda_peak_bytes": 42121712128,
+   "wall_s": 31.225827869959176,
+   "prefill_s": 1.3094096159911714,
+   "decode_steps": 255,
+   "token_prefix_agreement_vs_stage2_broadcast": 1.0
+  },
+  {
+   "policy": "last",
+   "mode": "decode",
+   "P": 393,
+   "T_alloc": 649,
+   "kv_store_bytes_measured": 23001563136,
+   "recurrent_kv_bytes_analytic": 23001563136,
+   "non_recurrent_kv_bytes": 0,
+   "cuda_peak_bytes": 32508367360,
+   "wall_s": 33.63366918603424,
+   "prefill_s": 1.0141103740315884,
+   "decode_steps": 255,
+   "token_prefix_agreement_vs_stage2_broadcast": 1.0
+  },
+  {
+   "policy": "average",
+   "mode": "decode",
+   "P": 393,
+   "T_alloc": 649,
+   "kv_store_bytes_measured": 23001563136,
+   "recurrent_kv_bytes_analytic": 23001563136,
+   "non_recurrent_kv_bytes": 0,
+   "cuda_peak_bytes": 32508367360,
+   "wall_s": 33.05903646798106,
+   "prefill_s": 0.9908731679897755,
+   "decode_steps": 255,
+   "token_prefix_agreement_vs_stage2_broadcast": 1.0
+  },
+  {
+   "policy": "last",
+   "mode": "strict",
+   "P": 393,
+   "T_alloc": 649,
+   "kv_store_bytes_measured": 8166309888,
+   "recurrent_kv_bytes_analytic": 8166309888,
+   "non_recurrent_kv_bytes": 0,
+   "cuda_peak_bytes": 13853769728,
+   "wall_s": 76.26885313098319,
+   "prefill_s": 39.73678017401835,
+   "decode_steps": 255,
+   "token_prefix_agreement_vs_stage2_broadcast": 1.0
+  },
+  {
+   "policy": "average",
+   "mode": "strict",
+   "P": 393,
+   "T_alloc": 649,
+   "kv_store_bytes_measured": 8166309888,
+   "recurrent_kv_bytes_analytic": 8166309888,
+   "non_recurrent_kv_bytes": 0,
+   "cuda_peak_bytes": 13853769728,
+   "wall_s": 75.8294127510162,
+   "prefill_s": 39.04958621802507,
+   "decode_steps": 255,
+   "token_prefix_agreement_vs_stage2_broadcast": 1.0
+  }
+ ]
+}
