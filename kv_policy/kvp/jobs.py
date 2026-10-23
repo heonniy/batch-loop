@@ -21,13 +21,12 @@ from .specs import MODELS
 
 # B=16 for MATH-500 keeps the FULL-sized reference store of Ouro-2.6B / Huginn strict runs
 # (prompt <= 1.7k + 1024 new tokens) inside H200 memory (B=32 peaked at 137.7 GB).
-BATCH_SIZE = {"gsm8k": 32, "math500": 16}
-QUALITY_POLICIES = [("full", "decode"), ("last", "decode"), ("average", "decode"),
-                    ("last", "strict"), ("average", "strict")]
+BATCH_SIZE = {"gsm8k": 8, "math500": 4}
+QUALITY_POLICIES = [("full", "decode"), ("last", "convert"), ("average", "convert")]
 # Controls (added after Stage-1 bf16 parity showed token-by-token prompt numerics differ from the
 # parallel prefill): FULL/strict isolates the numerical path of strict cells; FULL/decode with an
 # alternative seeded batch composition measures the bf16 batch-shape noise floor.
-CONTROL_CELLS = [("full", "strict", "main"), ("full", "decode", "alt")]
+CONTROL_CELLS = []
 
 
 SOURCE_SHA = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True,
