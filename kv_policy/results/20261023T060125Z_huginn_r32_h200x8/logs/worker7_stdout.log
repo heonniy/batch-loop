@@ -1,0 +1,7 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [01:05<03:16, 65.44s/it]Loading checkpoint shards:  50%|█████     | 2/4 [02:10<02:10, 65.42s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [03:16<01:05, 65.63s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:35<00:00, 47.29s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:35<00:00, 53.97s/it]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 2169.28it/s]
+[Task: kvp_math500_minerva] metric exact_match is defined, but aggregation is not. using default aggregation=mean
+[Task: kvp_math500_minerva] metric exact_match is defined, but higher_is_better is not. using default higher_is_better=True
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 2076.98it/s]

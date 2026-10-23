@@ -1,0 +1,5 @@
+model,dataset,policy,mode,identical_rate,q25_first_divergence,median_first_divergence,q75_first_divergence,frac_diverged_within_16
+huginn-0125,gsm8k,average,convert,0.11,9.0,19.0,46.25,0.39
+huginn-0125,gsm8k,last,convert,0.635,43.0,75.0,104.25,0.07
+huginn-0125,math500,average,convert,0.09,8.0,24.5,52.0,0.38
+huginn-0125,math500,last,convert,0.51,44.0,100.5,175.0,0.065

@@ -1,0 +1,7 @@
+model,dataset,policy,mode,n,degenerate_rate,hit_max_tokens_rate,acc_main,acc_stop_rule,answered_then_degenerated,degenerated_without_correct_answer,delta_acc_stop_rule_vs_full,ci95_lo,ci95_hi
+huginn-0125,gsm8k,average,convert,200,0.0,0.01,0.42,0.42,0,0,0.005,-0.04,0.05
+huginn-0125,gsm8k,full,decode,200,0.0,0.015,0.415,0.415,0,0,,,
+huginn-0125,gsm8k,last,convert,200,0.0,0.005,0.445,0.445,0,0,0.03,0.005,0.06
+huginn-0125,math500,average,convert,200,0.045,0.245,0.125,0.125,0,9,-0.03,-0.07,0.01
+huginn-0125,math500,full,decode,200,0.06,0.235,0.155,0.155,0,12,,,
+huginn-0125,math500,last,convert,200,0.065,0.26,0.165,0.165,0,13,0.01,-0.015,0.04

@@ -1,0 +1,7 @@
+model,dataset,policy,mode,n,accuracy,accuracy_format_only,fallback_answer_rate,parse_fail_rate,fail_truncated_no_answer,fail_finished_no_answer,fail_unparseable_answer,wrong_but_parsed,parse_failures,mean_gen_tokens,hit_max_tokens_rate,nll_token_weighted,nll_mean_per_problem,nll_n,target_tokens,lm_eval_strict_match,lm_eval_flexible_extract,minerva_is_equiv
+huginn-0125,gsm8k,full,decode,200,0.415,0.415,0.01,0.015000000000000013,3,0,0,114,3,104.99,0.015,0.8995876595439509,0.9162287133048099,200,17106,0.34,0.41,
+huginn-0125,gsm8k,last,convert,200,0.445,0.445,0.015,0.0050000000000000044,1,0,0,110,1,103.45,0.005,0.9010321936542826,0.9178612715699864,200,17106,0.36,0.44,
+huginn-0125,gsm8k,average,convert,200,0.42,0.4,0.085,0.010000000000000009,2,0,0,114,2,103.41,0.01,0.8715070643935696,0.8835884249251721,200,17106,0.375,0.42,
+huginn-0125,math500,full,decode,200,0.155,0.15,0.2,0.24,47,1,0,121,48,611.225,0.235,0.6317499608559739,0.6679172268123357,200,47776,,,0.15
+huginn-0125,math500,last,convert,200,0.165,0.155,0.185,0.265,52,1,0,114,53,650.185,0.26,0.6314874476905085,0.6676568334403169,200,47776,,,0.16
+huginn-0125,math500,average,convert,200,0.125,0.09,0.285,0.25,49,1,0,125,50,610.76,0.245,0.6398257713270239,0.6790850623604163,200,47776,,,0.12

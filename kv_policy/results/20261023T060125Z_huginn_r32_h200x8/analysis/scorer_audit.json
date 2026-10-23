@@ -1,0 +1,1282 @@
+{
+ "gsm8k_primary_vs_lm_eval_strict": [
+  {
+   "model": "huginn-0125",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0876",
+   "pred": "41",
+   "pred_raw": " 41",
+   "gold": "41",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "18 points. Amy correctly answers 60% of 5 long-answer questions, which is 3 questions. Each long-answer question is worth 5 points, so she gets 15 points. In total, Amy scores 8 + 18 + 15 = 41 points."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-1004",
+   "pred": "8",
+   "pred_raw": " 8",
+   "gold": "8",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "artha has 56 chocolate bars. So Peter has 64 / 4 = 16 chocolate bars in each box. Martha has 56 / 7 = 8 chocolate bars in each box. So Peter has 16 - 8 = 8 more chocolate bars in each box than Martha."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0824",
+   "pred": "52",
+   "pred_raw": " 52",
+   "gold": "52",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " food. Kimberly also bought 6 packages of dog food, with 6 tins in each package. So she bought 6 x 6 = 36 tins of dog food. Therefore, Kimberly bought 88 - 36 = 52 more tins of cat food than dog food."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-1233",
+   "pred": "81",
+   "pred_raw": "81",
+   "gold": "81",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "ter 25% of the remaining number, which is 25% x 36 = 9 apples. So he had 36 - 9 = 27 apples left. He sold the remaining apples to his uncle at $3 each, so he received 27 x $3 = $81. The answer is $81."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0597",
+   "pred": "90",
+   "pred_raw": " 90",
+   "gold": "90",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "by 6, we find x = 30. So the smallest angle is 30 degrees, the second angle is 2x = 2(30) = 60 degrees, and the third angle is 3x = 3(30) = 90 degrees. The largest angle in the triangle is 90 degrees."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0223",
+   "pred": "20000",
+   "pred_raw": "20000",
+   "gold": "20000",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "then spends a third of that amount on advertising for another year. So the total amount spent on advertising for the two years is $15000 + ($15000 / 3) = $15000 + $5000 = $20000. The answer is $20000."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0237",
+   "pred": "90",
+   "pred_raw": "90",
+   "gold": "90",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "Johnny started with $20. He added an extra $10, so he had $20 + $10 = $30. Then he invested this sum of money, which tripled in a year. So he had $30 x 3 = $90. The answer is $90."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-1091",
+   "pred": "1000",
+   "pred_raw": "1000",
+   "gold": "1000",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "An orchard sold 2000 apples in bags of 10. So they sold 2000 / 10 = 200 bags. Each bag is sold for $5. So they earned 200 x $5 = $1000. The answer is $1000."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0194",
+   "pred": "10",
+   "pred_raw": "10",
+   "gold": "10",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "Violetta needs 5 crayons in 5 different colors. Each crayon costs $2. So she needs 5 x $2 = $10 for the crayons. She has $20. So she will get $20 - $10 = $10 change. The answer is $10."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0575",
+   "pred": "36",
+   "pred_raw": "36",
+   "gold": "36",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "= 192 crayons. She melts 8 small pieces of crayons together in a muffin tin. So she can make 192 / 8 = 24 muffins. She sells each muffin for $1.50. So she can make 24 x $1.50 = $36. The answer is $36."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0868",
+   "pred": "15",
+   "pred_raw": "15",
+   "gold": "15",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "ps. Since a three-ounce box of flavored jello makes 10 small jello cups, he will need 120 / 10 = 12 boxes of jello. Each box of jello costs $1.25, so he will spend 12 x $1.25 = $15. The answer is $15."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0631",
+   "pred": "4800",
+   "pred_raw": "4800",
+   "gold": "4800",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " silver Jewell is $400 less than the price of gold. So the price of a silver Jewell is $1600 - $400 = $1200. The total price for all three jewels is $2000 + $1600 + $1200 = $4800. The answer is $4800."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1206",
+   "pred": "40000",
+   "pred_raw": "40,000",
+   "gold": "40000",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "an worth 40% of that, which is 250,000 x 0.4 = $100,000. He uses 60% of that to pay off his debts, which is 100,000 x 0.6 = $60,000. So he has $100,000 - $60,000 = $40,000 left. The answer is $40,000."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0258",
+   "pred": "6",
+   "pred_raw": "6.00",
+   "gold": "6",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "ach on 8 books. So she owes 8 x $0.50 = $4.00. She also owes a flat $2.00 fee for having at least one book that's over a week overdue. So in total, she owes $4.00 + $2.00 = $6.00. The answer is $6.00."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0852",
+   "pred": "123",
+   "pred_raw": "123",
+   "gold": "123",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "l pay 3 x $18 = $54. So in total, you will pay $75 + $54 = $129. If you get $2 off for each basket of red food, then you will get $2 x 3 = $6 off. So you will pay $129 - $6 = $123. The answer is $123."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1233",
+   "pred": "81",
+   "pred_raw": "81",
+   "gold": "81",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " He gave his sister 25% of the remaining number, which is 25% x 36 = 9 apples. So he had 36 - 9 = 27 apples left. He sold them to his uncle at $3 each, so he received 27 x $3 = $81. The answer is $81."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1191",
+   "pred": "100",
+   "pred_raw": "100",
+   "gold": "100",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " with 8 inches. So she cut off 2 inches. The color cost was $40. The haircut cost was $30 per inch. So for 2 inches, it would be 2 x $30 = $60. The total cost was $40 + $60 = $100. The answer is $100."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1197",
+   "pred": "2400",
+   "pred_raw": "2400",
+   "gold": "2400",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " $60 + ($60 x 0.5) = $60 + $30 = $90. He buys 2 x 10 = 20 bottles of cognac. So the total cost of cognac is 20 x $90 = $1800. The total cost of everything is $600 + $1800 = $2400. The answer is $2400."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1091",
+   "pred": "1000",
+   "pred_raw": "1000",
+   "gold": "1000",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "An orchard sold 2000 apples in bags of 10. So they sold 2000 / 10 = 200 bags. Each bag is sold for $5. So they earned 200 x 5 = $1000. The answer is $1000."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "s. Each pack has 6 cookies. So he bought 10 x 6 = 60 cookies. Each cookie costs $0.10. So he spent 60 x $0.10 = $6. Carl paid with a $10 bill. So he received $10 - $6 = $4 in change. The answer is $4."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0872",
+   "pred": "13",
+   "pred_raw": "13.00",
+   "gold": "13",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "s $8.00 / 4 = $2.00. So three bottles of soda will cost 3 x $3.00 = $9.00. And two bottles of water will cost 2 x $2.00 = $4.00. So the total cost will be $9.00 + $4.00 = $13.00. The answer is $13.00."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0302",
+   "pred": "15",
+   "pred_raw": "15",
+   "gold": "15",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "arted with $50. Half of it is $50 / 2 = $25. So she spent $25 on food and snacks. An additional $10 for rides. So she spent a total of $25 + $10 = $35. She has $50 - $35 = $15 left. The answer is $15."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0131",
+   "pred": "940",
+   "pred_raw": "940",
+   "gold": "940",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "'s expenditure was $500. In June, his expenditure was $60 less. So his expenditure in June was $500 - $60 = $440. The total expenditure for those two months was $500 + $440 = $940. The answer is $940."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0799",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "A loaf of bread costs $2. A bagel costs $1. So 3 loaves of bread cost 3 x $2 = $6. 2 bagels cost 2 x $1 = $2. So 3 loaves of bread cost $6 - $2 = $4 more than 2 bagels. The answer is $4."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0575",
+   "pred": "36",
+   "pred_raw": "36",
+   "gold": "36",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "= 192 crayons. She melts 8 small pieces of crayons together in a muffin tin. So she can make 192 / 8 = 24 muffins. She sells each muffin for $1.50. So she can make 24 x $1.50 = $36. The answer is $36."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0868",
+   "pred": "15",
+   "pred_raw": "15",
+   "gold": "15",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "ps. Since a three-ounce box of flavored jello makes 10 small jello cups, he will need 120 / 10 = 12 boxes of jello. Each box of jello costs $1.25, so he will spend 12 x $1.25 = $15. The answer is $15."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0631",
+   "pred": "4800",
+   "pred_raw": "4800",
+   "gold": "4800",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " silver Jewell is $400 less than the price of gold. So the price of a silver Jewell is $1600 - $400 = $1200. The total price for all three jewels is $2000 + $1600 + $1200 = $4800. The answer is $4800."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-1206",
+   "pred": "40000",
+   "pred_raw": "40,000",
+   "gold": "40000",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "an worth 40% of that, which is 250,000 x 0.4 = $100,000. He uses 60% of that to pay off his debts, which is 100,000 x 0.6 = $60,000. So he has $100,000 - $60,000 = $40,000 left. The answer is $40,000."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0258",
+   "pred": "6",
+   "pred_raw": "6.00",
+   "gold": "6",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "ach on 8 books. So she owes 8 x $0.50 = $4.00. She also owes a flat $2.00 fee for having at least one book that's over a week overdue. So in total, she owes $4.00 + $2.00 = $6.00. The answer is $6.00."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0852",
+   "pred": "123",
+   "pred_raw": "123",
+   "gold": "123",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "l pay 3 x $18 = $54. So in total, you will pay $75 + $54 = $129. If you get $2 off for each basket of red food, then you will get $2 x 3 = $6 off. So you will pay $129 - $6 = $123. The answer is $123."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-1233",
+   "pred": "81",
+   "pred_raw": "81",
+   "gold": "81",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " He gave his sister 25% of the remaining number, which is 25% x 36 = 9 apples. So he had 36 - 9 = 27 apples left. He sold them to his uncle at $3 each, so he received 27 x $3 = $81. The answer is $81."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-1191",
+   "pred": "100",
+   "pred_raw": "100",
+   "gold": "100",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " with 8 inches. So she cut off 2 inches. The color cost was $40. The haircut cost was $30 per inch. So for 2 inches, it would be 2 x $30 = $60. The total cost was $40 + $60 = $100. The answer is $100."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-1197",
+   "pred": "2400",
+   "pred_raw": "2400",
+   "gold": "2400",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " $60 + ($60 x 0.5) = $60 + $30 = $90. He buys 2 x 10 = 20 bottles of cognac. So the total cost of cognac is 20 x $90 = $1800. The total cost of everything is $600 + $1800 = $2400. The answer is $2400."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-1091",
+   "pred": "1000",
+   "pred_raw": "1000",
+   "gold": "1000",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "An orchard sold 2000 apples in bags of 10. So they sold 2000 / 10 = 200 bags. Each bag is sold for $5. So they earned 200 x 5 = $1000. The answer is $1000."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-1312",
+   "pred": "180",
+   "pred_raw": "180",
+   "gold": "180",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " x 6 = $30 on wine a night. In total, they spend $60 + $30 = $90 on meals and wine a night. If they are open 2 days a week, then they spend $90 x 2 = $180 on meals and wine a week. The answer is $180."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "s. Each pack has 6 cookies. So he bought 10 x 6 = 60 cookies. Each cookie costs $0.10. So he spent 60 x $0.10 = $6. Carl paid with a $10 bill. So he received $10 - $6 = $4 in change. The answer is $4."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0872",
+   "pred": "13",
+   "pred_raw": "13.00",
+   "gold": "13",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "s $8.00 / 4 = $2.00. So three bottles of soda will cost 3 x $3.00 = $9.00. And two bottles of water will cost 2 x $2.00 = $4.00. So the total cost will be $9.00 + $4.00 = $13.00. The answer is $13.00."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0302",
+   "pred": "15",
+   "pred_raw": "15",
+   "gold": "15",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "arted with $50. Half of it is $50 / 2 = $25. So she spent $25 on food and snacks. An additional $10 for rides. So she spent a total of $25 + $10 = $35. She has $50 - $35 = $15 left. The answer is $15."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0194",
+   "pred": "10",
+   "pred_raw": "10",
+   "gold": "10",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "Violetta needs 5 crayons in 5 different colors. Each crayon costs $2. So she needs 5 x $2 = $10 for the crayons. She has $20. So she will get $20 - $10 = $10 in change. The answer is $10."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0131",
+   "pred": "940",
+   "pred_raw": "940",
+   "gold": "940",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "'s expenditure was $500. In June, his expenditure was $60 less. So his expenditure in June was $500 - $60 = $440. The total expenditure for those two months was $500 + $440 = $940. The answer is $940."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "gsm8k-test-0799",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "A loaf of bread costs $2. A bagel costs $1. So 3 loaves of bread cost 3 x $2 = $6. 2 bagels cost 2 x $1 = $2. So 3 loaves of bread cost $6 - $2 = $4 more than 2 bagels. The answer is $4."
+  }
+ ],
+ "math_primary_vs_minerva": [
+  {
+   "model": "huginn-0125",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/intermediate_algebra/1714.json",
+   "pred": "(5, \\infty)",
+   "gold": "(5,\\infty)",
+   "correct": true,
+   "math_verify": true,
+   "minerva_is_equiv": false,
+   "normalized_string_equal": true
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "test/intermediate_algebra/1714.json",
+   "pred": "$(5,\\infty)$",
+   "gold": "(5,\\infty)",
+   "correct": true,
+   "math_verify": true,
+   "minerva_is_equiv": false,
+   "normalized_string_equal": true
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/intermediate_algebra/1714.json",
+   "pred": "$(5, \\infty)$",
+   "gold": "(5,\\infty)",
+   "correct": true,
+   "math_verify": true,
+   "minerva_is_equiv": false,
+   "normalized_string_equal": true
+  }
+ ],
+ "parse_failure_samples": [
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "average",
+    "convert"
+   ],
+   "uid": "gsm8k-test-0128",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "'s the total amount of money he will spend if each pepper costs 15$?\n\nWell's mother sells watermelons, peppers, and oranges at the local store. A watermelon costs three times what each pepper costs. An orange costs 5 less than what a watermelon cost. Dillon is sent to the store to buy 4 watermelons,"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "average",
+    "convert"
+   ],
+   "uid": "gsm8k-test-0936",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": " will pay 1000 pesos for the first 12 hours. Then he will pay 1600 pesos for the next 24 hours. Cameron will pay 1000 pesos for the first 12 hours. Then he will pay 1600 pesos for the next 24 hours. Cameron will pay 1000 pesos for the first 12 hours. Then he will pay 1600 pesos for the next 24 hours"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "full",
+    "decode"
+   ],
+   "uid": "gsm8k-test-0777",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "00 + 2000 = 4000 dollars worth of movies that can be bought in digital form. He has 600 - 400 = 200 movies that cannot be bought in digital form. He has 200 x 10 = 2000 dollars worth of those. So he has 2000 + 2000 = 4000 dollars worth of movies that can be bought in digital form. He has 600 - 400 ="
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "full",
+    "decode"
+   ],
+   "uid": "gsm8k-test-0128",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "'s the total amount of money he will spend if each pepper costs 15$?\n\nWell's mother sells watermelons, peppers, and oranges at the local store. A watermelon costs three times what each pepper costs. An orange costs 5 less than what a watermelon cost. Dillon is sent to the store to buy 4 watermelons,"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "full",
+    "decode"
+   ],
+   "uid": "gsm8k-test-0313",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "= 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/2). C/2 = 3000(52 - C/"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "last",
+    "convert"
+   ],
+   "uid": "gsm8k-test-0128",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "'s the total amount of money he will spend if each pepper costs 15$?\n\nWell's mother sells watermelons, peppers, and oranges at the local store. A watermelon costs three times what each pepper costs. An orange costs 5 less than what a watermelon cost. Dillon is sent to the store to buy 4 watermelons,"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "average",
+    "convert"
+   ],
+   "uid": "test/precalculus/1313.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "\\circ} + \\frac{\\sin 53^\\circ}{\\cos 81^\\circ} + \\frac{\\sin 53^\\circ}{\\cos x^\\circ}.\\]Since $\\sin 53^\\circ = \\sin (180^\\circ - 53^\\circ) = \\sin 53^\\circ,$\n\\[a + b + c = \\frac{\\sin 53^\\circ}{\\cos 53^\\circ} + \\frac{\\sin 53^\\circ}{\\cos 81^\\circ} + \\frac{\\sin 53^\\circ}{\\cos x^\\circ}.\\]Since $\\sin 53^\\circ"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "average",
+    "convert"
+   ],
+   "uid": "test/number_theory/1185.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{24}\\\\\n&=(24)^{2"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "average",
+    "convert"
+   ],
+   "uid": "test/algebra/2593.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "2 = (26^2 - 24^2 - 10)^2 - 10^2 = (26^2 - 24^2 - 10)^2 - 10^2 = (26^2 - 24^2 - 10)^2 - 10^2 = (26^2 - 24^2 - 10)^2 - 10^2 = (26^2 - 24^2 - 10)^2 - 10^2 = (26^2 - 24^2 - 10)^2 - 10^2 = (26^2 - 24^2 - 10)^2 - 10^2 = (26^2 - 24^2 - 10)^2 - 10^2 = (26^2 - 24^2 - 10)^2 - 10^2 = (26^2 - 24^2 - 10)^2 - 10^"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "full",
+    "decode"
+   ],
+   "uid": "test/precalculus/902.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": " of the octahedron.  The distance from the center of the octahedron to the midpoint of the edge of the octahedron is the same as the distance from the center of the octahedron to the vertex of the octahedron.  The distance from the center of the octahedron to the vertex of the octahedron is the same"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "full",
+    "decode"
+   ],
+   "uid": "test/number_theory/679.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "10.24$. The number of coins they collected is $\\$27.47+\\$35.23+\\$37.37+\\$26.52=\\$110.24$. The number of coins they collected is $\\$27.47+\\$35.23+\\$37.37+\\$26.52=\\$110.24$. The number of coins they collected is $\\$27.47+\\$35.23+\\$37.37+\\$26.52=\\$110.24$. The number of coins they collected is $\\$27.47"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "full",
+    "decode"
+   ],
+   "uid": "test/intermediate_algebra/1555.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "1 \\\\\n&= (5x + 9)^{611} + (x + 5)^{11} + (x - 1)^{11} + 3x^2 + 1 \\\\\n&= (5x + 9)^{611} + (x + 5)^{11} + (x - 1)^{11} + 3x^2 + 1 \\\\\n&= (5x + 9)^{611} + (x + 5)^{11} + (x - 1)^{11} + 3x^2 + 1 \\\\\n&= (5x + 9)^{611} + (x + 5)^{11} + (x - 1)^{11} + 3x^2 + 1 \\\\\n&= (5x + 9)^{611} + (x + 5)^{11} + (x - 1)^{11}"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "last",
+    "convert"
+   ],
+   "uid": "test/intermediate_algebra/1151.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "1 - y^2} + y \\sqrt{1 - x^2} \\\\\n&= x \\sqrt{1 - y^2} + y \\sqrt{1 - x^2} \\\\\n&= x \\sqrt{1 - y^2} + y \\sqrt{1 - x^2} \\\\\n&= x \\sqrt{1 - y^2} + y \\sqrt{1 - x^2} \\\\\n&= x \\sqrt{1 - y^2} + y \\sqrt{1 - x^2} \\\\\n&= x \\sqrt{1 - y^2} + y \\sqrt{1 - x^2} \\\\\n&= x \\sqrt{1 - y^2} + y \\sqrt{1 - x^2} \\\\\n&= x \\sqrt{1 - y^"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "last",
+    "convert"
+   ],
+   "uid": "test/intermediate_algebra/1510.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "|b + c||b + d||c||c + d| \\\\\n&= |a||a + c||a + d||b||b + c||b + d||c||c + d| \\\\\n&= |a||a + c||a + d||b||b + c||b + d||c||c + d| \\\\\n&= |a||a + c||a + d||b||b + c||b + d||c||c + d| \\\\\n&= |a||a + c||a + d||b||b + c||b + d||c||c + d| \\\\\n&= |a||a + c||a + d||b||b + c||b + d||c||c + d| \\\\\n&= |a||a + c||a +"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "last",
+    "convert"
+   ],
+   "uid": "test/algebra/1937.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "1=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)(19)+361=441+2(21)("
+  }
+ ],
+ "fallback_samples": [
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "test/algebra/1184.json",
+   "extract_method": "fallback_is_phrase",
+   "pred": "greater than 125 is 27",
+   "gold": "129",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "the second term is 1, the third term is 3, the fourth term is 6, the fifth term is 9, the sixth term is 27, and so on.  The sixth term is the first term that is greater than 125.  Therefore, the value of the first term that is greater than 125 is 27."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/algebra/873.json",
+   "extract_method": "fallback_last_math",
+   "pred": "c",
+   "gold": "33",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "Therefore, there is no value of $c$ that will make the circle have a radius of length 1."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/algebra/2064.json",
+   "extract_method": "fallback_last_math",
+   "pred": "-12",
+   "gold": "81",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "ere $a$ and $b$ are the coefficients of the quadratic function.  In this case, $a = -4$ and $b = 24$, so the vertex is at $x = -\\frac{24}{2(-4)} = 3$.  Therefore, the maximum value of $4(x + 7)(2 - x)$ is $-4(3)^2 + 24(3) - 56 = -36 + 72 - 56 = -12$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/counting_and_probability/159.json",
+   "extract_method": "fallback_last_math",
+   "pred": "36288",
+   "gold": "28800",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "table is $(10-1)! = 9! = 362880$.  However, we must divide by the number of rotations, which is $10$, to account for the fact that each seating is equivalent to its rotation.  Therefore, the number of distinct seatings is $\\frac{362880}{10} = 36288$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0824",
+   "extract_method": "fallback_last_number",
+   "pred": "52",
+   "gold": "52",
+   "correct": true,
+   "finish_reason": "eos",
+   "last_line": "ach package. So she bought 8 x 11 = 88 tins of cat food. Kimberly also bought 6 packages of dog food, with 6 tins in each package. So she bought 6 x 6 = 36 tins of dog food. Therefore, Kimberly bought 88 - 36 = 52 more tins of cat food than dog food."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/number_theory/239.json",
+   "extract_method": "fallback_last_math",
+   "pred": "0",
+   "gold": "2",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "$$1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 \\equiv 0 + 12 \\equiv 12 \\equiv 0 \\pmod{4}.$$Therefore, the modulo $4$ remainder of the sum is $0$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/prealgebra/1761.json",
+   "extract_method": "fallback_last_math",
+   "pred": "\\frac{20}{3}",
+   "gold": "\\frac{3}{2}",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "We can write $10$ as $\\frac{10}{1}$.  We can then multiply $\\frac{10}{1}$ by $\\frac{2}{3}$ to get $\\frac{20}{3}$.  Therefore, Remmy should multiply $10$ by $\\frac{20}{3}$ to get the answer."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/prealgebra/1423.json",
+   "extract_method": "fallback_last_math",
+   "pred": "6\\pi",
+   "gold": "12\\pi",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "nce of the unicycle's wheel is $2\\pi r = 2\\pi(9) = 18\\pi$ inches. Since the unicycle makes 2 revolutions every 3 seconds, the unicycle travels $18\\pi$ inches in 3 seconds. Therefore, the unicycle's speed is $\\frac{18\\pi}{3} = 6\\pi$ inches per second."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-1166",
+   "extract_method": "fallback_last_number",
+   "pred": "1780",
+   "gold": "2350",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "d tree produces 180 fruits. The 10-year-old tree produces 20 times the initial amount of fruits, so 20 x 50 = 1000 fruits. The total number of fruits produced by the tree during its 10 years of life is 50 + 150 + 350 + 180 + 180 + 1000 = 1780 fruits."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/precalculus/1313.json",
+   "extract_method": "fallback_last_math",
+   "pred": "53^\\circ",
+   "gold": "46",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "Therefore, $\\tan 53^\\circ = 1,$ $\\tan 81^\\circ = 1,$ and $\\tan x^\\circ = 1.$  Since $53^\\circ < x < 81^\\circ,$ we have $x = 53^\\circ.$"
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/geometry/843.json",
+   "extract_method": "fallback_last_math",
+   "pred": "12\\sqrt{3}",
+   "gold": "6\\sqrt{2}",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "he perimeter of the square is equal to the perimeter of the triangle, so the side length of the square is $4\\sqrt{3}+4\\sqrt{3}+4\\sqrt{3}=12\\sqrt{3}$ centimeters. The diagonal of the square is $\\sqrt{12\\sqrt{3}\\cdot12\\sqrt{3}}=12\\sqrt{3}$ centimeters."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-1050",
+   "extract_method": "fallback_last_number",
+   "pred": "1630",
+   "gold": "655",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "kilometers she still needs to drive, we need to subtract the distance she has already driven from the total distance between San Diego and New York City. 1955 - 325 = 1630 kilometers. Bernice will need to drive 1630 kilometers to reach New York City."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/prealgebra/1272.json",
+   "extract_method": "fallback_last_math",
+   "pred": "\\frac{7}{15}",
+   "gold": "\\frac{13}{15}",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "Louis eats $\\frac{1}{5}$ of the pie, and Jack eats $\\frac{2}{3}$ of the pie.  Therefore, Louis and Jack eat $\\frac{1}{5}+\\frac{2}{3}=\\frac{7}{15}$ of the pie."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/counting_and_probability/525.json",
+   "extract_method": "fallback_last_math",
+   "pred": "700",
+   "gold": "144",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "Therefore, the number of ways to arrange $7$ people around a round table in which Pierre, Rosa, and Thomas do not sit next to each other is $6!-20=720-20=700$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/algebra/858.json",
+   "extract_method": "fallback_last_math",
+   "pred": "\\frac{1}{3}",
+   "gold": "-2",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "$$\\frac{1}{x}-2=1\\Rightarrow\\frac{1}{x}=3\\Rightarrow x=\\frac{1}{3}.$$Therefore, the smallest number which is one less than twice its reciprocal is $\\frac{1}{3}$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/geometry/846.json",
+   "extract_method": "fallback_last_math",
+   "pred": "40^\\circ",
+   "gold": "90^\\circ",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "Since $AD=BD=CD$, we have $\\angle BAC=\\angle BCA=40^\\circ$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/counting_and_probability/525.json",
+   "extract_method": "fallback_last_math",
+   "pred": "360",
+   "gold": "144",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "e arrangements, there are $5!$ ways to arrange the remaining $4$ people. Therefore, the number of ways to arrange the $7$ people around the table such that no two of the $3$ people Pierre, Rosa, and Thomas sit next to each other is $3!\\cdot5! = 360$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/algebra/518.json",
+   "extract_method": "fallback_last_math",
+   "pred": "\\frac{4}{3}",
+   "gold": "\\frac 34",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The ratio of acceleration of Jen's ball to Jack's is $\\frac{200}{150}=\\frac{4}{3}$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/algebra/1184.json",
+   "extract_method": "fallback_is_phrase",
+   "pred": "greater than 125 is 27",
+   "gold": "129",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": ", the second term is 1, the third term is 3, the fourth term is 6, the fifth term is 9, the sixth term is 27, and so on. The sixth term is the first term that is greater than 125. Therefore, the value of the first term that is greater than 125 is 27."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/prealgebra/914.json",
+   "extract_method": "fallback_last_math",
+   "pred": "145^\\circ",
+   "gold": "75^\\circ",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": " \\angle P$. Also, since $\\angle P=40^\\circ$, we have $\\angle STR = 40^\\circ$. Since $\\angle Q =35^\\circ$, we have $\\angle STR + \\angle Q = 180^\\circ$, so $\\angle STR + 35^\\circ = 180^\\circ$. Therefore, $\\angle STR = 180^\\circ - 35^\\circ = 145^\\circ$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/intermediate_algebra/860.json",
+   "extract_method": "fallback_last_math",
+   "pred": "r^2",
+   "gold": "\\text{ellipse}",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The equation is in the form $(x-h)^2 + (y-k)^2 = r^2,$ which is the equation of a circle. Therefore, the graph is a circle."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "test/prealgebra/307.json",
+   "extract_method": "fallback_last_math",
+   "pred": "240",
+   "gold": "240",
+   "correct": true,
+   "finish_reason": "eos",
+   "last_line": "We can choose one shirt out of 5, one pair of pants out of 6, and one hat out of 8.  Therefore, the number of outfits is $5\\cdot6\\cdot8=240$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-1102",
+   "extract_method": "fallback_last_number",
+   "pred": "42",
+   "gold": "113",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": " of towels was 10% off $30.00, so the new price is $30.00 - (10% of $30.00) = $30.00 - $3.00 = $27.00. The total cost of the frying pan and the set of towels is $16.00 + $27.00 = $43.00. The new balance on her credit card is $85.00 - $43.00 = $42.00."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/intermediate_algebra/1930.json",
+   "extract_method": "fallback_last_math",
+   "pred": "0",
+   "gold": "\\frac{1}{4}",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "\\[\\int_{-2}^2 \\int_0^1 1 \\, dx \\, da = \\int_{-2}^2 (x) \\, da = \\left[ \\frac{x^2}{2} \\right]_{-2}^2 = \\frac{4}{2} - \\frac{4}{2} = 0.\\]"
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "test/geometry/538.json",
+   "extract_method": "fallback_last_math",
+   "pred": "(-4,4)",
+   "gold": "(8,-2)",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "$$-x+6-x+10=0\\Rightarrow x=-4.$$Substituting this into $y=-x+6$, we get $y=-(-4)+6=4$.  Therefore, the point $P$ is $(-4,4)$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/counting_and_probability/894.json",
+   "extract_method": "fallback_last_math",
+   "pred": "729",
+   "gold": "540",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "car. The fifth car can go in any of the three lanes, so there are three choices for the fifth car. The sixth car can go in any of the three lanes, so there are three choices for the sixth car. Therefore, there are $3^6=729$ ways to stack up the cars."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "test/precalculus/1056.json",
+   "extract_method": "fallback_last_math",
+   "pred": "2\\sqrt{3}",
+   "gold": "288 \\pi",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The region of the volume enclosed by $S$ is the sphere with center $(0, 0, 0)$ and radius $2\\sqrt{3}.$"
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/precalculus/117.json",
+   "extract_method": "fallback_last_math",
+   "pred": "90^\\circ",
+   "gold": "30^\\circ",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "Let $\\angle APB = \\theta$.  Then $\\angle AOP = 90^\\circ - \\theta$.  Since $\\overline{OP}$ is perpendicular to the track, $\\angle AOP + \\angle AOB = 180^\\circ$.  Therefore, $90^\\circ - \\theta + \\theta = 180^\\circ$, so $\\theta = 90^\\circ$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0597",
+   "extract_method": "fallback_last_number",
+   "pred": "90",
+   "gold": "90",
+   "correct": true,
+   "finish_reason": "eos",
+   "last_line": " like terms, we get 6x = 180. Dividing both sides by 6, we find x = 30. So the smallest angle is 30 degrees, the second angle is 2x = 2(30) = 60 degrees, and the third angle is 3x = 3(30) = 90 degrees. The largest angle in the triangle is 90 degrees."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0813",
+   "extract_method": "fallback_last_number",
+   "pred": "6",
+   "gold": "7",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": " will use 9 marshmallows. So in total, they will use 9 + 9 = 18 marshmallows. If they dropped 3 marshmallows on the ground, they will have 35 - 18 - 3 = 12 marshmallows left. Each kid can have 12 / 2 = 6 S'mores with the marshmallows left in the bag."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "test/intermediate_algebra/1849.json",
+   "extract_method": "fallback_last_math",
+   "pred": "2\\log(x+2)",
+   "gold": "501",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "Solving this equation, we get $k=-\\frac{1}{2}$. Therefore, there is only one integer value of $k$ in the closed interval $[-500,500]$ for which the equation $\\log(kx)=2\\log(x+2)$ has exactly one real solution."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/prealgebra/1187.json",
+   "extract_method": "fallback_last_math",
+   "pred": "35",
+   "gold": "21",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "area of a trapezoid is given by the formula $\\frac{1}{2}(b_1+b_2)h$, where $b_1$ and $b_2$ are the lengths of the bases and $h$ is the height. Plugging in the given values, we have $\\frac{1}{2}(5+9)\\cdot5=\\frac{1}{2}(14)\\cdot5=35$ square centimeters."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0813",
+   "extract_method": "fallback_last_number",
+   "pred": "5",
+   "gold": "7",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": " will use 9 marshmallows. So in total, they will use 9 + 9 = 18 marshmallows. If they dropped 3 marshmallows on the ground, they will have 35 - 18 - 3 = 10 marshmallows left. Each kid can have 10 / 2 = 5 S'mores with the marshmallows left in the bag."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/prealgebra/1865.json",
+   "extract_method": "fallback_last_math",
+   "pred": "10^{\\mathrm{th}}",
+   "gold": "12",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": " closest to $135\\%$ of the number of female bus riders in the $12^{\\mathrm{th}}$ grade. Therefore, the number of male bus riders in the $10^{\\mathrm{th}}$ grade is closest to $135\\%$ of the number of female bus riders in the $10^{\\mathrm{th}}$ grade."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/prealgebra/1807.json",
+   "extract_method": "fallback_last_math",
+   "pred": "360^\\circ",
+   "gold": "120",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "$$x+2x+90^\\circ+90^\\circ=360^\\circ.$$Solving for $x$, we find $x=180^\\circ$, so the largest angle has measure $2x=360^\\circ$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0063",
+   "extract_method": "fallback_last_number",
+   "pred": "266",
+   "gold": "1596",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": " of the year. The second half of the year charged her 10% less. So the second half of the year charged her $140 - (10% of $140) = $140 - $14 = $126. The total amount she had paid for the streaming service by the end of the year is $140 + $126 = $266."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "test/algebra/1338.json",
+   "extract_method": "fallback_last_math",
+   "pred": "x",
+   "gold": "66",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "^2 - 4x + 4 = 16^3 = 4096$.  Solving for $x$, we get $x = \\frac{4 \\pm \\sqrt{16 - 16384}}{2} = \\frac{4 \\pm \\sqrt{-16370}}{2} = \\frac{4 \\pm 4i\\sqrt{343}}{2} = 2 \\pm 2i\\sqrt{343}$.  Since $x$ must be a real number, there is no solution to this equation."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "gsm8k-test-0647",
+   "extract_method": "fallback_last_number",
+   "pred": "22",
+   "gold": "10",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "o dig through 24 feet of soil. So it will take him 24 / 4 = 6 hours. Bill can dig half that fast through clay. He has to dig through 8 feet of clay. So it will take him 8 / 0.5 = 16 hours. In total, it will take him 6 + 16 = 22 hours to dig the well."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "uid": "test/prealgebra/307.json",
+   "extract_method": "fallback_last_math",
+   "pred": "240",
+   "gold": "240",
+   "correct": true,
+   "finish_reason": "eos",
+   "last_line": "We can choose one shirt out of 5, one pair of pants out of 6, and one hat out of 8.  Therefore, the number of outfits is $5\\cdot6\\cdot8=240$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "average",
+   "mode": "convert",
+   "uid": "test/counting_and_probability/199.json",
+   "extract_method": "fallback_last_math",
+   "pred": "5",
+   "gold": "13",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The shortest distance is the distance between $A$ and $D$, which is $5$."
+  }
+ ],
+ "counts": {
+  "gsm8k_primary_vs_lm_eval_strict": 41,
+  "math_primary_vs_minerva": 3,
+  "parse_failure_samples": 15,
+  "fallback_samples": 40
+ },
+ "parse_failure_reasons": {
+  "huginn-0125|gsm8k|average-convert": {
+   "truncated_no_answer": 2
+  },
+  "huginn-0125|gsm8k|full-decode": {
+   "truncated_no_answer": 3
+  },
+  "huginn-0125|gsm8k|last-convert": {
+   "truncated_no_answer": 1
+  },
+  "huginn-0125|math500|average-convert": {
+   "truncated_no_answer": 49,
+   "finished_no_answer": 1
+  },
+  "huginn-0125|math500|full-decode": {
+   "truncated_no_answer": 47,
+   "finished_no_answer": 1
+  },
+  "huginn-0125|math500|last-convert": {
+   "finished_no_answer": 1,
+   "truncated_no_answer": 52
+  }
+ }
+}
