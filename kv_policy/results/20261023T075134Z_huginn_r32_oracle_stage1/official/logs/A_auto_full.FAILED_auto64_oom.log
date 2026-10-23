@@ -1,0 +1,815 @@
+/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+[W1023 17:02:48.778828944 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+2026-10-23:17:03:06 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:17:03:06 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:17:03:06 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:17:03:06 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:17:03:06 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:17:03:06 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:17:03:06 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:17:03:06 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:17:03:06 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:17:03:06 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:17:03:06 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:17:03:06 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:17:03:06 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:17:03:06 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:17:03:06 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:17:03:06 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:17:03:06 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:17:03:06 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:17:03:07 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:17:03:07 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:17:03:07 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:17:03:08 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:17:03:08 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:17:03:08 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+[W1023 17:03:11.157108019 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 17:03:11.356445439 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 17:03:11.384127607 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 17:03:12.644035393 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 17:03:12.652074770 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 17:03:12.680044554 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 17:03:12.789509524 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 17:03:12.796842040 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+2026-10-23:17:03:12 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:17:03:13 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+2026-10-23:17:03:13 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:17:03:13 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:17:03:13 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:17:03:13 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:17:03:13 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:17:03:13 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:17:03:13 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]2026-10-23:17:03:13 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:1'}
+2026-10-23:17:03:13 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:7'}
+2026-10-23:17:03:13 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:4'}
+2026-10-23:17:03:13 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:3'}
+2026-10-23:17:03:13 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:2'}
+2026-10-23:17:03:14 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:5'}
+2026-10-23:17:03:14 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:6'}
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:06<00:18,  6.24s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:08<00:07,  3.69s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:23,  7.75s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:23,  7.83s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:23,  7.83s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:23,  7.78s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:23,  7.88s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:23,  7.70s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:07<00:23,  7.74s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:10<00:02,  2.88s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:10<00:00,  1.96s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:10<00:00,  2.65s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:13<00:13,  6.72s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:13,  6.99s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:13,  6.97s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:14,  7.01s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:13,  7.00s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:14,  7.07s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:14<00:13,  6.98s/it]2026-10-23:17:03:29 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:17:03:29 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:17:03:29 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:17:03:29 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 0...
+  0%|          | 0/165 [00:00<?, ?it/s]  5%|▍         | 8/165 [00:00<00:01, 79.52it/s] 13%|█▎        | 22/165 [00:00<00:01, 112.50it/s] 22%|██▏       | 36/165 [00:00<00:01, 123.18it/s] 30%|███       | 50/165 [00:00<00:00, 128.19it/s] 39%|███▉      | 64/165 [00:00<00:00, 130.75it/s] 47%|████▋     | 78/165 [00:00<00:00, 132.25it/s] 56%|█████▌    | 92/165 [00:00<00:00, 133.27it/s] 64%|██████▍   | 106/165 [00:00<00:00, 129.55it/s] 73%|███████▎  | 120/165 [00:00<00:00, 131.02it/s] 81%|████████  | 134/165 [00:01<00:00, 132.29it/s] 90%|████████▉ | 148/165 [00:01<00:00, 133.12it/s] 98%|█████████▊| 162/165 [00:01<00:00, 133.64it/s]100%|██████████| 165/165 [00:01<00:00, 129.60it/s]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:18<00:06,  6.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:19<00:00,  3.90s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:19<00:00,  4.90s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.44s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.46s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.48s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.53s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.49s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:20<00:06,  6.54s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  4.25s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:20<00:00,  5.23s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.31s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.26s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.33s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.29s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.35s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.29s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.38s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.34s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  4.36s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:21<00:00,  5.31s/it]
+2026-10-23:17:03:38 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:17:03:38 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:17:03:38 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:17:03:38 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 1...
+  0%|          | 0/165 [00:00<?, ?it/s]  5%|▌         | 9/165 [00:00<00:01, 87.54it/s] 14%|█▍        | 23/165 [00:00<00:01, 116.37it/s] 22%|██▏       | 37/165 [00:00<00:01, 125.35it/s] 31%|███       | 51/165 [00:00<00:00, 128.59it/s] 39%|███▉      | 65/165 [00:00<00:00, 131.22it/s] 48%|████▊     | 79/165 [00:00<00:00, 132.80it/s] 56%|█████▋    | 93/165 [00:00<00:00, 134.11it/s] 65%|██████▍   | 107/165 [00:00<00:00, 135.06it/s] 73%|███████▎  | 121/165 [00:00<00:00, 135.44it/s] 82%|████████▏ | 135/165 [00:01<00:00, 135.84it/s] 90%|█████████ | 149/165 [00:01<00:00, 136.09it/s] 99%|█████████▉| 163/165 [00:01<00:00, 136.33it/s]100%|██████████| 165/165 [00:01<00:00, 132.17it/s]
+2026-10-23:17:03:40 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:17:03:40 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:17:03:40 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:17:03:40 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 4...
+  0%|          | 0/165 [00:00<?, ?it/s]  5%|▌         | 9/165 [00:00<00:01, 89.74it/s]2026-10-23:17:03:40 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:17:03:40 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:17:03:40 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:17:03:40 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 2...
+  0%|          | 0/165 [00:00<?, ?it/s] 14%|█▍        | 23/165 [00:00<00:01, 116.00it/s]2026-10-23:17:03:40 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:17:03:40 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:17:03:40 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:17:03:40 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 7...
+  0%|          | 0/164 [00:00<?, ?it/s]  5%|▌         | 9/165 [00:00<00:01, 89.82it/s] 22%|██▏       | 37/165 [00:00<00:01, 124.36it/s]2026-10-23:17:03:40 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:17:03:40 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:17:03:40 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:17:03:40 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 5...
+ 14%|█▍        | 23/165 [00:00<00:01, 116.65it/s]  6%|▌         | 10/164 [00:00<00:01, 95.63it/s]  0%|          | 0/165 [00:00<?, ?it/s] 31%|███       | 51/165 [00:00<00:00, 128.30it/s]2026-10-23:17:03:40 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:17:03:40 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:17:03:40 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:17:03:40 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 3...
+  0%|          | 0/165 [00:00<?, ?it/s] 15%|█▍        | 24/164 [00:00<00:01, 119.88it/s] 22%|██▏       | 37/165 [00:00<00:01, 124.92it/s]  6%|▌         | 10/165 [00:00<00:01, 99.56it/s] 39%|███▉      | 65/165 [00:00<00:00, 129.37it/s]2026-10-23:17:03:40 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:17:03:40 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+  6%|▌         | 10/165 [00:00<00:01, 93.05it/s]2026-10-23:17:03:40 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:17:03:40 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 6...
+ 23%|██▎       | 38/164 [00:00<00:00, 127.00it/s] 31%|███       | 51/165 [00:00<00:00, 128.58it/s] 15%|█▍        | 24/165 [00:00<00:01, 120.29it/s]  0%|          | 0/165 [00:00<?, ?it/s] 48%|████▊     | 79/165 [00:00<00:00, 130.68it/s] 15%|█▍        | 24/165 [00:00<00:01, 116.22it/s] 32%|███▏      | 52/164 [00:00<00:00, 130.22it/s] 39%|███▉      | 65/165 [00:00<00:00, 130.65it/s] 23%|██▎       | 38/165 [00:00<00:01, 126.31it/s] 56%|█████▋    | 93/165 [00:00<00:00, 131.89it/s]  5%|▌         | 9/165 [00:00<00:01, 83.88it/s] 23%|██▎       | 38/165 [00:00<00:01, 124.12it/s] 40%|████      | 66/164 [00:00<00:00, 130.39it/s] 48%|████▊     | 79/165 [00:00<00:00, 131.89it/s] 32%|███▏      | 52/165 [00:00<00:00, 129.58it/s] 65%|██████▍   | 107/165 [00:00<00:00, 132.22it/s] 13%|█▎        | 22/165 [00:00<00:01, 105.42it/s] 32%|███▏      | 52/165 [00:00<00:00, 127.95it/s] 49%|████▉     | 80/164 [00:00<00:00, 132.09it/s] 56%|█████▋    | 93/165 [00:00<00:00, 132.84it/s] 40%|████      | 66/165 [00:00<00:00, 131.42it/s] 21%|██        | 35/165 [00:00<00:01, 116.14it/s] 73%|███████▎  | 121/165 [00:00<00:00, 132.87it/s] 40%|████      | 66/165 [00:00<00:00, 130.17it/s] 57%|█████▋    | 94/164 [00:00<00:00, 133.19it/s] 65%|██████▍   | 107/165 [00:00<00:00, 133.50it/s] 48%|████▊     | 80/165 [00:00<00:00, 132.50it/s] 30%|██▉       | 49/165 [00:00<00:00, 123.05it/s] 82%|████████▏ | 135/165 [00:01<00:00, 133.42it/s] 48%|████▊     | 80/165 [00:00<00:00, 131.66it/s] 66%|██████▌   | 108/164 [00:00<00:00, 133.88it/s] 73%|███████▎  | 121/165 [00:00<00:00, 133.84it/s] 57%|█████▋    | 94/165 [00:00<00:00, 133.30it/s] 90%|█████████ | 149/165 [00:01<00:00, 133.58it/s] 38%|███▊      | 63/165 [00:00<00:00, 126.70it/s] 57%|█████▋    | 94/165 [00:00<00:00, 132.67it/s] 74%|███████▍  | 122/164 [00:00<00:00, 134.39it/s] 82%|████████▏ | 135/165 [00:01<00:00, 134.07it/s] 65%|██████▌   | 108/165 [00:00<00:00, 133.83it/s] 99%|█████████▉| 163/165 [00:01<00:00, 133.87it/s] 47%|████▋     | 77/165 [00:00<00:00, 128.74it/s]100%|██████████| 165/165 [00:01<00:00, 130.24it/s]
+ 83%|████████▎ | 136/164 [00:01<00:00, 134.72it/s] 65%|██████▌   | 108/165 [00:00<00:00, 132.85it/s] 90%|█████████ | 149/165 [00:01<00:00, 133.74it/s] 74%|███████▍  | 122/165 [00:00<00:00, 134.04it/s] 55%|█████▌    | 91/165 [00:00<00:00, 129.95it/s] 91%|█████████▏| 150/164 [00:01<00:00, 134.79it/s] 74%|███████▍  | 122/165 [00:00<00:00, 133.01it/s] 99%|█████████▉| 163/165 [00:01<00:00, 133.94it/s] 82%|████████▏ | 136/165 [00:01<00:00, 134.28it/s]100%|██████████| 165/165 [00:01<00:00, 130.83it/s]
+ 64%|██████▎   | 105/165 [00:00<00:00, 130.85it/s]100%|██████████| 164/164 [00:01<00:00, 135.04it/s]100%|██████████| 164/164 [00:01<00:00, 131.78it/s]
+ 82%|████████▏ | 136/165 [00:01<00:00, 132.95it/s] 91%|█████████ | 150/165 [00:01<00:00, 134.57it/s] 72%|███████▏  | 119/165 [00:00<00:00, 131.38it/s] 91%|█████████ | 150/165 [00:01<00:00, 132.75it/s] 99%|█████████▉| 164/165 [00:01<00:00, 134.38it/s]100%|██████████| 165/165 [00:01<00:00, 131.70it/s]
+ 81%|████████  | 133/165 [00:01<00:00, 132.56it/s] 99%|█████████▉| 164/165 [00:01<00:00, 132.90it/s]100%|██████████| 165/165 [00:01<00:00, 130.06it/s]
+ 89%|████████▉ | 147/165 [00:01<00:00, 133.50it/s] 98%|█████████▊| 161/165 [00:01<00:00, 133.91it/s]100%|██████████| 165/165 [00:01<00:00, 128.12it/s]
+2026-10-23:17:03:45 INFO     [evaluator:574] Running generate_until requests
+2026-10-23:17:03:45 INFO     [evaluator:574] Running generate_until requests
+2026-10-23:17:03:45 INFO     [evaluator:574] Running generate_until requests
+2026-10-23:17:03:45 INFO     [evaluator:574] Running generate_until requests
+2026-10-23:17:03:45 INFO     [evaluator:574] Running generate_until requests
+Passed argument batch_size = auto. Detecting largest batch size
+Passed argument batch_size = auto. Detecting largest batch size
+Passed argument batch_size = auto. Detecting largest batch size
+Running generate_until requests:   0%|          | 0/165 [00:00<?, ?it/s]Passed argument batch_size = auto. Detecting largest batch size
+2026-10-23:17:03:45 INFO     [evaluator:574] Running generate_until requests
+Passed argument batch_size = auto. Detecting largest batch size
+2026-10-23:17:03:45 INFO     [evaluator:574] Running generate_until requests
+Passed argument batch_size = auto. Detecting largest batch size
+2026-10-23:17:03:45 INFO     [evaluator:574] Running generate_until requests
+Passed argument batch_size = auto. Detecting largest batch size
+Passed argument batch_size = auto. Detecting largest batch size
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank0]:   File "<frozen runpy>", line 88, in _run_code
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank0]:     cli_evaluate()
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank0]:     results = evaluator.simple_evaluate(
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank0]:     results = evaluate(
+[rank0]:               ^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank0]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank0]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank0]:     cont = self._model_generate(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank0]:     return self.model.generate(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank0]:     return super().generate(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 2625, in generate
+[rank0]:     result = self._sample(
+[rank0]:              ^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 3606, in _sample
+[rank0]:     outputs = self(**model_inputs, return_dict=True)
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 682, in forward
+[rank0]:     x, num_steps_no_grad, num_steps_with_grad, xk, block_idx = self.iterate_forward(
+[rank0]:                                                                ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 751, in iterate_forward
+[rank0]:     x, block_idx = self.core_block_forward(
+[rank0]:                    ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 777, in core_block_forward
+[rank0]:     x = block(x, freqs_cis, block_idx, mask, past_key_values)
+[rank0]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 533, in forward
+[rank0]:     attn_out = self.attn(self.norm_1(x), freqs_cis, step_idx, mask, past_key_values)
+[rank0]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 472, in forward
+[rank0]:     q, k = apply_rotary_emb_complex_like(q, k, freqs_cis=freqs_cis)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1681, in apply_rotary_emb_complex_like
+[rank0]:     rotated_qk_r2 = torch.stack(
+[rank0]:                     ^^^^^^^^^^^^
+[rank0]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.26 GiB. GPU 0 has a total capacity of 139.80 GiB of which 1.44 GiB is free. Including non-PyTorch memory, this process has 138.35 GiB memory in use. Of the allocated memory 103.68 GiB is allocated by PyTorch, and 31.29 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank1]:   File "<frozen runpy>", line 88, in _run_code
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank1]:     cli_evaluate()
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank1]:     results = evaluator.simple_evaluate(
+[rank1]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank1]:     return fn(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank1]:     results = evaluate(
+[rank1]:               ^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank1]:     return fn(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank1]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank1]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank1]:     cont = self._model_generate(
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank1]:     return self.model.generate(
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank1]:     return func(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank1]:     return super().generate(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank1]:     return func(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 2625, in generate
+[rank1]:     result = self._sample(
+[rank1]:              ^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 3606, in _sample
+[rank1]:     outputs = self(**model_inputs, return_dict=True)
+[rank1]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 682, in forward
+[rank1]:     x, num_steps_no_grad, num_steps_with_grad, xk, block_idx = self.iterate_forward(
+[rank1]:                                                                ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 751, in iterate_forward
+[rank1]:     x, block_idx = self.core_block_forward(
+[rank1]:                    ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 777, in core_block_forward
+[rank1]:     x = block(x, freqs_cis, block_idx, mask, past_key_values)
+[rank1]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 533, in forward
+[rank1]:     attn_out = self.attn(self.norm_1(x), freqs_cis, step_idx, mask, past_key_values)
+[rank1]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank1]:     return self._call_impl(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank1]:     return forward_call(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 472, in forward
+[rank1]:     q, k = apply_rotary_emb_complex_like(q, k, freqs_cis=freqs_cis)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1681, in apply_rotary_emb_complex_like
+[rank1]:     rotated_qk_r2 = torch.stack(
+[rank1]:                     ^^^^^^^^^^^^
+[rank1]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.28 GiB. GPU 1 has a total capacity of 139.80 GiB of which 1.90 GiB is free. Including non-PyTorch memory, this process has 137.89 GiB memory in use. Of the allocated memory 101.91 GiB is allocated by PyTorch, and 32.56 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+Running generate_until requests:   0%|          | 0/165 [02:54<?, ?it/s]
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank4]:   File "<frozen runpy>", line 88, in _run_code
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank4]:     cli_evaluate()
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank4]:     results = evaluator.simple_evaluate(
+[rank4]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank4]:     return fn(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank4]:     results = evaluate(
+[rank4]:               ^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank4]:     return fn(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank4]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank4]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank4]:     cont = self._model_generate(
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank4]:     return self.model.generate(
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank4]:     return func(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank4]:     return super().generate(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank4]:     return func(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 2625, in generate
+[rank4]:     result = self._sample(
+[rank4]:              ^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 3606, in _sample
+[rank4]:     outputs = self(**model_inputs, return_dict=True)
+[rank4]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank4]:     return self._call_impl(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank4]:     return forward_call(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 682, in forward
+[rank4]:     x, num_steps_no_grad, num_steps_with_grad, xk, block_idx = self.iterate_forward(
+[rank4]:                                                                ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 751, in iterate_forward
+[rank4]:     x, block_idx = self.core_block_forward(
+[rank4]:                    ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 777, in core_block_forward
+[rank4]:     x = block(x, freqs_cis, block_idx, mask, past_key_values)
+[rank4]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank4]:     return self._call_impl(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank4]:     return forward_call(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 533, in forward
+[rank4]:     attn_out = self.attn(self.norm_1(x), freqs_cis, step_idx, mask, past_key_values)
+[rank4]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank4]:     return self._call_impl(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank4]:     return forward_call(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 472, in forward
+[rank4]:     q, k = apply_rotary_emb_complex_like(q, k, freqs_cis=freqs_cis)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1681, in apply_rotary_emb_complex_like
+[rank4]:     rotated_qk_r2 = torch.stack(
+[rank4]:                     ^^^^^^^^^^^^
+[rank4]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.19 GiB. GPU 4 has a total capacity of 139.80 GiB of which 205.00 MiB is free. Including non-PyTorch memory, this process has 139.59 GiB memory in use. Of the allocated memory 103.49 GiB is allocated by PyTorch, and 32.68 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank6]:   File "<frozen runpy>", line 88, in _run_code
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank6]:     cli_evaluate()
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank6]:     results = evaluator.simple_evaluate(
+[rank6]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank6]:     return fn(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank6]:     results = evaluate(
+[rank6]:               ^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank6]:     return fn(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank6]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank6]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank6]:     cont = self._model_generate(
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank6]:     return self.model.generate(
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank6]:     return func(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank6]:     return super().generate(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank6]:     return func(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 2625, in generate
+[rank6]:     result = self._sample(
+[rank6]:              ^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 3606, in _sample
+[rank6]:     outputs = self(**model_inputs, return_dict=True)
+[rank6]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank6]:     return self._call_impl(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank6]:     return forward_call(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 682, in forward
+[rank6]:     x, num_steps_no_grad, num_steps_with_grad, xk, block_idx = self.iterate_forward(
+[rank6]:                                                                ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 751, in iterate_forward
+[rank6]:     x, block_idx = self.core_block_forward(
+[rank6]:                    ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 777, in core_block_forward
+[rank6]:     x = block(x, freqs_cis, block_idx, mask, past_key_values)
+[rank6]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank6]:     return self._call_impl(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank6]:     return forward_call(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 533, in forward
+[rank6]:     attn_out = self.attn(self.norm_1(x), freqs_cis, step_idx, mask, past_key_values)
+[rank6]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank6]:     return self._call_impl(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank6]:     return forward_call(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 472, in forward
+[rank6]:     q, k = apply_rotary_emb_complex_like(q, k, freqs_cis=freqs_cis)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1681, in apply_rotary_emb_complex_like
+[rank6]:     rotated_qk_r2 = torch.stack(
+[rank6]:                     ^^^^^^^^^^^^
+[rank6]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.22 GiB. GPU 6 has a total capacity of 139.80 GiB of which 469.00 MiB is free. Including non-PyTorch memory, this process has 139.33 GiB memory in use. Of the allocated memory 104.72 GiB is allocated by PyTorch, and 31.19 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank2]:   File "<frozen runpy>", line 88, in _run_code
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank2]:     cli_evaluate()
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank2]:     results = evaluator.simple_evaluate(
+[rank2]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank2]:     return fn(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank2]:     results = evaluate(
+[rank2]:               ^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank2]:     return fn(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank2]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank2]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank2]:     cont = self._model_generate(
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank2]:     return self.model.generate(
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank2]:     return func(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank2]:     return super().generate(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank2]:     return func(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 2625, in generate
+[rank2]:     result = self._sample(
+[rank2]:              ^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 3606, in _sample
+[rank2]:     outputs = self(**model_inputs, return_dict=True)
+[rank2]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 682, in forward
+[rank2]:     x, num_steps_no_grad, num_steps_with_grad, xk, block_idx = self.iterate_forward(
+[rank2]:                                                                ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 751, in iterate_forward
+[rank2]:     x, block_idx = self.core_block_forward(
+[rank2]:                    ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 777, in core_block_forward
+[rank2]:     x = block(x, freqs_cis, block_idx, mask, past_key_values)
+[rank2]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 533, in forward
+[rank2]:     attn_out = self.attn(self.norm_1(x), freqs_cis, step_idx, mask, past_key_values)
+[rank2]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank2]:     return self._call_impl(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank2]:     return forward_call(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 472, in forward
+[rank2]:     q, k = apply_rotary_emb_complex_like(q, k, freqs_cis=freqs_cis)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1681, in apply_rotary_emb_complex_like
+[rank2]:     rotated_qk_r2 = torch.stack(
+[rank2]:                     ^^^^^^^^^^^^
+[rank2]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.23 GiB. GPU 2 has a total capacity of 139.80 GiB of which 1.62 GiB is free. Including non-PyTorch memory, this process has 138.17 GiB memory in use. Of the allocated memory 102.49 GiB is allocated by PyTorch, and 32.26 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank5]:   File "<frozen runpy>", line 88, in _run_code
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank5]:     cli_evaluate()
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank5]:     results = evaluator.simple_evaluate(
+[rank5]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank5]:     return fn(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank5]:     results = evaluate(
+[rank5]:               ^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank5]:     return fn(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank5]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank5]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank5]:     cont = self._model_generate(
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank5]:     return self.model.generate(
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank5]:     return func(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank5]:     return super().generate(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank5]:     return func(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 2625, in generate
+[rank5]:     result = self._sample(
+[rank5]:              ^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 3606, in _sample
+[rank5]:     outputs = self(**model_inputs, return_dict=True)
+[rank5]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank5]:     return self._call_impl(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank5]:     return forward_call(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 682, in forward
+[rank5]:     x, num_steps_no_grad, num_steps_with_grad, xk, block_idx = self.iterate_forward(
+[rank5]:                                                                ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 751, in iterate_forward
+[rank5]:     x, block_idx = self.core_block_forward(
+[rank5]:                    ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 777, in core_block_forward
+[rank5]:     x = block(x, freqs_cis, block_idx, mask, past_key_values)
+[rank5]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank5]:     return self._call_impl(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank5]:     return forward_call(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 533, in forward
+[rank5]:     attn_out = self.attn(self.norm_1(x), freqs_cis, step_idx, mask, past_key_values)
+[rank5]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank5]:     return self._call_impl(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank5]:     return forward_call(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 472, in forward
+[rank5]:     q, k = apply_rotary_emb_complex_like(q, k, freqs_cis=freqs_cis)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1681, in apply_rotary_emb_complex_like
+[rank5]:     rotated_qk_r2 = torch.stack(
+[rank5]:                     ^^^^^^^^^^^^
+[rank5]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.35 GiB. GPU 5 has a total capacity of 139.80 GiB of which 109.00 MiB is free. Including non-PyTorch memory, this process has 139.69 GiB memory in use. Of the allocated memory 104.75 GiB is allocated by PyTorch, and 31.51 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank7]:   File "<frozen runpy>", line 88, in _run_code
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank7]:     cli_evaluate()
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank7]:     results = evaluator.simple_evaluate(
+[rank7]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank7]:     return fn(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank7]:     results = evaluate(
+[rank7]:               ^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank7]:     return fn(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank7]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank7]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank7]:     cont = self._model_generate(
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank7]:     return self.model.generate(
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank7]:     return func(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank7]:     return super().generate(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank7]:     return func(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 2625, in generate
+[rank7]:     result = self._sample(
+[rank7]:              ^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 3606, in _sample
+[rank7]:     outputs = self(**model_inputs, return_dict=True)
+[rank7]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank7]:     return self._call_impl(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank7]:     return forward_call(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 682, in forward
+[rank7]:     x, num_steps_no_grad, num_steps_with_grad, xk, block_idx = self.iterate_forward(
+[rank7]:                                                                ^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 751, in iterate_forward
+[rank7]:     x, block_idx = self.core_block_forward(
+[rank7]:                    ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 777, in core_block_forward
+[rank7]:     x = block(x, freqs_cis, block_idx, mask, past_key_values)
+[rank7]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank7]:     return self._call_impl(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank7]:     return forward_call(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 533, in forward
+[rank7]:     attn_out = self.attn(self.norm_1(x), freqs_cis, step_idx, mask, past_key_values)
+[rank7]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank7]:     return self._call_impl(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank7]:     return forward_call(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 472, in forward
+[rank7]:     q, k = apply_rotary_emb_complex_like(q, k, freqs_cis=freqs_cis)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1684, in apply_rotary_emb_complex_like
+[rank7]:     qk_r2[..., 1] * freqs_cis[..., 0] + qk_r2[..., 0] * freqs_cis[..., 1],
+[rank7]:     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[rank7]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.13 GiB. GPU 7 has a total capacity of 139.80 GiB of which 833.00 MiB is free. Including non-PyTorch memory, this process has 138.98 GiB memory in use. Of the allocated memory 105.24 GiB is allocated by PyTorch, and 30.54 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank3]:   File "<frozen runpy>", line 88, in _run_code
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank3]:     cli_evaluate()
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank3]:     results = evaluator.simple_evaluate(
+[rank3]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank3]:     return fn(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank3]:     results = evaluate(
+[rank3]:               ^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank3]:     return fn(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank3]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank3]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank3]:     cont = self._model_generate(
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank3]:     return self.model.generate(
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank3]:     return func(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank3]:     return super().generate(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank3]:     return func(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 2625, in generate
+[rank3]:     result = self._sample(
+[rank3]:              ^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/transformers/generation/utils.py", line 3606, in _sample
+[rank3]:     outputs = self(**model_inputs, return_dict=True)
+[rank3]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 682, in forward
+[rank3]:     x, num_steps_no_grad, num_steps_with_grad, xk, block_idx = self.iterate_forward(
+[rank3]:                                                                ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 751, in iterate_forward
+[rank3]:     x, block_idx = self.core_block_forward(
+[rank3]:                    ^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 777, in core_block_forward
+[rank3]:     x = block(x, freqs_cis, block_idx, mask, past_key_values)
+[rank3]:         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 533, in forward
+[rank3]:     attn_out = self.attn(self.norm_1(x), freqs_cis, step_idx, mask, past_key_values)
+[rank3]:                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+[rank3]:     return self._call_impl(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+[rank3]:     return forward_call(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 472, in forward
+[rank3]:     q, k = apply_rotary_emb_complex_like(q, k, freqs_cis=freqs_cis)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1681, in apply_rotary_emb_complex_like
+[rank3]:     rotated_qk_r2 = torch.stack(
+[rank3]:                     ^^^^^^^^^^^^
+[rank3]: torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 2.25 GiB. GPU 3 has a total capacity of 139.80 GiB of which 309.00 MiB is free. Including non-PyTorch memory, this process has 139.49 GiB memory in use. Of the allocated memory 103.46 GiB is allocated by PyTorch, and 32.60 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+[rank0]:[W1023 17:06:39.137579942 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W1023 17:06:40.897000 1577620 /home1/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1577705 closing signal SIGTERM
+W1023 17:06:40.898000 1577620 /home1/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1577706 closing signal SIGTERM
+W1023 17:06:40.899000 1577620 /home1/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1577707 closing signal SIGTERM
+W1023 17:06:40.900000 1577620 /home1/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1577708 closing signal SIGTERM
+W1023 17:06:40.900000 1577620 /home1/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1577709 closing signal SIGTERM
+W1023 17:06:40.901000 1577620 /home1/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1577710 closing signal SIGTERM
+W1023 17:06:40.902000 1577620 /home1/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1577711 closing signal SIGTERM
+E1023 17:06:42.310000 1577620 /home1/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 0 (pid: 1577704) of binary: /home/irteam/ddn/envs/kvp_tf453/bin/python
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1423, in <module>
+    main()
+  File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1419, in main
+    launch_command(args)
+  File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1404, in launch_command
+    multi_gpu_launcher(args)
+  File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1029, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irteam/ddn/envs/kvp_tf453/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+lm_eval FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-10-23_17:06:40
+  host      : henn-0
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1577704)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

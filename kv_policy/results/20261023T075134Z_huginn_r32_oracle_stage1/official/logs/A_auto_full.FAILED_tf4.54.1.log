@@ -1,0 +1,575 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+[W1023 16:51:37.008756124 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+2026-10-23:16:52:00 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:16:52:00 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:16:52:00 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:16:52:00 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:16:52:00 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:16:52:00 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:16:52:00 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:16:52:00 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:16:52:00 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:16:52:00 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:16:52:00 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:16:52:00 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:16:52:00 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:16:52:00 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:16:52:00 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:16:52:00 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:16:52:00 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:16:52:00 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:16:52:00 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:16:52:00 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:16:52:00 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+2026-10-23:16:52:00 INFO     [__main__:446] Selected Tasks: ['gsm8k_cot']
+2026-10-23:16:52:00 INFO     [evaluator:202] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+2026-10-23:16:52:00 INFO     [evaluator:240] Initializing hf model, with arguments: {'pretrained': 'tomg-group-umd/huginn-0125', 'revision': 'bb6621b65e90b6a4b9b29ef88dc83866d450470c',
+        'trust_remote_code': True, 'dtype': 'bfloat16', 'mean_recurrence': 32}
+[W1023 16:52:05.102160550 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 16:52:05.319975313 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 16:52:05.360511799 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 16:52:06.459117760 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 16:52:06.484718484 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 16:52:06.832073882 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 16:52:06.925979735 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+[W1023 16:52:06.962021459 socket.cpp:759] [c10d] The client socket cannot be initialized to connect to [::ffff:127.0.0.1]:29500 (errno: 97 - Address family not supported by protocol).
+2026-10-23:16:52:07 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:16:52:07 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:16:52:07 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:16:52:07 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:16:52:07 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:16:52:07 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:16:52:07 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:16:52:07 INFO     [models.huggingface:539] Model type cannot be determined. Using default model type 'causal'
+2026-10-23:16:52:07 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+2026-10-23:16:52:07 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:7'}
+2026-10-23:16:52:07 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:5'}
+2026-10-23:16:52:07 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:4'}
+2026-10-23:16:52:07 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:1'}
+2026-10-23:16:52:07 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:2'}
+2026-10-23:16:52:07 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:3'}
+2026-10-23:16:52:07 INFO     [models.huggingface:414] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:6'}
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:28<01:26, 28.96s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:28<01:26, 28.99s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:28<01:26, 28.95s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:28<01:26, 28.96s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:28<01:26, 28.99s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:28<01:26, 28.99s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:28<01:26, 28.87s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:28<01:26, 28.99s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:56<00:56, 28.33s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:56<00:56, 28.32s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:56<00:56, 28.30s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:56<00:56, 28.34s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:56<00:56, 28.35s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:56<00:56, 28.35s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:56<00:56, 28.34s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:56<00:56, 28.35s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:23<00:27, 27.48s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:23<00:27, 27.49s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:23<00:27, 27.48s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:23<00:27, 27.48s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:23<00:27, 27.48s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:23<00:27, 27.46s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:23<00:27, 27.48s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:23<00:27, 27.50s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 19.82s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 22.84s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 19.84s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 22.87s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 19.84s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 19.84s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 22.86s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 22.86s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 19.84s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 19.84s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 19.84s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 22.87s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 22.87s/it]
+
+Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 22.87s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 19.85s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:31<00:00, 22.87s/it]
+2026-10-23:16:53:44 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:16:53:44 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:16:53:44 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:16:53:44 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 5...
+  0%|          | 0/165 [00:00<?, ?it/s]2026-10-23:16:53:44 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:16:53:44 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:16:53:44 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:16:53:44 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 4...
+2026-10-23:16:53:44 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:16:53:44 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:16:53:44 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:16:53:44 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 6...
+2026-10-23:16:53:44 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:16:53:44 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:16:53:44 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:16:53:44 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 7...
+  0%|          | 0/165 [00:00<?, ?it/s]  0%|          | 0/165 [00:00<?, ?it/s]2026-10-23:16:53:44 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:16:53:44 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:16:53:44 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:16:53:44 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 3...
+  0%|          | 0/164 [00:00<?, ?it/s]2026-10-23:16:53:45 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:16:53:45 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:16:53:45 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:16:53:45 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 0...
+  0%|          | 0/165 [00:00<?, ?it/s]2026-10-23:16:53:45 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:16:53:45 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:16:53:45 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:16:53:45 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 2...
+  6%|▌         | 10/165 [00:00<00:01, 99.91it/s]  0%|          | 0/165 [00:00<?, ?it/s]2026-10-23:16:53:45 INFO     [evaluator:305] gsm8k_cot: Using gen_kwargs: {'do_sample': False, 'until': ['Q:', '</s>', '<|im_end|>']}
+2026-10-23:16:53:45 WARNING  [api.model:483] Chat template name provided, but the tokenizer's chat template is not a dictionary. Using the tokenizer's chat template or the default template instead.
+2026-10-23:16:53:45 WARNING  [evaluator:480] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+2026-10-23:16:53:45 INFO     [api.task:434] Building contexts for gsm8k_cot on rank 1...
+  0%|          | 0/165 [00:00<?, ?it/s]  6%|▌         | 10/165 [00:00<00:01, 93.80it/s]  6%|▌         | 10/165 [00:00<00:01, 95.31it/s]  0%|          | 0/165 [00:00<?, ?it/s]  5%|▌         | 9/164 [00:00<00:01, 85.81it/s]  6%|▌         | 10/165 [00:00<00:01, 95.63it/s] 15%|█▍        | 24/165 [00:00<00:01, 121.58it/s]  6%|▌         | 10/165 [00:00<00:01, 95.71it/s]  5%|▍         | 8/165 [00:00<00:01, 78.54it/s] 15%|█▍        | 24/165 [00:00<00:01, 118.78it/s] 15%|█▍        | 24/165 [00:00<00:01, 118.00it/s]  5%|▌         | 9/165 [00:00<00:01, 89.86it/s] 14%|█▍        | 23/164 [00:00<00:01, 115.29it/s] 15%|█▍        | 24/165 [00:00<00:01, 117.55it/s] 23%|██▎       | 38/165 [00:00<00:00, 127.15it/s] 15%|█▍        | 24/165 [00:00<00:01, 118.67it/s] 13%|█▎        | 22/165 [00:00<00:01, 110.82it/s] 23%|██▎       | 38/165 [00:00<00:01, 124.82it/s] 23%|██▎       | 38/165 [00:00<00:01, 125.09it/s] 13%|█▎        | 22/165 [00:00<00:01, 113.33it/s] 23%|██▎       | 37/164 [00:00<00:01, 125.05it/s] 23%|██▎       | 38/165 [00:00<00:01, 125.54it/s] 32%|███▏      | 52/165 [00:00<00:00, 128.72it/s] 23%|██▎       | 38/165 [00:00<00:01, 125.87it/s] 22%|██▏       | 36/165 [00:00<00:01, 122.53it/s] 32%|███▏      | 52/165 [00:00<00:00, 128.92it/s] 22%|██▏       | 36/165 [00:00<00:01, 123.56it/s] 32%|███▏      | 52/165 [00:00<00:00, 128.63it/s] 31%|███       | 51/164 [00:00<00:00, 129.95it/s] 32%|███▏      | 52/165 [00:00<00:00, 129.52it/s] 40%|████      | 66/165 [00:00<00:00, 130.87it/s] 32%|███▏      | 52/165 [00:00<00:00, 129.12it/s] 30%|███       | 50/165 [00:00<00:00, 128.11it/s] 40%|████      | 66/165 [00:00<00:00, 131.35it/s] 30%|███       | 50/165 [00:00<00:00, 128.18it/s] 40%|████      | 66/165 [00:00<00:00, 130.67it/s] 40%|███▉      | 65/164 [00:00<00:00, 132.57it/s] 40%|████      | 66/165 [00:00<00:00, 131.82it/s] 48%|████▊     | 80/165 [00:00<00:00, 133.09it/s] 40%|████      | 66/165 [00:00<00:00, 131.16it/s] 39%|███▉      | 64/165 [00:00<00:00, 131.30it/s] 48%|████▊     | 80/165 [00:00<00:00, 133.02it/s] 39%|███▉      | 64/165 [00:00<00:00, 130.97it/s] 48%|████▊     | 80/165 [00:00<00:00, 132.02it/s] 48%|████▊     | 79/164 [00:00<00:00, 134.09it/s] 48%|████▊     | 80/165 [00:00<00:00, 133.28it/s] 57%|█████▋    | 94/165 [00:00<00:00, 134.57it/s] 48%|████▊     | 80/165 [00:00<00:00, 132.38it/s] 47%|████▋     | 78/165 [00:00<00:00, 133.31it/s] 57%|█████▋    | 94/165 [00:00<00:00, 134.17it/s] 47%|████▋     | 78/165 [00:00<00:00, 132.71it/s] 57%|█████▋    | 94/165 [00:00<00:00, 132.00it/s] 57%|█████▋    | 93/164 [00:00<00:00, 135.05it/s] 57%|█████▋    | 94/165 [00:00<00:00, 134.26it/s] 65%|██████▌   | 108/165 [00:00<00:00, 135.34it/s] 57%|█████▋    | 94/165 [00:00<00:00, 133.23it/s] 56%|█████▌    | 92/165 [00:00<00:00, 134.62it/s] 65%|██████▌   | 108/165 [00:00<00:00, 134.08it/s] 56%|█████▌    | 92/165 [00:00<00:00, 133.82it/s] 65%|██████▌   | 108/165 [00:00<00:00, 132.95it/s] 65%|██████▌   | 107/164 [00:00<00:00, 135.57it/s] 65%|██████▌   | 108/165 [00:00<00:00, 134.66it/s] 74%|███████▍  | 122/165 [00:00<00:00, 135.37it/s] 65%|██████▌   | 108/165 [00:00<00:00, 133.30it/s] 64%|██████▍   | 106/165 [00:00<00:00, 135.52it/s] 74%|███████▍  | 122/165 [00:00<00:00, 134.79it/s] 64%|██████▍   | 106/165 [00:00<00:00, 134.54it/s] 74%|███████▍  | 122/165 [00:00<00:00, 133.48it/s] 74%|███████▍  | 121/164 [00:00<00:00, 136.00it/s] 74%|███████▍  | 122/165 [00:00<00:00, 135.09it/s] 82%|████████▏ | 136/165 [00:01<00:00, 135.67it/s] 74%|███████▍  | 122/165 [00:00<00:00, 133.81it/s] 73%|███████▎  | 120/165 [00:00<00:00, 136.11it/s] 82%|████████▏ | 136/165 [00:01<00:00, 135.32it/s] 73%|███████▎  | 120/165 [00:00<00:00, 134.39it/s] 82%|████████▏ | 136/165 [00:01<00:00, 133.64it/s] 82%|████████▏ | 135/164 [00:01<00:00, 136.37it/s] 82%|████████▏ | 136/165 [00:01<00:00, 135.41it/s] 91%|█████████ | 150/165 [00:01<00:00, 135.64it/s] 82%|████████▏ | 136/165 [00:01<00:00, 134.29it/s] 81%|████████  | 134/165 [00:01<00:00, 136.56it/s] 91%|█████████ | 150/165 [00:01<00:00, 135.71it/s] 81%|████████  | 134/165 [00:01<00:00, 134.73it/s] 91%|█████████ | 150/165 [00:01<00:00, 133.87it/s] 91%|█████████ | 149/164 [00:01<00:00, 136.63it/s] 91%|█████████ | 150/165 [00:01<00:00, 135.49it/s] 99%|█████████▉| 164/165 [00:01<00:00, 135.22it/s]100%|██████████| 165/165 [00:01<00:00, 132.52it/s]
+ 91%|█████████ | 150/165 [00:01<00:00, 134.62it/s] 90%|████████▉ | 148/165 [00:01<00:00, 136.65it/s] 99%|█████████▉| 164/165 [00:01<00:00, 134.49it/s] 90%|████████▉ | 148/165 [00:01<00:00, 133.67it/s]100%|██████████| 165/165 [00:01<00:00, 131.71it/s]
+ 99%|█████████▉| 163/164 [00:01<00:00, 135.57it/s] 99%|█████████▉| 164/165 [00:01<00:00, 133.07it/s]100%|██████████| 164/164 [00:01<00:00, 132.33it/s]
+100%|██████████| 165/165 [00:01<00:00, 130.59it/s]
+ 99%|█████████▉| 164/165 [00:01<00:00, 134.88it/s]100%|██████████| 165/165 [00:01<00:00, 132.02it/s]
+ 99%|█████████▉| 164/165 [00:01<00:00, 134.05it/s] 98%|█████████▊| 162/165 [00:01<00:00, 136.79it/s]100%|██████████| 165/165 [00:01<00:00, 131.29it/s]
+100%|██████████| 165/165 [00:01<00:00, 131.96it/s]
+ 98%|█████████▊| 162/165 [00:01<00:00, 132.53it/s]100%|██████████| 165/165 [00:01<00:00, 130.57it/s]
+2026-10-23:16:53:50 INFO     [evaluator:574] Running generate_until requests
+2026-10-23:16:53:50 INFO     [evaluator:574] Running generate_until requests
+2026-10-23:16:53:50 INFO     [evaluator:574] Running generate_until requests
+2026-10-23:16:53:50 INFO     [evaluator:574] Running generate_until requests
+2026-10-23:16:53:50 INFO     [evaluator:574] Running generate_until requests
+2026-10-23:16:53:50 INFO     [evaluator:574] Running generate_until requests
+2026-10-23:16:53:50 INFO     [evaluator:574] Running generate_until requests
+Passed argument batch_size = auto. Detecting largest batch size
+Passed argument batch_size = auto. Detecting largest batch size
+2026-10-23:16:53:50 INFO     [evaluator:574] Running generate_until requests
+Passed argument batch_size = auto. Detecting largest batch size
+Passed argument batch_size = auto. Detecting largest batch size
+Passed argument batch_size = auto. Detecting largest batch size
+Passed argument batch_size = auto. Detecting largest batch size
+Running generate_until requests:   0%|          | 0/165 [00:00<?, ?it/s]Passed argument batch_size = auto. Detecting largest batch size
+Passed argument batch_size = auto. Detecting largest batch size
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+Determined Largest batch size: 64
+[rank3]: Traceback (most recent call last):
+[rank3]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank3]:   File "<frozen runpy>", line 88, in _run_code
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank3]:     cli_evaluate()
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank3]:     results = evaluator.simple_evaluate(
+[rank3]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank3]:     return fn(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank3]:     results = evaluate(
+[rank3]:               ^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank3]:     return fn(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank3]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank3]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank3]:     cont = self._model_generate(
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank3]:     return self.model.generate(
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank3]:     return func(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank3]:     return super().generate(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank3]:     return func(*args, **kwargs)
+[rank3]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 2633, in generate
+[rank3]:     result = self._sample(
+[rank3]:              ^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 3607, in _sample
+[rank3]:     model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
+[rank3]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1093, in prepare_inputs_for_generation
+[rank3]:     past_key_values = HuginnDynamicCache(lookup_strategy=cache_lookup_strategy)
+[rank3]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank3]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 152, in __init__
+[rank3]:     self.key_cache: dict[int, dict[int, torch.Tensor]] = {}
+[rank3]:     ^^^^^^^^^^^^^^
+[rank3]: AttributeError: property 'key_cache' of 'HuginnDynamicCache' object has no setter
+[rank2]: Traceback (most recent call last):
+[rank2]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank2]:   File "<frozen runpy>", line 88, in _run_code
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank2]:     cli_evaluate()
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank2]:     results = evaluator.simple_evaluate(
+[rank2]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank2]:     return fn(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank2]:     results = evaluate(
+[rank2]:               ^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank2]:     return fn(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank2]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank2]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank2]:     cont = self._model_generate(
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank2]:     return self.model.generate(
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank2]:     return func(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank2]:     return super().generate(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank2]:     return func(*args, **kwargs)
+[rank2]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 2633, in generate
+[rank2]:     result = self._sample(
+[rank2]:              ^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 3607, in _sample
+[rank2]:     model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
+[rank2]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1093, in prepare_inputs_for_generation
+[rank2]:     past_key_values = HuginnDynamicCache(lookup_strategy=cache_lookup_strategy)
+[rank2]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank2]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 152, in __init__
+[rank2]:     self.key_cache: dict[int, dict[int, torch.Tensor]] = {}
+[rank2]:     ^^^^^^^^^^^^^^
+[rank2]: AttributeError: property 'key_cache' of 'HuginnDynamicCache' object has no setter
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank6]:   File "<frozen runpy>", line 88, in _run_code
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank6]:     cli_evaluate()
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank6]:     results = evaluator.simple_evaluate(
+[rank6]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank6]:     return fn(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank6]:     results = evaluate(
+[rank6]:               ^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank6]:     return fn(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank6]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank6]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank6]:     cont = self._model_generate(
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank6]:     return self.model.generate(
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank6]:     return func(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank6]:     return super().generate(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank6]:     return func(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 2633, in generate
+[rank6]:     result = self._sample(
+[rank6]:              ^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 3607, in _sample
+[rank6]:     model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
+[rank6]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1093, in prepare_inputs_for_generation
+[rank6]:     past_key_values = HuginnDynamicCache(lookup_strategy=cache_lookup_strategy)
+[rank6]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 152, in __init__
+[rank6]:     self.key_cache: dict[int, dict[int, torch.Tensor]] = {}
+[rank6]:     ^^^^^^^^^^^^^^
+[rank6]: AttributeError: property 'key_cache' of 'HuginnDynamicCache' object has no setter
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank0]:   File "<frozen runpy>", line 88, in _run_code
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank0]:     cli_evaluate()
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank0]:     results = evaluator.simple_evaluate(
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank0]:     results = evaluate(
+[rank0]:               ^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank0]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank0]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank0]:     cont = self._model_generate(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank0]:     return self.model.generate(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank0]:     return super().generate(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 2633, in generate
+[rank0]:     result = self._sample(
+[rank0]:              ^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 3607, in _sample
+[rank0]:     model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
+[rank0]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1093, in prepare_inputs_for_generation
+[rank0]:     past_key_values = HuginnDynamicCache(lookup_strategy=cache_lookup_strategy)
+[rank0]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 152, in __init__
+[rank0]:     self.key_cache: dict[int, dict[int, torch.Tensor]] = {}
+[rank0]:     ^^^^^^^^^^^^^^
+[rank0]: AttributeError: property 'key_cache' of 'HuginnDynamicCache' object has no setter
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank4]:   File "<frozen runpy>", line 88, in _run_code
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank4]:     cli_evaluate()
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank4]:     results = evaluator.simple_evaluate(
+[rank4]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank4]:     return fn(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank4]:     results = evaluate(
+[rank4]:               ^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank4]:     return fn(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank4]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank4]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank4]:     cont = self._model_generate(
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank4]:     return self.model.generate(
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank4]:     return func(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank4]:     return super().generate(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank4]:     return func(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 2633, in generate
+[rank4]:     result = self._sample(
+[rank4]:              ^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 3607, in _sample
+[rank4]:     model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
+[rank4]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1093, in prepare_inputs_for_generation
+[rank4]:     past_key_values = HuginnDynamicCache(lookup_strategy=cache_lookup_strategy)
+[rank4]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 152, in __init__
+[rank4]:     self.key_cache: dict[int, dict[int, torch.Tensor]] = {}
+[rank4]:     ^^^^^^^^^^^^^^
+[rank4]: AttributeError: property 'key_cache' of 'HuginnDynamicCache' object has no setter
+[rank1]: Traceback (most recent call last):
+[rank1]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank1]:   File "<frozen runpy>", line 88, in _run_code
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank1]:     cli_evaluate()
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank1]:     results = evaluator.simple_evaluate(
+[rank1]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank1]:     return fn(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank1]:     results = evaluate(
+[rank1]:               ^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank1]:     return fn(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank1]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank1]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank1]:     cont = self._model_generate(
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank1]:     return self.model.generate(
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank1]:     return func(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank1]:     return super().generate(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank1]:     return func(*args, **kwargs)
+[rank1]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 2633, in generate
+[rank1]:     result = self._sample(
+[rank1]:              ^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 3607, in _sample
+[rank1]:     model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
+[rank1]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1093, in prepare_inputs_for_generation
+[rank1]:     past_key_values = HuginnDynamicCache(lookup_strategy=cache_lookup_strategy)
+[rank1]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank1]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 152, in __init__
+[rank1]:     self.key_cache: dict[int, dict[int, torch.Tensor]] = {}
+[rank1]:     ^^^^^^^^^^^^^^
+[rank1]: AttributeError: property 'key_cache' of 'HuginnDynamicCache' object has no setter
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank5]:   File "<frozen runpy>", line 88, in _run_code
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank5]:     cli_evaluate()
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank5]:     results = evaluator.simple_evaluate(
+[rank5]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank5]:     return fn(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank5]:     results = evaluate(
+[rank5]:               ^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank5]:     return fn(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank5]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank5]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank5]:     cont = self._model_generate(
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank5]:     return self.model.generate(
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank5]:     return func(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank5]:     return super().generate(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank5]:     return func(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 2633, in generate
+[rank5]:     result = self._sample(
+[rank5]:              ^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 3607, in _sample
+[rank5]:     model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
+[rank5]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1093, in prepare_inputs_for_generation
+[rank5]:     past_key_values = HuginnDynamicCache(lookup_strategy=cache_lookup_strategy)
+[rank5]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 152, in __init__
+[rank5]:     self.key_cache: dict[int, dict[int, torch.Tensor]] = {}
+[rank5]:     ^^^^^^^^^^^^^^
+[rank5]: AttributeError: property 'key_cache' of 'HuginnDynamicCache' object has no setter
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank7]:   File "<frozen runpy>", line 88, in _run_code
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 536, in <module>
+[rank7]:     cli_evaluate()
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/__main__.py", line 455, in cli_evaluate
+[rank7]:     results = evaluator.simple_evaluate(
+[rank7]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank7]:     return fn(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 357, in simple_evaluate
+[rank7]:     results = evaluate(
+[rank7]:               ^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/utils.py", line 456, in _wrapper
+[rank7]:     return fn(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/evaluator.py", line 585, in evaluate
+[rank7]:     resps = getattr(lm, reqtype)(cloned_reqs)
+[rank7]:             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 1447, in generate_until
+[rank7]:     cont = self._model_generate(
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/lm_eval/models/huggingface.py", line 980, in _model_generate
+[rank7]:     return self.model.generate(
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank7]:     return func(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1121, in generate
+[rank7]:     return super().generate(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank7]:     return func(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 2633, in generate
+[rank7]:     result = self._sample(
+[rank7]:              ^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/transformers/generation/utils.py", line 3607, in _sample
+[rank7]:     model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
+[rank7]:                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 1093, in prepare_inputs_for_generation
+[rank7]:     past_key_values = HuginnDynamicCache(lookup_strategy=cache_lookup_strategy)
+[rank7]:                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/home/irteam/.cache/huggingface/modules/transformers_modules/tomg-group-umd/huginn-0125/bb6621b65e90b6a4b9b29ef88dc83866d450470c/raven_modeling_minimal.py", line 152, in __init__
+[rank7]:     self.key_cache: dict[int, dict[int, torch.Tensor]] = {}
+[rank7]:     ^^^^^^^^^^^^^^
+[rank7]: AttributeError: property 'key_cache' of 'HuginnDynamicCache' object has no setter
+Running generate_until requests:   0%|          | 0/165 [02:51<?, ?it/s]
+[rank0]:[W1023 16:56:41.000501200 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+W1023 16:56:42.940000 1576003 /home1/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1576070 closing signal SIGTERM
+W1023 16:56:42.941000 1576003 /home1/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1576071 closing signal SIGTERM
+W1023 16:56:42.941000 1576003 /home1/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1576072 closing signal SIGTERM
+W1023 16:56:42.941000 1576003 /home1/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1576074 closing signal SIGTERM
+W1023 16:56:42.942000 1576003 /home1/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1576075 closing signal SIGTERM
+W1023 16:56:42.942000 1576003 /home1/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1576076 closing signal SIGTERM
+W1023 16:56:42.942000 1576003 /home1/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:897] Sending process 1576077 closing signal SIGTERM
+E1023 16:56:43.747000 1576003 /home1/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/elastic/multiprocessing/api.py:869] failed (exitcode: 1) local_rank: 3 (pid: 1576073) of binary: /home/irteam/ddn/envs/kvp/bin/python
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1423, in <module>
+    main()
+  File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1419, in main
+    launch_command(args)
+  File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1404, in launch_command
+    multi_gpu_launcher(args)
+  File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1029, in multi_gpu_launcher
+    distrib_run.run(args)
+  File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/run.py", line 909, in run
+    elastic_launch(
+  File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 138, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+lm_eval FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-10-23_16:56:42
+  host      : henn-0
+  rank      : 3 (local_rank: 3)
+  exitcode  : 1 (pid: 1576073)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================

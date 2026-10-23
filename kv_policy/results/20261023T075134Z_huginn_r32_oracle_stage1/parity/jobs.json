@@ -1,0 +1,478 @@
+[
+{
+"kind": "fp",
+"name": "fp_parity"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_algebra_2593.json",
+"dataset": "math500",
+"uid": "test/algebra/2593.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_geometry_965.json",
+"dataset": "math500",
+"uid": "test/geometry/965.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_intermediate_algebra_1166.json",
+"dataset": "math500",
+"uid": "test/intermediate_algebra/1166.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_intermediate_algebra_207.json",
+"dataset": "math500",
+"uid": "test/intermediate_algebra/207.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_intermediate_algebra_232.json",
+"dataset": "math500",
+"uid": "test/intermediate_algebra/232.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_intermediate_algebra_754.json",
+"dataset": "math500",
+"uid": "test/intermediate_algebra/754.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_number_theory_911.json",
+"dataset": "math500",
+"uid": "test/number_theory/911.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_precalculus_1199.json",
+"dataset": "math500",
+"uid": "test/precalculus/1199.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_algebra_1934.json",
+"dataset": "math500",
+"uid": "test/algebra/1934.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_algebra_858.json",
+"dataset": "math500",
+"uid": "test/algebra/858.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_algebra_769.json",
+"dataset": "math500",
+"uid": "test/algebra/769.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_number_theory_1185.json",
+"dataset": "math500",
+"uid": "test/number_theory/1185.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_counting_and_probability_803.json",
+"dataset": "math500",
+"uid": "test/counting_and_probability/803.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_algebra_567.json",
+"dataset": "math500",
+"uid": "test/algebra/567.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_algebra_873.json",
+"dataset": "math500",
+"uid": "test/algebra/873.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_algebra_305.json",
+"dataset": "math500",
+"uid": "test/algebra/305.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_counting_and_probability_525.json",
+"dataset": "math500",
+"uid": "test/counting_and_probability/525.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_number_theory_1128.json",
+"dataset": "math500",
+"uid": "test/number_theory/1128.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_counting_and_probability_508.json",
+"dataset": "math500",
+"uid": "test/counting_and_probability/508.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_algebra_425.json",
+"dataset": "math500",
+"uid": "test/algebra/425.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_number_theory_368.json",
+"dataset": "math500",
+"uid": "test/number_theory/368.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_geometry_183.json",
+"dataset": "math500",
+"uid": "test/geometry/183.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_prealgebra_505.json",
+"dataset": "math500",
+"uid": "test/prealgebra/505.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_prealgebra_1423.json",
+"dataset": "math500",
+"uid": "test/prealgebra/1423.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_counting_and_probability_23957.json",
+"dataset": "math500",
+"uid": "test/counting_and_probability/23957.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_geometry_967.json",
+"dataset": "math500",
+"uid": "test/geometry/967.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_algebra_849.json",
+"dataset": "math500",
+"uid": "test/algebra/849.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_prealgebra_1761.json",
+"dataset": "math500",
+"uid": "test/prealgebra/1761.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_algebra_109.json",
+"dataset": "math500",
+"uid": "test/algebra/109.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_intermediate_algebra_860.json",
+"dataset": "math500",
+"uid": "test/intermediate_algebra/860.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_number_theory_255.json",
+"dataset": "math500",
+"uid": "test/number_theory/255.json"
+},
+{
+"kind": "greedy",
+"name": "greedy__math500__test_geometry_477.json",
+"dataset": "math500",
+"uid": "test/geometry/477.json"
+},
+{
+"kind": "batch",
+"name": "batch__math500__g0",
+"dataset": "math500",
+"uids": [
+"test/algebra/109.json",
+"test/algebra/1934.json",
+"test/algebra/2593.json",
+"test/algebra/305.json"
+]
+},
+{
+"kind": "batch",
+"name": "batch__math500__g1",
+"dataset": "math500",
+"uids": [
+"test/algebra/425.json",
+"test/algebra/567.json",
+"test/algebra/769.json",
+"test/algebra/849.json"
+]
+},
+{
+"kind": "batch",
+"name": "batch__math500__g2",
+"dataset": "math500",
+"uids": [
+"test/algebra/858.json",
+"test/algebra/873.json",
+"test/counting_and_probability/23957.json",
+"test/counting_and_probability/508.json"
+]
+},
+{
+"kind": "batch",
+"name": "batch__math500__g3",
+"dataset": "math500",
+"uids": [
+"test/counting_and_probability/525.json",
+"test/counting_and_probability/803.json",
+"test/geometry/183.json",
+"test/geometry/477.json"
+]
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0383",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0383"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0407",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0407"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-1053",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-1053"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0712",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0712"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0872",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0872"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-1026",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-1026"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0798",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0798"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0584",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0584"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-1046",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-1046"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0487",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0487"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0941",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0941"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0104",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0104"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0876",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0876"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0121",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0121"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0084",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0084"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-1028",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-1028"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-1152",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-1152"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-1033",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-1033"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0923",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0923"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0152",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0152"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0197",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0197"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0924",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0924"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0300",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0300"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0364",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0364"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-1058",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-1058"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0983",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0983"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-1260",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-1260"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0790",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0790"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0722",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0722"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0752",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0752"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-0985",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-0985"
+},
+{
+"kind": "greedy",
+"name": "greedy__gsm8k__gsm8k-test-1119",
+"dataset": "gsm8k",
+"uid": "gsm8k-test-1119"
+},
+{
+"kind": "batch",
+"name": "batch__gsm8k__g0",
+"dataset": "gsm8k",
+"uids": [
+"gsm8k-test-0084",
+"gsm8k-test-0104",
+"gsm8k-test-0121",
+"gsm8k-test-0152"
+]
+},
+{
+"kind": "batch",
+"name": "batch__gsm8k__g1",
+"dataset": "gsm8k",
+"uids": [
+"gsm8k-test-0197",
+"gsm8k-test-0300",
+"gsm8k-test-0364",
+"gsm8k-test-0383"
+]
+},
+{
+"kind": "batch",
+"name": "batch__gsm8k__g2",
+"dataset": "gsm8k",
+"uids": [
+"gsm8k-test-0407",
+"gsm8k-test-0487",
+"gsm8k-test-0584",
+"gsm8k-test-0712"
+]
+},
+{
+"kind": "batch",
+"name": "batch__gsm8k__g3",
+"dataset": "gsm8k",
+"uids": [
+"gsm8k-test-0722",
+"gsm8k-test-0752",
+"gsm8k-test-0790",
+"gsm8k-test-0798"
+]
+}
+]

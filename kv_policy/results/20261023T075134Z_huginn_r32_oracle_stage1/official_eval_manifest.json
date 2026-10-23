@@ -1,0 +1,55 @@
+{
+ "A_b1_full": {
+  "generation_length": {
+   "n": 1319,
+   "ge_256_tokens": 24
+  },
+  "results_file": "results/20261023T075134Z_huginn_r32_oracle_stage1/official/A_b1_full/tomg-group-umd__huginn-0125/results_2026-10-23T18-04-29.689436.json",
+  "config": {
+   "model": "hf",
+   "model_args": "pretrained=tomg-group-umd/huginn-0125,revision=bb6621b65e90b6a4b9b29ef88dc83866d450470c,trust_remote_code=True,dtype=bfloat16,mean_recurrence=32",
+   "model_num_parameters": 3564976800,
+   "model_dtype": "torch.bfloat16",
+   "model_revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+   "model_sha": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+   "batch_size": "1",
+   "batch_sizes": [],
+   "device": null,
+   "use_cache": null,
+   "limit": null,
+   "bootstrap_iters": 100000,
+   "gen_kwargs": null,
+   "random_seed": 0,
+   "numpy_seed": 1234,
+   "torch_seed": 1234,
+   "fewshot_seed": 1234
+  },
+  "versions": {
+   "gsm8k_cot": 3.0
+  },
+  "n-shot": {
+   "gsm8k_cot": 8
+  },
+  "git_hash": "c1d41b6",
+  "date": 1792742960.9551573,
+  "task_hashes": {
+   "gsm8k_cot": "4c0a31f4db1cb1ec0a7065fc606fb721dedb252b28db8c425ba96ee02aa49012"
+  },
+  "model_args": "pretrained=tomg-group-umd/huginn-0125,revision=bb6621b65e90b6a4b9b29ef88dc83866d450470c,trust_remote_code=True,dtype=bfloat16,mean_recurrence=32",
+  "batch_sizes": [],
+  "random_seed": 0,
+  "torch_seed": 1234,
+  "prompt_identity_on_subset": {
+   "n": 200,
+   "same_text": 200,
+   "same_token_ids": 200,
+   "first_mismatching_doc_ids": []
+  },
+  "paired_vs_project_full": {
+   "official_only": 2,
+   "project_only": 5,
+   "both": 63,
+   "neither": 130
+  }
+ }
+}
