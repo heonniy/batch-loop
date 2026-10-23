@@ -11,15 +11,16 @@ import torch
 
 
 class _DictPolicyStore:
-    def __init__(self, policy: str, R: int, region_start: int):
+    def __init__(self, policy: str, R: int, region_start: int, keep: frozenset = frozenset()):
         self.policy, self.R, self.region_start = policy, R, region_start
+        self.keep = keep  # positions that keep their per-loop versions (restoration oracle)
         self.entries: dict = {}  # (kind, layer) -> {pos: {loop: (k, v)}}
         self.p0 = 0  # number of tokens fully processed before the current forward call
 
     def _history_version(self, slots: dict, pos: int, r: int, kind: str):
         if kind == "plain":
             return slots[0]
-        if pos < self.region_start or self.policy == "full":
+        if pos < self.region_start or self.policy == "full" or pos in self.keep:
             return slots[r]
         if self.policy == "last":
             return slots[self.R - 1]
@@ -75,7 +76,7 @@ class HuginnRefCache:
 
 @torch.inference_mode()
 def reference_logits(model, family: str, R: int, prompt: list[int], cont: list[int], policy: str,
-                     mode: str, noise: torch.Tensor | None = None) -> torch.Tensor:
+                     mode: str, noise: torch.Tensor | None = None, keep: frozenset = frozenset()) -> torch.Tensor:
     """Native-forward logits for every position of prompt+cont under (policy, mode).
     mode "decode":  prompt in one parallel call, policy region = continuation.
     mode "convert": prompt in one parallel call, policy region = everything (the prompt's per-loop
@@ -83,7 +84,7 @@ def reference_logits(model, family: str, R: int, prompt: list[int], cont: list[i
     mode "strict":  every token in its own call, policy region = everything."""
     dev = next(model.parameters()).device
     P = len(prompt)
-    store = _DictPolicyStore(policy, R, P if mode == "decode" else 0)
+    store = _DictPolicyStore(policy, R, P if mode == "decode" else 0, keep)
     if family == "ouro":
         cache = OuroRefCache(store, model.config.num_hidden_layers)
     else:
