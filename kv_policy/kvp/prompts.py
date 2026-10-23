@@ -8,7 +8,7 @@ Per-model protocol (frozen before any policy comparison; identical for FULL/LAST
 * Ouro base, MATH-500: paper says "strict match, 5-shot CoT, In-house" -- the in-house prompt is
   not published, so NOT reproducible. Frozen substitute: lm-eval minerva_math 4-shot prompt.
 * Huginn, GSM8K: the authors' README lm-eval command (gsm8k_cot, 8-shot, apply_chat_template,
-  fewshot_as_multiturn, system instruction) except mean_recurrence=32 -> 16 (scope document).
+  fewshot_as_multiturn, system instruction) except mean_recurrence=32 (checkpoint default).
 * Huginn, MATH-500: no published protocol. Frozen substitute: minerva 4-shot prompt with the same
   chat template / multiturn / system instruction as the authors' GSM8K command.
 """
@@ -45,7 +45,7 @@ def protocol(model_family: str, dataset: str) -> PromptProtocol:
         return PromptProtocol("huginn", dataset, 8, True, True, HUGINN_SYSTEM, until, MAX_NEW_TOKENS[dataset],
                               "seal-rg/recurrent-pretraining README lm-eval command "
                               "(gsm8k_cot, chat template, fewshot_as_multiturn, system instruction); "
-                              "mean_recurrence 32 replaced by 16")
+                              "mean_recurrence=32 matched")
     if dataset == "math500":
         until = ("Problem:",)
         if model_family == "ouro":
