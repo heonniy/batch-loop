@@ -32,8 +32,8 @@ MODELS = {
     ),
     "huginn-0125": ModelSpec(
         "huginn-0125", "tomg-group-umd/huginn-0125", "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
-        "huginn", 16,
-        "num_steps=16 is a pragmatic reference chosen by FIXED_DEPTH_SCOPE.md; the checkpoint "
+        "huginn", 32,
+         "num_steps=32 matches the documented mean recurrence; the checkpoint "
         "accepts other depths (config.mean_recurrence=32; the authors' GSM8K lm-eval command uses 32)",
     ),
 }
@@ -47,6 +47,6 @@ MODES = ("decode", "strict")
 
 # Generation limits. GSM8K: lm-eval HFLM default max_gen_toks=256 (gsm8k_cot sets none).
 # MATH-500: frozen project choice (no verifiable official value), applied to every policy.
-MAX_NEW_TOKENS = {"gsm8k": 256, "math500": 1024}
+MAX_NEW_TOKENS = {"gsm8k": 512, "math500": 2048}
 
 HUGINN_SYSTEM = "You are a helpful assistant that can assist users with mathematical reasoning."
