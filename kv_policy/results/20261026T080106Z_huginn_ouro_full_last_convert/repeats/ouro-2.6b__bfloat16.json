@@ -1,0 +1,339 @@
+{
+ "model": "ouro-2.6b",
+ "dtype": "bfloat16",
+ "source_sha": "12b7ea50127b87de89e84df9b675f404e6595fd4",
+ "gpu": {
+  "host": "henn-0",
+  "cuda_visible_devices": "4",
+  "name": "NVIDIA H200",
+  "uuid": "7cdfd11a-6f4d-3021-186b-5cd6b14dfd1e",
+  "total_mem": 150109880320
+ },
+ "items": [
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0623",
+   "full": {
+    "correct": true,
+    "n": 60,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 11,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0954",
+   "full": {
+    "correct": true,
+    "n": 99,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 61,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0040",
+   "full": {
+    "correct": true,
+    "n": 87,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 53,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0310",
+   "full": {
+    "correct": true,
+    "n": 212,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": true,
+    "n": 215,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0122",
+   "full": {
+    "correct": true,
+    "n": 145,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 141,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0647",
+   "full": {
+    "correct": true,
+    "n": 109,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 141,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0363",
+   "full": {
+    "correct": false,
+    "n": 147,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": true,
+    "n": 102,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0894",
+   "full": {
+    "correct": false,
+    "n": 164,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": true,
+    "n": 171,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0005",
+   "full": {
+    "correct": true,
+    "n": 122,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": true,
+    "n": 102,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0752",
+   "full": {
+    "correct": false,
+    "n": 84,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": true,
+    "n": 80,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0942",
+   "full": {
+    "correct": false,
+    "n": 108,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": true,
+    "n": 93,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-1055",
+   "full": {
+    "correct": true,
+    "n": 110,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": true,
+    "n": 107,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/intermediate_algebra/149.json",
+   "full": {
+    "correct": true,
+    "n": 110,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/algebra/170.json",
+   "full": {
+    "correct": true,
+    "n": 165,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/counting_and_probability/1114.json",
+   "full": {
+    "correct": true,
+    "n": 168,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/number_theory/1287.json",
+   "full": {
+    "correct": false,
+    "n": 160,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/number_theory/679.json",
+   "full": {
+    "correct": true,
+    "n": 135,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/algebra/518.json",
+   "full": {
+    "correct": true,
+    "n": 331,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  }
+ ],
+ "wall_s": 1648.4983768463135
+}

@@ -1,0 +1,76 @@
+{
+ "source_sha": "12b7ea50127b87de89e84df9b675f404e6595fd4",
+ "command": "scripts/make_quality_jobs.py --models huginn-0125-r4,huginn-0125-r8,huginn-0125-r16 --policies full-decode,last-convert --run-dir results/20261026T080106Z_huginn_ouro_full_last_convert/e2_huginn_depth",
+ "n_jobs": 900,
+ "batch_size": {
+  "gsm8k": 8,
+  "math500": 4
+ },
+ "policies": [
+  [
+   "full",
+   "decode"
+  ],
+  [
+   "last",
+   "convert"
+  ]
+ ],
+ "models": {
+  "huginn-0125-r4": {
+   "key": "huginn-0125-r4",
+   "repo": "tomg-group-umd/huginn-0125",
+   "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+   "family": "huginn",
+   "native_depth": 4,
+   "depth_note": "E2 depth sweep: num_steps=4 (non-native; checkpoint mean_recurrence=32)"
+  },
+  "huginn-0125-r8": {
+   "key": "huginn-0125-r8",
+   "repo": "tomg-group-umd/huginn-0125",
+   "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+   "family": "huginn",
+   "native_depth": 8,
+   "depth_note": "E2 depth sweep: num_steps=8 (non-native; checkpoint mean_recurrence=32)"
+  },
+  "huginn-0125-r16": {
+   "key": "huginn-0125-r16",
+   "repo": "tomg-group-umd/huginn-0125",
+   "revision": "bb6621b65e90b6a4b9b29ef88dc83866d450470c",
+   "family": "huginn",
+   "native_depth": 16,
+   "depth_note": "E2 depth sweep: num_steps=16 (non-native; checkpoint mean_recurrence=32)"
+  }
+ },
+ "environment": {
+  "python": "3.11.17",
+  "platform": "Linux-6.8.0-71-generic-x86_64-with-glibc2.35",
+  "torch": "2.6.0+cu124",
+  "cuda_runtime": "12.4",
+  "cudnn": 90100,
+  "packages": {
+   "transformers": "4.54.1",
+   "tokenizers": "0.21.4",
+   "accelerate": "1.15.0",
+   "datasets": "3.6.0",
+   "lm_eval": "0.4.9.1",
+   "math-verify": "0.9.0",
+   "sympy": "1.13.1",
+   "antlr4-python3-runtime": "4.11.0",
+   "numpy": "2.2.6",
+   "huggingface_hub": "0.36.2",
+   "triton": "3.2.0",
+   "vllm-rlt": "0.1.0"
+  },
+  "gpus": [
+   "0, NVIDIA H200, GPU-6b56b49e-2472-9e55-7d0a-74a087b4132e, 580.126.16, 143771 MiB",
+   "1, NVIDIA H200, GPU-4f143625-73b8-2372-5e1a-0bf13de11d61, 580.126.16, 143771 MiB",
+   "2, NVIDIA H200, GPU-9d1efd41-3a8a-196e-690e-4e0463a802e9, 580.126.16, 143771 MiB",
+   "3, NVIDIA H200, GPU-37163db1-5a6b-5702-e7dd-7791d5cb601b, 580.126.16, 143771 MiB",
+   "4, NVIDIA H200, GPU-7cdfd11a-6f4d-3021-186b-5cd6b14dfd1e, 580.126.16, 143771 MiB",
+   "5, NVIDIA H200, GPU-5b4a9509-9fe6-9390-fb6e-1990904e7fd9, 580.126.16, 143771 MiB",
+   "6, NVIDIA H200, GPU-ba1fe988-9759-1ffd-00f5-854a961698ce, 580.126.16, 143771 MiB",
+   "7, NVIDIA H200, GPU-20006e9b-3b48-7c54-cdb2-c503bde72bfc, 580.126.16, 143771 MiB"
+  ]
+ }
+}

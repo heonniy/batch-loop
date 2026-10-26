@@ -1,0 +1,9 @@
+model,dataset,policy,mode,n,degenerate_rate,hit_max_tokens_rate,acc_main,acc_stop_rule,answered_then_degenerated,degenerated_without_correct_answer,delta_acc_stop_rule_vs_full,ci95_lo,ci95_hi
+ouro-1.4b,gsm8k,full,decode,200,0.0,0.005,0.835,0.835,0,0,,,
+ouro-1.4b,gsm8k,last,convert,200,0.145,0.895,0.0,0.0,0,29,-0.835,-0.885,-0.785
+ouro-1.4b,math500,full,decode,200,0.005,0.02,0.71,0.71,0,1,,,
+ouro-1.4b,math500,last,convert,200,0.48,0.685,0.015,0.01,0,96,-0.7,-0.76,-0.635
+ouro-2.6b,gsm8k,full,decode,200,0.0,0.0,0.88,0.88,0,0,,,
+ouro-2.6b,gsm8k,last,convert,200,0.0,0.04,0.77,0.77,0,0,-0.11,-0.17,-0.055
+ouro-2.6b,math500,full,decode,200,0.015,0.09,0.56,0.56,0,3,,,
+ouro-2.6b,math500,last,convert,200,0.26,0.865,0.035,0.04,1,51,-0.52,-0.59,-0.45

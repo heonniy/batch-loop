@@ -1,0 +1,231 @@
+{
+ "model": "ouro-1.4b",
+ "dtype": "bfloat16",
+ "source_sha": "12b7ea50127b87de89e84df9b675f404e6595fd4",
+ "gpu": {
+  "host": "henn-0",
+  "cuda_visible_devices": "2",
+  "name": "NVIDIA H200",
+  "uuid": "9d1efd41-3a8a-196e-690e-4e0463a802e9",
+  "total_mem": 150109880320
+ },
+ "items": [
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0868",
+   "full": {
+    "correct": true,
+    "n": 130,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 512,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-1208",
+   "full": {
+    "correct": true,
+    "n": 70,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 512,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0029",
+   "full": {
+    "correct": true,
+    "n": 78,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 512,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0365",
+   "full": {
+    "correct": true,
+    "n": 56,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 512,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0245",
+   "full": {
+    "correct": true,
+    "n": 119,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 512,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0978",
+   "full": {
+    "correct": true,
+    "n": 95,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 512,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/number_theory/978.json",
+   "full": {
+    "correct": true,
+    "n": 396,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/algebra/1934.json",
+   "full": {
+    "correct": true,
+    "n": 421,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/intermediate_algebra/1410.json",
+   "full": {
+    "correct": true,
+    "n": 373,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/prealgebra/2019.json",
+   "full": {
+    "correct": true,
+    "n": 216,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/counting_and_probability/23957.json",
+   "full": {
+    "correct": true,
+    "n": 330,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 11,
+    "finish": "stop_string",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/precalculus/989.json",
+   "full": {
+    "correct": true,
+    "n": 507,
+    "finish": "stop_string",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  }
+ ],
+ "wall_s": 909.4848461151123
+}

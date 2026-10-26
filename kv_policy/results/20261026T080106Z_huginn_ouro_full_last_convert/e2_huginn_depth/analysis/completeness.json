@@ -1,0 +1,205 @@
+{
+ "grader_sha256": "c188871fe74c11f570c0f8fba27527dd6cc82c51a0e5d3af3441813de0e9fc79",
+ "n_gen_records": 2400,
+ "n_nll_records": 2400,
+ "jobs_finished": 900,
+ "failed_jobs": [],
+ "gen_cells": [
+  {
+   "model": "huginn-0125-r16",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r16",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r16",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r16",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r4",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r4",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r4",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r4",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r8",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r8",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r8",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r8",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  }
+ ],
+ "gen_incomplete_cells": [],
+ "nll_cells": [
+  {
+   "model": "huginn-0125-r16",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r16",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r16",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r16",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r4",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r4",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r4",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r4",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r8",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r8",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r8",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125-r8",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "convert",
+   "count": 200,
+   "nunique": 200
+  }
+ ],
+ "nll_incomplete_cells": []
+}

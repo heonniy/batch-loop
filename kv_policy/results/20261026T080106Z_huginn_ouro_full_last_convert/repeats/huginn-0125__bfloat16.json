@@ -1,0 +1,285 @@
+{
+ "model": "huginn-0125",
+ "dtype": "bfloat16",
+ "source_sha": "12b7ea50127b87de89e84df9b675f404e6595fd4",
+ "gpu": {
+  "host": "henn-0",
+  "cuda_visible_devices": "0",
+  "name": "NVIDIA H200",
+  "uuid": "6b56b49e-2472-9e55-7d0a-74a087b4132e",
+  "total_mem": 150109880320
+ },
+ "items": [
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0982",
+   "full": {
+    "correct": false,
+    "n": 88,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 79,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0727",
+   "full": {
+    "correct": false,
+    "n": 129,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 129,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0103",
+   "full": {
+    "correct": false,
+    "n": 52,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": true,
+    "n": 61,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0118",
+   "full": {
+    "correct": false,
+    "n": 73,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": true,
+    "n": 78,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-1312",
+   "full": {
+    "correct": false,
+    "n": 108,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": true,
+    "n": 139,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-0503",
+   "full": {
+    "correct": false,
+    "n": 58,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 58,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "gsm8k",
+   "uid": "gsm8k-test-1160",
+   "full": {
+    "correct": false,
+    "n": 68,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": true,
+    "n": 98,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/counting_and_probability/803.json",
+   "full": {
+    "correct": true,
+    "n": 191,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 201,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/algebra/873.json",
+   "full": {
+    "correct": false,
+    "n": 101,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 168,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/number_theory/1185.json",
+   "full": {
+    "correct": false,
+    "n": 198,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/prealgebra/1646.json",
+   "full": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/algebra/1529.json",
+   "full": {
+    "correct": false,
+    "n": 76,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 76,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/algebra/1814.json",
+   "full": {
+    "correct": true,
+    "n": 207,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": false
+   },
+   "last": {
+    "correct": true,
+    "n": 209,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/prealgebra/846.json",
+   "full": {
+    "correct": false,
+    "n": 102,
+    "finish": "eos",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": true,
+    "n": 159,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": true
+   }
+  },
+  {
+   "dataset": "math500",
+   "uid": "test/algebra/1339.json",
+   "full": {
+    "correct": false,
+    "n": 2048,
+    "finish": "length",
+    "batched_correct": false,
+    "identical_to_batched": true
+   },
+   "last": {
+    "correct": false,
+    "n": 179,
+    "finish": "eos",
+    "batched_correct": true,
+    "identical_to_batched": false
+   }
+  }
+ ],
+ "wall_s": 1328.4661900997162
+}

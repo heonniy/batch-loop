@@ -1,0 +1,13 @@
+model,dataset,policy,mode,n,degenerate_rate,hit_max_tokens_rate,acc_main,acc_stop_rule,answered_then_degenerated,degenerated_without_correct_answer,delta_acc_stop_rule_vs_full,ci95_lo,ci95_hi
+huginn-0125-r16,gsm8k,full,decode,200,0.0,0.03,0.425,0.425,0,0,,,
+huginn-0125-r16,gsm8k,last,convert,200,0.0,0.01,0.39,0.39,0,0,-0.035,-0.085,0.015
+huginn-0125-r16,math500,full,decode,200,0.06,0.23,0.14,0.14,0,12,,,
+huginn-0125-r16,math500,last,convert,200,0.06,0.26,0.15,0.15,0,12,0.01,-0.03,0.05
+huginn-0125-r4,gsm8k,full,decode,200,0.005,0.22,0.005,0.005,0,1,,,
+huginn-0125-r4,gsm8k,last,convert,200,0.0,0.155,0.06,0.06,0,0,0.055,0.02,0.09
+huginn-0125-r4,math500,full,decode,200,0.055,0.68,0.015,0.015,0,11,,,
+huginn-0125-r4,math500,last,convert,200,0.05,0.545,0.02,0.02,0,10,0.005,-0.02,0.03
+huginn-0125-r8,gsm8k,full,decode,200,0.0,0.08,0.14,0.14,0,0,,,
+huginn-0125-r8,gsm8k,last,convert,200,0.0,0.01,0.32,0.32,0,0,0.18,0.115,0.245
+huginn-0125-r8,math500,full,decode,200,0.05,0.41,0.055,0.055,0,10,,,
+huginn-0125-r8,math500,last,convert,200,0.075,0.28,0.115,0.115,0,15,0.06,0.02,0.105

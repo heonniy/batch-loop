@@ -1,0 +1,5 @@
+model,dataset,policy,mode,identical_rate,q25_first_divergence,median_first_divergence,q75_first_divergence,frac_diverged_within_16
+ouro-1.4b,gsm8k,last,convert,0.0,2.0,3.0,4.0,1.0
+ouro-1.4b,math500,last,convert,0.0,3.0,5.0,8.0,0.95
+ouro-2.6b,gsm8k,last,convert,0.04,6.0,13.0,27.25,0.525
+ouro-2.6b,math500,last,convert,0.005,2.0,4.0,7.0,0.915
