@@ -25,8 +25,11 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-dir", required=True)
     ap.add_argument("--models", default=",".join(MODELS))
+    ap.add_argument("--policies", default=",".join(f"{p}-{m}" for p, m in QUALITY_POLICIES),
+                    help="comma-separated policy-mode pairs, e.g. full-decode,last-convert")
     args = ap.parse_args()
     run = Path(args.run_dir)
+    policies = [tuple(x.split("-")) for x in args.policies.split(",")]
     (run / "prompts").mkdir(parents=True, exist_ok=True)
     jobs, subsets = [], {}
     for mk in args.models.split(","):
@@ -45,7 +48,7 @@ def main():
             nb = len(batches(items))
             longest = max(len(it["prompt_ids"]) for it in items)
             for task in TASKS:
-                for pol, mode in QUALITY_POLICIES:
+                for pol, mode in policies:
                     for b in range(nb):
                         cost = (longest if mode == "strict" else longest / 20) + (
                             1024 if ds == "math500" else 256)
@@ -61,7 +64,7 @@ def main():
                          cwd=Path(__file__).resolve().parents[2]).stdout.strip()
     (run / "run_manifest.json").write_text(json.dumps(
         {"source_sha": git, "command": " ".join(sys.argv), "n_jobs": len(jobs),
-         "batch_size": BATCH_SIZE, "policies": QUALITY_POLICIES,
+         "batch_size": BATCH_SIZE, "policies": policies,
          "models": {k: MODELS[k].__dict__ for k in args.models.split(",")}, "environment": environment()},
         indent=1))
     print(f"{len(jobs)} jobs -> {run}")
