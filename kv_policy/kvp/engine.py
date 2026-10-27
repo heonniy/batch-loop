@@ -48,7 +48,7 @@ import torch.nn.functional as F
 class PolicyKV:
     def __init__(self, policy: str, R: int, n_rec: int, n_plain: int, B: int, H: int, T: int, D: int,
                  dtype, device, region_start: int):
-        if policy not in ("full", "last", "average"):
+        if policy not in ("full", "last", "first", "average"):
             raise ValueError(policy)
         self.policy, self.R, self.region_start = policy, R, region_start
         self.rk = [torch.zeros(R, B, H, T, D, dtype=dtype, device=device) for _ in range(n_rec)]
@@ -76,8 +76,8 @@ class PolicyKV:
             return
         for kbuf, vbuf in zip(self.rk, self.rv):
             for buf in (kbuf, vbuf):
-                if self.policy == "last":
-                    ver = buf[self.R - 1, :, :, c]
+                if self.policy in ("last", "first"):
+                    ver = buf[self.R - 1 if self.policy == "last" else 0, :, :, c]
                 else:
                     ver = buf[:, :, :, c].to(torch.promote_types(buf.dtype, torch.float32)).mean(0).to(buf.dtype)
                 buf[:, :, :, c] = ver.unsqueeze(0)
@@ -88,8 +88,8 @@ class PolicyKV:
             return
         for kbuf, vbuf in zip(self.rk, self.rv):
             for buf in (kbuf, vbuf):
-                if self.policy == "last":
-                    ver = buf[self.R - 1, :, :, :P]
+                if self.policy in ("last", "first"):
+                    ver = buf[self.R - 1 if self.policy == "last" else 0, :, :, :P]
                 else:
                     ver = buf[:, :, :, :P].to(torch.promote_types(buf.dtype, torch.float32)).mean(0).to(buf.dtype)
                 buf[:, :, :, :P] = ver.unsqueeze(0)
@@ -148,8 +148,8 @@ class CompactPolicyKV(PolicyKV):
         for i in range(len(self.rk)):
             for planes, plane in ((self.rk, self.ck), (self.rv, self.cv)):
                 buf = planes[i][:, :, :, :P]
-                if self.policy == "last":
-                    ver = buf[self.R - 1]
+                if self.policy in ("last", "first"):
+                    ver = buf[self.R - 1 if self.policy == "last" else 0]
                 else:
                     ver = buf.to(torch.promote_types(buf.dtype, torch.float32)).mean(0).to(buf.dtype)
                 plane[i][:, :, :P] = ver
@@ -163,8 +163,8 @@ class CompactPolicyKV(PolicyKV):
         g = c - self.offset
         for sk, sv, ck, cv in zip(self.sk, self.sv, self.ck, self.cv):
             for scratch, plane in ((sk, ck), (sv, cv)):
-                if self.policy == "last":
-                    ver = scratch[self.R - 1]
+                if self.policy in ("last", "first"):
+                    ver = scratch[self.R - 1 if self.policy == "last" else 0]
                 else:
                     ver = scratch.to(torch.promote_types(scratch.dtype, torch.float32)).mean(0).to(scratch.dtype)
                 plane[:, :, g: g + 1] = ver
