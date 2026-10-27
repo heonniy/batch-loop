@@ -23,12 +23,12 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 PARENT = HERE.parent
 MODELS = "huginn-0125,ouro-1.4b,ouro-2.6b"
-POLICIES = "full-decode,full-strict,last-strict"
+POLICIES = "full-decode,full-strict,last-strict,first-strict"
 
 
 def validate(run: Path) -> dict:
     jobs = json.loads((run / "jobs.json").read_text())
-    expected = {("full", "decode"), ("full", "strict"), ("last", "strict")}
+    expected = {("full", "decode"), ("full", "strict"), ("last", "strict"), ("first", "strict")}
     got = {(j["policy"], j["mode"]) for j in jobs}
     if got != expected:
         raise RuntimeError(f"Unexpected policies: {got}")
@@ -60,7 +60,7 @@ def main():
         subprocess.run(cmd, cwd=PARENT, check=True)
     else:
         manifest = json.loads((run / "run_manifest.json").read_text())
-        if manifest.get("policies") != [list(x) for x in [("full", "decode"), ("full", "strict"), ("last", "strict")]]:
+        if manifest.get("policies") != [list(x) for x in [("full", "decode"), ("full", "strict"), ("last", "strict"), ("first", "strict")]]:
             raise SystemExit("Existing run has a different policy manifest: refusing to reuse.")
     if args.execute:
         processes = []
