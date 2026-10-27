@@ -26,8 +26,8 @@ class _DictPolicyStore:
             return slots[r]
         if pos < self.region_start or self.policy == "full" or pos in self.keep:
             return slots[r]
-        if self.policy == "last":
-            return slots[self.R - 1]
+        if self.policy in ("last", "first"):
+            return slots[self.R - 1 if self.policy == "last" else 0]
         ks = torch.stack([slots[i][0] for i in range(self.R)]).double().mean(0)
         vs = torch.stack([slots[i][1] for i in range(self.R)]).double().mean(0)
         dt = slots[0][0].dtype
