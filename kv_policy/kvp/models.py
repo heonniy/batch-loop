@@ -28,7 +28,9 @@ def make_runner(spec, tok, model) -> Runner:
     else:
         bb = HuginnBackbone(model, spec.native_depth, noise_seed=SELECTION_SEED)
         pad = model.config.pad_token_id
-    return Runner(bb, pad)
+    run = Runner(bb, pad)
+    run.model_key = spec.key
+    return run
 
 
 def eos_ids(spec, tok, model) -> set[int]:

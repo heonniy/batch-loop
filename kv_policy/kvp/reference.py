@@ -11,15 +11,19 @@ import torch
 
 
 class _DictPolicyStore:
-    def __init__(self, policy: str, R: int, region_start: int, keep: frozenset = frozenset()):
+    def __init__(self, policy: str, R: int, region_start: int, keep: frozenset = frozenset(),
+                 banks: frozenset = frozenset()):
         self.policy, self.R, self.region_start = policy, R, region_start
         self.keep = keep  # positions that keep their per-loop versions (restoration oracle)
+        self.banks = banks  # (layer, loop) banks that keep per-loop versions for every position
         self.entries: dict = {}  # (kind, layer) -> {pos: {loop: (k, v)}}
         self.p0 = 0  # number of tokens fully processed before the current forward call
 
-    def _history_version(self, slots: dict, pos: int, r: int, kind: str):
+    def _history_version(self, slots: dict, pos: int, r: int, kind: str, layer: int = -1):
         if kind == "plain":
             return slots[0]
+        if (layer, r) in self.banks:
+            return slots[r]
         if pos < self.region_start or self.policy == "full" or pos in self.keep:
             return slots[r]
         if self.policy == "last":
@@ -35,7 +39,7 @@ class _DictPolicyStore:
         S = k.shape[2]
         for i in range(S):
             table.setdefault(self.p0 + i, {})[r] = (k[:, :, i], v[:, :, i])
-        hist = [self._history_version(table[p], p, r, kind) for p in range(self.p0)]
+        hist = [self._history_version(table[p], p, r, kind, layer) for p in range(self.p0)]
         hk = [h[0] for h in hist] + [k[:, :, i] for i in range(S)]
         hv = [h[1] for h in hist] + [v[:, :, i] for i in range(S)]
         return torch.stack(hk, dim=2), torch.stack(hv, dim=2)
@@ -76,7 +80,8 @@ class HuginnRefCache:
 
 @torch.inference_mode()
 def reference_logits(model, family: str, R: int, prompt: list[int], cont: list[int], policy: str,
-                     mode: str, noise: torch.Tensor | None = None, keep: frozenset = frozenset()) -> torch.Tensor:
+                     mode: str, noise: torch.Tensor | None = None, keep: frozenset = frozenset(),
+                     banks: frozenset = frozenset()) -> torch.Tensor:
     """Native-forward logits for every position of prompt+cont under (policy, mode).
     mode "decode":  prompt in one parallel call, policy region = continuation.
     mode "convert": prompt in one parallel call, policy region = everything (the prompt's per-loop
@@ -84,7 +89,7 @@ def reference_logits(model, family: str, R: int, prompt: list[int], cont: list[i
     mode "strict":  every token in its own call, policy region = everything."""
     dev = next(model.parameters()).device
     P = len(prompt)
-    store = _DictPolicyStore(policy, R, P if mode == "decode" else 0, keep)
+    store = _DictPolicyStore(policy, R, P if mode == "decode" else 0, keep, banks)
     if family == "ouro":
         cache = OuroRefCache(store, model.config.num_hidden_layers)
     else:

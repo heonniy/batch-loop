@@ -25,6 +25,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-dir", required=True)
     ap.add_argument("--models", default=",".join(MODELS))
+    ap.add_argument("--batching", default="main", help="main | pilot (Stage-1 32+32 selection)")
     ap.add_argument("--policies", default=",".join(f"{p}-{m}" for p, m in QUALITY_POLICIES),
                     help="comma-separated policy-mode pairs, e.g. full-decode,last-convert")
     args = ap.parse_args()
@@ -36,7 +37,7 @@ def main():
         spec = MODELS[mk]
         tok = AutoTokenizer.from_pretrained(spec.repo, revision=spec.revision, trust_remote_code=True)
         for ds in DATASETS:
-            items, meta = prepare_items(mk, ds, tok)
+            items, meta = prepare_items(mk, ds, tok, args.batching)
             subsets[ds] = meta["dataset_meta"]
             with open(run / "prompts" / f"{mk}__{ds}.jsonl", "w") as f:
                 f.write(json.dumps({"protocol": meta["protocol"], "batch_size": BATCH_SIZE[ds]}) + "\n")
@@ -54,7 +55,8 @@ def main():
                             1024 if ds == "math500" else 256)
                         cost *= {"huginn": 1.6, "ouro": 1.0}[spec.family] * (2 if mk == "ouro-2.6b" else 1)
                         jobs.append({"model": mk, "dataset": ds, "task": task, "policy": pol, "mode": mode,
-                                     "batch": b, "est_cost": round(cost, 1)})
+                                     "batch": b, "est_cost": round(cost, 1)}
+                                    | ({"batching": args.batching} if args.batching != "main" else {}))
     rng = random.Random(20261022)
     rng.shuffle(jobs)  # randomise GPU<->(model, policy) pairing; workers then claim dynamically
     jobs.sort(key=lambda j: -j["est_cost"])  # stable: long jobs first, shuffled within ties

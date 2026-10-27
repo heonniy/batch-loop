@@ -351,7 +351,14 @@ class Runner:
         if mode not in ("decode", "strict", "convert"):
             raise ValueError(mode)
         region = P if mode == "decode" else 0
-        if self.store == "compact" and policy != "full":
+        if policy.startswith("bank"):  # E3 selective (layer x step) protection, see kvp.banks
+            from .banks import REGISTRY, BankKV
+
+            if mode != "convert":
+                raise ValueError("bank policies are defined for mode 'convert'")
+            kv = BankKV(REGISTRY[(getattr(self, "model_key", None), policy)], self.bb.R, self.bb.n_rec, self.bb.n_plain,
+                        B, self.bb.H, T, self.bb.D, self.dtype, self.device)
+        elif self.store == "compact" and policy != "full":
             kv = CompactPolicyKV(policy, self.bb.R, self.bb.n_rec, self.bb.n_plain, B, self.bb.H, T, self.bb.D,
                                  self.dtype, self.device, region, prefill_cols=P if mode != "strict" else 0)
         else:

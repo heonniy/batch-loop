@@ -27,6 +27,7 @@ QUALITY_POLICIES = [("full", "decode"), ("last", "convert"), ("average", "conver
 # parallel prefill): FULL/strict isolates the numerical path of strict cells; FULL/decode with an
 # alternative seeded batch composition measures the bf16 batch-shape noise floor.
 CONTROL_CELLS = []
+PILOT_SELECTION = Path(__file__).resolve().parents[1] / "results/20261023T075134Z_huginn_r32_oracle_stage1/parity/selection.json"
 
 
 SOURCE_SHA = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True,
@@ -53,6 +54,9 @@ def prepare_items(model_key: str, dataset: str, tok, batching: str = "main") -> 
             tgt_ids, tgt_mode = tok.encode(target, add_special_tokens=False), "separate"
         items.append({"uid": d["uid"], "doc": d, "prompt": text, "prompt_ids": ids, "target": target,
                       "target_ids": tgt_ids, "target_tokenization": tgt_mode})
+    if batching == "pilot":  # Stage-1 stratified 32-item selection per dataset (diagnosis pilots)
+        sel = set(json.loads(PILOT_SELECTION.read_text())[dataset])
+        items = [it for it in items if it["uid"] in sel]
     # deterministic, policy-independent batch composition: longest prompts first, chunks of B
     order = sorted(range(len(items)), key=lambda i: (-len(items[i]["prompt_ids"]), items[i]["uid"]))
     if batching == "alt":  # same items, seeded random composition (control only)
@@ -94,6 +98,11 @@ class ModelContext:
 
 def run_job(ctx: ModelContext, job: dict, out_dir: Path) -> dict:
     dataset, task, policy, mode, b = job["dataset"], job["task"], job["policy"], job["mode"], job["batch"]
+    if policy.startswith("bank"):
+        from .banks import REGISTRY, load_registry
+
+        if (ctx.key, policy) not in REGISTRY:
+            load_registry(out_dir.parent / "banks.json")
     batching = job.get("batching", "main")
     items, meta = ctx.dataset(dataset, batching)
     batch = batches(items)[b]
