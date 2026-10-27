@@ -25,7 +25,7 @@ import pandas as pd
 BOOT = 10000
 SEED = 20261022
 ORDER = [("full", "decode"), ("last", "convert"), ("average", "convert"), ("last", "decode"), ("average", "decode"),
-         ("last", "strict"), ("average", "strict"), ("full", "strict"), ("full_altbatch", "decode")]
+         ("last", "strict"), ("first", "strict"), ("average", "strict"), ("full", "strict"), ("full_altbatch", "decode")]
 # strict cells are additionally compared against the FULL/strict numerical-path control
 STRICT_BASE = ("full", "strict")
 
