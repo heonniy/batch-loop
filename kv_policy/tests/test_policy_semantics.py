@@ -67,7 +67,7 @@ def tiny(request):
     return request.param, *_tiny(request.param, 3)
 
 
-@pytest.mark.parametrize("policy", ["full", "last", "average"])
+@pytest.mark.parametrize("policy", ["full", "last", "first", "average"])
 @pytest.mark.parametrize("mode", ["decode", "convert", "strict"])
 def test_engine_matches_reference(tiny, policy, mode):
     family, model, run = tiny
@@ -94,8 +94,8 @@ def test_policies_actually_differ(tiny):
 def test_single_loop_all_policies_equal():
     for family in ("ouro", "huginn"):
         model, run = _tiny(family, 1)
-        outs = [run.teacher_forced_logits(PROMPT, CONT, "u", p, "strict") for p in ("full", "last", "average")]
-        assert torch.allclose(outs[0], outs[1], atol=1e-12) and torch.allclose(outs[0], outs[2], atol=1e-12)
+        outs = [run.teacher_forced_logits(PROMPT, CONT, "u", p, "strict") for p in ("full", "last", "first", "average")]
+        assert all(torch.allclose(outs[0], out, atol=1e-12) for out in outs[1:])
 
 
 def test_strict_full_equals_decode_full(tiny):
@@ -105,7 +105,7 @@ def test_strict_full_equals_decode_full(tiny):
     assert torch.allclose(a, b, atol=1e-9)
 
 
-@pytest.mark.parametrize("policy", ["full", "last", "average"])
+@pytest.mark.parametrize("policy", ["full", "last", "first", "average"])
 def test_no_future_leakage(tiny, policy):
     family, model, run = tiny
     a = run.teacher_forced_logits(PROMPT, CONT, "u", policy, "strict")
@@ -114,7 +114,7 @@ def test_no_future_leakage(tiny, policy):
     assert torch.allclose(a[:n], b[:n], atol=1e-12)
 
 
-@pytest.mark.parametrize("policy", ["full", "last", "average"])
+@pytest.mark.parametrize("policy", ["full", "last", "first", "average"])
 @pytest.mark.parametrize("mode", ["decode", "convert", "strict"])
 def test_batched_left_padding_matches_b1(tiny, policy, mode):
     """Positions/masks: a short prompt left-padded in a batch must equal its B=1 run."""
@@ -193,3 +193,15 @@ def test_convert_buffer_holds_single_version(tiny):
     for kb in kv.rk:
         for r in range(run.bb.R):
             assert torch.equal(kb[r, :, :, :P], kb[run.bb.R - 1, :, :, :P])
+
+
+def test_first_strict_writes_first_loop_kv(tiny):
+    """Every completed prompt token retains loop-0 K/V across all recurrence read planes."""
+    family, model, run = tiny
+    ids, pos, valid, kv, aux, P, T = run._setup([PROMPT], 2, "first", "strict", ["u"])
+    with torch.inference_mode():
+        run._prefill(ids, pos, valid, kv, aux, P, "strict")
+    for kb, vb in zip(kv.rk, kv.rv):
+        for r in range(1, run.bb.R):
+            assert torch.equal(kb[r, :, :, :P], kb[0, :, :, :P])
+            assert torch.equal(vb[r, :, :, :P], vb[0, :, :, :P])
