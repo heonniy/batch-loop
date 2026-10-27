@@ -1,0 +1,11 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 1586.20it/s]
+[Task: kvp_math500_minerva] metric exact_match is defined, but aggregation is not. using default aggregation=mean
+[Task: kvp_math500_minerva] metric exact_match is defined, but higher_is_better is not. using default higher_is_better=True
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files:  14%|█▍        | 1/7 [00:00<00:01,  5.11it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 35.66it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 35.61it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 35.57it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 35.52it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 35.48it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 35.45it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 35.38it/s]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:45<02:15, 45.18s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:52<01:56, 58.31s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [03:00<01:02, 62.58s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:20<00:00, 45.70s/it]Loading checkpoint shards: 100%|██████████| 4/4 [03:20<00:00, 50.04s/it]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 909.09it/s]
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 1616.48it/s]
+Fetching 4 files:   0%|          | 0/4 [00:00<?, ?it/s]Fetching 4 files: 100%|██████████| 4/4 [00:00<00:00, 1255.87it/s]
+Fetching 7 files:   0%|          | 0/7 [00:00<?, ?it/s]Fetching 7 files: 100%|██████████| 7/7 [00:00<00:00, 2366.99it/s]

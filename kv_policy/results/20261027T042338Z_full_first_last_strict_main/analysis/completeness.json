@@ -1,0 +1,397 @@
+{
+ "grader_sha256": "c188871fe74c11f570c0f8fba27527dd6cc82c51a0e5d3af3441813de0e9fc79",
+ "n_gen_records": 4800,
+ "n_nll_records": 4800,
+ "jobs_finished": 1800,
+ "failed_jobs": [],
+ "gen_cells": [
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "math500",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "math500",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  }
+ ],
+ "gen_incomplete_cells": [],
+ "nll_cells": [
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "math500",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "math500",
+   "policy": "first",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "strict",
+   "count": 200,
+   "nunique": 200
+  }
+ ],
+ "nll_incomplete_cells": []
+}

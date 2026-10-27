@@ -1,0 +1,801 @@
+family,policy,event,query_tokens,layer,recurrence,hist_token,version_read
+ouro,full/decode,write,AB,0,1,A,"r1 (own, written)"
+ouro,full/decode,write,AB,0,1,B,"r1 (own, written)"
+ouro,full/decode,read_within_call,B,0,1,A,r1
+ouro,full/decode,write,AB,1,1,A,"r1 (own, written)"
+ouro,full/decode,write,AB,1,1,B,"r1 (own, written)"
+ouro,full/decode,read_within_call,B,1,1,A,r1
+ouro,full/decode,write,AB,0,2,A,"r2 (own, written)"
+ouro,full/decode,write,AB,0,2,B,"r2 (own, written)"
+ouro,full/decode,read_within_call,B,0,2,A,r2
+ouro,full/decode,write,AB,1,2,A,"r2 (own, written)"
+ouro,full/decode,write,AB,1,2,B,"r2 (own, written)"
+ouro,full/decode,read_within_call,B,1,2,A,r2
+ouro,full/decode,write,AB,0,3,A,"r3 (own, written)"
+ouro,full/decode,write,AB,0,3,B,"r3 (own, written)"
+ouro,full/decode,read_within_call,B,0,3,A,r3
+ouro,full/decode,write,AB,1,3,A,"r3 (own, written)"
+ouro,full/decode,write,AB,1,3,B,"r3 (own, written)"
+ouro,full/decode,read_within_call,B,1,3,A,r3
+ouro,full/decode,write,AB,0,4,A,"r4 (own, written)"
+ouro,full/decode,write,AB,0,4,B,"r4 (own, written)"
+ouro,full/decode,read_within_call,B,0,4,A,r4
+ouro,full/decode,write,AB,1,4,A,"r4 (own, written)"
+ouro,full/decode,write,AB,1,4,B,"r4 (own, written)"
+ouro,full/decode,read_within_call,B,1,4,A,r4
+ouro,full/decode,write,C,0,1,C,"r1 (own, written)"
+ouro,full/decode,read,C,0,1,A,r1
+ouro,full/decode,read,C,0,1,B,r1
+ouro,full/decode,write,C,1,1,C,"r1 (own, written)"
+ouro,full/decode,read,C,1,1,A,r1
+ouro,full/decode,read,C,1,1,B,r1
+ouro,full/decode,write,C,0,2,C,"r2 (own, written)"
+ouro,full/decode,read,C,0,2,A,r2
+ouro,full/decode,read,C,0,2,B,r2
+ouro,full/decode,write,C,1,2,C,"r2 (own, written)"
+ouro,full/decode,read,C,1,2,A,r2
+ouro,full/decode,read,C,1,2,B,r2
+ouro,full/decode,write,C,0,3,C,"r3 (own, written)"
+ouro,full/decode,read,C,0,3,A,r3
+ouro,full/decode,read,C,0,3,B,r3
+ouro,full/decode,write,C,1,3,C,"r3 (own, written)"
+ouro,full/decode,read,C,1,3,A,r3
+ouro,full/decode,read,C,1,3,B,r3
+ouro,full/decode,write,C,0,4,C,"r4 (own, written)"
+ouro,full/decode,read,C,0,4,A,r4
+ouro,full/decode,read,C,0,4,B,r4
+ouro,full/decode,write,C,1,4,C,"r4 (own, written)"
+ouro,full/decode,read,C,1,4,A,r4
+ouro,full/decode,read,C,1,4,B,r4
+ouro,full/decode,write,D,0,1,D,"r1 (own, written)"
+ouro,full/decode,read,D,0,1,A,r1
+ouro,full/decode,read,D,0,1,B,r1
+ouro,full/decode,read,D,0,1,C,r1
+ouro,full/decode,write,D,1,1,D,"r1 (own, written)"
+ouro,full/decode,read,D,1,1,A,r1
+ouro,full/decode,read,D,1,1,B,r1
+ouro,full/decode,read,D,1,1,C,r1
+ouro,full/decode,write,D,0,2,D,"r2 (own, written)"
+ouro,full/decode,read,D,0,2,A,r2
+ouro,full/decode,read,D,0,2,B,r2
+ouro,full/decode,read,D,0,2,C,r2
+ouro,full/decode,write,D,1,2,D,"r2 (own, written)"
+ouro,full/decode,read,D,1,2,A,r2
+ouro,full/decode,read,D,1,2,B,r2
+ouro,full/decode,read,D,1,2,C,r2
+ouro,full/decode,write,D,0,3,D,"r3 (own, written)"
+ouro,full/decode,read,D,0,3,A,r3
+ouro,full/decode,read,D,0,3,B,r3
+ouro,full/decode,read,D,0,3,C,r3
+ouro,full/decode,write,D,1,3,D,"r3 (own, written)"
+ouro,full/decode,read,D,1,3,A,r3
+ouro,full/decode,read,D,1,3,B,r3
+ouro,full/decode,read,D,1,3,C,r3
+ouro,full/decode,write,D,0,4,D,"r4 (own, written)"
+ouro,full/decode,read,D,0,4,A,r4
+ouro,full/decode,read,D,0,4,B,r4
+ouro,full/decode,read,D,0,4,C,r4
+ouro,full/decode,write,D,1,4,D,"r4 (own, written)"
+ouro,full/decode,read,D,1,4,A,r4
+ouro,full/decode,read,D,1,4,B,r4
+ouro,full/decode,read,D,1,4,C,r4
+ouro,full/strict,write,A,0,1,A,"r1 (own, written)"
+ouro,full/strict,write,A,1,1,A,"r1 (own, written)"
+ouro,full/strict,write,A,0,2,A,"r2 (own, written)"
+ouro,full/strict,write,A,1,2,A,"r2 (own, written)"
+ouro,full/strict,write,A,0,3,A,"r3 (own, written)"
+ouro,full/strict,write,A,1,3,A,"r3 (own, written)"
+ouro,full/strict,write,A,0,4,A,"r4 (own, written)"
+ouro,full/strict,write,A,1,4,A,"r4 (own, written)"
+ouro,full/strict,write,B,0,1,B,"r1 (own, written)"
+ouro,full/strict,read,B,0,1,A,r1
+ouro,full/strict,write,B,1,1,B,"r1 (own, written)"
+ouro,full/strict,read,B,1,1,A,r1
+ouro,full/strict,write,B,0,2,B,"r2 (own, written)"
+ouro,full/strict,read,B,0,2,A,r2
+ouro,full/strict,write,B,1,2,B,"r2 (own, written)"
+ouro,full/strict,read,B,1,2,A,r2
+ouro,full/strict,write,B,0,3,B,"r3 (own, written)"
+ouro,full/strict,read,B,0,3,A,r3
+ouro,full/strict,write,B,1,3,B,"r3 (own, written)"
+ouro,full/strict,read,B,1,3,A,r3
+ouro,full/strict,write,B,0,4,B,"r4 (own, written)"
+ouro,full/strict,read,B,0,4,A,r4
+ouro,full/strict,write,B,1,4,B,"r4 (own, written)"
+ouro,full/strict,read,B,1,4,A,r4
+ouro,full/strict,write,C,0,1,C,"r1 (own, written)"
+ouro,full/strict,read,C,0,1,A,r1
+ouro,full/strict,read,C,0,1,B,r1
+ouro,full/strict,write,C,1,1,C,"r1 (own, written)"
+ouro,full/strict,read,C,1,1,A,r1
+ouro,full/strict,read,C,1,1,B,r1
+ouro,full/strict,write,C,0,2,C,"r2 (own, written)"
+ouro,full/strict,read,C,0,2,A,r2
+ouro,full/strict,read,C,0,2,B,r2
+ouro,full/strict,write,C,1,2,C,"r2 (own, written)"
+ouro,full/strict,read,C,1,2,A,r2
+ouro,full/strict,read,C,1,2,B,r2
+ouro,full/strict,write,C,0,3,C,"r3 (own, written)"
+ouro,full/strict,read,C,0,3,A,r3
+ouro,full/strict,read,C,0,3,B,r3
+ouro,full/strict,write,C,1,3,C,"r3 (own, written)"
+ouro,full/strict,read,C,1,3,A,r3
+ouro,full/strict,read,C,1,3,B,r3
+ouro,full/strict,write,C,0,4,C,"r4 (own, written)"
+ouro,full/strict,read,C,0,4,A,r4
+ouro,full/strict,read,C,0,4,B,r4
+ouro,full/strict,write,C,1,4,C,"r4 (own, written)"
+ouro,full/strict,read,C,1,4,A,r4
+ouro,full/strict,read,C,1,4,B,r4
+ouro,full/strict,write,D,0,1,D,"r1 (own, written)"
+ouro,full/strict,read,D,0,1,A,r1
+ouro,full/strict,read,D,0,1,B,r1
+ouro,full/strict,read,D,0,1,C,r1
+ouro,full/strict,write,D,1,1,D,"r1 (own, written)"
+ouro,full/strict,read,D,1,1,A,r1
+ouro,full/strict,read,D,1,1,B,r1
+ouro,full/strict,read,D,1,1,C,r1
+ouro,full/strict,write,D,0,2,D,"r2 (own, written)"
+ouro,full/strict,read,D,0,2,A,r2
+ouro,full/strict,read,D,0,2,B,r2
+ouro,full/strict,read,D,0,2,C,r2
+ouro,full/strict,write,D,1,2,D,"r2 (own, written)"
+ouro,full/strict,read,D,1,2,A,r2
+ouro,full/strict,read,D,1,2,B,r2
+ouro,full/strict,read,D,1,2,C,r2
+ouro,full/strict,write,D,0,3,D,"r3 (own, written)"
+ouro,full/strict,read,D,0,3,A,r3
+ouro,full/strict,read,D,0,3,B,r3
+ouro,full/strict,read,D,0,3,C,r3
+ouro,full/strict,write,D,1,3,D,"r3 (own, written)"
+ouro,full/strict,read,D,1,3,A,r3
+ouro,full/strict,read,D,1,3,B,r3
+ouro,full/strict,read,D,1,3,C,r3
+ouro,full/strict,write,D,0,4,D,"r4 (own, written)"
+ouro,full/strict,read,D,0,4,A,r4
+ouro,full/strict,read,D,0,4,B,r4
+ouro,full/strict,read,D,0,4,C,r4
+ouro,full/strict,write,D,1,4,D,"r4 (own, written)"
+ouro,full/strict,read,D,1,4,A,r4
+ouro,full/strict,read,D,1,4,B,r4
+ouro,full/strict,read,D,1,4,C,r4
+ouro,last/strict,write,A,0,1,A,"r1 (own, written)"
+ouro,last/strict,write,A,1,1,A,"r1 (own, written)"
+ouro,last/strict,write,A,0,2,A,"r2 (own, written)"
+ouro,last/strict,write,A,1,2,A,"r2 (own, written)"
+ouro,last/strict,write,A,0,3,A,"r3 (own, written)"
+ouro,last/strict,write,A,1,3,A,"r3 (own, written)"
+ouro,last/strict,write,A,0,4,A,"r4 (own, written)"
+ouro,last/strict,write,A,1,4,A,"r4 (own, written)"
+ouro,last/strict,write,B,0,1,B,"r1 (own, written)"
+ouro,last/strict,read,B,0,1,A,r4
+ouro,last/strict,write,B,1,1,B,"r1 (own, written)"
+ouro,last/strict,read,B,1,1,A,r4
+ouro,last/strict,write,B,0,2,B,"r2 (own, written)"
+ouro,last/strict,read,B,0,2,A,r4
+ouro,last/strict,write,B,1,2,B,"r2 (own, written)"
+ouro,last/strict,read,B,1,2,A,r4
+ouro,last/strict,write,B,0,3,B,"r3 (own, written)"
+ouro,last/strict,read,B,0,3,A,r4
+ouro,last/strict,write,B,1,3,B,"r3 (own, written)"
+ouro,last/strict,read,B,1,3,A,r4
+ouro,last/strict,write,B,0,4,B,"r4 (own, written)"
+ouro,last/strict,read,B,0,4,A,r4
+ouro,last/strict,write,B,1,4,B,"r4 (own, written)"
+ouro,last/strict,read,B,1,4,A,r4
+ouro,last/strict,write,C,0,1,C,"r1 (own, written)"
+ouro,last/strict,read,C,0,1,A,r4
+ouro,last/strict,read,C,0,1,B,r4
+ouro,last/strict,write,C,1,1,C,"r1 (own, written)"
+ouro,last/strict,read,C,1,1,A,r4
+ouro,last/strict,read,C,1,1,B,r4
+ouro,last/strict,write,C,0,2,C,"r2 (own, written)"
+ouro,last/strict,read,C,0,2,A,r4
+ouro,last/strict,read,C,0,2,B,r4
+ouro,last/strict,write,C,1,2,C,"r2 (own, written)"
+ouro,last/strict,read,C,1,2,A,r4
+ouro,last/strict,read,C,1,2,B,r4
+ouro,last/strict,write,C,0,3,C,"r3 (own, written)"
+ouro,last/strict,read,C,0,3,A,r4
+ouro,last/strict,read,C,0,3,B,r4
+ouro,last/strict,write,C,1,3,C,"r3 (own, written)"
+ouro,last/strict,read,C,1,3,A,r4
+ouro,last/strict,read,C,1,3,B,r4
+ouro,last/strict,write,C,0,4,C,"r4 (own, written)"
+ouro,last/strict,read,C,0,4,A,r4
+ouro,last/strict,read,C,0,4,B,r4
+ouro,last/strict,write,C,1,4,C,"r4 (own, written)"
+ouro,last/strict,read,C,1,4,A,r4
+ouro,last/strict,read,C,1,4,B,r4
+ouro,last/strict,write,D,0,1,D,"r1 (own, written)"
+ouro,last/strict,read,D,0,1,A,r4
+ouro,last/strict,read,D,0,1,B,r4
+ouro,last/strict,read,D,0,1,C,r4
+ouro,last/strict,write,D,1,1,D,"r1 (own, written)"
+ouro,last/strict,read,D,1,1,A,r4
+ouro,last/strict,read,D,1,1,B,r4
+ouro,last/strict,read,D,1,1,C,r4
+ouro,last/strict,write,D,0,2,D,"r2 (own, written)"
+ouro,last/strict,read,D,0,2,A,r4
+ouro,last/strict,read,D,0,2,B,r4
+ouro,last/strict,read,D,0,2,C,r4
+ouro,last/strict,write,D,1,2,D,"r2 (own, written)"
+ouro,last/strict,read,D,1,2,A,r4
+ouro,last/strict,read,D,1,2,B,r4
+ouro,last/strict,read,D,1,2,C,r4
+ouro,last/strict,write,D,0,3,D,"r3 (own, written)"
+ouro,last/strict,read,D,0,3,A,r4
+ouro,last/strict,read,D,0,3,B,r4
+ouro,last/strict,read,D,0,3,C,r4
+ouro,last/strict,write,D,1,3,D,"r3 (own, written)"
+ouro,last/strict,read,D,1,3,A,r4
+ouro,last/strict,read,D,1,3,B,r4
+ouro,last/strict,read,D,1,3,C,r4
+ouro,last/strict,write,D,0,4,D,"r4 (own, written)"
+ouro,last/strict,read,D,0,4,A,r4
+ouro,last/strict,read,D,0,4,B,r4
+ouro,last/strict,read,D,0,4,C,r4
+ouro,last/strict,write,D,1,4,D,"r4 (own, written)"
+ouro,last/strict,read,D,1,4,A,r4
+ouro,last/strict,read,D,1,4,B,r4
+ouro,last/strict,read,D,1,4,C,r4
+ouro,first/strict,write,A,0,1,A,"r1 (own, written)"
+ouro,first/strict,write,A,1,1,A,"r1 (own, written)"
+ouro,first/strict,write,A,0,2,A,"r2 (own, written)"
+ouro,first/strict,write,A,1,2,A,"r2 (own, written)"
+ouro,first/strict,write,A,0,3,A,"r3 (own, written)"
+ouro,first/strict,write,A,1,3,A,"r3 (own, written)"
+ouro,first/strict,write,A,0,4,A,"r4 (own, written)"
+ouro,first/strict,write,A,1,4,A,"r4 (own, written)"
+ouro,first/strict,write,B,0,1,B,"r1 (own, written)"
+ouro,first/strict,read,B,0,1,A,r1
+ouro,first/strict,write,B,1,1,B,"r1 (own, written)"
+ouro,first/strict,read,B,1,1,A,r1
+ouro,first/strict,write,B,0,2,B,"r2 (own, written)"
+ouro,first/strict,read,B,0,2,A,r1
+ouro,first/strict,write,B,1,2,B,"r2 (own, written)"
+ouro,first/strict,read,B,1,2,A,r1
+ouro,first/strict,write,B,0,3,B,"r3 (own, written)"
+ouro,first/strict,read,B,0,3,A,r1
+ouro,first/strict,write,B,1,3,B,"r3 (own, written)"
+ouro,first/strict,read,B,1,3,A,r1
+ouro,first/strict,write,B,0,4,B,"r4 (own, written)"
+ouro,first/strict,read,B,0,4,A,r1
+ouro,first/strict,write,B,1,4,B,"r4 (own, written)"
+ouro,first/strict,read,B,1,4,A,r1
+ouro,first/strict,write,C,0,1,C,"r1 (own, written)"
+ouro,first/strict,read,C,0,1,A,r1
+ouro,first/strict,read,C,0,1,B,r1
+ouro,first/strict,write,C,1,1,C,"r1 (own, written)"
+ouro,first/strict,read,C,1,1,A,r1
+ouro,first/strict,read,C,1,1,B,r1
+ouro,first/strict,write,C,0,2,C,"r2 (own, written)"
+ouro,first/strict,read,C,0,2,A,r1
+ouro,first/strict,read,C,0,2,B,r1
+ouro,first/strict,write,C,1,2,C,"r2 (own, written)"
+ouro,first/strict,read,C,1,2,A,r1
+ouro,first/strict,read,C,1,2,B,r1
+ouro,first/strict,write,C,0,3,C,"r3 (own, written)"
+ouro,first/strict,read,C,0,3,A,r1
+ouro,first/strict,read,C,0,3,B,r1
+ouro,first/strict,write,C,1,3,C,"r3 (own, written)"
+ouro,first/strict,read,C,1,3,A,r1
+ouro,first/strict,read,C,1,3,B,r1
+ouro,first/strict,write,C,0,4,C,"r4 (own, written)"
+ouro,first/strict,read,C,0,4,A,r1
+ouro,first/strict,read,C,0,4,B,r1
+ouro,first/strict,write,C,1,4,C,"r4 (own, written)"
+ouro,first/strict,read,C,1,4,A,r1
+ouro,first/strict,read,C,1,4,B,r1
+ouro,first/strict,write,D,0,1,D,"r1 (own, written)"
+ouro,first/strict,read,D,0,1,A,r1
+ouro,first/strict,read,D,0,1,B,r1
+ouro,first/strict,read,D,0,1,C,r1
+ouro,first/strict,write,D,1,1,D,"r1 (own, written)"
+ouro,first/strict,read,D,1,1,A,r1
+ouro,first/strict,read,D,1,1,B,r1
+ouro,first/strict,read,D,1,1,C,r1
+ouro,first/strict,write,D,0,2,D,"r2 (own, written)"
+ouro,first/strict,read,D,0,2,A,r1
+ouro,first/strict,read,D,0,2,B,r1
+ouro,first/strict,read,D,0,2,C,r1
+ouro,first/strict,write,D,1,2,D,"r2 (own, written)"
+ouro,first/strict,read,D,1,2,A,r1
+ouro,first/strict,read,D,1,2,B,r1
+ouro,first/strict,read,D,1,2,C,r1
+ouro,first/strict,write,D,0,3,D,"r3 (own, written)"
+ouro,first/strict,read,D,0,3,A,r1
+ouro,first/strict,read,D,0,3,B,r1
+ouro,first/strict,read,D,0,3,C,r1
+ouro,first/strict,write,D,1,3,D,"r3 (own, written)"
+ouro,first/strict,read,D,1,3,A,r1
+ouro,first/strict,read,D,1,3,B,r1
+ouro,first/strict,read,D,1,3,C,r1
+ouro,first/strict,write,D,0,4,D,"r4 (own, written)"
+ouro,first/strict,read,D,0,4,A,r1
+ouro,first/strict,read,D,0,4,B,r1
+ouro,first/strict,read,D,0,4,C,r1
+ouro,first/strict,write,D,1,4,D,"r4 (own, written)"
+ouro,first/strict,read,D,1,4,A,r1
+ouro,first/strict,read,D,1,4,B,r1
+ouro,first/strict,read,D,1,4,C,r1
+ouro,last/convert (contrast),write,AB,0,1,A,"r1 (own, written)"
+ouro,last/convert (contrast),write,AB,0,1,B,"r1 (own, written)"
+ouro,last/convert (contrast),read_within_call,B,0,1,A,r1
+ouro,last/convert (contrast),write,AB,1,1,A,"r1 (own, written)"
+ouro,last/convert (contrast),write,AB,1,1,B,"r1 (own, written)"
+ouro,last/convert (contrast),read_within_call,B,1,1,A,r1
+ouro,last/convert (contrast),write,AB,0,2,A,"r2 (own, written)"
+ouro,last/convert (contrast),write,AB,0,2,B,"r2 (own, written)"
+ouro,last/convert (contrast),read_within_call,B,0,2,A,r2
+ouro,last/convert (contrast),write,AB,1,2,A,"r2 (own, written)"
+ouro,last/convert (contrast),write,AB,1,2,B,"r2 (own, written)"
+ouro,last/convert (contrast),read_within_call,B,1,2,A,r2
+ouro,last/convert (contrast),write,AB,0,3,A,"r3 (own, written)"
+ouro,last/convert (contrast),write,AB,0,3,B,"r3 (own, written)"
+ouro,last/convert (contrast),read_within_call,B,0,3,A,r3
+ouro,last/convert (contrast),write,AB,1,3,A,"r3 (own, written)"
+ouro,last/convert (contrast),write,AB,1,3,B,"r3 (own, written)"
+ouro,last/convert (contrast),read_within_call,B,1,3,A,r3
+ouro,last/convert (contrast),write,AB,0,4,A,"r4 (own, written)"
+ouro,last/convert (contrast),write,AB,0,4,B,"r4 (own, written)"
+ouro,last/convert (contrast),read_within_call,B,0,4,A,r4
+ouro,last/convert (contrast),write,AB,1,4,A,"r4 (own, written)"
+ouro,last/convert (contrast),write,AB,1,4,B,"r4 (own, written)"
+ouro,last/convert (contrast),read_within_call,B,1,4,A,r4
+ouro,last/convert (contrast),write,C,0,1,C,"r1 (own, written)"
+ouro,last/convert (contrast),read,C,0,1,A,r4
+ouro,last/convert (contrast),read,C,0,1,B,r4
+ouro,last/convert (contrast),write,C,1,1,C,"r1 (own, written)"
+ouro,last/convert (contrast),read,C,1,1,A,r4
+ouro,last/convert (contrast),read,C,1,1,B,r4
+ouro,last/convert (contrast),write,C,0,2,C,"r2 (own, written)"
+ouro,last/convert (contrast),read,C,0,2,A,r4
+ouro,last/convert (contrast),read,C,0,2,B,r4
+ouro,last/convert (contrast),write,C,1,2,C,"r2 (own, written)"
+ouro,last/convert (contrast),read,C,1,2,A,r4
+ouro,last/convert (contrast),read,C,1,2,B,r4
+ouro,last/convert (contrast),write,C,0,3,C,"r3 (own, written)"
+ouro,last/convert (contrast),read,C,0,3,A,r4
+ouro,last/convert (contrast),read,C,0,3,B,r4
+ouro,last/convert (contrast),write,C,1,3,C,"r3 (own, written)"
+ouro,last/convert (contrast),read,C,1,3,A,r4
+ouro,last/convert (contrast),read,C,1,3,B,r4
+ouro,last/convert (contrast),write,C,0,4,C,"r4 (own, written)"
+ouro,last/convert (contrast),read,C,0,4,A,r4
+ouro,last/convert (contrast),read,C,0,4,B,r4
+ouro,last/convert (contrast),write,C,1,4,C,"r4 (own, written)"
+ouro,last/convert (contrast),read,C,1,4,A,r4
+ouro,last/convert (contrast),read,C,1,4,B,r4
+ouro,last/convert (contrast),write,D,0,1,D,"r1 (own, written)"
+ouro,last/convert (contrast),read,D,0,1,A,r4
+ouro,last/convert (contrast),read,D,0,1,B,r4
+ouro,last/convert (contrast),read,D,0,1,C,r4
+ouro,last/convert (contrast),write,D,1,1,D,"r1 (own, written)"
+ouro,last/convert (contrast),read,D,1,1,A,r4
+ouro,last/convert (contrast),read,D,1,1,B,r4
+ouro,last/convert (contrast),read,D,1,1,C,r4
+ouro,last/convert (contrast),write,D,0,2,D,"r2 (own, written)"
+ouro,last/convert (contrast),read,D,0,2,A,r4
+ouro,last/convert (contrast),read,D,0,2,B,r4
+ouro,last/convert (contrast),read,D,0,2,C,r4
+ouro,last/convert (contrast),write,D,1,2,D,"r2 (own, written)"
+ouro,last/convert (contrast),read,D,1,2,A,r4
+ouro,last/convert (contrast),read,D,1,2,B,r4
+ouro,last/convert (contrast),read,D,1,2,C,r4
+ouro,last/convert (contrast),write,D,0,3,D,"r3 (own, written)"
+ouro,last/convert (contrast),read,D,0,3,A,r4
+ouro,last/convert (contrast),read,D,0,3,B,r4
+ouro,last/convert (contrast),read,D,0,3,C,r4
+ouro,last/convert (contrast),write,D,1,3,D,"r3 (own, written)"
+ouro,last/convert (contrast),read,D,1,3,A,r4
+ouro,last/convert (contrast),read,D,1,3,B,r4
+ouro,last/convert (contrast),read,D,1,3,C,r4
+ouro,last/convert (contrast),write,D,0,4,D,"r4 (own, written)"
+ouro,last/convert (contrast),read,D,0,4,A,r4
+ouro,last/convert (contrast),read,D,0,4,B,r4
+ouro,last/convert (contrast),read,D,0,4,C,r4
+ouro,last/convert (contrast),write,D,1,4,D,"r4 (own, written)"
+ouro,last/convert (contrast),read,D,1,4,A,r4
+ouro,last/convert (contrast),read,D,1,4,B,r4
+ouro,last/convert (contrast),read,D,1,4,C,r4
+huginn,full/decode,write,AB,0,1,A,"r1 (own, written)"
+huginn,full/decode,write,AB,0,1,B,"r1 (own, written)"
+huginn,full/decode,read_within_call,B,0,1,A,r1
+huginn,full/decode,write,AB,1,1,A,"r1 (own, written)"
+huginn,full/decode,write,AB,1,1,B,"r1 (own, written)"
+huginn,full/decode,read_within_call,B,1,1,A,r1
+huginn,full/decode,write,AB,0,2,A,"r2 (own, written)"
+huginn,full/decode,write,AB,0,2,B,"r2 (own, written)"
+huginn,full/decode,read_within_call,B,0,2,A,r2
+huginn,full/decode,write,AB,1,2,A,"r2 (own, written)"
+huginn,full/decode,write,AB,1,2,B,"r2 (own, written)"
+huginn,full/decode,read_within_call,B,1,2,A,r2
+huginn,full/decode,write,AB,0,3,A,"r3 (own, written)"
+huginn,full/decode,write,AB,0,3,B,"r3 (own, written)"
+huginn,full/decode,read_within_call,B,0,3,A,r3
+huginn,full/decode,write,AB,1,3,A,"r3 (own, written)"
+huginn,full/decode,write,AB,1,3,B,"r3 (own, written)"
+huginn,full/decode,read_within_call,B,1,3,A,r3
+huginn,full/decode,write,AB,0,4,A,"r4 (own, written)"
+huginn,full/decode,write,AB,0,4,B,"r4 (own, written)"
+huginn,full/decode,read_within_call,B,0,4,A,r4
+huginn,full/decode,write,AB,1,4,A,"r4 (own, written)"
+huginn,full/decode,write,AB,1,4,B,"r4 (own, written)"
+huginn,full/decode,read_within_call,B,1,4,A,r4
+huginn,full/decode,write,C,0,1,C,"r1 (own, written)"
+huginn,full/decode,read,C,0,1,A,r1
+huginn,full/decode,read,C,0,1,B,r1
+huginn,full/decode,write,C,1,1,C,"r1 (own, written)"
+huginn,full/decode,read,C,1,1,A,r1
+huginn,full/decode,read,C,1,1,B,r1
+huginn,full/decode,write,C,0,2,C,"r2 (own, written)"
+huginn,full/decode,read,C,0,2,A,r2
+huginn,full/decode,read,C,0,2,B,r2
+huginn,full/decode,write,C,1,2,C,"r2 (own, written)"
+huginn,full/decode,read,C,1,2,A,r2
+huginn,full/decode,read,C,1,2,B,r2
+huginn,full/decode,write,C,0,3,C,"r3 (own, written)"
+huginn,full/decode,read,C,0,3,A,r3
+huginn,full/decode,read,C,0,3,B,r3
+huginn,full/decode,write,C,1,3,C,"r3 (own, written)"
+huginn,full/decode,read,C,1,3,A,r3
+huginn,full/decode,read,C,1,3,B,r3
+huginn,full/decode,write,C,0,4,C,"r4 (own, written)"
+huginn,full/decode,read,C,0,4,A,r4
+huginn,full/decode,read,C,0,4,B,r4
+huginn,full/decode,write,C,1,4,C,"r4 (own, written)"
+huginn,full/decode,read,C,1,4,A,r4
+huginn,full/decode,read,C,1,4,B,r4
+huginn,full/decode,write,D,0,1,D,"r1 (own, written)"
+huginn,full/decode,read,D,0,1,A,r1
+huginn,full/decode,read,D,0,1,B,r1
+huginn,full/decode,read,D,0,1,C,r1
+huginn,full/decode,write,D,1,1,D,"r1 (own, written)"
+huginn,full/decode,read,D,1,1,A,r1
+huginn,full/decode,read,D,1,1,B,r1
+huginn,full/decode,read,D,1,1,C,r1
+huginn,full/decode,write,D,0,2,D,"r2 (own, written)"
+huginn,full/decode,read,D,0,2,A,r2
+huginn,full/decode,read,D,0,2,B,r2
+huginn,full/decode,read,D,0,2,C,r2
+huginn,full/decode,write,D,1,2,D,"r2 (own, written)"
+huginn,full/decode,read,D,1,2,A,r2
+huginn,full/decode,read,D,1,2,B,r2
+huginn,full/decode,read,D,1,2,C,r2
+huginn,full/decode,write,D,0,3,D,"r3 (own, written)"
+huginn,full/decode,read,D,0,3,A,r3
+huginn,full/decode,read,D,0,3,B,r3
+huginn,full/decode,read,D,0,3,C,r3
+huginn,full/decode,write,D,1,3,D,"r3 (own, written)"
+huginn,full/decode,read,D,1,3,A,r3
+huginn,full/decode,read,D,1,3,B,r3
+huginn,full/decode,read,D,1,3,C,r3
+huginn,full/decode,write,D,0,4,D,"r4 (own, written)"
+huginn,full/decode,read,D,0,4,A,r4
+huginn,full/decode,read,D,0,4,B,r4
+huginn,full/decode,read,D,0,4,C,r4
+huginn,full/decode,write,D,1,4,D,"r4 (own, written)"
+huginn,full/decode,read,D,1,4,A,r4
+huginn,full/decode,read,D,1,4,B,r4
+huginn,full/decode,read,D,1,4,C,r4
+huginn,full/strict,write,A,0,1,A,"r1 (own, written)"
+huginn,full/strict,write,A,1,1,A,"r1 (own, written)"
+huginn,full/strict,write,A,0,2,A,"r2 (own, written)"
+huginn,full/strict,write,A,1,2,A,"r2 (own, written)"
+huginn,full/strict,write,A,0,3,A,"r3 (own, written)"
+huginn,full/strict,write,A,1,3,A,"r3 (own, written)"
+huginn,full/strict,write,A,0,4,A,"r4 (own, written)"
+huginn,full/strict,write,A,1,4,A,"r4 (own, written)"
+huginn,full/strict,write,B,0,1,B,"r1 (own, written)"
+huginn,full/strict,read,B,0,1,A,r1
+huginn,full/strict,write,B,1,1,B,"r1 (own, written)"
+huginn,full/strict,read,B,1,1,A,r1
+huginn,full/strict,write,B,0,2,B,"r2 (own, written)"
+huginn,full/strict,read,B,0,2,A,r2
+huginn,full/strict,write,B,1,2,B,"r2 (own, written)"
+huginn,full/strict,read,B,1,2,A,r2
+huginn,full/strict,write,B,0,3,B,"r3 (own, written)"
+huginn,full/strict,read,B,0,3,A,r3
+huginn,full/strict,write,B,1,3,B,"r3 (own, written)"
+huginn,full/strict,read,B,1,3,A,r3
+huginn,full/strict,write,B,0,4,B,"r4 (own, written)"
+huginn,full/strict,read,B,0,4,A,r4
+huginn,full/strict,write,B,1,4,B,"r4 (own, written)"
+huginn,full/strict,read,B,1,4,A,r4
+huginn,full/strict,write,C,0,1,C,"r1 (own, written)"
+huginn,full/strict,read,C,0,1,A,r1
+huginn,full/strict,read,C,0,1,B,r1
+huginn,full/strict,write,C,1,1,C,"r1 (own, written)"
+huginn,full/strict,read,C,1,1,A,r1
+huginn,full/strict,read,C,1,1,B,r1
+huginn,full/strict,write,C,0,2,C,"r2 (own, written)"
+huginn,full/strict,read,C,0,2,A,r2
+huginn,full/strict,read,C,0,2,B,r2
+huginn,full/strict,write,C,1,2,C,"r2 (own, written)"
+huginn,full/strict,read,C,1,2,A,r2
+huginn,full/strict,read,C,1,2,B,r2
+huginn,full/strict,write,C,0,3,C,"r3 (own, written)"
+huginn,full/strict,read,C,0,3,A,r3
+huginn,full/strict,read,C,0,3,B,r3
+huginn,full/strict,write,C,1,3,C,"r3 (own, written)"
+huginn,full/strict,read,C,1,3,A,r3
+huginn,full/strict,read,C,1,3,B,r3
+huginn,full/strict,write,C,0,4,C,"r4 (own, written)"
+huginn,full/strict,read,C,0,4,A,r4
+huginn,full/strict,read,C,0,4,B,r4
+huginn,full/strict,write,C,1,4,C,"r4 (own, written)"
+huginn,full/strict,read,C,1,4,A,r4
+huginn,full/strict,read,C,1,4,B,r4
+huginn,full/strict,write,D,0,1,D,"r1 (own, written)"
+huginn,full/strict,read,D,0,1,A,r1
+huginn,full/strict,read,D,0,1,B,r1
+huginn,full/strict,read,D,0,1,C,r1
+huginn,full/strict,write,D,1,1,D,"r1 (own, written)"
+huginn,full/strict,read,D,1,1,A,r1
+huginn,full/strict,read,D,1,1,B,r1
+huginn,full/strict,read,D,1,1,C,r1
+huginn,full/strict,write,D,0,2,D,"r2 (own, written)"
+huginn,full/strict,read,D,0,2,A,r2
+huginn,full/strict,read,D,0,2,B,r2
+huginn,full/strict,read,D,0,2,C,r2
+huginn,full/strict,write,D,1,2,D,"r2 (own, written)"
+huginn,full/strict,read,D,1,2,A,r2
+huginn,full/strict,read,D,1,2,B,r2
+huginn,full/strict,read,D,1,2,C,r2
+huginn,full/strict,write,D,0,3,D,"r3 (own, written)"
+huginn,full/strict,read,D,0,3,A,r3
+huginn,full/strict,read,D,0,3,B,r3
+huginn,full/strict,read,D,0,3,C,r3
+huginn,full/strict,write,D,1,3,D,"r3 (own, written)"
+huginn,full/strict,read,D,1,3,A,r3
+huginn,full/strict,read,D,1,3,B,r3
+huginn,full/strict,read,D,1,3,C,r3
+huginn,full/strict,write,D,0,4,D,"r4 (own, written)"
+huginn,full/strict,read,D,0,4,A,r4
+huginn,full/strict,read,D,0,4,B,r4
+huginn,full/strict,read,D,0,4,C,r4
+huginn,full/strict,write,D,1,4,D,"r4 (own, written)"
+huginn,full/strict,read,D,1,4,A,r4
+huginn,full/strict,read,D,1,4,B,r4
+huginn,full/strict,read,D,1,4,C,r4
+huginn,last/strict,write,A,0,1,A,"r1 (own, written)"
+huginn,last/strict,write,A,1,1,A,"r1 (own, written)"
+huginn,last/strict,write,A,0,2,A,"r2 (own, written)"
+huginn,last/strict,write,A,1,2,A,"r2 (own, written)"
+huginn,last/strict,write,A,0,3,A,"r3 (own, written)"
+huginn,last/strict,write,A,1,3,A,"r3 (own, written)"
+huginn,last/strict,write,A,0,4,A,"r4 (own, written)"
+huginn,last/strict,write,A,1,4,A,"r4 (own, written)"
+huginn,last/strict,write,B,0,1,B,"r1 (own, written)"
+huginn,last/strict,read,B,0,1,A,r4
+huginn,last/strict,write,B,1,1,B,"r1 (own, written)"
+huginn,last/strict,read,B,1,1,A,r4
+huginn,last/strict,write,B,0,2,B,"r2 (own, written)"
+huginn,last/strict,read,B,0,2,A,r4
+huginn,last/strict,write,B,1,2,B,"r2 (own, written)"
+huginn,last/strict,read,B,1,2,A,r4
+huginn,last/strict,write,B,0,3,B,"r3 (own, written)"
+huginn,last/strict,read,B,0,3,A,r4
+huginn,last/strict,write,B,1,3,B,"r3 (own, written)"
+huginn,last/strict,read,B,1,3,A,r4
+huginn,last/strict,write,B,0,4,B,"r4 (own, written)"
+huginn,last/strict,read,B,0,4,A,r4
+huginn,last/strict,write,B,1,4,B,"r4 (own, written)"
+huginn,last/strict,read,B,1,4,A,r4
+huginn,last/strict,write,C,0,1,C,"r1 (own, written)"
+huginn,last/strict,read,C,0,1,A,r4
+huginn,last/strict,read,C,0,1,B,r4
+huginn,last/strict,write,C,1,1,C,"r1 (own, written)"
+huginn,last/strict,read,C,1,1,A,r4
+huginn,last/strict,read,C,1,1,B,r4
+huginn,last/strict,write,C,0,2,C,"r2 (own, written)"
+huginn,last/strict,read,C,0,2,A,r4
+huginn,last/strict,read,C,0,2,B,r4
+huginn,last/strict,write,C,1,2,C,"r2 (own, written)"
+huginn,last/strict,read,C,1,2,A,r4
+huginn,last/strict,read,C,1,2,B,r4
+huginn,last/strict,write,C,0,3,C,"r3 (own, written)"
+huginn,last/strict,read,C,0,3,A,r4
+huginn,last/strict,read,C,0,3,B,r4
+huginn,last/strict,write,C,1,3,C,"r3 (own, written)"
+huginn,last/strict,read,C,1,3,A,r4
+huginn,last/strict,read,C,1,3,B,r4
+huginn,last/strict,write,C,0,4,C,"r4 (own, written)"
+huginn,last/strict,read,C,0,4,A,r4
+huginn,last/strict,read,C,0,4,B,r4
+huginn,last/strict,write,C,1,4,C,"r4 (own, written)"
+huginn,last/strict,read,C,1,4,A,r4
+huginn,last/strict,read,C,1,4,B,r4
+huginn,last/strict,write,D,0,1,D,"r1 (own, written)"
+huginn,last/strict,read,D,0,1,A,r4
+huginn,last/strict,read,D,0,1,B,r4
+huginn,last/strict,read,D,0,1,C,r4
+huginn,last/strict,write,D,1,1,D,"r1 (own, written)"
+huginn,last/strict,read,D,1,1,A,r4
+huginn,last/strict,read,D,1,1,B,r4
+huginn,last/strict,read,D,1,1,C,r4
+huginn,last/strict,write,D,0,2,D,"r2 (own, written)"
+huginn,last/strict,read,D,0,2,A,r4
+huginn,last/strict,read,D,0,2,B,r4
+huginn,last/strict,read,D,0,2,C,r4
+huginn,last/strict,write,D,1,2,D,"r2 (own, written)"
+huginn,last/strict,read,D,1,2,A,r4
+huginn,last/strict,read,D,1,2,B,r4
+huginn,last/strict,read,D,1,2,C,r4
+huginn,last/strict,write,D,0,3,D,"r3 (own, written)"
+huginn,last/strict,read,D,0,3,A,r4
+huginn,last/strict,read,D,0,3,B,r4
+huginn,last/strict,read,D,0,3,C,r4
+huginn,last/strict,write,D,1,3,D,"r3 (own, written)"
+huginn,last/strict,read,D,1,3,A,r4
+huginn,last/strict,read,D,1,3,B,r4
+huginn,last/strict,read,D,1,3,C,r4
+huginn,last/strict,write,D,0,4,D,"r4 (own, written)"
+huginn,last/strict,read,D,0,4,A,r4
+huginn,last/strict,read,D,0,4,B,r4
+huginn,last/strict,read,D,0,4,C,r4
+huginn,last/strict,write,D,1,4,D,"r4 (own, written)"
+huginn,last/strict,read,D,1,4,A,r4
+huginn,last/strict,read,D,1,4,B,r4
+huginn,last/strict,read,D,1,4,C,r4
+huginn,first/strict,write,A,0,1,A,"r1 (own, written)"
+huginn,first/strict,write,A,1,1,A,"r1 (own, written)"
+huginn,first/strict,write,A,0,2,A,"r2 (own, written)"
+huginn,first/strict,write,A,1,2,A,"r2 (own, written)"
+huginn,first/strict,write,A,0,3,A,"r3 (own, written)"
+huginn,first/strict,write,A,1,3,A,"r3 (own, written)"
+huginn,first/strict,write,A,0,4,A,"r4 (own, written)"
+huginn,first/strict,write,A,1,4,A,"r4 (own, written)"
+huginn,first/strict,write,B,0,1,B,"r1 (own, written)"
+huginn,first/strict,read,B,0,1,A,r1
+huginn,first/strict,write,B,1,1,B,"r1 (own, written)"
+huginn,first/strict,read,B,1,1,A,r1
+huginn,first/strict,write,B,0,2,B,"r2 (own, written)"
+huginn,first/strict,read,B,0,2,A,r1
+huginn,first/strict,write,B,1,2,B,"r2 (own, written)"
+huginn,first/strict,read,B,1,2,A,r1
+huginn,first/strict,write,B,0,3,B,"r3 (own, written)"
+huginn,first/strict,read,B,0,3,A,r1
+huginn,first/strict,write,B,1,3,B,"r3 (own, written)"
+huginn,first/strict,read,B,1,3,A,r1
+huginn,first/strict,write,B,0,4,B,"r4 (own, written)"
+huginn,first/strict,read,B,0,4,A,r1
+huginn,first/strict,write,B,1,4,B,"r4 (own, written)"
+huginn,first/strict,read,B,1,4,A,r1
+huginn,first/strict,write,C,0,1,C,"r1 (own, written)"
+huginn,first/strict,read,C,0,1,A,r1
+huginn,first/strict,read,C,0,1,B,r1
+huginn,first/strict,write,C,1,1,C,"r1 (own, written)"
+huginn,first/strict,read,C,1,1,A,r1
+huginn,first/strict,read,C,1,1,B,r1
+huginn,first/strict,write,C,0,2,C,"r2 (own, written)"
+huginn,first/strict,read,C,0,2,A,r1
+huginn,first/strict,read,C,0,2,B,r1
+huginn,first/strict,write,C,1,2,C,"r2 (own, written)"
+huginn,first/strict,read,C,1,2,A,r1
+huginn,first/strict,read,C,1,2,B,r1
+huginn,first/strict,write,C,0,3,C,"r3 (own, written)"
+huginn,first/strict,read,C,0,3,A,r1
+huginn,first/strict,read,C,0,3,B,r1
+huginn,first/strict,write,C,1,3,C,"r3 (own, written)"
+huginn,first/strict,read,C,1,3,A,r1
+huginn,first/strict,read,C,1,3,B,r1
+huginn,first/strict,write,C,0,4,C,"r4 (own, written)"
+huginn,first/strict,read,C,0,4,A,r1
+huginn,first/strict,read,C,0,4,B,r1
+huginn,first/strict,write,C,1,4,C,"r4 (own, written)"
+huginn,first/strict,read,C,1,4,A,r1
+huginn,first/strict,read,C,1,4,B,r1
+huginn,first/strict,write,D,0,1,D,"r1 (own, written)"
+huginn,first/strict,read,D,0,1,A,r1
+huginn,first/strict,read,D,0,1,B,r1
+huginn,first/strict,read,D,0,1,C,r1
+huginn,first/strict,write,D,1,1,D,"r1 (own, written)"
+huginn,first/strict,read,D,1,1,A,r1
+huginn,first/strict,read,D,1,1,B,r1
+huginn,first/strict,read,D,1,1,C,r1
+huginn,first/strict,write,D,0,2,D,"r2 (own, written)"
+huginn,first/strict,read,D,0,2,A,r1
+huginn,first/strict,read,D,0,2,B,r1
+huginn,first/strict,read,D,0,2,C,r1
+huginn,first/strict,write,D,1,2,D,"r2 (own, written)"
+huginn,first/strict,read,D,1,2,A,r1
+huginn,first/strict,read,D,1,2,B,r1
+huginn,first/strict,read,D,1,2,C,r1
+huginn,first/strict,write,D,0,3,D,"r3 (own, written)"
+huginn,first/strict,read,D,0,3,A,r1
+huginn,first/strict,read,D,0,3,B,r1
+huginn,first/strict,read,D,0,3,C,r1
+huginn,first/strict,write,D,1,3,D,"r3 (own, written)"
+huginn,first/strict,read,D,1,3,A,r1
+huginn,first/strict,read,D,1,3,B,r1
+huginn,first/strict,read,D,1,3,C,r1
+huginn,first/strict,write,D,0,4,D,"r4 (own, written)"
+huginn,first/strict,read,D,0,4,A,r1
+huginn,first/strict,read,D,0,4,B,r1
+huginn,first/strict,read,D,0,4,C,r1
+huginn,first/strict,write,D,1,4,D,"r4 (own, written)"
+huginn,first/strict,read,D,1,4,A,r1
+huginn,first/strict,read,D,1,4,B,r1
+huginn,first/strict,read,D,1,4,C,r1
+huginn,last/convert (contrast),write,AB,0,1,A,"r1 (own, written)"
+huginn,last/convert (contrast),write,AB,0,1,B,"r1 (own, written)"
+huginn,last/convert (contrast),read_within_call,B,0,1,A,r1
+huginn,last/convert (contrast),write,AB,1,1,A,"r1 (own, written)"
+huginn,last/convert (contrast),write,AB,1,1,B,"r1 (own, written)"
+huginn,last/convert (contrast),read_within_call,B,1,1,A,r1
+huginn,last/convert (contrast),write,AB,0,2,A,"r2 (own, written)"
+huginn,last/convert (contrast),write,AB,0,2,B,"r2 (own, written)"
+huginn,last/convert (contrast),read_within_call,B,0,2,A,r2
+huginn,last/convert (contrast),write,AB,1,2,A,"r2 (own, written)"
+huginn,last/convert (contrast),write,AB,1,2,B,"r2 (own, written)"
+huginn,last/convert (contrast),read_within_call,B,1,2,A,r2
+huginn,last/convert (contrast),write,AB,0,3,A,"r3 (own, written)"
+huginn,last/convert (contrast),write,AB,0,3,B,"r3 (own, written)"
+huginn,last/convert (contrast),read_within_call,B,0,3,A,r3
+huginn,last/convert (contrast),write,AB,1,3,A,"r3 (own, written)"
+huginn,last/convert (contrast),write,AB,1,3,B,"r3 (own, written)"
+huginn,last/convert (contrast),read_within_call,B,1,3,A,r3
+huginn,last/convert (contrast),write,AB,0,4,A,"r4 (own, written)"
+huginn,last/convert (contrast),write,AB,0,4,B,"r4 (own, written)"
+huginn,last/convert (contrast),read_within_call,B,0,4,A,r4
+huginn,last/convert (contrast),write,AB,1,4,A,"r4 (own, written)"
+huginn,last/convert (contrast),write,AB,1,4,B,"r4 (own, written)"
+huginn,last/convert (contrast),read_within_call,B,1,4,A,r4
+huginn,last/convert (contrast),write,C,0,1,C,"r1 (own, written)"
+huginn,last/convert (contrast),read,C,0,1,A,r4
+huginn,last/convert (contrast),read,C,0,1,B,r4
+huginn,last/convert (contrast),write,C,1,1,C,"r1 (own, written)"
+huginn,last/convert (contrast),read,C,1,1,A,r4
+huginn,last/convert (contrast),read,C,1,1,B,r4
+huginn,last/convert (contrast),write,C,0,2,C,"r2 (own, written)"
+huginn,last/convert (contrast),read,C,0,2,A,r4
+huginn,last/convert (contrast),read,C,0,2,B,r4
+huginn,last/convert (contrast),write,C,1,2,C,"r2 (own, written)"
+huginn,last/convert (contrast),read,C,1,2,A,r4
+huginn,last/convert (contrast),read,C,1,2,B,r4
+huginn,last/convert (contrast),write,C,0,3,C,"r3 (own, written)"
+huginn,last/convert (contrast),read,C,0,3,A,r4
+huginn,last/convert (contrast),read,C,0,3,B,r4
+huginn,last/convert (contrast),write,C,1,3,C,"r3 (own, written)"
+huginn,last/convert (contrast),read,C,1,3,A,r4
+huginn,last/convert (contrast),read,C,1,3,B,r4
+huginn,last/convert (contrast),write,C,0,4,C,"r4 (own, written)"
+huginn,last/convert (contrast),read,C,0,4,A,r4
+huginn,last/convert (contrast),read,C,0,4,B,r4
+huginn,last/convert (contrast),write,C,1,4,C,"r4 (own, written)"
+huginn,last/convert (contrast),read,C,1,4,A,r4
+huginn,last/convert (contrast),read,C,1,4,B,r4
+huginn,last/convert (contrast),write,D,0,1,D,"r1 (own, written)"
+huginn,last/convert (contrast),read,D,0,1,A,r4
+huginn,last/convert (contrast),read,D,0,1,B,r4
+huginn,last/convert (contrast),read,D,0,1,C,r4
+huginn,last/convert (contrast),write,D,1,1,D,"r1 (own, written)"
+huginn,last/convert (contrast),read,D,1,1,A,r4
+huginn,last/convert (contrast),read,D,1,1,B,r4
+huginn,last/convert (contrast),read,D,1,1,C,r4
+huginn,last/convert (contrast),write,D,0,2,D,"r2 (own, written)"
+huginn,last/convert (contrast),read,D,0,2,A,r4
+huginn,last/convert (contrast),read,D,0,2,B,r4
+huginn,last/convert (contrast),read,D,0,2,C,r4
+huginn,last/convert (contrast),write,D,1,2,D,"r2 (own, written)"
+huginn,last/convert (contrast),read,D,1,2,A,r4
+huginn,last/convert (contrast),read,D,1,2,B,r4
+huginn,last/convert (contrast),read,D,1,2,C,r4
+huginn,last/convert (contrast),write,D,0,3,D,"r3 (own, written)"
+huginn,last/convert (contrast),read,D,0,3,A,r4
+huginn,last/convert (contrast),read,D,0,3,B,r4
+huginn,last/convert (contrast),read,D,0,3,C,r4
+huginn,last/convert (contrast),write,D,1,3,D,"r3 (own, written)"
+huginn,last/convert (contrast),read,D,1,3,A,r4
+huginn,last/convert (contrast),read,D,1,3,B,r4
+huginn,last/convert (contrast),read,D,1,3,C,r4
+huginn,last/convert (contrast),write,D,0,4,D,"r4 (own, written)"
+huginn,last/convert (contrast),read,D,0,4,A,r4
+huginn,last/convert (contrast),read,D,0,4,B,r4
+huginn,last/convert (contrast),read,D,0,4,C,r4
+huginn,last/convert (contrast),write,D,1,4,D,"r4 (own, written)"
+huginn,last/convert (contrast),read,D,1,4,A,r4
+huginn,last/convert (contrast),read,D,1,4,B,r4
+huginn,last/convert (contrast),read,D,1,4,C,r4

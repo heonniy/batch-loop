@@ -1,0 +1,2882 @@
+[
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3956.0,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 7,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 5,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 4,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 6,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 3276.8,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 4,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 5,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 7,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 6,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 5,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 7,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 6,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 4,
+"est_cost": 2143.4,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 7,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 7,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 6,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 4,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 5,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 4,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 7,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 5,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 7,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 5,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 7,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 6,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 6,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 4,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 6,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 6,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 6,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 4,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 7,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 5,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 5,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 4,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 5,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 4,
+"est_cost": 1978.0,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1788.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 6,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 5,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 4,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 7,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 5,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 4,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 6,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 7,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 1720.3,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 1268.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 5,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 7,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 5,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 6,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 4,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 6,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 4,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 7,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "math500",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 1071.7,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 1,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 2,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 3,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "first",
+"mode": "strict",
+"batch": 0,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 0,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 1,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "last",
+"mode": "strict",
+"batch": 2,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 3,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "first",
+"mode": "strict",
+"batch": 2,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 0,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "strict",
+"batch": 1,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "last",
+"mode": "strict",
+"batch": 3,
+"est_cost": 634.0,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 549.8,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 549.8,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 549.8,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 549.8,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 549.8,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 549.8,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 549.8,
+"batching": "pilot"
+},
+{
+"model": "ouro-2.6b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 549.8,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 478.6,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 478.6,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 478.6,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 478.6,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 478.6,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 478.6,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 478.6,
+"batching": "pilot"
+},
+{
+"model": "huginn-0125",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 478.6,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 274.9,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 274.9,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 274.9,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 1,
+"est_cost": 274.9,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "nll",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 274.9,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 0,
+"est_cost": 274.9,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 2,
+"est_cost": 274.9,
+"batching": "pilot"
+},
+{
+"model": "ouro-1.4b",
+"dataset": "gsm8k",
+"task": "gen",
+"policy": "full",
+"mode": "decode",
+"batch": 3,
+"est_cost": 274.9,
+"batching": "pilot"
+}
+]

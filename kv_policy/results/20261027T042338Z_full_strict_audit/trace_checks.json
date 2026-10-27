@@ -1,0 +1,108 @@
+[
+ {
+  "family": "ouro",
+  "policy": "full/decode",
+  "call_schedule": [
+   "AB",
+   "C",
+   "D"
+  ],
+  "engine_vs_reference_max_abs_logit_diff": 0.0
+ },
+ {
+  "family": "ouro",
+  "policy": "full/strict",
+  "call_schedule": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "engine_vs_reference_max_abs_logit_diff": 0.0
+ },
+ {
+  "family": "ouro",
+  "policy": "last/strict",
+  "call_schedule": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "engine_vs_reference_max_abs_logit_diff": 0.0
+ },
+ {
+  "family": "ouro",
+  "policy": "first/strict",
+  "call_schedule": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "engine_vs_reference_max_abs_logit_diff": 0.0
+ },
+ {
+  "family": "ouro",
+  "policy": "last/convert (contrast)",
+  "call_schedule": [
+   "AB",
+   "C",
+   "D"
+  ],
+  "engine_vs_reference_max_abs_logit_diff": 0.0
+ },
+ {
+  "family": "huginn",
+  "policy": "full/decode",
+  "call_schedule": [
+   "AB",
+   "C",
+   "D"
+  ],
+  "engine_vs_reference_max_abs_logit_diff": 0.0
+ },
+ {
+  "family": "huginn",
+  "policy": "full/strict",
+  "call_schedule": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "engine_vs_reference_max_abs_logit_diff": 0.0
+ },
+ {
+  "family": "huginn",
+  "policy": "last/strict",
+  "call_schedule": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "engine_vs_reference_max_abs_logit_diff": 0.0
+ },
+ {
+  "family": "huginn",
+  "policy": "first/strict",
+  "call_schedule": [
+   "A",
+   "B",
+   "C",
+   "D"
+  ],
+  "engine_vs_reference_max_abs_logit_diff": 0.0
+ },
+ {
+  "family": "huginn",
+  "policy": "last/convert (contrast)",
+  "call_schedule": [
+   "AB",
+   "C",
+   "D"
+  ],
+  "engine_vs_reference_max_abs_logit_diff": 0.0
+ }
+]

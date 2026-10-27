@@ -1,0 +1,1627 @@
+{
+ "gsm8k_primary_vs_lm_eval_strict": [
+  {
+   "model": "huginn-0125",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0798",
+   "pred": "20",
+   "pred_raw": " 20",
+   "gold": "20",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "A: After starting his first job at a new company, Billy worked for 1 hours. He had 20 hours of experience.\nB: Next year, Billy will be working as a teacher.\nA:"
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "s. Each pack has 6 cookies. So he bought 10 x 6 = 60 cookies. Each cookie costs $0.10. So he spent 60 x $0.10 = $6. Carl paid with a $10 bill. So he received $10 - $6 = $4 in change. The answer is $4."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0872",
+   "pred": "13",
+   "pred_raw": "13.00",
+   "gold": "13",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "s $8.00 / 4 = $2.00. So three bottles of soda will cost 3 x $3.00 = $9.00. And two bottles of water will cost 2 x $2.00 = $4.00. So the total cost will be $9.00 + $4.00 = $13.00. The answer is $13.00."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "s. Each pack has 6 cookies. So he bought 10 x 6 = 60 cookies. Each cookie costs $0.10. So he spent 60 x $0.10 = $6. Carl paid with a $10 bill. So he received $10 - $6 = $4 in change. The answer is $4."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-0872",
+   "pred": "13",
+   "pred_raw": "13.00",
+   "gold": "13",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "ater costs $8 / 4 = $2.00. So 3 bottles of soda will cost 3 x $3.00 = $9.00. And 2 bottles of water will cost 2 x $2.00 = $4.00. So the total cost will be $9.00 + $4.00 = $13.00. The answer is $13.00."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "strict",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "s. Each pack has 6 cookies. So he bought 10 x 6 = 60 cookies. Each cookie costs $0.10. So he spent 60 x $0.10 = $6. Carl paid with a $10 bill. So he received $10 - $6 = $4 in change. The answer is $4."
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "last",
+   "mode": "strict",
+   "uid": "gsm8k-test-0872",
+   "pred": "13",
+   "pred_raw": "13.00",
+   "gold": "13",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "s $8.00 / 4 = $2.00. So three bottles of soda will cost 3 x $3.00 = $9.00. And two bottles of water will cost 2 x $2.00 = $4.00. So the total cost will be $9.00 + $4.00 = $13.00. The answer is $13.00."
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": "$4.00",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " 10 packs of 6 = 10 x 6 = 60 cookies. 60 x $0.1 = = $6.00. $10.00 - $6.00 = = $4.00.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0798",
+   "pred": "20",
+   "pred_raw": "20",
+   "gold": "20",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "our. Billy's total earnings for 20 hours are $11.50 * 20 = $230. Sally's total earnings for 20 hours are $10.50 * 20 = $210. The difference in their earnings is $230 - $210 = $20. The answer is $20.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1119",
+   "pred": "18",
+   "pred_raw": " 18",
+   "gold": "18",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "an Amalia, so she took 4 + 2 = 6 hours. Dior took well over 4 hours longer than Amalia, so she took more than 4 + 4 = 8 hours. The total time they took is 4 + 6 + (more than 8) = more than 18 hours.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0722",
+   "pred": "255",
+   "pred_raw": "255",
+   "gold": "255",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "tal, Ron will have to pay $120 + $75 = $195. If he doesn't fix the pothole, it will do $450 worth of damage to his car. So Ron will save $450 - $195 = $255 by fixing the pothole. The answer is $255.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1053",
+   "pred": "55",
+   "pred_raw": "55",
+   "gold": "55",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "ce, so they cost $48 / 2 = $24. She had a coupon for $2 off the package of $8 athletic socks, so she paid $8 - $2 = $6 for the socks. The total cost is $10 + $15 + $24 + $6 = $55. The answer is $55.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0383",
+   "pred": "2",
+   "pred_raw": "2",
+   "gold": "2",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "h cup for $1. So she makes 36 * 1 = $36. She sells an average of 4 cups per hour. So she sells 36 / 4 = 9 hours. Her profit is $36 - $18 = $18. Her profit per hour is $18 / 9 = $2. The answer is $2.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1028",
+   "pred": "200",
+   "pred_raw": "200",
+   "gold": "200",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "ught a bedroom set for $3000. He sold his old bedroom for $1000. So he had to pay $3000 - $1000 = $2000. He then had to pay 10% a month for the bedroom set. 10% of $2000 is $200. The answer is $200.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1033",
+   "pred": "2",
+   "pred_raw": "2",
+   "gold": "2",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "She is paid $15 per day. So she is paid 15 * 3 = $45. She has to pay $3 for parking each day. So she has to pay 3 * 3 = $9. She makes 45 - 9 = $36. She makes 36 / 18 = $2 per hour. The answer is $2.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0872",
+   "pred": "13",
+   "pred_raw": "13.00",
+   "gold": "13",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "$8.00 / 4 = $2.00. 3 bottles of soda cost $3.00 * 3 = $9.00. 2 bottles of water cost $2.00 * 2 = $4.00. So 3 bottles of soda and 2 bottles of water cost $9.00 + $4.00 = $13.00. The answer is $13.00.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": ". Each pack has 6 cookies. So there are 10 * 6 = 60 cookies. Each cookie costs $0.10. So the total cost is 60 * $0.10 = $6. Carl pays with a $10 bill. So he receives $10 - $6 = $4. The answer is $4.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-0798",
+   "pred": "20",
+   "pred_raw": "20",
+   "gold": "20",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "as $10.50 + $1.00 = $11.50 per hour. Sally's salary after 20 hours is $10.50 * 20 = $210. Billy's salary after 20 hours is $11.50 * 20 = $230. The difference is $230 - $210 = $20. The answer is $20.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-1119",
+   "pred": "18",
+   "pred_raw": " 18",
+   "gold": "18",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "an Amalia, so she took 4 + 2 = 6 hours. Dior took well over 4 hours longer than Amalia, so she took more than 4 + 4 = 8 hours. The total time they took is 4 + 6 + (more than 8) = more than 18 hours.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-0722",
+   "pred": "255",
+   "pred_raw": "255",
+   "gold": "255",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "tal, Ron will have to pay $120 + $75 = $195. If he doesn't fix the pothole, it will do $450 worth of damage to his car. So Ron will save $450 - $195 = $255 by fixing the pothole. The answer is $255.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-1053",
+   "pred": "55",
+   "pred_raw": "55",
+   "gold": "55",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "were originally $48 but on sale for half price, so $48 / 2 = $24. The socks were originally $8 but with a $2 coupon, so $8 - $2 = $6. The total cost is $10 + $15 + $24 + $6 = $55. The answer is $55.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-1028",
+   "pred": "200",
+   "pred_raw": "200",
+   "gold": "200",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "ught a bedroom set for $3000. He sold his old bedroom for $1000. So he had to pay $3000 - $1000 = $2000. He then had to pay 10% a month for the bedroom set. 10% of $2000 is $200. The answer is $200.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-1033",
+   "pred": "2",
+   "pred_raw": "2",
+   "gold": "2",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "She is paid $15 per day. So she is paid 15 * 3 = $45. She has to pay $3 for parking each day. So she has to pay 3 * 3 = $9. She makes 45 - 9 = $36. She makes 36 / 18 = $2 per hour. The answer is $2.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-0872",
+   "pred": "13",
+   "pred_raw": "13.00",
+   "gold": "13",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "$8.00. So 1 bottle of water costs $8.00 / 4 = $2.00. David wants to buy 3 bottles of soda and 2 bottles of water. So the cost is 3 * $3.00 + 2 * $2.00 = $9.00 + $4.00 = $13.00. The answer is $13.00.\n\n"
+  },
+  {
+   "model": "ouro-1.4b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "es. Each pack has 6 cookies. So he bought 10 * 6 = 60 cookies. Each cookie cost $0.10. So the total cost is 60 * 0.10 = $6. Carl paid with a $10 bill. So he received $10 - $6 = $4. The answer is $4.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": " 4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "of cookies costs $0 and \ufffd$0.60, and there are 10 packs, the total cost is \ufffd$0.60 \u00d7 1 zero 10 = \ufffd$0.6.00. So Carl paid $0.60 and received $10 - $0.6 = $9.40 in change. The answer answer is $9 and 4t.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0722",
+   "pred": "255",
+   "pred_raw": "255",
+   "gold": "255",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "lt. So he will have to pay $120 + $75 = $195. If he doesn't fix the pothole, it will do $450 worth of damage to his car. So he will save $450 - $195 = $255 by fixing the pothole. The answer is $255.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1053",
+   "pred": "55",
+   "pred_raw": "55",
+   "gold": "55",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " The tank top cost $10. The shorts cost $10 + $5 = $15. The shoes cost $48 / 2 = $24. The socks cost $8 - $2 = $6. The total cost is $10 + $15 + $24 + $6 = $55. The answer is $55.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1028",
+   "pred": "200",
+   "pred_raw": "200",
+   "gold": "200",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "room for $1000 and uses that to pay for part of the bedroom set. So he has to pay $3000 - $1000 = $2000. He then has to pay 10% a month for the bedroom set. 10% of $2000 is $200. The answer is $200.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1033",
+   "pred": "2",
+   "pred_raw": "2",
+   "gold": "2",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "So she pays 3 * 3 = $9. After expenses, she makes 45 - 9 = $36. To find her pay per hour, we divide her total pay by the number of hours she worked: 36 / 18 = $2 per hour. The answer is $2 per hour.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0872",
+   "pred": "13",
+   "pred_raw": "13.00",
+   "gold": "13",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " $9.00. Four bottles of water cost $8.00. So one bottle of water costs $8.00 / 4 = $2.00. Two bottles of water cost 2 * $2.00 = $4.00. The total cost is $9.00 + $4.00 = $13.00. The answer is $13.00.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "cks of cookies. Each pack has 6 cookies. So he bought 10 * 6 = 60 cookies. Each cookie cost $0.10. So he paid 60 * 0.10 = $6. He paid with a $10 bill. So he received $10 - $6 = $4. The answer is $4.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-0722",
+   "pred": "255",
+   "pred_raw": "255",
+   "gold": "255",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "lt. So he will have to pay $120 + $75 = $195. If he doesn't fix the pothole, it will do $450 worth of damage to his car. So he will save $450 - $195 = $255 by fixing the pothole. The answer is $255.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-1053",
+   "pred": "55",
+   "pred_raw": "55",
+   "gold": "55",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " The tank top cost $10. The shorts cost $10 + $5 = $15. The shoes cost $48 / 2 = $24. The socks cost $8 - $2 = $6. The total cost is $10 + $15 + $24 + $6 = $55. The answer is $55.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-1028",
+   "pred": "200",
+   "pred_raw": "200",
+   "gold": "200",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "room for $1000 and uses that to pay for part of the bedroom set. So he has to pay $3000 - $1000 = $2000. He then has to pay 10% a month for the bedroom set. 10% of $2000 is $200. The answer is $200.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-1033",
+   "pred": "2",
+   "pred_raw": "2",
+   "gold": "2",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "parking each day. So she pays 3 * 3 = $9. After expenses, she makes 45 - 9 = $36. To find her pay per hour, we divide her total pay by the number of hours she worked: 36 / 18 = $2. The answer is $2.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-0872",
+   "pred": "13",
+   "pred_raw": "13.00",
+   "gold": "13",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " $9.00. Four bottles of water cost $8.00. So one bottle of water costs $8.00 / 4 = $2.00. Two bottles of water cost 2 * $2.00 = $4.00. The total cost is $9.00 + $4.00 = $13.00. The answer is $13.00.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-0152",
+   "pred": "4",
+   "pred_raw": "4",
+   "gold": "4",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "ks of cookies. Each pack has 6 cookies. So he bought 10 * 6 = 60 cookies. Each cookie costs $0.10. So he paid 60 * 0.10 = $6. He paid with a $10 bill. So he received $10 - $6 = $4. The answer is $4.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-1046",
+   "pred": "189/8",
+   "pred_raw": "189/8",
+   "gold": "189",
+   "correct": false,
+   "lm_eval_strict_match": true,
+   "tail": "/8ths of a day every day for 3 weeks. 3 weeks is 21 days. So they worked 21 * 3/8 = 63/8 days. 63/8 days is 63/8 * 24 = 189/2 hours. Each painter worked 189/2 / 4 = 189/8 hours. The answer is 189/8.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "last",
+   "mode": "strict",
+   "uid": "gsm8k-test-1053",
+   "pred": "55",
+   "pred_raw": "55",
+   "gold": "55",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " The tank top cost $10. The running shorts cost $10 + $5 = $15. The tennis shoes cost $48 / 2 = $24. The socks cost $8 - $2 = $6. So in total she spent $10 + $15 + $24 + $6 = $55. The answer is $55.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "last",
+   "mode": "strict",
+   "uid": "gsm8k-test-1028",
+   "pred": "200",
+   "pred_raw": "200",
+   "gold": "200",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": " to pay $3000 for the set. He had $100 to pay for part of it. So he had to pay $3000 - c1000 = c2000. He had to pay 10% a month. 10% of $2000 is $2000 * 10% = $2000 * 0.1 = $200. The answer is $200.\n\n"
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "last",
+   "mode": "strict",
+   "uid": "gsm8k-test-0872",
+   "pred": "13",
+   "pred_raw": "13",
+   "gold": "13",
+   "correct": true,
+   "lm_eval_strict_match": false,
+   "tail": "o 1 bottle of water cost $8 / 4 = $2. O0. 3 bottle of soda cost 3 * $3. O0 = $9. O0. 2 bottle of water cost 2 * $2. O0 = $4. O0. So in total it cost $9. O0 + $4. O0 = $13. O0. The answer is $13. O0.\n\n"
+  }
+ ],
+ "math_primary_vs_minerva": [
+  {
+   "model": "huginn-0125",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "test/number_theory/1185.json",
+   "pred": "\\frac{1}{2}{3}{4}{5}",
+   "gold": "6",
+   "correct": true,
+   "math_verify": true,
+   "minerva_is_equiv": false,
+   "normalized_string_equal": false
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "test/counting_and_probability/803.json",
+   "pred": "The final answer is: $\\boxed{\\frac{1}{4}{5}$",
+   "gold": "\\frac{1}{4}",
+   "correct": false,
+   "math_verify": false,
+   "minerva_is_equiv": true,
+   "normalized_string_equal": false
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "test/prealgebra/1761.json",
+   "pred": "\\frac{1}{2}{1}{3}",
+   "gold": "\\frac{3}{2}",
+   "correct": false,
+   "math_verify": false,
+   "minerva_is_equiv": true,
+   "normalized_string_equal": false
+  },
+  {
+   "model": "huginn-0125",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "test/number_theory/1128.json",
+   "pred": "\\frac{1}{4}{5}{1}{2}",
+   "gold": "2",
+   "correct": true,
+   "math_verify": true,
+   "minerva_is_equiv": false,
+   "normalized_string_equal": false
+  },
+  {
+   "model": "ouro-2.6b",
+   "policy": "last",
+   "mode": "strict",
+   "uid": "test/intermediate_algebra/207.json",
+   "pred": "$2\\cos \\frac{2\\pi}{5} + 2\\cos \\frac{4\\pi}{5}$",
+   "gold": "-1",
+   "correct": true,
+   "math_verify": true,
+   "minerva_is_equiv": false,
+   "normalized_string_equal": false
+  }
+ ],
+ "parse_failure_samples": [
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "first",
+    "strict"
+   ],
+   "uid": "gsm8k-test-0104",
+   "finish_reason": "stop_string",
+   "failure_reason": "finished_no_answer",
+   "n_gen_tokens": 2,
+   "answer_tail": ""
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "first",
+    "strict"
+   ],
+   "uid": "gsm8k-test-0407",
+   "finish_reason": "eos",
+   "failure_reason": "finished_no_answer",
+   "n_gen_tokens": 3,
+   "answer_tail": "A:"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "first",
+    "strict"
+   ],
+   "uid": "gsm8k-test-0383",
+   "finish_reason": "stop_string",
+   "failure_reason": "finished_no_answer",
+   "n_gen_tokens": 19,
+   "answer_tail": "A: To find out if there are no answers, use the following system:\n"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "full",
+    "decode"
+   ],
+   "uid": "gsm8k-test-0383",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "752768 = 159011152 cups of lemonade per hour. She sells an average of 4 cups per hour. So she sells 4 x 159011152 = 636044648 cups of lemonade per hour. She sells an average of 4 cups per hour. So she sells 4 x 636044648 = 254417304 cups of lemonade per hour. She sells an average of 4 cups per hour."
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "full",
+    "strict"
+   ],
+   "uid": "gsm8k-test-0383",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": " cups of lemonade per hour. She sells an average of 4 cups per hour. So she sells 4 x 15100544 = 60402184 cups of lemonade per hour. She sells an average of 4 cups per hour. So she sells 4 x 60402184 = 241608736 cups of lemonade per hour. She sells an average of 4 cups per hour. So she sells 4 x 241"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "gsm8k",
+    "last",
+    "strict"
+   ],
+   "uid": "gsm8k-test-0383",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "752768 = 159011152 cups of lemonade per hour. She sells an average of 4 cups per hour. So she sells 4 x 159011152 = 636044648 cups of lemonade per hour. She sells an average of 4 cups per hour. So she sells 4 x 636044648 = 254417344 cups of lemonade per hour. She sells an average of 4 cups per hour."
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "first",
+    "strict"
+   ],
+   "uid": "test/algebra/305.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2+x^2"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "first",
+    "strict"
+   ],
+   "uid": "test/intermediate_algebra/207.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "at $z^2 = z^2 + z^2$.\n14. Find the value of $z$ such that $z^2 = z^2 + z^2 + z^2 + z^2$.\n15. Find the value of $z$ such that $z^2 = z^2 + z^2$.\n16. Find the value of $z$ such that $z^2 = z^2 + z^2 + z^2$.\n2. Find the value of $z$ such that $z^2 = z^2 + z^2$.\n3. Find the value of $z$ such that $z^2 ="
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "first",
+    "strict"
+   ],
+   "uid": "test/algebra/873.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{5}{"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "full",
+    "decode"
+   ],
+   "uid": "test/precalculus/1199.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "bx + c) + d$ is a sine wave with amplitude $|a|$, period $\\frac{2\\pi}{b}$, and vertical shift $d$.  The graph of $y = a \\sin (bx + c) + d$ is a sine wave with amplitude $|a|$, period $\\frac{2\\pi}{b}$, and vertical shift $d$.  The graph of $y = a \\sin (bx + c) + d$ is a sine wave with amplitude $|a|$"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "full",
+    "decode"
+   ],
+   "uid": "test/intermediate_algebra/1166.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "+ (a + b + 4c)^2]}{abc} \\cdot \\frac{a^2 b^2 c^2}{a^2 b^2 c^2} \\\\\n&= \\frac{(a + b + c)[(a + b)^2 + (a + b + 4c)^2]}{abc} \\cdot \\frac{a^2 b^2 c^2}{a^2 b^2 c^2} \\\\\n&= \\frac{(a + b + c)[(a + b)^2 + (a + b + 4c)^2]}{abc} \\cdot \\frac{a^2 b^2 c^2}{a^2 b^2 c^2} \\\\\n&= \\frac{(a + b + c)[(a + b)^2 + (a + b + 4"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "full",
+    "decode"
+   ],
+   "uid": "test/algebra/2593.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "^2 - 24^2)(26^2 - 24^2 - 20 + 20)\\\\\n&= (26^2 - 24^2)(26^2 - 24^2 - 20 + 20)\\\\\n&= (26^2 - 24^2)(26^2 - 24^2 - 20 + 20)\\\\\n&= (26^2 - 24^2)(26^2 - 24^2 - 20 + 20)\\\\\n&= (26^2 - 24^2)(26^2 - 24^2 - 20 + 20)\\\\\n&= (26^2 - 24^2)(26^2 - 24^2 - 20 + 20)\\\\\n&= (26^2 - 24^2)(26^2 - 24^2 - 20 + 20)\\\\\n&= (26^2 - 2"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "full",
+    "strict"
+   ],
+   "uid": "test/intermediate_algebra/207.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "a + \\cos\\theta - 1\\right) \\\\\n&= 2\\left(2\\cos^2\\theta + \\cos\\theta - 1\\right) \\\\\n&= 2\\left(2\\cos^2\\theta + \\cos\\theta - 1\\right) \\\\\n&= 2\\left(2\\cos^2\\theta + \\cos\\theta - 1\\right) \\\\\n&= 2\\left(2\\cos^2\\theta + \\cos\\theta - 1\\right) \\\\\n&= 2\\left(2\\cos^2\\theta + \\cos\\theta - 1\\right) \\\\\n&= 2\\left(2\\cos^"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "full",
+    "strict"
+   ],
+   "uid": "test/precalculus/1199.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "bx + c) + d$ is a sine wave with amplitude $|a|$, period $\\frac{2\\pi}{b}$, and vertical shift $d$.  The graph of $y = a \\sin (bx + c) + d$ is a sine wave with amplitude $|a|$, period $\\frac{2\\pi}{b}$, and vertical shift $d$.  The graph of $y = a \\sin (bx + c) + d$ is a sine wave with amplitude $|a|$"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "full",
+    "strict"
+   ],
+   "uid": "test/intermediate_algebra/754.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "rac{1+r}{2} \\ge \\sqrt{1\\cdot r} > 3.$$Multiplying both sides by 2, we get\n\n$$1+r \\ge 6 > 3 = \\sqrt{1\\cdot r}.$$Therefore, we have\n\n$$\\frac{1+r}{2} \\ge \\sqrt{1\\cdot r} > 3.$$Multiplying both sides by 2, we get\n\n$$1+r \\ge 6 > 3 = \\sqrt{1\\cdot r}.$$Therefore, we have\n\n$$\\frac{1+r}{2} \\ge \\sqrt{1\\cdot r"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "last",
+    "strict"
+   ],
+   "uid": "test/algebra/2593.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "= (26^2 - 24^2 - 10)^2 - 100\\\\\n&= (26^2 - 24^2 - 10)^2 - 100\\\\\n&= (26^2 - 24^2 - 10)^2 - 100\\\\\n&= (26^2 - 24^2 - 10)^2 - 100\\\\\n&= (26^2 - 24^2 - 10)^2 - 100\\\\\n&= (26^2 - 24^2 - 10)^2 - 100\\\\\n&= (26^2 - 24^2 - 10)^2 - 100\\\\\n&= (26^2 - 24^2 - 10)^2 - 100\\\\\n&= (26^2 - 24^2 - 10)^2 - 100\\\\\n&= (26^2 - 24"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "last",
+    "strict"
+   ],
+   "uid": "test/intermediate_algebra/1166.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "[(a + b)^2 + (a + b + 4c)^2]}{a^2 b^2 c^2} \\\\\n&= \\frac{(a + b + c)[(a + b)^2 + (a + b + 4c)^2]}{a^2 b^2 c^2} \\\\\n&= \\frac{(a + b + c)[(a + b)^2 + (a + b + 4c)^2]}{a^2 b^2 c^2} \\\\\n&= \\frac{(a + b + c)[(a + b)^2 + (a + b + 4c)^2]}{a^2 b^2 c^2} \\\\\n&= \\frac{(a + b + c)[(a + b)^2 + (a + b + 4c)^2]}{a^2 b^"
+  },
+  {
+   "cell": [
+    "huginn-0125",
+    "math500",
+    "last",
+    "strict"
+   ],
+   "uid": "test/number_theory/1185.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "dot}^{{\\cdot}^{{\\cdot}^{1,40,892,79,42,488,000}}}}}} = 1,40,892,79,42,488,000^{{1,40,892,79,42,488,000}^{{\\cdot}^{{\\cdot}^{{\\cdot}^{1,40,892,79,42,488,000}}}}}} = 1,40,892,79,42,488,000^{{1,40,892,79,42,488,000}^{{\\cdot}^{{\\cdot}^{{\\cdot}^{1,40,892,79,42,488,000}}}}}} = 1,40,892,79,42,488,000^{{1,40"
+  },
+  {
+   "cell": [
+    "ouro-1.4b",
+    "gsm8k",
+    "first",
+    "strict"
+   ],
+   "uid": "gsm8k-test-1033",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of the of"
+  },
+  {
+   "cell": [
+    "ouro-1.4b",
+    "gsm8k",
+    "last",
+    "strict"
+   ],
+   "uid": "gsm8k-test-1152",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2\u2014\n2"
+  },
+  {
+   "cell": [
+    "ouro-1.4b",
+    "gsm8k",
+    "last",
+    "strict"
+   ],
+   "uid": "gsm8k-test-1119",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)\n)"
+  },
+  {
+   "cell": [
+    "ouro-1.4b",
+    "gsm8k",
+    "last",
+    "strict"
+   ],
+   "uid": "gsm8k-test-0752",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2 followings)\n2)\n2)\n2)\n2)\n3The)\n2)\n3The)\n3)\n\n\n\n\n\n\n2)\n\n\n\n2)\n\n3)\n\n2)\n\n\n3he9arr \n\n\"9aj)\n\n\n2)\n\n3)\n\n2)\n\n3)\n2)\n3)\n\n2)\n\n3)\n\n2)\n\n3)\n\n2)\n\n3)\n\n2)\n3)\n\n2)\n3)\n\n2)\n3)\n\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n2)\n3)\n"
+  },
+  {
+   "cell": [
+    "ouro-1.4b",
+    "math500",
+    "first",
+    "strict"
+   ],
+   "uid": "test/geometry/965.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": " \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\"
+  },
+  {
+   "cell": [
+    "ouro-1.4b",
+    "math500",
+    "first",
+    "strict"
+   ],
+   "uid": "test/number_theory/1128.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": " \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\"
+  },
+  {
+   "cell": [
+    "ouro-1.4b",
+    "math500",
+    "first",
+    "strict"
+   ],
+   "uid": "test/number_theory/911.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": " \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\"
+  },
+  {
+   "cell": [
+    "ouro-1.4b",
+    "math500",
+    "last",
+    "strict"
+   ],
+   "uid": "test/geometry/477.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "ionoftheebSolutionoftheebSolutionoftheebSolution oftheebSolution oftheebSolution oftheebSolution oftheebSolutionoftheebSolution oftheebSolution oftheebSolution oftheebSolution oftheebSolutionoftheebSolutionoftheebSolutionoftheebSolution oftheebSolution oftheebSolution oftheebSolution oftheebSolution"
+  },
+  {
+   "cell": [
+    "ouro-1.4b",
+    "math500",
+    "last",
+    "strict"
+   ],
+   "uid": "test/counting_and_probability/23957.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": ")()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()("
+  },
+  {
+   "cell": [
+    "ouro-1.4b",
+    "math500",
+    "last",
+    "strict"
+   ],
+   "uid": "test/precalculus/1199.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))"
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "gsm8k",
+    "first",
+    "strict"
+   ],
+   "uid": "gsm8k-test-1260",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": " she needs    \ufffdx 5 3 and  \ufffdx 4 2 = 221. So she needs  \ufffdx 5 3 and    \ufffdx 4 2 = 2 2 1. So she needs  \ufffdx 5 3 and  \ufffdx 4 2 = 2 2 1. So she needs    \ufffdx 5 3 and   \ufffdx 4 2 = 2 2 1. So she needs  \ufffdx 5 3 and      \ufffdx 4 2 = 2 2 1. So she needs     \ufffdx 5  and      \ufffdx 4 2 = 2 2 1. So she needs   \ufffdx 5  and        \ufffdx "
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "gsm8k",
+    "first",
+    "strict"
+   ],
+   "uid": "gsm8k-test-0084",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "\ufffd\ufffd\ud835\ude29   + \ufffd \ud835\ude2e  =  \ufffd\ud835\ude2e  \ud835\ude2e  x  \ufffd   (since they played up to  \ufffd\ud835\ude2e  \ud835\ude2e  x  \ud835\ude2e  x \ud835\ude2e  x  \ud835\ude2e  x \ud835\ude2e  x  \ud835\ude2e  x  \ud835\ude2e  x \nand  x  \ud835\ude2e  = \ufffd\ufffd\ud835\ude29  \ud835\ude2e  \u2212    \ud835\ude2e   (since they lost  \ufffd\ufffd\ud835\ude29   \u2212         \ud835\ude2e   x  \u2212                  x  \ud835\ude2e  \ud835\ude2e \nthen  x  +  \ufffd \ud835\ude2e  =    \ufffd\ufffd\ud835\ude29  \ud835\ude2e  \u2212                                                                      "
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "gsm8k",
+    "last",
+    "strict"
+   ],
+   "uid": "gsm8k-test-0584",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 512,
+   "answer_tail": "h pair of contact cost?\nA: 9 t single use contact come in 1 s and will last 45 days. Each s is $100. c and current 10% off. If n buy 2 s of contact, how much will each pair of contact cost?\nA: 9 t single use contact come in 1 s and will last 45 days. Each s is $100. c and current 10% off. If n buy 2"
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "math500",
+    "first",
+    "strict"
+   ],
+   "uid": "test/intermediate_algebra/1166.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": " \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\"
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "math500",
+    "first",
+    "strict"
+   ],
+   "uid": "test/prealgebra/1423.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": " \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\"
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "math500",
+    "first",
+    "strict"
+   ],
+   "uid": "test/algebra/2593.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d+e) = (a+b+c+d"
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "math500",
+    "full",
+    "decode"
+   ],
+   "uid": "test/intermediate_algebra/1166.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "{3} = 3(a + b + c) \\cdot \\frac{(a + b + c)^2}{3} = 3(a + b + c) \\cdot \\frac{(a + b + c)^2}{3} = 3(a + b + c) \\cdot \\frac{(a + b + c)^2}{3} = 3(a + b + c) \\cdot \\frac{(a + b + c)^2}{3} = 3(a + b + c) \\cdot \\frac{(a + b + c)^2}{3} = 3(a + b + c) \\cdot \\frac{(a + b + c)^2}{3} = 3(a + b + c) \\cdot \\frac"
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "math500",
+    "full",
+    "decode"
+   ],
+   "uid": "test/intermediate_algebra/860.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "y^2 = 10$\n\n$\\left(\\frac x2 - 3\\right)^2 + y^2 = 10$\n\n$\\left(\\frac x2 - 3\\right)^2 + y^2 = 10$\n\n$\\left(\\frac x2 - 3\\right)^2 + y^2 = 10$\n\n$\\left(\\frac x2 - 3\\right)^2 + y^2 = 10$\n\n$\\left(\\frac x2 - 3\\right)^2 + y^2 = 10$\n\n$\\left(\\frac x2 - 3\\right)^2 + y^2 = 10$\n\n$\\left(\\frac x2 - 3\\right)^2 + y^2 = "
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "math500",
+    "full",
+    "strict"
+   ],
+   "uid": "test/intermediate_algebra/207.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "z^3 + 1 = 0.\\]Then\n\\[w^2 + w - 1 + z^3 = 0.\\]Since $z^4 + z^3 + z^2 + z + 1 = 0,$ $z^3 = -z^4 - z^2 - z - 1.$  Then\n\\[w^2 + w - 1 + z^3 = w^2 + w - 1 - z^4 - z^2 - z - 1 = 0.\\]Then\n\\[w^2 + w - 2 - z^4 - z^2 - z = 0.\\]Since $z^4 + z^3 + z^2 + z + 1 = 0,$ $z^4 + z^2 + z = -z^3 - 1.$  Then\n\\[w^2 + w - "
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "math500",
+    "full",
+    "strict"
+   ],
+   "uid": "test/intermediate_algebra/1166.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "frac{(a + b + c)(a + b)(a + b + 4c)}{32768abc}.\\]By AM-GM,\n\\[\\frac{(a + b + c)(a + b)(a + b + 4c)}{32768abc} \\ge \\frac{(a + b + c)(a + b)(a + b + 4c)}{32768abc} \\cdot \\frac{1}{2} = \\frac{(a + b + c)(a + b)(a + b + 4c)}{65536abc}.\\]By AM-GM,\n\\[\\frac{(a + b + c)(a + b)(a + b + 4c)}{65536abc} \\ge \\frac"
+  },
+  {
+   "cell": [
+    "ouro-2.6b",
+    "math500",
+    "last",
+    "strict"
+   ],
+   "uid": "test/algebra/2593.json",
+   "finish_reason": "length",
+   "failure_reason": "truncated_no_answer",
+   "n_gen_tokens": 2048,
+   "answer_tail": "enenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenenen"
+  }
+ ],
+ "fallback_samples": [
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0383",
+   "extract_method": "fallback_last_number",
+   "pred": "-14",
+   "gold": "2",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "First, calculate the revenue per hour: 4 cups per hour * $1 per cup = = $4 per hour. Then, subtract the cost: $4 per hour revenue - $18 cost = = $-14 per hour. The answer answer is $-14 per hour."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0876",
+   "extract_method": "fallback_last_number",
+   "pred": "39",
+   "gold": "41",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "hoice questions, Amy got 8 (1/2 of 16) correct. For the true/false questions,, she got 18 (3/4 of 24) correct. For the long answer questions,, she got 3 (3/5 of 5) correct. Adding these, she got 8 + 18 + 3 = 39 points. The answer answer is 39 points."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "strict",
+   "uid": "test/geometry/477.json",
+   "extract_method": "fallback_last_math",
+   "pred": "531,441",
+   "gold": "216",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The volume of the cube is $(3^3)(3^3)=27^3=531,441$ cubic inches."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0983",
+   "extract_method": "fallback_last_number",
+   "pred": "3/2",
+   "gold": "15",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "ers. The number of golf balls in the grove is 1.5 times the size of a golf ball. The average size of a golf ball is 10.5 meters. The number of golf balls in the grove is 2.5 times the size of a golf ball. The average size of golf balls is 1.5 meters."
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "gsm8k-test-1119",
+   "extract_method": "fallback_last_number",
+   "pred": "18",
+   "gold": "18",
+   "correct": true,
+   "finish_reason": "stop_string",
+   "last_line": " hours to mow the lawn. Megan took 2 hours longer than Amalia, so she took 4 + 2 = 6 hours. Dior took well over 4 hours longer than Amalia, so she took more than 4 + 4 = 8 hours. The total time they took is 4 + 6 + (more than 8) = more than 18 hours."
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "gsm8k-test-1119",
+   "extract_method": "fallback_last_number",
+   "pred": "18",
+   "gold": "18",
+   "correct": true,
+   "finish_reason": "stop_string",
+   "last_line": " hours to mow the lawn. Megan took 2 hours longer than Amalia, so she took 4 + 2 = 6 hours. Dior took well over 4 hours longer than Amalia, so she took more than 4 + 4 = 8 hours. The total time they took is 4 + 6 + (more than 8) = more than 18 hours."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "test/counting_and_probability/525.json",
+   "extract_method": "fallback_last_math",
+   "pred": "36",
+   "gold": "144",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "$4!$ ways to arrange the remaining $4$ people in the remaining $4$ spots. Therefore, the number of ways to arrange the $7$ people around the table such that no two of the $3$ people Pierre, Rosa, and Thomas sit next to each other is $3!\\cdot4! = 36$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0798",
+   "extract_method": "fallback_last_number",
+   "pred": "20",
+   "gold": "20",
+   "correct": true,
+   "finish_reason": "eos",
+   "last_line": "A:"
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-1046",
+   "extract_method": "fallback_last_number",
+   "pred": "3",
+   "gold": "189",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "The team worked for 3/8ths of a day every day for 3 weeks. Since a day has  ........"
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0300",
+   "extract_method": "fallback_last_number",
+   "pred": "46",
+   "gold": "78",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "On Monday and Sunday, Peter exercised for 23 minutes. So in total, he exercised for 2 23s = 46 minutes. On Tuesday, he wants to exercise for twice that amount. So, he needs to exercise for 2 23s = 46 minutes. The answer answer is 46 minutes."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0798",
+   "extract_method": "fallback_last_number",
+   "pred": "4",
+   "gold": "20",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": " 40 hours. So,, she earned $2 per hour for 4 hours, which is $2 * 4 hours = = $8.0 per hour. Now, we compare their earnings. Billy earned $12.0, and and Sally earned $8.0. So, Billy earned $12 - $8 = = $4.0 more than Sally. The answer answer is $4.0."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "test/counting_and_probability/525.json",
+   "extract_method": "fallback_last_math",
+   "pred": "360",
+   "gold": "144",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "e arrangements, there are $5!$ ways to arrange the remaining $4$ people. Therefore, the number of ways to arrange the $7$ people around the table such that no two of the $3$ people Pierre, Rosa, and Thomas sit next to each other is $3!\\cdot5! = 360$."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0487",
+   "extract_method": "fallback_last_number",
+   "pred": "15",
+   "gold": "4",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "ber of golf balls in the grove is 20. There are 15 trees in the grove. The number of golf balls in the grove is 15. The number of golf balls in the grove is 24. The number of golf balls in the grove is 36. The number of golf balls in the grove is 15."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "test/geometry/477.json",
+   "extract_method": "fallback_last_math",
+   "pred": "531,441",
+   "gold": "216",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The volume of the cube is $(3^3)(3^3)=27^3=531,441$ cubic inches."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0790",
+   "extract_method": "fallback_last_number",
+   "pred": "10",
+   "gold": "108",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "There were  \ud835\ude33 =  \ud835\ude33 = 90 / 9 = 10 groups. Each group had  \ud835\ude33 =    # of people in each group = 90 /  \ud835\ude33 = 10 people per group. Each group had  \ud835\ude33 =  # of people in each group = 90 /  # of groups =  \ud835\ude33 = 10 people per group. Each."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "test/geometry/477.json",
+   "extract_method": "fallback_last_math",
+   "pred": "531,441",
+   "gold": "216",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The volume of the cube is $(3^3)(3^3)=27^3=531,441$ cubic inches."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-1053",
+   "extract_method": "fallback_last_number",
+   "pred": "33",
+   "gold": "55",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "The tank costs $10. The shorts cost $5 more than the top, so $10 + $5 = $15. The shoes cost $$4 8 / 2 = 4$ dollars. The socks cost $8 - $2 = = $6. The total cost is $10 + $15 + $6 + + $2 = = $33. The answer answer is 3 three 33."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0722",
+   "extract_method": "fallback_last_number",
+   "pred": "6",
+   "gold": "255",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "The pothole will cost $4 for every 100 feet. The distance from the front door to the pothole is 150 feet. So the cost will be 1.5 times the cost of 1 full tiles. 1.5 * 4 = 6. The answer answer is 6."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0872",
+   "extract_method": "fallback_last_number",
+   "pred": "11",
+   "gold": "13",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "Seven bottles of soda cost $21.00. 4 bottles of water water cost $8. So,  \boxed{3} bottles bottles of soda cost $21.00 *  \boxed{3} /  \boxed{7} =  $9.00. 2 bottless of water water cost $8. So,  \boxed{2} +  bbf{9} = $11.00. The answer answer is 11."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0487",
+   "extract_method": "fallback_last_number",
+   "pred": "5",
+   "gold": "4",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "Each horse eats 5 pounds of oats per meal. They eat twice a day. So each is-"
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-1033",
+   "extract_method": "fallback_last_number",
+   "pred": "5",
+   "gold": "2",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "The total pay for the  \u044f 3 days is 6 hours/day * 3 days * $1 per hour = + $18. The parking fee is $3/day * 3 days = + $9. The total pay is is $18 - $9 = $15. The hourly pay is is $15/3 hours = = $5/hour. The answer answer is $5/hour."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0752",
+   "extract_method": "fallback_last_number",
+   "pred": "1728",
+   "gold": "240",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": " = = $12 per month. Since there are 12 months in a year year,, each, in a year, will pays $12 * 12 = = $144 per month. Since there are 12 months in a year year,, each, in, a, year, will, pays, $144 * 12 = = $1728 per year. The answer answer is $1728."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0104",
+   "extract_method": "fallback_last_number",
+   "pred": "2",
+   "gold": "500",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "ces, which is a third of two hundred and fifty, so two and a quarter thousand divided by three is two hundred and and a third. So there there are two and a third thousand pieces pieces left to be placed. The answer answer is two and a third thousand."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0407",
+   "extract_method": "fallback_last_number",
+   "pred": "0",
+   "gold": "2000",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": " did 1,000 steps going and back. So he took 1,000 + 1,000 = 2,000 steps. He had 2,000 steps left after his jog. So he took 2,000 -  (the steps he took in his jog) ) = 2,000 steps. So he took 2,000 - 2,000 = 0 steps in his jog. The answer answer is 0."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-1058",
+   "extract_method": "fallback_last_number",
+   "pred": "5",
+   "gold": "250",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "Two years ago, Leo had 100 stickers stickers. Last year, he collected  .......... 5"
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0197",
+   "extract_method": "fallback_last_number",
+   "pred": "19000",
+   "gold": "6277",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "There are 2 3 7 8 6 = 26,000 people in Soda. There are 8 4 1 7 = 15,000 people who are not children. So there are  \ufffd 26 0 0 0 \u2212 1 5 0 0 = 1 9 0 0 0. There are 19,000 children in Soda. The answer answer is 19,000."
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0152",
+   "extract_method": "fallback_last_number",
+   "pred": "4",
+   "gold": "4",
+   "correct": true,
+   "finish_reason": "stop_string",
+   "last_line": "10 packs of 6 = 10 x 6 = 60 cookies. 60 x $0.1 = = $6.00. $10.00 - $6.00 = = $4.00."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-1026",
+   "extract_method": "fallback_last_number",
+   "pred": "50",
+   "gold": "43200",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "n iron pickaxe and 50% more with a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a a"
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "decode",
+   "uid": "test/intermediate_algebra/860.json",
+   "extract_method": "fallback_last_math",
+   "pred": "r^2",
+   "gold": "\\text{ellipse}",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The equation is in the form $(x-h)^2 + (y-k)^2 = r^2,$ which is the equation of a circle. Therefore, the graph is a circle."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0197",
+   "extract_method": "fallback_last_number",
+   "pred": "96",
+   "gold": "6277",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The total number of people in the world is 96.00."
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "last",
+   "mode": "strict",
+   "uid": "gsm8k-test-0983",
+   "extract_method": "fallback_last_number",
+   "pred": "9",
+   "gold": "15",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "\"\u2014Thisincluded"
+  },
+  {
+   "model": "ouro-1.4b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-1260",
+   "extract_method": "fallback_last_number",
+   "pred": "35/2",
+   "gold": "5",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "Jade has taken 210 photos in total. 2 batches of 6 photos each day. 2 x 6 = 12 photos per day. 210 / 12 = 17.5 days. She needs to upload 17.5 days."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0121",
+   "extract_method": "fallback_last_number",
+   "pred": "8",
+   "gold": "27",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "the sum of the fruits each brought. Since Morisette brought  \ud835\ude33 5 apples apples and 8 oranges oranges, and K brought twice the amount of apples and half the number of oranges oranges as Morisette, we can calculate the total number fruits they brought."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0152",
+   "extract_method": "fallback_last_number",
+   "pred": "4",
+   "gold": "4",
+   "correct": true,
+   "finish_reason": "stop_string",
+   "last_line": "\ufffd.\ufffd.\ufffd. \ud835\udfcf\ufffd.\ufffd.\ufffd. \ud835\udfcf\ufffd.\ufffd.\ufffd. \ufffd$0.60. Since each pack pack of cookies costs $0 and \ufffd$0.60, and there are 10 packs, the total cost is \ufffd$0.60 \u00d7 1 zero 10 = \ufffd$0.6.00. So Carl paid $0.60 and received $10 - $0.6 = $9.40 in change. The answer answer is $9 and 4t."
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "gsm8k",
+   "policy": "first",
+   "mode": "strict",
+   "uid": "gsm8k-test-0364",
+   "extract_method": "fallback_last_number",
+   "pred": "53",
+   "gold": "49",
+   "correct": false,
+   "finish_reason": "stop_string",
+   "last_line": "A: There were 96-43=53 boys in fourth grade."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "full",
+   "mode": "strict",
+   "uid": "test/intermediate_algebra/860.json",
+   "extract_method": "fallback_last_math",
+   "pred": "r^2",
+   "gold": "\\text{ellipse}",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The equation is in the form $(x-h)^2 + (y-k)^2 = r^2$, which is the equation of a circle. Therefore, the graph is a circle."
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "math500",
+   "policy": "last",
+   "mode": "strict",
+   "uid": "test/intermediate_algebra/860.json",
+   "extract_method": "fallback_last_math",
+   "pred": "r^2",
+   "gold": "\\text{ellipse}",
+   "correct": false,
+   "finish_reason": "eos",
+   "last_line": "The equation is in the form $(x-h)^2 + (y-k)^2 = r^2,$ which is the equation of a circle. Therefore, the graph is a circle."
+  }
+ ],
+ "counts": {
+  "gsm8k_primary_vs_lm_eval_strict": 42,
+  "math_primary_vs_minerva": 5,
+  "parse_failure_samples": 39,
+  "fallback_samples": 37
+ },
+ "parse_failure_reasons": {
+  "huginn-0125|gsm8k|first-strict": {
+   "truncated_no_answer": 3,
+   "finished_no_answer": 18
+  },
+  "huginn-0125|gsm8k|full-decode": {
+   "truncated_no_answer": 1
+  },
+  "huginn-0125|gsm8k|full-strict": {
+   "truncated_no_answer": 1
+  },
+  "huginn-0125|gsm8k|last-strict": {
+   "truncated_no_answer": 1
+  },
+  "huginn-0125|math500|first-strict": {
+   "truncated_no_answer": 3
+  },
+  "huginn-0125|math500|full-decode": {
+   "truncated_no_answer": 7
+  },
+  "huginn-0125|math500|full-strict": {
+   "truncated_no_answer": 7
+  },
+  "huginn-0125|math500|last-strict": {
+   "truncated_no_answer": 7
+  },
+  "ouro-1.4b|gsm8k|first-strict": {
+   "truncated_no_answer": 1
+  },
+  "ouro-1.4b|gsm8k|last-strict": {
+   "truncated_no_answer": 31
+  },
+  "ouro-1.4b|math500|first-strict": {
+   "truncated_no_answer": 20,
+   "finished_no_answer": 1
+  },
+  "ouro-1.4b|math500|last-strict": {
+   "truncated_no_answer": 30,
+   "finished_no_answer": 2
+  },
+  "ouro-2.6b|gsm8k|first-strict": {
+   "truncated_no_answer": 2
+  },
+  "ouro-2.6b|gsm8k|last-strict": {
+   "truncated_no_answer": 1
+  },
+  "ouro-2.6b|math500|first-strict": {
+   "truncated_no_answer": 10
+  },
+  "ouro-2.6b|math500|full-decode": {
+   "truncated_no_answer": 2
+  },
+  "ouro-2.6b|math500|full-strict": {
+   "truncated_no_answer": 2
+  },
+  "ouro-2.6b|math500|last-strict": {
+   "truncated_no_answer": 1
+  }
+ }
+}
