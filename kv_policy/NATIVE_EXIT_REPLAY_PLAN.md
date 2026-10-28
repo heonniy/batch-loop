@@ -72,3 +72,122 @@ The *existing* `kv_policy/kvp/engine.py` executes every recurrence;
 and trace identity formats only. **DO NOT report dynamic-depth accuracy or
 claim physically skipped recurrences until Phase A/B are implemented and
 run.** The tests cover utility semantics, not an end-to-end dynamic runtime.
+
+
+## Implementation handoff — CDB-guided native-exit replay (2026-10-28 revision)
+
+Reference: https://github.com/kschwethelm/continuous-depth-batching
+Treat CDB as a **reference implementation**, not automatically source-compatible
+with our pinned Huginn and Ouro checkpoint versions. Inspect its depth gate,
+per-token state, replay scheduling, cache policy, and no-refill paths before
+adapting code. Record pinned upstream commit SHA, attribution, license and exact
+adapted files. Do not modify the CDB upstream repository.
+
+### Research question and boundaries
+
+Compare **FULL vs terminal-LAST vs Loop1-all** under exactly identical
+recorded per-token recurrence depths, and quantify whether early exit limits
+recurrent error recovery. First deliver an accuracy characterization; no CDB
+scheduling speedup or memory claim until a compact runtime is measured.
+
+### Step 0 — upstream/contract audit
+
+1. Inspect Huginn's pinned official `get_adaptive_exit_evaluator` and verify
+   cosine threshold, latent tensor, reduction (token/head/batch), minimum
+   recurrence and when the decision is made. Avoid treating a sequence-level
+   stop evaluator as a per-token gate without an explicit adaptation.
+2. Inspect Ouro's pinned official ACT exit head and exact cumulative threshold
+   convention, per-token logits selection, and whether its current runtime
+   physically skips execution. Compare q=1 against fixed-R logits.
+3. Review CDB's recorded-depth replay semantics, no-refill execution, exited
+   token cache semantics, and model-specific preparation of prelude/core/coda.
+   Write `analysis/upstream_semantics_audit.md` with concrete code locations.
+4. Preserve existing `kv_policy` outputs and baselines; make isolated new files
+   and a new results directory.
+
+### Step 1 — native gate trace acquisition
+
+- Collect frozen FULL-reference traces independently for Ouro-1.4B,
+  Ouro-2.6B and Huginn-0125. Include both prompt and generation tokens;
+  record `uid`, token position and token ID, prefix checksum, all native gate
+  signals, exit recurrence, max recurrence, rule/threshold, checkpoint SHA,
+  RNG/seed, and EOS. Distinguish trace derived from teacher-forced gold
+  prefix versus Full-generated prefix.
+- Ouro: learned ACT Q-exit q in {0.5, 0.7, 0.9, 1.0}; q=1 fixed-depth
+  control, R=4. Huginn: official cosine auto (~1e-3, verify code),
+  plus lower/higher thresholds selected after inspecting observed depth
+  histograms; Rmax=32. Include official argmax stability as secondary
+  sensitivity control; **do not** claim it is trained ACT.
+- Token-level exit signals must be measured for the corresponding
+  historical token's own trajectory. If the official evaluator only supports
+  sequence-level exit, write a documented token-wise adaptation and label
+  it explicitly, with a sequence-level official reference control.
+- Report depth distributions overall/by task/by position; check traces have
+  nontrivial exits (not all Rmax or all depth1). Never use a model's generation
+  trace with a different prompt/token identity without explicit replay rules.
+
+### Step 2 — physically depth-limited B=1 correctness engine
+
+Implement actual early termination in model-specific recurrent core. Reuse
+the existing BF16 reference KV engine if possible and CDB execution
+patterns only where necessary. A depth d_i token must not execute layers
+at recurrence >d_i, and cannot write or read future-depth KVs.
+
+For a past token i with executed depth d_i, query recurrence r:
+- FULL-best-available: history KV from recurrence min(r,d_i).
+- LAST: history KV from recurrence d_i.
+- Loop1-all: history KV from recurrence 1 at query recurrence r=1;
+  otherwise history KV from recurrence d_i (same 1-bank + terminal scheme).
+
+The current query token uses its own KV at executed recurrence r; causal
+mask, RoPE, padding, and model noise must be held fixed. All three policies
+use token-major strict prompt processing to avoid conflating prompt
+semantics with KV policy. Preserve model's correct exit-selected coda/logit
+path; confirm that Ouro gate signals are not recomputed on replay.
+
+**Invariant:** setting all d_i=R reproduces the existing FULL/strict,
+LAST/strict and bankR1all/strict outputs (FP32 tight tolerance and BF16
+with documented numerical floor). Independent dictionary KV read/write
+trace must cover mixed depths such as [4,2,3,1], plus d_i=1 and EOS cases.
+
+### Step 3 — counterfactual replay and accuracy
+
+Run on the **same frozen token IDs and depths**:
+- Teacher-forced replay: NLL, per-position Full vs policy KL, top1 flip,
+  hidden-state error at exit, and optional depth-bucket stratification.
+- Generation replay: per-position depth replay even when policies generate
+  different text; score GSM8K and MATH500, first divergence, EOS, repetition,
+  and length cap. If a generated sequence exceeds the recorded trace, raise
+  and record that event; predeclare an extension rule before a complete run,
+  rather than silently repeating the last depth.
+- Fixed R control should reproduce earlier quality, while nontrivial
+  exits should have lower measured recurrence-invocation count.
+- Compare the policies at exactly the same replay trace; do not
+  conflate quality under policy-specific live exits with replay quality.
+
+### Step 4 — only after replay passes
+
+Optionally implement policy-specific *live* gates on FULL/LAST/Loop1-all,
+record their new depth distributions, and analyze quality-depth coupling.
+If a real memory/throughput claim is pursued, implement compact KV
+storage rather than the existing broadcast-sized store, and measure GPU
+peak HBM, TTFT, TPOT, TPS, effective recurrence invocations and overhead.
+CDB no-refill batching/regrouping is a separate performance study.
+
+### Execution gates and deliverables
+
+- CPU toy and FP32 B1 independent-reference parity, full-depth reduction,
+  token-depth causality, exact checkpoint/exit policy, reproducible trace
+  hashes, no accidental cache refill.
+- 32 GSM8K + 32 MATH500 pilot per model, then 200+200 full eval only after
+  gate checks pass; report seed, hardware, model, trace source and failure
+  count, and per-policy paired CIs. Reuse frozen study prompts where valid.
+- Output: `analysis/upstream_semantics_audit.md`,
+  `traces/*.jsonl`, `analysis/trace_depth_summary.csv`,
+  `analysis/parity_report.md`, `analysis/accuracy_nll.csv`,
+  `analysis/recovery_by_depth.csv`, `analysis/generation_failures.csv`,
+  `analysis/RESULTS.md`.
+- GO: full-depth parity passes, native gates verified, variable-depth trace
+  and policy reads are causally correct, pilot sufficiently complete.
+  NO-GO: unsupported official per-token exit semantics, mismatched Full
+  logits, or replay depth/identity mismatch; investigate before reporting.
