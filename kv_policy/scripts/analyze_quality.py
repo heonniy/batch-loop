@@ -255,14 +255,17 @@ def main():
             row["minerva_is_equiv"] = df.minerva_is_equiv.fillna(False).astype(bool).mean()
         rows.append(row)
     summ = pd.DataFrame(rows)
-    summ["_o"] = summ.apply(lambda r: ORDER.index((r.policy, r["mode"])), axis=1)
+    extra = sorted({(p, m) for p, m in zip(summ.policy, summ["mode"])} - set(ORDER))  # e.g. bank* policies
+    order = ORDER + extra
+    summ["_o"] = summ.apply(lambda r: order.index((r.policy, r["mode"])), axis=1)
     summ = summ.sort_values(["model", "dataset", "_o"]).drop(columns="_o")
     summ.to_csv(out / "summary.csv", index=False)
 
     # ---------------- paired deltas vs baselines
     rng = np.random.default_rng(SEED)
-    comparisons = [(("full", "decode"), c) for c in ORDER[1:]] + [
-        (STRICT_BASE, ("last", "strict")), (STRICT_BASE, ("average", "strict"))]
+    comparisons = [(("full", "decode"), c) for c in order[1:]] + [
+        (STRICT_BASE, ("last", "strict")), (STRICT_BASE, ("average", "strict")), (STRICT_BASE, ("first", "strict"))] + [
+        (STRICT_BASE, c) for c in extra if c[1] == "strict"] + [(("last", "strict"), c) for c in extra if c[1] == "strict"]
     pair_rows = []
     for (m, d), _ in g.groupby(["model", "dataset"]):
         for base_cell, cell in comparisons:

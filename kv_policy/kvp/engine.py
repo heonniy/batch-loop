@@ -354,8 +354,8 @@ class Runner:
         if policy.startswith("bank"):  # E3 selective (layer x step) protection, see kvp.banks
             from .banks import REGISTRY, BankKV
 
-            if mode != "convert":
-                raise ValueError("bank policies are defined for mode 'convert'")
+            if mode not in ("convert", "strict"):
+                raise ValueError("bank policies are defined for modes 'convert' and 'strict'")
             kv = BankKV(REGISTRY[(getattr(self, "model_key", None), policy)], self.bb.R, self.bb.n_rec, self.bb.n_plain,
                         B, self.bb.H, T, self.bb.D, self.dtype, self.device)
         elif self.store == "compact" and policy != "full":

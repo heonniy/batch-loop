@@ -54,3 +54,19 @@ def test_bank_policy_matches_dict_reference(tiny, cells):
     ref = reference_logits(model, family, run.bb.R, PROMPT, CONT, "last", "convert", noise, banks=frozenset(cells))
     eng = run.teacher_forced_logits(PROMPT, CONT, "u", name, "convert")
     assert torch.allclose(eng, ref, atol=1e-9, rtol=1e-9), (eng - ref).abs().max()
+
+
+@pytest.mark.parametrize("cells", [(), ((0, 0),), ((1, 0),), ((0, 0), (1, 0)), ((0, 0), (0, 1))])
+def test_bank_strict_matches_dict_reference(tiny, cells):
+    """LAST/strict + protected banks vs the dictionary reference; no banks == LAST/strict."""
+    from kvp.reference import reference_logits
+
+    family, model, run = tiny
+    name = "bankst" + "".join(f"{l}{r}" for l, r in cells)
+    REGISTRY[(run.model_key, name)] = frozenset(cells)
+    noise = run.bb.example_noise("u", 64) if family == "huginn" else None
+    ref = reference_logits(model, family, run.bb.R, PROMPT, CONT, "last", "strict", noise, banks=frozenset(cells))
+    eng = run.teacher_forced_logits(PROMPT, CONT, "u", name, "strict")
+    assert torch.allclose(eng, ref, atol=1e-9, rtol=1e-9), (eng - ref).abs().max()
+    if not cells:
+        assert torch.allclose(eng, run.teacher_forced_logits(PROMPT, CONT, "u", "last", "strict"), atol=1e-12)

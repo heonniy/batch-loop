@@ -7,6 +7,9 @@ the terminal K/V^(R-1) otherwise. Unprotected = LAST-CONVERT, all protected = FU
 prefilled exactly as FULL (loop-major, every plane) and then converted.
 Retained recurrent KV per token = (n_layers + |protected|) planes vs n_layers * R for FULL.
 Masks are registered per model: REGISTRY[(model_key, policy)] = set of (l, r).
+Mode "strict" (token-major prompt): no conversion step; every prompt and generated token is finalised
+after its own last step, so later tokens read protected banks per-step and all others terminal, from
+the first prompt token on (LAST/strict + protection).
 """
 
 from __future__ import annotations
