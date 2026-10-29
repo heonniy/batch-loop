@@ -271,3 +271,47 @@ def test_protected_window_large_matches_protected_strict(tiny):
             REGISTRY.pop(key, None)
         else:
             REGISTRY[key] = prior
+
+
+
+def test_tokloop_hash_matches_independent_dictionary_cache_at_r2():
+    """At R2, per-token first+terminal is exact selective full-vs-last.
+
+    Compare engine to independently materialized native HF KV cache on a
+    small random-weight Ouro. This detects causal selection and read errors.
+    """
+    from kvp.token_loop import stable_hash_fraction
+
+    model, run = _tiny("ouro", 2)
+    kept = frozenset(
+        i for i in range(len(PROMPT) + len(CONT))
+        if stable_hash_fraction("u", i, 0) < .4
+    )
+    independent = reference_logits(
+        model, "ouro", 2, PROMPT, CONT, "last", "strict", None, keep=kept)
+    observed = run.teacher_forced_logits(
+        PROMPT, CONT, "u", "tokL1hash40", "strict")
+    assert torch.allclose(independent, observed, atol=1e-9, rtol=1e-9)
+
+
+def test_tokloop_extreme_controls_match_exact_existing_policies():
+    from kvp.banks import REGISTRY
+    model, run = _tiny("ouro", 4)
+    last = run.teacher_forced_logits(PROMPT, CONT, "u", "last", "strict")
+    dropall = run.teacher_forced_logits(PROMPT, CONT, "u", "tokL1hash0", "strict")
+    assert torch.equal(last, dropall)
+
+    key = (getattr(run, "model_key", None), "bankR1all")
+    previous = REGISTRY.get(key)
+    try:
+        REGISTRY[key] = frozenset((l, 0) for l in range(run.bb.n_rec))
+        all_bank = run.teacher_forced_logits(
+            PROMPT, CONT, "u", "bankR1all", "strict")
+        every_token = run.teacher_forced_logits(
+            PROMPT, CONT, "u", "tokL1hash100", "strict")
+        assert torch.equal(all_bank, every_token)
+    finally:
+        if previous is None:
+            REGISTRY.pop(key, None)
+        else:
+            REGISTRY[key] = previous
