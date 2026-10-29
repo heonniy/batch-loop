@@ -38,7 +38,11 @@ def sha(s: str) -> str:
     return hashlib.sha256(s.encode()).hexdigest()
 
 
-def prepare_items(model_key: str, dataset: str, tok, batching: str = "main") -> tuple[list[dict], dict]:
+def prepare_items(model_key: str, dataset: str, tok, batching: str = "main",
+                  batch_size: int | None = None) -> tuple[list[dict], dict]:
+    batch_size = BATCH_SIZE[dataset] if batch_size is None else int(batch_size)
+    if batch_size < 1:
+        raise ValueError("batch_size must be >=1")
     spec = MODELS[model_key]
     docs, meta = load_subset(dataset)
     proto = protocol(spec.family, dataset)
@@ -63,7 +67,7 @@ def prepare_items(model_key: str, dataset: str, tok, batching: str = "main") -> 
         order = list(range(len(items)))
         random.Random(20261023).shuffle(order)
     for rank, i in enumerate(order):
-        items[i]["batch"], items[i]["batch_pos"] = divmod(rank, BATCH_SIZE[dataset])
+        items[i]["batch"], items[i]["batch_pos"] = divmod(rank, batch_size)
     return items, {"dataset_meta": meta, "protocol": proto.__dict__}
 
 
@@ -90,10 +94,11 @@ class ModelContext:
         self.eos_strings = sorted({self.tok.decode([e], skip_special_tokens=False) for e in self.eos})
         self.items: dict[str, tuple[list[dict], dict]] = {}
 
-    def dataset(self, dataset: str, batching: str = "main"):
-        if (dataset, batching) not in self.items:
-            self.items[(dataset, batching)] = prepare_items(self.key, dataset, self.tok, batching)
-        return self.items[(dataset, batching)]
+    def dataset(self, dataset: str, batching: str = "main", batch_size: int | None = None):
+        cache_key = (dataset, batching, batch_size)
+        if cache_key not in self.items:
+            self.items[cache_key] = prepare_items(self.key, dataset, self.tok, batching, batch_size)
+        return self.items[cache_key]
 
 
 def run_job(ctx: ModelContext, job: dict, out_dir: Path) -> dict:
@@ -104,7 +109,7 @@ def run_job(ctx: ModelContext, job: dict, out_dir: Path) -> dict:
         if (ctx.key, policy) not in REGISTRY:
             load_registry(out_dir.parent / "banks.json")
     batching = job.get("batching", "main")
-    items, meta = ctx.dataset(dataset, batching)
+    items, meta = ctx.dataset(dataset, batching, job.get("batch_size"))
     batch = batches(items)[b]
     proto = protocol(ctx.spec.family, dataset)
     uids = [it["uid"] for it in batch]
