@@ -243,6 +243,29 @@ class WindowKV(PolicyKV):
         return super().attend(layer, q, k, v, c0, c1, masked)
 
 
+
+class WindowBankKV(WindowKV):
+    """Independent composition: global protected banks + causal token window.
+
+    This is a strong SEPARABLE baseline, not a new joint per-token optimizer.
+    Every retained historical token uses the same bank-protection mask.
+    """
+
+    def __init__(self, protected, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.protected = frozenset(protected)
+
+    def finalize(self, c: int):
+        if c < self.region_start:
+            return
+        for l, (kb, vb) in enumerate(zip(self.rk, self.rv)):
+            for buf in (kb, vb):
+                terminal = buf[self.R - 1, :, :, c].clone()
+                for r in range(self.R - 1):
+                    if (l, r) not in self.protected:
+                        buf[r, :, :, c] = terminal
+
+
 # ----------------------------------------------------------------------------- backbones
 
 
@@ -418,7 +441,21 @@ class Runner:
             raise ValueError(mode)
         region = P if mode == "decode" else 0
         window_match = re.fullmatch(r"last(prompt)?win([1-9][0-9]*)", policy)
-        if window_match:
+        bank_window_match = re.fullmatch(r"(bank(?:P0|R1all|cal))(prompt)?win([1-9][0-9]*)", policy)
+        if bank_window_match:
+            if mode != "strict":
+                raise ValueError("Protected+Window policies require strict mode")
+            from .banks import REGISTRY, load_registry
+            bank_policy = bank_window_match.group(1)
+            key = (getattr(self, "model_key", None), bank_policy)
+            if key not in REGISTRY:
+                raise ValueError(f"Bank registry missing {key}; load banks.json first")
+            kv = WindowBankKV(REGISTRY[key],
+                              self.bb.R, self.bb.n_rec, self.bb.n_plain, B, self.bb.H,
+                              T, self.bb.D, self.dtype, self.device,
+                              window=int(bank_window_match.group(3)), prompt_end=P,
+                              pads=pads, keep_prompt=bool(bank_window_match.group(2)))
+        elif window_match:
             if mode != "strict":
                 raise ValueError("Last+Window policies require strict mode")
             kv = WindowKV(self.bb.R, self.bb.n_rec, self.bb.n_plain, B, self.bb.H,
