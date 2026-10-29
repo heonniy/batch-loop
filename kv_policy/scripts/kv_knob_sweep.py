@@ -19,6 +19,7 @@ import csv
 import hashlib
 import json
 import os
+import random
 import shutil
 import subprocess
 import sys
@@ -126,6 +127,46 @@ def report(run: Path) -> dict:
                 acc, length, parse, avg_len = "", "", "", ""
             writer.writerow(dict(zip(writer.fieldnames, [*key, len(rows), acc, nll,
                                                          avg_len, length, parse])))
+    # Paired controls: every policy is compared to FULL/strict on identical
+    # frozen UIDs. This is a descriptive screening CI, not a multiple-testing
+    # corrected paper-level claim.
+    index = {k: {r["uid"]: r for r in rows} for k, rows in groups.items()}
+    pair_rows = []
+    rng = random.Random(20261029)
+    for (model, dataset, task, policy, mode), current in sorted(index.items()):
+        if (policy, mode) == ("full", "strict"):
+            continue
+        baseline = index.get((model, dataset, task, "full", "strict"))
+        if baseline is None:
+            continue
+        common = sorted(set(baseline) & set(current))
+        if not common:
+            continue
+        if task == "gen":
+            metric = "delta_accuracy"
+            delta = [int(bool(current[u]["correct"])) -
+                     int(bool(baseline[u]["correct"])) for u in common]
+        else:
+            metric = "delta_nll_per_problem"
+            delta = []
+            for u in common:
+                assert baseline[u]["target_tokens"] == current[u]["target_tokens"], "target mismatch"
+                delta.append(float(current[u]["nll_mean"] - baseline[u]["nll_mean"]))
+        avg = sum(delta) / len(delta)
+        boot = []
+        for _ in range(2000):
+            boot.append(sum(delta[rng.randrange(len(delta))] for _ in delta) / len(delta))
+        boot.sort()
+        pair_rows.append({"model": model, "dataset": dataset, "task": task,
+                          "policy": policy, "mode": mode, "n_paired": len(delta),
+                          "metric": metric, "delta": avg,
+                          "ci95_lo": boot[49], "ci95_hi": boot[1949]})
+    with (analysis / "paired_vs_full_strict.csv").open("w", newline="") as f:
+        fields = ["model", "dataset", "task", "policy", "mode", "n_paired",
+                  "metric", "delta", "ci95_lo", "ci95_hi"]
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows(pair_rows)
     return out
 
 
