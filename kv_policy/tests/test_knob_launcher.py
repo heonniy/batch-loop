@@ -15,13 +15,16 @@ spec.loader.exec_module(runner)
 
 
 def test_phase_matrix_and_names():
-    assert {"depth", "postlast", "oneplane", "factored", "sub50"} <= set(runner.PHASES)
+    assert {"depth", "postlast", "oneplane", "factored", "sub50", "ouro_token", "huginn_hard"} <= set(runner.PHASES)
     assert "huginn-0125-r24" in runner.PHASES["depth"]["models"]
     assert "lastwin128-strict" in runner.PHASES["postlast"]["policies"]
     assert "blend50-strict" in runner.PHASES["oneplane"]["policies"]
     assert "bankP0win128-strict" in runner.PHASES["factored"]["policies"]
     assert "bankTopB30-strict" in runner.PHASES["sub50"]["policies"]
     assert "bankPrefixB45-strict" in runner.PHASES["sub50"]["policies"]
+    assert "tokL1hash40-strict" in runner.PHASES["ouro_token"]["policies"]
+    assert "tokL1prompt-strict" in runner.PHASES["ouro_token"]["policies"]
+    assert "huginn-0125-r48" in runner.PHASES["huginn_hard"]["models"]
     assert all(policy.count("-") == 1 for phase in runner.PHASES.values()
                for policy in phase["policies"])
     job = {"model": "huginn-0125-r8", "dataset": "gsm8k", "policy": "last",
@@ -82,3 +85,12 @@ def test_sub50_analysis_compares_against_loop1all(tmp_path):
     assert rows[0]["metric"] == "delta_accuracy_vs_50"
     assert float(rows[0]["mean_delta_vs_loop1all"]) == -1.0
     assert float(rows[0]["nominal_full_kv_percent"]) == pytest.approx(100 * 28 / 96)
+
+
+
+def test_job_names_include_huginn_prompt_stress_style():
+    j = {"model": "huginn-0125-r16", "dataset": "math500", "task": "gen",
+         "policy": "last", "mode": "strict", "batching": "pilot",
+         "prompt_style": "reason", "batch": 3}
+    assert runner.job_name(j) == (
+        "huginn-0125-r16__math500__gen__last-strict-pilot__stylereason__b03")
