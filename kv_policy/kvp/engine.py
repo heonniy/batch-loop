@@ -547,7 +547,8 @@ class Runner:
                      "kv_store_bytes_at_alloc": bytes_at_alloc,
                      "peak_mem_bytes": self._peak()}
         if hasattr(kv, "logical_summary"):
-            res.stats["logical_retained_kv"] = kv.logical_summary()
+            res.stats["logical_retained_kv"] = kv.logical_summary(
+                output_lengths=[len(ids) for ids in res.gen_ids])
         return res
 
     @torch.inference_mode()
@@ -578,7 +579,8 @@ class Runner:
                      "kv_store_bytes": kv.bytes_allocated(),
                      "peak_mem_bytes": self._peak()}
         if hasattr(kv, "logical_summary"):
-            res.stats["logical_retained_kv"] = kv.logical_summary()
+            res.stats["logical_retained_kv"] = kv.logical_summary(
+                output_lengths=[len(target) for target in targets])
         return res
 
     @torch.inference_mode()
