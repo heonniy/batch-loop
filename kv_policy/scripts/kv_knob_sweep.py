@@ -376,6 +376,61 @@ def report(run: Path) -> dict:
             writer = csv.DictWriter(f, fieldnames=fields)
             writer.writeheader()
             writer.writerows(all_rows)
+    # Huginn: matched FULL/LAST stratified by original FULL output length,
+    # gold target length, or prompt length. This shows whether long reasoning
+    # is the actual quality-loss regime without changing the trained model.
+    if spec_file.exists() and json.loads(spec_file.read_text())["spec"]["phase"] == "huginn_hard":
+        buckets = []
+        for (model, ds, task, pol, mode), ref in sorted(index.items()):
+            if (pol, mode) != ("full", "strict"):
+                continue
+            alt = index.get((model, ds, task, "last", "strict"))
+            if not alt:
+                continue
+            common = sorted(set(ref) & set(alt))
+            if not common:
+                continue
+            partitions = defaultdict(list)
+            for uid in common:
+                item = ref[uid]
+                if task == "gen":
+                    depth_proxy = item["n_gen_tokens"]
+                else:
+                    depth_proxy = item["target_tokens"]
+                output_bucket = ("<=64" if depth_proxy <= 64 else
+                                 "65-128" if depth_proxy <= 128 else
+                                 "129-256" if depth_proxy <= 256 else
+                                 "257-512" if depth_proxy <= 512 else ">512")
+                prefix_tokens = item["prompt_tokens"]
+                prompt_bucket = ("<=512" if prefix_tokens <= 512 else
+                                 "513-1024" if prefix_tokens <= 1024 else ">1024")
+                partitions[("full_output_length", output_bucket)].append(uid)
+                partitions[("prompt_length", prompt_bucket)].append(uid)
+            for (axis, bucket), uids in sorted(partitions.items()):
+                if task == "gen":
+                    a = sum(bool(ref[u]["correct"]) for u in uids) / len(uids)
+                    b = sum(bool(alt[u]["correct"]) for u in uids) / len(uids)
+                    loss = b - a
+                    metric = "delta_accuracy_last_minus_full"
+                else:
+                    a = sum(ref[u]["nll_mean"] for u in uids) / len(uids)
+                    b = sum(alt[u]["nll_mean"] for u in uids) / len(uids)
+                    loss = b - a
+                    metric = "delta_nll_last_minus_full"
+                buckets.append({
+                    "model": model, "dataset": ds, "task": task,
+                    "prompt_style": json.loads(spec_file.read_text())["spec"].get("prompt_style", "default"),
+                    "axis": axis, "bucket": bucket, "n_paired": len(uids),
+                    "full_metric": a, "last_metric": b,
+                    "delta_last_minus_full": loss, "metric": metric
+                })
+        fields = ["model", "dataset", "task", "prompt_style",
+                  "axis", "bucket", "n_paired", "full_metric", "last_metric",
+                  "delta_last_minus_full", "metric"]
+        with (analysis / "huginn_hard_length_strata.csv").open("w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=fields)
+            writer.writeheader()
+            writer.writerows(buckets)
     return out
 
 
