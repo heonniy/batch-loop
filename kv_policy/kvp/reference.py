@@ -31,8 +31,8 @@ class _DictPolicyStore:
         if self.policy in ("blend25", "blend50", "blend75"):
             alpha = int(self.policy[5:]) / 100.0
             dt = slots[0][0].dtype
-            k = (alpha * slots[0][0].float() + (1.0-alpha) * slots[self.R - 1][0].float()).to(dt)
-            v = (alpha * slots[0][1].float() + (1.0-alpha) * slots[self.R - 1][1].float()).to(dt)
+            k = (alpha * slots[0][0].to(torch.promote_types(dt, torch.float32)) + (1.0-alpha) * slots[self.R - 1][0].to(torch.promote_types(dt, torch.float32))).to(dt)
+            v = (alpha * slots[0][1].to(torch.promote_types(dt, torch.float32)) + (1.0-alpha) * slots[self.R - 1][1].to(torch.promote_types(dt, torch.float32))).to(dt)
             return k, v
         ks = torch.stack([slots[i][0] for i in range(self.R)]).double().mean(0)
         vs = torch.stack([slots[i][1] for i in range(self.R)]).double().mean(0)
