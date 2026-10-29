@@ -81,8 +81,8 @@ class PolicyKV:
                     ver = buf[self.R - 1 if self.policy == "last" else 0, :, :, c]
                 elif self.policy.startswith("blend"):
                     alpha = int(self.policy[5:]) / 100.0
-                    ver = (alpha * buf[0, :, :, c].float() +
-                           (1.0 - alpha) * buf[self.R - 1, :, :, c].float()).to(buf.dtype)
+                    ver = (alpha * buf[0, :, :, c].to(torch.promote_types(buf.dtype, torch.float32)) +
+                           (1.0 - alpha) * buf[self.R - 1, :, :, c].to(torch.promote_types(buf.dtype, torch.float32))).to(buf.dtype)
                 else:
                     ver = buf[:, :, :, c].to(torch.promote_types(buf.dtype, torch.float32)).mean(0).to(buf.dtype)
                 buf[:, :, :, c] = ver.unsqueeze(0)
@@ -97,8 +97,8 @@ class PolicyKV:
                     ver = buf[self.R - 1 if self.policy == "last" else 0, :, :, :P]
                 elif self.policy.startswith("blend"):
                     alpha = int(self.policy[5:]) / 100.0
-                    ver = (alpha * buf[0, :, :, :P].float() +
-                           (1.0 - alpha) * buf[self.R - 1, :, :, :P].float()).to(buf.dtype)
+                    ver = (alpha * buf[0, :, :, :P].to(torch.promote_types(buf.dtype, torch.float32)) +
+                           (1.0 - alpha) * buf[self.R - 1, :, :, :P].to(torch.promote_types(buf.dtype, torch.float32))).to(buf.dtype)
                 else:
                     ver = buf[:, :, :, :P].to(torch.promote_types(buf.dtype, torch.float32)).mean(0).to(buf.dtype)
                 buf[:, :, :, :P] = ver.unsqueeze(0)
@@ -161,8 +161,8 @@ class CompactPolicyKV(PolicyKV):
                     ver = buf[self.R - 1 if self.policy == "last" else 0]
                 elif self.policy.startswith("blend"):
                     alpha = int(self.policy[5:]) / 100.0
-                    ver = (alpha * buf[0].float() +
-                           (1.0 - alpha) * buf[self.R - 1].float()).to(buf.dtype)
+                    ver = (alpha * buf[0].to(torch.promote_types(buf.dtype, torch.float32)) +
+                           (1.0 - alpha) * buf[self.R - 1].to(torch.promote_types(buf.dtype, torch.float32))).to(buf.dtype)
                 else:
                     ver = buf.to(torch.promote_types(buf.dtype, torch.float32)).mean(0).to(buf.dtype)
                 plane[i][:, :, :P] = ver
@@ -180,8 +180,8 @@ class CompactPolicyKV(PolicyKV):
                     ver = scratch[self.R - 1 if self.policy == "last" else 0]
                 elif self.policy.startswith("blend"):
                     alpha = int(self.policy[5:]) / 100.0
-                    ver = (alpha * scratch[0].float() +
-                           (1.0 - alpha) * scratch[self.R - 1].float()).to(scratch.dtype)
+                    ver = (alpha * scratch[0].to(torch.promote_types(scratch.dtype, torch.float32)) +
+                           (1.0 - alpha) * scratch[self.R - 1].to(torch.promote_types(scratch.dtype, torch.float32))).to(scratch.dtype)
                 else:
                     ver = scratch.to(torch.promote_types(scratch.dtype, torch.float32)).mean(0).to(scratch.dtype)
                 plane[:, :, g: g + 1] = ver
