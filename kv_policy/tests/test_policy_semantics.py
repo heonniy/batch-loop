@@ -67,7 +67,7 @@ def tiny(request):
     return request.param, *_tiny(request.param, 3)
 
 
-@pytest.mark.parametrize("policy", ["full", "last", "first", "average"])
+@pytest.mark.parametrize("policy", ["full", "last", "first", "average", "blend25", "blend50", "blend75"])
 @pytest.mark.parametrize("mode", ["decode", "convert", "strict"])
 def test_engine_matches_reference(tiny, policy, mode):
     family, model, run = tiny
@@ -94,7 +94,7 @@ def test_policies_actually_differ(tiny):
 def test_single_loop_all_policies_equal():
     for family in ("ouro", "huginn"):
         model, run = _tiny(family, 1)
-        outs = [run.teacher_forced_logits(PROMPT, CONT, "u", p, "strict") for p in ("full", "last", "first", "average")]
+        outs = [run.teacher_forced_logits(PROMPT, CONT, "u", p, "strict") for p in ("full", "last", "first", "average", "blend25", "blend50", "blend75")]
         assert all(torch.allclose(outs[0], out, atol=1e-12) for out in outs[1:])
 
 
@@ -105,7 +105,7 @@ def test_strict_full_equals_decode_full(tiny):
     assert torch.allclose(a, b, atol=1e-9)
 
 
-@pytest.mark.parametrize("policy", ["full", "last", "first", "average"])
+@pytest.mark.parametrize("policy", ["full", "last", "first", "average", "blend25", "blend50", "blend75"])
 def test_no_future_leakage(tiny, policy):
     family, model, run = tiny
     a = run.teacher_forced_logits(PROMPT, CONT, "u", policy, "strict")
@@ -114,7 +114,7 @@ def test_no_future_leakage(tiny, policy):
     assert torch.allclose(a[:n], b[:n], atol=1e-12)
 
 
-@pytest.mark.parametrize("policy", ["full", "last", "first", "average"])
+@pytest.mark.parametrize("policy", ["full", "last", "first", "average", "blend25", "blend50", "blend75"])
 @pytest.mark.parametrize("mode", ["decode", "convert", "strict"])
 def test_batched_left_padding_matches_b1(tiny, policy, mode):
     """Positions/masks: a short prompt left-padded in a batch must equal its B=1 run."""
@@ -205,3 +205,69 @@ def test_first_strict_writes_first_loop_kv(tiny):
         for r in range(1, run.bb.R):
             assert torch.equal(kb[r, :, :, :P], kb[0, :, :, :P])
             assert torch.equal(vb[r, :, :, :P], vb[0, :, :, :P])
+
+
+
+@pytest.mark.parametrize("policy", ["lastwin1024", "lastpromptwin1024"])
+def test_unlimited_window_is_exact_last(tiny, policy):
+    """A window covering the entire sequence must give LAST/strict logits."""
+    family, model, runner = tiny
+    ref = runner.teacher_forced_logits(PROMPT, CONT, "u", "last", "strict")
+    obs = runner.teacher_forced_logits(PROMPT, CONT, "u", policy, "strict")
+    assert torch.equal(ref, obs)
+
+
+def test_window_mask_is_monotonic_and_left_padding_safe(tiny):
+    """Evicted historical columns cannot re-enter as decode proceeds."""
+    family, model, runner = tiny
+    ids, pos, valid, kv, aux, P, T = runner._setup(
+        [PROMPT, PROMPT[:4]], 5, "lastwin2", "strict", ["u", "v"])
+    # First four valid positions are pinned attention sinks. For the short
+    # second row, left padding means positions [P-4, ..., P-1].
+    c = P + 3
+    keep = kv.historical_keep_mask(c)
+    assert bool(keep[1, P-4]) and bool(keep[1, P-1])
+    assert bool(keep[0, 0]) and bool(keep[0, 3])
+    assert bool(keep[0, c])  # current token always legal
+    assert not bool(keep[0, 4])  # old, nonsink position should be evicted
+    assert bool(keep[0, c-1])
+    assert bool(keep[0, c])
+    assert not bool(kv.historical_keep_mask(c+1)[0, 4])
+
+
+def test_prompt_protection_changes_survival(tiny):
+    family, model, runner = tiny
+    w = runner._setup([PROMPT], 10, "lastwin2", "strict", ["u"])[3]
+    p = runner._setup([PROMPT], 10, "lastpromptwin2", "strict", ["u"])[3]
+    c = len(PROMPT) + 5
+    assert not bool(w.historical_keep_mask(c)[0, 4])
+    assert bool(p.historical_keep_mask(c)[0, 4])
+
+
+def test_window_evicts_only_history_not_current(tiny):
+    family, model, runner = tiny
+    a = runner.teacher_forced_logits(PROMPT, CONT, "u", "last", "strict")
+    b = runner.teacher_forced_logits(PROMPT, CONT, "u", "lastwin2", "strict")
+    assert (a - b).abs().max() > 1e-6
+    # Re-run on the same input: policy selection must be deterministic.
+    assert torch.equal(b, runner.teacher_forced_logits(PROMPT, CONT, "u", "lastwin2", "strict"))
+
+
+def test_protected_window_large_matches_protected_strict(tiny):
+    from kvp.banks import REGISTRY
+    family, model, runner = tiny
+    key = (getattr(runner, "model_key", None), "bankP0")
+    # This local fixture has a two-layer / three-recurrence block.
+    # No global calibration registry or model checkpoint is required.
+    try:
+        prior = REGISTRY.get(key)
+        REGISTRY[key] = frozenset({(0, 0)})
+        full_window = runner.teacher_forced_logits(PROMPT, CONT, "u", "bankP0win1024", "strict")
+        from kvp.banks import BankKV
+        original = runner.teacher_forced_logits(PROMPT, CONT, "u", "bankP0", "strict")
+        assert torch.equal(full_window, original)
+    finally:
+        if prior is None:
+            REGISTRY.pop(key, None)
+        else:
+            REGISTRY[key] = prior
