@@ -9,6 +9,7 @@ import random
 import socket
 import subprocess
 import time
+from dataclasses import replace
 from pathlib import Path
 
 import torch
@@ -39,16 +40,42 @@ def sha(s: str) -> str:
 
 
 def prepare_items(model_key: str, dataset: str, tok, batching: str = "main",
-                  batch_size: int | None = None) -> tuple[list[dict], dict]:
+                  batch_size: int | None = None, prompt_style: str = "default") -> tuple[list[dict], dict]:
     batch_size = BATCH_SIZE[dataset] if batch_size is None else int(batch_size)
     if batch_size < 1:
         raise ValueError("batch_size must be >=1")
     spec = MODELS[model_key]
     docs, meta = load_subset(dataset)
     proto = protocol(spec.family, dataset)
+    if prompt_style not in ("default", "reason", "verify", "distract512"):
+        raise ValueError(f"Unsupported prompt style: {prompt_style}")
+    if prompt_style != "default" and spec.family != "huginn":
+        raise ValueError("Prompt-style stress tests are Huginn-only")
+    if prompt_style == "reason":
+        proto = replace(proto, system_instruction=(proto.system_instruction or "") +
+            " Please work through the reasoning carefully step by step, then state the final answer.")
+    elif prompt_style == "verify":
+        proto = replace(proto, system_instruction=(proto.system_instruction or "") +
+            " Work through the problem and check any numerical or logical intermediate result before the final answer.")
     items = []
     for d in docs:
-        text = render(d, proto, tok)
+        rendered_doc = d
+        if prompt_style == "distract512":
+            # Content is deliberately irrelevant and contains no problem facts;
+            # it is placed in the last QUESTION before lm-eval formatting.
+            # This is a controlled context distraction, NOT a new dataset.
+            filler = ("Unrelated background: A library hosted a quiet art exhibition with "
+                      "wooden frames, clouds in paintings, and a small courtyard. ")
+            padding = filler
+            while len(tok.encode(padding, add_special_tokens=False)) < 512:
+                padding += filler
+            key = "question" if dataset == "gsm8k" else "problem"
+            rendered_doc = dict(d)
+            rendered_doc[key] = (
+                "The following unrelated paragraph is background only; "
+                "ignore it when solving the actual problem.\n" +
+                padding + "\nActual problem:\n" + d[key])
+        text = render(rendered_doc, proto, tok)
         ids = encode_prompt(text, tok)
         target = gold_target(d, proto)
         whole = tok.encode(text + target, add_special_tokens=False)
@@ -68,7 +95,8 @@ def prepare_items(model_key: str, dataset: str, tok, batching: str = "main",
         random.Random(20261023).shuffle(order)
     for rank, i in enumerate(order):
         items[i]["batch"], items[i]["batch_pos"] = divmod(rank, batch_size)
-    return items, {"dataset_meta": meta, "protocol": proto.__dict__}
+    return items, {"dataset_meta": meta, "protocol": proto.__dict__,
+                   "prompt_style": prompt_style}
 
 
 def batches(items: list[dict]) -> dict[int, list[dict]]:
@@ -94,10 +122,12 @@ class ModelContext:
         self.eos_strings = sorted({self.tok.decode([e], skip_special_tokens=False) for e in self.eos})
         self.items: dict[str, tuple[list[dict], dict]] = {}
 
-    def dataset(self, dataset: str, batching: str = "main", batch_size: int | None = None):
-        cache_key = (dataset, batching, batch_size)
+    def dataset(self, dataset: str, batching: str = "main", batch_size: int | None = None,
+                prompt_style: str = "default"):
+        cache_key = (dataset, batching, batch_size, prompt_style)
         if cache_key not in self.items:
-            self.items[cache_key] = prepare_items(self.key, dataset, self.tok, batching, batch_size)
+            self.items[cache_key] = prepare_items(self.key, dataset, self.tok, batching,
+                                                  batch_size, prompt_style)
         return self.items[cache_key]
 
 
@@ -109,7 +139,8 @@ def run_job(ctx: ModelContext, job: dict, out_dir: Path) -> dict:
         if (ctx.key, policy) not in REGISTRY:
             load_registry(out_dir.parent / "banks.json")
     batching = job.get("batching", "main")
-    items, meta = ctx.dataset(dataset, batching, job.get("batch_size"))
+    prompt_style = job.get("prompt_style", "default")
+    items, meta = ctx.dataset(dataset, batching, job.get("batch_size"), prompt_style)
     batch = batches(items)[b]
     proto = protocol(ctx.spec.family, dataset)
     uids = [it["uid"] for it in batch]
@@ -147,7 +178,7 @@ def run_job(ctx: ModelContext, job: dict, out_dir: Path) -> dict:
                 "finished_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}
     for r in records:
         r.update({"model": ctx.key, "dataset": dataset, "task": task, "policy": policy, "mode": mode,
-                  "batching": batching})
+                  "batching": batching, "prompt_style": prompt_style})
     out_dir.mkdir(parents=True, exist_ok=True)
     stem = job_name(job)
     tmp = out_dir / f".{stem}.tmp"
@@ -161,5 +192,6 @@ def run_job(ctx: ModelContext, job: dict, out_dir: Path) -> dict:
 
 def job_name(job: dict) -> str:
     alt = "" if job.get("batching", "main") == "main" else f"-{job['batching']}"
+    style = "" if job.get("prompt_style", "default") == "default" else f"__style{job['prompt_style']}"
     return (f"{job['model']}__{job['dataset']}__{job['task']}__{job['policy']}-{job['mode']}{alt}"
-            f"__b{job['batch']:02d}")
+            f"{style}__b{job['batch']:02d}")
