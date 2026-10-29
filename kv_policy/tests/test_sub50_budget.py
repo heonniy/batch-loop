@@ -42,7 +42,7 @@ def test_top_ranking_uses_scores_and_random_is_deterministic():
     ra, _ = construct(a, "ouro-1.4b")
     rb, _ = construct(copy.deepcopy(a), "ouro-1.4b")
     assert ra == rb
-    assert [13, 0] not in ra["bankTopB30"]
+    assert [0, 0] not in ra["bankTopB30"]
     assert [13, 0] in ra["bankTopB30"]
     assert [0, 0] in ra["bankPrefixB30"]
 
