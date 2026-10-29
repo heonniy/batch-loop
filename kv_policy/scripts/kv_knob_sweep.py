@@ -211,17 +211,45 @@ def report(run: Path) -> dict:
     (run / "completeness.json").write_text(json.dumps(out, indent=2))
     # Works with NLL-only and generation-only runs. No rewriting raw records.
     groups: dict[tuple, list[dict]] = defaultdict(list)
+    # Sum truly processed, row/length-adjusted token events. The reference
+    # still allocates FULL-sized tensors; these are LOGICAL KV amounts.
+    token_budget: dict[tuple, dict] = defaultdict(lambda: {"real": 0, "extra": 0, "jobs": 0})
     for job in jobs:
         file = run / "raw" / f"{job_name(job)}.jsonl"
         if not file.exists():
             continue
         lines = file.read_text().splitlines()
+        if not lines:
+            continue
+        head = json.loads(lines[0]).get("job_meta", {})
+        logical = head.get("engine_stats", {}).get("logical_retained_kv", {})
+        if logical and job["policy"].startswith("tokL1"):
+            entry = token_budget[(job["model"], job["dataset"], job["task"], job["policy"])]
+            entry["real"] += int(logical["n_processed_real_token_positions"])
+            entry["extra"] += int(logical["n_protected_token_positions"])
+            entry["jobs"] += 1
         for line in lines[1:]:
             row = json.loads(line)
             groups[(row["model"], row["dataset"], row["task"],
                     row["policy"], row["mode"])].append(row)
     analysis = run / "analysis"
     analysis.mkdir(exist_ok=True)
+    budget_fields = ["model", "dataset", "task", "policy", "n_jobs",
+        "processed_real_tokens", "protected_first_recurrence_tokens",
+        "protected_token_fraction", "logical_full_recurrent_kv_percent",
+        "additional_memory_saved_vs_loop1all_percent", "reference_full_allocated"]
+    with (analysis / "token_loop_logical_memory.csv").open("w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=budget_fields)
+        writer.writeheader()
+        for (model, ds, task, policy), b in sorted(token_budget.items()):
+            if not b["real"]:
+                continue
+            actual = (b["real"] + b["extra"]) / (4 * b["real"])
+            writer.writerow(dict(zip(budget_fields, [
+                model, ds, task, policy, b["jobs"], b["real"], b["extra"],
+                b["extra"] / b["real"], actual * 100.0,
+                (1 - actual / .5) * 100.0, True
+            ])))
     with (analysis / "screen_summary.csv").open("w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=["model", "dataset", "task", "policy", "mode",
                  "n_items", "accuracy", "token_weighted_nll", "mean_output_tokens",
@@ -286,7 +314,7 @@ def report(run: Path) -> dict:
     # Dedicated scientific question: how much less than 50%-FULL KV is
     # sufficient to match the best fixed ALL-recurrence-1 protected baseline?
     spec_file = run / "knob_manifest.json"
-    if spec_file.exists() and json.loads(spec_file.read_text())["spec"]["phase"] == "sub50":
+    if spec_file.exists() and json.loads(spec_file.read_text())["spec"]["phase"] in ("sub50", "ouro_token"):
         from kvp.knob_budget import layout_for_model
         all_rows = []
         registry = json.loads((run / "banks.json").read_text())
@@ -307,14 +335,22 @@ def report(run: Path) -> dict:
                 diffs = [float(candidate[u]["nll_mean"]) -
                          float(reference[u]["nll_mean"]) for u in shared]
                 metric = "delta_mean_problem_nll_vs_50"
-            if pol == "last" or pol in {"average", "first"} or pol.startswith("blend"):
-                k = 0
-            elif pol.startswith("bank"):
-                k = len(registry[model][pol])
+            if pol.startswith("tokL1"):
+                budget = token_budget.get((model, ds, task, pol))
+                if not budget or not budget["real"]:
+                    continue
+                pct = 25.0 * (1 + budget["extra"] / budget["real"])
+                budget_type = "observed logical; actual processed rows"
             else:
-                continue
-            layout = layout_for_model(model)
-            pct = 100.0 * layout.protected_over_full(k)
+                if pol == "last" or pol in {"average", "first"} or pol.startswith("blend"):
+                    k = 0
+                elif pol.startswith("bank"):
+                    k = len(registry[model][pol])
+                else:
+                    continue
+                layout = layout_for_model(model)
+                pct = 100.0 * layout.protected_over_full(k)
+                budget_type = "static logical"
             avg = sum(diffs) / len(diffs)
             boot = []
             for _ in range(2000):
@@ -325,12 +361,15 @@ def report(run: Path) -> dict:
                 "policy": pol, "metric": metric,
                 "n_paired": len(shared), "nominal_full_kv_percent": pct,
                 "reference_50_full_kv_percent": 50.0,
+                "extra_saving_vs_loop1all_percent": (1 - pct / 50.0) * 100.0,
+                "budget_type": budget_type,
                 "mean_delta_vs_loop1all": avg,
                 "ci95_lo": boot[49], "ci95_hi": boot[1949],
                 "within_3pp_point_estimate": (task == "gen" and avg >= -0.03)
             })
         fields = ["model", "dataset", "task", "policy", "metric", "n_paired",
                   "nominal_full_kv_percent", "reference_50_full_kv_percent",
+                  "extra_saving_vs_loop1all_percent", "budget_type",
                   "mean_delta_vs_loop1all", "ci95_lo", "ci95_hi",
                   "within_3pp_point_estimate"]
         with (analysis / "sub50_paired_vs_loop1all.csv").open("w", newline="") as f:
