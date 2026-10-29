@@ -25,6 +25,9 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--run-dir", required=True)
     ap.add_argument("--models", default=",".join(MODELS))
+    ap.add_argument("--prompt-style", default="default",
+                    choices=("default", "reason", "verify", "distract512"),
+                    help="Huginn prompt stress; other families require default")
     ap.add_argument("--batching", default="main", help="main | pilot (Stage-1 32+32 selection)")
     ap.add_argument("--policies", default=",".join(f"{p}-{m}" for p, m in QUALITY_POLICIES),
                     help="comma-separated policy-mode pairs, e.g. full-decode,last-convert")
@@ -46,15 +49,19 @@ def main():
         ap.error("datasets must be a nonempty subset of gsm8k,math500")
     run = Path(args.run_dir)
     policies = [tuple(x.split("-")) for x in args.policies.split(",")]
+    if args.prompt_style != "default" and any(MODELS[m].family != "huginn" for m in args.models.split(",")):
+        ap.error("Nondefault prompt styles require all-Huginn models")
     (run / "prompts").mkdir(parents=True, exist_ok=True)
     jobs, subsets = [], {}
     for mk in args.models.split(","):
         spec = MODELS[mk]
         tok = AutoTokenizer.from_pretrained(spec.repo, revision=spec.revision, trust_remote_code=True)
         for ds in selected_datasets:
-            items, meta = prepare_items(mk, ds, tok, args.batching, batch_sizes[ds])
+            items, meta = prepare_items(mk, ds, tok, args.batching,
+                                        batch_sizes[ds], args.prompt_style)
             subsets[ds] = meta["dataset_meta"]
-            with open(run / "prompts" / f"{mk}__{ds}.jsonl", "w") as f:
+            style_suffix = "" if args.prompt_style == "default" else f"__style{args.prompt_style}"
+            with open(run / "prompts" / f"{mk}__{ds}{style_suffix}.jsonl", "w") as f:
                 f.write(json.dumps({"protocol": meta["protocol"], "batch_size": batch_sizes[ds]}) + "\n")
                 for it in items:
                     f.write(json.dumps({k: it[k] for k in ("uid", "batch", "batch_pos", "prompt", "target",
@@ -74,7 +81,8 @@ def main():
                         if spec.family == "huginn":
                             cost *= (4 + 4 * spec.native_depth) / (4 + 4 * 32)
                         jobs.append({"model": mk, "dataset": ds, "task": task, "policy": pol, "mode": mode,
-                                     "batch": b, "est_cost": round(cost, 1), "batch_size": batch_sizes[ds]}
+                                     "batch": b, "est_cost": round(cost, 1), "batch_size": batch_sizes[ds],
+                                     "prompt_style": args.prompt_style}
                                     | ({"batching": args.batching} if args.batching != "main" else {}))
     rng = random.Random(20261022)
     rng.shuffle(jobs)  # randomise GPU<->(model, policy) pairing; workers then claim dynamically
@@ -87,6 +95,7 @@ def main():
         {"source_sha": git, "command": " ".join(sys.argv), "n_jobs": len(jobs),
          "batch_size": batch_sizes, "policies": policies,
          "tasks": selected_tasks, "datasets": selected_datasets,
+         "prompt_style": args.prompt_style,
          "models": {k: MODELS[k].__dict__ for k in args.models.split(",")}, "environment": environment()},
         indent=1))
     print(f"{len(jobs)} jobs -> {run}")
