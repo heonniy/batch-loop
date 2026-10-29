@@ -63,6 +63,7 @@ class TokenFirstBankKV(PolicyKV):
         if len(uids) != B or len(pads) != B:
             raise ValueError("Mismatched UID/padding batch metadata")
         super().__init__("last", R, n_rec, n_plain, B, H, T, D, dtype, device, 0)
+        self.device = torch.device(device)
         self.token_policy = policy
         self.rule = parse_token_policy(policy)
         self.uids = list(uids)
