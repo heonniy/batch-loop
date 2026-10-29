@@ -136,6 +136,8 @@ def main() -> None:
     ap.add_argument("--sample", choices=["pilot", "main"], default="pilot")
     ap.add_argument("--models", default="", help="optional subset/override of models for this phase")
     ap.add_argument("--datasets", default="gsm8k,math500")
+    ap.add_argument("--batch-size-gsm8k", type=int, default=8)
+    ap.add_argument("--batch-size-math500", type=int, default=4)
     ap.add_argument("--run-dir", required=True)
     ap.add_argument("--execute", action="store_true", help="actually launch CUDA jobs (opt-in)")
     ap.add_argument("--gpu-ids", default="0,1,2,3,4,5,6,7",
@@ -149,9 +151,13 @@ def main() -> None:
     datasets = [x.strip() for x in args.datasets.split(",") if x.strip()]
     if not datasets or not set(datasets) <= {"gsm8k", "math500"}:
         ap.error("datasets must be a nonempty subset of gsm8k,math500")
+    if args.batch_size_gsm8k < 1 or args.batch_size_math500 < 1:
+        ap.error("batch sizes must be positive")
+    batch_sizes = {"gsm8k": args.batch_size_gsm8k, "math500": args.batch_size_math500}
     tasks = ["nll", "gen"] if args.task == "both" else [args.task]
     spec = {"phase": args.phase, "sample": args.sample, "models": models,
-            "policies": chosen["policies"], "tasks": tasks, "datasets": datasets}
+            "policies": chosen["policies"], "tasks": tasks, "datasets": datasets,
+            "batch_sizes": batch_sizes}
     run = Path(args.run_dir).resolve()
     run.mkdir(parents=True, exist_ok=True)
     (run / "logs").mkdir(exist_ok=True)
@@ -169,7 +175,9 @@ def main() -> None:
                "--run-dir", str(run), "--models", ",".join(models),
                "--policies", ",".join(chosen["policies"]),
                "--batching", args.sample, "--tasks", ",".join(tasks),
-               "--datasets", ",".join(datasets)]
+               "--datasets", ",".join(datasets),
+               "--batch-size-gsm8k", str(args.batch_size_gsm8k),
+               "--batch-size-math500", str(args.batch_size_math500)]
         subprocess.run(cmd, cwd=KV_ROOT, check=True)
         if any(p.startswith("bank") for p in chosen["policies"]):
             if not SOURCE_BANKS.is_file():
