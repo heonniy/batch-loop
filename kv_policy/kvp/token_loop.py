@@ -129,20 +129,43 @@ class TokenFirstBankKV(PolicyKV):
                 if bool(keep.any()):
                     buf[0, keep, :, c, :] = first[keep]
 
-    def logical_summary(self) -> dict:
-        n = self.n_real_processed
-        p = self.n_selected
+    def logical_summary(self, output_lengths: list[int] | None = None) -> dict:
+        """Count actually needed rows/positions, excluding post-EOS ghost batch rows.
+
+        The existing reference engine continues computing for rows that
+        finished earlier; those extra KV planes must NOT be charged to the
+        request's logical live cache. Each generated token after the final
+        emitted token is not needed as history.
+        """
+        if output_lengths is None:
+            n, p = self.n_real_processed, self.n_selected
+            prompt_n, prompt_p = self.n_real_prompt, self.n_selected_prompt
+        else:
+            if len(output_lengths) != len(self.uids):
+                raise ValueError("Expected one output length per batch row")
+            n = p = prompt_n = prompt_p = 0
+            for b, pos, selected in self.selected_token_positions:
+                prompt_len = self.prompt_end - self.pads[b]
+                valid_limit = prompt_len + max(0, output_lengths[b] - 1)
+                if pos >= valid_limit:
+                    continue
+                n += 1
+                p += int(selected)
+                if pos < prompt_len:
+                    prompt_n += 1
+                    prompt_p += int(selected)
         ratio = ((n + p) / (self.R * n)) if n else None
         return {
             "policy": self.token_policy,
             "n_processed_real_token_positions": n,
             "n_protected_token_positions": p,
             "fraction_tokens_with_first_bank": p / n if n else None,
-            "fraction_first_bank_in_prompt": self.n_selected_prompt / self.n_real_prompt
-            if self.n_real_prompt else None,
+            "fraction_first_bank_in_prompt": prompt_p / prompt_n
+            if prompt_n else None,
             "logical_recurrent_kv_vs_full": ratio,
             "logical_recurrent_kv_vs_loop1all": (n + p) / (2 * n) if n else None,
             "loop1all_saving_fraction": (n - p) / (2 * n) if n else None,
             "num_recurrent_layers": len(self.rk),
             "reference_full_allocated": True,
+            "excluded_post_exit_rows": output_lengths is not None,
         }
