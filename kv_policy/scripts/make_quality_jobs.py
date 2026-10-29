@@ -28,7 +28,17 @@ def main():
     ap.add_argument("--batching", default="main", help="main | pilot (Stage-1 32+32 selection)")
     ap.add_argument("--policies", default=",".join(f"{p}-{m}" for p, m in QUALITY_POLICIES),
                     help="comma-separated policy-mode pairs, e.g. full-decode,last-convert")
+    ap.add_argument("--tasks", default=",".join(TASKS),
+                    help="comma-separated task subset: gen,nll (default both)")
+    ap.add_argument("--datasets", default=",".join(DATASETS),
+                    help="comma-separated dataset subset: gsm8k,math500 (default both)")
     args = ap.parse_args()
+    selected_tasks = [x.strip() for x in args.tasks.split(",") if x.strip()]
+    selected_datasets = [x.strip() for x in args.datasets.split(",") if x.strip()]
+    if not selected_tasks or any(x not in TASKS for x in selected_tasks):
+        ap.error("tasks must be a nonempty subset of gen,nll")
+    if not selected_datasets or any(x not in DATASETS for x in selected_datasets):
+        ap.error("datasets must be a nonempty subset of gsm8k,math500")
     run = Path(args.run_dir)
     policies = [tuple(x.split("-")) for x in args.policies.split(",")]
     (run / "prompts").mkdir(parents=True, exist_ok=True)
@@ -36,7 +46,7 @@ def main():
     for mk in args.models.split(","):
         spec = MODELS[mk]
         tok = AutoTokenizer.from_pretrained(spec.repo, revision=spec.revision, trust_remote_code=True)
-        for ds in DATASETS:
+        for ds in selected_datasets:
             items, meta = prepare_items(mk, ds, tok, args.batching)
             subsets[ds] = meta["dataset_meta"]
             with open(run / "prompts" / f"{mk}__{ds}.jsonl", "w") as f:
@@ -48,7 +58,7 @@ def main():
                                         "prompt_ids": it["prompt_ids"], "target_ids": it["target_ids"]}) + "\n")
             nb = len(batches(items))
             longest = max(len(it["prompt_ids"]) for it in items)
-            for task in TASKS:
+            for task in selected_tasks:
                 for pol, mode in policies:
                     for b in range(nb):
                         cost = (longest if mode == "strict" else longest / 20) + (
@@ -67,6 +77,7 @@ def main():
     (run / "run_manifest.json").write_text(json.dumps(
         {"source_sha": git, "command": " ".join(sys.argv), "n_jobs": len(jobs),
          "batch_size": BATCH_SIZE, "policies": policies,
+         "tasks": selected_tasks, "datasets": selected_datasets,
          "models": {k: MODELS[k].__dict__ for k in args.models.split(",")}, "environment": environment()},
         indent=1))
     print(f"{len(jobs)} jobs -> {run}")
