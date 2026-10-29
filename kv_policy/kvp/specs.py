@@ -40,10 +40,10 @@ MODELS = {
 
 # Separately labelled Huginn depth sweep (HUGINN_OURO_FULL_LAST_CONVERT_PLAN.md, E2): same checkpoint and
 # protocol, fixed num_steps R in {4, 8, 16}; not the native R=32 evaluation.
-for _r in (4, 8, 16, 24):
+for _r in (4, 8, 12, 16, 20, 24, 40, 48, 64):
     MODELS[f"huginn-0125-r{_r}"] = ModelSpec(
         f"huginn-0125-r{_r}", MODELS["huginn-0125"].repo, MODELS["huginn-0125"].revision, "huginn", _r,
-        f"E2 depth sweep: num_steps={_r} (non-native; checkpoint mean_recurrence=32)")
+        f"Extended depth-stress evaluation: num_steps={_r} (non-native; checkpoint mean_recurrence=32)")
 
 POLICIES = ("full", "last", "average")
 # "decode": paper-faithful (Ouro sec. 5.4.2) -- prompt KV keeps every loop, policy applies to
