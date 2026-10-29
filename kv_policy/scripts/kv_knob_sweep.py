@@ -10,6 +10,7 @@ Examples, from kv_policy/:
  python scripts/kv_knob_sweep.py --phase postlast --task nll --sample pilot --run-dir results/knob_postlast_nll_pilot
  python scripts/kv_knob_sweep.py --phase oneplane --task nll --sample pilot --run-dir results/knob_oneplane_nll_pilot
  python scripts/kv_knob_sweep.py --phase factored --task nll --sample pilot --run-dir results/knob_factored_nll_pilot
+ python scripts/kv_knob_sweep.py --phase sub50 --task nll --sample pilot --run-dir results/knob_sub50_nll_pilot
  # Add --execute --gpu-ids 0,1,2,3,4,5,6,7 only on the authorized/idle H200 host.
 """
 from __future__ import annotations
@@ -234,6 +235,61 @@ def report(run: Path) -> dict:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
         writer.writerows(pair_rows)
+
+    # Dedicated scientific question: how much less than 50%-FULL KV is
+    # sufficient to match the best fixed ALL-recurrence-1 protected baseline?
+    spec_file = run / "knob_manifest.json"
+    if spec_file.exists() and json.loads(spec_file.read_text())["spec"]["phase"] == "sub50":
+        from kvp.knob_budget import layout_for_model
+        all_rows = []
+        registry = json.loads((run / "banks.json").read_text())
+        for (model, ds, task, pol, mode), candidate in sorted(index.items()):
+            if pol in {"full", "bankR1all"}:
+                continue
+            reference = index.get((model, ds, task, "bankR1all", "strict"))
+            if not reference:
+                continue
+            shared = sorted(set(candidate) & set(reference))
+            if not shared:
+                continue
+            if task == "gen":
+                diffs = [float(bool(candidate[u]["correct"])) -
+                         float(bool(reference[u]["correct"])) for u in shared]
+                metric = "delta_accuracy_vs_50"
+            else:
+                diffs = [float(candidate[u]["nll_mean"]) -
+                         float(reference[u]["nll_mean"]) for u in shared]
+                metric = "delta_mean_problem_nll_vs_50"
+            if pol == "last" or pol in {"average", "first"} or pol.startswith("blend"):
+                k = 0
+            elif pol.startswith("bank"):
+                k = len(registry[model][pol])
+            else:
+                continue
+            layout = layout_for_model(model)
+            pct = 100.0 * layout.protected_over_full(k)
+            avg = sum(diffs) / len(diffs)
+            boot = []
+            for _ in range(2000):
+                boot.append(sum(diffs[rng.randrange(len(diffs))] for _ in diffs) / len(diffs))
+            boot.sort()
+            all_rows.append({
+                "model": model, "dataset": ds, "task": task,
+                "policy": pol, "metric": metric,
+                "n_paired": len(shared), "nominal_full_kv_percent": pct,
+                "reference_50_full_kv_percent": 50.0,
+                "mean_delta_vs_loop1all": avg,
+                "ci95_lo": boot[49], "ci95_hi": boot[1949],
+                "within_3pp_point_estimate": (task == "gen" and avg >= -0.03)
+            })
+        fields = ["model", "dataset", "task", "policy", "metric", "n_paired",
+                  "nominal_full_kv_percent", "reference_50_full_kv_percent",
+                  "mean_delta_vs_loop1all", "ci95_lo", "ci95_hi",
+                  "within_3pp_point_estimate"]
+        with (analysis / "sub50_paired_vs_loop1all.csv").open("w", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=fields)
+            writer.writeheader()
+            writer.writerows(all_rows)
     return out
 
 
