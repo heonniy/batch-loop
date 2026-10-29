@@ -36,6 +36,30 @@ sys.path.insert(0, str(KV_ROOT))
 SOURCE_BANKS = KV_ROOT / "results/20261027T152845Z_ouro_last_strict_protect/banks.json"
 
 PHASES = {
+    # Two focused 2026-10-29 hypotheses. Other legacy phases remain usable
+    # but are NOT part of the focused study/decision plan.
+    "ouro_token": {
+        "models": ["ouro-1.4b", "ouro-2.6b"],
+        "policies": [
+            "full-strict", "last-strict", "bankR1all-strict",
+            "bankP0-strict", "bankcal-strict",
+            "bankTopB35-strict", "bankTopB40-strict",
+            "bankPrefixB35-strict", "bankPrefixB40-strict",
+            "tokL1hash0-strict", "tokL1hash20-strict",
+            "tokL1hash40-strict", "tokL1hash60-strict",
+            "tokL1hash80-strict", "tokL1hash100-strict",
+            "tokL1prompt-strict", "tokL1decode-strict",
+            "tokL1delta50-strict", "tokL1delta100-strict",
+        ],
+    },
+    "huginn_hard": {
+        "models": ["huginn-0125-r8", "huginn-0125-r12",
+                   "huginn-0125-r16", "huginn-0125-r20",
+                   "huginn-0125-r24", "huginn-0125",
+                   "huginn-0125-r40", "huginn-0125-r48",
+                   "huginn-0125-r64"],
+        "policies": ["full-strict", "last-strict"],
+    },
     # R4/R8/R16/R24/R32; note R4 may be poor even with Full and is not automatically GO.
     "depth": {
         "models": ["huginn-0125-r4", "huginn-0125-r8", "huginn-0125-r16",
@@ -90,8 +114,9 @@ def repo_sha() -> str:
 
 def job_name(job: dict) -> str:
     suffix = "" if job.get("batching", "main") == "main" else f"-{job['batching']}"
+    style = "" if job.get("prompt_style", "default") == "default" else f"__style{job['prompt_style']}"
     return (f"{job['model']}__{job['dataset']}__{job['task']}__{job['policy']}-"
-            f"{job['mode']}{suffix}__b{job['batch']:02d}")
+            f"{job['mode']}{suffix}{style}__b{job['batch']:02d}")
 
 
 def write_nominal_logical_budgets(run: Path, spec: dict) -> None:
@@ -115,7 +140,8 @@ def write_nominal_logical_budgets(run: Path, spec: dict) -> None:
         for model in spec["models"]:
             m = layout_for_model(model)
             for dataset in spec["datasets"]:
-                prompt_file = run / "prompts" / f"{model}__{dataset}.jsonl"
+                suffix = "" if spec.get("prompt_style", "default") == "default" else f"__style{spec['prompt_style']}"
+                prompt_file = run / "prompts" / f"{model}__{dataset}{suffix}.jsonl"
                 for line in prompt_file.read_text().splitlines()[1:]:
                     item = json.loads(line)
                     P, N = len(item["prompt_ids"]), len(item["target_ids"])
@@ -127,7 +153,26 @@ def write_nominal_logical_budgets(run: Path, spec: dict) -> None:
                         wm = re.fullmatch(r"(last|bankP0|bankR1all|bankcal)(prompt)?win([1-9][0-9]*)", policy)
                         if policy == "full":
                             ratio = 1.0
+                            budget_definition = "logical exact FULL"
+                        elif policy.startswith("tokL1"):
+                            # Hash policy is a causal Bernoulli rate (expected
+                            # only); prompt/decode uses gold lengths (not free
+                            # generation); delta selection requires a model run.
+                            mhash = re.fullmatch(r"tokL1hash(0|20|40|60|80|100)(?:s[12])?", policy)
+                            if mhash:
+                                ratio = m.last_over_full() * (1.0 + int(mhash.group(1)) / 100)
+                                budget_definition = "expected hash protection; actual per-job in engine_stats"
+                            elif policy == "tokL1prompt":
+                                ratio = m.last_over_full() * (1.0 + P / T)
+                                budget_definition = "gold-length prompt-only estimate"
+                            elif policy == "tokL1decode":
+                                ratio = m.last_over_full() * (1.0 + N / T)
+                                budget_definition = "gold-length decode-only estimate"
+                            else:
+                                ratio = None
+                                budget_definition = "dynamic trajectory-selected fraction: requires runtime"
                         else:
+                            budget_definition = "logical active KV at end of gold prefix"
                             n_extra = 0
                             if policy.startswith("bank"):
                                 bank_name = re.sub(r"(?:prompt)?win[1-9][0-9]*$", "", policy)
@@ -147,7 +192,7 @@ def write_nominal_logical_budgets(run: Path, spec: dict) -> None:
                                     "uid": item["uid"], "prompt_tokens": P,
                                     "gold_tokens": N, "nominal_total_tokens": T,
                                     "ratio_to_full": ratio, "reference_only": True,
-                                    "definition": "logical active KV at end of gold prefix; not measured HBM"})
+                                    "definition": budget_definition + "; not measured HBM"})
 
 
 def report(run: Path) -> dict:
@@ -300,6 +345,8 @@ def main() -> None:
     ap.add_argument("--phase", choices=sorted(PHASES), required=True)
     ap.add_argument("--task", choices=["nll", "gen", "both"], default="nll")
     ap.add_argument("--sample", choices=["pilot", "main"], default="pilot")
+    ap.add_argument("--prompt-style", default="default",
+                    choices=["default", "reason", "verify", "distract512"])
     ap.add_argument("--models", default="", help="optional subset/override of models for this phase")
     ap.add_argument("--policies", default="",
                     help="optional comma-separated subset of this phase's policies")
@@ -319,6 +366,8 @@ def main() -> None:
     policies = [p.strip() for p in args.policies.split(",") if p.strip()] if args.policies else list(chosen["policies"])
     if len(policies) != len(set(policies)) or not set(policies) <= set(chosen["policies"]):
         ap.error("Requested policies must be a unique subset of selected phase")
+    if args.prompt_style != "default" and args.phase != "huginn_hard":
+        ap.error("Prompt stress styles are valid only for huginn_hard")
     datasets = [x.strip() for x in args.datasets.split(",") if x.strip()]
     if not datasets or not set(datasets) <= {"gsm8k", "math500"}:
         ap.error("datasets must be a nonempty subset of gsm8k,math500")
@@ -328,7 +377,7 @@ def main() -> None:
     tasks = ["nll", "gen"] if args.task == "both" else [args.task]
     spec = {"phase": args.phase, "sample": args.sample, "models": models,
             "policies": policies, "tasks": tasks, "datasets": datasets,
-            "batch_sizes": batch_sizes}
+            "batch_sizes": batch_sizes, "prompt_style": args.prompt_style}
     run = Path(args.run_dir).resolve()
     run.mkdir(parents=True, exist_ok=True)
     (run / "logs").mkdir(exist_ok=True)
@@ -345,7 +394,8 @@ def main() -> None:
         cmd = [sys.executable, str(HERE / "make_quality_jobs.py"),
                "--run-dir", str(run), "--models", ",".join(models),
                "--policies", ",".join(policies),
-               "--batching", args.sample, "--tasks", ",".join(tasks),
+               "--batching", args.sample, "--prompt-style", args.prompt_style,
+               "--tasks", ",".join(tasks),
                "--datasets", ",".join(datasets),
                "--batch-size-gsm8k", str(args.batch_size_gsm8k),
                "--batch-size-math500", str(args.batch_size_math500)]
@@ -353,7 +403,7 @@ def main() -> None:
         if any(p.startswith("bank") for p in policies):
             if not SOURCE_BANKS.is_file():
                 raise FileNotFoundError(f"Expected frozen bank mapping: {SOURCE_BANKS}")
-            if args.phase == "sub50":
+            if args.phase in ("sub50", "ouro_token"):
                 from kvp.sub50_budget import build_registry, assert_disjoint_from_eval
                 registry, provenance = build_registry(KV_ROOT, SOURCE_BANKS)
                 assert_disjoint_from_eval(provenance, run, datasets)
