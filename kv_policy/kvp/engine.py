@@ -35,6 +35,7 @@ separately in tests/test_compact_storage.py and measured on the serving engine (
 from __future__ import annotations
 
 import hashlib
+import re
 import sys
 import time
 from dataclasses import dataclass, field
@@ -175,6 +176,55 @@ class CompactPolicyKV(PolicyKV):
 
     def scratch_bytes(self) -> int:
         return sum(t.numel() * t.element_size() for t in (*self.sk, *self.sv))
+
+
+
+class WindowKV(PolicyKV):
+    """LAST/strict with causal token masking for a post-sharing eviction QUALITY probe.
+
+    'lastwinN' keeps the most recent N token positions plus first four real
+    tokens (attention sinks), while 'lastpromptwinN' also pins every prompt
+    position. Eviction is applied to ALL layer caches including plain Huginn
+    prelude/coda; decisions are fixed by token positions, not by future
+    attention. A token that leaves the window never returns.
+
+    CRITICAL: this broadcast reference still ALLOCATES full KV planes; the
+    mask simulates logical eviction but is NOT a compact eviction engine.
+    """
+
+    def __init__(self, R, n_rec, n_plain, B, H, T, D, dtype, device,
+                 window: int, prompt_end: int, pads, keep_prompt: bool,
+                 sinks: int = 4):
+        if window < 1 or sinks < 0:
+            raise ValueError("window must be >=1, sinks >=0")
+        super().__init__("last", R, n_rec, n_plain, B, H, T, D, dtype, device, region_start=0)
+        self.window = window
+        self.keep_prompt = keep_prompt
+        self.prompt_end = prompt_end
+        self.sinks = sinks
+        self.pads = torch.tensor(pads, device=device, dtype=torch.long)
+        self.reference_only_eviction = True
+
+    def historical_keep_mask(self, c: int):
+        """Bool [B,c+1]; pads are filtered by the caller's original mask."""
+        col = torch.arange(c + 1, device=self.pads.device)
+        keep = (col[None, :] >= max(0, c - self.window + 1)).expand(len(self.pads), -1).clone()
+        if self.sinks:
+            keep |= (col[None, :] >= self.pads[:, None]) & (
+                col[None, :] < self.pads[:, None] + self.sinks)
+        if self.keep_prompt:
+            keep |= col[None, :] < self.prompt_end
+        keep[:, c] = True
+        return keep
+
+    def attend(self, layer, q, k, v, c0: int, c1: int, mask):
+        if c1 != c0 + 1:
+            raise ValueError("WindowKV requires strict token-major execution")
+        keep = self.historical_keep_mask(c0)
+        # Preserve the caller's causal and left-padding mask. No future token
+        # can be reintroduced. Current-token self always remains available.
+        masked = mask & keep[:, None, None, :]
+        return super().attend(layer, q, k, v, c0, c1, masked)
 
 
 # ----------------------------------------------------------------------------- backbones
@@ -351,7 +401,15 @@ class Runner:
         if mode not in ("decode", "strict", "convert"):
             raise ValueError(mode)
         region = P if mode == "decode" else 0
-        if policy.startswith("bank"):  # E3 selective (layer x step) protection, see kvp.banks
+        window_match = re.fullmatch(r"last(prompt)?win([1-9][0-9]*)", policy)
+        if window_match:
+            if mode != "strict":
+                raise ValueError("Last+Window policies require strict mode")
+            kv = WindowKV(self.bb.R, self.bb.n_rec, self.bb.n_plain, B, self.bb.H,
+                          T, self.bb.D, self.dtype, self.device,
+                          window=int(window_match.group(2)), prompt_end=P,
+                          pads=pads, keep_prompt=bool(window_match.group(1)))
+        elif policy.startswith("bank"):  # E3 selective (layer x step) protection, see kvp.banks
             from .banks import REGISTRY, BankKV
 
             if mode not in ("convert", "strict"):
