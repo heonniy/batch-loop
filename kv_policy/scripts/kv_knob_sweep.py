@@ -20,6 +20,7 @@ import hashlib
 import json
 import os
 import random
+import re
 import shutil
 import subprocess
 import sys
@@ -78,6 +79,62 @@ def job_name(job: dict) -> str:
     suffix = "" if job.get("batching", "main") == "main" else f"-{job['batching']}"
     return (f"{job['model']}__{job['dataset']}__{job['task']}__{job['policy']}-"
             f"{job['mode']}{suffix}__b{job['batch']:02d}")
+
+
+def write_nominal_logical_budgets(run: Path, spec: dict) -> None:
+    """Gold-prefix terminal-length analytic ratios, NEVER GPU peak-memory readings.
+
+    This is comparable within the same model/dataset/gold-token cohort.
+    Free-generation lengths differ by policy and are not captured here.
+    """
+    sys.path.insert(0, str(KV_ROOT))
+    from kvp.knob_budget import layout_for_model
+
+    output = run / "analysis"
+    output.mkdir(exist_ok=True)
+    dest = output / "nominal_logical_kv_budget.csv"
+    with dest.open("w", newline="") as f:
+        fields = ["model", "dataset", "policy", "uid", "prompt_tokens",
+                  "gold_tokens", "nominal_total_tokens", "ratio_to_full",
+                  "reference_only", "definition"]
+        w = csv.DictWriter(f, fieldnames=fields)
+        w.writeheader()
+        for model in spec["models"]:
+            m = layout_for_model(model)
+            for dataset in spec["datasets"]:
+                prompt_file = run / "prompts" / f"{model}__{dataset}.jsonl"
+                for line in prompt_file.read_text().splitlines()[1:]:
+                    item = json.loads(line)
+                    P, N = len(item["prompt_ids"]), len(item["target_ids"])
+                    T = P + N
+                    for label in spec["policies"]:
+                        policy, mode = label.rsplit("-", 1)
+                        if mode != "strict":
+                            raise ValueError("Analytic budget requires strict policy")
+                        wm = re.fullmatch(r"(last|bankP0|bankR1all|bankcal)(prompt)?win([1-9][0-9]*)", policy)
+                        if policy == "full":
+                            ratio = 1.0
+                        else:
+                            n_extra = 0
+                            if policy.startswith("bankP0"):
+                                n_extra = 1
+                            elif policy.startswith("bankR1all"):
+                                n_extra = m.recurrent_layers
+                            elif policy.startswith("bankcal"):
+                                n_extra = 2 if model == "ouro-1.4b" else 1
+                            ratio = m.protected_over_full(n_extra)
+                            if wm:
+                                # The window prunes every attention layer, not
+                                # just the recurrent KV. Bank protection lives
+                                # only for surviving historical tokens.
+                                surviving = m.postlast_window_over_full(
+                                    T, int(wm.group(3)), 4, P, bool(wm.group(2)))
+                                ratio *= surviving / m.last_over_full()
+                        w.writerow({"model": model, "dataset": dataset, "policy": policy,
+                                    "uid": item["uid"], "prompt_tokens": P,
+                                    "gold_tokens": N, "nominal_total_tokens": T,
+                                    "ratio_to_full": ratio, "reference_only": True,
+                                    "definition": "logical active KV at end of gold prefix; not measured HBM"})
 
 
 def report(run: Path) -> dict:
@@ -229,6 +286,7 @@ def main() -> None:
                     if (run / "banks.json").exists() else None,
                     "note": "postlast/factored are logical-mask QUALITY tests; no physical KV deallocation"}
         plan_file.write_text(json.dumps(manifest, indent=2))
+        write_nominal_logical_budgets(run, spec)
     if args.execute:
         ids = [x.strip() for x in args.gpu_ids.split(",") if x.strip()]
         if not ids or len(ids) != len(set(ids)) or any(not x.isdigit() for x in ids):
