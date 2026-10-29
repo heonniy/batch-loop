@@ -31,6 +31,8 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 KV_ROOT = HERE.parent
 REPO = KV_ROOT.parent
+# The launcher is executed as scripts/foo.py; kvp sits in the parent directory.
+sys.path.insert(0, str(KV_ROOT))
 SOURCE_BANKS = KV_ROOT / "results/20261027T152845Z_ouro_last_strict_protect/banks.json"
 
 PHASES = {
