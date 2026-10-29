@@ -69,6 +69,10 @@ def main():
                         cost = (longest if mode == "strict" else longest / 20) + (
                             1024 if ds == "math500" else 256)
                         cost *= {"huginn": 1.6, "ouro": 1.0}[spec.family] * (2 if mk == "ouro-2.6b" else 1)
+                        # Rough work-order heuristic only: account for R4..R32
+                        # recurrent compute in Huginn. Plain 4 layers remain.
+                        if spec.family == "huginn":
+                            cost *= (4 + 4 * spec.native_depth) / (4 + 4 * 32)
                         jobs.append({"model": mk, "dataset": ds, "task": task, "policy": pol, "mode": mode,
                                      "batch": b, "est_cost": round(cost, 1), "batch_size": batch_sizes[ds]}
                                     | ({"batching": args.batching} if args.batching != "main" else {}))
