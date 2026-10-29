@@ -159,3 +159,29 @@ def test_huginn_stress_strata_on_matched_full_prefix(tmp_path):
     assert any(x["axis"] == "prompt_length" and
                x["bucket"] == "513-1024" for x in rows)
     assert all(float(x["delta_last_minus_full"]) == -1.0 for x in rows)
+
+
+
+def test_only_two_tracks_are_exposed_in_focused_entrypoint():
+    import argparse
+    import importlib.util
+    path = Path(__file__).resolve().parents[1] / "scripts/focused_two_track_sweep.py"
+    mod_spec = importlib.util.spec_from_file_location("focused_two_track_sweep", path)
+    mod = importlib.util.module_from_spec(mod_spec)
+    mod_spec.loader.exec_module(mod)
+    assert set(mod.PHASE) == {"ouro", "huginn"}
+    ns = argparse.Namespace(
+        track="ouro", prompt_style="default", task="gen",
+        sample="pilot", run_dir="/tmp/not_executed", datasets="gsm8k",
+        batch_size_gsm8k=1, batch_size_math500=1, gpu_ids="0,1",
+        policies="tokL1hash40-strict", models="ouro-1.4b", execute=False)
+    cmd = mod.command(ns, python="python")
+    assert cmd[cmd.index("--phase") + 1] == "ouro_token"
+    assert "--execute" not in cmd
+    ns.track = "huginn"
+    ns.prompt_style = "reason"
+    cmd = mod.command(ns, python="python")
+    assert cmd[cmd.index("--phase") + 1] == "huginn_hard"
+    ns.track = "ouro"
+    with pytest.raises(ValueError):
+        mod.command(ns, python="python")
