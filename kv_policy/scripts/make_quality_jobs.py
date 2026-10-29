@@ -30,9 +30,14 @@ def main():
                     help="comma-separated policy-mode pairs, e.g. full-decode,last-convert")
     ap.add_argument("--tasks", default=",".join(TASKS),
                     help="comma-separated task subset: gen,nll (default both)")
+    ap.add_argument("--batch-size-gsm8k", type=int, default=BATCH_SIZE["gsm8k"])
+    ap.add_argument("--batch-size-math500", type=int, default=BATCH_SIZE["math500"])
     ap.add_argument("--datasets", default=",".join(DATASETS),
                     help="comma-separated dataset subset: gsm8k,math500 (default both)")
     args = ap.parse_args()
+    if args.batch_size_gsm8k < 1 or args.batch_size_math500 < 1:
+        ap.error("Both dataset batch sizes must be >=1")
+    batch_sizes = {"gsm8k": args.batch_size_gsm8k, "math500": args.batch_size_math500}
     selected_tasks = [x.strip() for x in args.tasks.split(",") if x.strip()]
     selected_datasets = [x.strip() for x in args.datasets.split(",") if x.strip()]
     if not selected_tasks or any(x not in TASKS for x in selected_tasks):
@@ -47,10 +52,10 @@ def main():
         spec = MODELS[mk]
         tok = AutoTokenizer.from_pretrained(spec.repo, revision=spec.revision, trust_remote_code=True)
         for ds in selected_datasets:
-            items, meta = prepare_items(mk, ds, tok, args.batching)
+            items, meta = prepare_items(mk, ds, tok, args.batching, batch_sizes[ds])
             subsets[ds] = meta["dataset_meta"]
             with open(run / "prompts" / f"{mk}__{ds}.jsonl", "w") as f:
-                f.write(json.dumps({"protocol": meta["protocol"], "batch_size": BATCH_SIZE[ds]}) + "\n")
+                f.write(json.dumps({"protocol": meta["protocol"], "batch_size": batch_sizes[ds]}) + "\n")
                 for it in items:
                     f.write(json.dumps({k: it[k] for k in ("uid", "batch", "batch_pos", "prompt", "target",
                                                            "target_tokenization")} |
@@ -65,7 +70,7 @@ def main():
                             1024 if ds == "math500" else 256)
                         cost *= {"huginn": 1.6, "ouro": 1.0}[spec.family] * (2 if mk == "ouro-2.6b" else 1)
                         jobs.append({"model": mk, "dataset": ds, "task": task, "policy": pol, "mode": mode,
-                                     "batch": b, "est_cost": round(cost, 1)}
+                                     "batch": b, "est_cost": round(cost, 1), "batch_size": batch_sizes[ds]}
                                     | ({"batching": args.batching} if args.batching != "main" else {}))
     rng = random.Random(20261022)
     rng.shuffle(jobs)  # randomise GPU<->(model, policy) pairing; workers then claim dynamically
@@ -76,7 +81,7 @@ def main():
                          cwd=Path(__file__).resolve().parents[2]).stdout.strip()
     (run / "run_manifest.json").write_text(json.dumps(
         {"source_sha": git, "command": " ".join(sys.argv), "n_jobs": len(jobs),
-         "batch_size": BATCH_SIZE, "policies": policies,
+         "batch_size": batch_sizes, "policies": policies,
          "tasks": selected_tasks, "datasets": selected_datasets,
          "models": {k: MODELS[k].__dict__ for k in args.models.split(",")}, "environment": environment()},
         indent=1))
