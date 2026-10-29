@@ -1,6 +1,136 @@
 # More Knobs, More Memory Room — H200×8 Loop-KV Research Execution Contract
 Date: 2026-10-29. **Status: code and plans committed; no new H200 benchmark results claimed.**
 
+
+## 2026-10-29 revision — professor feedback: prioritize Ouro sub-50% protection
+
+**Revised priority B is OURO, not Huginn token-window eviction.**
+The actual optimization question is:
+
+> Can we preserve approximately the accuracy of LAST + all first-recurrence
+> KV banks (50% of Full recurrent KV) at significantly smaller memory,
+> ideally 30–40%, without retraining?
+
+This is *not* an attempt to preserve "50% accuracy". 50% refers to the
+**KV memory footprint of Loop1-all relative to Full**, not its task score.
+
+### Frozen, same-semantics R4 Strict baseline (200 GSM8K / MATH500)
+
+| Model / dataset | FULL 100% | LAST 25% | fixed calibrated 25.5/27.1% | all R1 banks 50% |
+|---|---:|---:|---:|---:|
+| Ouro-1.4B GSM8K | .810 | .000 | .660 (2 banks) | .720 |
+| Ouro-1.4B MATH500 | .740 | .000 | .485 (2 banks) | .610 |
+| Ouro-2.6B GSM8K | .880 | .600 | .770 (1 bank) | .845 |
+| Ouro-2.6B MATH500 | .565 | .330 | .410 (1 bank) | .500 |
+
+Especially on Ouro-1.4B MATH500, the region BETWEEN 27.1% and 50%
+contains a 12.5 percentage-point accuracy gap. This is more promising
+for selective bank assignment than Huginn R32 where LAST already
+matches Full. Avoid treating additional 50%-vs-100% loss as fixed by
+our method: we target **matching Loop1-all at less memory first**.
+
+### B1 — Runnable Layer × Loop1 sub-50% Pareto screening
+
+Policy `bankTopB{30,35,40,45}`: take the top-k layers by the original
+disjoint 32-prompt single-bank NLL ranking; preserve their first-loop
+KV plus the terminal KV for **every** token. This ranking was obtained
+under LAST-CONVERT (not Strict Shared), hence is a *transfer hypothesis*.
+Compare at exactly the same count to:
+- `bankPrefixB*`: first k physical layers (simple fixed heuristic);
+- `bankRandB*`: a frozen seeded random set (1 pilot seed; >=3 for paper);
+- `last` (25%), `bankP0`, `bankcal`, `bankR1all` (50%), FULL (100%).
+
+For Ouro R4, L physical attention layers, k extra first-recurrence
+layer banks retain `(L+k)/(4L)` of Full recurrent KV.
+
+| Budget ceiling | Ouro-1.4B k / actual | Ouro-2.6B k / actual |
+|---|---|---|
+| 30% | 4 / 29.17% | 9 / 29.69% |
+| 35% | 9 / 34.38% | 19 / 34.90% |
+| 40% | 14 / 39.58% | 28 / 39.58% |
+| 45% | 19 / 44.79% | 38 / 44.79% |
+| 50% | 24 / 50% (all Layer R1) | 48 / 50% (all Layer R1) |
+
+The rank source and source hashes are stored in `sub50_provenance.json`;
+there is an **enforced calibration-UID vs evaluation-UID disjointness
+check**. Do not optimize a layer mask using the same held-out examples
+later used for evaluation. If the old LAST-CONVERT rank fails on Strict,
+run **new Strict-mode calibration using a separately frozen disjoint
+cohort**, not posthoc quality selection on the 200 test items.
+
+Only `Layer × Loop` static selection is implemented in B1. No
+token-specific bank storage or physical HBM compaction is claimed.
+
+### Commands (H200 x8, opt-in GPU; from kv_policy/)
+
+```bash
+# CPU tests first
+python -m pytest -q tests/test_sub50_budget.py tests/test_knob_budget.py tests/test_knob_launcher.py
+python -m pytest -q tests/test_policy_semantics.py tests/test_banks.py
+
+# Preview/pin matrix and nominal budgets; still no GPU launch
+python scripts/kv_knob_sweep.py --phase sub50 --task nll \
+  --sample pilot --run-dir results/ouro_sub50_nll_pilot
+
+# On user-authorized, idle H200 devices only: 8 independent workers
+python scripts/kv_knob_sweep.py --phase sub50 --task nll \
+  --sample pilot --run-dir results/ouro_sub50_nll_pilot \
+  --execute --gpu-ids 0,1,2,3,4,5,6,7
+
+# Select 2–3 promising budgets on SEPARATE generation-pilot run,
+# retaining mandatory controls; --policies does not mutate an old run.
+python scripts/kv_knob_sweep.py --phase sub50 --task gen \
+  --sample pilot --run-dir results/ouro_sub50_gen_pilot \
+  --policies full-strict,last-strict,bankP0-strict,bankR1all-strict,bankTopB35-strict,bankTopB40-strict,bankPrefixB40-strict
+
+# Expand selected policies to main=200 per dataset after pilot gate.
+# Use a NEW run directory, --sample main, --execute on permitted devices.
+```
+
+Artifacts: frozen `banks.json`, `sub50_provenance.json` (with source
+file SHA), `nominal_logical_kv_budget.csv`, paired vs Full and paired
+vs **Loop1-all** (`analysis/sub50_paired_vs_loop1all.csv`).
+
+**Research GO:** Under identical strict semantics, achieve:
+- strong: <=35% Full equivalent with >=Loop1-all Acc minus 3pp in
+  both GSM8K and MATH500, over held-out 200 items;
+- moderate: <=40% with that gap, or <=45% if accompanied by a
+  clear, generalizable bank selection rule;
+- NO-GO for proposed method if only 45–50% reaches baseline quality
+  without beating prefix/random and transfer controls.
+The 3pp window is a descriptive screening target, not proof of
+statistical non-inferiority: publish paired confidence intervals and
+larger samples if an equivalence claim is desired.
+
+**Next steps conditional on B1:**
+- **B1 successful, Top > Prefix/Random:** B2 conditional greedy
+  marginal restoration after L0R1; test layers and held-out datasets.
+- **Top ~= Prefix/Random but a small k works:** use a SIMPLE fixed
+  first-loop protection recipe, avoid claiming calibration complexity.
+- **Only 45–50% works:** B3 token-selective first-loop storage
+  (protect only sensitive historical tokens/spans) and/or compact
+  low-bit residual K/V; evaluate accuracy/metadata/overhead at same bytes.
+- **NLL good, generation bad:** B4 on-policy/same-prefix KL and
+  generation-aware protected-bank selection.
+- **All sub50 masks fail:** try first/last one-plane interpolation,
+  asymmetric K/V, low-bit correction before broad token eviction.
+
+### Important comparison discipline
+
+The old `postlast` track (Huginn LAST + token window masking) remains
+available as **secondary exploratory track M**, not the primary B.
+A token window removes **entire historical token K/V**, which changes
+the reasoning problem and cannot be used to claim a selective first
+recurrence bank's efficiency. If token eviction is later combined with
+B1, compare separable vs joint policies at truly identical TOTAL bytes.
+
+Current PolicyKV/BankKV allocates full broadcast-sized cache; the
+quoted percentages are **logical retained KV**. After quality GO,
+implement a compact packed store, validate reference parity, and report
+actual H200 HBM peak, metadata bytes, TTFT/TPOT/TPS and feasible batch
+concurrency. No measured KV reduction is claimed yet.
+
+
 ## Why this experiment exists
 
 The 10/29 lab-feedback concern is not simply "try more policies." It is
