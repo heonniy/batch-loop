@@ -442,7 +442,14 @@ class Runner:
         region = P if mode == "decode" else 0
         window_match = re.fullmatch(r"last(prompt)?win([1-9][0-9]*)", policy)
         bank_window_match = re.fullmatch(r"(bank(?:P0|R1all|cal))(prompt)?win([1-9][0-9]*)", policy)
-        if bank_window_match:
+        if policy.startswith("tokL1"):
+            if mode != "strict" or self.bb.family != "ouro":
+                raise ValueError("Token-wise first bank currently supports Ouro/strict only")
+            from .token_loop import TokenFirstBankKV
+            kv = TokenFirstBankKV(policy, self.bb.R, self.bb.n_rec, self.bb.n_plain,
+                                  B, self.bb.H, T, self.bb.D, self.dtype,
+                                  self.device, uids=uids, pads=pads, prompt_end=P)
+        elif bank_window_match:
             if mode != "strict":
                 raise ValueError("Protected+Window policies require strict mode")
             from .banks import REGISTRY, load_registry
@@ -539,6 +546,8 @@ class Runner:
                      "total_s": time.perf_counter() - t0, "kv_store_bytes": kv.bytes_allocated(),
                      "kv_store_bytes_at_alloc": bytes_at_alloc,
                      "peak_mem_bytes": self._peak()}
+        if hasattr(kv, "logical_summary"):
+            res.stats["logical_retained_kv"] = kv.logical_summary()
         return res
 
     @torch.inference_mode()
@@ -568,6 +577,8 @@ class Runner:
         res.stats = {"B": B, "P": P, "T_alloc": T, "total_s": time.perf_counter() - t0,
                      "kv_store_bytes": kv.bytes_allocated(),
                      "peak_mem_bytes": self._peak()}
+        if hasattr(kv, "logical_summary"):
+            res.stats["logical_retained_kv"] = kv.logical_summary()
         return res
 
     @torch.inference_mode()
