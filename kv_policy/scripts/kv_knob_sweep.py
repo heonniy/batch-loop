@@ -56,6 +56,16 @@ PHASES = {
                      "blend75-strict", "bankP0-strict", "bankcal-strict",
                      "bankR1all-strict"],
     },
+    # Ouro first-recurrence protection: keep near-Loop1all accuracy using <50%
+    # of FULL recurrent KV. Exact budget counts fixed per model in sub50_budget.
+    "sub50": {
+        "models": ["ouro-1.4b", "ouro-2.6b"],
+        "policies": ["full-strict", "last-strict", "bankP0-strict",
+                     "bankcal-strict", "bankR1all-strict"] +
+                    [f"bank{selection}B{pct}-strict"
+                     for pct in (30, 35, 40, 45)
+                     for selection in ("Top", "Prefix", "Rand")],
+    },
     # Factorial interaction screening; bank+window is a SEPARABLE baseline,
     # NOT a truly per-token joint bank allocator.
     "factored": {
@@ -116,12 +126,12 @@ def write_nominal_logical_budgets(run: Path, spec: dict) -> None:
                             ratio = 1.0
                         else:
                             n_extra = 0
-                            if policy.startswith("bankP0"):
-                                n_extra = 1
-                            elif policy.startswith("bankR1all"):
-                                n_extra = m.recurrent_layers
-                            elif policy.startswith("bankcal"):
-                                n_extra = 2 if model == "ouro-1.4b" else 1
+                            if policy.startswith("bank"):
+                                bank_name = re.sub(r"(?:prompt)?win[1-9][0-9]*$", "", policy)
+                                banks = json.loads((run / "banks.json").read_text())
+                                if model not in banks or bank_name not in banks[model]:
+                                    raise ValueError(f"Missing bank allocation: {model}/{bank_name}")
+                                n_extra = len(banks[model][bank_name])
                             ratio = m.protected_over_full(n_extra)
                             if wm:
                                 # The window prunes every attention layer, not
@@ -233,6 +243,8 @@ def main() -> None:
     ap.add_argument("--task", choices=["nll", "gen", "both"], default="nll")
     ap.add_argument("--sample", choices=["pilot", "main"], default="pilot")
     ap.add_argument("--models", default="", help="optional subset/override of models for this phase")
+    ap.add_argument("--policies", default="",
+                    help="optional comma-separated subset of this phase's policies")
     ap.add_argument("--datasets", default="gsm8k,math500")
     ap.add_argument("--batch-size-gsm8k", type=int, default=8)
     ap.add_argument("--batch-size-math500", type=int, default=4)
@@ -246,6 +258,9 @@ def main() -> None:
     valid_models = set(chosen["models"])
     if not models or not set(models) <= valid_models:
         ap.error(f"models must be a subset of {sorted(valid_models)}")
+    policies = [p.strip() for p in args.policies.split(",") if p.strip()] if args.policies else list(chosen["policies"])
+    if len(policies) != len(set(policies)) or not set(policies) <= set(chosen["policies"]):
+        ap.error("Requested policies must be a unique subset of selected phase")
     datasets = [x.strip() for x in args.datasets.split(",") if x.strip()]
     if not datasets or not set(datasets) <= {"gsm8k", "math500"}:
         ap.error("datasets must be a nonempty subset of gsm8k,math500")
@@ -254,7 +269,7 @@ def main() -> None:
     batch_sizes = {"gsm8k": args.batch_size_gsm8k, "math500": args.batch_size_math500}
     tasks = ["nll", "gen"] if args.task == "both" else [args.task]
     spec = {"phase": args.phase, "sample": args.sample, "models": models,
-            "policies": chosen["policies"], "tasks": tasks, "datasets": datasets,
+            "policies": policies, "tasks": tasks, "datasets": datasets,
             "batch_sizes": batch_sizes}
     run = Path(args.run_dir).resolve()
     run.mkdir(parents=True, exist_ok=True)
@@ -271,20 +286,27 @@ def main() -> None:
     else:
         cmd = [sys.executable, str(HERE / "make_quality_jobs.py"),
                "--run-dir", str(run), "--models", ",".join(models),
-               "--policies", ",".join(chosen["policies"]),
+               "--policies", ",".join(policies),
                "--batching", args.sample, "--tasks", ",".join(tasks),
                "--datasets", ",".join(datasets),
                "--batch-size-gsm8k", str(args.batch_size_gsm8k),
                "--batch-size-math500", str(args.batch_size_math500)]
         subprocess.run(cmd, cwd=KV_ROOT, check=True)
-        if any(p.startswith("bank") for p in chosen["policies"]):
+        if any(p.startswith("bank") for p in policies):
             if not SOURCE_BANKS.is_file():
                 raise FileNotFoundError(f"Expected frozen bank mapping: {SOURCE_BANKS}")
-            shutil.copyfile(SOURCE_BANKS, run / "banks.json")
+            if args.phase == "sub50":
+                from kvp.sub50_budget import build_registry, assert_disjoint_from_eval
+                registry, provenance = build_registry(KV_ROOT, SOURCE_BANKS)
+                assert_disjoint_from_eval(provenance, run, datasets)
+                (run / "banks.json").write_text(json.dumps(registry, indent=2))
+                (run / "sub50_provenance.json").write_text(json.dumps(provenance, indent=2))
+            else:
+                shutil.copyfile(SOURCE_BANKS, run / "banks.json")
         manifest = {"source_sha": repo_sha(), "spec": spec,
                     "source_banks_sha256": hashlib.sha256((run / "banks.json").read_bytes()).hexdigest()
                     if (run / "banks.json").exists() else None,
-                    "note": "postlast/factored are logical-mask QUALITY tests; no physical KV deallocation"}
+                    "note": "All policies use broadcast reference KV. sub50 is layer-wise first-loop protection; postlast/factored include logical eviction masks. No physical compact memory claim."}
         plan_file.write_text(json.dumps(manifest, indent=2))
         write_nominal_logical_budgets(run, spec)
     if args.execute:
