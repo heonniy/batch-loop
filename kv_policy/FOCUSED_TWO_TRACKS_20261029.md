@@ -182,6 +182,14 @@ a switch (https://github.com/seal-rg/recurrent-pretraining).
   implemented in this patch. Freeze task prompts and scorer first.
 - **B''-Long-context distractor alone kills FULL**: label general
   context limitation, not sharing sensitivity.
+- **B''-Official continuous-compute/warm-start option (conditional):**
+  Huginn's upstream generate_with_adaptive_compute can carry the
+  previous token's final recurrent state via `continuous_compute=True`
+  (see https://github.com/seal-rg/recurrent-pretraining). This is
+  NOT the same thing as a trained "thinking-mode" toggle, and the current
+  kv_policy fixed-depth engine does NOT reproduce that path. Only add
+  it after independently matching the official output/cache semantics,
+  and treat it as a separate architecture/inference-condition ablation.
 - **B''-No positive usable Huginn regime** after candidate testing:
   mark Huginn architecture as negative generalization baseline,
   concentrate method effort on Ouro; do not invent a "hard" result.
@@ -257,4 +265,14 @@ After GPU run, agent writes **two separate** outcome memos:
 Do not report token level as theoretically better than layer masks
 until held-out gen results corroborate matched-byte superiority.
 Do not report "measured HBM reduction" from this broadcast engine.
+
+### Focused entrypoint
+
+The two-track-only launcher `scripts/focused_two_track_sweep.py` delegates
+to the validated worker harness and hides legacy phases from its interface.
+All commands below may replace `kv_knob_sweep.py --phase ouro_token` with
+`focused_two_track_sweep.py --track ouro`, and `--phase huginn_hard`
+with `--track huginn`; other options remain the same. It requires an
+explicit `--execute` to spawn CUDA work.
+
 DO NOT modify the unrelated Phase04R predictor code or the FERRY repo.
