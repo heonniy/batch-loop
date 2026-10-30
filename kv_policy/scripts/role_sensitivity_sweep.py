@@ -342,12 +342,19 @@ def heldout_importance_test(rows: list[dict]) -> dict | None:
         coef=np.linalg.lstsq(a,ytrain,rcond=None)[0]
         pred=b@coef
         scores[name]=float(1-((ytest-pred)**2).sum()/denom) if denom>1e-12 else None
+    base=scores.get("attention_age")
+    online=scores.get("attention_age_plus_prefill_state")
+    oracle=scores.get("ORACLE_attention_plus_masked_instruction")
     return {"train_requests":len(train_uids),
             "test_requests":len(uids)-len(train_uids),
             "train_span_interventions":len(train),
             "test_span_interventions":len(test),
             "heldout_r2":scores,
-            "split":"sha256(role-holdout-v1/uid), 70/30, frozen"}
+            "online_incremental_r2":online-base
+                if online is not None and base is not None else None,
+            "oracle_incremental_r2":oracle-base
+                if oracle is not None and base is not None else None,
+            "split":"sha256(role-holdout-v1/uid), 70/30, frozen; negative R2 retained"}
 
 
 def _request_paired_effect(rows: list[dict], seed: int = 20261030) -> dict:
@@ -418,54 +425,127 @@ def _attention_matched_pairs(rows: list[dict], relative_tolerance: float = .20) 
         "notes": "Matched within request/width/attention; age difference is reported, not experimentally held equal."}
 
 
+def _main_attention_matched_pairs(rows: list[dict],
+                                  relative_tolerance: float = .20,
+                                  max_relative_age_gap: float = .20) -> dict:
+    """Unlabeled, within-request attention/recency matched pairs for MAIN.
+
+    This analysis does NOT use evidence/distractor annotations. Select at most
+    one pair per request to avoid treating correlated token windows as
+    independent requests. All thresholds are fixed in the experiment plan.
+    A nonmatch is a result, not a reason to widen limits after inspecting NLL.
+    """
+    per_uid = defaultdict(list)
+    for row in rows:
+        if row["source_role"] != "context":
+            raise ValueError("MAIN attention matching received labeled candidate")
+        per_uid[row["uid"]].append(row)
+    matched = []
+    for uid, candidates in sorted(per_uid.items()):
+        available = []
+        for i, a in enumerate(candidates):
+            for b in candidates[i+1:]:
+                if a["n_masked_tokens"] != b["n_masked_tokens"]:
+                    continue
+                attention_gap = abs(a["attention_mean"]-b["attention_mean"]) / max(
+                    a["attention_mean"],b["attention_mean"],1e-12)
+                max_age = max(a["age_at_prefill_end"],b["age_at_prefill_end"],1)
+                age_gap = abs(a["age_at_prefill_end"]-b["age_at_prefill_end"]) / max_age
+                if attention_gap <= relative_tolerance and age_gap <= max_relative_age_gap:
+                    available.append((attention_gap + age_gap, attention_gap,
+                                      age_gap, a, b))
+        if not available:
+            continue
+        _, attention_gap, age_gap, a, b = min(
+            available,key=lambda v:(v[0],v[3]["candidate_id"],v[4]["candidate_id"]))
+        matched.append({
+            "uid":uid,"attention_relative_gap":attention_gap,
+            "relative_age_gap":age_gap,
+            "recurrent_error_difference":a["prefill_persistent_final_error"]-
+                                         b["prefill_persistent_final_error"],
+            "future_nll_difference":a["postprefill_eviction_delta_future_nll"]-
+                                    b["postprefill_eviction_delta_future_nll"]})
+    return {
+        "n_requests_with_pair":len(matched),
+        "n_requests_total":len(per_uid),
+        "max_attention_gap":relative_tolerance,
+        "max_relative_age_gap":max_relative_age_gap,
+        "mean_attention_gap":(sum(x["attention_relative_gap"] for x in matched)
+                              /len(matched)) if matched else None,
+        "mean_relative_age_gap":(sum(x["relative_age_gap"] for x in matched)
+                                 /len(matched)) if matched else None,
+        "spearman_recurrent_difference_vs_future_nll_difference":_corr(
+            [x["recurrent_error_difference"] for x in matched],
+            [x["future_nll_difference"] for x in matched]),
+        "interpretation":"Matched on clean attention/age/width within request; "
+                         "residual unobserved confounding remains."}
+
+
 def analyze(run: Path):
-    m, jobs = manifest(run)
-    if m.get("protocol") != "context-instruction-question-main-ablation-v3":
-        raise RuntimeError("Refusing to mix v1/v2 and v3 study protocols")
-    study = m["study"]
-    if study not in ("main", "ablation") or study != m["config"]["study"]:
+    m,jobs=manifest(run)
+    if m.get("protocol")!="context-instruction-question-main-ablation-v3":
+        raise RuntimeError("Refusing to mix v1/v2 and v3 protocols")
+    study=m["study"]
+    if study not in ("main","ablation") or study != m["config"]["study"]:
         raise RuntimeError("Manifest study mismatch")
-    rows, controls, masses, missing, replay_errors = [], [], [], [], []
+    rows=[]; controls=[]; masses=[]; missing=[]; replay_errors=[]
+    candidate_count_mismatches=[]
     for job in jobs:
-        path = run/"raw"/(job["key"]+".json")
+        if job["study"]!=study or job["protocol"]!=m["protocol"]:
+            raise RuntimeError("Mixing experiment arm or protocol within one run")
+        path=run/"raw"/(job["key"]+".json")
         if not path.exists():
             missing.append(job["key"])
             continue
-        result = json.loads(path.read_text())
+        result=json.loads(path.read_text())
         if (result["meta"]["source_sha"] != m["source_sha"] or
-            result["meta"]["uid"] != job["uid"]):
-            raise RuntimeError("Source/job provenance mismatch")
-        b = result["baseline"]
+            result["meta"]["uid"] != job["uid"] or
+            result["meta"]["study"] != study):
+            raise RuntimeError("Result provenance/study mismatch")
+        b=result["baseline"]
         if b["replay_max_abs_token_nll_delta"] > 1e-4:
             replay_errors.append(job["key"])
-        for r in result["candidate_rows"]:
-            rows.append({"model": job["model"], "dataset": job["dataset"],
-                         "decode_mode": job["decode_mode"],
-                         "clean_greedy_exact_match":b.get("greedy_exact_match"),
-                         **r})
+        candidate_rows=result["candidate_rows"]
+        if len(candidate_rows)!=len(job["kv_candidates"]):
+            candidate_count_mismatches.append(job["key"])
+        for r in candidate_rows:
+            if r["study"] != study:
+                raise RuntimeError("Candidate row has wrong experimental arm")
+            if (study=="main" and r["source_role"]!="context" or
+                study=="ablation" and r["source_role"]
+                not in ("relevant_content","irrelevant_content")):
+                raise RuntimeError("Ground-truth label selection leaked across arms")
+            rows.append({"model":job["model"],"dataset":job["dataset"],
+                         "decode_mode":job["decode_mode"],
+                         "clean_greedy_exact_match":b.get("greedy_exact_match"),**r})
         for r in result["role_control_rows"]:
-            controls.append({"model": job["model"], "dataset": job["dataset"],
-                             "decode_mode": job["decode_mode"], **r})
+            controls.append({"model":job["model"],"dataset":job["dataset"],
+                             "decode_mode":job["decode_mode"],**r})
         for r in b["attention_role_mass_by_loop"]:
-            masses.append({"model": job["model"], "dataset": job["dataset"],
-                           "decode_mode": job["decode_mode"], "uid": job["uid"], **r})
-    out = run/"analysis"
-    out.mkdir(exist_ok=True)
+            mass={**r}
+            if study=="main":
+                # Labels may exist in dataset metadata but must not appear
+                # in primary MAIN measurement or candidate/predictor inputs.
+                mass["relevant_mass"]=None
+                mass["irrelevant_mass"]=None
+            masses.append({"model":job["model"],"dataset":job["dataset"],
+                           "decode_mode":job["decode_mode"],"uid":job["uid"],**mass})
+    out=run/"analysis";out.mkdir(exist_ok=True)
 
-    def write(name, data, columns):
-        with (out/name).open("w", newline="") as f:
-            wr = csv.DictWriter(f, fieldnames=columns)
-            wr.writeheader()
+    def write(name,data,columns):
+        with (out/name).open("w",newline="") as f:
+            wr=csv.DictWriter(f,fieldnames=columns);wr.writeheader()
             for row in data:
-                wr.writerow({key: row.get(key) for key in columns})
+                wr.writerow({col:row.get(col) for col in columns})
 
-    write("evidence_sensitivity.csv", rows, [
-        "model","dataset","decode_mode","uid","candidate_id","source_role",
-        "source","source_token_position","source_token_positions",
-        "n_masked_tokens","full_sentence_token_count","age_at_prefill_end",
-        "answer_anchor_used","attention_by_loop","attention_mean","attention_max",
-        "attention_recurrent_alignment","source_mean_recurrent_change",
-        "prefill_instruction_error_by_loop",
+    output_name="main_context_sensitivity.csv" if study=="main" else "ablation_evidence_sensitivity.csv"
+    write(output_name,rows,[
+        "study","model","dataset","decode_mode","uid","candidate_id",
+        "source_role","selection_policy","source","source_token_position",
+        "source_token_positions","n_masked_tokens","full_sentence_token_count",
+        "age_at_prefill_end","answer_anchor_used","attention_by_loop",
+        "attention_mean","attention_max","attention_recurrent_alignment",
+        "source_mean_recurrent_change","prefill_instruction_error_by_loop",
         "prefill_persistent_final_error","prefill_persistent_recovery_ratio",
         "prefill_one_loop_error_by_loop","prefill_one_loop_final_error",
         "postprefill_eviction_delta_future_nll",
@@ -473,92 +553,98 @@ def analyze(run: Path):
         "future_decode_recurrent_error_mean",
         "future_decode_recurrent_error_by_token",
         "clean_greedy_exact_match","postprefill_greedy_exact_match",
-        "postprefill_greedy_answer_flip",
-        "live_exit_flip_fraction","live_exit_signed_depth_shift",
-        "live_exit_delta_future_nll"])
-    write("question_controls.csv", controls, [
+        "postprefill_greedy_answer_flip","live_exit_flip_fraction",
+        "live_exit_signed_depth_shift","live_exit_delta_future_nll"])
+    write("question_controls.csv",controls,[
         "model","dataset","decode_mode","uid","source_token_position",
         "source_role","postprefill_eviction_delta_future_nll"])
-    write("instruction_attention_by_loop.csv", masses, [
+    write("instruction_attention_by_loop.csv",masses,[
         "model","dataset","decode_mode","uid","loop",
         "n_query_layer_observations","content_mass","relevant_mass",
         "irrelevant_mass","instruction_previous_mass","distractor_mass",
         "self_mass","content_mass_per_token"])
-
-    groups = defaultdict(list)
+    groups=defaultdict(list)
     for row in rows:
         groups[(row["model"],row["dataset"],row["decode_mode"])].append(row)
-    summaries = []
-    for (model, dataset, mode), cohort in sorted(groups.items()):
-        per_role = {}
-        for role in ("relevant_content", "irrelevant_content"):
-            g = [r for r in cohort if r["source_role"] == role]
-            if not g:
-                per_role[role] = {"n": 0}
+    summaries=[]
+    for (model,ds,mode),group in sorted(groups.items()):
+        roles=(("context",) if study=="main"
+               else ("relevant_content","irrelevant_content"))
+        per_role={}
+        for role in roles:
+            candidates=[r for r in group if r["source_role"]==role]
+            if not candidates:
+                per_role[role]={"n_span_interventions":0}
                 continue
-            y = [r["postprefill_eviction_delta_future_nll"] for r in g]
-            att = [r["attention_mean"] for r in g]
-            mech = [r["prefill_persistent_final_error"] for r in g]
-            valid_source = [r for r in g if r["source_mean_recurrent_change"] is not None]
-            generation_rows = [r for r in g
-                               if r["postprefill_greedy_exact_match"] is not None]
-            clean_correct = [r for r in generation_rows
-                             if r["clean_greedy_exact_match"]]
-            per_role[role] = {
-                "n_span_interventions": len(g),
-                "n_generation_interventions": len(generation_rows),
-                "greedy_clean_accuracy": (
-                    sum(r["clean_greedy_exact_match"] for r in generation_rows)
-                    / len(generation_rows)) if generation_rows else None,
-                "greedy_evicted_accuracy": (
-                    sum(r["postprefill_greedy_exact_match"] for r in generation_rows)
-                    / len(generation_rows)) if generation_rows else None,
-                "greedy_correct_to_incorrect_rate": (
-                    sum(not r["postprefill_greedy_exact_match"] for r in clean_correct)
-                    / len(clean_correct)) if clean_correct else None,
-                "n_requests": len({r["uid"] for r in g}),
-                "mean_future_nll_delta": sum(y)/len(y),
-                "positive_future_nll_damage_fraction": sum(v > 0 for v in y)/len(y),
-                "mean_replay_decode_state_error": sum(
-                    r["future_decode_recurrent_error_mean"] for r in g)/len(g),
-                "spearman_attention_vs_future_loss": _corr(att, y),
-                "spearman_prefill_sensitivity_vs_future_loss": _corr(mech, y),
-                "spearman_attention_recurrence_alignment_vs_future_loss": _corr(
-                    [r["attention_recurrent_alignment"] for r in g], y),
-                "spearman_source_change_vs_future_loss": _corr(
-                    [r["source_mean_recurrent_change"] for r in valid_source],
-                    [r["postprefill_eviction_delta_future_nll"] for r in valid_source]),
-            }
-        summaries.append({
-            "model": model, "dataset": dataset, "decode_mode": mode,
-            "n_requests": len({r["uid"] for r in cohort}),
-            "n_equal_width_span_interventions": len(cohort),
-            "per_role": per_role,
-            "paired_evidence_damage": _request_paired_effect(cohort),
-            "attention_matched_pairs": _attention_matched_pairs(cohort),
-            "request_heldout_prediction": heldout_importance_test(cohort)})
-    result = {"expected_jobs": len(jobs),
-              "completed_jobs": len(jobs)-len(missing),
-              "missing": missing, "parity_failures": replay_errors,
-              "groups": summaries,
-              "limitations": [
-                  "HotpotQA evidence_excerpt is NOT the original 10-paragraph benchmark.",
-                  "Supporting-fact ground truth selects offline oracle probe windows; no evidence-label online feature.",
-                  "All candidates per request use exactly matched masked token counts; ages and attention differ.",
-                  "Paired signed future NLL can be <=0; no assumption that evidence eviction always hurts.",
-                  "The first target token is predicted before post-prefill eviction and excluded.",
-                  "Recurrent prefill counterfactual is an oracle, not a free online predictor.",
-                  "Free-generation Exact Match is available only with --free-generate; check n_generation_interventions.",
-                  "No actual compact HBM or latency savings.",
-                  "Recorded replay and live exit are separate dynamic comparisons."]}
-    (out/"SUMMARY.json").write_text(json.dumps(result, indent=2))
-    error_files = ([p.name for p in (run/"errors").glob("*.json")]
-                   if (run/"errors").exists() else [])
+            y=[r["postprefill_eviction_delta_future_nll"] for r in candidates]
+            att=[r["attention_mean"] for r in candidates]
+            mech=[r["prefill_persistent_final_error"] for r in candidates]
+            valid=[r for r in candidates if r["source_mean_recurrent_change"] is not None]
+            gen=[r for r in candidates
+                 if r["postprefill_greedy_exact_match"] is not None]
+            clean_correct=[r for r in gen if r["clean_greedy_exact_match"]]
+            per_role[role]={
+                "n_span_interventions":len(candidates),
+                "n_requests":len({r["uid"] for r in candidates}),
+                "n_generation_interventions":len(gen),
+                "greedy_clean_accuracy":sum(r["clean_greedy_exact_match"] for r in gen)/len(gen)
+                    if gen else None,
+                "greedy_evicted_accuracy":sum(r["postprefill_greedy_exact_match"] for r in gen)/len(gen)
+                    if gen else None,
+                "greedy_correct_to_incorrect_rate":sum(
+                    not r["postprefill_greedy_exact_match"] for r in clean_correct
+                    )/len(clean_correct) if clean_correct else None,
+                "mean_future_nll_delta":sum(y)/len(y),
+                "positive_future_nll_damage_fraction":sum(x>0 for x in y)/len(y),
+                "mean_future_decode_state_error":sum(
+                    r["future_decode_recurrent_error_mean"] for r in candidates)/len(candidates),
+                "spearman_attention_vs_future_damage":_corr(att,y),
+                "spearman_prefill_oracle_vs_future_damage":_corr(mech,y),
+                "spearman_online_attention_recurrence_alignment_vs_future_damage":_corr(
+                    [r["attention_recurrent_alignment"] for r in candidates],y),
+                "spearman_online_source_change_vs_future_damage":_corr(
+                    [r["source_mean_recurrent_change"] for r in valid],
+                    [r["postprefill_eviction_delta_future_nll"] for r in valid])
+                }
+        summary={
+            "model":model,"dataset":ds,"decode_mode":mode,"study":study,
+            "n_requests":len({r["uid"] for r in group}),
+            "n_interventions":len(group),
+            "per_role":per_role,
+            "request_heldout_prediction":heldout_importance_test(group)}
+        if study=="main":
+            summary["attention_age_matched_main_pairs"]=_main_attention_matched_pairs(group)
+        else:
+            summary["paired_evidence_damage"]=_request_paired_effect(group)
+            summary["attention_matched_evidence_pairs"]=_attention_matched_pairs(group)
+        summaries.append(summary)
+    error_files=([p.name for p in (run/"errors").glob("*.json")]
+                 if (run/"errors").exists() else [])
+    failures=bool(missing or replay_errors or error_files or candidate_count_mismatches)
+    report={
+        "study":study,"expected_jobs":len(jobs),
+        "completed_jobs":len(jobs)-len(missing),"missing":missing,
+        "parity_failures":replay_errors,
+        "candidate_count_mismatches":candidate_count_mismatches,
+        "groups":summaries,
+        "limitations":[
+            "MAIN candidates are position-stratified sampled Context windows, not an exhaustive all-token scan.",
+            "MAIN uses neither supporting-fact annotations nor gold answer anchoring in candidate selection.",
+            "ABLATION is ground-truth-labeled and cannot be evaluated as a deployable policy.",
+            "Mechanism A is a counterfactual oracle and distinct from post-prefill intervention B.",
+            "HotpotQA evidence_excerpt is NOT the full official HotpotQA benchmark.",
+            "Fixed replay controls depth; live exit allows changed exit/quality.",
+            "First target NLL is unaffected by post-prefill read mask and excluded.",
+            "Greedy Exact Match only exists if --free-generate was enabled.",
+            "All results are FULL-sized KV attention masks; no physical HBM or serving speedups.",
+            "Single 70/30 heldout R2 and pairwise correlations are exploratory; repeat splits before a paper claim."]}
+    (out/"SUMMARY.json").write_text(json.dumps(report,indent=2))
     (run/"completeness.json").write_text(json.dumps({
-        "complete": not missing and not replay_errors and not error_files,
-        "missing_jobs": missing, "replay_failures": replay_errors,
-        "error_files": error_files}, indent=2))
-    return result
+        "complete":not failures,"study":study,
+        "missing_jobs":missing,"replay_failures":replay_errors,
+        "candidate_count_mismatches":candidate_count_mismatches,
+        "error_files":error_files},indent=2))
+    return report
 
 
 
