@@ -33,9 +33,12 @@ class RoleProbeKV(DepthOracleKV):
         if mode not in ("none", "instruction_all", "instruction_one_loop",
                         "postprefill"):
             raise ValueError("Unsupported role perturbation")
-        if mode != "none" and (source is None or
-                               source not in prompt.content_positions):
-            raise ValueError("Only prior Content tokens may be intervened on")
+        allowed = set(prompt.content_positions)
+        if mode == "postprefill":
+            allowed.update(prompt.instruction_positions)
+            allowed.update(prompt.distractor_positions)
+        if mode != "none" and (source is None or source not in allowed):
+            raise ValueError("Selected source is not in an allowed causal role span")
         if perturbed_loop < 1 or perturbed_loop > bb.R:
             raise ValueError("Perturbation loop out of range")
         self.prompt = prompt
@@ -216,6 +219,7 @@ def role_intervention_oracle(bb, uid: str, model_revision: str,
                              *, decode_mode: str = "dynamic",
                              run_one_loop: bool = True,
                              live_exit: bool = True,
+                             role_controls: Sequence[int] = (),
                              replay_tol: float = 1e-4) -> dict:
     """Paired single-Content interventions, independently under frozen state.
 
@@ -305,7 +309,22 @@ def role_intervention_oracle(bb, uid: str, model_revision: str,
             "live_exit_delta_future_nll":
                 (live["nll_future"]-baseline["nll_future"]) if live else None,
         })
+    # Role-specific negative/comparator controls: Instruction and unrelated
+    # Background tokens can be evicted AFTER prefill, but they are NOT
+    # interpreted as Content-to-Instruction interventions.
+    controls=[]
+    for source in role_controls:
+        if source in candidates or source not in set(prompt.instruction_positions) | set(prompt.distractor_positions):
+            raise ValueError("Role comparator must be a distinct Instruction/Distractor position")
+        post=role_forward(**common,forced_depths=frozen,
+                          role_mode="postprefill",source=source)
+        role=prompt.roles[source]
+        controls.append({
+            "uid":uid,"source_token_position":source,"source_role":role,
+            "postprefill_eviction_delta_future_nll":
+                post["nll_future"]-baseline["nll_future"]})
     return {
+        "role_control_rows":controls,
         "trace":trace,
         "baseline":{"nll_all":baseline["nll_all"],
                     "nll_future":baseline["nll_future"],
