@@ -80,7 +80,11 @@ class RoleProbeKV(DepthOracleKV):
         if self.mode == "instruction_all":
             return col in self.instruction_set and layer[0] == "rec"
         if self.mode == "instruction_one_loop":
-            return (col in self.instruction_set and layer[0] == "rec"
+            # ONE actual injection: the final instruction anchor, at one
+            # recurrence only. Earlier instruction-token KV stays untouched.
+            # Later loops see the resulting state propagation, not a new
+            # source mask at every recurrent step.
+            return (col == max(self.instruction_set) and layer[0] == "rec"
                     and layer[2]+1 == self.perturbed_loop)
         return False
 
