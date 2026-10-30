@@ -1,170 +1,201 @@
-# Content → Instruction Recurrent Sensitivity and Future KV Utility
-**Date:** 2026-10-30  
-**Repository:** heonniy/batch-loop  
-**Branch:** research/content-instruction-recurrent-sensitivity-h200x8-20261030  
-**Hardware:** H200 × 8 independently assigned workers (NO tensor parallel)  
-**Status:** Reference quality instrumentation, runner, and CPU/model-backed tests committed. No GPU evaluation or measured KV-memory savings yet.
+# Evidence-conditioned Recurrent Sensitivity: Experiment v2
 
-## 0. Research question
+Date: 2026-10-30
+Repository: heonniy/batch-loop
+Branch: research/evidence-recurrent-sensitivity-v2-20261030
+Parent: research/content-instruction-recurrent-sensitivity-h200x8-20261030
+Hardware target: H200 x 8, one BF16 model worker/GPU, no TP
+Status: Code and tests committed. No local/server tests or H200 evaluations observed passing in this session.
 
-**RQ:** Does the impact of Content KV on the recurrent state of a later Instruction/Question predict its *actual future decode-time KV eviction damage*, beyond conventional Attention magnitude?
+## 0. Why the original experiment is superseded
 
-This is not the claim that "a token with larger state change is more important." State changes may be harmless task computation, and attention/output changes occur in dense transformers too. The goal is to TEST:
-- H1 (mechanism): Removing a Content KV while processing subsequent Instruction changes Instruction's hidden trajectory, even at similar instruction→content attention.
-- H2 (error dynamics): A perturbation at ONLY the last Instruction query's Loop 1 may recover or persist through later recurrences; sustained masking across all Instruction queries/loops is a distinct intervention.
-- H3 (utility): Content tokens with high prefill recurrent sensitivity cause larger **post-prefill** future generation NLL damage when evicted.
-- H4 (deployability): Online-observable FULL-prefill signals (Instruction→Content loop-attention; the Content source's own state trajectory) beat age+attention alone on **held-out requests**. The counterfactual sensitivity obtained by re-running masked instruction is an expensive ORACLE diagnostic, not a free online feature.
-- H5 (dynamic decode): Eviction changes native exit depths; does live-exit quality differ from frozen recorded-replay quality? EXIT FLIP alone is not evidence of harm.
+| Design choice | Original v1 | Corrected v2 |
+| --- | --- | --- |
+| Primary tasks | GSM8K and MATH-500 | Controlled Retrieval and HotpotQA-Distractor |
+| Context content | Math problem and static background | Ground-truth supporting facts plus irrelevant facts |
+| Candidate | Random isolated Content token | Tokenizer-aligned, matched-width window within a labeled sentence |
+| Roles | Content, Instruction, Background | Relevant Context, Irrelevant Context, Instruction, Question, Generated |
+| Target | Old math reasoning/rationale | New task-specific short answer: Answer: gold_answer |
+| Observables | Attention, prefill counterfactual, future teacher-forced NLL | Same plus generated-token recurrent error, paired controls, optional greedy Exact Match |
+| Analysis | Pooled score correlations | Separate role strata, attention-matched pairs, request-paired bootstrap and 70/30 heldout predictor |
+| Systems claim | FULL-sized reference KV | Still FULL-sized masked reference KV: NO physical saving/latency claim |
 
-**Critical causal direction:** A Content token can influence an Instruction token only when the Content precedes that Instruction in the autoregressive prompt. If Instruction precedes Content, no backward attention to future Content exists. Our NEW frozen prompt explicitly orders `Background (optional) → Content → Instruction → Answer:`. Only future Generated Token queries observe the post-prefill eviction.
+The original study was not wrong to use a Content-before-Instruction prompt for a basic mechanism check, but it did not provide the annotated relevant/irrelevant context needed for this research question. Retain the original branch; do not retroactively label the GSM8K/MATH-500 study as the main result.
 
-## 1. Models, datasets, protocol
+Research question: Does the change induced in later Question/Instruction recurrent computation by an earlier Context KV window predict future post-prefill eviction damage beyond attention and source age? This MUST be tested, not assumed.
 
-| Item | Frozen setting |
-|---|---|
-| Models | `huginn-0125` (3.5B), `ouro-1.4b`, `ouro-2.6b`, with pinned revisions in `kvp/specs.py` |
-| Data | 100 disjoint questions per **model × dataset**, GSM8K + MATH-500, same question UIDs across models (600 model-question instances per decode mode) |
-| GPU | H200 ×8; one B=1 reference model per worker/device; BF16 |
-| Prefill | **FULL recurrent depth for every Instruction/Content token**, **token-major** for accurate causal intervention (not a throughput-optimized parallel prefill) |
-| Decode | Fixed depth R OR native Dynamic Exit; no-refill; current token always computes its actual loop KV |
-| Ouro dynamic | learned gate, cumulative q=0.7, Rmax=4, min=2; checkpoint-specific bias |
-| Huginn dynamic | cosine threshold 0.001, Rmax=32, min=2, FP32 cosine arithmetic while backbone remains BF16; this is a diagnosed modified evaluator, not identical BF16-native |
-| Target | First 64 gold answer/rationale tokens; no free generated Accuracy measured |
-| Prompt | NEW role-specific prompt; Huginn chat template, Ouro plain completion; no old few-shot protocol |
-| Content candidates | 2 aligned Content tokens per question; 1 Instruction and 1 unrelated Background control, with exact tokenizer offsets |
-| Cache store | FULL-sized broadcast reference. Evictions are Attention read masks, not HBM reclamation |
+## 1. Dataset protocols and provenance
 
-All prompt tokens are retained. `--max-prompt-tokens 1536` is an explicit **cap that FAILS preparation on an overlong prompt**. Never silently trim the Instruction/Content region, unlike the older last-96-token probe. No use of future answers or Attention in candidate selection.
+**Controlled Retrieval (primary mechanism control):** deterministic NIAH/RULER-inspired generation in kvp/role_evidence_data.py. Default 16 synthetic record-to-code facts, exactly one answer-bearing fact, 15 irrelevant facts, and target positions cycling among front/middle/end. Record generated UIDs, fact count, target position, seed and SHA256. This is NOT an official RULER benchmark or published NIAH score.
 
-Run both fixed/dynamic decode to disentangle output sensitivity from Exit decisions, but the experiment may pilot one mode first. At `--decode-modes fixed,dynamic`, the 100-each main cohort has **1,200 jobs** (600 model-question instances × 2 decode modes); each job runs baseline, parity replay, two Content interventions and role controls. Because work is token-major, use H200 resource preflight and pilot gates.
+**HotpotQA-Distractor (multi-hop generalization):** pinned HF repo hotpotqa/hotpot_qa, revision 1908d6afbbead072334abe2965f91bd2709910ab, validation parquet distractor/validation-00000-of-00001.parquet. Expected SHA256 c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6. Read original supporting_facts (title, sent_id) and context (title, sentences), requiring at least two distinct supporting document titles and at least one irrelevant sentence. Store number filtered and exact sample UIDs.
 
-### Role tagging
+HotpotQA has TWO explicit context modes. The default evidence_excerpt retains every supporting-fact sentence plus eight deterministic distracting sentences, prioritized from unrelated documents; this is a custom *mechanism* workload, NOT standard full-document HotpotQA. The separate full_context mode retains every supplied sentence, with its title, but still uses our custom prompt. Never mix the two settings in one run or call either an official leaderboard score.
 
-`kvp/role_data.py` pins the exact Content, Instruction, optional unrelated Background and Other token indices using tokenizer offsets. Cross-boundary subword tokens are **Other** and excluded from interventions. A slow-tokenizer fallback is allowed **only if prefix tokenization proves exact boundary alignment**, otherwise fails closed. Source identity and model revision are frozen in `jobs.json` and `run_manifest.json`.
+Main sample: 100 different questions per dataset, same UIDs across Huginn-3.5B, Ouro-1.4B and Ouro-2.6B. Fixed and native dynamic decode yield 3 x 2 x 100 x 2 = 1,200 model-question-mode jobs. The experiments within each job make multiple full-prefill passes; a job is NOT a single inference.
 
-This design avoids treating GSM8K/MATH500 old few-shot examples or Huginn system delimiters as the user Instruction. Do not compare its absolute NLL/Accuracy directly to earlier different prompt results.
+## 2. Prompt contract and exact roles
 
-## 2. Paired interventions
+Content precedes Instruction, and actual per-example Question follows the generic Instruction. Conceptual form:
 
-For each source Content token `i`, compare different causal effects.
+    Context:
+    [Doc A] Supporting evidence 1
+    [Doc B] Supporting evidence 2
+    [Doc C] Unrelated distracting fact
+    Instruction:
+    Use the context to answer. Reply with 'Answer: <short answer>'.
+    Question:
+    What is the requested factual answer?
+    Response:
 
-### A: Mechanism — intervention DURING Instruction Prefill
+Huginn renders the body through its chat template; Ouro uses plain text. Tokenizer offset maps (not regex heuristics) assign the exact roles relevant_content, irrelevant_content, instruction, question, other. The generated sequence is a separate decode region. Cross-boundary token pieces are Other and are not candidates. Fail if a role cannot be aligned or if a prompt exceeds the explicit token limit; no last-96-token truncation.
 
-All prior Content is computed at Full recurrence, untouched. For the Instruction/Question token(s) **after** Content:
-- **Clean FULL Prefill:** query at every Loop r can attend Content i.
-- **Persistent Instruction mask:** every Instruction query's recurrent Attention at all loops masks Content i; prelude/coda are not masked for this arm.
-- **One-shot Loop-1 mask:** ONLY the **final Instruction query position** at **Loop 1** masks Content i (all recurrent physical layers); subsequent loops and all earlier Instruction tokens get unmodified KV reads. Thus the final anchor receives exactly one Loop-level intervention and can exhibit recurrent recovery/persistence.
+The gold target is the new answer continuation 'Answer: <gold>\n', not the earlier mathematical few-shot solution. The leading "Answer:" ensures that answer-bearing tokens normally occur after the first generated token. The first target token is predicted at the last (clean) prompt query, before any post-prefill mask, and must NOT be credited to the eviction effect.
 
-Collect baseline/perturbed hidden for final Instruction query at every r, and compute:
+**Ground-truth probe windows:** choose up to two relevant and two irrelevant *sentences*. Hide equal-width contiguous tokenizer-token windows within each chosen sentence. Default W<=12, reduced to the minimum available width of any chosen sentence. Each chosen candidate for the same question hides exactly W KV positions. For relevant evidence, a text match of the gold answer can anchor the window (otherwise use center). This is an annotation-based *offline diagnostic*, not a practical online policy. Log sentence ID, source title/sentence, all masked token positions, answer anchor use, full sentence length, age, attention and model revision. Do NOT describe this as full-sentence eviction; only a matched window is evicted.
 
-```
-E_(i,r) = ||h_instruction,r(mask i) - h_instruction,r(clean)||_2
-          / (||h_instruction,r(clean)||_2 + eps)
-P_i = E_(i,R) / max(E_(i,1), eps)
-```
+## 3. Separate causal experiments
 
-Keep signed effects via NLL as well; a large hidden norm difference need not harm predictive quality. For Huginn, annotate randomly initialized recurrent state and separately record prelude representation; do not interpret an initial-noise norm as intrinsic Content utility.
+Let P denote prompt token count; i a selected set of W Content token positions, j the last later Question token, r recurrent iteration (1 through R), and h(j,r) the hidden state for Question token j after loop r.
 
-### B: Real use case — intervention AFTER full Prefill
+### A — Mechanism during prefill
 
-Run exactly the same Full-depth Prefill with **no** earlier change.
-After the prompt is complete:
-- Freeze baseline target token sequence, model revision and decode exit depths.
-- Mask Content i from ALL attention layers during **future generated-token processing** (Ouro core; Huginn prelude/core/coda).
-- Compare teacher-forced future NLL under identical Recorded Decode trace.
-- For dynamic decode, also run a separate native **Live Exit** under the same mask, record ExitFlip, signed depth shift and future NLL. Unlike Replay, this allows actual gate decisions to change.
+Run all Content tokens at FULL recurrent depth with no source modification. When computing later Instruction/Question queries, block those queries' recurrent-core attention reads to Content window i:
 
-```
-U_i^future = NLL_future(postprefill_evict_i, recorded_depth)
-             - NLL_future(clean_FULL_prefill, same recorded_depth)
-```
+- Clean FULL prefill: h_full(j,r)
+- Persistent A: mask i for every later Instruction and Question query and every loop
+- One-shot A: mask i only for final Question query at loop 1; restore Content KV reads in later loops
 
-**Important off-by-one:** The first gold answer token is predicted at the LAST prompt position, prior to any post-prefill cache mask, so it must NOT be counted in `NLL_future`. The implementation records all-target NLL too but uses targets 2..64 for the post-prefill utility label. Do not label an unchanged first-token logit as evidence of robustness.
+Define normalized hidden divergence:
 
-### C: Observation-only prefill signals
+    E_i(r) = || h_mask_i(j,r) - h_full(j,r) ||_2
+             / max( ||h_full(j,r)||_2, epsilon )
 
-On the clean Full prefill, record:
-- Per-loop Instruction-query Attention **mass** to Content, earlier Instruction, unrelated Background, and self; omit future positions by causal mask.
-- Normalize Content group mass by its token count; different roles have unequal lengths.
-- Per-Content-source Instruction Attention profile across loops; mean/max and late-loop can be derived without future-token leakage.
-- Each Content source's own clean recurrent hidden-change profile (loop-to-loop differences).
-- Instruction anchor's full hidden-state trajectory.
+and persistence ratio E_i(R) / max(E_i(1), epsilon). Persistent A includes repeated perturbation; one-shot A isolates propagation/recovery. An arbitrary state difference is NOT automatically helpful, harmful, or specific to looped models. Measure clean per-loop Question/Instruction→Context attention as a baseline signal.
 
-Do NOT use the later Generated Token Attention or the counterfactual `E_(i,r)` as a zero-cost online feature.
+### B — Actual future KV-read eviction AFTER clean full prefill
 
-### D: Role-specific negative controls
+Compute the entire original prompt normally, including all Instruction and Question recurrent states. Only when later *generated-token* queries are processed (position >= P), hide the same Context KV window from all recurrent and ordinary attention layers. No previously computed prefill state is altered.
 
-Also evict an earlier **Instruction** and an unrelated **Background** token after full prefill (one each) to compare role sensitivity. These controls do NOT enter the Content→Instruction mechanism test; they serve as separate role-group effects. Content/Instruction/Background sample sizes and position/age differ: report within-role distributions and match age/attention before comparing groups.
+Use recorded replay to hold every generated token at the identical recurrent depth for paired NLL comparisons:
 
-## 3. Hypothesis tests and metrics
+    Delta_future_NLL(i)
+      = mean NLL(gold positions 2..T | clean full prefill, evict i)
+      - mean NLL(gold positions 2..T | clean full prefill, no eviction)
 
-| Output | What it answers |
-|---|---|
-| `instruction_attention_by_loop.csv` | Does Instruction→Content mass evolve over recurrence? Any systematic shift relative to Instruction/Background mass? |
-| `content_sensitivity.csv` | For each Content source: loop-wise Instruction hidden error, single-shot final recovery, persistent final error, prefill attention, future eviction NLL, live exit shifts |
-| `instruction_distractor_controls.csv` | How do Instruction/Background post-prefill KV removal effects differ? |
-| `analysis/SUMMARY.json` | Spearman relation of Attention/state changes/counterfactual sensitivity to future NLL damage, fixed-vs-dynamic groups |
-| `request_heldout_prediction` | Frozen SHA-based 70/30 **request** split: Attention+Age vs Attention+Age+online clean source-state change; diagnostic Oracle adds masked Instruction final error |
-| `completeness.json` | All jobs, failed parity, missing/errors; none silently accepted |
+T is capped at 64 gold tokens. The signed delta can be negative. Also measure matched-depth generated-token hidden-state divergence (up to first four processed generated queries). When using dynamic exit, compare frozen replay and separately *live* exit decisions, because live exit may change depth and NLL. An exit flip is not necessarily a quality loss.
 
-Candidate tokens from same request are correlated; inferential confidence intervals must be **bootstrapped by request**, not by individual token. The current `SUMMARY.json` reports descriptive Spearman and 70/30 held-out OLS R²; rigorous request-bootstrap confidence intervals/seed sensitivity are a follow-up before paper claims.
+Optional --free-generate (implemented): greedy decode from a clean prompt with no gold continuation fed into the model, comparing pre/post-eviction Exact Match and clean-correct→evicted-incorrect rate. The last prompt token predicts the same first generated token under both branches; check parity. Exact-match extraction is a short-answer scorer and must be validated on real samples. Without this option, do NOT claim answer accuracy, only teacher-forced NLL.
 
-**GO** only if (i) real Attention-normalized mismatch exists within comparable Content/age bins; (ii) counterfactual Instruction sensitivity predicts future eviction utility; and (iii) at least one **online-observable** clean-prefill recurrent feature adds request-held-out information beyond age+attention. Then and ONLY then implement actual multi-token eviction at matched KV bytes against faithful H2O/SnapKV/StreamingLLM and prompt-protected random; generation Accuracy and actual compact HBM/TPOT/TPS are further stages.
+All these operations use an **allocated FULL-sized multi-loop KV reference plus read masks**. Physical HBM reduction and TPS/TPOT are NOT measured.
 
-**NO-GO:** Instruction recurrent perturbations mostly vanish, or are unrelated to future damage, or offline Attention/recency already explains all signal. A counterfactual-only oracle improvement with no affordable predictor does **not** establish a practical eviction method.
+## 4. Importance predictor and statistical controls
 
-**INCONCLUSIVE:** dynamic Ouro-2.6B all exits R4, short gold horizon yields almost zero meaningful damage, or native model parity fails. Then use separately frozen q and/or longer target on new data, never silently retune and reuse heldout questions.
+The future eviction NLL delta from B is the supervised ground truth. Compare models fit only on 70% of request UIDs (fixed SHA-order split; 30% request-heldout), with train-only feature standardization.
 
-## 4. H200 × 8 execution
+| Predictor | Features | Available online? |
+| --- | --- | --- |
+| Attention+Age+W | Clean Instruction/Question→Content mean/max attention, source age, masked window width | Yes |
+| + clean recurrent | Above plus Context source's own clean loop-state change and attention-weighted alignment with the Question's clean loop-state change | Yes |
+| + masked-Question oracle | Baseline plus A's expensive counterfactual final state divergence | NO |
 
-Use a **new source branch** and a **new run directory for every frozen config/source SHA**. Existing 10/30 exit-depth experiments and FERRY are untouched.
+Define source-window attention mass A_i(r) and clean Question change C_j(r):
 
-```bash
-git fetch origin
-git checkout research/content-instruction-recurrent-sensitivity-h200x8-20261030
-cd kv_policy
+    C_j(r) = ||h_full(j,r) - h_full(j,r-1)||_2
+             / max(||h_full(j,r-1)||_2, epsilon), r>=2
+    Alignment_i = sum_r A_i(r)*C_j(r) / max(sum_r A_i(r), epsilon)
 
-# CPU tensor/unit + tiny HF-backed model parity (must pass).
-python -m pytest -q tests/test_role_sensitivity.py tests/test_role_model_parity.py
+This correlation is a candidate ONLINE feature, not proven instability. Counterfactual E_i(R) is deliberately labeled an expensive oracle. Do not pass ground-truth relevance labels, gold answers, future generated attention, or future NLL into predictors.
 
-# Smoke: 1 question/cell, fixed+dynamic, 3 models, 2 datasets.
-python scripts/role_sensitivity_sweep.py --prepare \
-  --run-dir results/role_smoke_20261030 --n-examples 1 \
-  --n-content 1 --n-instruction 1 --n-distractor 1 \
-  --max-target-tokens 16
-python scripts/role_sensitivity_sweep.py --execute \
-  --run-dir results/role_smoke_20261030 --gpu-ids 0
-python scripts/role_sensitivity_sweep.py --analyze \
-  --run-dir results/role_smoke_20261030
+Report separate Relevant/Irrelevant signed future-NLL mean, generated-state error, Spearman source attention and recurrence associations, plus paired within-request Relevant-minus-Irrelevant damage. Bootstrap this paired difference by request (1,000 resamples). Separately match the closest Relevant/Irrelevant source windows inside the *same request* when relative attention gap <=20%, preregistered; report the number of matched requests and remaining age difference. Matching attention does not exactly match age or semantics.
 
-# Pilot: 8 questions per model/dataset, fixed+dynamic,
-# new directory; opt-in H200 x8 after smoke.
-python scripts/role_sensitivity_sweep.py --prepare \
-  --run-dir results/role_pilot8_20261030 --n-examples 8 \
-  --n-content 2 --max-target-tokens 64
+Output request-heldout R² for Attention+Age+W vs the augmented recurrence predictor and oracle control, including negative R². Before claiming a paper method, repeat split seeds and compute request-bootstrap intervals on the incremental benefit; current one-split R² is exploratory.
 
-# Main: 100 per model/dataset; if both decode modes, 1200 jobs total.
-# Recommended after pilot quality, duration/peak-HBM and role-label checks.
-python scripts/role_sensitivity_sweep.py --prepare \
-  --run-dir results/role_main100_20261030 --n-examples 100 \
-  --n-content 2 --max-target-tokens 64 \
-  --decode-modes fixed,dynamic
-python scripts/role_sensitivity_sweep.py --execute \
-  --run-dir results/role_main100_20261030 \
-  --gpu-ids 0,1,2,3,4,5,6,7
-python scripts/role_sensitivity_sweep.py --analyze \
-  --run-dir results/role_main100_20261030
-```
+**Go/no-go:**
+1. Does A show content-specific (not merely generic) hidden divergence at comparable attention?
+2. Does A predict signed B future NLL damage after role/age/width controls?
+3. Do affordable *clean prefill* recurrent features improve heldout prediction beyond attention+age+W?
+4. Is clean greedy accuracy nondegenerate? A model that cannot answer the original workload cannot support strong claims about protecting answer accuracy.
 
-GPU is NEVER launched by `--prepare` or `--analyze`. Only `--execute` starts model workers. Inspect host GPU ownership and model availability before executing. Atomic output rename and exclusive job claims protect results; failed claims require manual audit. Source code SHA and model revision mismatch aborts resumed runs.
+If (1) only, this is mechanism characterization. If (1) and (2), this is a future utility association, but still an oracle. Only an affordable signal plus matched-budget eviction wins can motivate a systems method. Negative/zero results should be reported.
 
-**Technical gates before promotion:**
-- Huginn & Ouro tiny-model Full-prefill R-only path matches independent existing Full/strict at fixed depth;
-- Huginn FP32 cosine threshold is documented as a deviation from model-dtype native evaluator;
-- clean recorded replay has max absolute per-token NLL difference <=1e-4;
-- role labels exact and causal; never truncate prompt; role controls present;
-- first gold token excluded from postprefill NLL utility;
-- single-loop anchor perturbation has NO earlier-Instruction / later-loop reinjection;
-- error-free jobs, truthful zero/negative sensitivities, nondegenerate future NLL variance.
+## 5. Staged runs and commands
 
-**Not yet implemented:** physical compact eviction, throughput measurement, faithful external eviction-policy port, free-generation Accuracy, multi-source simultaneous eviction. No H200 run is claimed by this GitHub-only operation.
+Stage | Data | Size/model | Decode | Gate
+--- | --- | --- | --- | ---
+CPU tests | synthetic fixture and tiny random models | tests | fixed/dynamic | offset labels, annotations, grouped masking, first-token invariant, reference parity
+Smoke | Controlled Retrieval | 5 | fixed | inspect five prompt roles, targets, masked positions, greedy outputs
+Pilot | Controlled Retrieval + HotpotQA excerpt | 20/dataset | fixed first | nontrivial future NLL, relevance discrimination, measured runtime/HBM
+Main | Both datasets | 100/dataset | fixed+dynamic | 1,200 jobs, matched comparisons, heldout prediction
+Separate validation | HotpotQA full_context | 5 then 20+ | fixed initially | longer prompts, verify no truncation
+Generalization | GSM8K/MATH-500 | new adapter later | conditional | no reuse of old prompt/target as equivalent benchmark
+
+Revisions, all question UIDs, exact prompt token IDs/roles, gold answers, evidence sentence IDs, source hashes and Git HEAD are frozen in jobs.json and run_manifest.json. Every frozen setting requires a fresh run directory; --prepare performs CPU/data/tokenizer work but no GPU model execution. --execute alone launches model workers. Before running eight GPUs, verify server ownership and model revision / input lengths. Fail-closed on any overlength prompt or parity mismatch.
+
+Commands:
+
+    git fetch origin
+    git checkout research/evidence-recurrent-sensitivity-v2-20261030
+    cd kv_policy
+
+    python -m pytest -q tests/test_role_sensitivity.py \
+      tests/test_role_model_parity.py tests/test_role_sweep.py \
+      tests/test_role_evidence.py
+
+    # Smoke (5 questions per model, fixed)
+    python scripts/role_sensitivity_sweep.py --prepare \
+      --run-dir results/evidence_v2_smoke5 \
+      --datasets controlled_retrieval --n-examples 5 \
+      --n-relevant 1 --n-irrelevant 1 --window-tokens 8 \
+      --decode-modes fixed --free-generate
+
+    python scripts/role_sensitivity_sweep.py --execute \
+      --run-dir results/evidence_v2_smoke5 --gpu-ids 0
+    python scripts/role_sensitivity_sweep.py --analyze \
+      --run-dir results/evidence_v2_smoke5
+
+    # Pilot 20 per model/dataset, fixed
+    python scripts/role_sensitivity_sweep.py --prepare \
+      --run-dir results/evidence_v2_pilot20_fixed \
+      --n-examples 20 --n-relevant 2 --n-irrelevant 2 \
+      --window-tokens 12 --decode-modes fixed --free-generate
+
+    # Main after pilot gates; model x dataset x question x mode = 1200 jobs
+    python scripts/role_sensitivity_sweep.py --prepare \
+      --run-dir results/evidence_v2_main100 --n-examples 100 \
+      --n-relevant 2 --n-irrelevant 2 --window-tokens 12 \
+      --decode-modes fixed,dynamic --free-generate
+    python scripts/role_sensitivity_sweep.py --execute \
+      --run-dir results/evidence_v2_main100 --gpu-ids 0,1,2,3,4,5,6,7
+    python scripts/role_sensitivity_sweep.py --analyze \
+      --run-dir results/evidence_v2_main100
+
+    # Separate HotpotQA complete-context preflight (may exceed 4096)
+    python scripts/role_sensitivity_sweep.py --prepare \
+      --run-dir results/evidence_v2_hotpot_full10 \
+      --datasets hotpotqa_distractor \
+      --hotpot-context-mode full_context --max-prompt-tokens 4096 \
+      --n-examples 5 --decode-modes fixed
+
+Token-major FULL-depth prefill re-executes for every candidate and is EXPENSIVE. --free-generate adds additional full-prefill passes. Default target horizon is up to 64 gold tokens; default greedy answer generation horizon is 32 tokens. Consider an explicitly separate pilot without free generation for profiling but NEVER claim Accuracy from it. Huginn FP32 cosine threshold evaluation remains a documented modified evaluator relative to its BF16-native threshold behavior.
+
+## 6. Verification checklist / required outputs
+
+- Verify HotpotQA file SHA, original support sentence IDs, valid two-document support, and sample UID provenance. Audit 5 examples before expanding.
+- Verify identical selected W token positions and masking semantics in A and B, true role and causal ordering, prompt/target token length and no truncation.
+- Verify first gold-token NLL and first greedy generated token are unchanged by B.
+- Verify clean baseline and recorded replay per-token NLL parity <=1e-4, full-depth prefill R for all prompt tokens, dynamic depth only in generated positions.
+- Report evidence_sensitivity.csv, question_controls.csv, instruction_attention_by_loop.csv, analysis/SUMMARY.json, completeness.json. Label any failed/incomplete jobs; no silent omission.
+- Report role-specific NLL, generation Exact Match and clean-correct loss (if evaluated), matched-attention pair count, request-bootstrap CI, heldout R² and its uncertainty.
+- Do not claim physical KV memory savings, latency, TPS or TPOT. A later multi-token byte-budget policy stage must compare actual compressed eviction with fair H2O/SnapKV/StreamingLLM/random baselines.
+
+Changed files:
+- kvp/role_evidence_data.py: seeded retrieval, pinned HotpotQA and sentence provenance.
+- kvp/role_data.py: tokenizer-offset evidence/question roles and matched source windows.
+- kvp/role_sensitivity.py: grouped key masks and per-loop relevant/irrelevant attention.
+- kvp/role_span_oracle.py: paired causal A/B, generated states, optional free accuracy.
+- kvp/role_generation.py: greedy answer generation and Exact Match.
+- scripts/role_sensitivity_sweep.py: v2 preparation, worker, structured analysis.
+- tests/test_role_sweep.py, tests/test_role_evidence.py: regression gates.
+
+Tests and H200 experiments are NOT claimed to have passed as part of this GitHub-only update.
