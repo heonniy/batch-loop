@@ -111,6 +111,15 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
                     source_changes.append(_norm_delta(trajectory[r], trajectory[r-1]))
         attention_by_loop = [sum(clean_attention[str(p)][r] for p in positions)
                              for r in range(bb.R)]
+        # Online-observable: source-specific attention alignment with the
+        # QUESTION's normal clean recurrent state evolution (not intervention).
+        question_change = [0.0] + [
+            _norm_delta(clean_anchor[r], clean_anchor[r-1])
+            for r in range(2, bb.R+1)]
+        denom = sum(attention_by_loop)
+        recurrent_alignment = (
+            sum(a * delta for a, delta in zip(attention_by_loop, question_change))
+            / denom if denom > 1e-12 else 0.0)
         rows.append({
             "uid": uid, "candidate_id": c["id"], "source_role": c["role"],
             "source": c.get("source", ""), "source_token_positions": list(positions),
@@ -121,6 +130,7 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
             "attention_by_loop": attention_by_loop,
             "attention_mean": _mean(attention_by_loop),
             "attention_max": max(attention_by_loop),
+            "attention_recurrent_alignment": recurrent_alignment,
             "source_mean_recurrent_change": _mean(source_changes),
             "prefill_instruction_error_by_loop": persistent["hidden_error_by_loop"],
             "prefill_persistent_final_error": persistent["final_error"],
