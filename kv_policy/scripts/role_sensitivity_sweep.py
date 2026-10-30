@@ -148,7 +148,7 @@ def prepare(run: Path, cfg: dict):
         "protocol": "evidence-context-instruction-question-v2",
         "limitations": [
             "Full-sized R-plane reference KV; no physical HBM reclamation",
-            "Teacher-forced NLL, NOT free-generation Answer Exact Match",
+            "Teacher-forced NLL always; optional greedy Answer Exact Match requires --free-generate",
             "Gold annotation used to choose diagnostic candidates, never online features",
             "HotpotQA evidence_excerpt is NOT the full-document HotpotQA benchmark",
             "First gold token predicted from unmodified final prompt query; excluded from future utility"
@@ -217,7 +217,10 @@ def worker(run: Path, index: int):
                 decode_mode=job["decode_mode"],
                 run_one_loop=m["config"]["one_loop"],
                 live_exit=m["config"]["live_exit"],
-                question_control=m["config"]["n_instruction"] > 0)
+                question_control=m["config"]["n_instruction"] > 0,
+                tokenizer=tok if m["config"]["free_generate"] else None,
+                gold_answer=job["gold_answer"],
+                max_generation_tokens=m["config"]["generation_tokens"])
             result["meta"]={
                 "key":job["key"],"model":job["model"],
                 "dataset":job["dataset"],"uid":job["uid"],
@@ -405,7 +408,9 @@ def analyze(run: Path):
             replay_errors.append(job["key"])
         for r in result["candidate_rows"]:
             rows.append({"model": job["model"], "dataset": job["dataset"],
-                         "decode_mode": job["decode_mode"], **r})
+                         "decode_mode": job["decode_mode"],
+                         "clean_greedy_exact_match":b.get("greedy_exact_match"),
+                         **r})
         for r in result["role_control_rows"]:
             controls.append({"model": job["model"], "dataset": job["dataset"],
                              "decode_mode": job["decode_mode"], **r})
@@ -435,6 +440,8 @@ def analyze(run: Path):
         "postprefill_eviction_delta_all_nll",
         "future_decode_recurrent_error_mean",
         "future_decode_recurrent_error_by_token",
+        "clean_greedy_exact_match","postprefill_greedy_exact_match",
+        "postprefill_greedy_answer_flip",
         "live_exit_flip_fraction","live_exit_signed_depth_shift",
         "live_exit_delta_future_nll"])
     write("question_controls.csv", controls, [
@@ -461,8 +468,22 @@ def analyze(run: Path):
             att = [r["attention_mean"] for r in g]
             mech = [r["prefill_persistent_final_error"] for r in g]
             valid_source = [r for r in g if r["source_mean_recurrent_change"] is not None]
+            generation_rows = [r for r in g
+                               if r["postprefill_greedy_exact_match"] is not None]
+            clean_correct = [r for r in generation_rows
+                             if r["clean_greedy_exact_match"]]
             per_role[role] = {
                 "n_span_interventions": len(g),
+                "n_generation_interventions": len(generation_rows),
+                "greedy_clean_accuracy": (
+                    sum(r["clean_greedy_exact_match"] for r in generation_rows)
+                    / len(generation_rows)) if generation_rows else None,
+                "greedy_evicted_accuracy": (
+                    sum(r["postprefill_greedy_exact_match"] for r in generation_rows)
+                    / len(generation_rows)) if generation_rows else None,
+                "greedy_correct_to_incorrect_rate": (
+                    sum(not r["postprefill_greedy_exact_match"] for r in clean_correct)
+                    / len(clean_correct)) if clean_correct else None,
                 "n_requests": len({r["uid"] for r in g}),
                 "mean_future_nll_delta": sum(y)/len(y),
                 "positive_future_nll_damage_fraction": sum(v > 0 for v in y)/len(y),
@@ -495,7 +516,8 @@ def analyze(run: Path):
                   "Paired signed future NLL can be <=0; no assumption that evidence eviction always hurts.",
                   "The first target token is predicted before post-prefill eviction and excluded.",
                   "Recurrent prefill counterfactual is an oracle, not a free online predictor.",
-                  "No free-generation exact-match accuracy and no actual compact HBM/latency savings.",
+                  "Free-generation Exact Match is available only with --free-generate; check n_generation_interventions.",
+                  "No actual compact HBM or latency savings.",
                   "Recorded replay and live exit are separate dynamic comparisons."]}
     (out/"SUMMARY.json").write_text(json.dumps(result, indent=2))
     error_files = ([p.name for p in (run/"errors").glob("*.json")]
@@ -531,6 +553,8 @@ def main():
     ap.add_argument("--hotpot-distractor-sentences",type=int,default=8)
     ap.add_argument("--max-prompt-tokens",type=int,default=1536)
     ap.add_argument("--max-target-tokens",type=int,default=64)
+    ap.add_argument("--free-generate",action=argparse.BooleanOptionalAction,default=False)
+    ap.add_argument("--generation-tokens",type=int,default=32)
     ap.add_argument("--seed",type=int,default=20261030)
     ap.add_argument("--ouro-q",type=float,default=.7)
     ap.add_argument("--huginn-cosine",type=float,default=1e-3)
@@ -558,6 +582,8 @@ def main():
         if min(a.n_examples,a.n_relevant,a.n_irrelevant,a.window_tokens,
                a.max_prompt_tokens,a.max_target_tokens)<1:
             ap.error("Positive bounds required")
+        if a.generation_tokens<2:
+            ap.error("Generation requires >=2 tokens")
         if a.max_target_tokens<2:
             ap.error("Need at least two future gold tokens")
         if a.controlled_facts<4 or a.hotpot_distractor_sentences<1:
@@ -571,6 +597,8 @@ def main():
              "hotpot_distractor_sentences":a.hotpot_distractor_sentences,
              "max_prompt_tokens":a.max_prompt_tokens,
              "max_target_tokens":a.max_target_tokens,"seed":a.seed,
+             "free_generate":a.free_generate,
+             "generation_tokens":a.generation_tokens,
              "ouro_q":a.ouro_q,"huginn_cosine":a.huginn_cosine,
              "huginn_max_depth":a.huginn_max_depth,
              "huginn_cosine_dtype":a.huginn_cosine_dtype,
