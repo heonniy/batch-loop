@@ -27,7 +27,7 @@ from .role_data import RolePrompt
 
 class RoleProbeKV(DepthOracleKV):
     def __init__(self, bb, n_tokens, device, dtype, *,
-                 prompt: RolePrompt, mode: str = "none", source: int | None = None,
+                 prompt: RolePrompt, mode: str = "none", source: int | Sequence[int] | None = None,
                  perturbed_loop: int = 1, observe: bool = False,
                  tracked_positions: Sequence[int] = ()):
         if mode not in ("none", "instruction_all", "instruction_one_loop",
@@ -37,13 +37,15 @@ class RoleProbeKV(DepthOracleKV):
         if mode == "postprefill":
             allowed.update(prompt.instruction_positions)
             allowed.update(prompt.distractor_positions)
-        if mode != "none" and (source is None or source not in allowed):
+        if mode != "none" and (source is None or
+                               any(p not in allowed for p in
+                                   ((source,) if isinstance(source, int) else tuple(source)))):
             raise ValueError("Selected source is not in an allowed causal role span")
         if perturbed_loop < 1 or perturbed_loop > bb.R:
             raise ValueError("Perturbation loop out of range")
         self.prompt = prompt
         self.mode = mode
-        self.source = source
+        self.source = (() if source is None else (source,) if isinstance(source, int) else tuple(source))
         self.perturbed_loop = perturbed_loop
         self.observe = observe
         self.instruction_set = frozenset(prompt.instruction_positions)
@@ -51,10 +53,10 @@ class RoleProbeKV(DepthOracleKV):
         if len(prompt.token_ids) >= n_tokens:
             raise ValueError("Need at least two future target tokens")
         super().__init__(bb, n_tokens, device, dtype,
-                         evicted=source if mode == "postprefill" else None,
+                         evicted=None,  # v2 applies grouped post-prefill mask in attend()
                          evaluation_start=len(prompt.token_ids),
                          collect_attention=False)
-        self.mass = torch.zeros(bb.R, 5, dtype=torch.float32, device=device)
+        self.mass = torch.zeros(bb.R, 7, dtype=torch.float32, device=device)
         # content attention per content key, summed across instruction queries
         # and recurrent physical attention layers/heads.
         self.content_attention = torch.zeros(bb.R, len(prompt.token_ids),
@@ -77,6 +79,8 @@ class RoleProbeKV(DepthOracleKV):
                 h.detach().float().flatten().cpu().clone())
 
     def _should_mask(self, layer, col: int) -> bool:
+        if self.mode == "postprefill":
+            return col >= len(self.prompt.token_ids)
         if self.mode == "instruction_all":
             return col in self.instruction_set and layer[0] == "rec"
         if self.mode == "instruction_one_loop":
@@ -110,11 +114,15 @@ class RoleProbeKV(DepthOracleKV):
             self.mass[r,2] += w[distractor].sum() if distractor else 0
             self.mass[r,3] += w[c0]
             self.mass[r,4] += 1
+            relevant = [p for p in self.prompt.relevant_positions if p < c0]
+            irrelevant = [p for p in self.prompt.irrelevant_positions if p < c0]
+            self.mass[r,5] += w[relevant].sum() if relevant else 0
+            self.mass[r,6] += w[irrelevant].sum() if irrelevant else 0
             if content:
                 self.content_attention[r,content] += w[content]
         if self._should_mask(layer,c0):
             mask = mask.clone()
-            mask[...,self.source] = False
+            mask[...,list(self.source)] = False
         return super().attend(layer,q,k,v,c0,c1,mask)
 
     def observed_attention(self) -> dict:
@@ -127,6 +135,8 @@ class RoleProbeKV(DepthOracleKV):
                          "content_mass":m[0]/n if n else None,
                          "instruction_previous_mass":m[1]/n if n else None,
                          "distractor_mass":m[2]/n if n else None,
+                         "relevant_mass":m[5]/n if n else None,
+                         "irrelevant_mass":m[6]/n if n else None,
                          "self_mass":m[3]/n if n else None,
                          "content_mass_per_token":m[0]/n/len(self.prompt.content_positions)
                          if n and self.prompt.content_positions else None})
@@ -156,7 +166,7 @@ def _trajectory_stats(observed: dict[int,torch.Tensor],
 def role_forward(bb, uid: str, spec: DepthProbeSpec, prompt: RolePrompt,
                  target_ids: Sequence[int], *, decode_mode: str = "dynamic",
                  forced_depths: Sequence[int] | None = None,
-                 role_mode: str = "none", source: int | None = None,
+                 role_mode: str = "none", source: int | Sequence[int] | None = None,
                  selected_loop: int = 1, observe: bool = False,
                  tracked_positions: Sequence[int] = ()) -> dict:
     """Full-depth B1 *prompt*; fixed or native-dynamic decoded gold targets.
