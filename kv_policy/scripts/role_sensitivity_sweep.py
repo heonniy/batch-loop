@@ -287,12 +287,12 @@ def heldout_importance_test(rows: list[dict]) -> dict | None:
     ytrain=np.array([r["postprefill_eviction_delta_future_nll"] for r in train],dtype=float)
     ytest=np.array([r["postprefill_eviction_delta_future_nll"] for r in test],dtype=float)
     models={
-        "attention_age":("age_at_prefill_end","attention_mean","attention_max"),
+        "attention_age":("age_at_prefill_end","attention_mean","attention_max","n_masked_tokens"),
         "attention_age_plus_prefill_state":(
-            "age_at_prefill_end","attention_mean","attention_max",
+            "age_at_prefill_end","attention_mean","attention_max","n_masked_tokens",
             "source_mean_recurrent_change"),
         "ORACLE_attention_plus_masked_instruction":(
-            "age_at_prefill_end","attention_mean","attention_max",
+            "age_at_prefill_end","attention_mean","attention_max","n_masked_tokens",
             "prefill_persistent_final_error"),
     }
     scores={}
@@ -318,96 +318,149 @@ def heldout_importance_test(rows: list[dict]) -> dict | None:
             "split":"sha256(role-holdout-v1/uid), 70/30, frozen"}
 
 
+def _request_paired_effect(rows: list[dict], seed: int = 20261030) -> dict:
+    """Paired Relevant - Irrelevant signed future-NLL damage, bootstrapped by UID."""
+    grouped = defaultdict(lambda: defaultdict(list))
+    for row in rows:
+        grouped[row["uid"]][row["source_role"]].append(
+            row["postprefill_eviction_delta_future_nll"])
+    diffs = []
+    for uid, roles in sorted(grouped.items()):
+        a, b = roles.get("relevant_content"), roles.get("irrelevant_content")
+        if a and b:
+            diffs.append(sum(a)/len(a)-sum(b)/len(b))
+    if not diffs:
+        return {"n_paired_requests": 0, "mean_relevant_minus_irrelevant": None,
+                "request_bootstrap_ci95": None}
+    rng = random.Random(seed)
+    draws = []
+    for _ in range(1000):
+        sample = [diffs[rng.randrange(len(diffs))] for _ in diffs]
+        draws.append(sum(sample)/len(sample))
+    draws.sort()
+    return {"n_paired_requests": len(diffs),
+            "mean_relevant_minus_irrelevant": sum(diffs)/len(diffs),
+            "fraction_relevant_greater": sum(x > 0 for x in diffs)/len(diffs),
+            "request_bootstrap_ci95": [draws[25], draws[975]],
+            "bootstrap": "1000 paired request-resamples; descriptive CI"}
+
+
 def analyze(run: Path):
-    m,jobs=manifest(run)
-    rows=[]; controls=[]; masses=[]; missing=[]; replay_errors=[]
+    m, jobs = manifest(run)
+    if m.get("protocol") != "evidence-context-instruction-question-v2":
+        raise RuntimeError("Refusing to mix v1 and v2 role protocols")
+    rows, controls, masses, missing, replay_errors = [], [], [], [], []
     for job in jobs:
-        path=run/"raw"/(job["key"]+".json")
+        path = run/"raw"/(job["key"]+".json")
         if not path.exists():
             missing.append(job["key"])
             continue
-        result=json.loads(path.read_text())
-        if result["meta"]["source_sha"]!=m["source_sha"] or result["meta"]["uid"]!=job["uid"]:
+        result = json.loads(path.read_text())
+        if (result["meta"]["source_sha"] != m["source_sha"] or
+            result["meta"]["uid"] != job["uid"]):
             raise RuntimeError("Source/job provenance mismatch")
-        b=result["baseline"]
-        if b["replay_max_abs_token_nll_delta"]>1e-4:
+        b = result["baseline"]
+        if b["replay_max_abs_token_nll_delta"] > 1e-4:
             replay_errors.append(job["key"])
         for r in result["candidate_rows"]:
-            rows.append({"model":job["model"],"dataset":job["dataset"],
-                "decode_mode":job["decode_mode"],**r})
+            rows.append({"model": job["model"], "dataset": job["dataset"],
+                         "decode_mode": job["decode_mode"], **r})
         for r in result["role_control_rows"]:
-            controls.append({"model":job["model"],"dataset":job["dataset"],
-                "decode_mode":job["decode_mode"],**r})
+            controls.append({"model": job["model"], "dataset": job["dataset"],
+                             "decode_mode": job["decode_mode"], **r})
         for r in b["attention_role_mass_by_loop"]:
-            masses.append({"model":job["model"],"dataset":job["dataset"],
-                "decode_mode":job["decode_mode"],"uid":job["uid"],**r})
-    out=run/"analysis";out.mkdir(exist_ok=True)
-    def write(name,data,cols):
-        with (out/name).open("w",newline="") as f:
-            wr=csv.DictWriter(f,fieldnames=cols);wr.writeheader()
+            masses.append({"model": job["model"], "dataset": job["dataset"],
+                           "decode_mode": job["decode_mode"], "uid": job["uid"], **r})
+    out = run/"analysis"
+    out.mkdir(exist_ok=True)
+
+    def write(name, data, columns):
+        with (out/name).open("w", newline="") as f:
+            wr = csv.DictWriter(f, fieldnames=columns)
+            wr.writeheader()
             for row in data:
-                wr.writerow({col:row.get(col) for col in cols})
-    write("content_sensitivity.csv",rows,[
-        "model","dataset","decode_mode","uid","source_token_position",
-        "source_role","age_at_prefill_end","content_span_length",
-        "instruction_span_length","attention_by_loop","attention_mean",
-        "attention_max","source_mean_recurrent_change",
-        "prefill_instruction_error_by_loop",
+                wr.writerow({key: row.get(key) for key in columns})
+
+    write("evidence_sensitivity.csv", rows, [
+        "model","dataset","decode_mode","uid","candidate_id","source_role",
+        "source","source_token_position","source_token_positions",
+        "n_masked_tokens","full_sentence_token_count","age_at_prefill_end",
+        "answer_anchor_used","attention_by_loop","attention_mean","attention_max",
+        "source_mean_recurrent_change","prefill_instruction_error_by_loop",
         "prefill_persistent_final_error","prefill_persistent_recovery_ratio",
         "prefill_one_loop_error_by_loop","prefill_one_loop_final_error",
         "postprefill_eviction_delta_future_nll",
         "postprefill_eviction_delta_all_nll",
+        "future_decode_recurrent_error_mean",
+        "future_decode_recurrent_error_by_token",
         "live_exit_flip_fraction","live_exit_signed_depth_shift",
         "live_exit_delta_future_nll"])
-    write("instruction_distractor_controls.csv",controls,[
+    write("question_controls.csv", controls, [
         "model","dataset","decode_mode","uid","source_token_position",
         "source_role","postprefill_eviction_delta_future_nll"])
-    write("instruction_attention_by_loop.csv",masses,[
+    write("instruction_attention_by_loop.csv", masses, [
         "model","dataset","decode_mode","uid","loop",
-        "n_query_layer_observations","content_mass",
-        "instruction_previous_mass","distractor_mass",
+        "n_query_layer_observations","content_mass","relevant_mass",
+        "irrelevant_mass","instruction_previous_mass","distractor_mass",
         "self_mass","content_mass_per_token"])
-    groups=defaultdict(list)
+
+    groups = defaultdict(list)
     for row in rows:
         groups[(row["model"],row["dataset"],row["decode_mode"])].append(row)
-    summaries=[]
-    for (model,ds,mode),g in sorted(groups.items()):
-        y=[x["postprefill_eviction_delta_future_nll"] for x in g]
-        att=[x["attention_mean"] for x in g]
-        maxatt=[x["attention_max"] for x in g]
-        mech=[x["prefill_persistent_final_error"] for x in g]
-        recovery=[x["prefill_persistent_recovery_ratio"] for x in g]
-        source=[x["source_mean_recurrent_change"] for x in g]
+    summaries = []
+    for (model, dataset, mode), cohort in sorted(groups.items()):
+        per_role = {}
+        for role in ("relevant_content", "irrelevant_content"):
+            g = [r for r in cohort if r["source_role"] == role]
+            if not g:
+                per_role[role] = {"n": 0}
+                continue
+            y = [r["postprefill_eviction_delta_future_nll"] for r in g]
+            att = [r["attention_mean"] for r in g]
+            mech = [r["prefill_persistent_final_error"] for r in g]
+            valid_source = [r for r in g if r["source_mean_recurrent_change"] is not None]
+            per_role[role] = {
+                "n_span_interventions": len(g),
+                "n_requests": len({r["uid"] for r in g}),
+                "mean_future_nll_delta": sum(y)/len(y),
+                "positive_future_nll_damage_fraction": sum(v > 0 for v in y)/len(y),
+                "mean_replay_decode_state_error": sum(
+                    r["future_decode_recurrent_error_mean"] for r in g)/len(g),
+                "spearman_attention_vs_future_loss": _corr(att, y),
+                "spearman_prefill_sensitivity_vs_future_loss": _corr(mech, y),
+                "spearman_source_change_vs_future_loss": _corr(
+                    [r["source_mean_recurrent_change"] for r in valid_source],
+                    [r["postprefill_eviction_delta_future_nll"] for r in valid_source]),
+            }
         summaries.append({
-            "model":model,"dataset":ds,"decode_mode":mode,
-            "n_requests":len(set(x["uid"] for x in g)),
-            "n_content_token_interventions":len(g),
-            "mean_future_nll_delta":sum(y)/len(y),
-            "positive_eviction_loss_fraction":sum(v>0 for v in y)/len(y),
-            "spearman_attention_vs_future_loss":_corr(att,y),
-            "spearman_max_attention_vs_future_loss":_corr(maxatt,y),
-            "spearman_prefill_sensitivity_vs_future_loss":_corr(mech,y),
-            "spearman_prefill_recovery_vs_future_loss":_corr(recovery,y),
-            "spearman_source_change_vs_future_loss":_corr(source,y),
-            "request_heldout_prediction":heldout_importance_test(g)})
-    result={"expected_jobs":len(jobs),"completed_jobs":len(jobs)-len(missing),
-            "missing":missing,"parity_failures":replay_errors,
-            "groups":summaries,
-            "limitations":[
-                "Counterfactual Prefill sensitivity is ORACLE/diagnostic, not an online free feature.",
-                "Normal-prefill Attention/Source-state change are observable pre-eviction.",
-                "No full-task accuracy, no actual HBM savings: reference broadcast KV.",
-                "Teacher-forced gold suffix truncated to frozen max_target_tokens.",
-                "Token-level Spearman is exploratory; request-level 70/30 heldout OLS is included.",
-                "No fixed vs dynamic raw depth comparison across model families."]}
-    (out/"SUMMARY.json").write_text(json.dumps(result,indent=2))
-    error_files=([p.name for p in (run/"errors").glob("*.json")]
-                 if (run/"errors").exists() else [])
+            "model": model, "dataset": dataset, "decode_mode": mode,
+            "n_requests": len({r["uid"] for r in cohort}),
+            "n_equal_width_span_interventions": len(cohort),
+            "per_role": per_role,
+            "paired_evidence_damage": _request_paired_effect(cohort),
+            "request_heldout_prediction": heldout_importance_test(cohort)})
+    result = {"expected_jobs": len(jobs),
+              "completed_jobs": len(jobs)-len(missing),
+              "missing": missing, "parity_failures": replay_errors,
+              "groups": summaries,
+              "limitations": [
+                  "HotpotQA evidence_excerpt is NOT the original 10-paragraph benchmark.",
+                  "Supporting-fact ground truth selects offline oracle probe windows; no evidence-label online feature.",
+                  "All candidates per request use exactly matched masked token counts; ages and attention differ.",
+                  "Paired signed future NLL can be <=0; no assumption that evidence eviction always hurts.",
+                  "The first target token is predicted before post-prefill eviction and excluded.",
+                  "Recurrent prefill counterfactual is an oracle, not a free online predictor.",
+                  "No free-generation exact-match accuracy and no actual compact HBM/latency savings.",
+                  "Recorded replay and live exit are separate dynamic comparisons."]}
+    (out/"SUMMARY.json").write_text(json.dumps(result, indent=2))
+    error_files = ([p.name for p in (run/"errors").glob("*.json")]
+                   if (run/"errors").exists() else [])
     (run/"completeness.json").write_text(json.dumps({
-        "complete":not missing and not replay_errors and not error_files,
-        "missing_jobs":missing,"replay_failures":replay_errors,
-        "error_files":error_files},indent=2))
+        "complete": not missing and not replay_errors and not error_files,
+        "missing_jobs": missing, "replay_failures": replay_errors,
+        "error_files": error_files}, indent=2))
     return result
+
 
 
 def main():
