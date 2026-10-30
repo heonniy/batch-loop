@@ -26,7 +26,7 @@ KV_ROOT = HERE.parent
 REPO = KV_ROOT.parent
 sys.path.insert(0, str(KV_ROOT))
 
-from kvp.depth_eviction_probe import DepthProbeSpec, choose_sources, single_source_oracle
+from kvp.depth_eviction_probe import DepthProbeSpec, choose_sources, single_source_oracle, loop_bank_oracle
 from kvp.specs import MODELS
 
 MODELS_OK = ("ouro-1.4b", "ouro-2.6b", "huginn-0125")
@@ -158,6 +158,13 @@ def worker(run: Path, index: int):
             result=single_source_oracle(ctx.bb,ids,job["uid"],spec,
                 job["revision"],prompt_len=len(job["prompt_ids"]),
                 candidates=job["source_positions"])
+            if m["config"].get("loop_bank", False):
+                result["loop_bank"] = loop_bank_oracle(
+                    ctx.bb, ids, job["uid"], spec,
+                    prompt_len=len(job["prompt_ids"]),
+                    recorded_depths=result["trace"]["depths"],
+                    candidates=job["source_positions"],
+                    loop_choices=tuple(m["config"].get("loop_choices", [1,2,3,4])))
             result["meta"]={"model":job["model"],"dataset":job["dataset"],
                 "uid":job["uid"],"key":job["key"],
                 "prompt_sha256":job["prompt_sha256"],"revision":job["revision"],
@@ -241,6 +248,26 @@ def analyze(run: Path):
         rows.extend([{**r,"model":j["model"],"dataset":j["dataset"]}
                      for r in data["candidate_rows"]])
     out=run/"analysis";out.mkdir(exist_ok=True)
+    loop_rows=[]; loop_baselines=[]
+    for j in jobs:
+        p=run/"raw"/(j["key"]+".json")
+        if not p.exists(): continue
+        data=json.loads(p.read_text())
+        if "loop_bank" not in data: continue
+        loop_baselines.append({"model":j["model"],"dataset":j["dataset"],
+            "uid":j["uid"],**data["loop_bank"]["baseline"]})
+        loop_rows.extend([{"model":j["model"],"dataset":j["dataset"],**row}
+                          for row in data["loop_bank"]["rows"]])
+    if loop_baselines:
+        with (out/"dynamic_loop_policy_nll.csv").open("w",newline="") as f:
+            columns=["model","dataset","uid","full","last","firstlast",
+                     "full_last_gap","firstlast_recovery"]
+            w=csv.DictWriter(f,fieldnames=columns);w.writeheader();w.writerows(loop_baselines)
+        with (out/"token_loop_bank_oracle.csv").open("w",newline="") as f:
+            columns=["model","dataset","uid","source_position","source_depth",
+                     "restored_loop","full_nll","last_nll","firstlast_nll",
+                     "restored_nll","gain_over_last","executed_bank"]
+            w=csv.DictWriter(f,fieldnames=columns);w.writeheader();w.writerows(loop_rows)
     cols=["model","dataset","uid","source_position","source_token_id",
           "exit_depth","attention_pre","attention_pre_per_opportunity",
           "attention_future_ORACLE","delta_nll","baseline_nll",
@@ -301,6 +328,8 @@ def main():
     ap.add_argument("--max-prompt-tokens",type=int,default=96)
     ap.add_argument("--max-target-tokens",type=int,default=16)
     ap.add_argument("--n-candidates",type=int,default=4)
+    ap.add_argument("--loop-bank",action="store_true",help="add Full/Last/FirstLast and source-loop restore diagnostics")
+    ap.add_argument("--loop-choices",default="1,2,3,4")
     ap.add_argument("--seed",type=int,default=20261030)
     ap.add_argument("--ouro-q",type=float,default=0.7)
     ap.add_argument("--huginn-cosine",type=float,default=1e-3)
@@ -324,7 +353,9 @@ def main():
              "max_target_tokens":a.max_target_tokens,"n_candidates":a.n_candidates,
              "seed":a.seed,"ouro_q":a.ouro_q,"huginn_cosine":a.huginn_cosine,
              "huginn_max_depth":a.huginn_max_depth,"min_depth":a.min_depth,
-             "huginn_cosine_dtype":a.huginn_cosine_dtype}
+             "huginn_cosine_dtype":a.huginn_cosine_dtype,
+             "loop_bank":a.loop_bank,
+             "loop_choices":[int(x) for x in a.loop_choices.split(",") if x.strip()]}
         for model in models:
             make_spec(model,cfg)
         print(json.dumps(prepare(run,cfg),indent=2))
