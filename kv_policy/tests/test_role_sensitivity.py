@@ -73,7 +73,7 @@ def prime(kv):
 
 def test_instruction_masks_apply_only_to_instruction_query_and_scope():
     q=torch.zeros(1,1,1,1)
-    mask=torch.ones(1,1,1,5,dtype=torch.bool)
+    mask=torch.ones(1,1,1,6,dtype=torch.bool)
     vals=[]
     for mode in ("none","instruction_all","instruction_one_loop",
                  "postprefill"):
@@ -82,13 +82,19 @@ def test_instruction_masks_apply_only_to_instruction_query_and_scope():
         outs=[]
         for r in (0,1):
             outs.append(float(kv.attend(
-                ("rec",0,r),q,q,q,4,5,mask).item()))
+                ("rec",0,r),q,q,q,5,6,mask).item()))
         vals.append(outs)
     original,persistent,once,post=vals
     assert original[0]>0
     assert persistent==pytest.approx([0,0])
     assert once==pytest.approx([0,original[1]])
     assert post==pytest.approx(original)
+    # The single-loop arm MUST NOT inject into earlier Instruction queries.
+    kv=make_kv("instruction_one_loop",1)
+    prime(kv)
+    assert not kv._should_mask(("rec",0,0),4)
+    assert kv._should_mask(("rec",0,0),5)
+    assert not kv._should_mask(("rec",0,1),5)
 
 
 def test_attention_mass_is_not_misread_as_causal_effect():
