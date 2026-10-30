@@ -7,7 +7,14 @@ import pytest
 import torch
 
 from kvp.depth_eviction_probe import DepthProbeSpec, run_prefix
-from .test_policy_semantics import _tiny, PROMPT, CONT
+import importlib.util
+from pathlib import Path
+
+_fixture_path = Path(__file__).with_name("test_policy_semantics.py")
+_fixture_spec = importlib.util.spec_from_file_location("depth_oracle_tiny_fixtures", _fixture_path)
+_fixture = importlib.util.module_from_spec(_fixture_spec)
+_fixture_spec.loader.exec_module(_fixture)
+_tiny, PROMPT, CONT = _fixture._tiny, _fixture.PROMPT, _fixture.CONT
 
 
 @pytest.mark.parametrize("family", ["ouro", "huginn"])
