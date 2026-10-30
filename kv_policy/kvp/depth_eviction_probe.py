@@ -54,10 +54,18 @@ class DepthOracleKV(PolicyKV):
     """R-plane quality store; causal single-token history eviction."""
 
     def __init__(self, bb, n_tokens, device, dtype, evicted=None, evaluation_start=0,
-                 collect_attention=False):
+                 collect_attention=False, history_policy='full', restore_token=None,
+                 restore_loop=None):
+        if history_policy not in ('full','last','firstlast','restore'):
+            raise ValueError('Unknown history policy')
+        if history_policy == 'restore' and (restore_token is None or restore_loop is None):
+            raise ValueError('Restore requires source and loop')
         super().__init__("full", bb.R, bb.n_rec, bb.n_plain, 1, bb.H,
                          n_tokens, bb.D, dtype, device, region_start=0)
         self.evicted = evicted
+        self.history_policy = history_policy
+        self.restore_token = restore_token
+        self.restore_loop = restore_loop
         self.evaluation_start = evaluation_start
         self.collect_attention = collect_attention
         self.attention_pre = torch.zeros(n_tokens, dtype=torch.float64)
@@ -81,6 +89,29 @@ class DepthOracleKV(PolicyKV):
             weights[c0] = 0.0  # past-token reception, not self attention
             target = self.attention_pre if c0 < self.evaluation_start else self.attention_future
             target[:c1] += weights
+        # Before prompt completion every policy uses identical FULL history.
+        # Afterward replace only historical recurrent KV read planes, never the
+        # current token's own KV and never the physically computed source banks.
+        if self.history_policy != 'full' and c0 >= self.evaluation_start and layer[0] == 'rec':
+            kind, li, r = layer
+            kb, vb = self._buffers(layer)
+            kb[:, :, c0:c1] = k
+            vb[:, :, c0:c1] = v
+            keys = kb[:, :, :c1].clone()
+            values = vb[:, :, :c1].clone()
+            for source in range(c0):
+                terminal_r = self.depths[source]-1
+                read_r = terminal_r
+                if self.history_policy == 'firstlast' and r == 0:
+                    read_r = 0
+                elif (self.history_policy == 'restore' and
+                      source == self.restore_token and r == self.restore_loop-1):
+                    if self.restore_loop > self.depths[source]:
+                        raise ValueError('Cannot restore an unexecuted KV bank')
+                    read_r = r
+                keys[:, :, source] = self.rk[li][read_r, :, :, source]
+                values[:, :, source] = self.rv[li][read_r, :, :, source]
+            return F.scaled_dot_product_attention(q, keys, values, attn_mask=mask)
         return super().attend(layer, q, k, v, c0, c1, mask)
 
     def finish(self, col, depth):
@@ -177,7 +208,8 @@ def _huginn_one(bb, ids, pos, kv, aux, col, mask, forced_depth, spec):
 @torch.no_grad()
 def run_prefix(bb, ids: Sequence[int], uid: str, spec: DepthProbeSpec, *,
                prompt_len: int, forced_depths=None, evicted=None,
-               collect_attention=False):
+               collect_attention=False, history_policy='full',
+               restore_token=None, restore_loop=None):
     """Teacher-forced B1 score of gold suffix. No future gold used by exit."""
     if not 2 <= prompt_len < len(ids):
         raise ValueError("Need prompt and nonempty gold suffix")
@@ -190,7 +222,8 @@ def run_prefix(bb, ids: Sequence[int], uid: str, spec: DepthProbeSpec, *,
     p = next(bb.model.parameters())
     device, dtype = p.device, p.dtype
     kv = DepthOracleKV(bb, len(ids)-1, device, dtype, evicted,
-                       prompt_len, collect_attention)
+                       prompt_len, collect_attention, history_policy,
+                       restore_token, restore_loop)
     aux = bb.make_aux([uid], [0], len(ids)-1) if bb.family == "huginn" else None
     loss = []
     for col, tid in enumerate(ids[:-1]):
@@ -257,3 +290,44 @@ def single_source_oracle(bb, ids: Sequence[int], uid: str, spec: DepthProbeSpec,
                                actual_recurrence_calls=base["actual_recurrence_calls"],
                                reference_full_allocated=True),
                 candidate_rows=rows)
+
+
+@torch.no_grad()
+def loop_bank_oracle(bb, ids: Sequence[int], uid: str, spec: DepthProbeSpec, *,
+                     prompt_len: int, recorded_depths: Sequence[int],
+                     candidates: Sequence[int], loop_choices: Sequence[int] = (1,2,3,4)):
+    """Compare FULL vs LAST vs first+last and one-source one-loop restoration.
+
+    The source's historical cache is produced under FULL prefill for every
+    condition. Replacements apply ONLY after completed prompt. This measures
+    the incremental value of the bank when later query loop == source loop,
+    not the effect of changing all token computations during prefill.
+    """
+    if len(recorded_depths) != len(ids)-1:
+        raise ValueError("Incomplete recorded depths")
+    if any(not 0 <= i < prompt_len for i in candidates):
+        raise ValueError("Source outside prompt")
+    frozen=list(recorded_depths)
+    common=dict(prompt_len=prompt_len, forced_depths=frozen)
+    full=run_prefix(bb, ids, uid, spec, **common, history_policy='full')
+    last=run_prefix(bb, ids, uid, spec, **common, history_policy='last')
+    firstlast=run_prefix(bb, ids, uid, spec, **common, history_policy='firstlast')
+    rows=[]
+    for source in candidates:
+        d=frozen[source]
+        for r in sorted(set(loop_choices)):
+            if not 1 <= r < d:  # terminal is already stored by LAST
+                continue
+            val=run_prefix(bb,ids,uid,spec,**common,history_policy='restore',
+                           restore_token=source,restore_loop=r)
+            rows.append({"uid":uid,"source_position":source,"source_depth":d,
+                         "restored_loop":r,"full_nll":full["nll"],
+                         "last_nll":last["nll"],"firstlast_nll":firstlast["nll"],
+                         "restored_nll":val["nll"],
+                         "gain_over_last":last["nll"]-val["nll"],
+                         "executed_bank":True})
+    return {"baseline":{"full":full["nll"],"last":last["nll"],
+                        "firstlast":firstlast["nll"],
+                        "full_last_gap":last["nll"]-full["nll"],
+                        "firstlast_recovery":last["nll"]-firstlast["nll"]},
+            "rows":rows,"reference_full_allocated":True}
