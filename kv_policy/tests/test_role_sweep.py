@@ -101,6 +101,7 @@ def test_request_level_holdout_is_not_per_span_leakage():
                 "attention_mean":i+.01*u,
                 "attention_max":i+.02*u,
                 "source_mean_recurrent_change":.1+.001*u,
+                "attention_recurrent_alignment":.04+.003*u,
                 "prefill_persistent_final_error":.2+.002*u,
                 "postprefill_eviction_delta_future_nll":.03*u+.01*i})
     output=r.heldout_importance_test(rows)
