@@ -47,7 +47,8 @@ def make_spec(model_key: str, cfg: dict) -> DepthProbeSpec:
         return DepthProbeSpec("ouro", 4, float(cfg["ouro_q"]), int(cfg["min_depth"]))
     if model_key == "huginn-0125":
         return DepthProbeSpec("huginn", int(cfg["huginn_max_depth"]),
-                              float(cfg["huginn_cosine"]), int(cfg["min_depth"]))
+                              float(cfg["huginn_cosine"]), int(cfg["min_depth"]),
+                              cfg.get("huginn_cosine_dtype", "model"))
     raise ValueError(model_key)
 
 
@@ -65,8 +66,11 @@ def prepare(run: Path, cfg: dict) -> dict:
         tok = AutoTokenizer.from_pretrained(model.repo, revision=model.revision,
                                             trust_remote_code=True)
         for ds in cfg["datasets"]:
+            # batch_size override (5th arg) exists only on the 20261029 focus branch; this branch's
+            # prepare_items has no such parameter. Batch metadata is unused here (B=1, token-major),
+            # so prompt/target token IDs are identical either way.
             items, meta = prepare_items(mk, ds, tok,
-                "pilot" if cfg["subset"]=="pilot" else "main", 1)
+                "pilot" if cfg["subset"]=="pilot" else "main")
             for it in sorted(items, key=lambda x:x["uid"])[:cfg["n_examples"]]:
                 original = it["prompt_ids"]
                 prompt = original[-cfg["max_prompt_tokens"]:]
@@ -301,6 +305,7 @@ def main():
     ap.add_argument("--ouro-q",type=float,default=0.7)
     ap.add_argument("--huginn-cosine",type=float,default=1e-3)
     ap.add_argument("--huginn-max-depth",type=int,default=32)
+    ap.add_argument("--huginn-cosine-dtype",choices=["float32","model"],default="float32")
     ap.add_argument("--min-depth",type=int,default=2)
     ap.add_argument("--gpu-ids",default="0,1,2,3,4,5,6,7")
     a=ap.parse_args()
@@ -318,7 +323,8 @@ def main():
              "n_examples":a.n_examples,"max_prompt_tokens":a.max_prompt_tokens,
              "max_target_tokens":a.max_target_tokens,"n_candidates":a.n_candidates,
              "seed":a.seed,"ouro_q":a.ouro_q,"huginn_cosine":a.huginn_cosine,
-             "huginn_max_depth":a.huginn_max_depth,"min_depth":a.min_depth}
+             "huginn_max_depth":a.huginn_max_depth,"min_depth":a.min_depth,
+             "huginn_cosine_dtype":a.huginn_cosine_dtype}
         for model in models:
             make_spec(model,cfg)
         print(json.dumps(prepare(run,cfg),indent=2))

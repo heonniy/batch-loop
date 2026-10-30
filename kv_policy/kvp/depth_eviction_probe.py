@@ -27,6 +27,11 @@ class DepthProbeSpec:
     max_depth: int
     threshold: float
     min_depth: int = 2
+    # Huginn cosine-exit arithmetic. The official evaluator uses the model dtype, but in BF16 the
+    # cosine near 1 is quantised (~0.004 spacing) so a 1e-3 threshold almost never fires and ~97%
+    # of tokens run to R=32. "float32" evaluates the same signal on FP32 copies of the latents
+    # (the model forward itself is unchanged). Recorded in the run config.
+    cosine_dtype: str = "float32"
 
     def __post_init__(self):
         if self.family not in ("ouro", "huginn") or self.max_depth < 2:
@@ -37,6 +42,8 @@ class DepthProbeSpec:
             raise ValueError("Ouro Q-exit q must be in (0,1]")
         if self.family == "huginn" and self.threshold < 0:
             raise ValueError("Huginn cosine threshold must be nonnegative")
+        if self.cosine_dtype not in ("float32", "model"):
+            raise ValueError("cosine_dtype must be 'float32' or 'model'")
 
     def rule(self):
         return ExitRule(self.family, "q-exit" if self.family == "ouro" else "cosine",
@@ -145,9 +152,10 @@ def _huginn_one(bb, ids, pos, kv, aux, col, mask, forced_depth, spec):
         x = tr.adapter(torch.cat([x, e], dim=-1))
         for l, block in enumerate(tr.core_block):
             x = bb._block(block, x, freqs, kv, ("rec", l, r), col, col+1, mask)
-        # Official cosine evaluator arithmetic (including model dtype).
-        cosine = ((x * prev).sum(dim=-1) / x.norm(dim=-1) /
-                  prev.norm(dim=-1)).mean(dim=1).item()
+        # Official cosine evaluator formula; dtype per spec.cosine_dtype.
+        a, b = (x.float(), prev.float()) if spec.cosine_dtype == "float32" else (x, prev)
+        cosine = ((a * b).sum(dim=-1) / a.norm(dim=-1) /
+                  b.norm(dim=-1)).mean(dim=1).item()
         distance = 1.0 - cosine
         prev = x
         kv.actual_calls += 1
