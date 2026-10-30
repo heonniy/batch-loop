@@ -57,14 +57,16 @@ def spec_for(key: str, cfg: dict) -> DepthProbeSpec:
 
 
 def prepare(run: Path, cfg: dict):
-    """Freeze sampled questions, ground-truth evidence tags and matched KV windows.
+    """Freeze requests and candidates under the specified MAIN or ABLATION protocol.
 
-    --prepare is CPU-only but downloads the PINNED HotpotQA validation Parquet
-    and model tokenizers as needed. No GPU model weights are loaded.
+    MAIN candidate sampling receives ONLY Context token positions; annotation
+    roles and answer text are used solely for offline ablation/diagnostics.
+    --prepare is CPU-only, downloading pinned dataset/tokenizers if needed.
     """
     from transformers import AutoTokenizer
     from kvp.role_data import build_evidence_prompt, choose_evidence_candidates
     from kvp.role_evidence_data import load_evidence_workload
+    from kvp.role_main_candidates import choose_main_candidates
 
     if run.exists() and any(run.iterdir()):
         raise FileExistsError("Refusing to overwrite any existing run directory")
@@ -104,18 +106,34 @@ def prepare(run: Path, cfg: dict):
                 if len(target_ids) < 2:
                     raise RuntimeError("max_target_tokens must be >=2")
                 salt = int(sha(f'{cfg["seed"]}:{dataset}:{doc["uid"]}'.encode())[:10], 16)
-                candidates = choose_evidence_candidates(
-                    prompt, salt, n_relevant=cfg["n_relevant"],
-                    n_irrelevant=cfg["n_irrelevant"],
-                    window_tokens=cfg["window_tokens"])
-                if len({c["role"] for c in candidates}) != 2:
-                    raise RuntimeError("Missing Relevant/Irrelevant paired source")
+                if cfg["study"] == "main":
+                    # The only selection input is the set of aligned Context
+                    # token positions. No ground-truth label, gold answer,
+                    # attention score, or masked future NLL is consulted.
+                    candidates = choose_main_candidates(
+                        prompt.content_positions, salt,
+                        n_candidates=cfg["main_candidates"],
+                        window_tokens=cfg["main_window_tokens"],
+                        position_bins=cfg["main_position_bins"])
+                    if any(c["role"] != "context" or c["answer_anchor_used"]
+                           for c in candidates):
+                        raise RuntimeError("MAIN candidates leaked oracle labels")
+                elif cfg["study"] == "ablation":
+                    candidates = choose_evidence_candidates(
+                        prompt, salt, n_relevant=cfg["n_relevant"],
+                        n_irrelevant=cfg["n_irrelevant"],
+                        window_tokens=cfg["window_tokens"])
+                    if len({c["role"] for c in candidates}) != 2:
+                        raise RuntimeError("Missing Relevant/Irrelevant pair")
+                else:
+                    raise RuntimeError("Unknown study mode")
                 for mode in cfg["decode_modes"]:
-                    key = sha(f'{model_key}/{dataset}/{doc["uid"]}/{mode}'.encode())[:24]
+                    key = sha(f'v3/{cfg["study"]}/{model_key}/{dataset}/{doc["uid"]}/{mode}'.encode())[:24]
                     jobs.append({
                         "key": key, "model": model_key,
                         "revision": checkpoint.revision, "dataset": dataset,
                         "uid": doc["uid"], "decode_mode": mode,
+                        "study": cfg["study"],
                         "prompt_text": prompt.text,
                         "prompt_ids": list(prompt.token_ids),
                         "prompt_roles": list(prompt.roles),
@@ -131,10 +149,14 @@ def prepare(run: Path, cfg: dict):
                         "target_ids": target_ids, "gold_answer": doc["answer"],
                         "target_total_length": len(target_all),
                         "target_truncated": len(target_all) > len(target_ids),
-                        "evidence_candidates": candidates,
+                        "kv_candidates": candidates,
+                        "candidate_protocol": (
+                            "all-context-position-stratified-label-blind-v3"
+                            if cfg["study"] == "main"
+                            else "annotated-evidence-distractor-v3"),
                         "source_attributes": doc.get("attributes", {}),
                         "prompt_sha256": sha(prompt.text.encode()),
-                        "protocol": "evidence-context-instruction-question-v2",
+                        "protocol": "context-instruction-question-main-ablation-v3",
                         "question_uid": doc["uid"]})
     expected = (len(cfg["models"])*len(cfg["datasets"])*
                 cfg["n_examples"]*len(cfg["decode_modes"]))
@@ -145,17 +167,21 @@ def prepare(run: Path, cfg: dict):
         "source_sha": git_sha(), "config": cfg, "job_count": len(jobs),
         "subsets": subset_ids, "dataset_sources": dataset_sources,
         "model_revisions": {k: MODELS[k].revision for k in cfg["models"]},
-        "protocol": "evidence-context-instruction-question-v2",
+        "protocol": "context-instruction-question-main-ablation-v3",
+        "study": cfg["study"],
         "limitations": [
             "Full-sized R-plane reference KV; no physical HBM reclamation",
             "Teacher-forced NLL always; optional greedy Answer Exact Match requires --free-generate",
-            "Gold annotation used to choose diagnostic candidates, never online features",
+            "MAIN samples across all Context positions without using gold/support labels",
+            "ABLATION samples ground-truth supporting/distractor windows only",
+            "Gold labels stored as metadata are not input to online predictors",
             "HotpotQA evidence_excerpt is NOT the full-document HotpotQA benchmark",
             "First gold token predicted from unmodified final prompt query; excluded from future utility"
         ]}, indent=2))
     return {"jobs": len(jobs), "examples_per_model_dataset": cfg["n_examples"],
             "decode_modes": cfg["decode_modes"], "source_sha": git_sha(),
-            "protocol": "evidence-context-instruction-question-v2"}
+            "protocol": "context-instruction-question-main-ablation-v3",
+            "study": cfg["study"]}
 
 
 
@@ -213,17 +239,19 @@ def worker(run: Path, index: int):
             result=role_evidence_oracle(
                 context.bb, job["uid"], job["revision"],
                 spec_for(job["model"],m["config"]), p,
-                job["target_ids"], job["evidence_candidates"],
+                job["target_ids"], job["kv_candidates"],
                 decode_mode=job["decode_mode"],
                 run_one_loop=m["config"]["one_loop"],
                 live_exit=m["config"]["live_exit"],
                 question_control=m["config"]["n_instruction"] > 0,
+                study=m["config"]["study"],
                 tokenizer=tok if m["config"]["free_generate"] else None,
                 gold_answer=job["gold_answer"],
                 max_generation_tokens=m["config"]["generation_tokens"])
             result["meta"]={
                 "key":job["key"],"model":job["model"],
                 "dataset":job["dataset"],"uid":job["uid"],
+                "study":job["study"],
                 "source_sha":m["source_sha"],"revision":job["revision"],
                 "decode_mode":job["decode_mode"],
                 "prompt_sha256":job["prompt_sha256"],
@@ -392,8 +420,11 @@ def _attention_matched_pairs(rows: list[dict], relative_tolerance: float = .20) 
 
 def analyze(run: Path):
     m, jobs = manifest(run)
-    if m.get("protocol") != "evidence-context-instruction-question-v2":
-        raise RuntimeError("Refusing to mix v1 and v2 role protocols")
+    if m.get("protocol") != "context-instruction-question-main-ablation-v3":
+        raise RuntimeError("Refusing to mix v1/v2 and v3 study protocols")
+    study = m["study"]
+    if study not in ("main", "ablation") or study != m["config"]["study"]:
+        raise RuntimeError("Manifest study mismatch")
     rows, controls, masses, missing, replay_errors = [], [], [], [], []
     for job in jobs:
         path = run/"raw"/(job["key"]+".json")
@@ -542,6 +573,10 @@ def main():
     ap.add_argument("--models",default=",".join(MODEL_KEYS))
     ap.add_argument("--datasets",default=",".join(DATASET_KEYS))
     ap.add_argument("--decode-modes",default="fixed,dynamic")
+    ap.add_argument("--study",choices=("main","ablation"),default="main")
+    ap.add_argument("--main-candidates",type=int,default=8)
+    ap.add_argument("--main-window-tokens",type=int,default=1)
+    ap.add_argument("--main-position-bins",type=int,default=4)
     ap.add_argument("--n-examples",type=int,default=8)
     ap.add_argument("--n-relevant",type=int,default=2)
     ap.add_argument("--n-irrelevant",type=int,default=2)
@@ -581,6 +616,7 @@ def main():
             not set(modes)<={"fixed","dynamic"}):
             ap.error("Invalid decode modes")
         if min(a.n_examples,a.n_relevant,a.n_irrelevant,a.window_tokens,
+               a.main_candidates,a.main_window_tokens,a.main_position_bins,
                a.max_prompt_tokens,a.max_target_tokens)<1:
             ap.error("Positive bounds required")
         if a.generation_tokens<2:
@@ -590,6 +626,9 @@ def main():
         if a.controlled_facts<4 or a.hotpot_distractor_sentences<1:
             ap.error("Need >=4 retrieval facts and >=1 HotpotQA distractor")
         cfg={"models":models,"datasets":datasets,"decode_modes":modes,
+             "study":a.study,"main_candidates":a.main_candidates,
+             "main_window_tokens":a.main_window_tokens,
+             "main_position_bins":a.main_position_bins,
              "n_examples":a.n_examples,"n_relevant":a.n_relevant,
              "n_irrelevant":a.n_irrelevant,"window_tokens":a.window_tokens,
              "n_instruction":a.n_instruction,
