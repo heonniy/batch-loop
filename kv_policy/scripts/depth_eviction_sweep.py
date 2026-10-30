@@ -71,7 +71,9 @@ def prepare(run: Path, cfg: dict) -> dict:
                 original = it["prompt_ids"]
                 prompt = original[-cfg["max_prompt_tokens"]:]
                 target = it["target_ids"][:cfg["max_target_tokens"]]
-                if len(prompt) < 6 or not target:
+                if len(prompt) < 6 or len(target) < 2:
+                    # An eviction after completed prompt cannot affect the
+                    # first gold token prediction; need >=2 future tokens.
                     continue
                 uid = it["uid"]
                 seed = int(sha_bytes(f'{cfg["seed"]}/{mk}/{ds}/{uid}'.encode())[:8], 16)
