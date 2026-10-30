@@ -1,4 +1,4 @@
-"""CPU-only v2 evidence-input / manifest / request-heldout tests."""
+"""CPU-only v3 MAIN and ABLATION manifest / request-heldout tests."""
 from __future__ import annotations
 
 import importlib.util
@@ -44,7 +44,8 @@ def example(uid):
         "attributes":{"target_position":1}}
 
 
-def test_prepare_freezes_ground_truth_roles_and_matched_kv(tmp_path,monkeypatch):
+def test_prepare_main_and_ablation_are_isolated(tmp_path,monkeypatch):
+    """Only Ablation may use gold relevance to choose candidates."""
     runner=load_runner()
     tok=CharTokenizer()
     monkeypatch.setitem(sys.modules,"transformers",types.SimpleNamespace(
@@ -57,10 +58,12 @@ def test_prepare_freezes_ground_truth_roles_and_matched_kv(tmp_path,monkeypatch)
             "sha256":"fixture-hash","context_mode":opts["hotpot_context_mode"]}
     monkeypatch.setitem(sys.modules,"kvp.role_evidence_data",
                         types.SimpleNamespace(load_evidence_workload=fake_load))
-    monkeypatch.setattr(runner,"git_sha",lambda:"v2-fixture-code")
+    monkeypatch.setattr(runner,"git_sha",lambda:"v3-fixture-code")
     cfg={"models":["huginn-0125","ouro-1.4b","ouro-2.6b"],
          "datasets":["controlled_retrieval","hotpotqa_distractor"],
          "decode_modes":["fixed","dynamic"],
+         "study":"main","main_candidates":8,"main_window_tokens":1,
+         "main_position_bins":4,
          "n_examples":2,"n_relevant":2,"n_irrelevant":2,
          "window_tokens":12,"n_instruction":1,
          "controlled_facts":16,"hotpot_context_mode":"evidence_excerpt",
@@ -68,26 +71,44 @@ def test_prepare_freezes_ground_truth_roles_and_matched_kv(tmp_path,monkeypatch)
          "max_prompt_tokens":1536,"max_target_tokens":64,
          "seed":20261030,"ouro_q":.7,"huginn_cosine":.001,
          "huginn_max_depth":32,"huginn_cosine_dtype":"float32",
-         "min_depth":2,"one_loop":True,"live_exit":True}
-    run=tmp_path/"run"
-    result=runner.prepare(run,cfg)
-    assert result["jobs"]==24
-    manifest,jobs=runner.manifest(run)
-    assert manifest["dataset_sources"]["hotpotqa_distractor"]["revision"]=="pinned-fixture"
-    assert len({(j["model"],j["dataset"],j["uid"],j["decode_mode"]) for j in jobs})==24
-    for j in jobs:
-        assert max(j["content_positions"])<min(j["instruction_positions"])
-        assert max(j["instruction_positions"])==max(j["question_positions"])
-        assert len(j["prompt_ids"])==len(j["prompt_roles"])
-        assert len(j["evidence_candidates"])==4
-        assert {c["role"] for c in j["evidence_candidates"]} == {
-            "relevant_content","irrelevant_content"}
-        assert len({len(c["positions"]) for c in j["evidence_candidates"]})==1
-        assert all(all(j["prompt_roles"][p]==c["role"] for p in c["positions"])
-                   for c in j["evidence_candidates"])
-        assert j["target_truncated"] is False
-        assert j["gold_answer"]=="VX-40592"
-        assert j["protocol"]=="evidence-context-instruction-question-v2"
+         "min_depth":2,"one_loop":True,"live_exit":True,
+         "free_generate":False,"generation_tokens":32}
+    for study in ("main","ablation"):
+        cfg={**cfg,"study":study}
+        run=tmp_path/study
+        result=runner.prepare(run,cfg)
+        assert result["jobs"]==24
+        manifest,jobs=runner.manifest(run)
+        assert manifest["study"]==study
+        assert manifest["dataset_sources"]["hotpotqa_distractor"]["revision"]=="pinned-fixture"
+        assert len({(j["model"],j["dataset"],j["uid"],j["decode_mode"])
+                    for j in jobs})==24
+        for j in jobs:
+            assert j["study"]==study
+            assert max(j["content_positions"])<min(j["instruction_positions"])
+            assert max(j["instruction_positions"])==max(j["question_positions"])
+            assert len(j["prompt_ids"])==len(j["prompt_roles"])
+            assert j["target_truncated"] is False
+            assert j["gold_answer"]=="VX-40592"
+            assert j["protocol"]=="context-instruction-question-main-ablation-v3"
+            c=j["kv_candidates"]
+            if study=="main":
+                assert len(c)==8
+                assert {row["role"] for row in c}=={"context"}
+                assert all(row["answer_anchor_used"] is False for row in c)
+                assert all(row["selection_policy"]==
+                           "positional-stratified-hash-v3" for row in c)
+                assert all(len(row["positions"])==1 for row in c)
+                assert all(all(p in j["content_positions"] for p in row["positions"])
+                           for row in c)
+            else:
+                assert len(c)==4
+                assert {row["role"] for row in c}=={
+                    "relevant_content","irrelevant_content"}
+                assert len({len(row["positions"]) for row in c})==1
+                assert all(all(j["prompt_roles"][p]==row["role"]
+                               for p in row["positions"]) for row in c)
+
 
 
 def test_request_level_holdout_is_not_per_span_leakage():
@@ -128,3 +149,26 @@ def test_request_paired_effect_is_signed_and_cluster_bootstrapped():
     assert abs(stats["mean_relevant_minus_irrelevant"]-.1)<1e-8
     assert stats["fraction_relevant_greater"]==1
     assert stats["request_bootstrap_ci95"][0]>.09
+
+
+
+def test_main_attention_matching_has_no_evidence_labels():
+    r=load_runner()
+    pairs=[]
+    for uid in range(30):
+        pairs.extend([
+            {"uid":str(uid),"candidate_id":"i","source_role":"context",
+             "attention_mean":.10,"age_at_prefill_end":50,
+             "n_masked_tokens":1,
+             "prefill_persistent_final_error":.02+uid*.001,
+             "postprefill_eviction_delta_future_nll":.02+uid*.004},
+            {"uid":str(uid),"candidate_id":"j","source_role":"context",
+             "attention_mean":.102,"age_at_prefill_end":51,
+             "n_masked_tokens":1,
+             "prefill_persistent_final_error":.01,
+             "postprefill_eviction_delta_future_nll":.01}])
+    summary=r._main_attention_matched_pairs(pairs)
+    assert summary["n_requests_with_pair"]==30
+    assert summary["mean_attention_gap"]<.03
+    assert summary["mean_relative_age_gap"]<.05
+    assert summary["spearman_recurrent_difference_vs_future_nll_difference"]>.99
