@@ -147,17 +147,21 @@ def render(run: Path, *, require_swaps: bool = False,
     candidates.sort(key=lambda r:(-r["best_attention_delta_nll"],
                                    r["model"],r["dataset"],r["uid"],r["budget"]))
     if candidates:
-        lines += [_table([
+        case_rows=[
             ["Model","Dataset","UID","K%","Best-Attn ΔNLL",
              "Local-swap gain","Accuracy rescue"],
             ["---"]*7,
-            *[[x["model"],x["dataset"],x["uid"],int(100*x["budget"]),
-               f"{x['best_attention_delta_nll']:.5f}",
-               (f"{x['best_swap_nll_gain']:.5f}"
-                if x["best_swap_nll_gain"] is not None else "not tested"),
-               ("yes" if x["greedy_answer_rescued"] else
-                "no" if x["greedy_answer_rescued"] is False else "not scored")]
-              for x in candidates[:top_n]])]
+        ]
+        for x in candidates[:top_n]:
+            case_rows.append([
+                x["model"],x["dataset"],x["uid"],int(100*x["budget"]),
+                f"{x['best_attention_delta_nll']:.5f}",
+                (f"{x['best_swap_nll_gain']:.5f}"
+                 if x["best_swap_nll_gain"] is not None else "not tested"),
+                ("yes" if x["greedy_answer_rescued"] else
+                 "no" if x["greedy_answer_rescued"] is False else "not scored")
+            ])
+        lines.append(_table(case_rows))
     else:
         lines += ["No Full-correct requests where all four Attention baselines",
                   "were wrong were observed in the completed screening cohort."]
