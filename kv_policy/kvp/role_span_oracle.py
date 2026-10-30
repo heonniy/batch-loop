@@ -24,10 +24,13 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
                          candidates: Sequence[dict], *, decode_mode="fixed",
                          run_one_loop=True, live_exit=True,
                          question_control=True, replay_tol=1e-4,
+                         study: str = "ablation",
                          tokenizer=None, gold_answer=None,
                          max_generation_tokens=32) -> dict:
+    if study not in ("main", "ablation"):
+        raise ValueError("study must be main or ablation")
     if not candidates:
-        raise ValueError("At least one labeled Context candidate required")
+        raise ValueError("At least one Context candidate required")
     ids = set()
     width = None
     for c in candidates:
@@ -37,17 +40,25 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
         if c["id"] in ids:
             raise ValueError("Repeated evidence candidate ID")
         ids.add(c["id"])
-        if c["role"] not in ("relevant_content", "irrelevant_content"):
-            raise ValueError("Candidate must have a ground-truth evidence label")
-        if any(p not in prompt.content_positions or
-               prompt.roles[p] != c["role"] for p in locs):
-            raise ValueError("Candidate crosses a role boundary")
+        if study == "main":
+            if c["role"] != "context":
+                raise ValueError("MAIN candidates must be unlabeled Context windows")
+            if c.get("answer_anchor_used", False):
+                raise ValueError("MAIN may not select using the gold answer")
+            if any(p not in prompt.content_positions for p in locs):
+                raise ValueError("MAIN candidate contains non-Context tokens")
+        else:
+            if c["role"] not in ("relevant_content", "irrelevant_content"):
+                raise ValueError("Ablation candidates need annotated evidence roles")
+            if any(p not in prompt.content_positions or
+                   prompt.roles[p] != c["role"] for p in locs):
+                raise ValueError("Ablation candidate crosses a role boundary")
         if width is None:
             width = len(locs)
         if len(locs) != width:
             raise ValueError("Evidence/distractor interventions must mask identical KV-token counts")
-    if len({c["role"] for c in candidates}) != 2:
-        raise ValueError("Paired evidence and distractor probes are mandatory")
+    if study == "ablation" and len({c["role"] for c in candidates}) != 2:
+        raise ValueError("Ablation requires both Evidence and Distractor windows")
 
     anchor = max(prompt.question_positions) if prompt.question_positions else max(prompt.instruction_positions)
     P = len(prompt.token_ids)
@@ -145,8 +156,11 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
             sum(a * delta for a, delta in zip(attention_by_loop, question_change))
             / denom if denom > 1e-12 else 0.0)
         rows.append({
-            "uid": uid, "candidate_id": c["id"], "source_role": c["role"],
-            "source": c.get("source", ""), "source_token_positions": list(positions),
+            "uid": uid, "study": study,
+            "candidate_id": c["id"], "source_role": c["role"],
+            "source": c.get("source", ""),
+            "selection_policy": c.get("selection_policy", study),
+            "source_token_positions": list(positions),
             "source_token_position": positions[0], "n_masked_tokens": len(positions),
             "full_sentence_token_count": c.get("full_sentence_token_count"),
             "age_at_prefill_end": _mean([P-p for p in positions]),
@@ -205,6 +219,7 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
             "attention_role_mass_by_loop": clean["attention"]["loop_roles"],
             "source_roles_from_real_token_offsets": True,
             "full_sized_reference_kv": True,
+            "study": study,
             "n_question_tokens": len(prompt.question_positions),
             "n_relevant_content_tokens": len(prompt.relevant_positions),
             "n_irrelevant_content_tokens": len(prompt.irrelevant_positions),
