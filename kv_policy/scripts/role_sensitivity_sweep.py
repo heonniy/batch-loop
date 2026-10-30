@@ -64,9 +64,13 @@ def prepare(run: Path, cfg: dict):
     if run.exists() and any(run.iterdir()):
         raise FileExistsError("Refusing to overwrite any existing run directory")
     run.mkdir(parents=True,exist_ok=True)
-    jobs=[]; subset_ids={}
+    jobs=[]; subset_ids={}; dataset_sources={}
     for dataset in cfg["datasets"]:
         docs,meta=load_subset(dataset)
+        dataset_sources[dataset]={
+            "repo":meta.get("repo"),"revision":meta.get("revision"),
+            "source_sha256":meta.get("sha256"),
+            "frozen_parent_selection_sha256":meta.get("selection_sha256")}
         ordered=sorted(docs,key=lambda d:sha(
             f'{cfg["seed"]}/{dataset}/{d["uid"]}'.encode()))
         chosen=ordered[:cfg["n_examples"]]
@@ -137,6 +141,7 @@ def prepare(run: Path, cfg: dict):
     (run/"run_manifest.json").write_text(json.dumps({
         "source_sha":git_sha(),"config":cfg,"job_count":len(jobs),
         "subsets":subset_ids,
+        "dataset_sources":dataset_sources,
         "model_revisions":{k:MODELS[k].revision for k in cfg["models"]},
         "note":("Content→Instruction prompt; exact tokenizer spans; "
                 "FULL-depth prefill, token-major, fixed/native dynamic decode. "
@@ -382,13 +387,12 @@ def analyze(run: Path):
                 "Token-level Spearman is exploratory; request-level 70/30 heldout OLS is included.",
                 "No fixed vs dynamic raw depth comparison across model families."]}
     (out/"SUMMARY.json").write_text(json.dumps(result,indent=2))
+    error_files=([p.name for p in (run/"errors").glob("*.json")]
+                 if (run/"errors").exists() else [])
     (run/"completeness.json").write_text(json.dumps({
-        "complete":not missing and not replay_errors and
-                   not list((run/"errors").glob("*.json")) if (run/"errors").exists()
-                   else not missing and not replay_errors,
+        "complete":not missing and not replay_errors and not error_files,
         "missing_jobs":missing,"replay_failures":replay_errors,
-        "error_files":[p.name for p in (run/"errors").glob("*.json")]
-            if (run/"errors").exists() else []},indent=2))
+        "error_files":error_files},indent=2))
     return result
 
 
