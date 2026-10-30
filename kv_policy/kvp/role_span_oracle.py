@@ -23,7 +23,9 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
                          prompt: RolePrompt, target_ids: Sequence[int],
                          candidates: Sequence[dict], *, decode_mode="fixed",
                          run_one_loop=True, live_exit=True,
-                         question_control=True, replay_tol=1e-4) -> dict:
+                         question_control=True, replay_tol=1e-4,
+                         tokenizer=None, gold_answer=None,
+                         max_generation_tokens=32) -> dict:
     if not candidates:
         raise ValueError("At least one labeled Context candidate required")
     ids = set()
@@ -70,6 +72,20 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
         raise RuntimeError("Missing complete question anchor trajectory")
     clean_attention = clean["attention"]["content_attention_by_source"]
     base_decode = frozen[P:]
+    baseline_greedy = None
+    baseline_score = None
+    eos = ()
+    if tokenizer is not None:
+        if not isinstance(gold_answer, str) or not gold_answer.strip():
+            raise ValueError("Free generation needs an actual gold answer")
+        from .role_generation import greedy_answer, score_free_answer
+        eos_id = getattr(tokenizer, "eos_token_id", None)
+        eos = (tuple(eos_id) if isinstance(eos_id, (list,tuple))
+               else (() if eos_id is None else (eos_id,)))
+        baseline_greedy = greedy_answer(
+            bb,uid,spec,prompt,max_generation_tokens,
+            decode_mode=decode_mode,eos_token_ids=eos)
+        baseline_score = score_free_answer(tokenizer,gold_answer,baseline_greedy)
 
     rows = []
     for c in candidates:
@@ -109,6 +125,14 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
             for r in range(2, bb.R+1):
                 if r-1 in trajectory and r in trajectory:
                     source_changes.append(_norm_delta(trajectory[r], trajectory[r-1]))
+        greedy_score = None
+        if tokenizer is not None:
+            generated = greedy_answer(bb,uid,spec,prompt,max_generation_tokens,
+                                      decode_mode=decode_mode,source=positions,
+                                      eos_token_ids=eos)
+            if generated["token_ids"][0] != baseline_greedy["token_ids"][0]:
+                raise RuntimeError("Post-prefill masking changed first generated token")
+            greedy_score = score_free_answer(tokenizer,gold_answer,generated)
         attention_by_loop = [sum(clean_attention[str(p)][r] for p in positions)
                              for r in range(bb.R)]
         # Online-observable: source-specific attention alignment with the
@@ -152,6 +176,13 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
                 if alt_decode else None,
             "live_exit_delta_future_nll":
                 live["nll_future"] - clean["nll_future"] if live else None,
+            "postprefill_greedy_exact_match":
+                greedy_score["exact_match"] if greedy_score else None,
+            "postprefill_greedy_answer_flip":
+                (greedy_score["extracted_answer"] != baseline_score["extracted_answer"])
+                if greedy_score else None,
+            "postprefill_greedy_generated_text":
+                greedy_score["generated_text"] if greedy_score else None,
         })
     controls = []
     if question_control:
@@ -176,5 +207,9 @@ def role_evidence_oracle(bb, uid: str, model_revision: str, spec: DepthProbeSpec
             "full_sized_reference_kv": True,
             "n_question_tokens": len(prompt.question_positions),
             "n_relevant_content_tokens": len(prompt.relevant_positions),
-            "n_irrelevant_content_tokens": len(prompt.irrelevant_positions)},
+            "n_irrelevant_content_tokens": len(prompt.irrelevant_positions),
+            "greedy_exact_match":
+                baseline_score["exact_match"] if baseline_score else None,
+            "greedy_generated_text":
+                baseline_score["generated_text"] if baseline_score else None},
         "candidate_rows": rows}
