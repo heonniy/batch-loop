@@ -89,6 +89,10 @@ def prepare(run: Path, cfg: dict) -> dict:
                     "protocol": meta["protocol"]})
     if not jobs or len({j["key"] for j in jobs})!=len(jobs):
         raise RuntimeError("No unique jobs")
+    counts={(mk,ds):sum(j["model"]==mk and j["dataset"]==ds for j in jobs)
+            for mk in cfg["models"] for ds in cfg["datasets"]}
+    if any(n!=cfg["n_examples"] for n in counts.values()):
+        raise RuntimeError(f"Requested EXACT {cfg['n_examples']} examples per model/dataset, got {counts}")
     if {j["model"] for j in jobs}!=set(cfg["models"]):
         raise RuntimeError("At least one requested model lacks usable examples")
     (run/"jobs.json").write_text(json.dumps(jobs, indent=1))
@@ -279,8 +283,8 @@ def main():
     ap.add_argument("--run-dir",required=True)
     ap.add_argument("--models",default=",".join(MODELS_OK))
     ap.add_argument("--datasets",default=",".join(DATASETS_OK))
-    ap.add_argument("--subset",choices=("pilot","main"),default="pilot")
-    ap.add_argument("--n-examples",type=int,default=4)
+    ap.add_argument("--subset",choices=("pilot","main"),default="main")
+    ap.add_argument("--n-examples",type=int,default=100)
     ap.add_argument("--max-prompt-tokens",type=int,default=96)
     ap.add_argument("--max-target-tokens",type=int,default=16)
     ap.add_argument("--n-candidates",type=int,default=4)
