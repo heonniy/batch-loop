@@ -288,6 +288,9 @@ def role_intervention_oracle(bb, uid: str, model_revision: str,
         rows.append({
             "uid":uid,"source_token_position":source,
             "source_role":"content",
+            "age_at_prefill_end":len(prompt.token_ids)-source,
+            "content_span_length":len(prompt.content_positions),
+            "instruction_span_length":len(prompt.instruction_positions),
             "attention_by_loop":attention,
             "attention_mean":sum(v for v in attention if v is not None) /
                 max(1,sum(v is not None for v in attention)),
