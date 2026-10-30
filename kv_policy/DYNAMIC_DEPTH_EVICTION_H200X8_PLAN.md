@@ -73,6 +73,14 @@ historical** cache planes `r>d_i` with its last actually computed
 `KV_i^(min(r,d_i))`. No source token is recomputed (no-refill).
 Current token's own KV is always computed at current r.
 
+**Exact eviction timing:** After the LAST prompt token has completely
+executed and its next-token logits have been produced, delete the chosen
+historical token's KV. Prompt computation and prompt token exit depths are
+therefore IDENTICAL to the FULL dynamic run. The first generated token
+prediction is already determined; future gold targets after it can be
+affected. Attention used as an online predictor is collected only from
+prompt queries (excluding self), so no future gold query enters selection.
+
 For Huginn, prelude and coda are executed once per token. Eviction masks
 the source token in **all** physical layers, including prelude and coda.
 For Ouro, all physical recurrent attention layers are masked.
@@ -111,7 +119,7 @@ with the original model-specific prompt templates and revisions.
 - Record FULL-dynamic exit trace on the resulting EXACT input;
 - Re-run unchanged trace on same B1 input; require max target-token
   NLL difference <=1e-4; if not, FAIL;
-- For each selected source i, mask its KV from all subsequent queries
+- For each selected source i, mask its KV only AFTER complete prompt prefill,
   at all layers while forcing the same exit depths. Compute U_i;
 - Record both already-available past attention and (separately
   labeled) **future/oracle** attention for diagnosis;
