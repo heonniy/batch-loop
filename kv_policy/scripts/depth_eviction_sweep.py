@@ -243,6 +243,14 @@ def analyze(run: Path):
           "evicted_nll","age_at_eval","replay_depths_identical"]
     with (out/"token_oracle.csv").open("w",newline="") as f:
         w=csv.DictWriter(f,fieldnames=cols);w.writeheader();w.writerows(rows)
+    from kvp.eviction_baselines import evaluate_singleton_oracle
+    diagnostics=evaluate_singleton_oracle(rows)
+    cols_diag=["model","dataset","uid","policy","n_candidates","n_retained",
+               "n_evicted","sum_individual_delta_nll_ORACLE_DIAGNOSTIC",
+               "evicted_source_positions"]
+    with (out/"offline_policy_oracle_diagnostic.csv").open("w",newline="") as f:
+        w=csv.DictWriter(f,fieldnames=cols_diag)
+        w.writeheader();w.writerows(diagnostics)
     groups=defaultdict(list)
     for r in rows:
         groups[(r["model"],r["dataset"])].append(r)
@@ -265,6 +273,7 @@ def analyze(run: Path):
         "groups":summaries,"traces":traces,
         "caveats":["B1 gold suffix, prompt may be truncated; not task accuracy",
           "Single-token oracle, not simultaneous eviction serving policy",
+          "Offline policy rankings are singleton-loss diagnostics only: sums are NOT joint-eviction NLL",
           "Attention_pre excludes future and self attention but is observed during prompt",
           "Raw exit depths across model families are not comparable",
           "In-sample incremental R2 is not held-out predictive performance",
