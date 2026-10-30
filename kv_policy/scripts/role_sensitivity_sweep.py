@@ -290,7 +290,7 @@ def heldout_importance_test(rows: list[dict]) -> dict | None:
         "attention_age":("age_at_prefill_end","attention_mean","attention_max","n_masked_tokens"),
         "attention_age_plus_prefill_state":(
             "age_at_prefill_end","attention_mean","attention_max","n_masked_tokens",
-            "source_mean_recurrent_change"),
+            "source_mean_recurrent_change","attention_recurrent_alignment"),
         "ORACLE_attention_plus_masked_instruction":(
             "age_at_prefill_end","attention_mean","attention_max","n_masked_tokens",
             "prefill_persistent_final_error"),
@@ -345,6 +345,47 @@ def _request_paired_effect(rows: list[dict], seed: int = 20261030) -> dict:
             "bootstrap": "1000 paired request-resamples; descriptive CI"}
 
 
+def _attention_matched_pairs(rows: list[dict], relative_tolerance: float = .20) -> dict:
+    """Closest Relevant/Irrelevant source attention within same request.
+
+    Controls actual attention magnitude, masked KV-token count (enforced by
+    oracle), and request identity; source age is still a possible confound.
+    The 20% threshold is frozen before reading measured effects.
+    """
+    per_uid = defaultdict(list)
+    for row in rows:
+        per_uid[row["uid"]].append(row)
+    accepted = []
+    for uid, candidates in sorted(per_uid.items()):
+        evidence = [c for c in candidates if c["source_role"] == "relevant_content"]
+        irrelevant = [c for c in candidates if c["source_role"] == "irrelevant_content"]
+        pairs = [(abs(a["attention_mean"]-b["attention_mean"]) /
+                  max(a["attention_mean"], b["attention_mean"], 1e-12), a, b)
+                 for a in evidence for b in irrelevant
+                 if a["n_masked_tokens"] == b["n_masked_tokens"]]
+        if not pairs:
+            continue
+        ratio, a, b = min(pairs, key=lambda x: (x[0], x[1]["candidate_id"], x[2]["candidate_id"]))
+        if ratio <= relative_tolerance:
+            accepted.append({
+                "uid": uid, "attention_relative_gap": ratio,
+                "age_difference": a["age_at_prefill_end"]-b["age_at_prefill_end"],
+                "sensitivity_difference":
+                    a["prefill_persistent_final_error"]-b["prefill_persistent_final_error"],
+                "future_nll_difference":
+                    a["postprefill_eviction_delta_future_nll"]-
+                    b["postprefill_eviction_delta_future_nll"]})
+    return {
+        "relative_attention_tolerance": relative_tolerance,
+        "matched_requests": len(accepted),
+        "mean_attention_relative_gap": (sum(x["attention_relative_gap"] for x in accepted)
+                                        /len(accepted)) if accepted else None,
+        "spearman_recurrent_diff_vs_future_loss_diff": _corr(
+            [x["sensitivity_difference"] for x in accepted],
+            [x["future_nll_difference"] for x in accepted]),
+        "notes": "Matched within request/width/attention; age difference is reported, not experimentally held equal."}
+
+
 def analyze(run: Path):
     m, jobs = manifest(run)
     if m.get("protocol") != "evidence-context-instruction-question-v2":
@@ -386,7 +427,8 @@ def analyze(run: Path):
         "source","source_token_position","source_token_positions",
         "n_masked_tokens","full_sentence_token_count","age_at_prefill_end",
         "answer_anchor_used","attention_by_loop","attention_mean","attention_max",
-        "source_mean_recurrent_change","prefill_instruction_error_by_loop",
+        "attention_recurrent_alignment","source_mean_recurrent_change",
+        "prefill_instruction_error_by_loop",
         "prefill_persistent_final_error","prefill_persistent_recovery_ratio",
         "prefill_one_loop_error_by_loop","prefill_one_loop_final_error",
         "postprefill_eviction_delta_future_nll",
@@ -428,6 +470,8 @@ def analyze(run: Path):
                     r["future_decode_recurrent_error_mean"] for r in g)/len(g),
                 "spearman_attention_vs_future_loss": _corr(att, y),
                 "spearman_prefill_sensitivity_vs_future_loss": _corr(mech, y),
+                "spearman_attention_recurrence_alignment_vs_future_loss": _corr(
+                    [r["attention_recurrent_alignment"] for r in g], y),
                 "spearman_source_change_vs_future_loss": _corr(
                     [r["source_mean_recurrent_change"] for r in valid_source],
                     [r["postprefill_eviction_delta_future_nll"] for r in valid_source]),
@@ -438,6 +482,7 @@ def analyze(run: Path):
             "n_equal_width_span_interventions": len(cohort),
             "per_role": per_role,
             "paired_evidence_damage": _request_paired_effect(cohort),
+            "attention_matched_pairs": _attention_matched_pairs(cohort),
             "request_heldout_prediction": heldout_importance_test(cohort)})
     result = {"expected_jobs": len(jobs),
               "completed_jobs": len(jobs)-len(missing),
