@@ -135,6 +135,8 @@ def _ouro_one(bb, ids, pos, kv, col, mask, forced_depth, spec):
     model = bb.model
     m = model.model
     h = m.embed_tokens(ids)
+    if hasattr(kv, 'observe_initial'):
+        kv.observe_initial(col, h)
     cos, sin = m.rotary_emb(h, pos)
     remaining, cumul = 1.0, 0.0
     for r in range(bb.R):
@@ -152,6 +154,8 @@ def _ouro_one(bb, ids, pos, kv, col, mask, forced_depth, spec):
             h = h + layer.post_attention_layernorm_2(
                 layer.mlp(layer.post_attention_layernorm(h)))
         h = m.norm(h)
+        if hasattr(kv, 'observe_state'):
+            kv.observe_state(col, r+1, h)
         # Official gate: lambda_r=sigmoid(early_exit_gate(h_r));
         # p_r=lambda_r * survival mass, except p_R=remaining mass.
         lam = torch.sigmoid(m.early_exit_gate(h)).float().item()
@@ -178,11 +182,16 @@ def _huginn_one(bb, ids, pos, kv, aux, col, mask, forced_depth, spec):
     for l, block in enumerate(tr.prelude):
         e = bb._block(block, e, freqs, kv, ("plain", l, 0), col, col+1, mask)
     x = aux[:, col:col+1]
+    if hasattr(kv, 'observe_initial'):
+        kv.observe_initial(col, x)
+        kv.observe_prelude(col, e)
     prev = x
     for r in range(bb.R):
         x = tr.adapter(torch.cat([x, e], dim=-1))
         for l, block in enumerate(tr.core_block):
             x = bb._block(block, x, freqs, kv, ("rec", l, r), col, col+1, mask)
+        if hasattr(kv, 'observe_state'):
+            kv.observe_state(col, r+1, x)
         # Official cosine evaluator formula; dtype per spec.cosine_dtype.
         a, b = (x.float(), prev.float()) if spec.cosine_dtype == "float32" else (x, prev)
         cosine = ((a * b).sum(dim=-1) / a.norm(dim=-1) /
