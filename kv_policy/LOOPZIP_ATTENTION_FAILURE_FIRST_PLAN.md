@@ -4,7 +4,7 @@ Date: 2026-10-31
 Branch: research/loopzip-attention-failure-first-20261031
 Parent: research/recurrent-sensitivity-main-ablation-v3-20261031
 Target hardware: H200 x8, independent BF16 model worker per GPU, B=1 reference
-Status: EXPERIMENT PLAN ONLY — the policy-budget screening/swap runner and decode-loop intervention described here ARE NOT YET IMPLEMENTED. No GPU tests, failure cases, accuracy gains, or memory savings are claimed.
+Status: Phase 1/2 reference runner, exact-budget policies, local swaps and CPU tests IMPLEMENTED. Phase 3 decode-loop intervention, actual H200 tests, failure observations, savings/throughput remain NOT DONE.
 
 ## 0. Research decision and change from v3
 
@@ -66,24 +66,19 @@ KV BUDGET
 - Store **full-size reference KV** but apply multi-position read masks. It is a correctness and mechanism baseline, NOT real physical memory reclamation, TTFT/TPOT/TPS or throughput evidence.
 - Require first generated/gold token prediction to match unmodified prefill (off-by-one invariant). For NLL use future target positions >=2 only. Check deterministic Full vs policy at 100% retention as a separate parity gate, although 100% is NOT a screening budget.
 
-## 3. Phase 0 — Instrumentation and smoke gates (REQUIRED CODE WORK)
+## 3. Phase 0 — Implemented instrumentation and required model checks
 
-CURRENT v3 CAPABILITIES:
-- Exact Context/Instruction/Question tokenizer alignment and dataset loaders, fixed/full prefill, recorded/live decode, clean loop-wise Instruction-to-Context attention and source recurrent changes.
-- RoleProbeKV / role_forward can already accept sets of positions for future-token attention read masking. This does NOT mean a complete multi-token budget-policy evaluator already exists.
-- Existing v3 Main samples eight single sources, one at a time; it does NOT rank and jointly evict a policy-selected set, sweep 10/30/50, or run local-swap search.
-- Existing kvp/eviction_baselines.py offers singleton-oracle ranking PROXIES, not genuine simultaneous multi-key eviction or official H2O/SnapKV implementations. Never recycle their sum of singleton NLL deltas as the measured NLL of jointly evicted KV.
-- Existing role_generation.py allows optional free-greedy QA but reruns prompt; no reusable full-prefill snapshot across policies/candidates in the current code.
-- Existing v3 mechanism intervention is in **Instruction/Question PREFILL core Attention**, NOT a decode-loop-specific mask. Phase 3 needs a distinct mechanism intervention.
+**Status updated 2026-10-31:** Phase 1 AND Phase 2 reference code is now implemented on this branch. See [LOOPZIP_FAILURE_RUNBOOK.md](LOOPZIP_FAILURE_RUNBOOK.md) for runnable GPU commands and output interpretation.
 
-REQUIRED IMPLEMENTATION BEFORE SCREENING:
-1. A new standalone failure-screening runner and CLI: --prepare (freeze jobs/config), --execute (explicit GPU opt-in), --analyze (CPU), separate run directories. It MUST NOT silently redirect to v3 eight-token sampling.
-2. A fair policy selection module that ranks ALL eligible clean-prefill Context tokens using **only pre-answer** Attention, computes retained set S of exactly K_b, and produces a coherent mask of all other Context positions at once. Freeze tie-breaks, normalization, tie handling, and pinned Context positions.
-3. Clean Reference baseline, no-eviction 100%-mask parity, fixed-depth policy Decode and future-NLL score; optional separate greedy answer accuracy. Capture per-policy kept/evicted positions and clean Context attention by loop.
-4. Correct indexing for non-Context prompt positions; timepoint/counterfactual separation; common prompt state, common gold suffix, record/replay parity <=1e-4 (or a tightly justified model-specific tolerance predeclared prior to main).
-5. A shared clean Prefill KV snapshot/restore (or explicit per-policy re-prefill with verified parity for initial smoke); ensure every branch has isolated writable KV and proper loop depth. Snapshot reuse is a performance optimization, NOT permission to skip correctness equivalence.
-6. Tests: 10/30/50 budget exactness; same S size across policies; sinks/recency inside budget; no gold/support-label selection; no text deletion; all-loop mask consistency; first target unchanged; all-retained parity; no generated-token masking; no future answer Attention leakage; full vs reloaded/snapshot result equivalence; NLL nonadditivity on multi-token masks; repeatable hashes and complete output count.
-7. Prepare-only must not start GPU models. Existing source-SHA and job-lock safety should be retained. Distinguish not-yet-implemented commands from runnable code.
+- kvp/loopzip_policy.py: mean/last/max/recent-attention and seeded random policy selection over the entire aligned Context; exact floor-rounded K_b at 10/30/50%; local-swap neighborhood with high, low and hash-diverse evicted candidates (at most 6x6, including original).
+- kvp/loopzip_cached_eval.py: normal full-depth Prompt computed once, reuses full prompt R-plane KV across policy decodes; future-only simultaneous multi-token masks; exact first-token invariant; independent role_forward parity check.
+- scripts/loopzip_failure_screen.py: CPU --prepare/--analyze/--prepare-swap/--analyze-swap, explicit GPU --execute/--execute-swap; source SHA and model revision pinning; worker claims, atomic raw JSON and fail-closed completeness; per-request NLL/optional Greedy Accuracy and request-grouped stats; Phase 2 failure/control cohorts and swap evaluation.
+- tests/test_loopzip_policy.py, tests/test_loopzip_failure_runner.py and tests/test_loopzip_cached_eval.py: budget/selection/mask/cached-prefix regression tests. GitHub Actions workflow is installed for CPU-only tests and a fake tiny-backbone PyTorch test.
+- **No H200 or full checkpoint-backed execution verified yet.** The GitHub CI fake model cannot replace a real model/tokenizer parity smoke. Do not interpret synthetic test data as empirical evidence of Attention failure.
+
+Still NOT implemented: true physical compact memory eviction, equal-byte HBM measurement, faithful H2O/SnapKV ports, shared-KV-bank-specific policy comparison, decode-loop-selective interventions, and the Phase-3 recurrent mechanism tracing. The current Phase 1/2 experiment measures candidate retained-set quality with FULL-sized KV storage, not saved memory or serving throughput.
+
+**Required H200 GO gates:** 5-request smoke with actual pinned Ouro checkpoint; clean Full replay parity <=1e-4, unique exact selection per budget, first target and first greedy token unchanged under eviction, no evidence/answer leakage, deterministic repeat within tolerance, and no errors or missing cells. Pilot two architecture families only after smoke confirms runtime and memory capacity.
 
 ## 4. Phase 1 — Failure Screening with budget sweep 10%, 30%, 50%
 
@@ -125,7 +120,7 @@ D) Full wrong: never count as a "correct -> wrong" failure, retain in signed NLL
 
 Apply ONLY to predeclared top 10-20 failed requests selected using Full-correct and high Mean-Attn loss, plus a matched small control cohort of nonfailure requests. Avoid scanning every possible huge swap.
 
-For retained set S_attn of size K_b, choose up to six LOWEST-scoring retained Context positions a in S_attn and up to six HIGHEST-scoring evicted Context positions e outside S_attn. Evaluate swap neighbors:
+For retained set S_attn of size K_b, choose up to six LOWEST-scoring retained Context positions a in S_attn and up to six restoration candidates e spanning high-scored evicted, low-scored evicted, and deterministic hash-diverse evicted positions. Evaluate swap neighbors:
 
     S_(a->e) = (S_attn \ {a}) U {e}.
 
@@ -168,53 +163,13 @@ Only if Phase 3 finds repeatable mechanism:
 - Demonstrate benefit at equal K_b on truly simultaneous retained-sets, then implement physical compact KV and evaluate actual HBM/TTFT/TPOT/TPS if promising.
 - Keep relevance/Supporting Fact labels for a named **evidence ablation**, not main source ranking.
 
-## 8. Run order, implementation status, and proposed interface (NOT runnable yet)
+## 8. Runnable commands and frozen protocol
 
-CURRENTLY AVAILABLE in v3:
-- v3 single-token/short-window intervention, fixed/live decode probing, reduced Hotpot/synthetic loaders and tests.
-- Core attention per source during Instruction/Question prefill, and future multiple-position mask mechanics.
-- Optional greedy response metric; full-size reference KV.
-- The v3 plan still supports original request-level main/ablation if needed.
+Phase 1 and Phase 2 are now implemented (FIXED-depth Decode, Full-depth Prefill). Use the committed [H200 executable runbook](LOOPZIP_FAILURE_RUNBOOK.md) for the exact CPU tests, 5-request Ouro smoke, two-model/two-workload pilot, Stage-2 --prepare-swap/--execute-swap/--analyze-swap and audit checklist. The command line name is scripts/loopzip_failure_screen.py.
 
-NOT YET IMPLEMENTED:
-- Attention-family retention-set selection and actual **joint** top-K policy execution at 10/30/50;
-- Standalone policy-budget failure-screening sweep runner and policy-level CSV summary;
-- Local-swap search/scorer;
-- Decode-loop-selective perturbation, attention-output tracing, policy snapshot reuse.
-- Faithful H2O/SnapKV ports and real physical KV compaction.
-Thus NEVER run the old role_sensitivity_sweep.py as if it executes the new budget screening. The following is a proposed CLI CONTRACT to implement and test:
+The two phases are deliberately separate. NEVER run the original role_sensitivity_sweep.py in place of the budget-screening runner, and never interpret its eight-token singleton NLL as the joint quality of an entire retention set. Prepare, execute, and analyze Phase 1 before producing the frozen Phase 2 cohort. The same Source SHA and checkpoint revisions guard both phases; changing code or inputs requires a NEW directory.
 
-~~~bash
-# After the new screening runner has been implemented and tests pass.
-cd kv_policy
-python -m pytest -q tests/test_role_failure_screening.py
-
-# PHASE 1: dedicated failure screening, NOT the v3 single-token sweep
-python scripts/loopzip_failure_screen.py --prepare \
-  --run-dir results/loopzip_failure_smoke5 \
-  --models ouro-2.6b --datasets controlled_retrieval \
-  --n-examples 5 --decode-modes fixed \
-  --retention 0.10,0.30,0.50 \
-  --policies mean_attn,last_attn,max_attn,recent_attn,random \
-  --free-generate
-
-# Only after H200 availability and CPU/short-model correctness preflight
-python scripts/loopzip_failure_screen.py --execute \
-  --run-dir results/loopzip_failure_smoke5 --gpu-ids 0
-python scripts/loopzip_failure_screen.py --analyze \
-  --run-dir results/loopzip_failure_smoke5
-
-# PILOT: two architectures, two workloads, fixed decode, frozen budgets
-python scripts/loopzip_failure_screen.py --prepare \
-  --run-dir results/loopzip_failure_pilot20 \
-  --models ouro-2.6b,huginn-0125 \
-  --datasets controlled_retrieval,hotpotqa_distractor \
-  --n-examples 20 --decode-modes fixed \
-  --retention 0.10,0.30,0.50 \
-  --policies mean_attn,last_attn,max_attn,recent_attn,random
-~~~
-
-The exact CLI names above are part of the planned implementation contract; they DO NOT work until the required runner, selectors, parser and tests exist. Do not create run directories in the plan commit or claim to have used H200 resources. All datasets, model revisions, policy definitions, retention ratios, seeds, prompt hashes, and code SHA must be frozen in a single manifest per study, with no mixed policy settings.
+H200 runtime, observed Attention ranking failures, local-swap gains and real-answer accuracy are **not available** from authoring this commit. The GitHub Actions test covers CPU pure-policy/manifest checks and tiny fake-backbone KV-cache reuse; actual pinned model smoke remains mandatory.
 
 ## 9. Expected inspectable outputs and audit gates
 
