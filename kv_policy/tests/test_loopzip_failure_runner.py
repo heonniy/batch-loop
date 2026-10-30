@@ -88,7 +88,7 @@ def test_prepare_manifest_and_screen_cpu_analysis(tmp_path,monkeypatch):
             # Request 0 is full-correct, every attention policy fails.
             correct=False if is_failure and is_attn else True
             loss=(.8 if is_failure and is_attn else .3)
-            rows.append({**sel,
+            rows.append({**sel,"retention":sel["retention_requested"],
                 "nll_future":loss,"delta_nll":loss-.2,
                 "first_target_nll":.7,"greedy_correct":correct,
                 "greedy_answer":"Wrong" if not correct else "VX-40592",
