@@ -508,6 +508,16 @@ def analyze(run: Path):
         candidate_rows=result["candidate_rows"]
         if len(candidate_rows)!=len(job["kv_candidates"]):
             candidate_count_mismatches.append(job["key"])
+        else:
+            expected_sources={
+                c["id"]:(tuple(c["positions"]),c["role"])
+                for c in job["kv_candidates"]}
+            returned_sources={
+                c["candidate_id"]:(tuple(c["source_token_positions"]),
+                                   c["source_role"])
+                for c in candidate_rows}
+            if expected_sources!=returned_sources:
+                candidate_count_mismatches.append(job["key"])
         for r in candidate_rows:
             if r["study"] != study:
                 raise RuntimeError("Candidate row has wrong experimental arm")
@@ -766,9 +776,13 @@ def main():
                 if proc.poll() is None: proc.wait()
                 handle.close()
         result=analyze(run)
-        if result["missing"] or result["parity_failures"]:
-            raise RuntimeError("Incomplete study or record/replay parity failure")
-        print("All role-sensitivity jobs complete; see analysis/SUMMARY.json")
+        complete=json.loads((run/"completeness.json").read_text())
+        if not complete["complete"]:
+            raise RuntimeError(
+                "Study incomplete: missing jobs, candidate identity mismatch, "
+                "worker errors or replay parity failures; inspect completeness.json")
+        print("All "+result["study"].upper()+" role-sensitivity jobs complete; "
+              "see analysis/SUMMARY.json")
 
 
 if __name__=="__main__":
