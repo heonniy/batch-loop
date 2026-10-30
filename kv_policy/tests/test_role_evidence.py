@@ -131,3 +131,24 @@ def test_tiny_model_paired_span_oracle_has_clean_replay_and_generated_state():
         assert row["future_decode_recurrent_error_mean"]>=0
         assert math.isfinite(row["postprefill_eviction_delta_future_nll"])
     assert result["role_control_rows"][0]["source_role"]=="question"
+
+
+
+def test_greedy_generation_first_token_is_untouched_by_future_eviction():
+    from kvp.role_generation import greedy_answer, _normalize_answer, _extract_answer
+    import importlib.util
+    from pathlib import Path
+    fixture=Path(__file__).with_name("test_policy_semantics.py")
+    module_spec=importlib.util.spec_from_file_location("generation_tiny_fixture",fixture)
+    mod=importlib.util.module_from_spec(module_spec)
+    module_spec.loader.exec_module(mod)
+    _,run=mod._tiny("ouro",2)
+    prompt=_tiny_prompt()
+    spec=DepthProbeSpec("ouro",2,1.0,min_depth=2)
+    clean=greedy_answer(run.bb,"u",spec,prompt,4,decode_mode="fixed")
+    alt=greedy_answer(run.bb,"u",spec,prompt,4,decode_mode="fixed",source=(1,2))
+    assert clean["token_ids"][0]==alt["token_ids"][0]
+    assert clean["decoded_tokens"]==4
+    assert len(clean["decode_depths"])==3
+    assert _extract_answer("Answer: Paris.\nMore")=="Paris."
+    assert _normalize_answer("The United States.")==_normalize_answer("united states")
