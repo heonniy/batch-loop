@@ -271,8 +271,8 @@ def _corr(a,b):
 def heldout_importance_test(rows: list[dict]) -> dict | None:
     """Frozen request-level split; no token from test request enters fitting.
 
-    ONLINE = age + observed Instruction-to-Content Attention +
-             source's own (single clean prefill) recurrent change.
+    ONLINE = age + instruction-to-context attention + equal-width budget +
+             source's own clean recurrent change and Question-loop alignment.
     ORACLE = ONLINE + prefill counterfactual sensitivity (expensive).
     Negative R2 is a legitimate held-out failure, not clamped away.
     """
@@ -316,7 +316,8 @@ def heldout_importance_test(rows: list[dict]) -> dict | None:
         scores[name]=float(1-((ytest-pred)**2).sum()/denom) if denom>1e-12 else None
     return {"train_requests":len(train_uids),
             "test_requests":len(uids)-len(train_uids),
-            "train_tokens":len(train),"test_tokens":len(test),
+            "train_span_interventions":len(train),
+            "test_span_interventions":len(test),
             "heldout_r2":scores,
             "split":"sha256(role-holdout-v1/uid), 70/30, frozen"}
 
