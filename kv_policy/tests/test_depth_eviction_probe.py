@@ -16,7 +16,7 @@ class TinyBackbone:
 
 def store(evicted=None):
     return DepthOracleKV(TinyBackbone(), 3, "cpu", torch.float32,
-                         evicted=evicted, evaluation_start=2)
+                         evicted=evicted, evaluation_start=1)
 
 
 def test_missing_higher_loop_bank_falls_back_to_last_executed_bank():
@@ -72,3 +72,25 @@ def test_attention_accounting_excludes_self_and_future_queries():
     kv.attend(("plain",0,0),q,q,q,1,2,torch.ones(1,1,1,2,dtype=torch.bool))
     assert kv.attention_pre.sum().item()==0
     assert kv.attention_future[0].item()>0
+
+
+
+def test_eviction_does_not_modify_any_prompt_prefill_query():
+    bb=TinyBackbone()
+    q=torch.ones(1,1,1,1)
+    baseline=DepthOracleKV(bb,4,"cpu",torch.float32,
+                           evicted=None,evaluation_start=3)
+    treated=DepthOracleKV(bb,4,"cpu",torch.float32,
+                          evicted=0,evaluation_start=3)
+    for col in range(3):
+        mask=torch.ones(1,1,1,col+1,dtype=torch.bool)
+        for obj in (baseline,treated):
+            out=obj.attend(("plain",0,0),q,q,torch.full_like(q,99 if col==0 else 1),
+                           col,col+1,mask)
+            obj.finish(col,1)
+        assert torch.equal(baseline.pv[0], treated.pv[0])
+    # The first query after prefix must NOW mask source 0.
+    mask=torch.ones(1,1,1,4,dtype=torch.bool)
+    a=baseline.attend(("plain",0,0),q,q,q,3,4,mask)
+    b=treated.attend(("plain",0,0),q,q,q,3,4,mask)
+    assert a.item()>b.item()+10
