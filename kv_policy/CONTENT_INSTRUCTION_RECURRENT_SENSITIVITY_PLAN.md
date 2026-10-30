@@ -1,201 +1,261 @@
-# Evidence-conditioned Recurrent Sensitivity: Experiment v2
+# Final v3 Plan: Context Recurrent Sensitivity (MAIN + Evidence ABLATION)
 
-Date: 2026-10-30
-Repository: heonniy/batch-loop
-Branch: research/evidence-recurrent-sensitivity-v2-20261030
-Parent: research/content-instruction-recurrent-sensitivity-h200x8-20261030
-Hardware target: H200 x 8, one BF16 model worker/GPU, no TP
-Status: Code and tests committed. No local/server tests or H200 evaluations observed passing in this session.
+**Research question:** Does Context-to-Question recurrent sensitivity predict actual future Context-KV eviction damage beyond conventional attention and token age?
 
-## 0. Why the original experiment is superseded
+**Date:** 2026-10-31
+**Repository:** heonniy/batch-loop
+**Branch:** research/recurrent-sensitivity-main-ablation-v3-20261031
+**Based on:** research/evidence-recurrent-sensitivity-v2-20261030
+**Hardware target:** 8 independent H200 GPUs; one BF16 reference worker per GPU; no TP.
+**Actual status:** Code, tests, experiment plan committed. GPU evaluation and full pytest suite are NOT verified in this session.
+**Core principle:** MAIN must not use answer/evidence labels to select source KV. ABLATION may use labels only for an explicitly labeled *oracle analysis*.
 
-| Design choice | Original v1 | Corrected v2 |
-| --- | --- | --- |
-| Primary tasks | GSM8K and MATH-500 | Controlled Retrieval and HotpotQA-Distractor |
-| Context content | Math problem and static background | Ground-truth supporting facts plus irrelevant facts |
-| Candidate | Random isolated Content token | Tokenizer-aligned, matched-width window within a labeled sentence |
-| Roles | Content, Instruction, Background | Relevant Context, Irrelevant Context, Instruction, Question, Generated |
-| Target | Old math reasoning/rationale | New task-specific short answer: Answer: gold_answer |
-| Observables | Attention, prefill counterfactual, future teacher-forced NLL | Same plus generated-token recurrent error, paired controls, optional greedy Exact Match |
-| Analysis | Pooled score correlations | Separate role strata, attention-matched pairs, request-paired bootstrap and 70/30 heldout predictor |
-| Systems claim | FULL-sized reference KV | Still FULL-sized masked reference KV: NO physical saving/latency claim |
+## 0. Change log and why v3 is necessary
 
-The original study was not wrong to use a Content-before-Instruction prompt for a basic mechanism check, but it did not provide the annotated relevant/irrelevant context needed for this research question. Retain the original branch; do not retroactively label the GSM8K/MATH-500 study as the main result.
+v1 (GSM8K / MATH-500) used random problem-token probes but did not reliably distinguish answer evidence from unrelated facts.
+v2 introduced Controlled Retrieval + HotpotQA Supporting Facts, but made ground-truth Relevant/Distractor selection the PRIMARY study. This is an oracle-based mechanism comparison, not evidence that recurrence finds important Context tokens by itself.
+v3 restores the original research question:
 
-Research question: Does the change induced in later Question/Instruction recurrent computation by an earlier Context KV window predict future post-prefill eviction damage beyond attention and source age? This MUST be tested, not assumed.
+| Protocol | Candidate selection | What it tests | May use ground-truth tags? |
+|---|---|---|---|
+| **MAIN** | Sample from *all* aligned Context token positions, positional-stratified without oracle information | Attention–Recurrent mismatch; future signed NLL damage; offline predictive value of cheap recurrent features | **NO**, not for sampling, features or labels |
+| **ABLATION** | Sample matched-width windows inside supporting/distractor sentences | Why sensitive tokens differ; how relevance relates to recurrence and actual future damage | **YES**, strictly for offline probe selection and interpretation |
+| Future actual policy stage | Score/rank *all* Context tokens on a single normal prefill, physically evict at equal KV bytes | Whether a usable method improves NLL/accuracy/HBM/TPOT vs real baselines | **NO** |
 
-## 1. Dataset protocols and provenance
+MoEZip-like part: Context -> downstream Instruction/Question -> future Answer, using internally observed Instruction-derived signals to prioritize earlier Context. v3 does NOT claim that MoEZip performed Ground-truth Evidence/Distractor selection, and does NOT copy its router-fragility formula. MAIN is closer in candidate eligibility to MoEZip; it is still a diagnostic sample of Context positions, not an exhaustive all-token policy.
 
-**Controlled Retrieval (primary mechanism control):** deterministic NIAH/RULER-inspired generation in kvp/role_evidence_data.py. Default 16 synthetic record-to-code facts, exactly one answer-bearing fact, 15 irrelevant facts, and target positions cycling among front/middle/end. Record generated UIDs, fact count, target position, seed and SHA256. This is NOT an official RULER benchmark or published NIAH score.
+IMPORTANT: v3 makes two *separate* run directories and reports. Never pool MAIN and ABLATION intervention rows, fit one predictor across both, or compare raw damages without equalizing masked-token budget.
 
-**HotpotQA-Distractor (multi-hop generalization):** pinned HF repo hotpotqa/hotpot_qa, revision 1908d6afbbead072334abe2965f91bd2709910ab, validation parquet distractor/validation-00000-of-00001.parquet. Expected SHA256 c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6. Read original supporting_facts (title, sent_id) and context (title, sentences), requiring at least two distinct supporting document titles and at least one irrelevant sentence. Store number filtered and exact sample UIDs.
+## 1. Frozen model and dataset protocol
 
-HotpotQA has TWO explicit context modes. The default evidence_excerpt retains every supporting-fact sentence plus eight deterministic distracting sentences, prioritized from unrelated documents; this is a custom *mechanism* workload, NOT standard full-document HotpotQA. The separate full_context mode retains every supplied sentence, with its title, but still uses our custom prompt. Never mix the two settings in one run or call either an official leaderboard score.
+Models: Huginn-3.5B (huginn-0125), Ouro-1.4B, Ouro-2.6B using pinned repository revisions from kvp/specs.py. Full-depth, token-major prompt prefill (all Context / Instruction / Question tokens get R loops). Decode either fixed-depth R or native dynamic exit. For dynamic experiments distinguish recorded replay at matched depth from separately re-evaluated live exit. Huginn's FP32 cosine-exit diagnostic changes exit evaluation arithmetic; it is *not* identical to the native BF16 evaluator.
 
-Main sample: 100 different questions per dataset, same UIDs across Huginn-3.5B, Ouro-1.4B and Ouro-2.6B. Fixed and native dynamic decode yield 3 x 2 x 100 x 2 = 1,200 model-question-mode jobs. The experiments within each job make multiple full-prefill passes; a job is NOT a single inference.
+Datasets:
+- **Controlled Retrieval:** NIAH / RULER-inspired synthetic retrieval generated with a fixed seed, default 16 record-to-code facts; exactly one ground-truth target fact, 15 other facts. Target position cycles among beginning / middle / end; question asks for one record's code. Record UID, seed, fact count, target location, prompt hash. This is *not* an official RULER run.
+- **HotpotQA-Distractor:** revision-pinned HF hotpotqa/hotpot_qa validation set; source = distractor/validation-00000-of-00001.parquet; pinned revision 1908d6afbbead072334abe2965f91bd2709910ab, SHA256 c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6. Original (title, sent_id) supporting_facts annotations are retained in dataset metadata.
+- **HotpotQA excerpt (initial mechanistic study):** all supporting sentences plus 8 deterministic distractor sentences, chosen preferentially from other documents. This is deliberately NOT the official full-document HotpotQA input. Use --hotpot-context-mode full_context in a separate run for complete provided context, preflight length and memory; custom rendering is not directly comparable to the benchmark leaderboard.
+- The *same request UIDs* are used for models and fixed/dynamic modes. The exact token positions can differ by model tokenizer/chat template, so do not pretend source-token pairs are identical across model architectures.
 
-## 2. Prompt contract and exact roles
-
-Content precedes Instruction, and actual per-example Question follows the generic Instruction. Conceptual form:
+Rendered body (Huginn with chat template, Ouro as plain continuation):
 
     Context:
-    [Doc A] Supporting evidence 1
-    [Doc B] Supporting evidence 2
-    [Doc C] Unrelated distracting fact
+    [Document A] Relevant sentence, not visibly marked to model.
+    [Document B] Distractor sentence, not visibly marked to model.
+    ...
     Instruction:
-    Use the context to answer. Reply with 'Answer: <short answer>'.
+    Use the context to answer the question. Reply with 'Answer: <short answer>'.
     Question:
-    What is the requested factual answer?
+    Per-example downstream question
     Response:
+    ... generated continuation ...
 
-Huginn renders the body through its chat template; Ouro uses plain text. Tokenizer offset maps (not regex heuristics) assign the exact roles relevant_content, irrelevant_content, instruction, question, other. The generated sequence is a separate decode region. Cross-boundary token pieces are Other and are not candidates. Fail if a role cannot be aligned or if a prompt exceeds the explicit token limit; no last-96-token truncation.
+Only earlier Context can causally affect later Instruction/Question in an autoregressive model. We fail closed if max(Context position) >= min(Instruction/Question position). Token roles come from exact tokenizer offsets: relevant_content / irrelevant_content / instruction / question / other; boundary pieces and chat delimiters are other. The labels are metadata, not text shown to the model. A candidate cannot remove a question token.
 
-The gold target is the new answer continuation 'Answer: <gold>\n', not the earlier mathematical few-shot solution. The leading "Answer:" ensures that answer-bearing tokens normally occur after the first generated token. The first target token is predicted at the last (clean) prompt query, before any post-prefill mask, and must NOT be credited to the eviction effect.
+Gold teacher-forcing continuation is the new short-answer target 'Answer: <gold>\n', independent of older GSM8K/MATH few-shot solutions. **First gold target token** is predicted at the final unmasked prompt position. It is excluded from post-prefill future-NLL utility. This matters for short outputs: require >=2 scored target tokens and inspect non-degenerate future NLL variance.
 
-**Ground-truth probe windows:** choose up to two relevant and two irrelevant *sentences*. Hide equal-width contiguous tokenizer-token windows within each chosen sentence. Default W<=12, reduced to the minimum available width of any chosen sentence. Each chosen candidate for the same question hides exactly W KV positions. For relevant evidence, a text match of the gold answer can anchor the window (otherwise use center). This is an annotation-based *offline diagnostic*, not a practical online policy. Log sentence ID, source title/sentence, all masked token positions, answer anchor use, full sentence length, age, attention and model revision. Do NOT describe this as full-sentence eviction; only a matched window is evicted.
+## 2. MAIN — ground-truth-blind Context sampling
 
-## 3. Separate causal experiments
+Implementation: kvp/role_main_candidates.py.
 
-Let P denote prompt token count; i a selected set of W Content token positions, j the last later Question token, r recurrent iteration (1 through R), and h(j,r) the hidden state for Question token j after loop r.
+- Eligible pool: **all** tokenizer-aligned Context positions across the entire Context, regardless of supporting-fact annotation. No instruction or question positions.
+- Default unit: **one KV token** per intervention, closer to MoEZip's per-token anchor selection. Use --main-window-tokens 4 or 8 as independent multi-token sensitivity sweeps (fresh run directory for each width). A wider window is not an apples-to-apples NLL comparison with a single-token mask.
+- Default diagnostic sample: 8 candidates per request (--main-candidates 8). Compute all eligible contiguous windows of required width. Divide by **Context position**, not relevance, into 4 strata. Within each stratum, deterministic salted SHA order; cycle strata and select nonoverlapping windows. Fail if requested width/count cannot fit.
+- Critical **leakage check**: the selector receives only Context token-position indices, integer seed and width/count. It never receives ground-truth role labels, supporting_facts, gold answer text, baseline attention, masked prefill errors, or future decode losses. Altering answer or swapping supporting/distractor annotations while keeping Context positions unchanged MUST yield exactly the same selected candidates. Add this as a unit test.
+- Main source_role is neutral 'context', and all source candidate identifiers are position-based. Ground-truth fields may be present in frozen dataset provenance but are not used to sample or fit features. In MAIN analysis, the evidence-specific attention breakdown is suppressed and Relevant/Distractor strata are not used.
+- Sampled positions are a diagnostic approximation of the full pool, **not** a complete Context ranking. A negative result may be due to sparse useful-token sampling; do not silently oversample gold evidence to fix it. Increase n_candidates in a predeclared NEW run if needed.
 
-### A — Mechanism during prefill
+**Main experiment A (mechanism, during normal prompt prefill):**
+1. Clean FULL-depth Context -> Instruction -> Question.
+2. Persistent masked-Instruction: hide a sampled Context source token set i only while later Instruction/Question recurrent *core* attention executes.
+3. One-shot masked-Question: hide i only at the final Question query's **loop 1**, restore normal KV reads for all later recurrences. This separates initial disturbance propagation from repeated injection.
+4. Measure per-loop error and recovery; compare to per-loop clean Instruction/Question -> Context Attention.
 
-Run all Content tokens at FULL recurrent depth with no source modification. When computing later Instruction/Question queries, block those queries' recurrent-core attention reads to Content window i:
+Define i = selected KV-token index/window, j = final Question token, r = loop, and h_{j,r} = Question hidden state after loop r:
 
-- Clean FULL prefill: h_full(j,r)
-- Persistent A: mask i for every later Instruction and Question query and every loop
-- One-shot A: mask i only for final Question query at loop 1; restore Content KV reads in later loops
+    E_i(r) = || h_{j,r}^{masked_i} - h_{j,r}^{full} ||_2
+             / (||h_{j,r}^{full}||_2 + epsilon),    r = 1,...,R
 
-Define normalized hidden divergence:
+    Persistence_i = E_i(R) / max(E_i(1), epsilon)
 
-    E_i(r) = || h_mask_i(j,r) - h_full(j,r) ||_2
-             / max( ||h_full(j,r)||_2, epsilon )
+A high E_i(r) is a counterfactual recurrent-state perturbation, **NOT** itself proof of future importance. One-shot recovery and persistent-mask error have different interpretations. E_i(R) requires a masked re-prefill and is thus an expensive diagnostic oracle, not a free serving feature.
 
-and persistence ratio E_i(R) / max(E_i(1), epsilon). Persistent A includes repeated perturbation; one-shot A isolates propagation/recovery. An arbitrary state difference is NOT automatically helpful, harmful, or specific to looped models. Measure clean per-loop Question/Instruction→Context attention as a baseline signal.
+**Main experiment B (actual post-prefill KV READ eviction):**
+1. Compute a completely untouched FULL-depth prefill.
+2. Record the clean fixed/dynamic generation depth trace.
+3. Starting only at generated-token query positions t >= prompt length P, mask candidate i from the attention reads of all recurrent and ordinary layers.
+4. Score the same gold-token sequence with *identical forced depth* to isolate the KV effect.
+5. Measure future generated-token hidden divergence under matched depth (first four processed target queries), future teacher-forced NLL difference, and optional free greedy QA Exact Match.
+6. Separate **Live Exit** run allows actual exit depth changes; report exit flip, signed depth shift and quality delta; do not interpret any exit flip as failure by itself.
 
-### B — Actual future KV-read eviction AFTER clean full prefill
+Let T be the gold continuation token count, ell_t = negative log probability of gold token t, and P the clean prompt length:
 
-Compute the entire original prompt normally, including all Instruction and Question recurrent states. Only when later *generated-token* queries are processed (position >= P), hide the same Context KV window from all recurrent and ordinary attention layers. No previously computed prefill state is altered.
+    Utility_i := DeltaFutureNLL_i
+      = mean_{t=2..T} (ell_t^{evict_i, recorded} - ell_t^{clean, recorded})
 
-Use recorded replay to hold every generated token at the identical recurrent depth for paired NLL comparisons:
+The first target token's logit is pre-mask and must be unchanged; delta may be negative (eviction improves NLL). Teacher forcing and free generation are different measurements. No source text deletion occurs; the allocated Full-loop KV buffers remain in HBM.
 
-    Delta_future_NLL(i)
-      = mean NLL(gold positions 2..T | clean full prefill, evict i)
-      - mean NLL(gold positions 2..T | clean full prefill, no eviction)
+**Main experiment C (attention-matched mismatch and prediction):**
 
-T is capped at 64 gold tokens. The signed delta can be negative. Also measure matched-depth generated-token hidden-state divergence (up to first four processed generated queries). When using dynamic exit, compare frozen replay and separately *live* exit decisions, because live exit may change depth and NLL. An exit flip is not necessarily a quality loss.
+At the SAME prompt, attempt unlabeled pairs with:
+- equal masked-token width,
+- clean Attention relative gap <=20%, and
+- relative source-age gap <=20%.
+Choose at most one closest pair per request to avoid inflating the independent sample count. If pair coverage is poor, report N and inconclusive; never loosen thresholds post-hoc. Analyze whether differences in recurrent error relate to differences in signed future NLL within these pairs.
 
-Optional --free-generate (implemented): greedy decode from a clean prompt with no gold continuation fed into the model, comparing pre/post-eviction Exact Match and clean-correct→evicted-incorrect rate. The last prompt token predicts the same first generated token under both branches; check parity. Exact-match extraction is a short-answer scorer and must be validated on real samples. Without this option, do NOT claim answer accuracy, only teacher-forced NLL.
+Fit on a request-disjoint SHA-based 70/30 split per (model, dataset, decode mode), training-only standardization; reported negative heldout R-squared is a real result.
 
-All these operations use an **allocated FULL-sized multi-loop KV reference plus read masks**. Physical HBM reduction and TPS/TPOT are NOT measured.
+| Predictor | Inputs | Pre-eviction observable? |
+|---|---|---|
+| Attention+Age+W (control) | Clean Instruction/Question-to-source Attention mean/max, token age, mask width W | Yes |
+| Attention+Age+W+Recurrence | Previous controls + source's own clean loop-to-loop change + attention-weighted alignment with the clean final Question's recurrent change | Yes |
+| Attention+Age+W+masked-Question oracle | Previous controls + costly masked Question final hidden error E_i(R) | **NO** |
 
-## 4. Importance predictor and statistical controls
+The clean observable recurrent alignment is:
 
-The future eviction NLL delta from B is the supervised ground truth. Compare models fit only on 70% of request UIDs (fixed SHA-order split; 30% request-heldout), with train-only feature standardization.
+    A_i(r) = sum of clean Question/Instruction-to-window-i attention at loop r
+    C_j(r) = || h_{j,r}^{clean} - h_{j,r-1}^{clean} ||_2
+             / (||h_{j,r-1}^{clean}||_2 + epsilon),  r >= 2
+    Alignment_i = sum_r A_i(r) C_j(r) / max(sum_r A_i(r), epsilon)
 
-| Predictor | Features | Available online? |
-| --- | --- | --- |
-| Attention+Age+W | Clean Instruction/Question→Content mean/max attention, source age, masked window width | Yes |
-| + clean recurrent | Above plus Context source's own clean loop-state change and attention-weighted alignment with the Question's clean loop-state change | Yes |
-| + masked-Question oracle | Baseline plus A's expensive counterfactual final state divergence | NO |
+Only future DeltaFutureNLL is the supervised label. The gold answer's location is NEVER an input feature. Report heldout R-squared and incremental difference between baseline and online recurrence; request-level bootstrap / multi-seed splits are required before inferential paper claims. A positive oracle-only result is *not* a viable runtime method.
 
-Define source-window attention mass A_i(r) and clean Question change C_j(r):
+## 3. ABLATION — evidence/distractor causal explanation (offline oracle)
 
-    C_j(r) = ||h_full(j,r) - h_full(j,r-1)||_2
-             / max(||h_full(j,r-1)||_2, epsilon), r>=2
-    Alignment_i = sum_r A_i(r)*C_j(r) / max(sum_r A_i(r), epsilon)
+Implementation: kvp/role_data.py choose_evidence_candidates() and the same role_span_oracle engine, executed with --study ablation.
 
-This correlation is a candidate ONLINE feature, not proven instability. Counterfactual E_i(R) is deliberately labeled an expensive oracle. Do not pass ground-truth relevance labels, gold answers, future generated attention, or future NLL into predictors.
+- Choose up to 2 supporting-fact sentences and up to 2 distracting sentences per question from ground-truth annotation. Controlled Retrieval may have only **one** relevant fact; the code chooses available facts rather than inventing a second.
+- Use contiguous KV-token windows of identical width **within the same request**, default up to 8-12 tokens (CLI --window-tokens 8 is recommended for pilot). Width may fall below the cap if a selected sentence is shorter; actual n_masked_tokens is recorded. This is NOT entire-sentence eviction.
+- In Ablation only, if the gold string appears in a Relevant sentence, a window may be centered on it; otherwise center the sentence. This gold-answer anchoring is deliberately forbidden in MAIN. Record whether it occurred.
+- Apply the **same A, B, C instrumentation** as MAIN at identical W for Relevant vs Distractor windows. Collect persistent/one-shot error trajectories, clean attention, future signed NLL, matched-depth generated state error, optional greedy accuracy and dynamic exit.
+- Report separate role means/distributions and within-request paired signed difference:
 
-Report separate Relevant/Irrelevant signed future-NLL mean, generated-state error, Spearman source attention and recurrence associations, plus paired within-request Relevant-minus-Irrelevant damage. Bootstrap this paired difference by request (1,000 resamples). Separately match the closest Relevant/Irrelevant source windows inside the *same request* when relative attention gap <=20%, preregistered; report the number of matched requests and remaining age difference. Matching attention does not exactly match age or semantics.
+    d_u = mean(DeltaFutureNLL_i | relevant candidates in request u)
+          - mean(DeltaFutureNLL_i | distractor candidates in request u)
 
-Output request-heldout R² for Attention+Age+W vs the augmented recurrence predictor and oracle control, including negative R². Before claiming a paper method, repeat split seeds and compute request-bootstrap intervals on the incremental benefit; current one-split R² is exploratory.
+    d_bar = (1/N) sum_{u=1..N} d_u
 
-**Go/no-go:**
-1. Does A show content-specific (not merely generic) hidden divergence at comparable attention?
-2. Does A predict signed B future NLL damage after role/age/width controls?
-3. Do affordable *clean prefill* recurrent features improve heldout prediction beyond attention+age+W?
-4. Is clean greedy accuracy nondegenerate? A model that cannot answer the original workload cannot support strong claims about protecting answer accuracy.
+Use 1,000 deterministic resamples of complete requests for a descriptive 95% paired interval; samples from one request are correlated and must not be treated as independent. Also compare the closest Relevant vs Distractor windows within each request when attention differs by <=20%; report remaining age mismatch and pair count. A Ground-truth Relevant window is *not guaranteed* to cause more damage; signed negative/null differences are valid and informative.
 
-If (1) only, this is mechanism characterization. If (1) and (2), this is a future utility association, but still an oracle. Only an affordable signal plus matched-budget eviction wins can motivate a systems method. Negative/zero results should be reported.
+- Important comparability limit: default MAIN masks W=1, default ABLATION masks W=8. Do NOT compare their raw NLL deltas or inferred sensitivity magnitudes. If such a direct comparison is desired, rerun Ablation with --window-tokens 1 and explicitly label it a matched-budget check. The principal ABLATION comparison is **Relevant vs Distractor within the same request**.
+- HotpotQA unannotated sentences can be useful despite not being marked Supporting Fact; the "irrelevant_content" role means "not annotated as supporting" rather than "logically guaranteed to be irrelevant."
 
-## 5. Staged runs and commands
+## 4. Run schedule (realistic H200 x 8 gates)
 
-Stage | Data | Size/model | Decode | Gate
---- | --- | --- | --- | ---
-CPU tests | synthetic fixture and tiny random models | tests | fixed/dynamic | offset labels, annotations, grouped masking, first-token invariant, reference parity
-Smoke | Controlled Retrieval | 5 | fixed | inspect five prompt roles, targets, masked positions, greedy outputs
-Pilot | Controlled Retrieval + HotpotQA excerpt | 20/dataset | fixed first | nontrivial future NLL, relevance discrimination, measured runtime/HBM
-Main | Both datasets | 100/dataset | fixed+dynamic | 1,200 jobs, matched comparisons, heldout prediction
-Separate validation | HotpotQA full_context | 5 then 20+ | fixed initially | longer prompts, verify no truncation
-Generalization | GSM8K/MATH-500 | new adapter later | conditional | no reuse of old prompt/target as equivalent benchmark
+| Phase | Study | Data | Scale | Decode | Required pass gate |
+| --- | --- | --- | --- | --- | --- |
+| 0 | Code/fixture tests | synthetic and tiny Huginn/Ouro models | unit + parity | fixed | exact role attribution, label-blind main selection, grouped masks, replay equality, first-token invariant |
+| 1 | MAIN Smoke | Controlled Retrieval | 5/model | fixed | correct unlabeled candidates, prompt and target, finite NLL |
+| 2 | ABLATION Smoke | Controlled Retrieval | 5/model | fixed | evidence/distractor matched widths, annotation provenance |
+| 3 | MAIN Pilot | Controlled Retrieval + HotpotQA excerpt | 20/model/dataset | fixed | meaningful NLL variance, attention matching coverage, baseline QA |
+| 4 | ABLATION Pilot | same | 20/model/dataset | fixed | paired signs, no candidate leakage, optional accuracy |
+| 5 | MAIN Main | same | 100/model/dataset | fixed + dynamic | 1200 model-question-mode jobs, heldout predictor and matched pairs |
+| 6 | ABLATION Main | same | 100/model/dataset | fixed + dynamic | 1200 model-question-mode jobs, request-paired bootstrap |
+| 7 | Controlled variants | HotpotQA full_context, widths 1/4/8, additional controlled lengths | separate frozen runs | fixed first | robustness to context/width, no silent protocol changes |
+| 8 | Conditional policy system stage | actual budget-constrained compact KV | separate implementation | fixed/dynamic | equal KV bytes vs H2O/SnapKV/StreamingLLM/random, HBM/TPOT/TPS |
 
-Revisions, all question UIDs, exact prompt token IDs/roles, gold answers, evidence sentence IDs, source hashes and Git HEAD are frozen in jobs.json and run_manifest.json. Every frozen setting requires a fresh run directory; --prepare performs CPU/data/tokenizer work but no GPU model execution. --execute alone launches model workers. Before running eight GPUs, verify server ownership and model revision / input lengths. Fail-closed on any overlength prompt or parity mismatch.
+**Totals if BOTH full studies run:** 2 x (3 models x 2 datasets x 100 request UIDs x 2 decode modes) = **2400 model-question-mode jobs**, but only **200 unique questions** if datasets supply 100 each. Each job includes many model re-prefill and decode interventions; do not treat these jobs as individual forward passes. No H200 runtime estimates or results are claimed.
 
-Commands:
+### Commands (run in a fresh checkout)
 
     git fetch origin
-    git checkout research/evidence-recurrent-sensitivity-v2-20261030
+    git checkout research/recurrent-sensitivity-main-ablation-v3-20261031
     cd kv_policy
 
-    python -m pytest -q tests/test_role_sensitivity.py \
-      tests/test_role_model_parity.py tests/test_role_sweep.py \
-      tests/test_role_evidence.py
+    # Never skip CPU/fixture gates:
+    python -m pytest -q \
+      tests/test_role_sensitivity.py tests/test_role_model_parity.py \
+      tests/test_role_sweep.py tests/test_role_evidence.py \
+      tests/test_role_main_candidates.py
 
-    # Smoke (5 questions per model, fixed)
+    # MAIN smoke: position-only candidate sampler, W=1
     python scripts/role_sensitivity_sweep.py --prepare \
-      --run-dir results/evidence_v2_smoke5 \
-      --datasets controlled_retrieval --n-examples 5 \
-      --n-relevant 1 --n-irrelevant 1 --window-tokens 8 \
+      --study main --datasets controlled_retrieval \
+      --run-dir results/v3_main_smoke5 \
+      --n-examples 5 --main-candidates 8 --main-window-tokens 1 \
       --decode-modes fixed --free-generate
 
-    python scripts/role_sensitivity_sweep.py --execute \
-      --run-dir results/evidence_v2_smoke5 --gpu-ids 0
-    python scripts/role_sensitivity_sweep.py --analyze \
-      --run-dir results/evidence_v2_smoke5
-
-    # Pilot 20 per model/dataset, fixed
+    # ABLATION smoke: labeled equal-budget windows, W cap=8
     python scripts/role_sensitivity_sweep.py --prepare \
-      --run-dir results/evidence_v2_pilot20_fixed \
+      --study ablation --datasets controlled_retrieval \
+      --run-dir results/v3_ablation_smoke5 \
+      --n-examples 5 --n-relevant 1 --n-irrelevant 2 \
+      --window-tokens 8 --decode-modes fixed --free-generate
+
+    # Only when tests pass and H200 ownership/model compatibility are confirmed:
+    python scripts/role_sensitivity_sweep.py --execute \
+      --run-dir results/v3_main_smoke5 --gpu-ids 0
+    python scripts/role_sensitivity_sweep.py --analyze \
+      --run-dir results/v3_main_smoke5
+    python scripts/role_sensitivity_sweep.py --execute \
+      --run-dir results/v3_ablation_smoke5 --gpu-ids 0
+    python scripts/role_sensitivity_sweep.py --analyze \
+      --run-dir results/v3_ablation_smoke5
+
+    # Frozen fixed-depth pilot (20 requests per model/dataset)
+    python scripts/role_sensitivity_sweep.py --prepare \
+      --study main --run-dir results/v3_main_pilot20 \
+      --n-examples 20 --main-candidates 8 \
+      --main-window-tokens 1 --decode-modes fixed
+
+    python scripts/role_sensitivity_sweep.py --prepare \
+      --study ablation --run-dir results/v3_ablation_pilot20 \
       --n-examples 20 --n-relevant 2 --n-irrelevant 2 \
-      --window-tokens 12 --decode-modes fixed --free-generate
+      --window-tokens 8 --decode-modes fixed --free-generate
 
-    # Main after pilot gates; model x dataset x question x mode = 1200 jobs
+    # MAIN 100, only after pilot approval; 1200 jobs with both decode modes.
     python scripts/role_sensitivity_sweep.py --prepare \
-      --run-dir results/evidence_v2_main100 --n-examples 100 \
-      --n-relevant 2 --n-irrelevant 2 --window-tokens 12 \
-      --decode-modes fixed,dynamic --free-generate
+      --study main --run-dir results/v3_main100 \
+      --n-examples 100 --main-candidates 8 --main-window-tokens 1 \
+      --decode-modes fixed,dynamic --max-target-tokens 64
     python scripts/role_sensitivity_sweep.py --execute \
-      --run-dir results/evidence_v2_main100 --gpu-ids 0,1,2,3,4,5,6,7
+      --run-dir results/v3_main100 --gpu-ids 0,1,2,3,4,5,6,7
     python scripts/role_sensitivity_sweep.py --analyze \
-      --run-dir results/evidence_v2_main100
+      --run-dir results/v3_main100
 
-    # Separate HotpotQA complete-context preflight (may exceed 4096)
+    # ABLATION 100; separate dataset manifest, raw outputs, and statistics.
     python scripts/role_sensitivity_sweep.py --prepare \
-      --run-dir results/evidence_v2_hotpot_full10 \
-      --datasets hotpotqa_distractor \
-      --hotpot-context-mode full_context --max-prompt-tokens 4096 \
-      --n-examples 5 --decode-modes fixed
+      --study ablation --run-dir results/v3_ablation100 \
+      --n-examples 100 --n-relevant 2 --n-irrelevant 2 \
+      --window-tokens 8 --decode-modes fixed,dynamic --max-target-tokens 64
+    python scripts/role_sensitivity_sweep.py --execute \
+      --run-dir results/v3_ablation100 --gpu-ids 0,1,2,3,4,5,6,7
+    python scripts/role_sensitivity_sweep.py --analyze \
+      --run-dir results/v3_ablation100
 
-Token-major FULL-depth prefill re-executes for every candidate and is EXPENSIVE. --free-generate adds additional full-prefill passes. Default target horizon is up to 64 gold tokens; default greedy answer generation horizon is 32 tokens. Consider an explicitly separate pilot without free generation for profiling but NEVER claim Accuracy from it. Huginn FP32 cosine threshold evaluation remains a documented modified evaluator relative to its BF16-native threshold behavior.
+    # Optional separate matched-unit ABLATION (not the original ablation run):
+    python scripts/role_sensitivity_sweep.py --prepare \
+      --study ablation --run-dir results/v3_ablation_W1 \
+      --n-examples 20 --window-tokens 1 --decode-modes fixed
 
-## 6. Verification checklist / required outputs
+The default model set is all three models; the default datasets are Controlled Retrieval and HotpotQA excerpt. Explicit --max-prompt-tokens (default 1536) FAILS preparation on overlong prompts, never truncates. Hotpot full_context should be a separate run with explicitly raised limit and H200 memory preflight. --free-generate adds large costs; when disabled, never report free-generation answer accuracy as if measured.
 
-- Verify HotpotQA file SHA, original support sentence IDs, valid two-document support, and sample UID provenance. Audit 5 examples before expanding.
-- Verify identical selected W token positions and masking semantics in A and B, true role and causal ordering, prompt/target token length and no truncation.
-- Verify first gold-token NLL and first greedy generated token are unchanged by B.
-- Verify clean baseline and recorded replay per-token NLL parity <=1e-4, full-depth prefill R for all prompt tokens, dynamic depth only in generated positions.
-- Report evidence_sensitivity.csv, question_controls.csv, instruction_attention_by_loop.csv, analysis/SUMMARY.json, completeness.json. Label any failed/incomplete jobs; no silent omission.
-- Report role-specific NLL, generation Exact Match and clean-correct loss (if evaluated), matched-attention pair count, request-bootstrap CI, heldout R² and its uncertainty.
-- Do not claim physical KV memory savings, latency, TPS or TPOT. A later multi-token byte-budget policy stage must compare actual compressed eviction with fair H2O/SnapKV/StreamingLLM/random baselines.
+### Machine-readable artifacts per run
 
-Changed files:
-- kvp/role_evidence_data.py: seeded retrieval, pinned HotpotQA and sentence provenance.
-- kvp/role_data.py: tokenizer-offset evidence/question roles and matched source windows.
-- kvp/role_sensitivity.py: grouped key masks and per-loop relevant/irrelevant attention.
-- kvp/role_span_oracle.py: paired causal A/B, generated states, optional free accuracy.
-- kvp/role_generation.py: greedy answer generation and Exact Match.
-- scripts/role_sensitivity_sweep.py: v2 preparation, worker, structured analysis.
-- tests/test_role_sweep.py, tests/test_role_evidence.py: regression gates.
+Frozen: jobs.json, run_manifest.json (including study, source SHA, model revisions, UIDs, token roles/positions, candidate list, prompt hash, original source/checksum).
+Per worker: raw/<jobhash>.json and failure traces.
+MAIN: analysis/main_context_sensitivity.csv, question_controls.csv, instruction_attention_by_loop.csv, SUMMARY.json, completeness.json.
+ABLATION: analysis/ablation_evidence_sensitivity.csv, question_controls.csv, instruction_attention_by_loop.csv, SUMMARY.json, completeness.json.
 
-Tests and H200 experiments are NOT claimed to have passed as part of this GitHub-only update.
+Complete means all expected jobs and candidates exist, replay max abs per-token NLL error <=1e-4, no error files, correct study/protocol identity. Do not claim successful full runs merely because --prepare wrote files.
+
+## 5. Interpretation and decision rules (pre-register before seeing data)
+
+**Mechanism only:** E_i(r) differs across sources, or loop-recovery patterns differ, but little relationship to future NLL. This is an observation, not an eviction policy.
+**MAIN scientific support:** Similar-attention/age Context sources differ in recurrent effect, and the effect predicts actual signed future NLL across request-heldout cohorts.
+**MAIN deployability support:** A model using *only a clean prefill's cheap recurrent features* gives reproducibly higher heldout predictive quality than Attention+Age+W. A masked-prefill oracle-only improvement does not establish serving viability.
+**ABLATION explanation:** Ground-truth evidence status explains some source heterogeneity, preferably even after controlling width/attention/age; a weak/negative Relevant-Distractor contrast is valid.
+**No-go:** Attention/age explains all, counterfactual sensitivity has no future association, main samples miss important sources, dynamic exits saturate, or clean QA accuracy is degenerate. Do not retune the heldout cohort or evidence windows based on measured results.
+**Next systems step:** a compact KV policy evaluated at exactly equal HBM bytes and generation quality against fair published baselines; this code does NOT physically evict KV nor measure throughput/latency.
+
+## 6. Scope of implemented change
+
+- kvp/role_main_candidates.py (NEW): no-label all-Context stratified sampling; checked invariant under evidence relabeling.
+- kvp/role_span_oracle.py: separate candidate validation and metadata for MAIN and ABLATION; A and B use matched source positions.
+- scripts/role_sensitivity_sweep.py: CLI --study; immutable per-study manifest, study-specific CSV/SUMMARY and failure guards.
+- tests/test_role_main_candidates.py (NEW): no-evidence/no-answer leakage, candidate disjointness, tiny model main oracle.
+- tests/test_role_sweep.py: both study modes, heldout and matched-pair checks.
+- kvp/role_data.py, kvp/role_evidence_data.py, kvp/role_generation.py retained: original offset-alignment, data provenance and optional free greedy QA.
+
+All code changes are on the new v3 branch; the v2 branch and FERRY are untouched.
+
+**Validation status:** GitHub contents/commits checked; standalone live H200 model tests, full pytest, and performance measurements NOT observed as part of this commit. Must verify before running MAIN or interpreting the paper.
