@@ -169,7 +169,10 @@ def swap_neighbors(original: Mapping, context_positions: Sequence[int],
             if p not in candidate_add and len(candidate_add)<max_evicted:
                 candidate_add.append(p)
     rest=[p for p in evicted if p not in candidate_add]
-    rng=random.Random(digest(f"swap/{seed}/{uid}/{original['retention_requested']}"))
+    retention=original.get("retention_requested",original.get("retention"))
+    if retention is None or not math.isfinite(float(retention)):
+        raise ValueError("Original swap anchor lacks a valid retention ratio")
+    rng=random.Random(digest(f"swap/{seed}/{uid}/{float(retention)}"))
     rng.shuffle(rest)
     for p in rest:
         if len(candidate_add)>=max_evicted:
