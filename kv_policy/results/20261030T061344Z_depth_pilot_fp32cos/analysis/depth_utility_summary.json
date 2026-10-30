@@ -1,0 +1,257 @@
+{
+  "complete": true,
+  "missing_jobs": [],
+  "groups": [
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "n_source_tokens": 16,
+      "n_requests": 4,
+      "spearman_depth_vs_oracle_utility": 0.41588451578889873,
+      "spearman_attention_vs_oracle_utility": -0.1264705882352941,
+      "in_sample_incremental_r2_depth_over_age_attention": 0.27006625131062295,
+      "mean_depth": 18.4375,
+      "mean_eviction_delta_nll": 0.005642348101901007,
+      "positive_loss_fraction": 0.6875
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "n_source_tokens": 16,
+      "n_requests": 4,
+      "spearman_depth_vs_oracle_utility": -0.0868403604702313,
+      "spearman_attention_vs_oracle_utility": -0.09117647058823529,
+      "in_sample_incremental_r2_depth_over_age_attention": 0.012256699249775722,
+      "mean_depth": 18.25,
+      "mean_eviction_delta_nll": -0.01506954360297641,
+      "positive_loss_fraction": 0.5
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "n_source_tokens": 16,
+      "n_requests": 4,
+      "spearman_depth_vs_oracle_utility": -0.24597601850723633,
+      "spearman_attention_vs_oracle_utility": 0.13823529411764707,
+      "in_sample_incremental_r2_depth_over_age_attention": 0.015607181748670783,
+      "mean_depth": 3.875,
+      "mean_eviction_delta_nll": 0.03549279271271644,
+      "positive_loss_fraction": 0.5625
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "n_source_tokens": 16,
+      "n_requests": 4,
+      "spearman_depth_vs_oracle_utility": 0.16087993330796874,
+      "spearman_attention_vs_oracle_utility": 0.3058823529411765,
+      "in_sample_incremental_r2_depth_over_age_attention": 0.003616549271984248,
+      "mean_depth": 3.6875,
+      "mean_eviction_delta_nll": -0.00020929836477989738,
+      "positive_loss_fraction": 0.5
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "n_source_tokens": 16,
+      "n_requests": 4,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": -0.24411764705882352,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 4.0,
+      "mean_eviction_delta_nll": 0.028199043987541472,
+      "positive_loss_fraction": 0.5625
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "n_source_tokens": 16,
+      "n_requests": 4,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": 0.22058823529411764,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 4.0,
+      "mean_eviction_delta_nll": 5.2331886308820685e-06,
+      "positive_loss_fraction": 0.5625
+    }
+  ],
+  "traces": [
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0005",
+      "mean_depth": 3.8828828828828827,
+      "fraction_max_depth": 0.8828828828828829
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0010",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0011",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0017",
+      "mean_depth": 3.891891891891892,
+      "fraction_max_depth": 0.8918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1004.json",
+      "mean_depth": 3.7837837837837838,
+      "fraction_max_depth": 0.7837837837837838
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1031.json",
+      "mean_depth": 3.8018018018018016,
+      "fraction_max_depth": 0.8018018018018018
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1072.json",
+      "mean_depth": 3.774774774774775,
+      "fraction_max_depth": 0.7747747747747747
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1082.json",
+      "mean_depth": 3.6666666666666665,
+      "fraction_max_depth": 0.6666666666666666
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0005",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0010",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0011",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0017",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1004.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1031.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1072.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1082.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0005",
+      "mean_depth": 19.846846846846848,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0010",
+      "mean_depth": 18.82882882882883,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0011",
+      "mean_depth": 18.963963963963963,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0017",
+      "mean_depth": 18.98198198198198,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1004.json",
+      "mean_depth": 18.56756756756757,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1031.json",
+      "mean_depth": 16.91891891891892,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1072.json",
+      "mean_depth": 18.972972972972972,
+      "fraction_max_depth": 0.0990990990990991
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1082.json",
+      "mean_depth": 17.036036036036037,
+      "fraction_max_depth": 0.0
+    }
+  ],
+  "caveats": [
+    "B1 gold suffix, prompt may be truncated; not task accuracy",
+    "Single-token oracle, not simultaneous eviction serving policy",
+    "Offline policy rankings are singleton-loss diagnostics only: sums are NOT joint-eviction NLL",
+    "Attention_pre excludes future and self attention but is observed during prompt",
+    "Raw exit depths across model families are not comparable",
+    "In-sample incremental R2 is not held-out predictive performance",
+    "Reference GPU cache remains FULL-sized; no measured memory saving"
+  ]
+}

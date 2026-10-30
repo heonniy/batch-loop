@@ -1,0 +1,55 @@
+{
+  "complete": true,
+  "missing_jobs": [],
+  "groups": [
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "n_source_tokens": 2,
+      "n_requests": 1,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": null,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 21.5,
+      "mean_eviction_delta_nll": 0.00913434088761278,
+      "positive_loss_fraction": 0.5
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "n_source_tokens": 2,
+      "n_requests": 1,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": null,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 18.0,
+      "mean_eviction_delta_nll": -0.12942505009027627,
+      "positive_loss_fraction": 0.5
+    }
+  ],
+  "traces": [
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0005",
+      "mean_depth": 19.846846846846848,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1004.json",
+      "mean_depth": 18.56756756756757,
+      "fraction_max_depth": 0.0
+    }
+  ],
+  "caveats": [
+    "B1 gold suffix, prompt may be truncated; not task accuracy",
+    "Single-token oracle, not simultaneous eviction serving policy",
+    "Offline policy rankings are singleton-loss diagnostics only: sums are NOT joint-eviction NLL",
+    "Attention_pre excludes future and self attention but is observed during prompt",
+    "Raw exit depths across model families are not comparable",
+    "In-sample incremental R2 is not held-out predictive performance",
+    "Reference GPU cache remains FULL-sized; no measured memory saving"
+  ]
+}

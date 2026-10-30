@@ -1,0 +1,33 @@
+{
+  "source_sha": "3bb55fb64f8468917ffe5249075828e7580c33c1",
+  "config": {
+    "models": [
+      "ouro-1.4b",
+      "ouro-2.6b",
+      "huginn-0125"
+    ],
+    "datasets": [
+      "gsm8k",
+      "math500"
+    ],
+    "subset": "main",
+    "n_examples": 1,
+    "max_prompt_tokens": 96,
+    "max_target_tokens": 16,
+    "n_candidates": 2,
+    "seed": 20261030,
+    "ouro_q": 0.7,
+    "huginn_cosine": 0.001,
+    "huginn_max_depth": 32,
+    "min_depth": 2
+  },
+  "model_revisions": {
+    "ouro-1.4b": "574fa66cb8bf5abdc979642d01cf2b79b16bfab1",
+    "ouro-2.6b": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+    "huginn-0125": "bb6621b65e90b6a4b9b29ef88dc83866d450470c"
+  },
+  "job_count": 6,
+  "python": "3.11.17",
+  "torch": "2.6.0+cu124",
+  "warning": "B1 teacher-forced gold NLL on potentially LEFT-TRUNCATED prompts. Not benchmark accuracy or measured HBM."
+}

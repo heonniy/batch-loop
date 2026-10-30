@@ -1,0 +1,4289 @@
+{
+  "complete": true,
+  "missing_jobs": [],
+  "groups": [
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "n_source_tokens": 400,
+      "n_requests": 100,
+      "spearman_depth_vs_oracle_utility": 0.06349812927319445,
+      "spearman_attention_vs_oracle_utility": 0.04627529789723103,
+      "in_sample_incremental_r2_depth_over_age_attention": 0.016868089067068374,
+      "mean_depth": 19.505,
+      "mean_eviction_delta_nll": 0.01001376586901003,
+      "positive_loss_fraction": 0.5525
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "n_source_tokens": 400,
+      "n_requests": 100,
+      "spearman_depth_vs_oracle_utility": 0.010628715862247798,
+      "spearman_attention_vs_oracle_utility": 0.05801852856420951,
+      "in_sample_incremental_r2_depth_over_age_attention": 0.0013082058199828871,
+      "mean_depth": 17.875,
+      "mean_eviction_delta_nll": 0.006824738822532694,
+      "positive_loss_fraction": 0.52
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "n_source_tokens": 400,
+      "n_requests": 100,
+      "spearman_depth_vs_oracle_utility": -0.025001213169211826,
+      "spearman_attention_vs_oracle_utility": 0.03754601986203426,
+      "in_sample_incremental_r2_depth_over_age_attention": 0.0008007930556605891,
+      "mean_depth": 3.8675,
+      "mean_eviction_delta_nll": 0.014031541201918287,
+      "positive_loss_fraction": 0.505
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "n_source_tokens": 400,
+      "n_requests": 100,
+      "spearman_depth_vs_oracle_utility": 0.007250963069870292,
+      "spearman_attention_vs_oracle_utility": -3.815649026664969e-05,
+      "in_sample_incremental_r2_depth_over_age_attention": 7.928296251466884e-05,
+      "mean_depth": 3.765,
+      "mean_eviction_delta_nll": 0.0002970899549977446,
+      "positive_loss_fraction": 0.505
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "n_source_tokens": 400,
+      "n_requests": 100,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": 0.055060840714520366,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 4.0,
+      "mean_eviction_delta_nll": 0.010226684049164447,
+      "positive_loss_fraction": 0.5275
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "n_source_tokens": 400,
+      "n_requests": 100,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": -0.045230513147078676,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 4.0,
+      "mean_eviction_delta_nll": 0.003646587824705989,
+      "positive_loss_fraction": 0.505
+    }
+  ],
+  "traces": [
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0005",
+      "mean_depth": 3.8828828828828827,
+      "fraction_max_depth": 0.8828828828828829
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0010",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0011",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0017",
+      "mean_depth": 3.891891891891892,
+      "fraction_max_depth": 0.8918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0023",
+      "mean_depth": 3.8378378378378377,
+      "fraction_max_depth": 0.8378378378378378
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0028",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0029",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0036",
+      "mean_depth": 3.765765765765766,
+      "fraction_max_depth": 0.7657657657657657
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0040",
+      "mean_depth": 3.774774774774775,
+      "fraction_max_depth": 0.7747747747747747
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0044",
+      "mean_depth": 3.954954954954955,
+      "fraction_max_depth": 0.954954954954955
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0058",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.963963963963964
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0063",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0074",
+      "mean_depth": 3.8378378378378377,
+      "fraction_max_depth": 0.8378378378378378
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0078",
+      "mean_depth": 3.864864864864865,
+      "fraction_max_depth": 0.8648648648648649
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0084",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0086",
+      "mean_depth": 3.9279279279279278,
+      "fraction_max_depth": 0.9279279279279279
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0091",
+      "mean_depth": 3.81981981981982,
+      "fraction_max_depth": 0.8198198198198198
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0093",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0099",
+      "mean_depth": 3.8828828828828827,
+      "fraction_max_depth": 0.8828828828828829
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0103",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0104",
+      "mean_depth": 3.8378378378378377,
+      "fraction_max_depth": 0.8378378378378378
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0115",
+      "mean_depth": 3.954954954954955,
+      "fraction_max_depth": 0.954954954954955
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0116",
+      "mean_depth": 3.864864864864865,
+      "fraction_max_depth": 0.8648648648648649
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0118",
+      "mean_depth": 3.891891891891892,
+      "fraction_max_depth": 0.8918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0119",
+      "mean_depth": 3.8468468468468466,
+      "fraction_max_depth": 0.8468468468468469
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0121",
+      "mean_depth": 3.765765765765766,
+      "fraction_max_depth": 0.7657657657657657
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0122",
+      "mean_depth": 3.90990990990991,
+      "fraction_max_depth": 0.9099099099099099
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0126",
+      "mean_depth": 3.72972972972973,
+      "fraction_max_depth": 0.7297297297297297
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0128",
+      "mean_depth": 3.918918918918919,
+      "fraction_max_depth": 0.918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0131",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0133",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0147",
+      "mean_depth": 3.8828828828828827,
+      "fraction_max_depth": 0.8828828828828829
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0152",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0153",
+      "mean_depth": 3.945945945945946,
+      "fraction_max_depth": 0.9459459459459459
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0182",
+      "mean_depth": 3.855855855855856,
+      "fraction_max_depth": 0.8558558558558559
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0194",
+      "mean_depth": 3.8018018018018016,
+      "fraction_max_depth": 0.8018018018018018
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0196",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0197",
+      "mean_depth": 3.81981981981982,
+      "fraction_max_depth": 0.8198198198198198
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0201",
+      "mean_depth": 3.918918918918919,
+      "fraction_max_depth": 0.918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0206",
+      "mean_depth": 3.9279279279279278,
+      "fraction_max_depth": 0.9279279279279279
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0218",
+      "mean_depth": 3.8018018018018016,
+      "fraction_max_depth": 0.8018018018018018
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0221",
+      "mean_depth": 3.855855855855856,
+      "fraction_max_depth": 0.8558558558558559
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0223",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0235",
+      "mean_depth": 3.891891891891892,
+      "fraction_max_depth": 0.8918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0237",
+      "mean_depth": 3.8468468468468466,
+      "fraction_max_depth": 0.8468468468468469
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0245",
+      "mean_depth": 3.8018018018018016,
+      "fraction_max_depth": 0.8018018018018018
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0252",
+      "mean_depth": 3.8018018018018016,
+      "fraction_max_depth": 0.8018018018018018
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0258",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0269",
+      "mean_depth": 3.8468468468468466,
+      "fraction_max_depth": 0.8468468468468469
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0288",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0300",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0302",
+      "mean_depth": 3.864864864864865,
+      "fraction_max_depth": 0.8648648648648649
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0303",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.963963963963964
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0307",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0309",
+      "mean_depth": 3.90990990990991,
+      "fraction_max_depth": 0.9099099099099099
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0310",
+      "mean_depth": 3.918918918918919,
+      "fraction_max_depth": 0.918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0311",
+      "mean_depth": 3.8378378378378377,
+      "fraction_max_depth": 0.8378378378378378
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0313",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0330",
+      "mean_depth": 3.936936936936937,
+      "fraction_max_depth": 0.9369369369369369
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0353",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.972972972972973
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0363",
+      "mean_depth": 3.936936936936937,
+      "fraction_max_depth": 0.9369369369369369
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0364",
+      "mean_depth": 3.8828828828828827,
+      "fraction_max_depth": 0.8828828828828829
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0365",
+      "mean_depth": 3.7837837837837838,
+      "fraction_max_depth": 0.7837837837837838
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0378",
+      "mean_depth": 3.8828828828828827,
+      "fraction_max_depth": 0.8828828828828829
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0383",
+      "mean_depth": 3.900900900900901,
+      "fraction_max_depth": 0.9009009009009009
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0392",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0396",
+      "mean_depth": 3.8378378378378377,
+      "fraction_max_depth": 0.8378378378378378
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0400",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0407",
+      "mean_depth": 3.936936936936937,
+      "fraction_max_depth": 0.9369369369369369
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0411",
+      "mean_depth": 3.8828828828828827,
+      "fraction_max_depth": 0.8828828828828829
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0413",
+      "mean_depth": 3.918918918918919,
+      "fraction_max_depth": 0.918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0417",
+      "mean_depth": 3.90990990990991,
+      "fraction_max_depth": 0.9099099099099099
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0425",
+      "mean_depth": 3.954954954954955,
+      "fraction_max_depth": 0.954954954954955
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0443",
+      "mean_depth": 3.936936936936937,
+      "fraction_max_depth": 0.9369369369369369
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0449",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0450",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.963963963963964
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0456",
+      "mean_depth": 3.8378378378378377,
+      "fraction_max_depth": 0.8378378378378378
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0458",
+      "mean_depth": 3.774774774774775,
+      "fraction_max_depth": 0.7747747747747747
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0471",
+      "mean_depth": 3.855855855855856,
+      "fraction_max_depth": 0.8558558558558559
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0480",
+      "mean_depth": 3.855855855855856,
+      "fraction_max_depth": 0.8558558558558559
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0486",
+      "mean_depth": 3.8468468468468466,
+      "fraction_max_depth": 0.8468468468468469
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0487",
+      "mean_depth": 3.891891891891892,
+      "fraction_max_depth": 0.8918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0494",
+      "mean_depth": 3.9279279279279278,
+      "fraction_max_depth": 0.9279279279279279
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0503",
+      "mean_depth": 3.7567567567567566,
+      "fraction_max_depth": 0.7567567567567568
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0527",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0546",
+      "mean_depth": 3.891891891891892,
+      "fraction_max_depth": 0.8918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0552",
+      "mean_depth": 3.855855855855856,
+      "fraction_max_depth": 0.8558558558558559
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0573",
+      "mean_depth": 3.864864864864865,
+      "fraction_max_depth": 0.8648648648648649
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0575",
+      "mean_depth": 3.945945945945946,
+      "fraction_max_depth": 0.9459459459459459
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0579",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0584",
+      "mean_depth": 3.8828828828828827,
+      "fraction_max_depth": 0.8828828828828829
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0597",
+      "mean_depth": 3.6936936936936937,
+      "fraction_max_depth": 0.6936936936936937
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0599",
+      "mean_depth": 3.7567567567567566,
+      "fraction_max_depth": 0.7567567567567568
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0609",
+      "mean_depth": 3.864864864864865,
+      "fraction_max_depth": 0.8648648648648649
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0623",
+      "mean_depth": 3.7837837837837838,
+      "fraction_max_depth": 0.7837837837837838
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0625",
+      "mean_depth": 3.7387387387387387,
+      "fraction_max_depth": 0.7387387387387387
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0631",
+      "mean_depth": 3.8018018018018016,
+      "fraction_max_depth": 0.8018018018018018
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0641",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0646",
+      "mean_depth": 3.72972972972973,
+      "fraction_max_depth": 0.7297297297297297
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0647",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1004.json",
+      "mean_depth": 3.7837837837837838,
+      "fraction_max_depth": 0.7837837837837838
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1031.json",
+      "mean_depth": 3.8018018018018016,
+      "fraction_max_depth": 0.8018018018018018
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1072.json",
+      "mean_depth": 3.774774774774775,
+      "fraction_max_depth": 0.7747747747747747
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1082.json",
+      "mean_depth": 3.6666666666666665,
+      "fraction_max_depth": 0.6666666666666666
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/109.json",
+      "mean_depth": 3.8018018018018016,
+      "fraction_max_depth": 0.8018018018018018
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1184.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.963963963963964
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1255.json",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1338.json",
+      "mean_depth": 3.7837837837837838,
+      "fraction_max_depth": 0.7837837837837838
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1339.json",
+      "mean_depth": 3.7387387387387387,
+      "fraction_max_depth": 0.7387387387387387
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1349.json",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1529.json",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1547.json",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1553.json",
+      "mean_depth": 3.7567567567567566,
+      "fraction_max_depth": 0.7567567567567568
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/170.json",
+      "mean_depth": 3.774774774774775,
+      "fraction_max_depth": 0.7747747747747747
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1814.json",
+      "mean_depth": 3.765765765765766,
+      "fraction_max_depth": 0.7657657657657657
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/187.json",
+      "mean_depth": 3.864864864864865,
+      "fraction_max_depth": 0.8648648648648649
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1934.json",
+      "mean_depth": 3.81981981981982,
+      "fraction_max_depth": 0.8198198198198198
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1937.json",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2023.json",
+      "mean_depth": 3.8018018018018016,
+      "fraction_max_depth": 0.8018018018018018
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2046.json",
+      "mean_depth": 3.7567567567567566,
+      "fraction_max_depth": 0.7567567567567568
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2064.json",
+      "mean_depth": 3.7027027027027026,
+      "fraction_max_depth": 0.7027027027027027
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2157.json",
+      "mean_depth": 3.7027027027027026,
+      "fraction_max_depth": 0.7027027027027027
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2214.json",
+      "mean_depth": 3.81981981981982,
+      "fraction_max_depth": 0.8198198198198198
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/224.json",
+      "mean_depth": 3.7477477477477477,
+      "fraction_max_depth": 0.7477477477477478
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2391.json",
+      "mean_depth": 3.8468468468468466,
+      "fraction_max_depth": 0.8468468468468469
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/24.json",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2427.json",
+      "mean_depth": 3.900900900900901,
+      "fraction_max_depth": 0.9009009009009009
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2470.json",
+      "mean_depth": 3.7837837837837838,
+      "fraction_max_depth": 0.7837837837837838
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2486.json",
+      "mean_depth": 3.8378378378378377,
+      "fraction_max_depth": 0.8378378378378378
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2592.json",
+      "mean_depth": 3.765765765765766,
+      "fraction_max_depth": 0.7657657657657657
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2593.json",
+      "mean_depth": 3.765765765765766,
+      "fraction_max_depth": 0.7657657657657657
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2700.json",
+      "mean_depth": 3.7117117117117115,
+      "fraction_max_depth": 0.7117117117117117
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2743.json",
+      "mean_depth": 3.774774774774775,
+      "fraction_max_depth": 0.7747747747747747
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/2780.json",
+      "mean_depth": 3.90990990990991,
+      "fraction_max_depth": 0.9099099099099099
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/291.json",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/297.json",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/305.json",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/425.json",
+      "mean_depth": 3.7567567567567566,
+      "fraction_max_depth": 0.7567567567567568
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/435.json",
+      "mean_depth": 3.7837837837837838,
+      "fraction_max_depth": 0.7837837837837838
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/509.json",
+      "mean_depth": 3.855855855855856,
+      "fraction_max_depth": 0.8558558558558559
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/518.json",
+      "mean_depth": 3.90990990990991,
+      "fraction_max_depth": 0.9099099099099099
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/567.json",
+      "mean_depth": 3.7387387387387387,
+      "fraction_max_depth": 0.7387387387387387
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/668.json",
+      "mean_depth": 3.7477477477477477,
+      "fraction_max_depth": 0.7477477477477478
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/769.json",
+      "mean_depth": 3.6936936936936937,
+      "fraction_max_depth": 0.6936936936936937
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/776.json",
+      "mean_depth": 3.774774774774775,
+      "fraction_max_depth": 0.7747747747747747
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/849.json",
+      "mean_depth": 3.7117117117117115,
+      "fraction_max_depth": 0.7117117117117117
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/858.json",
+      "mean_depth": 3.8018018018018016,
+      "fraction_max_depth": 0.8018018018018018
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/873.json",
+      "mean_depth": 3.7567567567567566,
+      "fraction_max_depth": 0.7567567567567568
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/893.json",
+      "mean_depth": 3.8828828828828827,
+      "fraction_max_depth": 0.8828828828828829
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/1014.json",
+      "mean_depth": 3.81981981981982,
+      "fraction_max_depth": 0.8198198198198198
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/1114.json",
+      "mean_depth": 3.7477477477477477,
+      "fraction_max_depth": 0.7477477477477478
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/116.json",
+      "mean_depth": 3.720720720720721,
+      "fraction_max_depth": 0.7207207207207207
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/134.json",
+      "mean_depth": 3.774774774774775,
+      "fraction_max_depth": 0.7747747747747747
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/14.json",
+      "mean_depth": 3.81981981981982,
+      "fraction_max_depth": 0.8198198198198198
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/159.json",
+      "mean_depth": 3.855855855855856,
+      "fraction_max_depth": 0.8558558558558559
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/199.json",
+      "mean_depth": 3.891891891891892,
+      "fraction_max_depth": 0.8918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/216.json",
+      "mean_depth": 3.81981981981982,
+      "fraction_max_depth": 0.8198198198198198
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/23957.json",
+      "mean_depth": 3.864864864864865,
+      "fraction_max_depth": 0.8648648648648649
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/282.json",
+      "mean_depth": 3.72972972972973,
+      "fraction_max_depth": 0.7297297297297297
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/508.json",
+      "mean_depth": 3.7837837837837838,
+      "fraction_max_depth": 0.7837837837837838
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/51.json",
+      "mean_depth": 3.765765765765766,
+      "fraction_max_depth": 0.7657657657657657
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/525.json",
+      "mean_depth": 3.864864864864865,
+      "fraction_max_depth": 0.8648648648648649
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/737.json",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/803.json",
+      "mean_depth": 3.684684684684685,
+      "fraction_max_depth": 0.6846846846846847
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/894.json",
+      "mean_depth": 3.936936936936937,
+      "fraction_max_depth": 0.9369369369369369
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/1097.json",
+      "mean_depth": 3.7387387387387387,
+      "fraction_max_depth": 0.7387387387387387
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/1108.json",
+      "mean_depth": 3.864864864864865,
+      "fraction_max_depth": 0.8648648648648649
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/1140.json",
+      "mean_depth": 3.765765765765766,
+      "fraction_max_depth": 0.7657657657657657
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/183.json",
+      "mean_depth": 3.936936936936937,
+      "fraction_max_depth": 0.9369369369369369
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/229.json",
+      "mean_depth": 3.6936936936936937,
+      "fraction_max_depth": 0.6936936936936937
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/434.json",
+      "mean_depth": 3.8468468468468466,
+      "fraction_max_depth": 0.8468468468468469
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/456.json",
+      "mean_depth": 3.765765765765766,
+      "fraction_max_depth": 0.7657657657657657
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/465.json",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/477.json",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/538.json",
+      "mean_depth": 3.774774774774775,
+      "fraction_max_depth": 0.7747747747747747
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/547.json",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/843.json",
+      "mean_depth": 3.891891891891892,
+      "fraction_max_depth": 0.8918918918918919
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/846.json",
+      "mean_depth": 3.873873873873874,
+      "fraction_max_depth": 0.8738738738738738
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/947.json",
+      "mean_depth": 3.864864864864865,
+      "fraction_max_depth": 0.8648648648648649
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/965.json",
+      "mean_depth": 3.8378378378378377,
+      "fraction_max_depth": 0.8378378378378378
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/geometry/967.json",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1000.json",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/101.json",
+      "mean_depth": 3.7567567567567566,
+      "fraction_max_depth": 0.7567567567567568
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1123.json",
+      "mean_depth": 3.81981981981982,
+      "fraction_max_depth": 0.8198198198198198
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1151.json",
+      "mean_depth": 3.72972972972973,
+      "fraction_max_depth": 0.7297297297297297
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1166.json",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/117.json",
+      "mean_depth": 3.765765765765766,
+      "fraction_max_depth": 0.7657657657657657
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1197.json",
+      "mean_depth": 3.8378378378378377,
+      "fraction_max_depth": 0.8378378378378378
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/121.json",
+      "mean_depth": 3.5855855855855854,
+      "fraction_max_depth": 0.5855855855855856
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1210.json",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1279.json",
+      "mean_depth": 3.7027027027027026,
+      "fraction_max_depth": 0.7027027027027027
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/134.json",
+      "mean_depth": 3.7387387387387387,
+      "fraction_max_depth": 0.7387387387387387
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1410.json",
+      "mean_depth": 3.774774774774775,
+      "fraction_max_depth": 0.7747747747747747
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1462.json",
+      "mean_depth": 3.684684684684685,
+      "fraction_max_depth": 0.6846846846846847
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1467.json",
+      "mean_depth": 3.5765765765765765,
+      "fraction_max_depth": 0.5765765765765766
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/149.json",
+      "mean_depth": 3.7927927927927927,
+      "fraction_max_depth": 0.7927927927927928
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1510.json",
+      "mean_depth": 3.720720720720721,
+      "fraction_max_depth": 0.7207207207207207
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1544.json",
+      "mean_depth": 3.810810810810811,
+      "fraction_max_depth": 0.8108108108108109
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1555.json",
+      "mean_depth": 3.828828828828829,
+      "fraction_max_depth": 0.8288288288288288
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1714.json",
+      "mean_depth": 3.7027027027027026,
+      "fraction_max_depth": 0.7027027027027027
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0005",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0010",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0011",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0017",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0023",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0028",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0029",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0036",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0040",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0044",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0058",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0063",
+      "mean_depth": 3.945945945945946,
+      "fraction_max_depth": 0.954954954954955
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0074",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0078",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0084",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0086",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0091",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0093",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0099",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0103",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.972972972972973
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0104",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0115",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0116",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0118",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0119",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0121",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0122",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0126",
+      "mean_depth": 3.954954954954955,
+      "fraction_max_depth": 0.963963963963964
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0128",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0131",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0133",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0147",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0152",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0153",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0182",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0194",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0196",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0197",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0201",
+      "mean_depth": 3.945945945945946,
+      "fraction_max_depth": 0.954954954954955
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0206",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0218",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0221",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0223",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0235",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0237",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0245",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0252",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0258",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0269",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0288",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0300",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0302",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0303",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0307",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0309",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0310",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0311",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0313",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0330",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0353",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0363",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0364",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0365",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0378",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0383",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0392",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0396",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0400",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0407",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0411",
+      "mean_depth": 3.945945945945946,
+      "fraction_max_depth": 0.954954954954955
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0413",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0417",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0425",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0443",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0449",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0450",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0456",
+      "mean_depth": 3.954954954954955,
+      "fraction_max_depth": 0.963963963963964
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0458",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0471",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0480",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0486",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0487",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0494",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0503",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0527",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0546",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0552",
+      "mean_depth": 3.945945945945946,
+      "fraction_max_depth": 0.954954954954955
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0573",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0575",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0579",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0584",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.972972972972973
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0597",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0599",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0609",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0623",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0625",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0631",
+      "mean_depth": 3.945945945945946,
+      "fraction_max_depth": 0.954954954954955
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0641",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0646",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0647",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.972972972972973
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1004.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1031.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1072.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1082.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/109.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1184.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1255.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1338.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.972972972972973
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1339.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1349.json",
+      "mean_depth": 3.954954954954955,
+      "fraction_max_depth": 0.963963963963964
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1529.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1547.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1553.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/170.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1814.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/187.json",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1934.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1937.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2023.json",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2046.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2064.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2157.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2214.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/224.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.972972972972973
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2391.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/24.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2427.json",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2470.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2486.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2592.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2593.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2700.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2743.json",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/2780.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/291.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/297.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/305.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/425.json",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/435.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/509.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/518.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/567.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/668.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/769.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/776.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/849.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/858.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/873.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/893.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/1014.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/1114.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/116.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/134.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/14.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/159.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/199.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/216.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/23957.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/282.json",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/508.json",
+      "mean_depth": 3.972972972972973,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/51.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/525.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/737.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/803.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/894.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/1097.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/1108.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/1140.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/183.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/229.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/434.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/456.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.972972972972973
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/465.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/477.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/538.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/547.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/843.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/846.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/947.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/965.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/geometry/967.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1000.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/101.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1123.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1151.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1166.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/117.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1197.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/121.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1210.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1279.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.972972972972973
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/134.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1410.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1462.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1467.json",
+      "mean_depth": 3.963963963963964,
+      "fraction_max_depth": 0.9819819819819819
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/149.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1510.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1544.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1555.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1714.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0005",
+      "mean_depth": 19.846846846846848,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0010",
+      "mean_depth": 18.82882882882883,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0011",
+      "mean_depth": 18.963963963963963,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0017",
+      "mean_depth": 18.98198198198198,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0023",
+      "mean_depth": 18.90990990990991,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0028",
+      "mean_depth": 19.315315315315317,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0029",
+      "mean_depth": 18.792792792792792,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0036",
+      "mean_depth": 18.396396396396398,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0040",
+      "mean_depth": 19.27027027027027,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0044",
+      "mean_depth": 18.324324324324323,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0058",
+      "mean_depth": 19.27927927927928,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0063",
+      "mean_depth": 19.46846846846847,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0074",
+      "mean_depth": 19.81981981981982,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0078",
+      "mean_depth": 18.846846846846848,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0084",
+      "mean_depth": 19.18918918918919,
+      "fraction_max_depth": 0.018018018018018018
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0086",
+      "mean_depth": 19.126126126126128,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0091",
+      "mean_depth": 18.45045045045045,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0093",
+      "mean_depth": 22.36936936936937,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0099",
+      "mean_depth": 19.846846846846848,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0103",
+      "mean_depth": 21.036036036036037,
+      "fraction_max_depth": 0.018018018018018018
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0104",
+      "mean_depth": 18.74774774774775,
+      "fraction_max_depth": 0.018018018018018018
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0115",
+      "mean_depth": 20.18918918918919,
+      "fraction_max_depth": 0.036036036036036036
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0116",
+      "mean_depth": 18.07207207207207,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0118",
+      "mean_depth": 19.18918918918919,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0119",
+      "mean_depth": 21.765765765765767,
+      "fraction_max_depth": 0.036036036036036036
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0121",
+      "mean_depth": 18.91891891891892,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0122",
+      "mean_depth": 19.63963963963964,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0126",
+      "mean_depth": 19.38738738738739,
+      "fraction_max_depth": 0.06306306306306306
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0128",
+      "mean_depth": 19.54054054054054,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0131",
+      "mean_depth": 18.36936936936937,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0133",
+      "mean_depth": 19.504504504504503,
+      "fraction_max_depth": 0.02702702702702703
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0147",
+      "mean_depth": 18.47747747747748,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0152",
+      "mean_depth": 18.495495495495497,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0153",
+      "mean_depth": 18.07207207207207,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0182",
+      "mean_depth": 19.315315315315317,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0194",
+      "mean_depth": 18.036036036036037,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0196",
+      "mean_depth": 18.513513513513512,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0197",
+      "mean_depth": 18.72072072072072,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0201",
+      "mean_depth": 20.25225225225225,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0206",
+      "mean_depth": 19.144144144144143,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0218",
+      "mean_depth": 18.83783783783784,
+      "fraction_max_depth": 0.018018018018018018
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0221",
+      "mean_depth": 18.9009009009009,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0223",
+      "mean_depth": 18.83783783783784,
+      "fraction_max_depth": 0.02702702702702703
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0235",
+      "mean_depth": 18.62162162162162,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0237",
+      "mean_depth": 19.1981981981982,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0245",
+      "mean_depth": 17.783783783783782,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0252",
+      "mean_depth": 19.53153153153153,
+      "fraction_max_depth": 0.018018018018018018
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0258",
+      "mean_depth": 20.693693693693692,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0269",
+      "mean_depth": 19.01801801801802,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0288",
+      "mean_depth": 18.63063063063063,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0300",
+      "mean_depth": 19.756756756756758,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0302",
+      "mean_depth": 18.1981981981982,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0303",
+      "mean_depth": 19.396396396396398,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0307",
+      "mean_depth": 21.27927927927928,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0309",
+      "mean_depth": 21.44144144144144,
+      "fraction_max_depth": 0.036036036036036036
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0310",
+      "mean_depth": 25.38738738738739,
+      "fraction_max_depth": 0.2972972972972973
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0311",
+      "mean_depth": 18.18918918918919,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0313",
+      "mean_depth": 19.414414414414413,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0330",
+      "mean_depth": 18.504504504504503,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0353",
+      "mean_depth": 18.414414414414413,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0363",
+      "mean_depth": 20.045045045045047,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0364",
+      "mean_depth": 19.153153153153152,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0365",
+      "mean_depth": 19.54954954954955,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0378",
+      "mean_depth": 18.675675675675677,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0383",
+      "mean_depth": 18.396396396396398,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0392",
+      "mean_depth": 21.8018018018018,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0396",
+      "mean_depth": 18.8018018018018,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0400",
+      "mean_depth": 18.675675675675677,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0407",
+      "mean_depth": 18.37837837837838,
+      "fraction_max_depth": 0.018018018018018018
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0411",
+      "mean_depth": 18.594594594594593,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0413",
+      "mean_depth": 18.594594594594593,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0417",
+      "mean_depth": 18.045045045045047,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0425",
+      "mean_depth": 19.09009009009009,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0443",
+      "mean_depth": 19.64864864864865,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0449",
+      "mean_depth": 17.89189189189189,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0450",
+      "mean_depth": 20.27027027027027,
+      "fraction_max_depth": 0.018018018018018018
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0456",
+      "mean_depth": 18.756756756756758,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0458",
+      "mean_depth": 18.504504504504503,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0471",
+      "mean_depth": 20.44144144144144,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0480",
+      "mean_depth": 19.26126126126126,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0486",
+      "mean_depth": 19.18018018018018,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0487",
+      "mean_depth": 22.495495495495497,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0494",
+      "mean_depth": 18.63963963963964,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0503",
+      "mean_depth": 20.306306306306308,
+      "fraction_max_depth": 0.07207207207207207
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0527",
+      "mean_depth": 19.35135135135135,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0546",
+      "mean_depth": 19.423423423423422,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0552",
+      "mean_depth": 18.774774774774773,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0573",
+      "mean_depth": 19.89189189189189,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0575",
+      "mean_depth": 17.765765765765767,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0579",
+      "mean_depth": 24.37837837837838,
+      "fraction_max_depth": 0.08108108108108109
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0584",
+      "mean_depth": 18.65765765765766,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0597",
+      "mean_depth": 17.684684684684683,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0599",
+      "mean_depth": 19.54954954954955,
+      "fraction_max_depth": 0.018018018018018018
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0609",
+      "mean_depth": 18.882882882882882,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0623",
+      "mean_depth": 20.36036036036036,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0625",
+      "mean_depth": 19.25225225225225,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0631",
+      "mean_depth": 18.243243243243242,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0641",
+      "mean_depth": 20.7027027027027,
+      "fraction_max_depth": 0.018018018018018018
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0646",
+      "mean_depth": 19.216216216216218,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0647",
+      "mean_depth": 18.18918918918919,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1004.json",
+      "mean_depth": 18.56756756756757,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1031.json",
+      "mean_depth": 16.91891891891892,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1072.json",
+      "mean_depth": 18.972972972972972,
+      "fraction_max_depth": 0.0990990990990991
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1082.json",
+      "mean_depth": 17.036036036036037,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/109.json",
+      "mean_depth": 17.34234234234234,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1184.json",
+      "mean_depth": 18.72072072072072,
+      "fraction_max_depth": 0.07207207207207207
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1255.json",
+      "mean_depth": 18.91891891891892,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1338.json",
+      "mean_depth": 18.09009009009009,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1339.json",
+      "mean_depth": 17.0,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1349.json",
+      "mean_depth": 18.63963963963964,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1529.json",
+      "mean_depth": 19.405405405405407,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1547.json",
+      "mean_depth": 17.01801801801802,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1553.json",
+      "mean_depth": 16.73873873873874,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/170.json",
+      "mean_depth": 18.07207207207207,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1814.json",
+      "mean_depth": 16.846846846846848,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/187.json",
+      "mean_depth": 17.207207207207208,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1934.json",
+      "mean_depth": 15.567567567567568,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1937.json",
+      "mean_depth": 18.26126126126126,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2023.json",
+      "mean_depth": 17.27927927927928,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2046.json",
+      "mean_depth": 16.765765765765767,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2064.json",
+      "mean_depth": 17.35135135135135,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2157.json",
+      "mean_depth": 16.99099099099099,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2214.json",
+      "mean_depth": 17.216216216216218,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/224.json",
+      "mean_depth": 17.8018018018018,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2391.json",
+      "mean_depth": 18.81981981981982,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/24.json",
+      "mean_depth": 18.1981981981982,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2427.json",
+      "mean_depth": 17.07207207207207,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2470.json",
+      "mean_depth": 17.756756756756758,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2486.json",
+      "mean_depth": 18.954954954954953,
+      "fraction_max_depth": 0.0990990990990991
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2592.json",
+      "mean_depth": 17.972972972972972,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2593.json",
+      "mean_depth": 17.603603603603602,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2700.json",
+      "mean_depth": 18.423423423423422,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2743.json",
+      "mean_depth": 19.027027027027028,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/2780.json",
+      "mean_depth": 17.61261261261261,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/291.json",
+      "mean_depth": 16.36936936936937,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/297.json",
+      "mean_depth": 16.954954954954953,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/305.json",
+      "mean_depth": 17.036036036036037,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/425.json",
+      "mean_depth": 17.666666666666668,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/435.json",
+      "mean_depth": 18.135135135135137,
+      "fraction_max_depth": 0.036036036036036036
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/509.json",
+      "mean_depth": 18.576576576576578,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/518.json",
+      "mean_depth": 17.765765765765767,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/567.json",
+      "mean_depth": 17.65765765765766,
+      "fraction_max_depth": 0.02702702702702703
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/668.json",
+      "mean_depth": 18.34234234234234,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/769.json",
+      "mean_depth": 17.7027027027027,
+      "fraction_max_depth": 0.018018018018018018
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/776.json",
+      "mean_depth": 16.36936936936937,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/849.json",
+      "mean_depth": 17.225225225225227,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/858.json",
+      "mean_depth": 17.71171171171171,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/873.json",
+      "mean_depth": 17.666666666666668,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/893.json",
+      "mean_depth": 17.585585585585587,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/1014.json",
+      "mean_depth": 18.063063063063062,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/1114.json",
+      "mean_depth": 18.036036036036037,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/116.json",
+      "mean_depth": 17.45945945945946,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/134.json",
+      "mean_depth": 17.47747747747748,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/14.json",
+      "mean_depth": 17.513513513513512,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/159.json",
+      "mean_depth": 18.315315315315317,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/199.json",
+      "mean_depth": 17.972972972972972,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/216.json",
+      "mean_depth": 19.945945945945947,
+      "fraction_max_depth": 0.02702702702702703
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/23957.json",
+      "mean_depth": 18.63963963963964,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/282.json",
+      "mean_depth": 19.00900900900901,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/508.json",
+      "mean_depth": 16.74774774774775,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/51.json",
+      "mean_depth": 17.61261261261261,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/525.json",
+      "mean_depth": 18.52252252252252,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/737.json",
+      "mean_depth": 18.594594594594593,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/803.json",
+      "mean_depth": 17.43243243243243,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/counting_and_probability/894.json",
+      "mean_depth": 17.2972972972973,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/1097.json",
+      "mean_depth": 16.43243243243243,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/1108.json",
+      "mean_depth": 16.45045045045045,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/1140.json",
+      "mean_depth": 16.126126126126128,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/183.json",
+      "mean_depth": 17.495495495495497,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/229.json",
+      "mean_depth": 17.486486486486488,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/434.json",
+      "mean_depth": 17.117117117117118,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/456.json",
+      "mean_depth": 18.2972972972973,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/465.json",
+      "mean_depth": 17.08108108108108,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/477.json",
+      "mean_depth": 17.46846846846847,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/538.json",
+      "mean_depth": 16.513513513513512,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/547.json",
+      "mean_depth": 17.0,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/843.json",
+      "mean_depth": 17.18018018018018,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/846.json",
+      "mean_depth": 17.765765765765767,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/947.json",
+      "mean_depth": 18.34234234234234,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/965.json",
+      "mean_depth": 15.783783783783784,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/geometry/967.json",
+      "mean_depth": 17.135135135135137,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1000.json",
+      "mean_depth": 16.56756756756757,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/101.json",
+      "mean_depth": 17.036036036036037,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1123.json",
+      "mean_depth": 16.81981981981982,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1151.json",
+      "mean_depth": 17.027027027027028,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1166.json",
+      "mean_depth": 17.28828828828829,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/117.json",
+      "mean_depth": 17.513513513513512,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1197.json",
+      "mean_depth": 16.945945945945947,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/121.json",
+      "mean_depth": 16.135135135135137,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1210.json",
+      "mean_depth": 17.135135135135137,
+      "fraction_max_depth": 0.009009009009009009
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1279.json",
+      "mean_depth": 16.693693693693692,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/134.json",
+      "mean_depth": 19.0,
+      "fraction_max_depth": 0.036036036036036036
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1410.json",
+      "mean_depth": 17.504504504504503,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1462.json",
+      "mean_depth": 18.513513513513512,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1467.json",
+      "mean_depth": 17.43243243243243,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/149.json",
+      "mean_depth": 17.34234234234234,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1510.json",
+      "mean_depth": 16.756756756756758,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1544.json",
+      "mean_depth": 17.26126126126126,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1555.json",
+      "mean_depth": 18.74774774774775,
+      "fraction_max_depth": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/intermediate_algebra/1714.json",
+      "mean_depth": 19.234234234234233,
+      "fraction_max_depth": 0.036036036036036036
+    }
+  ],
+  "caveats": [
+    "B1 gold suffix, prompt may be truncated; not task accuracy",
+    "Single-token oracle, not simultaneous eviction serving policy",
+    "Offline policy rankings are singleton-loss diagnostics only: sums are NOT joint-eviction NLL",
+    "Attention_pre excludes future and self attention but is observed during prompt",
+    "Raw exit depths across model families are not comparable",
+    "In-sample incremental R2 is not held-out predictive performance",
+    "Reference GPU cache remains FULL-sized; no measured memory saving"
+  ]
+}

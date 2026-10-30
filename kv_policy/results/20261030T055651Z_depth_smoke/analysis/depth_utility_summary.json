@@ -1,0 +1,131 @@
+{
+  "complete": true,
+  "missing_jobs": [],
+  "groups": [
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "n_source_tokens": 2,
+      "n_requests": 1,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": null,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 32.0,
+      "mean_eviction_delta_nll": 0.006265800926485099,
+      "positive_loss_fraction": 0.5
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "n_source_tokens": 2,
+      "n_requests": 1,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": null,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 32.0,
+      "mean_eviction_delta_nll": -0.13812923146360845,
+      "positive_loss_fraction": 0.0
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "n_source_tokens": 2,
+      "n_requests": 1,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": null,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 4.0,
+      "mean_eviction_delta_nll": -0.012163581375716603,
+      "positive_loss_fraction": 0.0
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "n_source_tokens": 2,
+      "n_requests": 1,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": null,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 3.5,
+      "mean_eviction_delta_nll": -0.00013857153135177214,
+      "positive_loss_fraction": 0.5
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "n_source_tokens": 2,
+      "n_requests": 1,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": null,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 4.0,
+      "mean_eviction_delta_nll": -0.006811025472870824,
+      "positive_loss_fraction": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "n_source_tokens": 2,
+      "n_requests": 1,
+      "spearman_depth_vs_oracle_utility": null,
+      "spearman_attention_vs_oracle_utility": null,
+      "in_sample_incremental_r2_depth_over_age_attention": null,
+      "mean_depth": 4.0,
+      "mean_eviction_delta_nll": 0.004452141417459643,
+      "positive_loss_fraction": 1.0
+    }
+  ],
+  "traces": [
+    {
+      "model": "ouro-1.4b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0005",
+      "mean_depth": 3.8828828828828827,
+      "fraction_max_depth": 0.8828828828828829
+    },
+    {
+      "model": "ouro-1.4b",
+      "dataset": "math500",
+      "uid": "test/algebra/1004.json",
+      "mean_depth": 3.7837837837837838,
+      "fraction_max_depth": 0.7837837837837838
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0005",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "math500",
+      "uid": "test/algebra/1004.json",
+      "mean_depth": 3.981981981981982,
+      "fraction_max_depth": 0.990990990990991
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "gsm8k",
+      "uid": "gsm8k-test-0005",
+      "mean_depth": 31.43243243243243,
+      "fraction_max_depth": 0.972972972972973
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "math500",
+      "uid": "test/algebra/1004.json",
+      "mean_depth": 31.73873873873874,
+      "fraction_max_depth": 0.990990990990991
+    }
+  ],
+  "caveats": [
+    "B1 gold suffix, prompt may be truncated; not task accuracy",
+    "Single-token oracle, not simultaneous eviction serving policy",
+    "Offline policy rankings are singleton-loss diagnostics only: sums are NOT joint-eviction NLL",
+    "Attention_pre excludes future and self attention but is observed during prompt",
+    "Raw exit depths across model families are not comparable",
+    "In-sample incremental R2 is not held-out predictive performance",
+    "Reference GPU cache remains FULL-sized; no measured memory saving"
+  ]
+}

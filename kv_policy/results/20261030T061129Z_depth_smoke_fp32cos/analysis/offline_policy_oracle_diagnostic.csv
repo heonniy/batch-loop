@@ -1,0 +1,15 @@
+model,dataset,uid,policy,n_candidates,n_retained,n_evicted,sum_individual_delta_nll_ORACLE_DIAGNOSTIC,evicted_source_positions
+huginn-0125,gsm8k,gsm8k-test-0005,depth,2,1,1,0.01853115708217956,66
+huginn-0125,gsm8k,gsm8k-test-0005,reverse_depth,2,1,1,-0.000262475306954002,85
+huginn-0125,gsm8k,gsm8k-test-0005,attention_h2o_proxy,2,1,1,0.01853115708217956,66
+huginn-0125,gsm8k,gsm8k-test-0005,attention_normalized,2,1,1,0.01853115708217956,66
+huginn-0125,gsm8k,gsm8k-test-0005,recency,2,1,1,0.01853115708217956,66
+huginn-0125,gsm8k,gsm8k-test-0005,streaming_sink_recent_proxy,2,1,1,0.01853115708217956,66
+huginn-0125,gsm8k,gsm8k-test-0005,random,2,1,1,0.01853115708217956,66
+huginn-0125,math500,test/algebra/1004.json,depth,2,1,1,-0.26423546047863056,69
+huginn-0125,math500,test/algebra/1004.json,reverse_depth,2,1,1,0.005385360298078012,44
+huginn-0125,math500,test/algebra/1004.json,attention_h2o_proxy,2,1,1,-0.26423546047863056,69
+huginn-0125,math500,test/algebra/1004.json,attention_normalized,2,1,1,0.005385360298078012,44
+huginn-0125,math500,test/algebra/1004.json,recency,2,1,1,0.005385360298078012,44
+huginn-0125,math500,test/algebra/1004.json,streaming_sink_recent_proxy,2,1,1,0.005385360298078012,44
+huginn-0125,math500,test/algebra/1004.json,random,2,1,1,-0.26423546047863056,69
