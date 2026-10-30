@@ -61,7 +61,7 @@ class DepthOracleKV(PolicyKV):
     def attend(self, layer, q, k, v, c0, c1, mask):
         if c1 != c0 + 1:
             raise ValueError("B1 single-token processing only")
-        if self.evicted is not None and c0 > self.evicted:
+        if self.evicted is not None and c0 >= self.evaluation_start:
             mask = mask.clone()
             mask[..., self.evicted] = False
         if self.collect_attention:
@@ -182,7 +182,7 @@ def run_prefix(bb, ids: Sequence[int], uid: str, spec: DepthProbeSpec, *,
     p = next(bb.model.parameters())
     device, dtype = p.device, p.dtype
     kv = DepthOracleKV(bb, len(ids)-1, device, dtype, evicted,
-                       prompt_len-1, collect_attention)
+                       prompt_len, collect_attention)
     aux = bb.make_aux([uid], [0], len(ids)-1) if bb.family == "huginn" else None
     loss = []
     for col, tid in enumerate(ids[:-1]):
