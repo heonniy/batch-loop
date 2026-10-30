@@ -246,6 +246,59 @@ def _corr(a,b):
     return num/den if den>1e-10 else None
 
 
+def heldout_importance_test(rows: list[dict]) -> dict | None:
+    """Frozen request-level split; no token from test request enters fitting.
+
+    ONLINE = age + observed Instruction-to-Content Attention +
+             source's own (single clean prefill) recurrent change.
+    ORACLE = ONLINE + prefill counterfactual sensitivity (expensive).
+    Negative R2 is a legitimate held-out failure, not clamped away.
+    """
+    import numpy as np
+    uids=sorted(set(row["uid"] for row in rows))
+    if len(uids)<20:
+        return None
+    shuffled=sorted(uids,key=lambda u:sha(f"role-holdout-v1/{u}".encode()))
+    cutoff=int(len(shuffled)*.7)
+    train_uids=set(shuffled[:cutoff])
+    train=[r for r in rows if r["uid"] in train_uids]
+    test=[r for r in rows if r["uid"] not in train_uids]
+    if len(train)<20 or len(test)<10:
+        return None
+    ytrain=np.array([r["postprefill_eviction_delta_future_nll"] for r in train],dtype=float)
+    ytest=np.array([r["postprefill_eviction_delta_future_nll"] for r in test],dtype=float)
+    models={
+        "attention_age":("age_at_prefill_end","attention_mean","attention_max"),
+        "attention_age_plus_prefill_state":(
+            "age_at_prefill_end","attention_mean","attention_max",
+            "source_mean_recurrent_change"),
+        "ORACLE_attention_plus_masked_instruction":(
+            "age_at_prefill_end","attention_mean","attention_max",
+            "prefill_persistent_final_error"),
+    }
+    scores={}
+    denom=float(((ytest-ytest.mean())**2).sum())
+    for name,features in models.items():
+        x=np.array([[r[f] for f in features] for r in train],dtype=float)
+        z=np.array([[r[f] for f in features] for r in test],dtype=float)
+        if not np.isfinite(x).all() or not np.isfinite(z).all():
+            scores[name]=None
+            continue
+        means=x.mean(axis=0)
+        std=x.std(axis=0)
+        std[std<1e-8]=1.
+        a=np.column_stack((np.ones(len(x)),(x-means)/std))
+        b=np.column_stack((np.ones(len(z)),(z-means)/std))
+        coef=np.linalg.lstsq(a,ytrain,rcond=None)[0]
+        pred=b@coef
+        scores[name]=float(1-((ytest-pred)**2).sum()/denom) if denom>1e-12 else None
+    return {"train_requests":len(train_uids),
+            "test_requests":len(uids)-len(train_uids),
+            "train_tokens":len(train),"test_tokens":len(test),
+            "heldout_r2":scores,
+            "split":"sha256(role-holdout-v1/uid), 70/30, frozen"}
+
+
 def analyze(run: Path):
     m,jobs=manifest(run)
     rows=[]; controls=[]; masses=[]; missing=[]; replay_errors=[]
@@ -277,8 +330,10 @@ def analyze(run: Path):
                 wr.writerow({col:row.get(col) for col in cols})
     write("content_sensitivity.csv",rows,[
         "model","dataset","decode_mode","uid","source_token_position",
-        "source_role","attention_by_loop","attention_mean","attention_max",
-        "source_mean_recurrent_change","prefill_instruction_error_by_loop",
+        "source_role","age_at_prefill_end","content_span_length",
+        "instruction_span_length","attention_by_loop","attention_mean",
+        "attention_max","source_mean_recurrent_change",
+        "prefill_instruction_error_by_loop",
         "prefill_persistent_final_error","prefill_persistent_recovery_ratio",
         "prefill_one_loop_error_by_loop","prefill_one_loop_final_error",
         "postprefill_eviction_delta_future_nll",
@@ -314,7 +369,8 @@ def analyze(run: Path):
             "spearman_max_attention_vs_future_loss":_corr(maxatt,y),
             "spearman_prefill_sensitivity_vs_future_loss":_corr(mech,y),
             "spearman_prefill_recovery_vs_future_loss":_corr(recovery,y),
-            "spearman_source_change_vs_future_loss":_corr(source,y)})
+            "spearman_source_change_vs_future_loss":_corr(source,y),
+            "request_heldout_prediction":heldout_importance_test(g)})
     result={"expected_jobs":len(jobs),"completed_jobs":len(jobs)-len(missing),
             "missing":missing,"parity_failures":replay_errors,
             "groups":summaries,
@@ -323,7 +379,7 @@ def analyze(run: Path):
                 "Normal-prefill Attention/Source-state change are observable pre-eviction.",
                 "No full-task accuracy, no actual HBM savings: reference broadcast KV.",
                 "Teacher-forced gold suffix truncated to frozen max_target_tokens.",
-                "Token-level correlations pooled within requests; request-level holdout required for claims.",
+                "Token-level Spearman is exploratory; request-level 70/30 heldout OLS is included.",
                 "No fixed vs dynamic raw depth comparison across model families."]}
     (out/"SUMMARY.json").write_text(json.dumps(result,indent=2))
     (run/"completeness.json").write_text(json.dumps({
