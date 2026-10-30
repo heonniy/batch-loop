@@ -28,13 +28,13 @@ ROOT=HERE.parent
 REPO=ROOT.parent
 sys.path.insert(0,str(ROOT))
 
-from kvp.role_data import RolePrompt, build_role_prompt, choose_role_sources
-from kvp.role_sensitivity import role_intervention_oracle
+from kvp.role_data import RolePrompt
+from kvp.role_span_oracle import role_evidence_oracle
 from kvp.depth_eviction_probe import DepthProbeSpec
 from kvp.specs import MODELS
 
 MODEL_KEYS=("huginn-0125","ouro-1.4b","ouro-2.6b")
-DATASET_KEYS=("gsm8k","math500")
+DATASET_KEYS=("controlled_retrieval","hotpotqa_distractor")
 
 
 def sha(data: bytes) -> str:
@@ -57,99 +57,106 @@ def spec_for(key: str, cfg: dict) -> DepthProbeSpec:
 
 
 def prepare(run: Path, cfg: dict):
+    """Freeze sampled questions, ground-truth evidence tags and matched KV windows.
+
+    --prepare is CPU-only but downloads the PINNED HotpotQA validation Parquet
+    and model tokenizers as needed. No GPU model weights are loaded.
+    """
     from transformers import AutoTokenizer
-    from kvp.data import load_subset
-    from kvp.prompts import gold_target, protocol
+    from kvp.role_data import build_evidence_prompt, choose_evidence_candidates
+    from kvp.role_evidence_data import load_evidence_workload
 
     if run.exists() and any(run.iterdir()):
         raise FileExistsError("Refusing to overwrite any existing run directory")
-    run.mkdir(parents=True,exist_ok=True)
-    jobs=[]; subset_ids={}; dataset_sources={}
+    run.mkdir(parents=True, exist_ok=True)
+    jobs = []
+    subset_ids, dataset_sources = {}, {}
     for dataset in cfg["datasets"]:
-        docs,meta=load_subset(dataset)
-        dataset_sources[dataset]={
-            "repo":meta.get("repo"),"revision":meta.get("revision"),
-            "source_sha256":meta.get("sha256"),
-            "frozen_parent_selection_sha256":meta.get("selection_sha256")}
-        ordered=sorted(docs,key=lambda d:sha(
-            f'{cfg["seed"]}/{dataset}/{d["uid"]}'.encode()))
-        chosen=ordered[:cfg["n_examples"]]
-        if len(chosen)!=cfg["n_examples"]:
-            raise RuntimeError("Not enough frozen dataset examples")
-        subset_ids[dataset]=[d["uid"] for d in chosen]
+        docs, meta = load_evidence_workload(
+            dataset, cfg["n_examples"], cfg["seed"],
+            controlled_facts=cfg["controlled_facts"],
+            hotpot_context_mode=cfg["hotpot_context_mode"],
+            hotpot_distractor_sentences=cfg["hotpot_distractor_sentences"])
+        dataset_sources[dataset] = meta
+        if len(docs) != cfg["n_examples"]:
+            raise RuntimeError("Dataset returned an incomplete frozen sample")
+        subset_ids[dataset] = [d["uid"] for d in docs]
         for model_key in cfg["models"]:
-            checkpoint=MODELS[model_key]
-            tok=AutoTokenizer.from_pretrained(
-                checkpoint.repo,revision=checkpoint.revision,
+            checkpoint = MODELS[model_key]
+            tok = AutoTokenizer.from_pretrained(
+                checkpoint.repo, revision=checkpoint.revision,
                 trust_remote_code=True)
-            for doc in chosen:
-                question=doc["question"] if dataset=="gsm8k" else doc["problem"]
-                prompt=build_role_prompt(tok,checkpoint.family,question,
-                        dataset=dataset,use_distractor=cfg["distractor"])
-                if len(prompt.token_ids)>cfg["max_prompt_tokens"]:
+            for doc in docs:
+                prompt = build_evidence_prompt(tok, checkpoint.family, doc)
+                if len(prompt.token_ids) > cfg["max_prompt_tokens"]:
                     raise RuntimeError(
                         f'Prompt too long for {model_key}/{dataset}/{doc["uid"]}: '
                         f'{len(prompt.token_ids)} > {cfg["max_prompt_tokens"]}; '
-                         'raise bound on a NEW run, never silently truncate')
-                target_text=gold_target(doc,protocol(checkpoint.family,dataset))
-                target_all=tok.encode(target_text,add_special_tokens=False)
-                if len(target_all)<2:
-                    raise RuntimeError("Need >=2 future gold tokens")
-                target_ids=target_all[:cfg["max_target_tokens"]]
-                if len(target_ids)<2:
-                    raise RuntimeError("max_target_tokens too small")
-                salt=int(sha(f'{cfg["seed"]}:{model_key}:{dataset}:{doc["uid"]}'.encode())[:10],16)
-                contents=choose_role_sources(prompt,cfg["n_content"],salt)
-                controls=[]
-                if cfg["n_distractor"]:
-                    pool=list(prompt.distractor_positions)
-                    if len(pool)<cfg["n_distractor"]:
-                        raise RuntimeError("Insufficient unrelated-content tokens")
-                    controls.extend(random.Random(salt+1).sample(pool,cfg["n_distractor"]))
-                if cfg["n_instruction"]:
-                    pool=list(prompt.instruction_positions)
-                    if len(pool)<cfg["n_instruction"]:
-                        raise RuntimeError("Insufficient instruction tokens")
-                    controls.extend(random.Random(salt+2).sample(pool,cfg["n_instruction"]))
+                        "Never silently trim or drop Supporting Facts")
+                # Two-stage decoding target: "Answer" is first, then the
+                # gold entity/code is predicted by future generated queries.
+                # Avoid attributing an immutable first gold token to eviction.
+                target_text = "Answer: " + doc["answer"].strip() + "\n"
+                target_all = tok.encode(target_text, add_special_tokens=False)
+                if len(target_all) < 2:
+                    raise RuntimeError("Gold answer sequence too short")
+                target_ids = target_all[:cfg["max_target_tokens"]]
+                if len(target_ids) < 2:
+                    raise RuntimeError("max_target_tokens must be >=2")
+                salt = int(sha(f'{cfg["seed"]}:{dataset}:{doc["uid"]}'.encode())[:10], 16)
+                candidates = choose_evidence_candidates(
+                    prompt, salt, n_relevant=cfg["n_relevant"],
+                    n_irrelevant=cfg["n_irrelevant"],
+                    window_tokens=cfg["window_tokens"])
+                if len({c["role"] for c in candidates}) != 2:
+                    raise RuntimeError("Missing Relevant/Irrelevant paired source")
                 for mode in cfg["decode_modes"]:
-                    key=sha(f'{model_key}/{dataset}/{doc["uid"]}/{mode}'.encode())[:24]
+                    key = sha(f'{model_key}/{dataset}/{doc["uid"]}/{mode}'.encode())[:24]
                     jobs.append({
-                        "key":key, "model":model_key,
-                        "revision":checkpoint.revision,
-                        "dataset":dataset,"uid":doc["uid"],
-                        "decode_mode":mode,
-                        "prompt_text":prompt.text,
-                        "prompt_ids":list(prompt.token_ids),
-                        "prompt_roles":list(prompt.roles),
-                        "content_positions":list(prompt.content_positions),
-                        "instruction_positions":list(prompt.instruction_positions),
-                        "distractor_positions":list(prompt.distractor_positions),
-                        "target_ids":target_ids,
-                        "target_total_length":len(target_all),
-                        "target_truncated":len(target_all)>len(target_ids),
-                        "content_candidates":contents,
-                        "role_control_candidates":sorted(controls),
-                        "prompt_sha256":sha(prompt.text.encode()),
-                        "protocol":"content_before_instruction-v1",
-                        "question_uid":doc["uid"]})
-    if len(jobs)!=len(set(j["key"] for j in jobs)):
-        raise RuntimeError("Duplicate job identity")
-    expected=len(cfg["models"])*len(cfg["datasets"])*cfg["n_examples"]*len(cfg["decode_modes"])
-    if len(jobs)!=expected:
-        raise RuntimeError(f"Missing jobs: expected {expected}, got {len(jobs)}")
-    (run/"jobs.json").write_text(json.dumps(jobs,indent=1))
+                        "key": key, "model": model_key,
+                        "revision": checkpoint.revision, "dataset": dataset,
+                        "uid": doc["uid"], "decode_mode": mode,
+                        "prompt_text": prompt.text,
+                        "prompt_ids": list(prompt.token_ids),
+                        "prompt_roles": list(prompt.roles),
+                        "content_positions": list(prompt.content_positions),
+                        "instruction_positions": list(prompt.instruction_positions),
+                        "distractor_positions": list(prompt.distractor_positions),
+                        "relevant_positions": list(prompt.relevant_positions),
+                        "irrelevant_positions": list(prompt.irrelevant_positions),
+                        "question_positions": list(prompt.question_positions),
+                        "context_spans": [
+                            {**entry, "positions": list(entry["positions"])}
+                            for entry in prompt.context_spans],
+                        "target_ids": target_ids, "gold_answer": doc["answer"],
+                        "target_total_length": len(target_all),
+                        "target_truncated": len(target_all) > len(target_ids),
+                        "evidence_candidates": candidates,
+                        "source_attributes": doc.get("attributes", {}),
+                        "prompt_sha256": sha(prompt.text.encode()),
+                        "protocol": "evidence-context-instruction-question-v2",
+                        "question_uid": doc["uid"]})
+    expected = (len(cfg["models"])*len(cfg["datasets"])*
+                cfg["n_examples"]*len(cfg["decode_modes"]))
+    if len(jobs) != expected or len({j["key"] for j in jobs}) != expected:
+        raise RuntimeError("Missing or duplicated job identity")
+    (run/"jobs.json").write_text(json.dumps(jobs, indent=1))
     (run/"run_manifest.json").write_text(json.dumps({
-        "source_sha":git_sha(),"config":cfg,"job_count":len(jobs),
-        "subsets":subset_ids,
-        "dataset_sources":dataset_sources,
-        "model_revisions":{k:MODELS[k].revision for k in cfg["models"]},
-        "note":("Content→Instruction prompt; exact tokenizer spans; "
-                "FULL-depth prefill, token-major, fixed/native dynamic decode. "
-                "All models BF16; cosine evaluator FP32 diagnostic for Huginn. "
-                "Teacher-forced NLL and FULL-sized reference KV. "
-                "No benchmark accuracy/HBM claim.")},indent=2))
-    return {"jobs":len(jobs),"examples_per_model_dataset":cfg["n_examples"],
-            "decode_modes":cfg["decode_modes"],"source_sha":git_sha()}
+        "source_sha": git_sha(), "config": cfg, "job_count": len(jobs),
+        "subsets": subset_ids, "dataset_sources": dataset_sources,
+        "model_revisions": {k: MODELS[k].revision for k in cfg["models"]},
+        "protocol": "evidence-context-instruction-question-v2",
+        "limitations": [
+            "Full-sized R-plane reference KV; no physical HBM reclamation",
+            "Teacher-forced NLL, NOT free-generation Answer Exact Match",
+            "Gold annotation used to choose diagnostic candidates, never online features",
+            "HotpotQA evidence_excerpt is NOT the full-document HotpotQA benchmark",
+            "First gold token predicted from unmodified final prompt query; excluded from future utility"
+        ]}, indent=2))
+    return {"jobs": len(jobs), "examples_per_model_dataset": cfg["n_examples"],
+            "decode_modes": cfg["decode_modes"], "source_sha": git_sha(),
+            "protocol": "evidence-context-instruction-question-v2"}
+
 
 
 def manifest(run: Path):
@@ -195,17 +202,22 @@ def worker(run: Path, index: int):
                 pinned,tok,model=load(job["model"])
                 context=make_runner(pinned,tok,model)
                 current_model=job["model"]
-            p=RolePrompt(job["prompt_text"],tuple(job["prompt_ids"]),
-                tuple(job["prompt_roles"]),tuple(job["content_positions"]),
-                tuple(job["instruction_positions"]),tuple(job["distractor_positions"]))
-            result=role_intervention_oracle(
-                context.bb,job["uid"],job["revision"],
-                spec_for(job["model"],m["config"]),p,
-                job["target_ids"],job["content_candidates"],
+            p=RolePrompt(
+                job["prompt_text"], tuple(job["prompt_ids"]),
+                tuple(job["prompt_roles"]), tuple(job["content_positions"]),
+                tuple(job["instruction_positions"]), tuple(job["distractor_positions"]),
+                tuple(job["relevant_positions"]), tuple(job["irrelevant_positions"]),
+                tuple(job["question_positions"]),
+                tuple({**e, "positions": tuple(e["positions"])}
+                      for e in job["context_spans"]))
+            result=role_evidence_oracle(
+                context.bb, job["uid"], job["revision"],
+                spec_for(job["model"],m["config"]), p,
+                job["target_ids"], job["evidence_candidates"],
                 decode_mode=job["decode_mode"],
                 run_one_loop=m["config"]["one_loop"],
                 live_exit=m["config"]["live_exit"],
-                role_controls=job["role_control_candidates"])
+                question_control=m["config"]["n_instruction"] > 0)
             result["meta"]={
                 "key":job["key"],"model":job["model"],
                 "dataset":job["dataset"],"uid":job["uid"],
@@ -215,6 +227,8 @@ def worker(run: Path, index: int):
                 "prompt_tokens":len(p.token_ids),
                 "future_tokens":len(job["target_ids"]),
                 "gold_truncated":job["target_truncated"],
+                "gold_answer":job["gold_answer"],
+                "source_attributes":job["source_attributes"],
                 "gpu":os.environ.get("CUDA_VISIBLE_DEVICES"),
                 "reference_full_allocated":True}
             temp=raw/("."+job["key"]+".tmp")
@@ -408,10 +422,15 @@ def main():
     ap.add_argument("--datasets",default=",".join(DATASET_KEYS))
     ap.add_argument("--decode-modes",default="fixed,dynamic")
     ap.add_argument("--n-examples",type=int,default=8)
-    ap.add_argument("--n-content",type=int,default=2)
-    ap.add_argument("--n-instruction",type=int,default=1)
-    ap.add_argument("--n-distractor",type=int,default=1)
-    ap.add_argument("--distractor",action=argparse.BooleanOptionalAction,default=True)
+    ap.add_argument("--n-relevant",type=int,default=2)
+    ap.add_argument("--n-irrelevant",type=int,default=2)
+    ap.add_argument("--window-tokens",type=int,default=12)
+    ap.add_argument("--n-instruction",type=int,choices=(0,1),default=1)
+    ap.add_argument("--controlled-facts",type=int,default=16)
+    ap.add_argument("--hotpot-context-mode",
+                    choices=("evidence_excerpt","full_context"),
+                    default="evidence_excerpt")
+    ap.add_argument("--hotpot-distractor-sentences",type=int,default=8)
     ap.add_argument("--max-prompt-tokens",type=int,default=1536)
     ap.add_argument("--max-target-tokens",type=int,default=64)
     ap.add_argument("--seed",type=int,default=20261030)
@@ -438,18 +457,20 @@ def main():
         if (not modes or len(modes)!=len(set(modes)) or
             not set(modes)<={"fixed","dynamic"}):
             ap.error("Invalid decode modes")
-        if min(a.n_examples,a.n_content,a.max_prompt_tokens,a.max_target_tokens)<1:
+        if min(a.n_examples,a.n_relevant,a.n_irrelevant,a.window_tokens,
+               a.max_prompt_tokens,a.max_target_tokens)<1:
             ap.error("Positive bounds required")
         if a.max_target_tokens<2:
             ap.error("Need at least two future gold tokens")
-        if a.n_instruction<0 or a.n_distractor<0:
-            ap.error("Control counts must be >=0")
-        if a.n_distractor and not a.distractor:
-            ap.error("Cannot sample unrelated controls without a distractor")
+        if a.controlled_facts<4 or a.hotpot_distractor_sentences<1:
+            ap.error("Need >=4 retrieval facts and >=1 HotpotQA distractor")
         cfg={"models":models,"datasets":datasets,"decode_modes":modes,
-             "n_examples":a.n_examples,"n_content":a.n_content,
-             "n_instruction":a.n_instruction,"n_distractor":a.n_distractor,
-             "distractor":a.distractor,
+             "n_examples":a.n_examples,"n_relevant":a.n_relevant,
+             "n_irrelevant":a.n_irrelevant,"window_tokens":a.window_tokens,
+             "n_instruction":a.n_instruction,
+             "controlled_facts":a.controlled_facts,
+             "hotpot_context_mode":a.hotpot_context_mode,
+             "hotpot_distractor_sentences":a.hotpot_distractor_sentences,
              "max_prompt_tokens":a.max_prompt_tokens,
              "max_target_tokens":a.max_target_tokens,"seed":a.seed,
              "ouro_q":a.ouro_q,"huginn_cosine":a.huginn_cosine,
