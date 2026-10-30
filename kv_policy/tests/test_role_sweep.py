@@ -107,8 +107,8 @@ def test_request_level_holdout_is_not_per_span_leakage():
     output=r.heldout_importance_test(rows)
     assert output["train_requests"]==21
     assert output["test_requests"]==9
-    assert output["train_tokens"]==42
-    assert output["test_tokens"]==18
+    assert output["train_span_interventions"]==42
+    assert output["test_span_interventions"]==18
     assert set(output["heldout_r2"])=={
         "attention_age","attention_age_plus_prefill_state",
         "ORACLE_attention_plus_masked_instruction"}
