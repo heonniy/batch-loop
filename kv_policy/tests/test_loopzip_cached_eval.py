@@ -106,3 +106,62 @@ def test_cached_prompt_prohibits_question_eviction(monkeypatch):
         cache.score_gold((5,))
     with pytest.raises(ValueError,match="duplicates"):
         cache.score_gold((1,1))
+
+
+
+def test_phase1_to_phase2_end_to_end_uses_same_budget_and_replay(monkeypatch):
+    import importlib.util
+    from pathlib import Path
+    import kvp.loopzip_cached_eval as impl
+    import kvp.role_sensitivity as role
+    monkeypatch.setattr(impl,"_ouro_one",fake_one)
+    monkeypatch.setattr(role,"_ouro_one",fake_one)
+    path=Path(__file__).resolve().parents[1]/"scripts/loopzip_failure_screen.py"
+    script_spec=importlib.util.spec_from_file_location("swap_runner_fake",path)
+    r=importlib.util.module_from_spec(script_spec)
+    script_spec.loader.exec_module(r)
+    monkeypatch.setattr(r,"git_sha",lambda:"fake-source-sha")
+    monkeypatch.setattr(
+        r,"spec_for",lambda key,cfg:DepthProbeSpec("ouro",2,1.0,min_depth=2))
+    p=prompt()
+    jb={
+        "model":"ouro-2.6b","dataset":"controlled_retrieval","uid":"u",
+        "key":"case-001","revision":"fixture","protocol":"fixture",
+        "prompt_text":p.text,"prompt_ids":list(p.token_ids),
+        "prompt_roles":list(p.roles),
+        "content_positions":list(p.content_positions),
+        "instruction_positions":list(p.instruction_positions),
+        "distractor_positions":list(p.distractor_positions),
+        "relevant_positions":list(p.relevant_positions),
+        "irrelevant_positions":list(p.irrelevant_positions),
+        "question_positions":list(p.question_positions),
+        "context_spans":[{**e,"positions":list(e["positions"])}
+                         for e in p.context_spans],
+        "prompt_sha256":"fixed-prompt-sha",
+        "target_ids":[1,3,2,4],"target_truncated":False,
+        "gold_answer":"Paris","attributes":{},
+        "budget_counts":{"0.1":1,"0.3":1,"0.5":1}}
+    cfg={"retention":(.1,.3,.5),
+         "policies":("mean_attn","last_attn","max_attn","recent_attn","random"),
+         "random_seeds":(11,29,47),
+         "generation_tokens":5,"free_generate":True,
+         "swap_max_retained":6,"swap_max_evicted":6,
+         "swap_greedy":True}
+    bb=FakeBB()
+    tk=FakeTokenizer()
+    screen=r.evaluate_screen(bb,tk,jb,cfg)
+    assert screen["parity"]["reference_max_abs_nll_diff"]<1e-7
+    assert len(screen["screening"])==21
+    assert all(len(s["retained"])==1 for s in screen["screening"])
+    assert all(s["first_target_nll"]==pytest.approx(
+               screen["full"]["first_target_nll"]) for s in screen["screening"])
+    target={"key":jb["key"],"swap_targets":[{
+        "budget":.3,"category":"unit_test","role":"failure",
+        "anchor_policy":"mean_attn"}]}
+    swap=r.evaluate_swaps(bb,tk,jb,cfg,target,screen)
+    assert len(swap["swap_targets"])==1
+    result=swap["swap_targets"][0]
+    assert result["best_nll"]<=result["anchor_nll"]+1e-7
+    assert result["local_oracle_gain"]>=-1e-7
+    assert result["n_swaps_evaluated"]==1
+    assert all(len(v["retained"])==1 for v in result["swaps"])
