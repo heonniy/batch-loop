@@ -1,0 +1,89 @@
+model,dataset,task,policy,metric,n_paired,nominal_full_kv_percent,reference_50_full_kv_percent,extra_saving_vs_loop1all_percent,budget_type,mean_delta_vs_loop1all,ci95_lo,ci95_hi,within_3pp_point_estimate
+ouro-1.4b,gsm8k,gen,bankTopB35,delta_accuracy_vs_50,32,34.375,50.0,31.25,static logical,-0.0625,-0.1875,0.0625,False
+ouro-1.4b,gsm8k,gen,bankTopB40,delta_accuracy_vs_50,32,39.58333333333333,50.0,20.83333333333335,static logical,-0.03125,-0.15625,0.09375,False
+ouro-1.4b,gsm8k,gen,bankcal,delta_accuracy_vs_50,32,27.083333333333332,50.0,45.833333333333336,static logical,0.0,-0.125,0.125,True
+ouro-1.4b,gsm8k,gen,last,delta_accuracy_vs_50,32,25.0,50.0,50.0,static logical,-0.71875,-0.875,-0.5625,False
+ouro-1.4b,gsm8k,gen,tokL1decode,delta_accuracy_vs_50,32,40.24349317622492,50.0,19.51301364755015,observed logical; actual processed rows,-0.71875,-0.875,-0.5625,False
+ouro-1.4b,gsm8k,gen,tokL1delta50,delta_accuracy_vs_50,32,39.09154929577465,50.0,21.816901408450708,observed logical; actual processed rows,-0.0625,-0.21875,0.0625,False
+ouro-1.4b,gsm8k,gen,tokL1hash0,delta_accuracy_vs_50,32,25.0,50.0,50.0,observed logical; actual processed rows,-0.71875,-0.875,-0.5625,False
+ouro-1.4b,gsm8k,gen,tokL1hash100,delta_accuracy_vs_50,32,50.0,50.0,0.0,observed logical; actual processed rows,0.0,0.0,0.0,True
+ouro-1.4b,gsm8k,gen,tokL1hash40,delta_accuracy_vs_50,32,34.90245971162002,50.0,30.19508057675996,observed logical; actual processed rows,-0.25,-0.46875,-0.03125,False
+ouro-1.4b,gsm8k,gen,tokL1hash60,delta_accuracy_vs_50,32,39.962534555507055,50.0,20.074930888985886,observed logical; actual processed rows,-0.0625,-0.25,0.09375,False
+ouro-1.4b,gsm8k,gen,tokL1prompt,delta_accuracy_vs_50,32,34.9173710343782,50.0,30.165257931243605,observed logical; actual processed rows,-0.03125,-0.15625,0.0625,False
+ouro-1.4b,gsm8k,nll,bankTopB35,delta_mean_problem_nll_vs_50,32,34.375,50.0,31.25,static logical,0.020387872140709685,0.013250919026574496,0.027526406655873244,False
+ouro-1.4b,gsm8k,nll,bankTopB40,delta_mean_problem_nll_vs_50,32,39.58333333333333,50.0,20.83333333333335,static logical,0.017004447494127255,0.008998378778197043,0.02550995644057689,False
+ouro-1.4b,gsm8k,nll,bankcal,delta_mean_problem_nll_vs_50,32,27.083333333333332,50.0,45.833333333333336,static logical,0.030570354970964008,0.01724211612182585,0.044762935826168734,False
+ouro-1.4b,gsm8k,nll,last,delta_mean_problem_nll_vs_50,32,25.0,50.0,50.0,static logical,5.450235649183743,5.1585735243523905,5.749702623854004,False
+ouro-1.4b,gsm8k,nll,tokL1decode,delta_mean_problem_nll_vs_50,32,30.68718630056097,50.0,38.62562739887806,observed logical; actual processed rows,3.3629312611646043,3.0291125094892086,3.6867017292909003,False
+ouro-1.4b,gsm8k,nll,tokL1delta50,delta_mean_problem_nll_vs_50,32,39.11832004723944,50.0,21.763359905521117,observed logical; actual processed rows,0.008823832095509779,-0.0002146456498060851,0.017611186994767436,False
+ouro-1.4b,gsm8k,nll,tokL1hash0,delta_mean_problem_nll_vs_50,32,25.0,50.0,50.0,observed logical; actual processed rows,5.450235649183743,5.151003740636703,5.755955141345205,False
+ouro-1.4b,gsm8k,nll,tokL1hash100,delta_mean_problem_nll_vs_50,32,50.0,50.0,0.0,observed logical; actual processed rows,0.0,0.0,0.0,False
+ouro-1.4b,gsm8k,nll,tokL1hash40,delta_mean_problem_nll_vs_50,32,34.92028343666962,50.0,30.159433126660762,observed logical; actual processed rows,0.04343421422274009,0.022853123185037863,0.06245812871039405,False
+ouro-1.4b,gsm8k,nll,tokL1hash60,delta_mean_problem_nll_vs_50,32,39.970844405078246,50.0,20.058311189843504,observed logical; actual processed rows,0.003172696426424126,-0.011363491411824344,0.016390544545435433,False
+ouro-1.4b,gsm8k,nll,tokL1prompt,delta_mean_problem_nll_vs_50,32,44.31281369943903,50.0,11.37437260112193,observed logical; actual processed rows,0.01652212936601275,0.0032834449007182066,0.032044187759178694,False
+ouro-1.4b,math500,gen,bankTopB35,delta_accuracy_vs_50,32,34.375,50.0,31.25,static logical,0.0,-0.15625,0.15625,True
+ouro-1.4b,math500,gen,bankTopB40,delta_accuracy_vs_50,32,39.58333333333333,50.0,20.83333333333335,static logical,-0.09375,-0.21875,0.0,False
+ouro-1.4b,math500,gen,bankcal,delta_accuracy_vs_50,32,27.083333333333332,50.0,45.833333333333336,static logical,-0.03125,-0.15625,0.09375,False
+ouro-1.4b,math500,gen,last,delta_accuracy_vs_50,32,25.0,50.0,50.0,static logical,-0.6875,-0.84375,-0.53125,False
+ouro-1.4b,math500,gen,tokL1decode,delta_accuracy_vs_50,32,43.29311885612154,50.0,13.413762287756924,observed logical; actual processed rows,-0.6875,-0.84375,-0.53125,False
+ouro-1.4b,math500,gen,tokL1delta50,delta_accuracy_vs_50,32,40.40411431438547,50.0,19.191771371229073,observed logical; actual processed rows,-0.34375,-0.53125,-0.15625,False
+ouro-1.4b,math500,gen,tokL1hash0,delta_accuracy_vs_50,32,25.0,50.0,50.0,observed logical; actual processed rows,-0.6875,-0.84375,-0.53125,False
+ouro-1.4b,math500,gen,tokL1hash100,delta_accuracy_vs_50,32,50.0,50.0,0.0,observed logical; actual processed rows,0.0,0.0,0.0,True
+ouro-1.4b,math500,gen,tokL1hash40,delta_accuracy_vs_50,32,34.91026432683306,50.0,30.179471346333887,observed logical; actual processed rows,-0.46875,-0.65625,-0.28125,False
+ouro-1.4b,math500,gen,tokL1hash60,delta_accuracy_vs_50,32,39.9869604007961,50.0,20.0260791984078,observed logical; actual processed rows,-0.25,-0.40625,-0.125,False
+ouro-1.4b,math500,gen,tokL1prompt,delta_accuracy_vs_50,32,31.944894276592795,50.0,36.11021144681441,observed logical; actual processed rows,-0.53125,-0.6875,-0.34375,False
+ouro-1.4b,math500,nll,bankTopB35,delta_mean_problem_nll_vs_50,32,34.375,50.0,31.25,static logical,0.01531515751234971,-0.012050764893768783,0.04471805345045975,False
+ouro-1.4b,math500,nll,bankTopB40,delta_mean_problem_nll_vs_50,32,39.58333333333333,50.0,20.83333333333335,static logical,0.005354528255838502,-0.02586941286395454,0.03708503528673126,False
+ouro-1.4b,math500,nll,bankcal,delta_mean_problem_nll_vs_50,32,27.083333333333332,50.0,45.833333333333336,static logical,0.021115132841572938,-0.007210473475616524,0.047802811261109635,False
+ouro-1.4b,math500,nll,last,delta_mean_problem_nll_vs_50,32,25.0,50.0,50.0,static logical,4.9294639064191,4.695955397534402,5.172307612895576,False
+ouro-1.4b,math500,nll,tokL1decode,delta_mean_problem_nll_vs_50,32,30.99157854745773,50.0,38.01684290508454,observed logical; actual processed rows,1.2160844865440583,1.021238303285903,1.424030163341689,False
+ouro-1.4b,math500,nll,tokL1delta50,delta_mean_problem_nll_vs_50,32,40.260716773253975,50.0,19.478566453492054,observed logical; actual processed rows,-0.008760051821887261,-0.03194102709518494,0.0127337339842945,False
+ouro-1.4b,math500,nll,tokL1hash0,delta_mean_problem_nll_vs_50,32,25.0,50.0,50.0,observed logical; actual processed rows,4.9294639064191,4.6673634835715765,5.178899522208311,False
+ouro-1.4b,math500,nll,tokL1hash100,delta_mean_problem_nll_vs_50,32,50.0,50.0,0.0,observed logical; actual processed rows,0.0,0.0,0.0,False
+ouro-1.4b,math500,nll,tokL1hash40,delta_mean_problem_nll_vs_50,32,34.89678971696321,50.0,30.20642056607358,observed logical; actual processed rows,0.02732323242313631,-0.004532327332770002,0.06019991284670126,False
+ouro-1.4b,math500,nll,tokL1hash60,delta_mean_problem_nll_vs_50,32,39.94807826252137,50.0,20.103843474957262,observed logical; actual processed rows,0.00338521213401341,-0.019683498897781964,0.027092899643020696,False
+ouro-1.4b,math500,nll,tokL1prompt,delta_mean_problem_nll_vs_50,32,44.008421452542265,50.0,11.983157094915464,observed logical; actual processed rows,0.07820429377722501,0.04464888468224352,0.11592474753591465,False
+ouro-2.6b,gsm8k,gen,bankTopB35,delta_accuracy_vs_50,32,34.89583333333333,50.0,30.20833333333335,static logical,-0.09375,-0.21875,0.03125,False
+ouro-2.6b,gsm8k,gen,bankTopB40,delta_accuracy_vs_50,32,39.58333333333333,50.0,20.83333333333335,static logical,-0.0625,-0.1875,0.0625,False
+ouro-2.6b,gsm8k,gen,bankcal,delta_accuracy_vs_50,32,25.520833333333332,50.0,48.958333333333336,static logical,-0.03125,-0.15625,0.09375,False
+ouro-2.6b,gsm8k,gen,last,delta_accuracy_vs_50,32,25.0,50.0,50.0,static logical,-0.28125,-0.46875,-0.125,False
+ouro-2.6b,gsm8k,gen,tokL1decode,delta_accuracy_vs_50,32,30.68433485899897,50.0,38.63133028200206,observed logical; actual processed rows,-0.1875,-0.34375,-0.03125,False
+ouro-2.6b,gsm8k,gen,tokL1delta50,delta_accuracy_vs_50,32,35.08724297712135,50.0,29.825514045757306,observed logical; actual processed rows,0.0,-0.09375,0.09375,True
+ouro-2.6b,gsm8k,gen,tokL1hash0,delta_accuracy_vs_50,32,25.0,50.0,50.0,observed logical; actual processed rows,-0.28125,-0.46875,-0.09375,False
+ouro-2.6b,gsm8k,gen,tokL1hash100,delta_accuracy_vs_50,32,50.0,50.0,0.0,observed logical; actual processed rows,0.0,0.0,0.0,True
+ouro-2.6b,gsm8k,gen,tokL1hash40,delta_accuracy_vs_50,32,34.938458216367955,50.0,30.123083567264086,observed logical; actual processed rows,-0.09375,-0.21875,0.03125,False
+ouro-2.6b,gsm8k,gen,tokL1hash60,delta_accuracy_vs_50,32,39.99083241657499,50.0,20.018335166850022,observed logical; actual processed rows,-0.125,-0.25,-0.03125,False
+ouro-2.6b,gsm8k,gen,tokL1prompt,delta_accuracy_vs_50,32,43.9149136123762,50.0,12.17017277524759,observed logical; actual processed rows,0.0,-0.125,0.125,True
+ouro-2.6b,gsm8k,nll,bankTopB35,delta_mean_problem_nll_vs_50,32,34.89583333333333,50.0,30.20833333333335,static logical,-0.0007257209381868555,-0.007150482295411539,0.005614349416713618,False
+ouro-2.6b,gsm8k,nll,bankTopB40,delta_mean_problem_nll_vs_50,32,39.58333333333333,50.0,20.83333333333335,static logical,-0.002288982731523727,-0.00862541741349683,0.004110449382183693,False
+ouro-2.6b,gsm8k,nll,bankcal,delta_mean_problem_nll_vs_50,32,25.520833333333332,50.0,48.958333333333336,static logical,0.02760710892183612,0.010985609420664825,0.04516934992856575,False
+ouro-2.6b,gsm8k,nll,last,delta_mean_problem_nll_vs_50,32,25.0,50.0,50.0,static logical,0.2816398588946605,0.2123147570568339,0.3547329125864495,False
+ouro-2.6b,gsm8k,nll,tokL1decode,delta_mean_problem_nll_vs_50,32,30.68718630056097,50.0,38.62562739887806,observed logical; actual processed rows,0.09731351376554333,0.06620598033254677,0.13241190142428913,False
+ouro-2.6b,gsm8k,nll,tokL1delta50,delta_mean_problem_nll_vs_50,32,34.90183052849129,50.0,30.19633894301742,observed logical; actual processed rows,-0.00025812855704345286,-0.010041197132468564,0.010723918372919885,False
+ouro-2.6b,gsm8k,nll,tokL1hash0,delta_mean_problem_nll_vs_50,32,25.0,50.0,50.0,observed logical; actual processed rows,0.2816398588946605,0.2148333277556708,0.35793243639844263,False
+ouro-2.6b,gsm8k,nll,tokL1hash100,delta_mean_problem_nll_vs_50,32,50.0,50.0,0.0,observed logical; actual processed rows,0.0,0.0,0.0,False
+ouro-2.6b,gsm8k,nll,tokL1hash40,delta_mean_problem_nll_vs_50,32,34.92028343666962,50.0,30.159433126660762,observed logical; actual processed rows,-0.004515919712916519,-0.01404929365027345,0.0052165362343538045,False
+ouro-2.6b,gsm8k,nll,tokL1hash60,delta_mean_problem_nll_vs_50,32,39.970844405078246,50.0,20.058311189843504,observed logical; actual processed rows,-0.007052250847668064,-0.017431682470543743,0.00243854874452085,False
+ouro-2.6b,gsm8k,nll,tokL1prompt,delta_mean_problem_nll_vs_50,32,44.31281369943903,50.0,11.37437260112193,observed logical; actual processed rows,0.005785574743566939,-0.0026243185866443135,0.01391050637308547,False
+ouro-2.6b,math500,gen,bankTopB35,delta_accuracy_vs_50,32,34.89583333333333,50.0,30.20833333333335,static logical,0.03125,-0.15625,0.21875,True
+ouro-2.6b,math500,gen,bankTopB40,delta_accuracy_vs_50,32,39.58333333333333,50.0,20.83333333333335,static logical,-0.03125,-0.21875,0.1875,False
+ouro-2.6b,math500,gen,bankcal,delta_accuracy_vs_50,32,25.520833333333332,50.0,48.958333333333336,static logical,-0.0625,-0.25,0.125,False
+ouro-2.6b,math500,gen,last,delta_accuracy_vs_50,32,25.0,50.0,50.0,static logical,-0.09375,-0.3125,0.15625,False
+ouro-2.6b,math500,gen,tokL1decode,delta_accuracy_vs_50,32,31.466847758982592,50.0,37.066304482034816,observed logical; actual processed rows,-0.09375,-0.3125,0.09375,False
+ouro-2.6b,math500,gen,tokL1delta50,delta_accuracy_vs_50,32,33.91179388422035,50.0,32.17641223155929,observed logical; actual processed rows,0.0625,-0.09375,0.21875,True
+ouro-2.6b,math500,gen,tokL1hash0,delta_accuracy_vs_50,32,25.0,50.0,50.0,observed logical; actual processed rows,-0.09375,-0.3125,0.15625,False
+ouro-2.6b,math500,gen,tokL1hash100,delta_accuracy_vs_50,32,50.0,50.0,0.0,observed logical; actual processed rows,0.0,0.0,0.0,True
+ouro-2.6b,math500,gen,tokL1hash40,delta_accuracy_vs_50,32,34.93813175322412,50.0,30.123736493551757,observed logical; actual processed rows,0.0625,-0.15625,0.28125,True
+ouro-2.6b,math500,gen,tokL1hash60,delta_accuracy_vs_50,32,39.937075366224235,50.0,20.125849267551533,observed logical; actual processed rows,0.03125,-0.15625,0.21875,True
+ouro-2.6b,math500,gen,tokL1prompt,delta_accuracy_vs_50,32,41.495411835815155,50.0,17.00917632836969,observed logical; actual processed rows,0.09375,-0.03125,0.25,True
+ouro-2.6b,math500,nll,bankTopB35,delta_mean_problem_nll_vs_50,32,34.89583333333333,50.0,30.20833333333335,static logical,0.024194296968404548,0.014693970638857053,0.03337804414613188,False
+ouro-2.6b,math500,nll,bankTopB40,delta_mean_problem_nll_vs_50,32,39.58333333333333,50.0,20.83333333333335,static logical,0.016176230899514366,0.005017054159255678,0.026226719582088474,False
+ouro-2.6b,math500,nll,bankcal,delta_mean_problem_nll_vs_50,32,25.520833333333332,50.0,48.958333333333336,static logical,0.08293907932688693,0.059105110317445454,0.10861477896098988,False
+ouro-2.6b,math500,nll,last,delta_mean_problem_nll_vs_50,32,25.0,50.0,50.0,static logical,0.3239362483655406,0.24248068265652267,0.4130479484827003,False
+ouro-2.6b,math500,nll,tokL1decode,delta_mean_problem_nll_vs_50,32,30.99157854745773,50.0,38.01684290508454,observed logical; actual processed rows,0.07563631248450797,0.057627399174613084,0.09412623520056496,False
+ouro-2.6b,math500,nll,tokL1delta50,delta_mean_problem_nll_vs_50,32,34.93240676248971,50.0,30.13518647502057,observed logical; actual processed rows,0.022869508894634297,0.011146109952284062,0.034126102194994665,False
+ouro-2.6b,math500,nll,tokL1hash0,delta_mean_problem_nll_vs_50,32,25.0,50.0,50.0,observed logical; actual processed rows,0.3239362483655406,0.24864023074857583,0.4113180229053679,False
+ouro-2.6b,math500,nll,tokL1hash100,delta_mean_problem_nll_vs_50,32,50.0,50.0,0.0,observed logical; actual processed rows,0.0,0.0,0.0,False
+ouro-2.6b,math500,nll,tokL1hash40,delta_mean_problem_nll_vs_50,32,34.89678971696321,50.0,30.20642056607358,observed logical; actual processed rows,0.02149178613299693,0.007491571731438117,0.03539761022668095,False
+ouro-2.6b,math500,nll,tokL1hash60,delta_mean_problem_nll_vs_50,32,39.94807826252137,50.0,20.103843474957262,observed logical; actual processed rows,0.013189891709668604,0.0017600599665444187,0.024413448433702765,False
+ouro-2.6b,math500,nll,tokL1prompt,delta_mean_problem_nll_vs_50,32,44.008421452542265,50.0,11.983157094915464,observed logical; actual processed rows,0.031538522104596234,0.019892088731452557,0.0455488734120353,False

@@ -1,0 +1,513 @@
+model,dataset,policy,uid,prompt_tokens,gold_tokens,nominal_total_tokens,ratio_to_full,reference_only,definition
+huginn-0125-r8,gsm8k,full,gsm8k-test-0084,773,80,853,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0084,773,80,853,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0104,797,81,878,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0104,797,81,878,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0121,802,52,854,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0121,802,52,854,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0152,792,59,851,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0152,792,59,851,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0197,802,51,853,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0197,802,51,853,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0300,805,45,850,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0300,805,45,850,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0364,803,46,849,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0364,803,46,849,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0383,838,96,934,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0383,838,96,934,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0407,840,159,999,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0407,840,159,999,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0487,807,88,895,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0487,807,88,895,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0584,802,193,995,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0584,802,193,995,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0712,792,88,880,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0712,792,88,880,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0722,847,80,927,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0722,847,80,927,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0752,786,64,850,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0752,786,64,850,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0790,822,124,946,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0790,822,124,946,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0798,862,155,1017,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0798,862,155,1017,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0872,792,114,906,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0872,792,114,906,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0876,847,171,1018,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0876,847,171,1018,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0923,823,90,913,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0923,823,90,913,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0924,847,52,899,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0924,847,52,899,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0941,824,71,895,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0941,824,71,895,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0983,784,65,849,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0983,784,65,849,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-0985,781,36,817,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-0985,781,36,817,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-1026,821,157,978,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-1026,821,157,978,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-1028,811,45,856,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-1028,811,45,856,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-1033,808,73,881,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-1033,808,73,881,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-1046,786,66,852,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-1046,786,66,852,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-1053,844,102,946,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-1053,844,102,946,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-1058,803,57,860,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-1058,803,57,860,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-1119,861,110,971,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-1119,861,110,971,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-1152,793,72,865,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-1152,793,72,865,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,gsm8k,full,gsm8k-test-1260,832,57,889,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,gsm8k,last,gsm8k-test-1260,832,57,889,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/precalculus/1199.json,1024,96,1120,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/precalculus/1199.json,1024,96,1120,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/counting_and_probability/525.json,789,337,1126,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/counting_and_probability/525.json,789,337,1126,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/geometry/967.json,765,195,960,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/geometry/967.json,765,195,960,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/algebra/305.json,795,276,1071,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/algebra/305.json,795,276,1071,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/algebra/769.json,761,126,887,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/algebra/769.json,761,126,887,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/intermediate_algebra/207.json,788,164,952,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/intermediate_algebra/207.json,788,164,952,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/algebra/567.json,760,354,1114,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/algebra/567.json,760,354,1114,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/prealgebra/1761.json,780,79,859,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/prealgebra/1761.json,780,79,859,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/algebra/873.json,775,84,859,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/algebra/873.json,775,84,859,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/geometry/183.json,967,650,1617,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/geometry/183.json,967,650,1617,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/counting_and_probability/23957.json,787,236,1023,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/counting_and_probability/23957.json,787,236,1023,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/algebra/2593.json,765,250,1015,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/algebra/2593.json,765,250,1015,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/intermediate_algebra/232.json,763,292,1055,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/intermediate_algebra/232.json,763,292,1055,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/prealgebra/505.json,757,126,883,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/prealgebra/505.json,757,126,883,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/counting_and_probability/803.json,787,471,1258,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/counting_and_probability/803.json,787,471,1258,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/algebra/109.json,779,77,856,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/algebra/109.json,779,77,856,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/counting_and_probability/508.json,762,79,841,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/counting_and_probability/508.json,762,79,841,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/algebra/1934.json,804,268,1072,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/algebra/1934.json,804,268,1072,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/intermediate_algebra/754.json,862,365,1227,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/intermediate_algebra/754.json,862,365,1227,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/geometry/965.json,805,682,1487,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/geometry/965.json,805,682,1487,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/number_theory/911.json,809,165,974,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/number_theory/911.json,809,165,974,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/prealgebra/1423.json,776,130,906,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/prealgebra/1423.json,776,130,906,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/algebra/425.json,765,98,863,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/algebra/425.json,765,98,863,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/number_theory/368.json,754,218,972,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/number_theory/368.json,754,218,972,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/algebra/858.json,750,182,932,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/algebra/858.json,750,182,932,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/intermediate_algebra/1166.json,796,588,1384,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/intermediate_algebra/1166.json,796,588,1384,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/intermediate_algebra/860.json,785,131,916,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/intermediate_algebra/860.json,785,131,916,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/number_theory/1185.json,792,145,937,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/number_theory/1185.json,792,145,937,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/algebra/849.json,767,60,827,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/algebra/849.json,767,60,827,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/number_theory/255.json,768,98,866,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/number_theory/255.json,768,98,866,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/number_theory/1128.json,775,112,887,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/number_theory/1128.json,775,112,887,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r8,math500,full,test/geometry/477.json,776,306,1082,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r8,math500,last,test/geometry/477.json,776,306,1082,0.2222222222222222,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0084,773,80,853,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0084,773,80,853,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0104,797,81,878,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0104,797,81,878,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0121,802,52,854,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0121,802,52,854,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0152,792,59,851,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0152,792,59,851,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0197,802,51,853,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0197,802,51,853,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0300,805,45,850,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0300,805,45,850,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0364,803,46,849,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0364,803,46,849,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0383,838,96,934,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0383,838,96,934,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0407,840,159,999,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0407,840,159,999,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0487,807,88,895,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0487,807,88,895,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0584,802,193,995,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0584,802,193,995,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0712,792,88,880,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0712,792,88,880,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0722,847,80,927,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0722,847,80,927,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0752,786,64,850,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0752,786,64,850,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0790,822,124,946,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0790,822,124,946,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0798,862,155,1017,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0798,862,155,1017,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0872,792,114,906,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0872,792,114,906,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0876,847,171,1018,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0876,847,171,1018,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0923,823,90,913,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0923,823,90,913,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0924,847,52,899,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0924,847,52,899,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0941,824,71,895,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0941,824,71,895,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0983,784,65,849,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0983,784,65,849,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-0985,781,36,817,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-0985,781,36,817,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-1026,821,157,978,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-1026,821,157,978,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-1028,811,45,856,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-1028,811,45,856,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-1033,808,73,881,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-1033,808,73,881,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-1046,786,66,852,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-1046,786,66,852,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-1053,844,102,946,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-1053,844,102,946,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-1058,803,57,860,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-1058,803,57,860,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-1119,861,110,971,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-1119,861,110,971,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-1152,793,72,865,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-1152,793,72,865,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,gsm8k,full,gsm8k-test-1260,832,57,889,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,gsm8k,last,gsm8k-test-1260,832,57,889,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/precalculus/1199.json,1024,96,1120,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/precalculus/1199.json,1024,96,1120,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/counting_and_probability/525.json,789,337,1126,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/counting_and_probability/525.json,789,337,1126,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/geometry/967.json,765,195,960,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/geometry/967.json,765,195,960,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/algebra/305.json,795,276,1071,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/algebra/305.json,795,276,1071,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/algebra/769.json,761,126,887,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/algebra/769.json,761,126,887,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/intermediate_algebra/207.json,788,164,952,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/intermediate_algebra/207.json,788,164,952,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/algebra/567.json,760,354,1114,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/algebra/567.json,760,354,1114,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/prealgebra/1761.json,780,79,859,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/prealgebra/1761.json,780,79,859,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/algebra/873.json,775,84,859,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/algebra/873.json,775,84,859,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/geometry/183.json,967,650,1617,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/geometry/183.json,967,650,1617,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/counting_and_probability/23957.json,787,236,1023,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/counting_and_probability/23957.json,787,236,1023,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/algebra/2593.json,765,250,1015,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/algebra/2593.json,765,250,1015,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/intermediate_algebra/232.json,763,292,1055,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/intermediate_algebra/232.json,763,292,1055,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/prealgebra/505.json,757,126,883,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/prealgebra/505.json,757,126,883,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/counting_and_probability/803.json,787,471,1258,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/counting_and_probability/803.json,787,471,1258,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/algebra/109.json,779,77,856,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/algebra/109.json,779,77,856,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/counting_and_probability/508.json,762,79,841,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/counting_and_probability/508.json,762,79,841,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/algebra/1934.json,804,268,1072,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/algebra/1934.json,804,268,1072,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/intermediate_algebra/754.json,862,365,1227,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/intermediate_algebra/754.json,862,365,1227,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/geometry/965.json,805,682,1487,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/geometry/965.json,805,682,1487,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/number_theory/911.json,809,165,974,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/number_theory/911.json,809,165,974,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/prealgebra/1423.json,776,130,906,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/prealgebra/1423.json,776,130,906,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/algebra/425.json,765,98,863,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/algebra/425.json,765,98,863,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/number_theory/368.json,754,218,972,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/number_theory/368.json,754,218,972,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/algebra/858.json,750,182,932,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/algebra/858.json,750,182,932,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/intermediate_algebra/1166.json,796,588,1384,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/intermediate_algebra/1166.json,796,588,1384,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/intermediate_algebra/860.json,785,131,916,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/intermediate_algebra/860.json,785,131,916,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/number_theory/1185.json,792,145,937,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/number_theory/1185.json,792,145,937,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/algebra/849.json,767,60,827,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/algebra/849.json,767,60,827,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/number_theory/255.json,768,98,866,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/number_theory/255.json,768,98,866,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/number_theory/1128.json,775,112,887,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/number_theory/1128.json,775,112,887,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r16,math500,full,test/geometry/477.json,776,306,1082,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r16,math500,last,test/geometry/477.json,776,306,1082,0.11764705882352941,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0084,773,80,853,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0084,773,80,853,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0104,797,81,878,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0104,797,81,878,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0121,802,52,854,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0121,802,52,854,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0152,792,59,851,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0152,792,59,851,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0197,802,51,853,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0197,802,51,853,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0300,805,45,850,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0300,805,45,850,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0364,803,46,849,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0364,803,46,849,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0383,838,96,934,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0383,838,96,934,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0407,840,159,999,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0407,840,159,999,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0487,807,88,895,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0487,807,88,895,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0584,802,193,995,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0584,802,193,995,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0712,792,88,880,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0712,792,88,880,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0722,847,80,927,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0722,847,80,927,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0752,786,64,850,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0752,786,64,850,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0790,822,124,946,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0790,822,124,946,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0798,862,155,1017,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0798,862,155,1017,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0872,792,114,906,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0872,792,114,906,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0876,847,171,1018,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0876,847,171,1018,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0923,823,90,913,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0923,823,90,913,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0924,847,52,899,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0924,847,52,899,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0941,824,71,895,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0941,824,71,895,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0983,784,65,849,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0983,784,65,849,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-0985,781,36,817,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-0985,781,36,817,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-1026,821,157,978,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-1026,821,157,978,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-1028,811,45,856,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-1028,811,45,856,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-1033,808,73,881,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-1033,808,73,881,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-1046,786,66,852,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-1046,786,66,852,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-1053,844,102,946,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-1053,844,102,946,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-1058,803,57,860,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-1058,803,57,860,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-1119,861,110,971,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-1119,861,110,971,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-1152,793,72,865,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-1152,793,72,865,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,gsm8k,full,gsm8k-test-1260,832,57,889,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,gsm8k,last,gsm8k-test-1260,832,57,889,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/precalculus/1199.json,1024,96,1120,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/precalculus/1199.json,1024,96,1120,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/counting_and_probability/525.json,789,337,1126,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/counting_and_probability/525.json,789,337,1126,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/geometry/967.json,765,195,960,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/geometry/967.json,765,195,960,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/algebra/305.json,795,276,1071,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/algebra/305.json,795,276,1071,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/algebra/769.json,761,126,887,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/algebra/769.json,761,126,887,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/intermediate_algebra/207.json,788,164,952,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/intermediate_algebra/207.json,788,164,952,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/algebra/567.json,760,354,1114,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/algebra/567.json,760,354,1114,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/prealgebra/1761.json,780,79,859,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/prealgebra/1761.json,780,79,859,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/algebra/873.json,775,84,859,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/algebra/873.json,775,84,859,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/geometry/183.json,967,650,1617,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/geometry/183.json,967,650,1617,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/counting_and_probability/23957.json,787,236,1023,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/counting_and_probability/23957.json,787,236,1023,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/algebra/2593.json,765,250,1015,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/algebra/2593.json,765,250,1015,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/intermediate_algebra/232.json,763,292,1055,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/intermediate_algebra/232.json,763,292,1055,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/prealgebra/505.json,757,126,883,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/prealgebra/505.json,757,126,883,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/counting_and_probability/803.json,787,471,1258,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/counting_and_probability/803.json,787,471,1258,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/algebra/109.json,779,77,856,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/algebra/109.json,779,77,856,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/counting_and_probability/508.json,762,79,841,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/counting_and_probability/508.json,762,79,841,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/algebra/1934.json,804,268,1072,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/algebra/1934.json,804,268,1072,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/intermediate_algebra/754.json,862,365,1227,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/intermediate_algebra/754.json,862,365,1227,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/geometry/965.json,805,682,1487,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/geometry/965.json,805,682,1487,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/number_theory/911.json,809,165,974,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/number_theory/911.json,809,165,974,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/prealgebra/1423.json,776,130,906,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/prealgebra/1423.json,776,130,906,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/algebra/425.json,765,98,863,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/algebra/425.json,765,98,863,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/number_theory/368.json,754,218,972,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/number_theory/368.json,754,218,972,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/algebra/858.json,750,182,932,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/algebra/858.json,750,182,932,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/intermediate_algebra/1166.json,796,588,1384,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/intermediate_algebra/1166.json,796,588,1384,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/intermediate_algebra/860.json,785,131,916,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/intermediate_algebra/860.json,785,131,916,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/number_theory/1185.json,792,145,937,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/number_theory/1185.json,792,145,937,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/algebra/849.json,767,60,827,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/algebra/849.json,767,60,827,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/number_theory/255.json,768,98,866,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/number_theory/255.json,768,98,866,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/number_theory/1128.json,775,112,887,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/number_theory/1128.json,775,112,887,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125-r24,math500,full,test/geometry/477.json,776,306,1082,1.0,True,logical exact FULL; not measured HBM
+huginn-0125-r24,math500,last,test/geometry/477.json,776,306,1082,0.08,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0084,773,80,853,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0084,773,80,853,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0104,797,81,878,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0104,797,81,878,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0121,802,52,854,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0121,802,52,854,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0152,792,59,851,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0152,792,59,851,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0197,802,51,853,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0197,802,51,853,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0300,805,45,850,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0300,805,45,850,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0364,803,46,849,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0364,803,46,849,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0383,838,96,934,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0383,838,96,934,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0407,840,159,999,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0407,840,159,999,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0487,807,88,895,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0487,807,88,895,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0584,802,193,995,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0584,802,193,995,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0712,792,88,880,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0712,792,88,880,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0722,847,80,927,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0722,847,80,927,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0752,786,64,850,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0752,786,64,850,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0790,822,124,946,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0790,822,124,946,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0798,862,155,1017,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0798,862,155,1017,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0872,792,114,906,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0872,792,114,906,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0876,847,171,1018,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0876,847,171,1018,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0923,823,90,913,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0923,823,90,913,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0924,847,52,899,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0924,847,52,899,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0941,824,71,895,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0941,824,71,895,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0983,784,65,849,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0983,784,65,849,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-0985,781,36,817,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-0985,781,36,817,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-1026,821,157,978,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-1026,821,157,978,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-1028,811,45,856,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-1028,811,45,856,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-1033,808,73,881,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-1033,808,73,881,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-1046,786,66,852,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-1046,786,66,852,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-1053,844,102,946,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-1053,844,102,946,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-1058,803,57,860,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-1058,803,57,860,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-1119,861,110,971,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-1119,861,110,971,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-1152,793,72,865,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-1152,793,72,865,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,gsm8k,full,gsm8k-test-1260,832,57,889,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,gsm8k,last,gsm8k-test-1260,832,57,889,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/precalculus/1199.json,1024,96,1120,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/precalculus/1199.json,1024,96,1120,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/counting_and_probability/525.json,789,337,1126,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/counting_and_probability/525.json,789,337,1126,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/geometry/967.json,765,195,960,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/geometry/967.json,765,195,960,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/algebra/305.json,795,276,1071,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/algebra/305.json,795,276,1071,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/algebra/769.json,761,126,887,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/algebra/769.json,761,126,887,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/intermediate_algebra/207.json,788,164,952,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/intermediate_algebra/207.json,788,164,952,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/algebra/567.json,760,354,1114,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/algebra/567.json,760,354,1114,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/prealgebra/1761.json,780,79,859,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/prealgebra/1761.json,780,79,859,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/algebra/873.json,775,84,859,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/algebra/873.json,775,84,859,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/geometry/183.json,967,650,1617,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/geometry/183.json,967,650,1617,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/counting_and_probability/23957.json,787,236,1023,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/counting_and_probability/23957.json,787,236,1023,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/algebra/2593.json,765,250,1015,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/algebra/2593.json,765,250,1015,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/intermediate_algebra/232.json,763,292,1055,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/intermediate_algebra/232.json,763,292,1055,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/prealgebra/505.json,757,126,883,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/prealgebra/505.json,757,126,883,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/counting_and_probability/803.json,787,471,1258,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/counting_and_probability/803.json,787,471,1258,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/algebra/109.json,779,77,856,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/algebra/109.json,779,77,856,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/counting_and_probability/508.json,762,79,841,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/counting_and_probability/508.json,762,79,841,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/algebra/1934.json,804,268,1072,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/algebra/1934.json,804,268,1072,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/intermediate_algebra/754.json,862,365,1227,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/intermediate_algebra/754.json,862,365,1227,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/geometry/965.json,805,682,1487,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/geometry/965.json,805,682,1487,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/number_theory/911.json,809,165,974,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/number_theory/911.json,809,165,974,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/prealgebra/1423.json,776,130,906,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/prealgebra/1423.json,776,130,906,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/algebra/425.json,765,98,863,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/algebra/425.json,765,98,863,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/number_theory/368.json,754,218,972,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/number_theory/368.json,754,218,972,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/algebra/858.json,750,182,932,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/algebra/858.json,750,182,932,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/intermediate_algebra/1166.json,796,588,1384,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/intermediate_algebra/1166.json,796,588,1384,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/intermediate_algebra/860.json,785,131,916,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/intermediate_algebra/860.json,785,131,916,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/number_theory/1185.json,792,145,937,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/number_theory/1185.json,792,145,937,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/algebra/849.json,767,60,827,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/algebra/849.json,767,60,827,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/number_theory/255.json,768,98,866,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/number_theory/255.json,768,98,866,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/number_theory/1128.json,775,112,887,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/number_theory/1128.json,775,112,887,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM
+huginn-0125,math500,full,test/geometry/477.json,776,306,1082,1.0,True,logical exact FULL; not measured HBM
+huginn-0125,math500,last,test/geometry/477.json,776,306,1082,0.06060606060606061,True,logical active KV at end of gold prefix; not measured HBM

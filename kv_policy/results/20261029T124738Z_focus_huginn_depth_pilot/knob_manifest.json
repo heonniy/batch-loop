@@ -1,0 +1,32 @@
+{
+  "source_sha": "c5a7c9b4eae98a8022853e8115d38685c286a5fa",
+  "spec": {
+    "phase": "huginn_hard",
+    "sample": "pilot",
+    "models": [
+      "huginn-0125-r8",
+      "huginn-0125-r16",
+      "huginn-0125-r24",
+      "huginn-0125"
+    ],
+    "policies": [
+      "full-strict",
+      "last-strict"
+    ],
+    "tasks": [
+      "nll",
+      "gen"
+    ],
+    "datasets": [
+      "gsm8k",
+      "math500"
+    ],
+    "batch_sizes": {
+      "gsm8k": 8,
+      "math500": 4
+    },
+    "prompt_style": "default"
+  },
+  "source_banks_sha256": null,
+  "note": "All policies use broadcast reference KV. sub50 is layer-wise first-loop protection; postlast/factored include logical eviction masks. No physical compact memory claim."
+}

@@ -1,0 +1,17 @@
+model,dataset,task,policy,mode,n_paired,metric,delta,ci95_lo,ci95_hi
+huginn-0125,gsm8k,gen,last,strict,32,delta_accuracy,0.0,0.0,0.0
+huginn-0125,gsm8k,nll,last,strict,32,delta_nll_per_problem,0.00529771604016176,0.0004221903839986031,0.012863945589144006
+huginn-0125,math500,gen,last,strict,32,delta_accuracy,-0.03125,-0.09375,0.0
+huginn-0125,math500,nll,last,strict,32,delta_nll_per_problem,-0.0003908952470056716,-0.003906413339940648,0.001877009074737682
+huginn-0125-r16,gsm8k,gen,last,strict,32,delta_accuracy,0.0,-0.125,0.125
+huginn-0125-r16,gsm8k,nll,last,strict,32,delta_nll_per_problem,0.037307753233320376,0.017966756314023204,0.059060809753100844
+huginn-0125-r16,math500,gen,last,strict,32,delta_accuracy,0.03125,-0.09375,0.15625
+huginn-0125-r16,math500,nll,last,strict,32,delta_nll_per_problem,-0.0021780912035499755,-0.006520666285293873,0.001960822470975388
+huginn-0125-r24,gsm8k,gen,last,strict,32,delta_accuracy,0.09375,0.0,0.1875
+huginn-0125-r24,gsm8k,nll,last,strict,32,delta_nll_per_problem,0.009018922584734634,-0.0003308427595547052,0.021677366694716205
+huginn-0125-r24,math500,gen,last,strict,32,delta_accuracy,-0.03125,-0.15625,0.0625
+huginn-0125-r24,math500,nll,last,strict,32,delta_nll_per_problem,-0.0025379900470445405,-0.005430572861465328,-0.0001853221438360437
+huginn-0125-r8,gsm8k,gen,last,strict,32,delta_accuracy,0.15625,-0.0625,0.40625
+huginn-0125-r8,gsm8k,nll,last,strict,32,delta_nll_per_problem,-0.02543257210457573,-0.053078991139414916,0.0027796540739780697
+huginn-0125-r8,math500,gen,last,strict,32,delta_accuracy,0.125,0.0,0.28125
+huginn-0125-r8,math500,nll,last,strict,32,delta_nll_per_problem,-0.08160263761759964,-0.09693789242751483,-0.0654632950664267

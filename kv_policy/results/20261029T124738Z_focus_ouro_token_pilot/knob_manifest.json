@@ -1,0 +1,41 @@
+{
+  "source_sha": "c5a7c9b4eae98a8022853e8115d38685c286a5fa",
+  "spec": {
+    "phase": "ouro_token",
+    "sample": "pilot",
+    "models": [
+      "ouro-1.4b",
+      "ouro-2.6b"
+    ],
+    "policies": [
+      "full-strict",
+      "last-strict",
+      "bankR1all-strict",
+      "bankcal-strict",
+      "bankTopB35-strict",
+      "bankTopB40-strict",
+      "tokL1hash0-strict",
+      "tokL1hash40-strict",
+      "tokL1hash60-strict",
+      "tokL1hash100-strict",
+      "tokL1prompt-strict",
+      "tokL1decode-strict",
+      "tokL1delta50-strict"
+    ],
+    "tasks": [
+      "nll",
+      "gen"
+    ],
+    "datasets": [
+      "gsm8k",
+      "math500"
+    ],
+    "batch_sizes": {
+      "gsm8k": 8,
+      "math500": 4
+    },
+    "prompt_style": "default"
+  },
+  "source_banks_sha256": "596d98e7967941ea5bd4782adeadbd935f901325d069cc64432d90b3e4c7608e",
+  "note": "All policies use broadcast reference KV. sub50 is layer-wise first-loop protection; postlast/factored include logical eviction masks. No physical compact memory claim."
+}
