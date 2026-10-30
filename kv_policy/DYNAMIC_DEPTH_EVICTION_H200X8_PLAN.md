@@ -90,6 +90,100 @@ match existing full/strict output logits and NLL. CPU test model parity
 must pass BEFORE using pretrained H200 outputs. Any mismatch blocks
 the study; do not report synthetic proxy depths as native exits.
 
+## 2026-10-30 scope update — 100 examples EACH + real dense-LLM baselines
+
+**Requested final sample is 100 distinct questions PER model × dataset**:
+3 checkpoints (Huginn-0125, Ouro-1.4B, Ouro-2.6B) ×
+2 datasets (GSM8K, MATH-500) × 100 = **600 model-question instances**.
+At 4 chosen source tokens per instance this yields up to 2400
+single-token eviction interventions, with independent baseline record and
+parity replay per instance. The exact-count data gate now rejects missing
+cells; prior 4-example setting remains an intentional **SMOKE** run only.
+Use `--subset main --n-examples 100` for the real cohort (default).
+`--subset pilot` has only 32 candidates per dataset and cannot yield 100.
+
+**Resource caution**: B=1 token-major R32 Huginn plus one replay and four
+full forward interventions per request is costly. First pass a 1-example
+smoke on 1 GPU, then a 4-example × 3 models × 2 datasets compatibility pilot,
+then explicitly launch the 100-each cohort on idle H200 × 8. For 100-each,
+first use 4 candidate sources, last 96 prompt tokens and first 16 target
+tokens to control runtime. This is a *truncated context diagnostic* and
+must NEVER be called benchmark accuracy. Later run an intact-prompt
+conditional experiment if the signal survives.
+
+### Real Transformer KV eviction references
+
+1. **H2O: Heavy-Hitter Oracle for Efficient Generative Inference**,
+   https://arxiv.org/abs/2306.14048 ,
+   https://github.com/FMInference/H2O .
+   Score = accumulated past attention received by historical token,
+   usually combined with a recency budget. This is a high-value baseline
+   for **does source exit depth add beyond past attention?** Our
+   `attention_h2o_proxy` evaluates the attention-score ranking, NOT a
+   faithful port of its online eviction implementation.
+2. **StreamingLLM: Efficient Streaming Language Models with Attention
+   Sinks**, https://arxiv.org/abs/2309.17453 ,
+   https://github.com/mit-han-lab/streaming-llm .
+   Retains attention sinks plus a recent window. Our B1 candidate pool
+   intentionally excludes the first 4 prompt tokens (sink positions), so
+   `streaming_sink_recent_proxy` behaves like *recency* over the remaining
+   eligible tokens; for a faithful streaming comparison, the full history,
+   sink pinning and cache-size enforcement must be implemented in Stage E3.
+3. **SnapKV: LLM Knows What You are Looking for Before Generation**,
+   https://arxiv.org/abs/2404.14469 ,
+   https://github.com/FasterDecoding/SnapKV .
+   Scores prompt KV via attention received from an observation window
+   at the end of the prompt; optional head-wise clustering. It is
+   a particularly relevant **prefill-only selection baseline** for our
+   post-prefill eviction timing. We should add an exact observation-window
+   attention collector in E3, not call global pre-attention an exact SnapKV.
+4. **Random, Recency and Reverse-Depth** are mandatory negative controls.
+   Prompt-protected random and attention+recency are must-have E3 controls.
+
+**What was implemented NOW:** `kvp/eviction_baselines.py`
+provides same-candidate, same-retention-count rankings:
+`depth`, `reverse_depth`, `attention_h2o_proxy`,
+`attention_normalized`, `recency`,
+`streaming_sink_recent_proxy`, `random`.
+`offline_policy_oracle_diagnostic.csv` reports a SUM of separately
+measured single-source eviction NLL deltas of the candidates that each
+policy would evict. This is **NOT the NLL of jointly evicting** those
+tokens: interactions are non-additive. It is suitable for scouting
+which signals merit online implementation, not claiming a policy
+throughput or accuracy improvement. Full faithful H2O/SnapKV online
+port and joint evictions are E3 (not implemented).
+
+### Two separate commands for smoke and actual 100-each run
+
+```bash
+# SMOKE only: new isolated run directory, 1 example/cell, 2 source tokens.
+python scripts/depth_eviction_sweep.py --prepare \
+  --run-dir results/depth_smoke_20261030 --subset main \
+  --n-examples 1 --n-candidates 2
+python scripts/depth_eviction_sweep.py --execute \
+  --run-dir results/depth_smoke_20261030 --gpu-ids 0
+python scripts/depth_eviction_sweep.py --analyze \
+  --run-dir results/depth_smoke_20261030
+
+# FULL 100 per model/dataset: 600 requests, up to 2400 interventions.
+# Run only after smoke, HF gate parity, and H200 resource inspection.
+python scripts/depth_eviction_sweep.py --prepare \
+  --run-dir results/depth_100_each_20261030 --subset main \
+  --n-examples 100 --n-candidates 4 \
+  --max-prompt-tokens 96 --max-target-tokens 16
+python scripts/depth_eviction_sweep.py --execute \
+  --run-dir results/depth_100_each_20261030 \
+  --gpu-ids 0,1,2,3,4,5,6,7
+python scripts/depth_eviction_sweep.py --analyze \
+  --run-dir results/depth_100_each_20261030
+```
+
+**Statistical unit** is the question/request, not each correlated token.
+Report per-request bootstrap confidence intervals, depth distributions,
+attention-conditioned held-out prediction, task-separated metrics,
+and negative outcomes. Raw depth cannot be compared across Huginn
+(R32) and Ouro (R4).
+
 ## Experimental workflow
 
 ### E0 — CPU and model parity (mandatory)
