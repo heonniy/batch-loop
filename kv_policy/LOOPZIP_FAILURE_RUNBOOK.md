@@ -91,6 +91,10 @@ python scripts/loopzip_failure_screen.py --execute-swap \
   --gpu-ids 0,1,2,3,4,5,6,7
 python scripts/loopzip_failure_screen.py --analyze-swap \
   --run-dir results/loopzip_failure_pilot20
+
+# Produce an auditable observation report from COMPLETE measured results only.
+python scripts/loopzip_observations.py \
+  --run-dir results/loopzip_failure_pilot20 --require-swaps
 ~~~
 
 Each failure/control may be included at several budgets, but the clean prompt prefix is recomputed **once per swap task**, not per individual exchange candidate. The maximum neighborhood size per selected budget is 6 retained candidates x 6 evicted candidates = 36, plus the original selected set. Swap-Greedy checks only the best tested swap; most swap comparisons use signed NLL.
@@ -103,6 +107,7 @@ Each failure/control may be included at several budgets, but the clean prompt pr
 - analysis/baseline_qa.csv: clean full-KV ability and actual generated short answer.
 - analysis/failure_cases.csv: full-wrong, all-attention-wrong, mean-only aggregation failure and NLL-only labels.
 - analysis/SUMMARY.json and completeness.json: request-grouped metrics, error/invalid/missing guard.
+- analysis/OBSERVATIONS.md and OBSERVATIONS.json: derived only from completed raw runs; classify 10/30/50% failure/aggregation/swap-NLL-recovery/greedy-rescue cases with explicit no-recurrence-causality caveat.
 - swap_jobs.json and swap_selection.json: frozen second-stage cohort and case-selection criteria.
 - swap_raw/<job>.json, analysis/swap_candidates.csv, analysis/SWAP_SUMMARY.json, swap_completeness.json: all tested swaps and equal-budget NLL gains.
 
