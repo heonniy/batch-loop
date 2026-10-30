@@ -201,6 +201,7 @@ def evaluate_screen(bb,tok,job: dict,cfg: dict):
             raise RuntimeError("Post-prefill eviction changed first generated token")
         records.append({
             "retention":policy["retention_requested"],
+            "retention_requested":policy["retention_requested"],
             "policy":policy["policy"],"policy_key":policy["policy_key"],
             "seed":policy["seed"],"n_context":policy["n_context"],
             "n_retained":policy["n_retained"],
