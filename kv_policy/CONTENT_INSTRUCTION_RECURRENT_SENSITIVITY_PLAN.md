@@ -1,3 +1,5 @@
+> **PRIORITY UPDATE (2026-10-31):** This v3 MAIN+ABLATION plan remains an archival/secondary mechanism study. The current *first* experiment is the [LoopZip Attention Failure-first Plan](LOOPZIP_ATTENTION_FAILURE_FIRST_PLAN.md), with frozen **10%, 30%, 50% Context KV retention**; attention budget screening and same-budget local swap precede the v3 recurrent sensitivity study. The Phase-1 budget-screening runner and local-swap implementation **are not in this branch yet**. Do not interpret the v3 eight-token runner as implementing the new failure-first study.
+
 # Final v3 Plan: Context Recurrent Sensitivity (MAIN + Evidence ABLATION)
 
 **Research question:** Does Context-to-Question recurrent sensitivity predict actual future Context-KV eviction damage beyond conventional attention and token age?
