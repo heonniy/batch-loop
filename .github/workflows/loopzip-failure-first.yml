@@ -34,3 +34,21 @@ jobs:
       - name: Pure CPU policy and manifest regression
         working-directory: kv_policy
         run: python -m pytest -q tests/test_loopzip_policy.py tests/test_loopzip_failure_runner.py
+
+
+  cpu-torch-probe:
+    needs: cpu-gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install CPU PyTorch and tests
+        run: |
+          python -m pip install --disable-pip-version-check pytest
+          python -m pip install --disable-pip-version-check torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Check cached full-prefill and multi-key attention masking
+        working-directory: kv_policy
+        run: python -m pytest -q tests/test_loopzip_cached_eval.py
