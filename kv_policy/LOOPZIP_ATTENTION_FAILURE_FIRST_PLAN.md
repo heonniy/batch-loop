@@ -1,3 +1,5 @@
+> **FOLLOW-UP PRIORITY (2026-10-31):** The completed Phase-1/2 H200 pilot on source/result commit ee972218a78b7cb5e3e246fdbf900e4c8dc21090 is now the frozen starting point. See [LOOPZIP_EVIDENCE_CONTROLLED_LOOP_SPECIFIC_PLAN.md](LOOPZIP_EVIDENCE_CONTROLLED_LOOP_SPECIFIC_PLAN.md) for the next gated steps: (0) offline evidence-coverage audit, (1) exactly evidence-matched KV selection at fixed token budget, (2) token×query-loop read-mask importance diagnostics, (3) equal-bank/byte comparisons against first+last sharing and loop-shuffled controls. This v4 document describes the *earlier* failure-first design, and its contemporaneous comments that H200 results were "not done" are superseded by the committed pilot. No new GPU execution or Stage-0 analysis results are claimed by this plan-only branch.
+
 # LoopZip Failure-first Characterization: Experiment Plan (v4)
 
 Date: 2026-10-31
