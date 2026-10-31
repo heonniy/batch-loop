@@ -26,6 +26,9 @@ class FakeBB:
         self.model = torch.nn.Module()
         self.model.emb = torch.nn.Parameter(torch.randn(50, DM, generator=g))
         self.model.out = torch.nn.Parameter(torch.randn(DM, V, generator=g))
+        self.model.lm_head = torch.nn.Linear(DM, V, bias=False)
+        with torch.no_grad():
+            self.model.lm_head.weight.copy_(self.model.out.T)
 
     def make_aux(self, *a, **k):
         return None
@@ -118,3 +121,34 @@ def test_source_features(runner):
     assert f["recv_mean"].shape == (3, runner.P)
     tot = f["last_query"][:, :runner.P - 1].sum(-1)  # excludes the final token's self-attention
     assert bool(((tot > 0) & (tot < 1)).all()) and float(f["last_query"][:, runner.P - 1:].abs().max()) == 0
+
+
+def test_control_probe_semantics(runner):
+    R = runner.R
+    cl = runner.clean_probes((2,), (3,))[3]
+    allm = runner.control_probe(3, (2,))
+    assert torch.equal(allm["E"], cl["E"]) and allm["token"]["kl"] == cl["token"]["kl"]
+    # one-loop masks: applied once per recurrent layer of that loop (+ plain if requested)
+    one = runner.control_probe(3, (2,), loops=(2,), plain=False)
+    assert float(one["E"][:2].abs().max()) == 0 and float(one["E"][2]) > 0  # untouched before loop 2
+    rec_only = runner.control_probe(3, (2,), loops=None, plain=False)
+    assert not torch.equal(rec_only["E"], allm["E"])
+    # zero injection == FULL; nonzero injection only changes loops >= r
+    z = runner.control_probe(3, inject=(2, torch.zeros(DM)))
+    assert float(z["E"].abs().max()) == 0 and z["token"]["kl"] == 0
+    v = runner.control_probe(3, inject=(2, torch.ones(DM) * 0.3))
+    assert float(v["E"][:2].abs().max()) == 0 and float(v["E"][2]) > 0
+    assert float(v["delta"][2].norm()) == pytest.approx(0.3 * DM ** 0.5, rel=1e-5)
+    # history restored: accumulated FULL still identical
+    assert float(runner.accumulated(())["E"].abs().max()) == 0
+    with pytest.raises(ValueError):
+        runner.control_probe(99, (2,))
+
+
+def test_readout_only_native_for_ouro(runner):
+    runner.readout = True
+    runner.reference(eos_ids=set(), frozen_ids=list(runner.ref_ids))
+    assert len(runner.ref_readout) == len(runner.ref_ids)
+    ro = runner.ref_readout[0]
+    assert ro["kl_to_final"].shape == (runner.R,) and float(ro["kl_to_final"][-1]) == pytest.approx(0, abs=1e-6)
+    assert float(ro["top1_agree"][-1]) == 1.0

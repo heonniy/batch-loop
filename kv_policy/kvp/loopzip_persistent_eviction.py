@@ -33,10 +33,10 @@ def fixed_spec(bb) -> DepthProbeSpec:
     return DepthProbeSpec("huginn", bb.R, 0.0, min_depth=2, cosine_dtype="float32")
 
 
-def eligible_sources(prompt: RolePrompt) -> list[int]:
+def eligible_sources(prompt: RolePrompt, roles: Sequence[str] = ELIGIBLE_ROLES) -> list[int]:
     """Frozen rule: every token aligned to Context/Instruction/Question; 'other' (format/special/
     boundary-crossing) tokens are excluded and counted separately."""
-    return [i for i, r in enumerate(prompt.roles) if r in ELIGIBLE_ROLES]
+    return [i for i, r in enumerate(prompt.roles) if r in roles]
 
 
 class PersistentEvictionRunner:
@@ -55,7 +55,18 @@ class PersistentEvictionRunner:
         self.kv = RoleProbeKV(bb, self.T, self.device, p.dtype, prompt=prompt, mode="none", observe=False)
         self.aux = bb.make_aux([uid], [0], self.T) if bb.family == "huginn" else None
         self.cap = StateCapture(self.kv, self.R)
-        self._mask = None            # (frozenset sources, first col, last col)
+        self._mask = None            # (frozenset sources, first col, last col, rec loops|None=all, plain)
+        self._inject = None          # (col, loop r 1-based, vector added to h_r in place)
+        self.readout = False         # Ouro-native per-loop LM-head readout during reference()
+        obs = self.kv.observe_state
+
+        def observe_state(col, r, h):
+            j = self._inject
+            if j is not None and j[0] == col and j[1] == r:
+                h.add_(j[2].to(h.dtype).view_as(h))  # in place: the forward continues from h
+            obs(col, r, h)
+
+        self.kv.observe_state = observe_state
         self._applied = 0
         self._attn = record_prefill_attention
         self.recv_sum = torch.zeros(self.R, self.P, dtype=torch.float64, device=self.device)
@@ -76,7 +87,9 @@ class PersistentEvictionRunner:
                 if c0 == self.P - 1:
                     self.last_q[r, :c0] += w[:c0].double() / self.n_rec
             m = self._mask
-            if m is not None and m[1] <= c0 <= m[2]:
+            if (m is not None and m[1] <= c0 <= m[2] and
+                    ((layer[0] == "rec" and (m[3] is None or layer[2] + 1 in m[3])) or
+                     (layer[0] != "rec" and m[4]))):
                 if c0 in m[0]:
                     raise RuntimeError("Never mask the current token's own KV")
                 mask = mask.clone()
@@ -101,7 +114,9 @@ class PersistentEvictionRunner:
             raise RuntimeError("Fixed full depth expected")
         self.kv.finish(col, depth)
         m = self._mask
-        want = (self.n_rec * self.R + self.n_plain) if (m is not None and m[1] <= col <= m[2]) else 0
+        want = 0
+        if m is not None and m[1] <= col <= m[2]:
+            want = self.n_rec * (self.R if m[3] is None else len(m[3])) + (self.n_plain if m[4] else 0)
         if self._applied != want:
             raise RuntimeError(f"Mask applied {self._applied} times at col {col}, expected {want}")
         return logits, self.cap.take()
@@ -140,7 +155,7 @@ class PersistentEvictionRunner:
         self._mask = None
         self._reset_decode(0)
         y = [int(self.last_prompt_lp.argmax())] if frozen_ids is None else [int(frozen_ids[0])]
-        Hs, lps, metrics = [], [], []
+        Hs, lps, metrics, ro = [], [], [], []
         stop = "horizon"
         argmax_agree = 0
         if frozen_ids is None and y[0] in eos_ids:
@@ -151,6 +166,8 @@ class PersistentEvictionRunner:
             lp = F.log_softmax(logits[0, 0].float(), -1)
             Hs.append(H)
             lps.append(lp)
+            if self.readout:
+                ro.append(self._readout(H, lp))
             metrics.append({k: v.cpu() for k, v in trajectory_metrics(H).items()})
             if t >= self.horizon if frozen_ids is None else t >= len(frozen_ids):
                 break
@@ -169,6 +186,7 @@ class PersistentEvictionRunner:
         self.ref_H = torch.stack(Hs)
         self.ref_lp = torch.stack(lps)
         self.ref_metrics = metrics
+        self.ref_readout = ro
         n = len(y)
         self.snapshot = [(b, b[..., self.P:self.P + n, :].clone())
                          for b in (*self.kv.rk, *self.kv.rv, *self.kv.pk, *self.kv.pv)]
@@ -192,7 +210,7 @@ class PersistentEvictionRunner:
         """Persistent mask on all generated query columns; same token IDs; altered KV persists."""
         src = frozenset(int(s) for s in sources)
         n = len(self.ref_ids)
-        self._mask = (src, self.P, self.P + n) if src else None
+        self._mask = (src, self.P, self.P + n, None, True) if src else None
         self._reset_decode(0)
         E = torch.empty(n, self.R + 1, device=self.device)
         U = torch.empty_like(E)
@@ -221,7 +239,7 @@ class PersistentEvictionRunner:
                 self._restore()
                 self._reset_decode(t - 1)
                 col = self.P + t - 1
-                self._mask = (src, col, col) if src else None
+                self._mask = (src, col, col, None, True) if src else None
                 logits, H = self._step(col, self.ref_ids[t - 1])
                 o = self._observe(t, logits, H)
                 out[t] = {"E": o["pm"]["E"].cpu(), "U_ev": o["pm"]["U_ev"].cpu(),
@@ -230,6 +248,43 @@ class PersistentEvictionRunner:
             self._mask = None
             self._restore()
         return out
+
+    @torch.no_grad()
+    def _readout(self, H, lp_final) -> dict:
+        """Ouro-native intermediate readout: lm_head(h_r) for r=1..R (h_r is already model.norm'ed).
+        KL(p_r || p_R) and top-1 agreement with the final prediction. Not defined for Huginn."""
+        if self.bb.family != "ouro":
+            raise ValueError("Intermediate readout is only model-native for Ouro")
+        w = self.bb.model.lm_head
+        lps = F.log_softmax(w(H[1:].to(w.weight.dtype)).float(), -1)
+        kl = (lps.exp() * (lps - lp_final.unsqueeze(0))).sum(-1)
+        top = (lps.argmax(-1) == lp_final.argmax()).float()
+        return {"kl_to_final": kl.cpu(), "top1_agree": top.cpu()}
+
+    @torch.no_grad()
+    def control_probe(self, t: int, sources: Sequence[int] = (), loops: Sequence[int] | None = None,
+                      plain: bool = True, inject: tuple[int, torch.Tensor] | None = None) -> dict:
+        """Mechanism control at query token t with PRISTINE FULL generated history (clean-history).
+        sources/loops/plain choose a read mask (loops=None: all recurrent loops); inject=(r, vec) adds a
+        perturbation to h_r of token t. Returns paired metrics vs the FULL reference and h_r - h_r^FULL."""
+        src = frozenset(int(s) for s in sources)
+        if not 1 <= t <= len(self.ref_ids):
+            raise ValueError("t outside the reference continuation")
+        col = self.P + t - 1
+        self._restore()
+        self._reset_decode(t - 1)
+        self._mask = (src, col, col, None if loops is None else frozenset(int(r) for r in loops), plain) \
+            if src else None
+        self._inject = (col, int(inject[0]), inject[1]) if inject is not None else None
+        try:
+            logits, H = self._step(col, self.ref_ids[t - 1])
+        finally:
+            self._mask = None
+            self._inject = None
+            self._restore()
+        o = self._observe(t, logits, H)
+        return {"E": o["pm"]["E"].cpu(), "dircos": o["pm"]["dircos"].cpu(), "token": o["lm"],
+                "delta": (H - self.ref_H[t - 1])}
 
     # ------------------------------------------------------------------ G0 validation
     @torch.no_grad()
@@ -255,7 +310,7 @@ class PersistentEvictionRunner:
         self._mask = None
         for s in range(1, t):
             self._step(self.P + s - 1, self.ref_ids[s - 1])
-        self._mask = (frozenset((src_a,)), col, col)
+        self._mask = (frozenset((src_a,)), col, col, None, True)
         try:
             logits, H = self._step(col, self.ref_ids[t - 1])
         finally:
