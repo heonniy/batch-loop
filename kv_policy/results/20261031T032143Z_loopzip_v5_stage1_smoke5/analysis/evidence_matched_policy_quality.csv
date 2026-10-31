@@ -1,0 +1,351 @@
+model,dataset,uid,budget,policy,family,n_evidence,k,feasible,full_correct,delta_nll,greedy_correct,fixed_prefix_kl,greedy_answer
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.1,mean_attn,mean_attn,22,35,True,True,0.5981395173759665,False,0.17429213225841522,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.1,last_attn,last_attn,22,35,True,True,0.8281982361280824,False,0.24796396493911743,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.1,max_attn,max_attn,22,35,True,True,0.5259136445762124,False,0.15238873660564423,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.1,recent_attn,recent_attn,22,35,True,True,0.5503110838530119,False,0.16047872602939606,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.1,random_s11,random,22,35,True,True,0.02886528248782269,True,0.027240417897701263,VX-70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.1,random_s29,random,22,35,True,True,0.49453755238209857,False,0.1539025455713272,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.1,random_s47,random,22,35,True,True,0.7793458843079861,False,0.23764987289905548,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.3,mean_attn,mean_attn,22,105,True,True,0.12140146525925956,False,0.031494416296482086,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.3,last_attn,last_attn,22,105,True,True,0.0939267847163137,False,0.02383483573794365,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.3,max_attn,max_attn,22,105,True,True,0.1185371695959475,False,0.03200994431972504,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.3,recent_attn,recent_attn,22,105,True,True,0.11292223450145684,False,0.028602514415979385,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.3,random_s11,random,22,105,True,True,-0.010303393867798147,True,0.01339362096041441,VX-70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.3,random_s29,random,22,105,True,True,0.1298495704715606,False,0.04911694675683975,70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.3,random_s47,random,22,105,True,True,-0.0026235497382003786,True,0.0026167610194534063,VX-70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.5,mean_attn,mean_attn,22,176,True,True,0.04657336291274987,True,0.011291559785604477,VX-70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.5,last_attn,last_attn,22,176,True,True,0.034140292083611704,True,0.008039044216275215,VX-70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.5,max_attn,max_attn,22,176,True,True,0.01700555374263786,True,0.004829232580959797,VX-70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.5,recent_attn,recent_attn,22,176,True,True,0.02686874827486463,True,0.006871075835078955,VX-70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.5,random_s11,random,22,176,True,True,-0.004391916672466328,True,0.010636615566909313,VX-70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.5,random_s29,random,22,176,True,True,-0.010857008845778185,True,0.014051900245249271,VX-70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.5,random_s47,random,22,176,True,True,-0.0037855594826396582,True,0.0020075859501957893,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.1,mean_attn,mean_attn,22,35,True,True,-0.04421251606545418,True,0.023196185007691383,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.1,last_attn,last_attn,22,35,True,True,-0.04763454095809727,True,0.021559884771704674,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.1,max_attn,max_attn,22,35,True,True,-0.04923384141293352,True,0.02146179974079132,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.1,recent_attn,recent_attn,22,35,True,True,-0.04800308569683698,True,0.022484377026557922,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.1,random_s11,random,22,35,True,True,-0.06569872490945272,True,0.021728109568357468,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.1,random_s29,random,22,35,True,True,-0.07279798371018842,True,0.021196553483605385,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.1,random_s47,random,22,35,True,True,-0.07182030327385291,True,0.02122357115149498,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.3,mean_attn,mean_attn,22,105,True,True,-0.01997234972077422,True,0.022396838292479515,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.3,last_attn,last_attn,22,105,True,True,-0.008715203701285645,True,0.022175991907715797,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.3,max_attn,max_attn,22,105,True,True,-0.0167027454532217,True,0.021083557978272438,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.3,recent_attn,recent_attn,22,105,True,True,-0.008109119842993118,True,0.02188699319958687,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.3,random_s11,random,22,105,True,True,-0.05059836278669538,True,0.010026457719504833,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.3,random_s29,random,22,105,True,True,-0.025941886985674567,True,0.016281912103295326,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.3,random_s47,random,22,105,True,True,-0.026421311130980007,True,0.003754823235794902,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.5,mean_attn,mean_attn,22,176,True,True,-0.0063951369607820885,True,0.004410256631672382,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.5,last_attn,last_attn,22,176,True,True,-0.006532416999107227,True,0.003937724977731705,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.5,max_attn,max_attn,22,176,True,True,-0.01398948212736284,True,0.01401801872998476,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.5,recent_attn,recent_attn,22,176,True,True,-0.00907373332302086,True,0.006594882812350988,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.5,random_s11,random,22,176,True,True,-0.041106234243488915,True,0.007344392593950033,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.5,random_s29,random,22,176,True,True,-0.021451224957127146,True,0.006579274777323008,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.5,random_s47,random,22,176,True,True,-0.01730183159816079,True,0.0017560003325343132,VX-52710
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,mean_attn,mean_attn,140,152,True,True,0.026115986111108214,True,0.002233422128483653,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,last_attn,last_attn,140,152,True,True,0.020594907885727792,True,0.00186925136949867,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,max_attn,max_attn,140,152,True,True,0.02229673780190447,True,0.0018123924965038896,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,recent_attn,recent_attn,140,152,True,True,0.02051274775294587,True,0.0021163583733141422,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,random_s11,random,140,152,True,True,0.021725799422711134,True,0.002146021695807576,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,random_s29,random,140,152,True,True,0.021401928543734045,True,0.001998788909986615,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,random_s47,random,140,152,True,True,0.020484624333524465,True,0.0019775403197854757,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,mean_attn,mean_attn,140,254,True,True,0.01088814134709537,True,0.0005022174445912242,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,last_attn,last_attn,140,254,True,True,0.00852199987275526,True,0.0004083641688339412,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,max_attn,max_attn,140,254,True,True,0.013754270039498806,True,0.0004444214573595673,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,recent_attn,recent_attn,140,254,True,True,0.01352011930430308,True,0.0005979402340017259,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,random_s11,random,140,254,True,True,0.01407867904830104,True,0.00110400200355798,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,random_s29,random,140,254,True,True,0.003298261649130524,True,0.0009936749702319503,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,random_s47,random,140,254,True,True,0.009787363718108594,True,0.0010779030853882432,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,mean_attn,mean_attn,77,125,True,False,0.02569614498255146,False,0.0034791368525475264,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,last_attn,last_attn,77,125,True,False,0.032909379418318396,False,0.0029842278454452753,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,max_attn,max_attn,77,125,True,False,0.025470667441065076,False,0.0038595441728830338,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,recent_attn,recent_attn,77,125,True,False,0.019277879036962986,False,0.0034697242081165314,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,random_s11,random,77,125,True,False,0.011278249012927177,False,0.00399685138836503,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,random_s29,random,77,125,True,False,-0.014684234512969851,False,0.002241599839180708,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,random_s47,random,77,125,True,False,-0.007840551979218957,False,0.00366288423538208,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,mean_attn,mean_attn,77,209,True,False,0.018482021676997307,False,0.002409087959676981,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,last_attn,last_attn,77,209,True,False,0.007177985350911742,False,0.0021445443853735924,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,max_attn,max_attn,77,209,True,False,0.009724669624119997,False,0.0008195226546376944,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,recent_attn,recent_attn,77,209,True,False,0.015189945697784424,False,0.002386679407209158,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,random_s11,random,77,209,True,False,-0.0026696680579334497,False,0.0017166712787002325,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,random_s29,random,77,209,True,False,-0.008747628191486001,False,0.0015493715181946754,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,random_s47,random,77,209,True,False,0.011471380402023557,False,0.002870389260351658,singer-songwriter
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.1,mean_attn,mean_attn,22,35,True,True,0.010454399586888027,True,0.005302895326167345,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.1,last_attn,last_attn,22,35,True,True,0.006005568342516199,True,0.008845536969602108,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.1,max_attn,max_attn,22,35,True,True,0.008813577640103168,True,0.004879843443632126,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.1,recent_attn,recent_attn,22,35,True,True,0.010170374979497868,True,0.0061783860437572,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.1,random_s11,random,22,35,True,True,-0.013090656819986182,True,0.012032127939164639,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.1,random_s29,random,22,35,True,True,-0.004365531931398436,True,0.011318085715174675,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.1,random_s47,random,22,35,True,True,-0.005086380481952799,True,0.013219421729445457,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.3,mean_attn,mean_attn,22,105,True,True,0.0073537508083973,True,0.0013636252842843533,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.3,last_attn,last_attn,22,105,True,True,0.006418403150746599,True,0.002486784476786852,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.3,max_attn,max_attn,22,105,True,True,0.006904480810044328,True,0.0013044546358287334,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.3,recent_attn,recent_attn,22,105,True,True,0.005744306260021398,True,0.0016662741545587778,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.3,random_s11,random,22,105,True,True,-0.015421451773727314,True,0.006008703727275133,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.3,random_s29,random,22,105,True,True,-0.008553300489438698,True,0.0070075951516628265,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.3,random_s47,random,22,105,True,True,-0.010628617199836307,True,0.007766253314912319,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.5,mean_attn,mean_attn,22,176,True,True,0.0022731692821253008,True,0.0008545555174350739,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.5,last_attn,last_attn,22,176,True,True,0.0045554027194157215,True,0.0014520917320623994,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.5,max_attn,max_attn,22,176,True,True,0.0033496129501145305,True,0.000760536000598222,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.5,recent_attn,recent_attn,22,176,True,True,0.0003508687135763411,True,0.0007981399539858103,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.5,random_s11,random,22,176,True,True,-0.0072132346977014095,True,0.0025499712210148573,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.5,random_s29,random,22,176,True,True,0.004427992721321064,True,0.005256081465631723,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.5,random_s47,random,22,176,True,True,0.0045968555030413,True,0.000981360673904419,VX-56947
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,mean_attn,mean_attn,108,159,True,False,0.10068643426388402,False,0.014058349654078484,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,last_attn,last_attn,108,159,True,False,0.09364928708520082,False,0.014383249916136265,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,max_attn,max_attn,108,159,True,False,0.11859209186311781,False,0.017869429662823677,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,recent_attn,recent_attn,108,159,True,False,0.10071384846337916,False,0.014441764913499355,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,random_s11,random,108,159,True,False,0.08776421711526283,False,0.019566956907510757,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,random_s29,random,108,159,True,False,0.08892720747705107,False,0.017745155841112137,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,random_s47,random,108,159,True,False,0.005006222396736426,False,0.01472330093383789,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,mean_attn,mean_attn,108,266,True,False,-0.07212245358661895,False,0.00154354446567595,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,last_attn,last_attn,108,266,True,False,-0.065002509615119,False,0.0016445715446025133,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,max_attn,max_attn,108,266,True,False,0.11743129104555305,False,0.008877454325556755,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,recent_attn,recent_attn,108,266,True,False,-0.061435384930923265,False,0.001941600232385099,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,random_s11,random,108,266,True,False,-0.0658593023678502,False,0.0035392993595451117,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,random_s29,random,108,266,True,False,0.08064903130555945,False,0.010963575914502144,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,random_s47,random,108,266,True,False,0.033921620947593434,False,0.01055189035832882,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,mean_attn,mean_attn,122,135,True,True,-0.22610556427389383,True,0.6111661791801453,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,last_attn,last_attn,122,135,True,True,-0.11193336505675688,True,0.5817746520042419,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,max_attn,max_attn,122,135,True,True,-0.14506495694513433,True,0.6299949884414673,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,recent_attn,recent_attn,122,135,True,True,-0.12774861432262696,True,0.5827566981315613,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,random_s11,random,122,135,True,True,-0.09655698556161951,True,0.6682802438735962,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,random_s29,random,122,135,True,True,-0.019757951667997986,True,0.6807612180709839,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,random_s47,random,122,135,True,True,-0.025938226957805455,True,0.2602059543132782,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,mean_attn,mean_attn,122,225,True,True,-0.08066881567356177,True,0.08937158435583115,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,last_attn,last_attn,122,225,True,True,-0.0905719913134817,True,0.08062969893217087,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,max_attn,max_attn,122,225,True,True,-0.21783459864673205,True,0.41248035430908203,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,recent_attn,recent_attn,122,225,True,True,-0.12702219616039656,True,0.3937641680240631,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,random_s11,random,122,225,True,True,-0.004765830628457479,True,0.17821958661079407,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,random_s29,random,122,225,True,True,-0.19501173653407022,True,0.5177211761474609,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,random_s47,random,122,225,True,True,-0.02299639028206002,True,0.0760108157992363,The Visit
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.1,mean_attn,mean_attn,22,35,True,True,-0.024051567353308198,True,0.029963146895170212,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.1,last_attn,last_attn,22,35,True,True,-0.02293651507934555,True,0.03085760958492756,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.1,max_attn,max_attn,22,35,True,True,-0.022609448479488495,True,0.03116585500538349,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.1,recent_attn,recent_attn,22,35,True,True,-0.02325360381510108,True,0.030891641974449158,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.1,random_s11,random,22,35,True,True,-0.02662162644555792,True,0.03340180218219757,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.1,random_s29,random,22,35,True,True,-0.02799004734260961,True,0.009264614433050156,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.1,random_s47,random,22,35,True,True,-0.028727792319841683,True,0.03182167559862137,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.3,mean_attn,mean_attn,22,105,True,True,-0.0205300118541345,True,0.03293170779943466,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.3,last_attn,last_attn,22,105,True,True,-0.01885750811779871,True,0.0326174832880497,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.3,max_attn,max_attn,22,105,True,True,-0.020458529540337625,True,0.03260478004813194,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.3,recent_attn,recent_attn,22,105,True,True,-0.022749408491654313,True,0.03203161060810089,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.3,random_s11,random,22,105,True,True,-0.0289372434199322,True,0.02969108708202839,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.3,random_s29,random,22,105,True,True,-0.015440009417943656,True,0.0012829812476411462,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.3,random_s47,random,22,105,True,True,-0.030248611338902262,True,0.030624961480498314,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.5,mean_attn,mean_attn,22,176,True,True,-0.011163061851402742,True,0.0020144504960626364,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.5,last_attn,last_attn,22,176,True,True,-0.0172735669708345,True,0.0317700020968914,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.5,max_attn,max_attn,22,176,True,True,-0.02172393822693265,True,0.03271162882447243,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.5,recent_attn,recent_attn,22,176,True,True,-0.013941537705250084,True,0.0028451699763536453,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.5,random_s11,random,22,176,True,True,-0.02367660559830255,True,0.006292048841714859,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.5,random_s29,random,22,176,True,True,0.008496158168418338,True,0.002162773394957185,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.5,random_s47,random,22,176,True,True,-0.02769948644563555,True,0.026917746290564537,VX-78416
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,mean_attn,mean_attn,121,134,True,False,-0.6193462395264455,False,0.01754852943122387,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,last_attn,last_attn,121,134,True,False,-0.6193462395264455,False,0.01754852943122387,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,max_attn,max_attn,121,134,True,False,-0.5917643730839091,False,0.019352568313479424,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,recent_attn,recent_attn,121,134,True,False,-0.5830700429505669,False,0.017399055883288383,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,random_s11,random,121,134,True,False,-0.6036905165528879,False,0.018825329840183258,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,random_s29,random,121,134,True,False,-0.5084648548703017,False,0.018426652997732162,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,random_s47,random,121,134,True,False,-0.5905101678605811,False,0.017340978607535362,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,mean_attn,mean_attn,121,224,True,False,-0.44110440949831764,False,0.009006398729979992,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,last_attn,last_attn,121,224,True,False,-0.4388113368768245,False,0.009435893967747688,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,max_attn,max_attn,121,224,True,False,-0.5053675433349172,False,0.00959777645766735,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,recent_attn,recent_attn,121,224,True,False,-0.4374019984388724,False,0.010171090252697468,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,random_s11,random,121,224,True,False,-0.47488658557025065,False,0.013515986502170563,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,random_s29,random,121,224,True,False,-0.3999116039679693,False,0.010856551118195057,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,random_s47,random,121,224,True,False,-0.22290934257519712,False,0.009849440306425095,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.1,mean_attn,mean_attn,22,35,True,True,-0.04473473689868113,True,0.018782371655106544,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.1,last_attn,last_attn,22,35,True,True,-0.04569173881900501,True,0.018339483067393303,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.1,max_attn,max_attn,22,35,True,True,-0.04527708670939323,True,0.017951548099517822,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.1,recent_attn,recent_attn,22,35,True,True,-0.04527679010643626,True,0.01825718954205513,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.1,random_s11,random,22,35,True,True,-0.06443952153204013,True,0.016997676342725754,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.1,random_s29,random,22,35,True,True,-0.06842190353781918,True,0.01586044952273369,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.1,random_s47,random,22,35,True,True,-0.0652061305241659,True,0.014864802360534668,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.3,mean_attn,mean_attn,22,105,True,True,-0.007570748619036727,True,0.017202628776431084,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.3,last_attn,last_attn,22,105,True,True,-0.0071871917170938104,True,0.017531458288431168,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.3,max_attn,max_attn,22,105,True,True,-0.03361923882621343,True,0.014953353442251682,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.3,recent_attn,recent_attn,22,105,True,True,-0.02049384457641279,True,0.016587603837251663,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.3,random_s11,random,22,105,True,True,-0.06302129554969726,True,0.00989839993417263,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.3,random_s29,random,22,105,True,True,-0.049871466122567654,True,0.009805937297642231,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.3,random_s47,random,22,105,True,True,-0.03220668214489708,True,0.010690632276237011,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.5,mean_attn,mean_attn,22,176,True,True,-0.011452654673485108,True,0.0025643750559538603,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.5,last_attn,last_attn,22,176,True,True,0.0003657152294180843,True,0.0016837338916957378,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.5,max_attn,max_attn,22,176,True,True,-0.0030411440704484205,True,0.012074568308889866,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.5,recent_attn,recent_attn,22,176,True,True,-0.012979275645921051,True,0.0035419478081166744,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.5,random_s11,random,22,176,True,True,-0.040685141744324915,True,0.007620173506438732,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.5,random_s29,random,22,176,True,True,-0.018244439759291686,True,0.002529366407543421,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.5,random_s47,random,22,176,True,True,-0.024792443073238246,True,0.001474752207286656,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.1,mean_attn,mean_attn,22,35,True,True,-0.03485153322253609,True,0.01839395985007286,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.1,last_attn,last_attn,22,35,True,True,-0.028549485928670015,True,0.018821613863110542,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.1,max_attn,max_attn,22,35,True,True,-0.02804173888434891,True,0.015699736773967743,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.1,recent_attn,recent_attn,22,35,True,True,-0.04124236161151207,True,0.018565116450190544,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.1,random_s11,random,22,35,True,True,-0.04295316280040429,True,0.013671879656612873,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.1,random_s29,random,22,35,True,True,-0.05953933222190244,True,0.017828932031989098,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.1,random_s47,random,22,35,True,True,-0.051480044874188,True,0.014161579310894012,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.3,mean_attn,mean_attn,22,105,True,True,-0.010395280459488232,True,0.004725915379822254,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.3,last_attn,last_attn,22,105,True,True,-0.03349318528635192,True,0.004304640926420689,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.3,max_attn,max_attn,22,105,True,True,-0.010997242697339926,True,0.0177183635532856,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.3,recent_attn,recent_attn,22,105,True,True,-0.02873650966357677,True,0.003967054188251495,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.3,random_s11,random,22,105,True,True,-0.031217576871858888,True,0.005793807562440634,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.3,random_s29,random,22,105,True,True,-0.03265963505691616,True,0.002402567071840167,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.3,random_s47,random,22,105,True,True,-0.07452631970081713,True,0.005881334189325571,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.5,mean_attn,mean_attn,22,176,True,True,-0.007176780111331049,True,0.00438434723764658,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.5,last_attn,last_attn,22,176,True,True,-0.009511214830854486,True,0.002914700424298644,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.5,max_attn,max_attn,22,176,True,True,-0.01061682436411504,True,0.0029123215936124325,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.5,recent_attn,recent_attn,22,176,True,True,0.00655647652019975,True,0.0024459424894303083,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.5,random_s11,random,22,176,True,True,-0.04085516989580351,True,0.0012724131811410189,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.5,random_s29,random,22,176,True,True,-0.029231897913268745,True,0.0007389517268165946,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.5,random_s47,random,22,176,True,True,-0.04500190445542107,True,0.00146588496863842,VX-56947
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,mean_attn,mean_attn,135,151,True,False,0.019998643670987803,False,0.2031119167804718,Kevin Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,last_attn,last_attn,135,151,True,False,0.01031854646013608,False,0.1481410562992096,Kevin Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,max_attn,max_attn,135,151,True,False,0.029681656060953632,False,0.21193082630634308,Kevin Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,recent_attn,recent_attn,135,151,True,False,0.02870518008664158,False,0.2052963823080063,Kevin Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,random_s11,random,135,151,True,False,0.04933695185718534,False,0.20613183081150055,Kevin Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,random_s29,random,135,151,True,False,0.05775275986100792,False,0.21375973522663116,Kevin Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.3,random_s47,random,135,151,True,False,0.08429670828445524,False,0.22333762049674988,Kevin Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,mean_attn,mean_attn,135,252,True,False,-0.05799353424360265,False,0.008390453644096851,Kevin R. Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,last_attn,last_attn,135,252,True,False,-0.08836338375779951,False,0.00654174480587244,Kevin R. Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,max_attn,max_attn,135,252,True,False,0.100678277055825,False,0.14228619635105133,Kevin Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,recent_attn,recent_attn,135,252,True,False,-0.09158556412330654,False,0.007923100143671036,Kevin R. Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,random_s11,random,135,252,True,False,0.1009929523055082,False,0.2069338709115982,Kevin R. Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,random_s29,random,135,252,True,False,-0.09080913680251501,False,0.06429168581962585,Kevin R. Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.5,random_s47,random,135,252,True,False,0.0037836485638156336,False,0.18000365793704987,Kevin R. Henke
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.1,mean_attn,mean_attn,22,35,True,True,0.1714533924357966,True,0.25436267256736755,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.1,last_attn,last_attn,22,35,True,True,0.16901365904486743,True,0.24770568311214447,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.1,max_attn,max_attn,22,35,True,True,0.19788791858591148,False,0.26809242367744446,VX-002
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.1,recent_attn,recent_attn,22,35,True,True,0.1723167071002536,True,0.25119319558143616,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.1,random_s11,random,22,35,True,True,-0.06553327998844904,True,0.04888233542442322,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.1,random_s29,random,22,35,True,True,-0.06458504170295776,True,0.04008594527840614,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.1,random_s47,random,22,35,True,True,-0.013068732031388142,True,0.04253267124295235,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.3,mean_attn,mean_attn,22,105,True,True,0.01539701644796887,True,0.028818950057029724,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.3,last_attn,last_attn,22,105,True,True,0.030969624046702005,True,0.030529865995049477,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.3,max_attn,max_attn,22,105,True,True,0.013612054695840925,True,0.028041278943419456,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.3,recent_attn,recent_attn,22,105,True,True,-0.005753304692916572,True,0.005047223996371031,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.3,random_s11,random,22,105,True,True,-0.02705890290089874,True,0.02376430295407772,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.3,random_s29,random,22,105,True,True,-0.005271768948296063,True,0.02988731674849987,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.3,random_s47,random,22,105,True,True,0.0009921631048200874,True,0.027891723439097404,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.5,mean_attn,mean_attn,22,176,True,True,0.012161098164506279,True,0.02302304282784462,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.5,last_attn,last_attn,22,176,True,True,0.0006501972209662643,True,0.020559540018439293,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.5,max_attn,max_attn,22,176,True,True,-0.0009466507181059569,True,0.023479053750634193,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.5,recent_attn,recent_attn,22,176,True,True,-0.004745721124345348,True,0.0021946055348962545,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.5,random_s11,random,22,176,True,True,-0.008382288055145182,True,0.021073296666145325,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.5,random_s29,random,22,176,True,True,0.00011716482986234844,True,0.02269858866930008,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.5,random_s47,random,22,176,True,True,-0.010681995173217662,True,0.02397250384092331,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.1,mean_attn,mean_attn,22,35,True,True,1.1269942572223954,False,0.362025648355484,VB1234567890
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.1,last_attn,last_attn,22,35,True,True,1.1295759901287965,False,0.3708953857421875,VB1234567890
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.1,max_attn,max_attn,22,35,True,True,1.0544847073382697,False,0.3397594094276428,VB1234567890123456789012345678
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.1,recent_attn,recent_attn,22,35,True,True,1.1226548526785336,False,0.3631279468536377,VB1234567890
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.1,random_s11,random,22,35,True,True,0.15498704774072392,True,0.07500937581062317,VX33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.1,random_s29,random,22,35,True,True,0.16047656344017014,True,0.06912954896688461,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.1,random_s47,random,22,35,True,True,0.38832246594829484,True,0.14863158762454987,VX33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.3,mean_attn,mean_attn,22,105,True,True,0.012706235318910325,True,0.004568659700453281,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.3,last_attn,last_attn,22,105,True,True,0.4264120230334811,False,0.13876080513000488,V-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.3,max_attn,max_attn,22,105,True,True,0.011647385673131797,True,0.004432962741702795,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.3,recent_attn,recent_attn,22,105,True,True,-0.0052887252182699795,True,0.0022235848009586334,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.3,random_s11,random,22,105,True,True,-0.017319902923190966,True,0.011376817710697651,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.3,random_s29,random,22,105,True,True,-0.020274957746732984,True,0.008035412058234215,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.3,random_s47,random,22,105,True,True,-0.013418384676333522,True,0.010343450121581554,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.5,mean_attn,mean_attn,22,176,True,True,0.000919952837284646,True,0.0010471580317243934,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.5,last_attn,last_attn,22,176,True,True,0.006443576421588659,True,0.0014351363060995936,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.5,max_attn,max_attn,22,176,True,True,-0.0017551039345562458,True,0.0011358194751664996,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.5,recent_attn,recent_attn,22,176,True,True,-0.0045443043927662075,True,0.0010114159667864442,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.5,random_s11,random,22,176,True,True,-0.016708860191283745,True,0.009723175317049026,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.5,random_s29,random,22,176,True,True,-0.01513093695975841,True,0.0028583663515746593,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.5,random_s47,random,22,176,True,True,0.0005899319890886462,True,0.007367437239736319,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.1,mean_attn,mean_attn,22,35,True,True,-0.006075873307418073,True,0.0017815817845985293,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.1,last_attn,last_attn,22,35,True,True,-0.0038670514128170824,True,0.0013113415334373713,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.1,max_attn,max_attn,22,35,True,True,-0.006339121842756867,True,0.0018672875594347715,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.1,recent_attn,recent_attn,22,35,True,True,-0.001864322833716861,True,0.0016705305315554142,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.1,random_s11,random,22,35,True,True,-0.009788434347137803,True,0.0028509993571788073,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.1,random_s29,random,22,35,True,True,-0.012076689576497296,True,0.004144671373069286,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.1,random_s47,random,22,35,True,True,-0.006149706442374725,True,0.0034622112289071083,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.3,mean_attn,mean_attn,22,105,True,True,-0.002886044792830944,True,0.000907757377717644,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.3,last_attn,last_attn,22,105,True,True,-0.00434790989384054,True,0.0011298079043626785,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.3,max_attn,max_attn,22,105,True,True,-0.00021548127988352261,True,0.0008141255239024758,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.3,recent_attn,recent_attn,22,105,True,True,-0.0006428263615816804,True,0.0006998672615736723,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.3,random_s11,random,22,105,True,True,-0.007247347454540427,True,0.002827588701620698,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.3,random_s29,random,22,105,True,True,-0.0038943478080909616,True,0.001318076509051025,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.3,random_s47,random,22,105,True,True,-0.004919170308858148,True,0.0026437498163431883,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.5,mean_attn,mean_attn,22,176,True,True,0.0032525151502341143,True,0.0004555742198135704,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.5,last_attn,last_attn,22,176,True,True,0.0046916844206862235,True,0.00044840824557468295,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.5,max_attn,max_attn,22,176,True,True,0.0018389140139333932,True,0.0005758485640399158,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.5,recent_attn,recent_attn,22,176,True,True,0.0004646948771551279,True,0.00044908508425578475,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.5,random_s11,random,22,176,True,True,-0.006831161375157532,True,0.0019843566697090864,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.5,random_s29,random,22,176,True,True,-0.0023141436686273664,True,0.0006239083595573902,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.5,random_s47,random,22,176,True,True,-0.0024301226367242634,True,0.0019721423741430044,VX-52710
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,mean_attn,mean_attn,120,133,True,True,0.012179071665741503,True,0.0020464989356696606,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,last_attn,last_attn,120,133,True,True,0.007664866279810667,True,0.002203279407694936,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,max_attn,max_attn,120,133,True,True,0.0024054195964708924,True,0.0019916160963475704,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,recent_attn,recent_attn,120,133,True,True,0.010821746895089746,True,0.0020852761808782816,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,random_s11,random,120,133,True,True,0.01862801960669458,True,0.002654614392668009,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,random_s29,random,120,133,True,True,0.010628331918269396,True,0.002379615558311343,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.3,random_s47,random,120,133,True,True,0.007656506961211562,True,0.0020507718436419964,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,mean_attn,mean_attn,120,223,True,True,0.011333566741086543,True,0.0005694010178558528,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,last_attn,last_attn,120,223,True,True,-0.00036333140451461077,True,0.0003898685099557042,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,max_attn,max_attn,120,223,True,True,0.015341443475335836,True,0.0006129653193056583,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,recent_attn,recent_attn,120,223,True,True,0.01285499520599842,True,0.0005898499512113631,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,random_s11,random,120,223,True,True,0.012434627744369209,True,0.0013148122234269977,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,random_s29,random,120,223,True,True,0.004546698648482561,True,0.0011342715006321669,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.5,random_s47,random,120,223,True,True,0.008568445104174316,True,0.0014224444748833776,The Visit
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.1,mean_attn,mean_attn,22,35,True,True,-0.060092882231401745,True,0.027027789503335953,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.1,last_attn,last_attn,22,35,True,True,-0.05253991743229569,True,0.0273987278342247,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.1,max_attn,max_attn,22,35,True,True,-0.043352572440926496,True,0.0327330008149147,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.1,recent_attn,recent_attn,22,35,True,True,-0.05975685506564332,True,0.025947188958525658,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.1,random_s11,random,22,35,True,True,-0.09038283986883477,True,0.023038379848003387,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.1,random_s29,random,22,35,True,True,-0.09565390433272114,True,0.020462365821003914,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.1,random_s47,random,22,35,True,True,-0.08060185370995898,True,0.017281878739595413,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.3,mean_attn,mean_attn,22,105,True,True,-0.046923740113561485,True,0.0071046422235667706,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.3,last_attn,last_attn,22,105,True,True,-0.05760196103510684,True,0.007102259900420904,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.3,max_attn,max_attn,22,105,True,True,-0.056727596804557856,True,0.008519717492163181,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.3,recent_attn,recent_attn,22,105,True,True,-0.06647029536106863,True,0.006787581369280815,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.3,random_s11,random,22,105,True,True,-0.06757328210514968,True,0.005922701209783554,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.3,random_s29,random,22,105,True,True,-0.0764085034519667,True,0.004731239750981331,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.3,random_s47,random,22,105,True,True,-0.056478186683671106,True,0.005300161428749561,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.5,mean_attn,mean_attn,22,176,True,True,-0.0006618995175813325,True,0.006693046540021896,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.5,last_attn,last_attn,22,176,True,True,-0.006287104364309903,True,0.006713839713484049,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.5,max_attn,max_attn,22,176,True,True,-0.015284749244165119,True,0.00395312299951911,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.5,recent_attn,recent_attn,22,176,True,True,-0.023345099527796287,True,0.0032413210719823837,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.5,random_s11,random,22,176,True,True,-0.053203174444206525,True,0.00141078419983387,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.5,random_s29,random,22,176,True,True,-0.02297488704280115,True,0.0031209802255034447,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.5,random_s47,random,22,176,True,True,-0.024710793751000937,True,0.0016561209922656417,VX-70023
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,mean_attn,mean_attn,75,128,True,False,0.05308527093923976,False,0.011759679764509201,Ronnie Dunn and Annie Lennox have in common the occupation of singer-songwriter and record executive.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,last_attn,last_attn,75,128,True,False,0.055218598106876016,False,0.01193278282880783,Ronnie Dunn and Annie Lennox have in common the occupation of singer-songwriter and record executive.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,max_attn,max_attn,75,128,True,False,0.022187852223093163,False,0.015624547377228737,Ronnie Dunn and Annie Lennox have the occupation of singer-songwriter in common.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,recent_attn,recent_attn,75,128,True,False,0.026816082982501488,False,0.016570085659623146,Ronnie Dunn and Annie Lennox have the occupation of singer-songwriter in common.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,random_s11,random,75,128,True,False,0.013147892081178725,False,0.023226002231240273,Ronnie Dunn and Annie Lennox have the occupation of singer-songwriter in common.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,random_s29,random,75,128,True,False,0.04451083803238953,False,0.017456242814660072,Ronnie Dunn and Annie Lennox have the occupation of singer-songwriter in common.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.3,random_s47,random,75,128,True,False,0.01184714709719037,False,0.024569131433963776,Ronnie Dunn and Annie Lennox have the occupation of singer-songwriter in common.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,mean_attn,mean_attn,75,213,True,False,0.03979578778186488,False,0.0024207255337387323,Ronnie Dunn and Annie Lennox have in common the occupation of singer-songwriter.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,last_attn,last_attn,75,213,True,False,0.041033496711558204,False,0.0022215067874640226,Ronnie Dunn and Annie Lennox have in common the occupation of singer-songwriter.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,max_attn,max_attn,75,213,True,False,0.071947491824782,False,0.003762259380891919,Ronnie Dunn and Annie Lennox have in common the occupation of singer-songwriter and record executive.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,recent_attn,recent_attn,75,213,True,False,0.02567557626753114,False,0.0024128821678459644,Ronnie Dunn and Annie Lennox have in common the occupation of singer-songwriter.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,random_s11,random,75,213,True,False,0.01488934934604913,False,0.00943855382502079,Ronnie Dunn and Annie Lennox have the occupation of singer-songwriter in common.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,random_s29,random,75,213,True,False,0.049880624215196345,False,0.00720585323870182,Ronnie Dunn and Annie Lennox have the occupation of singer-songwriter in common.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.5,random_s47,random,75,213,True,False,0.038628691002183135,False,0.012242713011801243,Ronnie Dunn and Annie Lennox have in common the occupation of singer-songwriter and record executive.
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,mean_attn,mean_attn,117,131,True,False,-0.14399516923973954,True,0.0025633799377828836,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,last_attn,last_attn,117,131,True,False,-0.16426084749400616,True,0.0029356195591390133,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,max_attn,max_attn,117,131,True,False,-0.16953744987646735,True,0.0027848307508975267,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,recent_attn,recent_attn,117,131,True,False,-0.14456165550897515,True,0.00246586836874485,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,random_s11,random,117,131,True,False,-0.15148767021795106,True,0.0028555712196975946,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,random_s29,random,117,131,True,False,-0.14461399118105567,True,0.0025112901348620653,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.3,random_s47,random,117,131,True,False,-0.15214927649746335,True,0.002888619899749756,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,mean_attn,mean_attn,117,219,True,False,-0.13790949371953798,True,0.0014854774344712496,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,last_attn,last_attn,117,219,True,False,-0.15292613673955202,True,0.0019157599890604615,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,max_attn,max_attn,117,219,True,False,-0.15941599601258827,True,0.001897761132568121,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,recent_attn,recent_attn,117,219,True,False,-0.14572806687404705,True,0.0016535295872017741,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,random_s11,random,117,219,True,False,-0.10018821805715561,True,0.0012675324687734246,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,random_s29,random,117,219,True,False,-0.10390431899577379,True,0.0014027687720954418,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.5,random_s47,random,117,219,True,False,-0.08132067571083701,True,0.0012088913936167955,Sean
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,mean_attn,mean_attn,101,151,True,False,0.034902456164774054,True,0.007377977948635817,the Tokugawa shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,last_attn,last_attn,101,151,True,False,0.03387946508721351,True,0.007135625928640366,the Tokugawa shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,max_attn,max_attn,101,151,True,False,0.031000647719742536,True,0.007757591083645821,the Tokugawa shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,recent_attn,recent_attn,101,151,True,False,0.03684866384396124,True,0.00999506562948227,the Tokugawa shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,random_s11,random,101,151,True,False,0.2694267893158314,False,0.03205068036913872,Shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,random_s29,random,101,151,True,False,0.26954370517180204,False,0.030713465064764023,Shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.3,random_s47,random,101,151,True,False,0.18088165906050968,False,0.01900315098464489,Shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,mean_attn,mean_attn,101,253,True,False,0.015214097246320724,False,0.0032151048071682453,Shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,last_attn,last_attn,101,253,True,False,0.0017019492160115224,False,0.0012037334963679314,Shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,max_attn,max_attn,101,253,True,False,-0.0021667795436870474,True,0.003937031142413616,the Tokugawa shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,recent_attn,recent_attn,101,253,True,False,0.006390588099343897,True,0.0015775347128510475,the Tokugawa shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,random_s11,random,101,253,True,False,0.25987890371794087,False,0.029932338744401932,Shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,random_s29,random,101,253,True,False,0.25220110460132783,False,0.03068540245294571,Shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5,random_s47,random,101,253,True,False,0.018694492199251234,True,0.0022632607724517584,the Tokugawa shogunate

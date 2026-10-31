@@ -1,0 +1,1213 @@
+{
+ "protocol": "loopzip-v5-stage1-evidence-lock-v1",
+ "complete": true,
+ "expected_jobs": 20,
+ "completed_jobs": 20,
+ "feasible_cells": 50,
+ "total_cells": 60,
+ "summary": [
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.1,
+   "policy": "mean_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.0024876551964553074,
+   "ci95": [
+    -0.050877995031769374,
+    0.0850825848686509
+   ],
+   "mean_fixed_prefix_kl": 0.06835259571671486,
+   "kl_ci95": [
+    0.01950976960361004,
+    0.16189607754349708
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.0,
+   "paired_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.1,
+   "policy": "last_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.0010804048186401128,
+   "ci95": [
+    -0.048819570692139734,
+    0.08519031475472731
+   ],
+   "mean_fixed_prefix_kl": 0.06676507852971554,
+   "kl_ci95": [
+    0.019176415726542474,
+    0.15786747820675373
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.0014072503778151946,
+   "paired_ci95": [
+    -0.0024360157037154107,
+    0.005350604453124075
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.1,
+   "policy": "max_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.0063965358276618645,
+   "ci95": [
+    -0.046089982883422656,
+    0.1032776350920904
+   ],
+   "mean_fixed_prefix_kl": 0.0711877018213272,
+   "kl_ci95": [
+    0.017951548099517822,
+    0.1709923639893532
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.8,
+   "paired_minus_mean_attn": 0.008884191024117171,
+   "paired_ci95": [
+    -0.0005423498107121061,
+    0.020570736515801415
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.1,
+   "policy": "recent_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.004392477076035006,
+   "ci95": [
+    -0.052704593444359515,
+    0.08473404909949751
+   ],
+   "mean_fixed_prefix_kl": 0.06728941351175308,
+   "kl_ci95": [
+    0.019225797802209853,
+    0.15970966815948487
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.001904821879579699,
+   "paired_ci95": [
+    -0.004525405526510462,
+    0.0003713260905351401
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.1,
+   "policy": "random",
+   "n_requests": 5,
+   "mean_delta_nll": -0.06481218393455493,
+   "ci95": [
+    -0.07689465729005558,
+    -0.052825782855506966
+   ],
+   "mean_fixed_prefix_kl": 0.02332114198555549,
+   "kl_ci95": [
+    0.016503550857305527,
+    0.03440454031030337
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.06232452873809961,
+   "paired_ci95": [
+    -0.14094563344571118,
+    -0.019898474453463388
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.3,
+   "policy": "mean_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.013893020492978359,
+   "ci95": [
+    -0.03118254351575158,
+    0.0037295902008191327
+   ],
+   "mean_fixed_prefix_kl": 0.01604979494586587,
+   "kl_ci95": [
+    0.00864849416539073,
+    0.024172421544790268
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.0,
+   "paired_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.3,
+   "policy": "last_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.015205583538627243,
+   "ci95": [
+    -0.03818109926884063,
+    0.010445699027332056
+   ],
+   "mean_fixed_prefix_kl": 0.01632884340360761,
+   "kl_ci95": [
+    0.008438434917479753,
+    0.02533050291240215
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.0013125630456488845,
+   "paired_ci95": [
+    -0.013742957876529571,
+    0.009945520511828353
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.3,
+   "policy": "max_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.020886953817098396,
+   "ci95": [
+    -0.03957655571284704,
+    -0.0011535237400675858
+   ],
+   "mean_fixed_prefix_kl": 0.018063254281878473,
+   "kl_ci95": [
+    0.012872214801609516,
+    0.023912112787365915
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.006993933324120039,
+   "paired_ci95": [
+    -0.017710257910075633,
+    0.0007100644614547402
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.3,
+   "policy": "recent_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.025912614827393578,
+   "ci95": [
+    -0.04560277010052236,
+    -0.009643738729646434
+   ],
+   "mean_fixed_prefix_kl": 0.010855291318148375,
+   "kl_ci95": [
+    0.0049632275477051735,
+    0.017243127524852752
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.012019594334415218,
+   "paired_ci95": [
+    -0.02002668436616668,
+    0.0003032545070163595
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.3,
+   "policy": "random",
+   "n_requests": 5,
+   "mean_delta_nll": -0.04121753448901776,
+   "ci95": [
+    -0.05574788506220407,
+    -0.0247215059661539
+   ],
+   "mean_fixed_prefix_kl": 0.011468887794762848,
+   "kl_ci95": [
+    0.00600845436565578,
+    0.01939860675483942
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.027324513996039402,
+   "paired_ci95": [
+    -0.035782622300709326,
+    -0.019637682994944068
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.5,
+   "policy": "mean_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.00270507461973466,
+   "ci95": [
+    -0.008730801306082881,
+    0.005728922972921291
+   ],
+   "mean_fixed_prefix_kl": 0.008215013658627868,
+   "kl_ci95": [
+    0.0036615402437746524,
+    0.01602930445224047
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.0,
+   "paired_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.5,
+   "policy": "last_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.004262964748777453,
+   "ci95": [
+    -0.007674873604846666,
+    -0.0008432220213580699
+   ],
+   "mean_fixed_prefix_kl": 0.007161907805129886,
+   "kl_ci95": [
+    0.0026269187219440937,
+    0.014261432038620115
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.0015578901290427937,
+   "paired_ci95": [
+    -0.00805903754313475,
+    0.005938524964731173
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.5,
+   "policy": "max_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.008775770104839476,
+   "ci95": [
+    -0.013574003998073736,
+    -0.003718482788244759
+   ],
+   "mean_fixed_prefix_kl": 0.011287417076528073,
+   "kl_ci95": [
+    0.005341621302068234,
+    0.017802432738244535
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.006070695485104816,
+   "paired_ci95": [
+    -0.01261110847699456,
+    0.0017373477347427668
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.5,
+   "policy": "recent_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.008717470620176759,
+   "ci95": [
+    -0.017125605198671144,
+    0.00038888655806657013
+   ],
+   "mean_fixed_prefix_kl": 0.0036037399433553217,
+   "kl_ci95": [
+    0.002504483424127102,
+    0.0051042403560131785
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.006012396000442099,
+   "paired_ci95": [
+    -0.017296608058386488,
+    0.004553265926660966
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "budget": 0.5,
+   "policy": "random",
+   "n_requests": 5,
+   "mean_delta_nll": -0.026567084085108945,
+   "ci95": [
+    -0.03437851197212392,
+    -0.015839300082152463
+   ],
+   "mean_fixed_prefix_kl": 0.006980898953042924,
+   "kl_ci95": [
+    0.002153286850079894,
+    0.01500671471003443
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.023862009465374284,
+   "paired_ci95": [
+    -0.02971323432522089,
+    -0.01801752178755122
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.3,
+   "policy": "mean_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.13433629098524555,
+   "ci95": [
+    -0.3834018343749145,
+    0.06550841081544707
+   ],
+   "mean_fixed_prefix_kl": 0.1715289309620857,
+   "kl_ci95": [
+    0.014296651631593705,
+    0.40967402681708337
+   ],
+   "n_full_correct": 1,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.0,
+   "paired_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.3,
+   "policy": "last_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.1144186345861979,
+   "ci95": [
+    -0.3674803251318129,
+    0.061610863368857946
+   ],
+   "mean_fixed_prefix_kl": 0.1547560540959239,
+   "kl_ci95": [
+    0.0145262124016881,
+    0.38107955902814866
+   ],
+   "n_full_correct": 1,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.019917656399047655,
+   "paired_ci95": [
+    -0.006686897755813969,
+    0.06752255552807278
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.3,
+   "policy": "max_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.11327354597637576,
+   "ci95": [
+    -0.3461834829611082,
+    0.062248308846675114
+   ],
+   "mean_fixed_prefix_kl": 0.17895447202026843,
+   "kl_ci95": [
+    0.017564732208848,
+    0.4235080678015947
+   ],
+   "n_full_correct": 1,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.021062745008869798,
+   "paired_ci95": [
+    -0.0110854754631875,
+    0.05578662743694922
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.3,
+   "policy": "recent_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.11091670914813431,
+   "ci95": [
+    -0.33911559257733953,
+    0.056753008595680575
+   ],
+   "mean_fixed_prefix_kl": 0.1672927973791957,
+   "kl_ci95": [
+    0.015884551405906677,
+    0.3936016483232379
+   ],
+   "n_full_correct": 1,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.023419581837111236,
+   "paired_ci95": [
+    -0.008755402219766496,
+    0.062496784537021635
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.3,
+   "policy": "random",
+   "n_requests": 5,
+   "mean_delta_nll": -0.09348858395124908,
+   "ci95": [
+    -0.3312656575619864,
+    0.05437826741294375
+   ],
+   "mean_fixed_prefix_kl": 0.1616237569600344,
+   "kl_ci95": [
+    0.018396705264846484,
+    0.3682004565993945
+   ],
+   "n_full_correct": 1,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.04084770703399647,
+   "paired_ci95": [
+    -0.019697448247946666,
+    0.11158758863942538
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.5,
+   "policy": "mean_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.12241868504404722,
+   "ci95": [
+    -0.2906858432650349,
+    -0.00839005360030578
+   ],
+   "mean_fixed_prefix_kl": 0.022146541345864534,
+   "kl_ci95": [
+    0.0032637987285852434,
+    0.05590837546624243
+   ],
+   "n_full_correct": 1,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.0,
+   "paired_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.5,
+   "policy": "last_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.1283431449703333,
+   "ci95": [
+    -0.2939599808006784,
+    -0.011608698498457758
+   ],
+   "mean_fixed_prefix_kl": 0.020094683207571507,
+   "kl_ci95": [
+    0.0028547802940011024,
+    0.05070929951034486
+   ],
+   "n_full_correct": 1,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.005924459926286074,
+   "paired_ci95": [
+    -0.017726826136640783,
+    0.004012748423135903
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.5,
+   "policy": "max_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.08662901641109784,
+   "ci95": [
+    -0.3233011875211861,
+    0.09923777135724463
+   ],
+   "mean_fixed_prefix_kl": 0.11540080816484988,
+   "kl_ci95": [
+    0.007119505200535059,
+    0.2766979037318379
+   ],
+   "n_full_correct": 1,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.03578966863294939,
+   "paired_ci95": [
+    -0.0741412259153245,
+    0.1395441765146744
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.5,
+   "policy": "recent_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.13835391347719353,
+   "ci95": [
+    -0.2930453888741694,
+    -0.028316206296221936
+   ],
+   "mean_fixed_prefix_kl": 0.08324256816413253,
+   "kl_ci95": [
+    0.0033264129888266325,
+    0.23877529529854655
+   ],
+   "n_full_correct": 1,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.0159352284331463,
+   "paired_ci95": [
+    -0.03480220644948222,
+    0.0029317495831896246
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.5,
+   "policy": "random",
+   "n_requests": 5,
+   "mean_delta_nll": -0.07696026740283099,
+   "ci95": [
+    -0.21767917788044225,
+    0.021212499530951428
+   ],
+   "mean_fixed_prefix_kl": 0.0874229771240304,
+   "kl_ci95": [
+    0.009573883516713975,
+    0.18639807136108477
+   ],
+   "n_full_correct": 1,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.04545841764121624,
+   "paired_ci95": [
+    0.01296237655903199,
+    0.0779544587234005
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.1,
+   "policy": "mean_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.34109214670490473,
+   "ci95": [
+    -0.0066540417680516824,
+    0.794609283147147
+   ],
+   "mean_fixed_prefix_kl": 0.11467308092396707,
+   "kl_ci95": [
+    0.008826420223340393,
+    0.25243013182189317
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.6,
+   "paired_minus_mean_attn": 0.0,
+   "paired_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.1,
+   "policy": "last_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.38739524562144645,
+   "ci95": [
+    -0.007545788977295157,
+    0.8426118310203311
+   ],
+   "mean_fixed_prefix_kl": 0.1319747677538544,
+   "kl_ci95": [
+    0.010234273318201304,
+    0.2738991318270564
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.6,
+   "paired_minus_mean_attn": 0.04630309891654175,
+   "paired_ci95": [
+    -0.001785769988782701,
+    0.13870000608498229
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.1,
+   "policy": "max_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.31205267184646795,
+   "ci95": [
+    -0.006786172704305505,
+    0.7366057289496529
+   ],
+   "mean_fixed_prefix_kl": 0.10601222640834748,
+   "kl_ci95": [
+    0.008932023402303457,
+    0.2347068504896015
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.6,
+   "paired_minus_mean_attn": -0.02903947485843676,
+   "paired_ci95": [
+    -0.058165598046034585,
+    0.0001433837460353915
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.1,
+   "policy": "recent_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.3316036769724451,
+   "ci95": [
+    -0.005606156100984657,
+    0.7832822638109791
+   ],
+   "mean_fixed_prefix_kl": 0.11246944628655911,
+   "kl_ci95": [
+    0.009317895025014877,
+    0.25030661942437293
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.6,
+   "paired_minus_mean_attn": -0.009488469732459658,
+   "paired_ci95": [
+    -0.029405348314903722,
+    0.0019470006832852994
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.1,
+   "policy": "random",
+   "n_requests": 5,
+   "mean_delta_nll": 0.12484252870664932,
+   "ci95": [
+    -0.01598526006991354,
+    0.3019128512369934
+   ],
+   "mean_fixed_prefix_kl": 0.0555385972217967,
+   "kl_ci95": [
+    0.011236208459983271,
+    0.10571457712600626
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.8666666666666666,
+   "paired_minus_mean_attn": -0.21624961799825543,
+   "paired_ci95": [
+    -0.5688698084671826,
+    -0.006389981131845463
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.3,
+   "policy": "mean_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.02360907894792035,
+   "ci95": [
+    -0.00937650678912178,
+    0.073734420358669
+   ],
+   "mean_fixed_prefix_kl": 0.014253233291674406,
+   "kl_ci95": [
+    0.001913458586204797,
+    0.026684181578457356
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.8,
+   "paired_minus_mean_attn": 0.0,
+   "paired_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.3,
+   "policy": "last_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.10071035857778043,
+   "ci95": [
+    -0.005845223965588953,
+    0.27376298878458327
+   ],
+   "mean_fixed_prefix_kl": 0.03976594330742955,
+   "kl_ci95": [
+    0.006213604100048542,
+    0.0900059413164854
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.6,
+   "paired_minus_mean_attn": 0.07710127962986009,
+   "paired_ci95": [
+    -0.016442680598702276,
+    0.24784933356568217
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.3,
+   "policy": "max_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.023283005051780492,
+   "ci95": [
+    -0.009513325400184843,
+    0.07246010166360066
+   ],
+   "mean_fixed_prefix_kl": 0.014233253453858197,
+   "kl_ci95": [
+    0.0018320904346182942,
+    0.02673248229548335
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.8,
+   "paired_minus_mean_attn": -0.00032607389613985294,
+   "paired_ci95": [
+    -0.0017810280527919414,
+    0.001404864641372122
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.3,
+   "policy": "recent_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.017997116137994453,
+   "ci95": [
+    -0.013558528886642305,
+    0.06656703038490377
+   ],
+   "mean_fixed_prefix_kl": 0.013044770248234272,
+   "kl_ci95": [
+    0.0015026356559246778,
+    0.02527272407896817
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.8,
+   "paired_minus_mean_attn": -0.005611962809925894,
+   "paired_ci95": [
+    -0.012044178787618872,
+    -0.00019036977435461788
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.3,
+   "policy": "random",
+   "n_requests": 5,
+   "mean_delta_nll": -0.003958714512797693,
+   "ci95": [
+    -0.01939678022987209,
+    0.017676751052495093
+   ],
+   "mean_fixed_prefix_kl": 0.012270267043883601,
+   "kl_ci95": [
+    0.006258182801927128,
+    0.018880559798950952
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 0.9333333333333332,
+   "paired_minus_mean_attn": -0.027567793460718037,
+   "paired_ci95": [
+    -0.05626753911026753,
+    -0.0065027827668624584
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.5,
+   "policy": "mean_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.008371187666198238,
+   "ci95": [
+    -0.005788569397991525,
+    0.028582642171531912
+   ],
+   "mean_fixed_prefix_kl": 0.00313265961012803,
+   "kl_ci95": [
+    0.0007720040041022003,
+    0.007348737074062228
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.0,
+   "paired_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.5,
+   "policy": "last_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.006511477734893562,
+   "ci95": [
+    -0.008137088014045724,
+    0.022333592678187412
+   ],
+   "mean_fixed_prefix_kl": 0.008628936519380659,
+   "kl_ci95": [
+    0.0010438361670821906,
+    0.020759491750504823
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.0018597099313046761,
+   "paired_ci95": [
+    -0.007577218804508448,
+    0.003241563829360533
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.5,
+   "policy": "max_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.0002569922909606226,
+   "ci95": [
+    -0.012715461133047935,
+    0.010220094261458146
+   ],
+   "mean_fixed_prefix_kl": 0.008002613089047372,
+   "kl_ci95": [
+    0.0007986552082002163,
+    0.0207079935236834
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.00862817995715886,
+   "paired_ci95": [
+    -0.020135581004433332,
+    -0.000669874341692775
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.5,
+   "policy": "recent_attn",
+   "n_requests": 5,
+   "mean_delta_nll": 0.0018396939535159612,
+   "ci95": [
+    -0.008303197717759758,
+    0.015282561829080804
+   ],
+   "mean_fixed_prefix_kl": 0.0023949773632921277,
+   "kl_ci95": [
+    0.0007438284112140537,
+    0.004851307487115264
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.006531493712682276,
+   "paired_ci95": [
+    -0.013300080342451106,
+    -0.002437874623574318
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "budget": 0.5,
+   "policy": "random",
+   "n_requests": 5,
+   "mean_delta_nll": -0.006861873212813711,
+   "ci95": [
+    -0.011431006297934799,
+    -0.0023755653179250626
+   ],
+   "mean_fixed_prefix_kl": 0.006359031330794096,
+   "kl_ci95": [
+    0.0032816491555422546,
+    0.009734377559895317
+   ],
+   "n_full_correct": 5,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.015233060879011948,
+   "paired_ci95": [
+    -0.03435208928072825,
+    -0.0036027533968444824
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.3,
+   "policy": "mean_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.009020302063112861,
+   "ci95": [
+    -0.07698079597774062,
+    0.02946263768115185
+   ],
+   "mean_fixed_prefix_kl": 0.003540083160623908,
+   "kl_ci95": [
+    0.002224644413217902,
+    0.005386147182434797
+   ],
+   "n_full_correct": 2,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.0,
+   "paired_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.3,
+   "policy": "last_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.013842445764587158,
+   "ci95": [
+    -0.09024764222299886,
+    0.03083451937935832
+   ],
+   "mean_fixed_prefix_kl": 0.003425600822083652,
+   "kl_ci95": [
+    0.0021590522723272444,
+    0.005252071400173008
+   ],
+   "n_full_correct": 2,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.004822143701474296,
+   "paired_ci95": [
+    -0.013266846245258247,
+    0.0030191268008719686
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.3,
+   "policy": "max_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.017672795463456875,
+   "ci95": [
+    -0.09504125646263772,
+    0.027047873624703938
+   ],
+   "mean_fixed_prefix_kl": 0.003641194920055568,
+   "kl_ci95": [
+    0.0020785695873200894,
+    0.005609844019636512
+   ],
+   "n_full_correct": 2,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.008652493400344014,
+   "paired_ci95": [
+    -0.017325194304188087,
+    -0.002398252029282355
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.3,
+   "policy": "recent_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.011420123596003062,
+   "ci95": [
+    -0.07877886794740332,
+    0.027047114189352017
+   ],
+   "mean_fixed_prefix_kl": 0.004026458552107215,
+   "kl_ci95": [
+    0.0021738274954259396,
+    0.00691348472610116
+   ],
+   "n_full_correct": 2,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.0023998215328902006,
+   "paired_ci95": [
+    -0.005084904492832676,
+    0.00043631847171727857
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.3,
+   "policy": "random",
+   "n_requests": 5,
+   "mean_delta_nll": 0.024058659263903777,
+   "ci95": [
+    -0.08472847311447061,
+    0.1424708923790604
+   ],
+   "mean_fixed_prefix_kl": 0.007542097723732391,
+   "kl_ci95": [
+    0.0023113457796474298,
+    0.017376158153638244
+   ],
+   "n_full_correct": 2,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.03307896132701664,
+   "paired_ci95": [
+    -0.0186243253216768,
+    0.12196963789821083
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.5,
+   "policy": "mean_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.016398333341607608,
+   "ci95": [
+    -0.07752524851303957,
+    0.016309660724881603
+   ],
+   "mean_fixed_prefix_kl": 0.0016362577327527106,
+   "kl_ci95": [
+    0.0007257428718730807,
+    0.002523253858089447
+   ],
+   "n_full_correct": 2,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.0,
+   "paired_ci95": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.5,
+   "policy": "last_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.02717750674087762,
+   "ci95": [
+    -0.09039275125445179,
+    0.006476130712932582
+   ],
+   "mean_fixed_prefix_kl": 0.0012124541099183261,
+   "kl_ci95": [
+    0.0005600397707894444,
+    0.0018191115697845817
+   ],
+   "n_full_correct": 2,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.010779173399270014,
+   "paired_ci95": [
+    -0.014051795047190497,
+    -0.0064614941197861375
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.5,
+   "policy": "max_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.024552478483464136,
+   "ci95": [
+    -0.09333209950839061,
+    0.013265784643590451
+   ],
+   "mean_fixed_prefix_kl": 0.0015423403412569315,
+   "kl_ci95": [
+    0.0005868592415936291,
+    0.002713469136506319
+   ],
+   "n_full_correct": 2,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.008154145141856528,
+   "paired_ci95": [
+    -0.017306422043798685,
+    0.0009981317600856298
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.5,
+   "policy": "recent_attn",
+   "n_requests": 5,
+   "mean_delta_nll": -0.019554483713323446,
+   "ci95": [
+    -0.08345469864369884,
+    0.013922000222373753
+   ],
+   "mean_fixed_prefix_kl": 0.0013611067784950136,
+   "kl_ci95": [
+    0.0007906230166554451,
+    0.0019315905403345824
+   ],
+   "n_full_correct": 2,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": -0.0031561503717158377,
+   "paired_ci95": [
+    -0.007516235314930486,
+    0.0007808374745460922
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "budget": 0.5,
+   "policy": "random",
+   "n_requests": 5,
+   "mean_delta_nll": 0.019875296521328256,
+   "ci95": [
+    -0.053676006353149806,
+    0.1061621113240512
+   ],
+   "mean_fixed_prefix_kl": 0.005329582327976823,
+   "kl_ci95": [
+    0.0011977163143455983,
+    0.013092915116188427
+   ],
+   "n_full_correct": 2,
+   "acc_given_full_correct": 1.0,
+   "paired_minus_mean_attn": 0.03627362986293586,
+   "paired_ci95": [
+    -0.008879062588999245,
+    0.10501739773381913
+   ]
+  }
+ ],
+ "arm1a_pairs": 41,
+ "arm1a_pairs_correct_differs": 0,
+ "arm1a_by_evidence_kept_all": 1
+}

@@ -1,0 +1,17 @@
+{
+  "alignment_failures": [],
+  "ambiguous_subspans": [],
+  "boundary_tokens_total": 0,
+  "source_sha_of_audited_run": "16a71d1a1845fab0cc947a23ac004a5685338d2f",
+  "audit_code_sha": "9b0c0ec5fd8c9c8a716da6f489563365a5e7d0af",
+  "jobs": 80,
+  "audited_jobs": 80,
+  "policy_rows": 1680,
+  "swap_targets": 100,
+  "phase1_complete": true,
+  "phase2_complete": true,
+  "attention_flip_rows": 534,
+  "attention_flip_rows_with_complete_E": 0,
+  "labels_used_by_policies": false,
+  "note": "Evidence labels/offsets are post-hoc diagnostics; Phase-1 selection never saw them."
+}

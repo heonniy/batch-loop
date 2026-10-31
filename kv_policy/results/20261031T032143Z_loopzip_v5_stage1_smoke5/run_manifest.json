@@ -1,0 +1,48 @@
+{
+ "protocol": "loopzip-v5-stage1-evidence-lock-v1",
+ "code_sha": "9b0c0ec5fd8c9c8a716da6f489563365a5e7d0af",
+ "config": {
+  "source_run": "/home1/irteam/batch-loop/kv_policy/results/20261030T164908Z_loopzip_failure_pilot20",
+  "models": [
+   "ouro-2.6b",
+   "huginn-0125"
+  ],
+  "datasets": [
+   "controlled_retrieval",
+   "hotpotqa_distractor"
+  ],
+  "n_examples": 5,
+  "retention": [
+   0.1,
+   0.3,
+   0.5
+  ],
+  "policies": [
+   "mean_attn",
+   "last_attn",
+   "max_attn",
+   "recent_attn",
+   "random"
+  ],
+  "random_seeds": [
+   11,
+   29,
+   47
+  ],
+  "generation_tokens": 32
+ },
+ "job_count": 20,
+ "source_run": "/home1/irteam/batch-loop/kv_policy/results/20261030T164908Z_loopzip_failure_pilot20",
+ "source_code_sha": "16a71d1a1845fab0cc947a23ac004a5685338d2f",
+ "model_revisions": {
+  "ouro-2.6b": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+  "huginn-0125": "bb6621b65e90b6a4b9b29ef88dc83866d450470c"
+ },
+ "oracle_control": true,
+ "notes": [
+  "Evidence-locked sets use ground-truth annotation: offline oracle control only",
+  "Recent+Attn pins floor(free/4) most recent NON-evidence tokens inside K",
+  "Infeasible |E|>K cells are recorded, never re-budgeted",
+  "Full-sized reference KV; no HBM/latency claims"
+ ]
+}
