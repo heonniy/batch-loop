@@ -1,0 +1,136 @@
+{
+ "F_SETTLE": 0.1,
+ "U_RISE": 0.1,
+ "thresholds": {
+  "huginn-0125": [
+   0.4375,
+   0.53125
+  ],
+  "ouro-2.6b": [
+   1.0,
+   1.0
+  ]
+ },
+ "label_share": [
+  {
+   "model": "huginn-0125",
+   "split": "dev",
+   "label": "early_settling",
+   "share": 0.3934852118305356
+  },
+  {
+   "model": "huginn-0125",
+   "split": "dev",
+   "label": "late_settling",
+   "share": 0.23760991207034374
+  },
+  {
+   "model": "huginn-0125",
+   "split": "dev",
+   "label": "mid_settling",
+   "share": 0.3454236610711431
+  },
+  {
+   "model": "huginn-0125",
+   "split": "dev",
+   "label": "nonmonotonic",
+   "share": 0.023481215027977616
+  },
+  {
+   "model": "huginn-0125",
+   "split": "holdout",
+   "label": "early_settling",
+   "share": 0.33326823552387463
+  },
+  {
+   "model": "huginn-0125",
+   "split": "holdout",
+   "label": "late_settling",
+   "share": 0.2938189629918953
+  },
+  {
+   "model": "huginn-0125",
+   "split": "holdout",
+   "label": "mid_settling",
+   "share": 0.3530905185040523
+  },
+  {
+   "model": "huginn-0125",
+   "split": "holdout",
+   "label": "nonmonotonic",
+   "share": 0.019822282980177717
+  },
+  {
+   "model": "ouro-2.6b",
+   "split": "dev",
+   "label": "nonmonotonic",
+   "share": 0.0009236168837166343
+  },
+  {
+   "model": "ouro-2.6b",
+   "split": "dev",
+   "label": "settles_at_r/R=0.50",
+   "share": 0.004063914288353191
+  },
+  {
+   "model": "ouro-2.6b",
+   "split": "dev",
+   "label": "settles_at_r/R=0.75",
+   "share": 0.22462362611988548
+  },
+  {
+   "model": "ouro-2.6b",
+   "split": "dev",
+   "label": "settles_at_r/R=1.00",
+   "share": 0.7703888427080448
+  },
+  {
+   "model": "ouro-2.6b",
+   "split": "holdout",
+   "label": "nonmonotonic",
+   "share": 0.0009034239768723462
+  },
+  {
+   "model": "ouro-2.6b",
+   "split": "holdout",
+   "label": "settles_at_r/R=0.50",
+   "share": 0.003613695907489385
+  },
+  {
+   "model": "ouro-2.6b",
+   "split": "holdout",
+   "label": "settles_at_r/R=0.75",
+   "share": 0.22585599421808655
+  },
+  {
+   "model": "ouro-2.6b",
+   "split": "holdout",
+   "label": "settles_at_r/R=1.00",
+   "share": 0.7696268858975517
+  }
+ ],
+ "repeatability": {
+  "huginn-0125": {
+   "n_common_token_ids": 261,
+   "token_id_settle_spearman_dev_vs_holdout": 0.5866153853146796,
+   "var_share_prompt": 0.10144565242626324,
+   "var_share_role": 0.0798184527750711,
+   "var_share_token_id_insample": 0.45312127226306964,
+   "dev_thresholds_settle_rel": [
+    0.4375,
+    0.53125
+   ]
+  },
+  "ouro-2.6b": {
+   "n_common_token_ids": 258,
+   "token_id_settle_spearman_dev_vs_holdout": 0.4783858054265083,
+   "var_share_prompt": 0.1342470682788652,
+   "var_share_role": 0.028424935147331777,
+   "var_share_token_id_insample": 0.3606653695584443,
+   "dev_thresholds_settle_rel": [
+    1.0,
+    1.0
+   ]
+  }
+ }
+}

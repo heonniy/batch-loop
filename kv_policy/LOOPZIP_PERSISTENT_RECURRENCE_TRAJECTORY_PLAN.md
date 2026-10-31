@@ -4,6 +4,8 @@ Date: 2026-10-31
 Branch: research/loopzip-persistent-trajectory-characterization-20261031
 Parent commit (completed v5 evidence-controlled pilot): c917ba60b9ea3b55da90f544dabe4b3bb9b5e353
 
+**RESULTS (2026-10-31, H200x8):** G0, Stage A, Stage B and Stage C executed. Pilot: results/20261031T070815Z_loopzip_v6_trajectory_pilot (TRAJECTORY_OBSERVATIONS.md, STAGEA_STAGEC_FINDINGS.md, V6_PILOT_ASSESSMENT.md); Stage C controls / Ouro readout / CR auxiliary: results/20261031T084101Z_loopzip_v6_stagec_controls. Stage D not run (see V6_PILOT_ASSESSMENT.md). The plan text below is unchanged.
+
 **STATUS: EXPERIMENT PLAN ONLY — NO NEW EXPERIMENT RUNS, SOURCE IMPLEMENTATION, OR PERFORMANCE RESULTS IN THIS COMMIT.**
 This branch preserves previous KV-sharing, failure-first, evidence-coverage, and v5 evidence-lock results unmodified. This plan **replaces v5's immediate policy-design priority**, not the old data. It deliberately postpones token×loop importance policies, refill, live exit, and HBM savings claims until an observable recurrent mechanism is validated.
 

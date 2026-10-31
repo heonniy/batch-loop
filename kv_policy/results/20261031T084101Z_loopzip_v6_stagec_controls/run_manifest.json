@@ -1,0 +1,46 @@
+{
+ "protocol": "loopzip-v6-stagec-controls-v1",
+ "code_sha": "1ed7282e9e9900e7cef8d73f433ba0edf1717574",
+ "config": {
+  "source_run": "/home1/irteam/batch-loop/kv_policy/results/20261031T070815Z_loopzip_v6_trajectory_pilot",
+  "v5_run": "/home1/irteam/batch-loop/kv_policy/results/20261031T034209Z_loopzip_v5_stage1_pilot20",
+  "models": [
+   "ouro-2.6b",
+   "huginn-0125"
+  ],
+  "n_cr": 2,
+  "chunk": 25,
+  "horizon": 128
+ },
+ "probe_loops": {
+  "ouro-2.6b": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "huginn-0125": [
+   1,
+   2,
+   4,
+   8,
+   16,
+   24,
+   32
+  ]
+ },
+ "case_ts": [
+  8,
+  32
+ ],
+ "seeds": [
+  101,
+  202
+ ],
+ "notes": [
+  "Case selection uses the completed persistent census (labeled)",
+  "All controls use clean (pristine FULL) generated history",
+  "Huginn intermediate readout is not model-native: not run",
+  "CR evidence labels used only for post-hoc stratification"
+ ]
+}

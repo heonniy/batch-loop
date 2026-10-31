@@ -1,0 +1,39 @@
+{
+ "ouro-2.6b/A": {
+  "jobs": 80,
+  "max_peak_gpu_gb": 9.85877248,
+  "mean_per_source_s": null,
+  "mean_prefill_s": 17.89350344836712
+ },
+ "ouro-2.6b/Bref": {
+  "jobs": 8,
+  "max_peak_gpu_gb": 6.497201664,
+  "mean_per_source_s": null,
+  "mean_prefill_s": 17.413126349449158
+ },
+ "ouro-2.6b/B": {
+  "jobs": 57,
+  "max_peak_gpu_gb": 8.072532992,
+  "mean_per_source_s": 14.310626227630399,
+  "mean_prefill_s": null
+ },
+ "huginn-0125/A": {
+  "jobs": 80,
+  "max_peak_gpu_gb": 15.49212416,
+  "mean_per_source_s": null,
+  "mean_prefill_s": 18.194472530484198
+ },
+ "huginn-0125/Bref": {
+  "jobs": 8,
+  "max_peak_gpu_gb": 9.368932864,
+  "mean_per_source_s": null,
+  "mean_prefill_s": 19.662317663431168
+ },
+ "huginn-0125/B": {
+  "jobs": 58,
+  "max_peak_gpu_gb": 13.599153664,
+  "mean_per_source_s": 7.529803409911541,
+  "mean_prefill_s": null
+ },
+ "hardware": "H200 x8, BF16, B=1, one model per worker"
+}

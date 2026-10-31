@@ -1,0 +1,17 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:48<02:25, 48.59s/it]Loading checkpoint shards:  50%|█████     | 2/4 [01:37<01:37, 48.59s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [02:26<00:48, 48.72s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:40<00:00, 35.17s/it]Loading checkpoint shards: 100%|██████████| 4/4 [02:40<00:00, 40.11s/it]
+done CTL__huginn-0125__hotpot-5a74d9c555429929fddd84fb-W1
+done CTL__huginn-0125__hotpot-5ab985eb554299131ca42360-W1
+done CTL__ouro-2.6b__hotpot-5a89dfcc55429946c8d6e9f0-W2
+done CR__ouro-2.6b__controlled-20261031-00004__005
+done CR__ouro-2.6b__controlled-20261031-00004__009
+done CR__ouro-2.6b__controlled-20261031-00004__014
+done CR__ouro-2.6b__controlled-20261031-00015__007
+done CR__ouro-2.6b__controlled-20261031-00015__013
+done RO__ouro-2.6b__hotpot-5ab48bab5542991779162cd3-W1
+done RO__ouro-2.6b__hotpot-5abe36745542991f66106101-W2
+done RO__ouro-2.6b__hotpot-5ac1a9cc5542994ab5c67dc0-W1
+done RO__ouro-2.6b__hotpot-5add61d65542995b365fab21-W1
+done RO__ouro-2.6b__hotpot-5ae331fb55429928c4239670-W2
+done RO__ouro-2.6b__hotpot-5ae849cc5542997ec2727798-W2
