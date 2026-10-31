@@ -207,6 +207,9 @@ def build_evidence_prompt(tokenizer, family: str, doc: dict) -> RolePrompt:
     body = "".join(text_parts)
 
     if family == "huginn":
+        # Huginn's chat template strips trailing whitespace from message content
+        # ("Response:\n" -> "Response:"); the stripped tail carries no role label.
+        body = body.rstrip()
         text = tokenizer.apply_chat_template(
             [{"role": "system",
               "content": "Use the provided context to answer questions accurately."},
