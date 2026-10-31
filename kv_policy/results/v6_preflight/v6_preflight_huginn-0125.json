@@ -1,0 +1,101 @@
+{
+ "protocol": "loopzip-v6-persistent-trajectory-v1",
+ "code_sha": "b1449969c009d4fdc9d2035c8a4db3f95244b4b1",
+ "dirty": false,
+ "item_id": "hotpot-5ab56ed0554299637185c597-W2",
+ "gpu": "NVIDIA H200",
+ "models": {
+  "huginn-0125": {
+   "16": {
+    "prompt_len": 169,
+    "n_eligible": 136,
+    "ref_tokens": 16,
+    "ref_stop": "horizon",
+    "prefill_s": 18.93270993232727,
+    "reference_s": 1.387237548828125,
+    "accumulated_s_per_source": [
+     1.5356674194335938,
+     1.540905475616455,
+     1.5332839488983154,
+     1.550727128982544,
+     1.5323553085327148
+    ],
+    "clean_s_per_source": [
+     0.48195552825927734,
+     0.4818403720855713,
+     0.48203229904174805,
+     0.48247766494750977,
+     0.4809904098510742
+    ],
+    "restore_s": 0.00013399124145507812,
+    "peak_gpu_bytes": 8279846400,
+    "validation": {
+     "nomask_max_E": 0.0,
+     "nomask_max_kl": 0.0,
+     "source_switch_replay_max_abs": 0.0,
+     "source_switch_kl_max_abs": 0.0,
+     "a_vs_b_differs": true,
+     "masked_max_E": 0.025354282930493355,
+     "clean_probe_vs_recompute_max_abs": 0.0,
+     "clean_probe_kl_vs_recompute": 0.0,
+     "accum_vs_clean_t1_max_abs": 0.0,
+     "prompt_kv_digest_drift": 0.0,
+     "independent_nll_max_abs": 0.0,
+     "pass": true,
+     "failures": []
+    },
+    "example_late_kl": [
+     1.4067163647268899e-06,
+     0.001312644686549902,
+     0.00023488979786634445
+    ],
+    "est_s_per_prompt_all_sources": 295.1007545948029
+   },
+   "128": {
+    "prompt_len": 169,
+    "n_eligible": 136,
+    "ref_tokens": 119,
+    "ref_stop": "eos",
+    "prefill_s": 18.418042182922363,
+    "reference_s": 10.346260786056519,
+    "accumulated_s_per_source": [
+     11.474860429763794,
+     11.432303428649902,
+     11.496528625488281,
+     11.504093885421753,
+     11.45497751235962
+    ],
+    "clean_s_per_source": [
+     0.6765398979187012,
+     0.676642656326294,
+     0.6835207939147949,
+     0.6767196655273438,
+     0.6808977127075195
+    ],
+    "restore_s": 0.0004630088806152344,
+    "peak_gpu_bytes": 9267193856,
+    "validation": {
+     "nomask_max_E": 0.0,
+     "nomask_max_kl": 0.0,
+     "source_switch_replay_max_abs": 0.0,
+     "source_switch_kl_max_abs": 0.0,
+     "a_vs_b_differs": true,
+     "masked_max_E": 0.4535837173461914,
+     "clean_probe_vs_recompute_max_abs": 0.0,
+     "clean_probe_kl_vs_recompute": 0.0,
+     "accum_vs_clean_t1_max_abs": 0.0,
+     "prompt_kv_digest_drift": 0.0,
+     "independent_nll_max_abs": 0.0,
+     "pass": true,
+     "failures": []
+    },
+    "example_late_kl": [
+     6.634928286075592e-05,
+     6.484019104391336e-05,
+     2.0666077034547925e-05
+    ],
+    "est_s_per_prompt_all_sources": 1681.3570043087007
+   }
+  }
+ }
+}
