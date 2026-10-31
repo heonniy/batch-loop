@@ -1,0 +1,59 @@
+{
+ "protocol": "loopzip-v6-persistent-trajectory-v1",
+ "code_sha": "7e1eabcae72ecffa198fffca1a7d055497626a05",
+ "config": {
+  "models": [
+   "ouro-2.6b",
+   "huginn-0125"
+  ],
+  "horizon": 128,
+  "length_window": [
+   128,
+   192
+  ],
+  "n_stage_a": 40,
+  "n_stage_b": 4,
+  "n_holdout": 40,
+  "n_reserve": 20,
+  "chunk_size": {
+   "ouro-2.6b": 20,
+   "huginn-0125": 20
+  }
+ },
+ "seed": 20261031,
+ "model_revisions": {
+  "ouro-2.6b": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+  "huginn-0125": "bb6621b65e90b6a4b9b29ef88dc83866d450470c"
+ },
+ "skipped_length_ineligible": {
+  "W1": 22,
+  "W2": 35
+ },
+ "clean_ts": [
+  1,
+  2,
+  4,
+  8,
+  16,
+  32,
+  64,
+  128
+ ],
+ "pool_counts": {
+  "W1/A": 40,
+  "W1/B": 4,
+  "W1/holdout": 40,
+  "W1/reserve": 20,
+  "W2/A": 40,
+  "W2/B": 4,
+  "W2/holdout": 40,
+  "W2/reserve": 20
+ },
+ "eligibility_rule": "roles content/instruction/question; 'other' (format/special/boundary) excluded",
+ "notes": [
+  "Full-sized reference KV + read masks; no HBM/latency claims",
+  "Primary eviction: all recurrent loops/layers + plain prelude/coda layers, post-prefill",
+  "Greedy FULL continuation to EOS or horizon; early EOS recorded, never dropped",
+  "Stage B chunks teacher-force the frozen Bref continuation"
+ ]
+}

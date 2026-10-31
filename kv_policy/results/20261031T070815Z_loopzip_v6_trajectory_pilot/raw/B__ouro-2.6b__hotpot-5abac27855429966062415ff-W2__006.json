@@ -1,0 +1,32 @@
+{
+ "key": "B__ouro-2.6b__hotpot-5abac27855429966062415ff-W2__006",
+ "kind": "B",
+ "model": "ouro-2.6b",
+ "workload": "W2",
+ "item_id": "hotpot-5abac27855429966062415ff-W2",
+ "uid": "v6/hotpot-5abac27855429966062415ff-W2",
+ "sha": "7e1eabcae72ecffa198fffca1a7d055497626a05",
+ "sources": [
+  128,
+  129,
+  130
+ ],
+ "n_tokens": 128,
+ "clean_ts": [
+  1,
+  2,
+  4,
+  8,
+  16,
+  32,
+  64,
+  128
+ ],
+ "per_source_s": [
+  15.042823076248169,
+  15.085015773773193,
+  15.032262325286865
+ ],
+ "reference_digest": 23439.140625,
+ "peak_gpu_bytes": 7802381312
+}

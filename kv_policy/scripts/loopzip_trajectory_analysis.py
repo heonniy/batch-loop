@@ -65,44 +65,42 @@ def completeness(run: Path):
             "problems": problems, "jobs": len(jobs)}
 
 
+def _load(run, key):
+    return np.load(run / "raw" / f"{key}.npz"), json.loads((run / "raw" / f"{key}.json").read_text())
+
+
 def stage_a(run: Path, out: Path):
-    jobs = [j for j in json.loads((run / "jobs.json").read_text()) if j["kind"] in ("A", "Bref")]
-    rows, summ = [], defaultdict(lambda: defaultdict(list))
-    eos = defaultdict(lambda: [0, 0])
-    for j in jobs:
-        p = run / "raw" / f"{j['key']}.npz"
-        if not p.exists():
-            continue
-        z = np.load(p)
-        meta = json.loads((run / "raw" / f"{j['key']}.json").read_text())
-        roles = meta["roles"]
-        P = len(roles)
-        R = z["prompt_U"].shape[1] - 1
-        eos[(j["model"], j["workload"])][0] += 1
-        eos[(j["model"], j["workload"])][1] += meta["ref"]["stop"] == "eos"
-        for phase, pre in (("prompt", "prompt_"), ("generated", "gen_")):
-            n = z[pre + "U"].shape[0]
-            for t in range(n):
-                role = roles[t] if phase == "prompt" else "generated"
-                pct = t / max(1, n - 1)
-                for r in range(R + 1):
-                    row = {"pool": j["kind"], "uid": j["uid"], "model": j["model"], "dataset": j["workload"],
-                           "phase": phase, "t": t, "r": r, "r_rel": r / R, "role": role, "position_pct": pct,
-                           "token_id": (meta["prompt_ids"][t] if phase == "prompt" else meta["ref"]["ids"][t])}
-                    for k in ("h_norm", "U", "F", "C", "cos_init", "cos_term"):
-                        row[k] = float(z[pre + k][t, r])
-                    rows.append(row)
-                    if j["kind"] == "A":
-                        for k in ("U", "F", "C"):
-                            summ[(j["model"], j["workload"], role, r)][k].append(row[k])
     import pandas as pd
-    df = pd.DataFrame(rows)
+    jobs = [j for j in json.loads((run / "jobs.json").read_text()) if j["kind"] in ("A", "Bref")]
+    frames, eos = [], defaultdict(lambda: [0, 0])
+    keys = ("h_norm", "U", "F", "C", "cos_init", "cos_term")
+    for j in jobs:
+        if not (run / "raw" / f"{j['key']}.npz").exists():
+            continue
+        z, meta = _load(run, j["key"])
+        if j["kind"] == "A":
+            eos[(j["model"], j["workload"])][0] += 1
+            eos[(j["model"], j["workload"])][1] += meta["ref"]["stop"] == "eos"
+        for phase, pre, roles, ids in (("prompt", "prompt_", meta["roles"], meta["prompt_ids"]),
+                                       ("generated", "gen_", None, meta["ref"]["ids"])):
+            n, R1 = z[pre + "U"].shape
+            R = R1 - 1
+            t = np.repeat(np.arange(n), R1)
+            r = np.tile(np.arange(R1), n)
+            role = np.repeat(np.array(roles if roles else ["generated"] * n), R1)
+            d = {"pool": j["kind"], "uid": j["uid"], "model": j["model"], "dataset": j["workload"], "phase": phase,
+                 "t": t, "r": r, "r_rel": r / R, "role": role, "position_pct": t / max(1, n - 1),
+                 "token_id": np.repeat(np.asarray(ids[:n]), R1)}
+            d |= {k: z[pre + k].reshape(-1).astype("float64") for k in keys}
+            frames.append(pd.DataFrame(d))
+    df = pd.concat(frames, ignore_index=True)
     df.to_parquet(out / "normal_trajectory_long.parquet", index=False)
     dist = []
-    for (m, w, role, r), d in sorted(summ.items()):
-        e = {"model": m, "workload": w, "role": role, "r": r}
-        for k, v in d.items():
-            v = np.asarray(v, dtype="float64")
+    a = df[df["pool"] == "A"]
+    for (m, w, role, r), g in a.groupby(["model", "dataset", "role", "r"]):
+        e = {"model": m, "workload": w, "role": role, "r": int(r)}
+        for k in ("U", "F", "C"):
+            v = g[k].to_numpy()
             v = v[np.isfinite(v)]
             if v.size:
                 e[k] = {"n": int(v.size), "mean": float(v.mean()), "sd": float(v.std()),
@@ -111,67 +109,65 @@ def stage_a(run: Path, out: Path):
         dist.append(e)
     _json(out / "normal_trajectory_distribution.json",
           {"by_model_workload_role_loop": dist,
-           "eos_rate": {f"{m}/{w}": {"n": a, "eos": b} for (m, w), (a, b) in eos.items()}})
+           "eos_rate": {f"{m}/{w}": {"n": x, "eos": y} for (m, w), (x, y) in eos.items()}})
     return df
 
 
 def stage_bc(run: Path, out: Path):
     import pandas as pd
     jobs = json.loads((run / "jobs.json").read_text())
-    refs = {j["key"]: j for j in jobs if j["kind"] == "Bref"}
-    long_rows, per_src, kl_pos, hist = [], [], [], []
+    long_f, per_src, kl_f, hist_f = [], [], [], []
     for j in (j for j in jobs if j["kind"] == "B"):
-        p = run / "raw" / f"{j['key']}.npz"
-        if not p.exists():
+        if not (run / "raw" / f"{j['key']}.npz").exists():
             continue
-        z = np.load(p)
-        rmeta = json.loads((run / "raw" / f"{j['depends']}.json").read_text())
-        zr = np.load(run / "raw" / f"{j['depends']}.npz")
+        z, _ = _load(run, j["key"])
+        zr, rmeta = _load(run, j["depends"])
         roles, P = rmeta["roles"], len(rmeta["roles"])
-        srcs, ts = z["sources"], z["clean_ts"]
-        n, R = z["acc_E"].shape[1], z["acc_E"].shape[2] - 1
+        srcs, ts = z["sources"].astype(int), z["clean_ts"].astype(int)
+        N, n, R1 = z["acc_E"].shape
+        R = R1 - 1
+        base = {"model": j["model"], "workload": j["workload"], "uid": j["uid"]}
         for si, s in enumerate(srcs):
-            s = int(s)
-            feat = {"model": j["model"], "workload": j["workload"], "uid": j["uid"], "source": s,
-                    "role": roles[s], "position": s, "position_pct": s / (P - 1), "age": P - s,
-                    "attn_recv_mean": float(zr["src_recv_mean"][:, s].mean()),
+            feat = {**base, "source": int(s), "role": roles[s], "position": int(s), "position_pct": s / (P - 1),
+                    "age": P - s, "attn_recv_mean": float(zr["src_recv_mean"][:, s].mean()),
                     "attn_last_query_mean": float(zr["src_last_query"][:, s].mean()),
                     "attn_last_query_lastloop": float(zr["src_last_query"][-1, s]),
                     "attn_recv_max": float(zr["src_recv_max"][:, s].max()),
                     "src_U_mean": _nanmean(zr["prompt_U"][s, 1:]), "src_F1": float(zr["prompt_F"][s, 1]),
                     "n_tokens": n}
-            for name, a, b in T_BINS:
-                sl = slice(a - 1, min(b, n))
-                if a <= n:
+            for name, lo, hi in T_BINS:
+                if lo <= n:
+                    sl = slice(lo - 1, min(hi, n))
                     feat[f"kl_{name}"] = _nanmean(z["acc_kl"][si, sl])
                     feat[f"E_R_{name}"] = _nanmean(z["acc_E"][si, sl, R])
                     feat[f"top1_{name}"] = _nanmean(z["acc_top1_changed"][si, sl])
             feat["kl_mean"] = _nanmean(z["acc_kl"][si])
             feat["E_R_mean"] = _nanmean(z["acc_E"][si, :, R])
             per_src.append(feat)
-            for t in range(n):
-                kl_pos.append({"model": j["model"], "workload": j["workload"], "uid": j["uid"], "source": s,
-                               "t": t + 1, "kl": float(z["acc_kl"][si, t]),
-                               "top1_changed": float(z["acc_top1_changed"][si, t]),
-                               "nll_shift": float(z["acc_nll_shift"][si, t]),
-                               "E_R": float(z["acc_E"][si, t, R])})
-                for r in range(1, R + 1):
-                    long_rows.append((j["model"], j["workload"], j["uid"], s, t + 1, r,
-                                      float(z["acc_E"][si, t, r]), float(z["acc_U_ev"][si, t, r]),
-                                      float(z["acc_dircos"][si, t, r])))
-            for ti, t in enumerate(ts):
-                for r in range(1, R + 1):
-                    hist.append({"model": j["model"], "workload": j["workload"], "uid": j["uid"], "source": s,
-                                 "t": int(t), "r": r, "r_rel": r / R,
-                                 "E_accum": float(z["acc_E"][si, t - 1, r]), "E_clean": float(z["clean_E"][si, ti, r]),
-                                 "H": float(z["acc_E"][si, t - 1, r] - z["clean_E"][si, ti, r]),
-                                 "kl_accum": float(z["acc_kl"][si, t - 1]), "kl_clean": float(z["clean_kl"][si, ti])})
-    pd.DataFrame(long_rows, columns=["model", "workload", "uid", "source", "t", "r", "E", "U_ev", "dircos"]
-                 ).to_parquet(out / "eviction_trajectory_long.parquet", index=False)
+        tt = np.tile(np.arange(1, n + 1), N)
+        ss = np.repeat(srcs, n)
+        kl_f.append(pd.DataFrame({**base, "source": ss, "t": tt, "kl": z["acc_kl"].reshape(-1),
+                                  "top1_changed": z["acc_top1_changed"].reshape(-1),
+                                  "nll_shift": z["acc_nll_shift"].reshape(-1), "E_R": z["acc_E"][:, :, R].reshape(-1)}))
+        long_f.append(pd.DataFrame({**base, "source": np.repeat(srcs, n * R),
+                                    "t": np.tile(np.repeat(np.arange(1, n + 1), R), N),
+                                    "r": np.tile(np.arange(1, R + 1), N * n),
+                                    "E": z["acc_E"][:, :, 1:].reshape(-1), "U_ev": z["acc_U_ev"][:, :, 1:].reshape(-1),
+                                    "dircos": z["acc_dircos"][:, :, 1:].reshape(-1)}))
+        Ea = z["acc_E"][:, ts - 1, 1:]          # (N, len(ts), R)
+        Ec = z["clean_E"][:, :, 1:]
+        K = len(ts)
+        hist_f.append(pd.DataFrame({**base, "source": np.repeat(srcs, K * R),
+                                    "t": np.tile(np.repeat(ts, R), N), "r": np.tile(np.arange(1, R + 1), N * K),
+                                    "r_rel": np.tile(np.arange(1, R + 1) / R, N * K),
+                                    "E_accum": Ea.reshape(-1), "E_clean": Ec.reshape(-1), "H": (Ea - Ec).reshape(-1),
+                                    "kl_accum": np.repeat(z["acc_kl"][:, ts - 1].reshape(-1), R),
+                                    "kl_clean": np.repeat(z["clean_kl"].reshape(-1), R)}))
+    pd.concat(long_f, ignore_index=True).to_parquet(out / "eviction_trajectory_long.parquet", index=False)
     ps = pd.DataFrame(per_src)
     ps.to_csv(out / "per_source_128step_summary.csv", index=False)
-    pd.DataFrame(kl_pos).to_csv(out / "longdecode_kl_by_position.csv", index=False)
-    hd = pd.DataFrame(hist)
+    pd.concat(kl_f, ignore_index=True).to_csv(out / "longdecode_kl_by_position.csv", index=False)
+    hd = pd.concat(hist_f, ignore_index=True)
     hd.to_csv(out / "history_mode_difference.csv", index=False)
     return ps, hd
 
