@@ -1,0 +1,229 @@
+{
+  "complete": true,
+  "expected_swap_jobs": 43,
+  "completed_swap_jobs": 43,
+  "groups": [
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "study_role": "failure",
+      "n_requests": 12,
+      "n_positive_rescue_requests": 12,
+      "mean_local_swap_nll_gain": 0.19638539247971484,
+      "request_bootstrap_ci95": [
+        0.04181872469974525,
+        0.4597053583071827
+      ]
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "study_role": "failure",
+      "n_requests": 12,
+      "n_positive_rescue_requests": 12,
+      "mean_local_swap_nll_gain": 0.03335685281781481,
+      "request_bootstrap_ci95": [
+        0.023944850950065273,
+        0.04271331766334095
+      ]
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "study_role": "failure",
+      "n_requests": 8,
+      "n_positive_rescue_requests": 8,
+      "mean_local_swap_nll_gain": 0.05170079387753504,
+      "request_bootstrap_ci95": [
+        0.022504800961214624,
+        0.10112814872762103
+      ]
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.1,
+      "study_role": "control",
+      "n_requests": 1,
+      "n_positive_rescue_requests": 1,
+      "mean_local_swap_nll_gain": 0.008791008091066033,
+      "request_bootstrap_ci95": [
+        0.008791008091066033,
+        0.008791008091066033
+      ]
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.1,
+      "study_role": "failure",
+      "n_requests": 7,
+      "n_positive_rescue_requests": 7,
+      "mean_local_swap_nll_gain": 0.039628189277667314,
+      "request_bootstrap_ci95": [
+        0.012021529066688963,
+        0.08390713209529724
+      ]
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.3,
+      "study_role": "control",
+      "n_requests": 1,
+      "n_positive_rescue_requests": 1,
+      "mean_local_swap_nll_gain": 0.019983853135878693,
+      "request_bootstrap_ci95": [
+        0.019983853135878693,
+        0.019983853135878693
+      ]
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.3,
+      "study_role": "failure",
+      "n_requests": 2,
+      "n_positive_rescue_requests": 2,
+      "mean_local_swap_nll_gain": 0.010034033710585977,
+      "request_bootstrap_ci95": [
+        0.005895589627990638,
+        0.014172477793181315
+      ]
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.5,
+      "study_role": "control",
+      "n_requests": 3,
+      "n_positive_rescue_requests": 3,
+      "mean_local_swap_nll_gain": 0.021286886700949692,
+      "request_bootstrap_ci95": [
+        0.013588675948267293,
+        0.02748275288225477
+      ]
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.5,
+      "study_role": "failure",
+      "n_requests": 1,
+      "n_positive_rescue_requests": 1,
+      "mean_local_swap_nll_gain": 0.030807127795664524,
+      "request_bootstrap_ci95": [
+        0.030807127795664524,
+        0.030807127795664524
+      ]
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "study_role": "failure",
+      "n_requests": 12,
+      "n_positive_rescue_requests": 12,
+      "mean_local_swap_nll_gain": 0.12489114792551846,
+      "request_bootstrap_ci95": [
+        0.04479949424897018,
+        0.2678949382560677
+      ]
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "study_role": "failure",
+      "n_requests": 12,
+      "n_positive_rescue_requests": 12,
+      "mean_local_swap_nll_gain": 0.041549745585749996,
+      "request_bootstrap_ci95": [
+        0.028728084231940287,
+        0.05503600051126944
+      ]
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "study_role": "failure",
+      "n_requests": 11,
+      "n_positive_rescue_requests": 10,
+      "mean_local_swap_nll_gain": 0.035734479394953,
+      "request_bootstrap_ci95": [
+        0.013870605072906139,
+        0.07202548925930213
+      ]
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.1,
+      "study_role": "control",
+      "n_requests": 3,
+      "n_positive_rescue_requests": 2,
+      "mean_local_swap_nll_gain": 0.008804494722021902,
+      "request_bootstrap_ci95": [
+        0.0,
+        0.019993006872633945
+      ]
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.1,
+      "study_role": "failure",
+      "n_requests": 5,
+      "n_positive_rescue_requests": 5,
+      "mean_local_swap_nll_gain": 0.03985416465826952,
+      "request_bootstrap_ci95": [
+        0.01297019890431934,
+        0.06743621994857675
+      ]
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.3,
+      "study_role": "control",
+      "n_requests": 3,
+      "n_positive_rescue_requests": 3,
+      "mean_local_swap_nll_gain": 0.01810273174972582,
+      "request_bootstrap_ci95": [
+        0.005513898213393986,
+        0.035588690266013134
+      ]
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.3,
+      "study_role": "failure",
+      "n_requests": 4,
+      "n_positive_rescue_requests": 4,
+      "mean_local_swap_nll_gain": 0.017485673062938495,
+      "request_bootstrap_ci95": [
+        0.004988777182006687,
+        0.034349129389738664
+      ]
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "hotpotqa_distractor",
+      "budget": 0.5,
+      "study_role": "control",
+      "n_requests": 3,
+      "n_positive_rescue_requests": 2,
+      "mean_local_swap_nll_gain": 0.006574514585857598,
+      "request_bootstrap_ci95": [
+        0.0,
+        0.011300986027345084
+      ]
+    }
+  ],
+  "interpretation": "A positive local-swap gain demonstrates a tested better equal-budget set; NOT a global oracle, robust policy or proof that recurrence caused attention failure."
+}

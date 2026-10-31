@@ -1,0 +1,120 @@
+{
+  "protocol": "loopzip-failure-first-fixed-v1",
+  "code_sha": "16a71d1a1845fab0cc947a23ac004a5685338d2f",
+  "config": {
+    "models": [
+      "ouro-2.6b",
+      "huginn-0125"
+    ],
+    "datasets": [
+      "controlled_retrieval",
+      "hotpotqa_distractor"
+    ],
+    "n_examples": 20,
+    "seed": 20261031,
+    "retention": [
+      0.1,
+      0.3,
+      0.5
+    ],
+    "policies": [
+      "mean_attn",
+      "last_attn",
+      "max_attn",
+      "recent_attn",
+      "random"
+    ],
+    "random_seeds": [
+      11,
+      29,
+      47
+    ],
+    "controlled_facts": 16,
+    "hotpot_context_mode": "evidence_excerpt",
+    "hotpot_distractor_sentences": 8,
+    "max_prompt_tokens": 1536,
+    "max_target_tokens": 64,
+    "generation_tokens": 32,
+    "free_generate": true,
+    "swap_max_retained": 6,
+    "swap_max_evicted": 6,
+    "swap_greedy": true
+  },
+  "job_count": 80,
+  "dataset_sources": {
+    "controlled_retrieval": {
+      "repo": "synthetic-evidence-v2",
+      "revision": "generator-v2",
+      "sha256": "2f73e636a8e17d3bb3493e5d4ad4f9ee5534c2cee277e95083c712148f57ec86",
+      "n": 20,
+      "seed": 20261031,
+      "n_facts": 16,
+      "protocol": "controlled-retrieval-v2"
+    },
+    "hotpotqa_distractor": {
+      "repo": "hotpotqa/hotpot_qa",
+      "revision": "1908d6afbbead072334abe2965f91bd2709910ab",
+      "file": "distractor/validation-00000-of-00001.parquet",
+      "sha256": "c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6",
+      "split": "distractor/validation",
+      "n_available": 7403,
+      "n_invalid_support": 2,
+      "n": 20,
+      "seed": 20261031,
+      "context_mode": "evidence_excerpt",
+      "distractor_sentences": 8,
+      "selection_sha256": "3e6cb6dd64762029d201bca04cdbfca4d8caeb88efa5637e6ca4bd8af665f2d2"
+    }
+  },
+  "uids": {
+    "controlled_retrieval": [
+      "controlled-20261031-00000",
+      "controlled-20261031-00001",
+      "controlled-20261031-00002",
+      "controlled-20261031-00003",
+      "controlled-20261031-00004",
+      "controlled-20261031-00005",
+      "controlled-20261031-00006",
+      "controlled-20261031-00007",
+      "controlled-20261031-00008",
+      "controlled-20261031-00009",
+      "controlled-20261031-00010",
+      "controlled-20261031-00011",
+      "controlled-20261031-00012",
+      "controlled-20261031-00013",
+      "controlled-20261031-00014",
+      "controlled-20261031-00015",
+      "controlled-20261031-00016",
+      "controlled-20261031-00017",
+      "controlled-20261031-00018",
+      "controlled-20261031-00019"
+    ],
+    "hotpotqa_distractor": [
+      "hotpotqa-distractor-5a8ed10b5542995085b374a0",
+      "hotpotqa-distractor-5abaf6865542996cc5e49f3c",
+      "hotpotqa-distractor-5adc459255429944faac24ad",
+      "hotpotqa-distractor-5ab4341c55429942dd415ede",
+      "hotpotqa-distractor-5a79c9395542994bb94570a2",
+      "hotpotqa-distractor-5a7bb7f2554299042af8f7b6",
+      "hotpotqa-distractor-5adda8d45542995b365fab59",
+      "hotpotqa-distractor-5adcb7eb5542994ed6169bd0",
+      "hotpotqa-distractor-5ab8829d55429934fafe6e08",
+      "hotpotqa-distractor-5a7249b85542990c210a40b9",
+      "hotpotqa-distractor-5a83a7e15542992ef85e2347",
+      "hotpotqa-distractor-5ac41379554299204fd21ef1",
+      "hotpotqa-distractor-5ab446875542990594ba9bea",
+      "hotpotqa-distractor-5ae0b8bb55429924de1b7145",
+      "hotpotqa-distractor-5ab298fb554299449642c922",
+      "hotpotqa-distractor-5a7e4414554299495941995c",
+      "hotpotqa-distractor-5ae2a9c6554299492dc91c42",
+      "hotpotqa-distractor-5ae5a4e5554299546bf82f01",
+      "hotpotqa-distractor-5ae2b83c5542992decbdcd7f",
+      "hotpotqa-distractor-5ae002ec55429925eb1afbdc"
+    ]
+  },
+  "model_revisions": {
+    "ouro-2.6b": "1ed04250da1a9936042725d302e81c8fa2ab5abd",
+    "huginn-0125": "bb6621b65e90b6a4b9b29ef88dc83866d450470c"
+  },
+  "statement": "Research Reference: full-size KV with future-only read masks, not physical HBM compression or official H2O/SnapKV evaluation."
+}

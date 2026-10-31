@@ -1,0 +1,946 @@
+[
+  {
+    "key": "fb711c0bfe5fe8fc2d9348ca",
+    "uid": "controlled-20261031-00000",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "d1092ce4e358051d9da40cac",
+    "uid": "controlled-20261031-00001",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "edb461094011ee78dd9ee095",
+    "uid": "controlled-20261031-00003",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "117400f2086e0aa90e0f90e6",
+    "uid": "controlled-20261031-00004",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "5c4cb62ce83da77808562079",
+    "uid": "controlled-20261031-00006",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "7d1b3674a391098157bfe48d",
+    "uid": "controlled-20261031-00007",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "61b590edaafdb8f1d33783f0",
+    "uid": "controlled-20261031-00009",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "670a240e306341817f955f9d",
+    "uid": "controlled-20261031-00010",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "71ec0a22283d2fc207c35bd3",
+    "uid": "controlled-20261031-00012",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "84c881fad370a36fae421eab",
+    "uid": "controlled-20261031-00013",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "3fc419733c70ceda57586052",
+    "uid": "controlled-20261031-00015",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "e29809504c71bc2dde60502f",
+    "uid": "controlled-20261031-00016",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "96e485dd5ab4ef844e967d9d",
+    "uid": "controlled-20261031-00018",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "e2518e154cceaf957a44740b",
+    "uid": "controlled-20261031-00019",
+    "model": "ouro-2.6b",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "a49a1410f4c821285e015c66",
+    "uid": "controlled-20261031-00000",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "97a1fdc528c1a28f9e59731c",
+    "uid": "controlled-20261031-00001",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "6e1b340995cd68eac102c393",
+    "uid": "controlled-20261031-00003",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "14b7dce89706f9bc7217480e",
+    "uid": "controlled-20261031-00004",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "2cb73958f4877e984fc63ef7",
+    "uid": "controlled-20261031-00006",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "e707bfcbe51396344783287c",
+    "uid": "controlled-20261031-00007",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "f7c1b9dd27b2e808c92d06bc",
+    "uid": "controlled-20261031-00009",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "c23394b5699c2bc09785c88f",
+    "uid": "controlled-20261031-00010",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "98ecbfd6e36a3cc26a622f52",
+    "uid": "controlled-20261031-00012",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "9b5ec1d96904669e9bc11f9d",
+    "uid": "controlled-20261031-00013",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "21baee154b20e0dd7405b78c",
+    "uid": "controlled-20261031-00016",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "420452e82c233c45d047025f",
+    "uid": "controlled-20261031-00018",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "63cb33b4b7c18a383056605a",
+    "uid": "controlled-20261031-00019",
+    "model": "huginn-0125",
+    "dataset": "controlled_retrieval",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "b3fd95ba9fdbfd2c26b7f719",
+    "uid": "hotpotqa-distractor-5a8ed10b5542995085b374a0",
+    "model": "ouro-2.6b",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "no_attention_failure",
+        "anchor_policy": "max_attn",
+        "role": "control"
+      },
+      {
+        "budget": 0.3,
+        "category": "no_attention_failure",
+        "anchor_policy": "last_attn",
+        "role": "control"
+      },
+      {
+        "budget": 0.5,
+        "category": "no_attention_failure",
+        "anchor_policy": "last_attn",
+        "role": "control"
+      }
+    ]
+  },
+  {
+    "key": "e6ca77d2741e991834673b6a",
+    "uid": "hotpotqa-distractor-5a7bb7f2554299042af8f7b6",
+    "model": "ouro-2.6b",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "no_attention_failure",
+        "anchor_policy": "last_attn",
+        "role": "control"
+      },
+      {
+        "budget": 0.5,
+        "category": "no_attention_failure",
+        "anchor_policy": "last_attn",
+        "role": "control"
+      }
+    ]
+  },
+  {
+    "key": "893288371b97cc00187f596f",
+    "uid": "hotpotqa-distractor-5adda8d45542995b365fab59",
+    "model": "ouro-2.6b",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "fb205ea9db31c15240e1a6e7",
+    "uid": "hotpotqa-distractor-5ab8829d55429934fafe6e08",
+    "model": "ouro-2.6b",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "43870fdd38864208057a8353",
+    "uid": "hotpotqa-distractor-5a7249b85542990c210a40b9",
+    "model": "ouro-2.6b",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "no_attention_failure",
+        "anchor_policy": "last_attn",
+        "role": "control"
+      },
+      {
+        "budget": 0.3,
+        "category": "no_attention_failure",
+        "anchor_policy": "last_attn",
+        "role": "control"
+      },
+      {
+        "budget": 0.5,
+        "category": "no_attention_failure",
+        "anchor_policy": "recent_attn",
+        "role": "control"
+      }
+    ]
+  },
+  {
+    "key": "6155e98580847562f7346ea0",
+    "uid": "hotpotqa-distractor-5ac41379554299204fd21ef1",
+    "model": "ouro-2.6b",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "no_attention_failure",
+        "anchor_policy": "max_attn",
+        "role": "control"
+      }
+    ]
+  },
+  {
+    "key": "fbabf6ba87e3ba7134cf12af",
+    "uid": "hotpotqa-distractor-5ab298fb554299449642c922",
+    "model": "ouro-2.6b",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "e3efd9e2f58f657e4f96a46f",
+    "uid": "hotpotqa-distractor-5ae5a4e5554299546bf82f01",
+    "model": "ouro-2.6b",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "last_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "fed663079d463b1431c327cd",
+    "uid": "hotpotqa-distractor-5a8ed10b5542995085b374a0",
+    "model": "huginn-0125",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "5ce7214831a6a767e003f782",
+    "uid": "hotpotqa-distractor-5a7bb7f2554299042af8f7b6",
+    "model": "huginn-0125",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "no_attention_failure",
+        "anchor_policy": "last_attn",
+        "role": "control"
+      }
+    ]
+  },
+  {
+    "key": "2cc58fdb51da6096785e7f70",
+    "uid": "hotpotqa-distractor-5adda8d45542995b365fab59",
+    "model": "huginn-0125",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "no_attention_failure",
+        "anchor_policy": "last_attn",
+        "role": "control"
+      }
+    ]
+  },
+  {
+    "key": "20186d8b80a9c9fc6b491ed6",
+    "uid": "hotpotqa-distractor-5ab8829d55429934fafe6e08",
+    "model": "huginn-0125",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "cba12da3e8a4eb45feb19911",
+    "uid": "hotpotqa-distractor-5ac41379554299204fd21ef1",
+    "model": "huginn-0125",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "no_attention_failure",
+        "anchor_policy": "recent_attn",
+        "role": "control"
+      },
+      {
+        "budget": 0.3,
+        "category": "no_attention_failure",
+        "anchor_policy": "mean_attn",
+        "role": "control"
+      },
+      {
+        "budget": 0.5,
+        "category": "no_attention_failure",
+        "anchor_policy": "recent_attn",
+        "role": "control"
+      }
+    ]
+  },
+  {
+    "key": "03237ccff9a01459f8e11d05",
+    "uid": "hotpotqa-distractor-5ae2a9c6554299492dc91c42",
+    "model": "huginn-0125",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "max_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "4ac7dd4d937f5dae94d3e095",
+    "uid": "hotpotqa-distractor-5ae5a4e5554299546bf82f01",
+    "model": "huginn-0125",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.3,
+        "category": "all_attention_wrong",
+        "anchor_policy": "recent_attn",
+        "role": "failure"
+      },
+      {
+        "budget": 0.5,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  },
+  {
+    "key": "a48a310673c52b3145841794",
+    "uid": "hotpotqa-distractor-5ae2b83c5542992decbdcd7f",
+    "model": "huginn-0125",
+    "dataset": "hotpotqa_distractor",
+    "swap_targets": [
+      {
+        "budget": 0.1,
+        "category": "all_attention_wrong",
+        "anchor_policy": "mean_attn",
+        "role": "failure"
+      }
+    ]
+  }
+]

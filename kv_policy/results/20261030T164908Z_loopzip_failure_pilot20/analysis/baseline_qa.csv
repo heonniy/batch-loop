@@ -1,0 +1,81 @@
+model,dataset,uid,full_nll,full_correct,full_answer
+ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.09183301507728174,True,VX-78416
+ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.07886936083086767,True,VX-70023
+ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.08099477832438425,True,VX-33147
+ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.06965059755602851,True,VX-52710
+ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.07570480640861206,True,VX-56947
+ouro-2.6b,controlled_retrieval,controlled-20261031-00005,0.08228819941286929,True,VX-82614
+ouro-2.6b,controlled_retrieval,controlled-20261031-00006,0.07177852314780467,True,VX-17278
+ouro-2.6b,controlled_retrieval,controlled-20261031-00007,0.08223925940692425,True,VX-55170
+ouro-2.6b,controlled_retrieval,controlled-20261031-00008,0.08603661945671774,True,VX-58396
+ouro-2.6b,controlled_retrieval,controlled-20261031-00009,0.07442475723801181,True,VX-01879
+ouro-2.6b,controlled_retrieval,controlled-20261031-00010,0.07062199192587286,True,VX-06916
+ouro-2.6b,controlled_retrieval,controlled-20261031-00011,0.08030445630429313,True,VX-83481
+ouro-2.6b,controlled_retrieval,controlled-20261031-00012,0.07279910767683759,True,VX-57385
+ouro-2.6b,controlled_retrieval,controlled-20261031-00013,0.08014694354496896,True,VX-39487
+ouro-2.6b,controlled_retrieval,controlled-20261031-00014,0.0832124161766842,True,VX-63573
+ouro-2.6b,controlled_retrieval,controlled-20261031-00015,0.067447946179891,True,VX-79261
+ouro-2.6b,controlled_retrieval,controlled-20261031-00016,0.07899664385477081,True,VX-07414
+ouro-2.6b,controlled_retrieval,controlled-20261031-00017,0.08544814907363615,True,VX-78333
+ouro-2.6b,controlled_retrieval,controlled-20261031-00018,0.07553763565956614,True,VX-12670
+ouro-2.6b,controlled_retrieval,controlled-20261031-00019,0.06972529353224673,True,VX-97361
+huginn-0125,controlled_retrieval,controlled-20261031-00000,0.9559431177389343,True,VX-78416
+huginn-0125,controlled_retrieval,controlled-20261031-00001,0.8477894387455308,True,VX-70023
+huginn-0125,controlled_retrieval,controlled-20261031-00002,0.8396803725510835,True,VX-33147
+huginn-0125,controlled_retrieval,controlled-20261031-00003,0.9610427577921655,True,VX-52710
+huginn-0125,controlled_retrieval,controlled-20261031-00004,0.8564166626383667,True,VX-56947
+huginn-0125,controlled_retrieval,controlled-20261031-00005,0.8690351611832738,True,VX-82614
+huginn-0125,controlled_retrieval,controlled-20261031-00006,0.9464646916341735,True,VX-17278
+huginn-0125,controlled_retrieval,controlled-20261031-00007,0.9149557471755543,True,VX-55170
+huginn-0125,controlled_retrieval,controlled-20261031-00008,0.8950387863136712,True,VX-58396
+huginn-0125,controlled_retrieval,controlled-20261031-00009,0.946105783371604,True,VX-01879
+huginn-0125,controlled_retrieval,controlled-20261031-00010,0.8442328739765799,True,VX-06916
+huginn-0125,controlled_retrieval,controlled-20261031-00011,0.8436820804825402,True,VX-83481
+huginn-0125,controlled_retrieval,controlled-20261031-00012,0.94805477753398,True,VX-57385
+huginn-0125,controlled_retrieval,controlled-20261031-00013,0.8750860102241859,True,VX-39487
+huginn-0125,controlled_retrieval,controlled-20261031-00014,0.8461231405715808,True,VX-63573
+huginn-0125,controlled_retrieval,controlled-20261031-00015,1.1893717540893705,False,VX-51135
+huginn-0125,controlled_retrieval,controlled-20261031-00016,0.8978874121385161,True,VX-07414
+huginn-0125,controlled_retrieval,controlled-20261031-00017,0.8318960696458817,True,VX-78333
+huginn-0125,controlled_retrieval,controlled-20261031-00018,0.9401096502842847,True,VX-12670
+huginn-0125,controlled_retrieval,controlled-20261031-00019,0.9102120884461329,True,VX-97361
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,0.2165242361370474,True,The Visit
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,0.7876300678278009,False,Harry Hook
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,0.17081637197406963,True,Russell Humphreys
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,0.5184917523680875,False,Shogunate
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,0.699475603721415,False,singer-songwriter
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a7bb7f2554299042af8f7b6,0.3189517116639763,True,Gweilo
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adda8d45542995b365fab59,0.17035485189020014,True,Carol Ann Duffy
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5adcb7eb5542994ed6169bd0,0.33486246919589274,False,CD Castellón
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab8829d55429934fafe6e08,0.14612870291966829,True,My Own Worst Enemy
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a7249b85542990c210a40b9,0.2504827314056456,True,Seti I
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a83a7e15542992ef85e2347,0.8896502305953098,False,Dan Castellaneta
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ac41379554299204fd21ef1,1.1291244990813236,True,No
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab446875542990594ba9bea,0.4242575974785723,False,"S Pictures' ""Veyyil"" (2006)"
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ae0b8bb55429924de1b7145,0.2319153050193563,True,Myles Kennedy
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ab298fb554299449642c922,0.37454023730242625,True,James Gregory
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5a7e4414554299495941995c,1.2642610570415855,False,50
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ae2a9c6554299492dc91c42,0.3783984959688193,False,<short answer>
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ae5a4e5554299546bf82f01,0.21738950597188836,True,Pasek and Paul
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ae2b83c5542992decbdcd7f,0.4498533032768007,False,128
+ouro-2.6b,hotpotqa_distractor,hotpotqa-distractor-5ae002ec55429925eb1afbdc,0.48464608762878925,True,William Shakespeare
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a8ed10b5542995085b374a0,1.461394376179669,True,The Visit
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5abaf6865542996cc5e49f3c,3.156567445063653,False,"Thomas Doherty played the role of Sean in the British musical drama sitcom, ""The Lodge""."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adc459255429944faac24ad,1.3283346068225608,False,Kevin R. Henke
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab4341c55429942dd415ede,1.154974073868895,False,The Shōgitai were an elite corps of the Shogunate.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a79c9395542994bb94570a2,2.237373610783834,False,Ronnie Dunn and Annie Lennox have in common the occupation of singer-songwriter and record executive.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a7bb7f2554299042af8f7b6,1.3131259345536819,True,Gweilo
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adda8d45542995b365fab59,0.8927035448286915,True,Carol Ann Duffy
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5adcb7eb5542994ed6169bd0,0.6581548899659537,False,Ángel Dealbert Ibáñez played for CD Castellón.
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab8829d55429934fafe6e08,0.7452749237168569,True,My Own Worst Enemy
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a7249b85542990c210a40b9,1.647446813597344,False,Ramesses II
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a83a7e15542992ef85e2347,1.2160009462032966,False,Dan Castellaneta
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ac41379554299204fd21ef1,2.9149979788732403,True,No
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab446875542990594ba9bea,1.1609453196967177,False,"The first film scored by the man who composed the soundtrack for Udhayam NH4 was S Pictures' ""Veyyil"" ("
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ae0b8bb55429924de1b7145,1.5546566458397137,False,Saffron
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ab298fb554299449642c922,1.8421161088044755,False,Joseph McCarthy
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5a7e4414554299495941995c,2.6433573895832523,False,50
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ae2a9c6554299492dc91c42,0.4310651878347724,True,"Tumi Holdings, Inc."
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ae5a4e5554299546bf82f01,0.622166143076486,True,Pasek and Paul
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ae2b83c5542992decbdcd7f,1.5887782884334836,True,128 pages
+huginn-0125,hotpotqa_distractor,hotpotqa-distractor-5ae002ec55429925eb1afbdc,1.8836675445199944,True,William Shakespeare

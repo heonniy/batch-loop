@@ -1,0 +1,382 @@
+{
+  "complete": true,
+  "expected_jobs": 5,
+  "completed_jobs": 5,
+  "retention_ratios": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "policy_groups": [
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "last_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 2.67071499515092,
+      "median_signed_delta_nll": 2.679083215526771,
+      "p90_signed_delta_nll": 2.7592789475037716,
+      "request_bootstrap_ci95": [
+        2.6065512897167356,
+        2.7378510030603502
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "max_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 2.6911028386536056,
+      "median_signed_delta_nll": 2.710292999714147,
+      "p90_signed_delta_nll": 2.8080720237060453,
+      "request_bootstrap_ci95": [
+        2.6061915385979235,
+        2.7885921557585247
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "mean_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 2.8015206615417267,
+      "median_signed_delta_nll": 2.740759817173239,
+      "p90_signed_delta_nll": 3.0736266647535375,
+      "request_bootstrap_ci95": [
+        2.6062033086689196,
+        3.0087588751758445
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "random_s11",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.5927430540579373,
+      "median_signed_delta_nll": 1.4201451496162918,
+      "p90_signed_delta_nll": 2.0243786896241365,
+      "request_bootstrap_ci95": [
+        1.3445284292940052,
+        1.9958761596528347
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "random_s29",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.6640130795165895,
+      "median_signed_delta_nll": 1.6758870444144123,
+      "p90_signed_delta_nll": 2.1991971874283625,
+      "request_bootstrap_ci95": [
+        1.2537694228219332,
+        2.0890599819133056
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "random_s47",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.2929230956011453,
+      "median_signed_delta_nll": 1.3685937771748284,
+      "p90_signed_delta_nll": 1.4179081995459275,
+      "request_bootstrap_ci95": [
+        1.1315193259867375,
+        1.4041734425898178
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "recent_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 2.4104356310307047,
+      "median_signed_delta_nll": 2.5350093937886413,
+      "p90_signed_delta_nll": 2.8071588530554434,
+      "request_bootstrap_ci95": [
+        1.9949828893454398,
+        2.75342819693149
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "last_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.550015008058399,
+      "median_signed_delta_nll": 1.5394318161415868,
+      "p90_signed_delta_nll": 1.7321774699818344,
+      "request_bootstrap_ci95": [
+        1.398175944115501,
+        1.697332007116638
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "max_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.6610236302250996,
+      "median_signed_delta_nll": 1.590495878731599,
+      "p90_signed_delta_nll": 1.8818611670844256,
+      "request_bootstrap_ci95": [
+        1.5269276044238358,
+        1.8394375460480514
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "mean_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.4568064606259576,
+      "median_signed_delta_nll": 1.4874100599787197,
+      "p90_signed_delta_nll": 1.650675562962424,
+      "request_bootstrap_ci95": [
+        1.3125138994771988,
+        1.6198625378370055
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "random_s11",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.4487547597335653,
+      "median_signed_delta_nll": 1.4078791506006383,
+      "p90_signed_delta_nll": 1.6450418737251313,
+      "request_bootstrap_ci95": [
+        1.3006231400859543,
+        1.634085717058042
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "random_s29",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.1754288267670199,
+      "median_signed_delta_nll": 1.138086355046835,
+      "p90_signed_delta_nll": 1.3489412580267528,
+      "request_bootstrap_ci95": [
+        1.0558372856816276,
+        1.300164715803694
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "random_s47",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.0772350055212154,
+      "median_signed_delta_nll": 1.0162255070870743,
+      "p90_signed_delta_nll": 1.349052363326773,
+      "request_bootstrap_ci95": [
+        0.8721725509157113,
+        1.2808548283309211
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "recent_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.286983672878705,
+      "median_signed_delta_nll": 1.586629515927052,
+      "p90_signed_delta_nll": 1.659282940030098,
+      "request_bootstrap_ci95": [
+        0.6536555227532517,
+        1.6418399051146118
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 0.8,
+      "policy_greedy_accuracy": 0.2
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "last_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.0974551701196469,
+      "median_signed_delta_nll": 1.2043987666431348,
+      "p90_signed_delta_nll": 1.3084536445245614,
+      "request_bootstrap_ci95": [
+        0.8867048939689994,
+        1.2767071034386757
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "max_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.3301113823009656,
+      "median_signed_delta_nll": 1.2961008107929957,
+      "p90_signed_delta_nll": 1.4436794055602513,
+      "request_bootstrap_ci95": [
+        1.2582682280277369,
+        1.4258710532926488
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "mean_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.976740538442973,
+      "median_signed_delta_nll": 1.2748655547446106,
+      "p90_signed_delta_nll": 1.3253759295528287,
+      "request_bootstrap_ci95": [
+        0.4490898439381271,
+        1.3121366816863882
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 0.8,
+      "policy_greedy_accuracy": 0.2
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "random_s11",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.1378037092543671,
+      "median_signed_delta_nll": 1.4422591579845174,
+      "p90_signed_delta_nll": 1.464633241556585,
+      "request_bootstrap_ci95": [
+        0.765939257791033,
+        1.4576887883106244
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "random_s29",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.0440053747373166,
+      "median_signed_delta_nll": 1.168810793675948,
+      "p90_signed_delta_nll": 1.412423160636099,
+      "request_bootstrap_ci95": [
+        0.5752263631671667,
+        1.3529846050507328
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 0.8,
+      "policy_greedy_accuracy": 0.2
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "random_s47",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.8554894761194008,
+      "median_signed_delta_nll": 0.8256116393138654,
+      "p90_signed_delta_nll": 1.0453651717270258,
+      "request_bootstrap_ci95": [
+        0.7136191778280772,
+        0.9912277788179926
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "ouro-2.6b",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "recent_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.9698223483224865,
+      "median_signed_delta_nll": 1.254643969028257,
+      "p90_signed_delta_nll": 1.3477392285841052,
+      "request_bootstrap_ci95": [
+        0.4421753093111329,
+        1.3228561984514817
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 0.8,
+      "policy_greedy_accuracy": 0.2
+    }
+  ],
+  "failure_counts": {
+    "all_attention_wrong": 12,
+    "mixed_attention_failure": 1,
+    "mean_wrong_other_attention_correct": 2
+  },
+  "notes": [
+    "Joint removal of all evicted Context tokens at exactly the same K.",
+    "Attention only from CLEAN Instruction/Question prefill, not future answer.",
+    "HotpotQA excerpt is not official full-context evaluation.",
+    "All KV remains allocated; no measured memory or serving latency savings.",
+    "Accuracy fields null if --free-generate was disabled.",
+    "No recurrent-specific causal claim can be made from failure screening alone."
+  ]
+}

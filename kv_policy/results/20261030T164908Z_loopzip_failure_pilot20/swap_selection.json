@@ -1,0 +1,9 @@
+{
+  "source_sha": "16a71d1a1845fab0cc947a23ac004a5685338d2f",
+  "n_swap_requests": 43,
+  "max_failures_per_cell": 12,
+  "max_controls_per_cell": 3,
+  "min_delta_nll": 0.05,
+  "selection": "Full-correct + all-attention-wrong OR NLL-only best-attn loss; with no-failure full-correct controls",
+  "planned_policy": "best of four attention policies by offline NLL; never deployed"
+}

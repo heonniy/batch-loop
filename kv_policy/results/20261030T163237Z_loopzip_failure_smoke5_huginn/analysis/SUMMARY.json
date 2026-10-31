@@ -1,0 +1,382 @@
+{
+  "complete": true,
+  "expected_jobs": 5,
+  "completed_jobs": 5,
+  "retention_ratios": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "policy_groups": [
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "last_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 2.7699502317031146,
+      "median_signed_delta_nll": 2.817911809240468,
+      "p90_signed_delta_nll": 2.9250493801140696,
+      "request_bootstrap_ci95": [
+        2.64718279812485,
+        2.9005236303608397
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "max_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 2.8907836610620143,
+      "median_signed_delta_nll": 2.9150228724058254,
+      "p90_signed_delta_nll": 2.939655045309337,
+      "request_bootstrap_ci95": [
+        2.847822250480531,
+        2.932480971849291
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "mean_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 2.8100028320337875,
+      "median_signed_delta_nll": 2.85332159162499,
+      "p90_signed_delta_nll": 2.9613384521787522,
+      "request_bootstrap_ci95": [
+        2.6908541441068516,
+        2.935254622819775
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "random_s11",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.5599355399567867,
+      "median_signed_delta_nll": 1.3829739711582079,
+      "p90_signed_delta_nll": 1.9484483772621026,
+      "request_bootstrap_ci95": [
+        1.325876246689877,
+        1.8469033445016683
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "random_s29",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.3414456053910544,
+      "median_signed_delta_nll": 1.1143592457228806,
+      "p90_signed_delta_nll": 1.789013963007019,
+      "request_bootstrap_ci95": [
+        1.0740496780333342,
+        1.7167563064067508
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "random_s47",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.311366484709433,
+      "median_signed_delta_nll": 1.1474055156853864,
+      "p90_signed_delta_nll": 1.918221829732065,
+      "request_bootstrap_ci95": [
+        0.924849651119148,
+        1.7584213467230438
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.1,
+      "policy": "recent_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 2.5354115542332876,
+      "median_signed_delta_nll": 2.7495983997403526,
+      "p90_signed_delta_nll": 2.8339807887386996,
+      "request_bootstrap_ci95": [
+        2.0704184200410087,
+        2.80964121364319
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "last_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.3221046527131695,
+      "median_signed_delta_nll": 1.2781155173259324,
+      "p90_signed_delta_nll": 1.4062801224825672,
+      "request_bootstrap_ci95": [
+        1.2721134404191983,
+        1.3849017813723186
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "max_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.4304081371758366,
+      "median_signed_delta_nll": 1.4602264927583748,
+      "p90_signed_delta_nll": 1.494676536387706,
+      "request_bootstrap_ci95": [
+        1.3714858377081691,
+        1.4840052455136903
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "mean_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.4175401516823332,
+      "median_signed_delta_nll": 1.3481150028863342,
+      "p90_signed_delta_nll": 1.6014890802802983,
+      "request_bootstrap_ci95": [
+        1.2914464946271622,
+        1.5462041885196232
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "random_s11",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.9886885238887043,
+      "median_signed_delta_nll": 1.0252115271461664,
+      "p90_signed_delta_nll": 1.243124958477856,
+      "request_bootstrap_ci95": [
+        0.7886152875761037,
+        1.1883126379314566
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "random_s29",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.089353969862568,
+      "median_signed_delta_nll": 1.0748488636978437,
+      "p90_signed_delta_nll": 1.2587816455596477,
+      "request_bootstrap_ci95": [
+        0.9554429316087045,
+        1.2219383568278865
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "random_s47",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.9694850664192927,
+      "median_signed_delta_nll": 0.9395495929173193,
+      "p90_signed_delta_nll": 1.1453270536527271,
+      "request_bootstrap_ci95": [
+        0.8504459462338125,
+        1.0988641114245912
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.3,
+      "policy": "recent_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 1.1097542302060175,
+      "median_signed_delta_nll": 1.36338048667385,
+      "p90_signed_delta_nll": 1.450401883116574,
+      "request_bootstrap_ci95": [
+        0.5531274845195003,
+        1.4263921905949246
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 0.8,
+      "policy_greedy_accuracy": 0.2
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "last_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.711563907493255,
+      "median_signed_delta_nll": 1.150053270247008,
+      "p90_signed_delta_nll": 1.2103481975654722,
+      "request_bootstrap_ci95": [
+        0.22892359978723104,
+        1.1889895011565457
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 0.6,
+      "policy_greedy_accuracy": 0.4
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "max_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.842834082103218,
+      "median_signed_delta_nll": 1.1864465390666736,
+      "p90_signed_delta_nll": 1.2137990547416848,
+      "request_bootstrap_ci95": [
+        0.44780527291703043,
+        1.20415357821621
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "mean_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.7802807337563717,
+      "median_signed_delta_nll": 0.9907659094082193,
+      "p90_signed_delta_nll": 1.2362320971055305,
+      "request_bootstrap_ci95": [
+        0.28436916456324984,
+        1.1650025389366783
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 0.8,
+      "policy_greedy_accuracy": 0.2
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "random_s11",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.9676435993687484,
+      "median_signed_delta_nll": 0.7963345148338704,
+      "p90_signed_delta_nll": 1.3531141742164619,
+      "request_bootstrap_ci95": [
+        0.7076482288452098,
+        1.2400452640720032
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "random_s29",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.8440602756344013,
+      "median_signed_delta_nll": 0.7299426444733399,
+      "p90_signed_delta_nll": 1.2454085249037599,
+      "request_bootstrap_ci95": [
+        0.5706170097258291,
+        1.1714002565146076
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "random_s47",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.6891008394266828,
+      "median_signed_delta_nll": 0.72750197625719,
+      "p90_signed_delta_nll": 0.8512641607853584,
+      "request_bootstrap_ci95": [
+        0.5425098599631601,
+        0.8345404523878823
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 1.0,
+      "policy_greedy_accuracy": 0.0
+    },
+    {
+      "model": "huginn-0125",
+      "dataset": "controlled_retrieval",
+      "budget": 0.5,
+      "policy": "recent_attn",
+      "n_requests": 5,
+      "mean_signed_delta_nll": 0.6392843919841107,
+      "median_signed_delta_nll": 0.4410981411172542,
+      "p90_signed_delta_nll": 1.1969289959172602,
+      "request_bootstrap_ci95": [
+        0.23496668934356418,
+        1.0436020946246571
+      ],
+      "n_full_correct": 5,
+      "full_correct_to_wrong_rate": 0.8,
+      "policy_greedy_accuracy": 0.2
+    }
+  ],
+  "failure_counts": {
+    "all_attention_wrong": 11,
+    "mixed_attention_failure": 1,
+    "mean_wrong_other_attention_correct": 3
+  },
+  "notes": [
+    "Joint removal of all evicted Context tokens at exactly the same K.",
+    "Attention only from CLEAN Instruction/Question prefill, not future answer.",
+    "HotpotQA excerpt is not official full-context evaluation.",
+    "All KV remains allocated; no measured memory or serving latency savings.",
+    "Accuracy fields null if --free-generate was disabled.",
+    "No recurrent-specific causal claim can be made from failure screening alone."
+  ]
+}

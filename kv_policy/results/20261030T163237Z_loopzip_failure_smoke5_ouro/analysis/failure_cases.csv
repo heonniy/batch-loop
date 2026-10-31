@@ -1,0 +1,16 @@
+key,model,dataset,uid,budget,category,full_correct,mean_delta_nll,max_attn_delta_nll,best_attn_delta_nll,best_attn_policy,all_attention_wrong,n_context
+fb711c0bfe5fe8fc2d9348ca,ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.1,all_attention_wrong,True,3.079311931214761,3.079311931214761,2.6602270784671416,recent_attn,True,352
+fb711c0bfe5fe8fc2d9348ca,ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.3,all_attention_wrong,True,1.7124329599901102,2.004604470427148,1.673844690504484,recent_attn,True,352
+fb711c0bfe5fe8fc2d9348ca,ouro-2.6b,controlled_retrieval,controlled-20261031-00000,0.5,mixed_attention_failure,True,-0.011163061851402742,1.5047251557232812,-0.011163061851402742,mean_attn,False,352
+d1092ce4e358051d9da40cac,ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.1,all_attention_wrong,True,2.538520828302717,2.5770975439285397,2.5350093937886413,recent_attn,True,352
+d1092ce4e358051d9da40cac,ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.3,all_attention_wrong,True,1.2391901071125175,1.590495878731599,1.2391901071125175,mean_attn,True,352
+d1092ce4e358051d9da40cac,ouro-2.6b,controlled_retrieval,controlled-20261031-00001,0.5,all_attention_wrong,True,1.3410617940768133,1.3521107803157064,1.3007593919232021,recent_attn,True,352
+9f71061f77bd7dccf2b96a0e,ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.1,all_attention_wrong,True,2.740759817173239,2.740759817173239,1.560254515602719,recent_attn,True,352
+9f71061f77bd7dccf2b96a0e,ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.3,mean_wrong_other_attention_correct,True,1.4874100599787197,1.5394318161415868,0.014735927840229118,recent_attn,False,352
+9f71061f77bd7dccf2b96a0e,ouro-2.6b,controlled_retrieval,controlled-20261031-00002,0.5,mean_wrong_other_attention_correct,True,0.9770912724779919,1.23455114569515,-0.00226605316856876,recent_attn,False,352
+edb461094011ee78dd9ee095,ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.1,all_attention_wrong,True,3.0650987650617028,3.0650987650617028,2.7959303995012306,last_attn,True,352
+edb461094011ee78dd9ee095,ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.3,all_attention_wrong,True,1.5580394674208948,1.7136591304675677,1.5580394674208948,mean_attn,True,352
+edb461094011ee78dd9ee095,ouro-2.6b,controlled_retrieval,controlled-20261031-00003,0.5,all_attention_wrong,True,1.2748655547446106,1.2850202898611316,1.254643969028257,recent_attn,True,352
+117400f2086e0aa90e0f90e6,ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.1,all_attention_wrong,True,2.5839119659562133,2.6169070824806115,2.3915737978473772,recent_attn,True,352
+117400f2086e0aa90e0f90e6,ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.3,all_attention_wrong,True,1.2869597086275462,1.5277228350110816,1.2869597086275462,mean_attn,True,352
+117400f2086e0aa90e0f90e6,ouro-2.6b,controlled_retrieval,controlled-20261031-00004,0.5,all_attention_wrong,True,1.3018471327668522,1.3790591196913737,1.2043987666431348,last_attn,True,352
