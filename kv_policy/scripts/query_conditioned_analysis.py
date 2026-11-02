@@ -204,11 +204,23 @@ def source_table(run: Path) -> pd.DataFrame:
                 row |= {"src_U_mean": float(np.nanmean(z["prompt_U"][s][1:])), "src_U_last": float(z["prompt_U"][s][-1]),
                         "src_settle": _settle(z["prompt_F"][s]), "src_C_mean": float(np.nanmean(z["prompt_C"][s]))
                         if np.isfinite(z["prompt_C"][s]).any() else 0.0}
-                # F: future oracle
+                # F: future oracle; L: 2-token format lookahead (the continuation always starts "Answer:" so the
+                # queries at t=1,2 are known at prompt time and cost two extra B=1 steps -> deployable)
                 ga, gd = gen_attn[:, :, s], gen_delta[:, :, s]
+                tstar = int(ga.mean(1).argmax())
+                prof = ga[tstar] / max(1e-12, ga[tstar].sum())
                 row |= {"fut_attn_mean": float(ga.mean()), "fut_attn_max_t": float(ga.mean(1).max()),
                         "fut_attn_last": float(ga[:, -1].mean()), "fut_delta_mean": float(gd.mean()),
-                        "fut_delta_max_t": float(gd.mean(1).max()), "fut_delta_last": float(gd[:, -1].mean())}
+                        "fut_delta_max_t": float(gd.mean(1).max()), "fut_delta_last": float(gd[:, -1].mean()),
+                        "fut_lastloop_frac": float(prof[-1]), "fut_firstloop_frac": float(prof[0]),
+                        "fut_loop_entropy": float(-(prof * np.log(prof + 1e-12)).sum()),
+                        "la1_attn": float(ga[0].mean()), "la2_attn": float(ga[min(1, n - 1)].mean()),
+                        "la12_attn_max": float(ga[:2].mean(1).max()), "la1_delta": float(gd[0].mean()),
+                        "la2_delta": float(gd[min(1, n - 1)].mean()), "la12_delta_max": float(gd[:2].mean(1).max()),
+                        "qa_lastloop_frac": float(A["attn"][-1, s] / max(1e-12, A["attn"][:, s].sum()))}
+                row |= {f"fut_prof_r{r + 1}": float(prof[r]) for r in range(R)}
+                qprof = A["attn"][:, s] / max(1e-12, A["attn"][:, s].sum())
+                row |= {f"qa_prof_r{r + 1}": float(qprof[r]) for r in range(R)}
                 # Y
                 if ref["kind"] == "REF":
                     kl = zc["acc_kl"][si]
@@ -264,6 +276,7 @@ A_FEATS = ["qa_attn_mean", "qa_attn_last", "qa_attn_first", "qa_attn_maxhead", "
 B_FEATS = ["src_U_mean", "src_U_last", "src_settle", "src_C_mean"]
 C_FEATS = ["qa_delta_mean", "qa_delta_last", "qa_delta_first", "qa_delta_maxhead", "qa_vnorm_mean"]
 S_FEATS = ["qa_delta_loopw", "qa_attn_x_U"]
+L_FEATS = ["la1_attn", "la2_attn", "la12_attn_max", "la1_delta", "la2_delta", "la12_delta_max"]
 F_FEATS = ["fut_attn_mean", "fut_attn_max_t", "fut_attn_last", "fut_delta_mean", "fut_delta_max_t", "fut_delta_last"]
 
 
@@ -317,6 +330,7 @@ def prediction(st: pd.DataFrame, out: Path, md: list) -> list:
     FF = F_FEATS + [c for c in ("fut_attn_at_t", "fut_delta_at_t") if c in st.columns]
     sets = [("A attention/position/lexical", A_FEATS), ("B = A + source trajectory", A_FEATS + B_FEATS),
             ("C = A + value/local-perturbation", A_FEATS + C_FEATS), ("S = C + cheap surrogates", A_FEATS + C_FEATS + S_FEATS),
+            ("L = C + 2-token format lookahead (deployable, +2 steps)", A_FEATS + C_FEATS + L_FEATS),
             ("D = C + prompt-anchor query probes (oracle)", A_FEATS + C_FEATS + D),
             ("F = C + future-query census (oracle)", A_FEATS + C_FEATS + FF),
             ("G = F + future-query loop probes (oracle)", A_FEATS + C_FEATS + FF + G),
@@ -335,6 +349,8 @@ def prediction(st: pd.DataFrame, out: Path, md: list) -> list:
         for a, b in (("A attention/position/lexical", "B = A + source trajectory"),
                      ("A attention/position/lexical", "C = A + value/local-perturbation"),
                      ("C = A + value/local-perturbation", "S = C + cheap surrogates"),
+                     ("C = A + value/local-perturbation", "L = C + 2-token format lookahead (deployable, +2 steps)"),
+                     ("L = C + 2-token format lookahead (deployable, +2 steps)", "F = C + future-query census (oracle)"),
                      ("C = A + value/local-perturbation", "D = C + prompt-anchor query probes (oracle)"),
                      ("C = A + value/local-perturbation", "F = C + future-query census (oracle)"),
                      ("F = C + future-query census (oracle)", "G = F + future-query loop probes (oracle)"),
@@ -361,7 +377,8 @@ def univariate(st: pd.DataFrame, out: Path, md: list):
              "qa_delta_mean", "qa_delta_last", "qa_delta_loopw", "qa_vnorm_mean", "src_U_mean", "src_settle",
              "fut_attn_mean", "fut_attn_max_t", "fut_delta_mean", "fut_delta_max_t", "fut_attn_at_t", "fut_delta_at_t",
              "qa_all_kl", "qa_all_E_R", "qa_all_dn_R", "qb_all_kl", "qb_all_E_R", "qf_all_kl", "qf_all_E_R", "qf_all_dn_R",
-             "qf_loop1_gain", "qa_loop1_gain", "clean_kl_mean"]
+             "qf_loop1_gain", "qa_loop1_gain", "clean_kl_mean", "la1_attn", "la2_attn", "la12_attn_max", "la12_delta_max",
+             "fut_lastloop_frac", "fut_loop_entropy", "qa_lastloop_frac"]
     res = []
     for (m, ds), g in st.groupby(["model", "dataset"]):
         for f in feats:
@@ -434,19 +451,27 @@ def matched_pairs(st: pd.DataFrame, out: Path, md: list, seed=20261102):
     rng = random.Random(seed)
     rows = []
     md += ["## H1/H2 — attention-matched and local-perturbation-matched source pairs", "",
-           "| model | dataset | pairing | n pairs | median |log10 Y ratio| | frac >10× | probe-KL sign agreement with Y [CI] | "
+           "Pairs are same-role, |Δpos|≤16, within prompt. 'attention' = clean question-anchor attention (deployable); "
+           "'future' = the consuming generated query's clean attention (oracle). δ = closed-form local attention-output "
+           "perturbation at the same query. If Y dispersion stays large under future-attn+δ matching, the damage is not "
+           "a local/attention quantity at the consuming query either (propagation / recurrence or later history).", "",
+           "| model | dataset | pairing | n pairs | median |log10 Y ratio| | frac >10× | probe-KL (anchor of the pairing) sign agreement with Y [CI] | "
            "future-attn sign agreement [CI] |", "|---|---|---|---|---|---|---|---|"]
     for (m, ds), g in st.groupby(["model", "dataset"]):
         g = g[g.kl_mean.notna() & g.qa_all_kl.notna()]
-        for pairing in ("attention-matched", "attention+δ-matched", "random same-role"):
+        if "fut_attn_at_t" not in g.columns:
+            g = g.assign(fut_attn_at_t=g.fut_attn_max_t, fut_delta_at_t=g.fut_delta_max_t)
+        for pairing in ("attention-matched", "attention+δ-matched", "future-attn-matched", "future-attn+δ-matched",
+                        "random same-role"):
             disp, agree_probe, agree_fut, npairs = [], [], [], 0
             for uid, gg in g.groupby("uid"):
                 gg = gg.sort_values("source")
                 pos = gg.source.to_numpy()
-                la = np.log(gg.qa_attn_mean.to_numpy() + 1e-9)
-                ld = np.log(gg.qa_delta_mean.to_numpy() + 1e-9)
+                fut = pairing.startswith("future")
+                la = np.log((gg.fut_attn_at_t if fut else gg.qa_attn_mean).to_numpy() + 1e-9)
+                ld = np.log((gg.fut_delta_at_t if fut else gg.qa_delta_mean).to_numpy() + 1e-9)
                 y = gg.kl_mean.to_numpy()
-                pk = gg.qa_all_kl.to_numpy()
+                pk = (gg.qf_all_kl if fut and "qf_all_kl" in gg.columns else gg.qa_all_kl).to_numpy()
                 fa = gg.fut_attn_mean.to_numpy()
                 role = gg.role.to_numpy()
                 used = set()
@@ -459,7 +484,7 @@ def matched_pairs(st: pd.DataFrame, out: Path, md: list, seed=20261102):
                             continue
                         if pairing == "random same-role":
                             cands.append((rng.random(), i, j))
-                        elif abs(la[i] - la[j]) <= 0.35 and (pairing == "attention-matched" or abs(ld[i] - ld[j]) <= 0.35):
+                        elif abs(la[i] - la[j]) <= 0.35 and ("δ" not in pairing or abs(ld[i] - ld[j]) <= 0.35):
                             cands.append((abs(la[i] - la[j]), i, j))
                 cands.sort()
                 for _, i, j in cands:
@@ -502,6 +527,33 @@ def tail_and_evidence(st: pd.DataFrame, md: list):
                   f"{_f(r['evidence_in_top5'])} | {_f(r['nll_evidence'])} |")
     md.append("")
     return out
+
+
+# ------------------------------------------------------------------------------------------- loop profiles
+def loop_profiles(st: pd.DataFrame, out: Path, md: list):
+    """Which recurrent loops read the harmful KV? Normalised attention-by-loop profile at the consuming query t*
+    and at the question anchor, top-5% harm sources vs the rest (within prompt)."""
+    md += ["## Loop profile of clean attention to the source (normalised over loops): top-5% harm vs rest", "",
+           "| model | dataset | group | n | query | first loop | last loop | peak loop | entropy |", "|---|---|---|---|---|---|---|---|---|"]
+    res = []
+    for (m, ds), g in st.groupby(["model", "dataset"]):
+        g = g[g.kl_mean.notna()].copy()
+        g["top"] = g.groupby("uid").kl_mean.transform(lambda s: s >= s.quantile(0.95))
+        for pre, label in (("fut", "consuming query t*"), ("qa", "question anchor")):
+            cols = sorted((c for c in g.columns if c.startswith(pre + "_prof_r") and g[c].notna().any()),
+                          key=lambda c: int(c.split("_r")[-1]))
+            if not cols:
+                continue
+            for grp, gg in g.groupby("top"):
+                prof = gg[cols].to_numpy(float).mean(0)
+                r = {"model": m, "dataset": ds, "group": "top5" if grp else "rest", "n": len(gg), "query": label,
+                     "profile": prof.tolist(), "first": float(prof[0]), "last": float(prof[-1]),
+                     "peak": int(prof.argmax()) + 1, "entropy": float(-(prof * np.log(prof + 1e-12)).sum())}
+                res.append(r)
+                md.append(f"| {m} | {ds} | {r['group']} | {len(gg)} | {label} | {_f(r['first'])} | {_f(r['last'])} | {r['peak']} | {_f(r['entropy'])} |")
+    md.append("")
+    _json(out / "loop_profiles.json", res)
+    return res
 
 
 # ------------------------------------------------------------------------------------------- exit arms
@@ -623,6 +675,7 @@ def analyze(run: Path) -> dict:
         floor_and_gain(main, out, md)
         univariate(main, out, md)
         matched_pairs(main, out, md)
+        loop_profiles(main, out, md)
         prediction(main, out, md)
     v6 = st[~st.dataset.isin(("controlled_retrieval", "hotpotqa_distractor"))]
     if not v6.empty:
