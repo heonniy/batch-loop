@@ -1,0 +1,27 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 69.63it/s]
+`cache.key_cache[idx]` is deprecated and will be removed in v4.56.0. Use `cache.layers[idx].keys` instead.
+`cache.value_cache[idx]` is deprecated and will be removed in v4.56.0. Use `cache.layers[idx].values` instead.
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00001
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00002
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00004
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00006
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00008
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00010
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00012
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00014
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00015
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00017
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00019
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5a79c9395542994bb94570a2
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5a7e4414554299495941995c
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5a8ed10b5542995085b374a0
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5ab298fb554299449642c922
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5ab446875542990594ba9bea
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5ab8829d55429934fafe6e08
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5adc459255429944faac24ad
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5adda8d45542995b365fab59
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5ae002ec55429925eb1afbdc
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5ae2a9c6554299492dc91c42
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5ae5a4e5554299546bf82f01

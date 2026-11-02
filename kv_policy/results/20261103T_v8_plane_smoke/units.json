@@ -1,0 +1,46 @@
+[
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "uid": "controlled-20261031-00000",
+  "unit": "ouro-2.6b__controlled_retrieval__controlled-20261031-00000",
+  "v5_key": "fb711c0bfe5fe8fc2d9348ca",
+  "split": "dev",
+  "prompt_len": 419,
+  "n_targets": 11,
+  "n_content": 352
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "uid": "hotpotqa-distractor-5a7249b85542990c210a40b9",
+  "unit": "ouro-2.6b__hotpotqa_distractor__hotpotqa-distractor-5a7249b85542990c210a40b9",
+  "v5_key": "43870fdd38864208057a8353",
+  "split": "dev",
+  "prompt_len": 422,
+  "n_targets": 6,
+  "n_content": 356
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "uid": "controlled-20261031-00000",
+  "unit": "huginn-0125__controlled_retrieval__controlled-20261031-00000",
+  "v5_key": "a49a1410f4c821285e015c66",
+  "split": "dev",
+  "prompt_len": 442,
+  "n_targets": 11,
+  "n_content": 352
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "uid": "hotpotqa-distractor-5a7249b85542990c210a40b9",
+  "unit": "huginn-0125__hotpotqa_distractor__hotpotqa-distractor-5a7249b85542990c210a40b9",
+  "v5_key": "64fb7cf8f46657442b8c1c14",
+  "split": "dev",
+  "prompt_len": 475,
+  "n_targets": 6,
+  "n_content": 383
+ }
+]

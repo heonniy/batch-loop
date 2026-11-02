@@ -1,0 +1,13 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 69.23it/s]
+`cache.key_cache[idx]` is deprecated and will be removed in v4.56.0. Use `cache.layers[idx].keys` instead.
+`cache.value_cache[idx]` is deprecated and will be removed in v4.56.0. Use `cache.layers[idx].values` instead.
+done V6U__qwen2.5-3b__v6W1__hotpot-5a74d9c555429929fddd84fb-W1
+done V6U__qwen2.5-3b__v6W1__hotpot-5ab985eb554299131ca42360-W1
+done V6U__qwen2.5-3b__v6W1__hotpot-5ac270025542990b17b15390-W1
+done V6U__qwen2.5-3b__v6W1__hotpot-5ae4581e55429970de88d92f-W1
+done V6U__qwen2.5-3b__v6W2__hotpot-5a7b46e55542995eb53be8e5-W2
+done V6U__qwen2.5-3b__v6W2__hotpot-5a7fb7985542994857a767d2-W2
+done V6U__qwen2.5-3b__v6W2__hotpot-5a89dfcc55429946c8d6e9f0-W2
+done V6U__qwen2.5-3b__v6W2__hotpot-5abac27855429966062415ff-W2

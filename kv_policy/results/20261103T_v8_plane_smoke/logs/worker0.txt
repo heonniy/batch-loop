@@ -1,0 +1,35 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+done REF__ouro-2.6b__controlled_retrieval__controlled-20261031-00000
+Traceback (most recent call last):
+  File "/home1/irteam/batch-loop/kv_policy/scripts/plane_budget_sweep.py", line 305, in <module>
+    tok = bb = None
+
+  File "/home1/irteam/batch-loop/kv_policy/scripts/plane_budget_sweep.py", line 282, in main
+    cur = tok = bb = eos = None
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home1/irteam/batch-loop/kv_policy/scripts/plane_budget_sweep.py", line 240, in worker
+    "kl_mean": float(np.mean(d["kl_by_t"])), "kl_max": float(np.max(d["kl_by_t"])),
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home1/irteam/batch-loop/kv_policy/scripts/plane_budget_sweep.py", line 181, in evaluate
+    "exit_depth_hist": np.bincount(np.array(exit_d)[content], minlength=R + 1).tolist(),
+^^^^^^^^^^^^^^^^^
+  File "/home1/irteam/batch-loop/kv_policy/kvp/query_conditioned_probe.py", line 301, in decode
+    logits, depth = self._step_dyn(col, self.ref_ids[t - 1], spec, forced)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home1/irteam/batch-loop/kv_policy/kvp/query_conditioned_probe.py", line 259, in _step_dyn
+    logits, depth = _ouro_one(self.bb, ids, pos, self.kv, col, mask, forced, spec)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home1/irteam/batch-loop/kv_policy/kvp/depth_eviction_probe.py", line 151, in _ouro_one
+    o = kv.attend(("rec", l, r), q, k, v, col, col+1, mask)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home1/irteam/batch-loop/kv_policy/kvp/query_conditioned_probe.py", line 137, in attend
+    return inner(layer, q, k, v, c0, c1, mask)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home1/irteam/batch-loop/kv_policy/kvp/loopzip_persistent_eviction.py", line 98, in attend
+    return orig(layer, q, k, v, c0, c1, mask)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home1/irteam/batch-loop/kv_policy/kvp/query_conditioned_probe.py", line 66, in attend
+    vals = vb[:, :, :c1].clone()
+           ^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 139.80 GiB of which 19.12 MiB is free. Including non-PyTorch memory, this process has 139.77 GiB memory in use. Of the allocated memory 136.23 GiB is allocated by PyTorch, and 2.89 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

@@ -1,0 +1,852 @@
+{
+ "bins": [
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop_bin": "\u22641/8",
+   "entropy_content": 4.8934203378178855,
+   "mass_evidence": 0.1559544064612551,
+   "mass_sink4": 0.2931772264482623,
+   "mass_local16": 0.24248221309178256,
+   "mass_question": 0.09059840989383784,
+   "rho_vs_last": 0.5102901217158984,
+   "rho_vs_prev": 0.7524852764889464,
+   "top1_is_evidence": 0.45,
+   "top8_evidence_frac": 0.20894886363636364
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop_bin": "1/8\u20131/4",
+   "entropy_content": 4.527788290923292,
+   "mass_evidence": 0.2816808499374681,
+   "mass_sink4": 0.3134696070274169,
+   "mass_local16": 0.2218907633034343,
+   "mass_question": 0.13591941896910695,
+   "rho_vs_last": 0.9077996313718899,
+   "rho_vs_prev": 0.9247651713623017,
+   "top1_is_evidence": 0.6272727272727273,
+   "top8_evidence_frac": 0.3488636363636364
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop_bin": "1/4\u20131/2",
+   "entropy_content": 4.480511587993665,
+   "mass_evidence": 0.2932058275063438,
+   "mass_sink4": 0.330568703814325,
+   "mass_local16": 0.1997173843524334,
+   "mass_question": 0.1307501194395379,
+   "rho_vs_last": 0.9816479414230388,
+   "rho_vs_prev": 0.9903435356019135,
+   "top1_is_evidence": 0.6738636363636363,
+   "top8_evidence_frac": 0.38259943181818185
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop_bin": "1/2\u20133/4",
+   "entropy_content": 4.434823944216425,
+   "mass_evidence": 0.3007937748503702,
+   "mass_sink4": 0.33601567588577214,
+   "mass_local16": 0.20034258620898154,
+   "mass_question": 0.13093356643274257,
+   "rho_vs_last": 0.9970955366033223,
+   "rho_vs_prev": 0.9986766105206661,
+   "top1_is_evidence": 0.6579545454545455,
+   "top8_evidence_frac": 0.3940340909090909
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop_bin": "3/4\u20131",
+   "entropy_content": 4.428164303844626,
+   "mass_evidence": 0.3015030496796085,
+   "mass_sink4": 0.3384759848937392,
+   "mass_local16": 0.1991885730446401,
+   "mass_question": 0.13175354699434882,
+   "rho_vs_last": 0.999571101391064,
+   "rho_vs_prev": 0.999721530662359,
+   "top1_is_evidence": 0.6568181818181819,
+   "top8_evidence_frac": 0.3899857954545455
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop_bin": "\u22641/8",
+   "entropy_content": 5.129035927408891,
+   "mass_evidence": 0.3310026240354176,
+   "mass_sink4": 0.307403606409542,
+   "mass_local16": 0.24746941549288068,
+   "mass_question": 0.1038648397058731,
+   "rho_vs_last": 0.5869774451837195,
+   "rho_vs_prev": 0.7363104684799598,
+   "top1_is_evidence": 0.5773381294964028,
+   "top8_evidence_frac": 0.4282823741007194
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop_bin": "1/8\u20131/4",
+   "entropy_content": 5.059560003469316,
+   "mass_evidence": 0.4349261883833854,
+   "mass_sink4": 0.27645743263067957,
+   "mass_local16": 0.2506953849651509,
+   "mass_question": 0.13490193738876807,
+   "rho_vs_last": 0.8734561858569211,
+   "rho_vs_prev": 0.9140202283112676,
+   "top1_is_evidence": 0.6762589928057554,
+   "top8_evidence_frac": 0.58318345323741
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop_bin": "1/4\u20131/2",
+   "entropy_content": 4.99065667540907,
+   "mass_evidence": 0.4599453951734647,
+   "mass_sink4": 0.28884291686385655,
+   "mass_local16": 0.22362794349197862,
+   "mass_question": 0.15375089316407767,
+   "rho_vs_last": 0.9734478504195316,
+   "rho_vs_prev": 0.9879654989105283,
+   "top1_is_evidence": 0.7230215827338129,
+   "top8_evidence_frac": 0.6344424460431655
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop_bin": "1/2\u20133/4",
+   "entropy_content": 4.967419692295061,
+   "mass_evidence": 0.47199799707360407,
+   "mass_sink4": 0.2973783031749211,
+   "mass_local16": 0.21544823353011294,
+   "mass_question": 0.15221988446022244,
+   "rho_vs_last": 0.9961733227375819,
+   "rho_vs_prev": 0.9988462163278499,
+   "top1_is_evidence": 0.7410071942446043,
+   "top8_evidence_frac": 0.6442221223021583
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop_bin": "3/4\u20131",
+   "entropy_content": 4.960709425399629,
+   "mass_evidence": 0.4751243862531168,
+   "mass_sink4": 0.29940657733048465,
+   "mass_local16": 0.213627785913271,
+   "mass_question": 0.1519199813893668,
+   "rho_vs_last": 0.9995124372420975,
+   "rho_vs_prev": 0.9997170754578932,
+   "top1_is_evidence": 0.7329136690647482,
+   "top8_evidence_frac": 0.6504046762589928
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "loop_bin": "1/8\u20131/4",
+   "entropy_content": 5.192323030125011,
+   "mass_evidence": 0.20606296148828485,
+   "mass_sink4": 0.7207672799175436,
+   "mass_local16": 0.08290641455149109,
+   "mass_question": 0.06086550102653829,
+   "rho_vs_last": 0.5118482951006129,
+   "rho_vs_prev": NaN,
+   "top1_is_evidence": 0.6318181818181818,
+   "top8_evidence_frac": 0.3977272727272727
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "loop_bin": "1/4\u20131/2",
+   "entropy_content": 5.221732878684998,
+   "mass_evidence": 0.19389070624654944,
+   "mass_sink4": 0.729632302034985,
+   "mass_local16": 0.08111175026067279,
+   "mass_question": 0.06137460097670555,
+   "rho_vs_last": 0.6828175622986337,
+   "rho_vs_prev": 0.7518247236924807,
+   "top1_is_evidence": 0.5954545454545455,
+   "top8_evidence_frac": 0.42329545454545453
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "loop_bin": "1/2\u20133/4",
+   "entropy_content": 5.2414363622665405,
+   "mass_evidence": 0.17284550224854187,
+   "mass_sink4": 0.7358175960454074,
+   "mass_local16": 0.06674347700212489,
+   "mass_question": 0.04838270912454887,
+   "rho_vs_last": 0.9043085438840863,
+   "rho_vs_prev": 0.8097924512111628,
+   "top1_is_evidence": 0.55,
+   "top8_evidence_frac": 0.38238636363636364
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "loop_bin": "3/4\u20131",
+   "entropy_content": 5.1352662411603065,
+   "mass_evidence": 0.1622878772037273,
+   "mass_sink4": 0.7331667241725055,
+   "mass_local16": 0.06310353830287402,
+   "mass_question": 0.042559830770319836,
+   "rho_vs_last": 1.0,
+   "rho_vs_prev": 0.9043085438840863,
+   "top1_is_evidence": 0.42272727272727273,
+   "top8_evidence_frac": 0.3170454545454545
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "loop_bin": "1/8\u20131/4",
+   "entropy_content": 5.548997198326,
+   "mass_evidence": 0.38070235822511755,
+   "mass_sink4": 0.7082522520120593,
+   "mass_local16": 0.09124255180358887,
+   "mass_question": 0.06484254588629457,
+   "rho_vs_last": 0.607704235770664,
+   "rho_vs_prev": NaN,
+   "top1_is_evidence": 0.7246376811594203,
+   "top8_evidence_frac": 0.6204710144927537
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "loop_bin": "1/4\u20131/2",
+   "entropy_content": 5.330591858297154,
+   "mass_evidence": 0.40716019434773404,
+   "mass_sink4": 0.7117458720138108,
+   "mass_local16": 0.0867024274016528,
+   "mass_question": 0.061191634767675314,
+   "rho_vs_last": 0.8209527475034744,
+   "rho_vs_prev": 0.7597091259095884,
+   "top1_is_evidence": 0.6884057971014492,
+   "top8_evidence_frac": 0.6141304347826086
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "loop_bin": "1/2\u20133/4",
+   "entropy_content": 5.3250743997269785,
+   "mass_evidence": 0.42357567632975784,
+   "mass_sink4": 0.7083304140014924,
+   "mass_local16": 0.08424919162728432,
+   "mass_question": 0.06968173291534185,
+   "rho_vs_last": 0.9424809022331556,
+   "rho_vs_prev": 0.9045124347329041,
+   "top1_is_evidence": 0.7028985507246377,
+   "top8_evidence_frac": 0.6557971014492754
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "loop_bin": "3/4\u20131",
+   "entropy_content": 5.271599168362825,
+   "mass_evidence": 0.4353414459720902,
+   "mass_sink4": 0.7143355910328851,
+   "mass_local16": 0.08102973431780719,
+   "mass_question": 0.0675800180170631,
+   "rho_vs_last": 1.0,
+   "rho_vs_prev": 0.9424809022331556,
+   "top1_is_evidence": 0.6521739130434783,
+   "top8_evidence_frac": 0.6539855072463768
+  }
+ ],
+ "curves": [
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 1,
+   "evidence_mass": 0.09197030572898009,
+   "evidence_ci": [
+    0.06937474070794203,
+    0.11622771700336176
+   ],
+   "rho_vs_last": 0.1765888346019316,
+   "rho_ci": [
+    0.15241396270300614,
+    0.19802785533417452
+   ],
+   "entropy": 5.239615665782582,
+   "top8_evidence_frac": 0.16022727272727272
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 2,
+   "evidence_mass": 0.1449866317889907,
+   "evidence_ci": [
+    0.12463695224035871,
+    0.16446620715274055
+   ],
+   "rho_vs_last": 0.43759647001668106,
+   "rho_ci": [
+    0.4132160959576677,
+    0.45874673798697385
+   ],
+   "entropy": 4.912398865006187,
+   "top8_evidence_frac": 0.19147727272727272
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 3,
+   "evidence_mass": 0.19361704813147135,
+   "evidence_ci": [
+    0.1478518821299076,
+    0.23930683145299553
+   ],
+   "rho_vs_last": 0.6766928980302496,
+   "rho_ci": [
+    0.6659603160810345,
+    0.6866039353422028
+   ],
+   "entropy": 4.6312857855450025,
+   "top8_evidence_frac": 0.23636363636363636
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 4,
+   "evidence_mass": 0.19324364019557835,
+   "evidence_ci": [
+    0.15365886205637994,
+    0.23241064636544748
+   ],
+   "rho_vs_last": 0.7502822842147314,
+   "rho_ci": [
+    0.7402172122701383,
+    0.7593746400588585
+   ],
+   "entropy": 4.790381034937772,
+   "top8_evidence_frac": 0.24772727272727274
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 6,
+   "evidence_mass": 0.27419212499464096,
+   "evidence_ci": [
+    0.23428537317297674,
+    0.31102074562487275
+   ],
+   "rho_vs_last": 0.9027116182926163,
+   "rho_ci": [
+    0.8972517036787577,
+    0.908049526589034
+   ],
+   "entropy": 4.565022512999448,
+   "top8_evidence_frac": 0.35397727272727275
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 8,
+   "evidence_mass": 0.3136796368201348,
+   "evidence_ci": [
+    0.28088175894861866,
+    0.34438646210526885
+   ],
+   "rho_vs_last": 0.9530475344009428,
+   "rho_ci": [
+    0.9485894105071695,
+    0.9572023462028703
+   ],
+   "entropy": 4.388921797275543,
+   "top8_evidence_frac": 0.38238636363636364
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 12,
+   "evidence_mass": 0.29466589066115295,
+   "evidence_ci": [
+    0.2679062458347867,
+    0.3202932850881057
+   ],
+   "rho_vs_last": 0.9818320408336847,
+   "rho_ci": [
+    0.9801325136005152,
+    0.9835309677731775
+   ],
+   "entropy": 4.47250187071887,
+   "top8_evidence_frac": 0.38181818181818183
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 16,
+   "evidence_mass": 0.2958936965770342,
+   "evidence_ci": [
+    0.26917537748813625,
+    0.32296290108087383
+   ],
+   "rho_vs_last": 0.9924593842979933,
+   "rho_ci": [
+    0.9917040346910937,
+    0.9932153267130912
+   ],
+   "entropy": 4.4715421969240365,
+   "top8_evidence_frac": 0.38522727272727275
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 20,
+   "evidence_mass": 0.30154243839735334,
+   "evidence_ci": [
+    0.2732595140453089,
+    0.3303929225795649
+   ],
+   "rho_vs_last": 0.9972413008120864,
+   "rho_ci": [
+    0.9969618823131261,
+    0.9975205573517373
+   ],
+   "entropy": 4.431170027906244,
+   "top8_evidence_frac": 0.39488636363636365
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 24,
+   "evidence_mass": 0.3029894646511159,
+   "evidence_ci": [
+    0.2762100750411099,
+    0.3310991469347342
+   ],
+   "rho_vs_last": 0.9989276506317166,
+   "rho_ci": [
+    0.9988076252853686,
+    0.9990371002108379
+   ],
+   "entropy": 4.425907841595737,
+   "top8_evidence_frac": 0.39602272727272725
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 28,
+   "evidence_mass": 0.3018783088265495,
+   "evidence_ci": [
+    0.27402234410189774,
+    0.330647627721456
+   ],
+   "rho_vs_last": 0.9995788452681801,
+   "rho_ci": [
+    0.9995440226190018,
+    0.999614936071404
+   ],
+   "entropy": 4.427372804555026,
+   "top8_evidence_frac": 0.38920454545454547
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "loop": 32,
+   "evidence_mass": 0.3014365651560101,
+   "evidence_ci": [
+    0.274495149099014,
+    0.3297257938422263
+   ],
+   "rho_vs_last": 1.0,
+   "rho_ci": [
+    1.0,
+    1.0
+   ],
+   "entropy": 4.429794021086259,
+   "top8_evidence_frac": 0.38977272727272727
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 1,
+   "evidence_mass": 0.25394880090070104,
+   "evidence_ci": [
+    0.21223518261774665,
+    0.3064506946947602
+   ],
+   "rho_vs_last": 0.3664477428244267,
+   "rho_ci": [
+    0.3303465928818607,
+    0.40064718142593925
+   ],
+   "entropy": 5.169849570706594,
+   "top8_evidence_frac": 0.26888489208633093
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 2,
+   "evidence_mass": 0.31212383260563403,
+   "evidence_ci": [
+    0.2881914246921706,
+    0.3340948818176501
+   ],
+   "rho_vs_last": 0.5562225479937078,
+   "rho_ci": [
+    0.5323367230789242,
+    0.5797666862434067
+   ],
+   "entropy": 5.2505692406524,
+   "top8_evidence_frac": 0.4244604316546763
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 3,
+   "evidence_mass": 0.3587060831452506,
+   "evidence_ci": [
+    0.32076726824754764,
+    0.3928927086898453
+   ],
+   "rho_vs_last": 0.6908739067879969,
+   "rho_ci": [
+    0.6725753511558639,
+    0.7084650301546154
+   ],
+   "entropy": 5.009176403498478,
+   "top8_evidence_frac": 0.4919064748201439
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 4,
+   "evidence_mass": 0.3758737393521031,
+   "evidence_ci": [
+    0.33341252324481807,
+    0.4167675022707519
+   ],
+   "rho_vs_last": 0.7534975501269029,
+   "rho_ci": [
+    0.7349575279063009,
+    0.7711680456111318
+   ],
+   "entropy": 5.086548494778091,
+   "top8_evidence_frac": 0.5278776978417267
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 6,
+   "evidence_mass": 0.4248912935225026,
+   "evidence_ci": [
+    0.37879403490750563,
+    0.46719416527343655
+   ],
+   "rho_vs_last": 0.8591608802319592,
+   "rho_ci": [
+    0.8432809097298207,
+    0.8729164784200956
+   ],
+   "entropy": 5.037306339620686,
+   "top8_evidence_frac": 0.5926258992805755
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 8,
+   "evidence_mass": 0.42453223212924474,
+   "evidence_ci": [
+    0.38069572381401096,
+    0.4629418741450423
+   ],
+   "rho_vs_last": 0.9174480518941726,
+   "rho_ci": [
+    0.9088456728461953,
+    0.9255924977461678
+   ],
+   "entropy": 5.047735432069079,
+   "top8_evidence_frac": 0.5890287769784173
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 12,
+   "evidence_mass": 0.4444315995300971,
+   "evidence_ci": [
+    0.40018055153018856,
+    0.4869809096700862
+   ],
+   "rho_vs_last": 0.9754480525744904,
+   "rho_ci": [
+    0.9723498654184821,
+    0.9783212001803803
+   ],
+   "entropy": 4.9858844314547754,
+   "top8_evidence_frac": 0.6465827338129496
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 16,
+   "evidence_mass": 0.4540681263639942,
+   "evidence_ci": [
+    0.41056796998849937,
+    0.49468201178831583
+   ],
+   "rho_vs_last": 0.9899782554341998,
+   "rho_ci": [
+    0.9883126782135319,
+    0.9914642947586072
+   ],
+   "entropy": 4.978667442747157,
+   "top8_evidence_frac": 0.6474820143884892
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 20,
+   "evidence_mass": 0.4567596460740965,
+   "evidence_ci": [
+    0.41307851318269967,
+    0.4972454029058805
+   ],
+   "rho_vs_last": 0.9963584154285201,
+   "rho_ci": [
+    0.9956768835732926,
+    0.9969620480071766
+   ],
+   "entropy": 4.971611167029511,
+   "top8_evidence_frac": 0.6447841726618705
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 24,
+   "evidence_mass": 0.46045503353982264,
+   "evidence_ci": [
+    0.41730728717077337,
+    0.5006543955632619
+   ],
+   "rho_vs_last": 0.9987392838995202,
+   "rho_ci": [
+    0.9985204783921816,
+    0.9989357892484556
+   ],
+   "entropy": 4.962937344750054,
+   "top8_evidence_frac": 0.6474820143884892
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 28,
+   "evidence_mass": 0.461075345385352,
+   "evidence_ci": [
+    0.41748092573490875,
+    0.501210678193186
+   ],
+   "rho_vs_last": 0.9995181619257796,
+   "rho_ci": [
+    0.9994299620987916,
+    0.9995869961263388
+   ],
+   "entropy": 4.960881583124614,
+   "top8_evidence_frac": 0.6510791366906474
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "loop": 32,
+   "evidence_mass": 0.46062596011890733,
+   "evidence_ci": [
+    0.41705830083893874,
+    0.5004161709156774
+   ],
+   "rho_vs_last": 1.0,
+   "rho_ci": [
+    1.0,
+    1.0
+   ],
+   "entropy": 4.963200112898573,
+   "top8_evidence_frac": 0.6492805755395683
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "loop": 1,
+   "evidence_mass": 0.20606296148828482,
+   "evidence_ci": [
+    0.17181436939334327,
+    0.2377762515436519
+   ],
+   "rho_vs_last": 0.5118482951006129,
+   "rho_ci": [
+    0.49407429852317825,
+    0.5295683651127253
+   ],
+   "entropy": 5.192323030125011,
+   "top8_evidence_frac": 0.3977272727272727
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "loop": 2,
+   "evidence_mass": 0.19389070624654942,
+   "evidence_ci": [
+    0.17460215066305615,
+    0.21367778078737584
+   ],
+   "rho_vs_last": 0.6828175622986337,
+   "rho_ci": [
+    0.6626069864336024,
+    0.7031051103659267
+   ],
+   "entropy": 5.221732878684998,
+   "top8_evidence_frac": 0.42329545454545453
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "loop": 3,
+   "evidence_mass": 0.17284550224854187,
+   "evidence_ci": [
+    0.15989037625152955,
+    0.18529016280716112
+   ],
+   "rho_vs_last": 0.9043085438840865,
+   "rho_ci": [
+    0.8960421466135251,
+    0.9120304265440113
+   ],
+   "entropy": 5.2414363622665405,
+   "top8_evidence_frac": 0.38238636363636364
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "loop": 4,
+   "evidence_mass": 0.1622878772037273,
+   "evidence_ci": [
+    0.15188435316932475,
+    0.1722071957181801
+   ],
+   "rho_vs_last": 1.0,
+   "rho_ci": [
+    1.0,
+    1.0
+   ],
+   "entropy": 5.1352662411603065,
+   "top8_evidence_frac": 0.3170454545454545
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "loop": 1,
+   "evidence_mass": 0.3767388050172419,
+   "evidence_ci": [
+    0.3414886512696033,
+    0.41053449258001323
+   ],
+   "rho_vs_last": 0.6028705396557382,
+   "rho_ci": [
+    0.5770850671164863,
+    0.6296090696356017
+   ],
+   "entropy": 5.548997198326,
+   "top8_evidence_frac": 0.6204710144927537
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "loop": 2,
+   "evidence_mass": 0.40209973015630285,
+   "evidence_ci": [
+    0.3665600552613892,
+    0.4361521859502508
+   ],
+   "rho_vs_last": 0.8181583318078725,
+   "rho_ci": [
+    0.8003176936182683,
+    0.834392958320325
+   ],
+   "entropy": 5.330591858297154,
+   "top8_evidence_frac": 0.6141304347826086
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "loop": 3,
+   "evidence_mass": 0.41974497158642093,
+   "evidence_ci": [
+    0.38650560590748995,
+    0.4528990780151198
+   ],
+   "rho_vs_last": 0.9412847306856296,
+   "rho_ci": [
+    0.9357614668185017,
+    0.9465148069808755
+   ],
+   "entropy": 5.3250743997269785,
+   "top8_evidence_frac": 0.6557971014492754
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "loop": 4,
+   "evidence_mass": 0.4313475148515805,
+   "evidence_ci": [
+    0.3953468166575545,
+    0.46610038290362044
+   ],
+   "rho_vs_last": 1.0,
+   "rho_ci": [
+    1.0,
+    1.0
+   ],
+   "entropy": 5.271599168362825,
+   "top8_evidence_frac": 0.6539855072463768
+  }
+ ],
+ "peaks": [
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "hist": {
+    "1/8\u20131/4": 0.45,
+    "1/4\u20131/2": 0.24545454545454545,
+    "\u22641/8": 0.15454545454545454,
+    "1/2\u20133/4": 0.10909090909090909,
+    "3/4\u20131": 0.04090909090909091
+   },
+   "mean_peak_frac": 0.3112215909090909
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "hist": {
+    "1/4\u20131/2": 0.2805755395683453,
+    "1/8\u20131/4": 0.2589928057553957,
+    "\u22641/8": 0.20863309352517986,
+    "3/4\u20131": 0.1510791366906475,
+    "1/2\u20133/4": 0.10071942446043165
+   },
+   "mean_peak_frac": 0.37297661870503596
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "hist": {
+    "1/8\u20131/4": 0.4909090909090909,
+    "1/4\u20131/2": 0.19545454545454546,
+    "3/4\u20131": 0.18636363636363637,
+    "1/2\u20133/4": 0.12727272727272726,
+    "\u22641/8": 0.0
+   },
+   "mean_peak_frac": 0.5022727272727273
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "hist": {
+    "3/4\u20131": 0.4782608695652174,
+    "1/8\u20131/4": 0.21739130434782608,
+    "1/4\u20131/2": 0.18115942028985507,
+    "1/2\u20133/4": 0.12318840579710146,
+    "\u22641/8": 0.0
+   },
+   "mean_peak_frac": 0.7155797101449275
+  }
+ ]
+}

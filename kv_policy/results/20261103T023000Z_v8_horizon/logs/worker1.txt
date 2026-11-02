@@ -1,0 +1,19 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.09it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.02it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.01it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.39it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.23it/s]
+done HOR__huginn-0125__v6W1__hotpot-5a74d9c555429929fddd84fb-W1
+done HOR__huginn-0125__v6W1__hotpot-5ab985eb554299131ca42360-W1
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/numpy/_core/fromnumeric.py:3860: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/numpy/_core/_methods.py:145: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+done HOR__huginn-0125__v6W1__hotpot-5ac270025542990b17b15390-W1
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/numpy/_core/fromnumeric.py:3860: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/numpy/_core/_methods.py:145: RuntimeWarning: invalid value encountered in scalar divide
+  ret = ret.dtype.type(ret / rcount)
+done HOR__huginn-0125__v6W1__hotpot-5ae4581e55429970de88d92f-W1
+done HOR__huginn-0125__v6W2__hotpot-5a7b46e55542995eb53be8e5-W2
+done HOR__huginn-0125__v6W2__hotpot-5a7fb7985542994857a767d2-W2
+done HOR__huginn-0125__v6W2__hotpot-5a89dfcc55429946c8d6e9f0-W2
+done HOR__huginn-0125__v6W2__hotpot-5abac27855429966062415ff-W2

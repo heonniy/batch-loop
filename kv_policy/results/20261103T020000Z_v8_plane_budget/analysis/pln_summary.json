@@ -1,0 +1,1488 @@
+{
+ "census": [
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "variant": "last",
+   "n": 2816,
+   "kl_median": 8.108815018204041e-05,
+   "kl_mean": 8.908325262556683e-05,
+   "kl_p95": 0.00016163655527634546,
+   "top5_share": 0.11348083891309017,
+   "dnll_mean": -0.0031071909535952706,
+   "frac_dnll_gt_001": 0.01065340909090909,
+   "kl_evidence": 8.630145778583524e-05,
+   "kl_other": 8.926870561488227e-05
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "variant": "exit",
+   "n": 2816,
+   "kl_median": 7.980508962646127e-05,
+   "kl_mean": 8.73732143402089e-05,
+   "kl_p95": 0.00016232858979492448,
+   "top5_share": 0.11265217814302751,
+   "dnll_mean": -0.0030537138100560457,
+   "frac_dnll_gt_001": 0.014204545454545454,
+   "kl_evidence": 8.869371610713146e-05,
+   "kl_other": 8.728518088908072e-05
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "variant": "last",
+   "n": 3677,
+   "kl_median": 0.00022849280503578484,
+   "kl_mean": 0.0003583806846093345,
+   "kl_p95": 0.0013010775903239847,
+   "top5_share": 0.20899043657101973,
+   "dnll_mean": -0.005537238323827836,
+   "frac_dnll_gt_001": 0.2088659233070438,
+   "kl_evidence": 0.0004248894884698107,
+   "kl_other": 0.0003332966525915444
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "variant": "exit",
+   "n": 3677,
+   "kl_median": 0.00023136309755500406,
+   "kl_mean": 0.00035023392726860384,
+   "kl_p95": 0.0012709279311820863,
+   "top5_share": 0.20867966569851992,
+   "dnll_mean": -0.004856924542872594,
+   "frac_dnll_gt_001": 0.2208322001631765,
+   "kl_evidence": 0.00040864495635829757,
+   "kl_other": 0.0003282039998179216
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "variant": "last",
+   "n": 2816,
+   "kl_median": 9.546177898300812e-05,
+   "kl_mean": 0.00012843227699800184,
+   "kl_p95": 0.00030212034471333027,
+   "top5_share": 0.19641674054584712,
+   "dnll_mean": 0.0009051933094706573,
+   "frac_dnll_gt_001": 0.0,
+   "kl_evidence": 0.00024397215127630096,
+   "kl_other": 0.00012072961871278191
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "variant": "exit",
+   "n": 2816,
+   "kl_median": 6.304040289251134e-05,
+   "kl_mean": 6.63288594004996e-05,
+   "kl_p95": 0.00018417277169646695,
+   "top5_share": 0.2171072045442261,
+   "dnll_mean": 0.0004975367004580052,
+   "frac_dnll_gt_001": 0.0,
+   "kl_evidence": 4.3747757393413686e-05,
+   "kl_other": 6.783426620097199e-05
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "variant": "last",
+   "n": 3545,
+   "kl_median": 0.00022194560733623803,
+   "kl_mean": 0.0002579330034306971,
+   "kl_p95": 0.00048698401660658415,
+   "top5_share": 0.14639889451064528,
+   "dnll_mean": -3.205794662215132e-05,
+   "frac_dnll_gt_001": 0.05472496473906911,
+   "kl_evidence": 0.00027476441151460943,
+   "kl_other": 0.00025155657734212046
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "variant": "exit",
+   "n": 3545,
+   "kl_median": 0.0,
+   "kl_mean": 2.3993352818743184e-05,
+   "kl_p95": 0.00017961174598895004,
+   "top5_share": 0.6006336383678548,
+   "dnll_mean": 8.405580391730803e-05,
+   "frac_dnll_gt_001": 0.003385049365303244,
+   "kl_evidence": 2.6699251997925473e-05,
+   "kl_other": 2.296824748987366e-05
+  }
+ ],
+ "univariate": [
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "source",
+   "rho_last": 0.02336109652858944,
+   "ci_last": [
+    -0.01413207995183916,
+    0.06555005134148192
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_chars",
+   "rho_last": -0.004871077959545618,
+   "ci_last": [
+    -0.041144104264990045,
+    0.029677372148854356
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_word_start",
+   "rho_last": 0.005170374120063798,
+   "ci_last": [
+    -0.016636929628269778,
+    0.028637201174675917
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_punct",
+   "rho_last": 0.025876586123347138,
+   "ci_last": [
+    0.0016090124389960064,
+    0.054686055679800914
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_digit",
+   "rho_last": -0.031499377242867166,
+   "ci_last": [
+    -0.058303325926135824,
+    -0.0029478026831560268
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_upper",
+   "rho_last": 0.0247545017394987,
+   "ci_last": [
+    -0.01654528556966494,
+    0.06600898432366326
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_mean",
+   "rho_last": 0.009515817633735478,
+   "ci_last": [
+    -0.03167781129006342,
+    0.04611670887343691
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_rR",
+   "rho_last": 0.0026210019127866236,
+   "ci_last": [
+    -0.0423984065981233,
+    0.041852593817891276
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_r1",
+   "rho_last": 0.0336716615930497,
+   "ci_last": [
+    0.0013606455709855112,
+    0.05956633368991727
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_lastloop_frac",
+   "rho_last": -0.025867673796144058,
+   "ci_last": [
+    -0.06430757922436393,
+    0.0065429092075692625
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "settle_frac",
+   "rho_last": 0.020108280958606582,
+   "ci_last": [
+    -0.0047709036780262505,
+    0.043543245053005504
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "F_mid",
+   "rho_last": 0.025868705578337304,
+   "ci_last": [
+    -0.0041892764537948554,
+    0.05209997941938451
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_mean",
+   "rho_last": 0.015273471806757925,
+   "ci_last": [
+    -0.009727642518010794,
+    0.04282205636667394
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_last",
+   "rho_last": 0.01588679801471692,
+   "ci_last": [
+    -0.012546265113545566,
+    0.050989437852044094
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_late_mean",
+   "rho_last": 0.020249757324828144,
+   "ci_last": [
+    -0.0011188646103660266,
+    0.0413426870579845
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_mean",
+   "rho_last": -0.008609190620522065,
+   "ci_last": [
+    -0.045416025585997256,
+    0.03762435038993112
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_rR",
+   "rho_last": -0.011575461247911678,
+   "ci_last": [
+    -0.045924762992751667,
+    0.03260122196028711
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_r1",
+   "rho_last": 0.030701195051407525,
+   "ci_last": [
+    -0.0018185161156124264,
+    0.058773305896181245
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_lastloop_frac",
+   "rho_last": -0.01908167670384384,
+   "ci_last": [
+    -0.05505565708292337,
+    0.019710238415974964
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_earlyloop_frac",
+   "rho_last": 0.02633744422873319,
+   "ci_last": [
+    -0.012484048647292264,
+    0.060130580978668816
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "source",
+   "rho_last": -0.024430812010734684,
+   "ci_last": [
+    -0.052028040624341604,
+    0.002974717332223391
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_chars",
+   "rho_last": 0.026163916795966205,
+   "ci_last": [
+    0.0056569738569913226,
+    0.04953345722344515
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_word_start",
+   "rho_last": 0.0008561893597550038,
+   "ci_last": [
+    -0.02291922370163043,
+    0.022567650148355482
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_punct",
+   "rho_last": -0.033003992655900205,
+   "ci_last": [
+    -0.05551466381377037,
+    -0.011739569443125389
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_digit",
+   "rho_last": -0.013475730741290295,
+   "ci_last": [
+    -0.03830902253518853,
+    0.011597990054788794
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_upper",
+   "rho_last": 0.0050392683908116595,
+   "ci_last": [
+    -0.01383202508156627,
+    0.025103428012298996
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_mean",
+   "rho_last": 0.005294683852858271,
+   "ci_last": [
+    -0.027928352960041824,
+    0.033545707819025744
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_rR",
+   "rho_last": 0.005032875635755341,
+   "ci_last": [
+    -0.029411894123061347,
+    0.03461803305064315
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_r1",
+   "rho_last": -0.0019660055314901516,
+   "ci_last": [
+    -0.024599363649691022,
+    0.02777060102907412
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_lastloop_frac",
+   "rho_last": 0.004777151172811064,
+   "ci_last": [
+    -0.03022217027086589,
+    0.03873271361631209
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "settle_frac",
+   "rho_last": 0.0045818664383551755,
+   "ci_last": [
+    -0.026007082430254395,
+    0.03512232993160748
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "F_mid",
+   "rho_last": -0.006739421656590503,
+   "ci_last": [
+    -0.04207632033791203,
+    0.026214214812191182
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_mean",
+   "rho_last": -0.006601660190960874,
+   "ci_last": [
+    -0.019049428430533498,
+    0.005396751496627754
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_last",
+   "rho_last": 0.008296851593141495,
+   "ci_last": [
+    -0.01636215574044798,
+    0.03576835212985054
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_late_mean",
+   "rho_last": -0.007511414005313467,
+   "ci_last": [
+    -0.0245062775596932,
+    0.008406908188925718
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_mean",
+   "rho_last": 0.028872952532084082,
+   "ci_last": [
+    0.005236735472472441,
+    0.05372703066710685
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_rR",
+   "rho_last": 0.030985454468646645,
+   "ci_last": [
+    0.00047679760734545425,
+    0.06238875352045248
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_r1",
+   "rho_last": 0.0014944646479763766,
+   "ci_last": [
+    -0.019096423792232066,
+    0.021249964690223843
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_lastloop_frac",
+   "rho_last": 0.00945760084150049,
+   "ci_last": [
+    -0.04331273009140261,
+    0.05531797358790398
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_earlyloop_frac",
+   "rho_last": -0.01388853012705353,
+   "ci_last": [
+    -0.05844188397041359,
+    0.03252007405760301
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "source",
+   "rho_last": -0.030057500533775327,
+   "ci_last": [
+    -0.08011675234585999,
+    0.01121265223602334
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_chars",
+   "rho_last": -0.010338447285250525,
+   "ci_last": [
+    -0.0392933895097196,
+    0.02058679560033962
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_word_start",
+   "rho_last": -0.00994880052457436,
+   "ci_last": [
+    -0.04542423843868947,
+    0.029612900807010532
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_punct",
+   "rho_last": 0.004908506301240982,
+   "ci_last": [
+    -0.032730164423627583,
+    0.03929860127902268
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_digit",
+   "rho_last": 0.005186729006791186,
+   "ci_last": [
+    -0.0284322587368215,
+    0.04051824973776118
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_upper",
+   "rho_last": -0.013084004579735043,
+   "ci_last": [
+    -0.0520913728039451,
+    0.026077399709471902
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_mean",
+   "rho_last": 0.01610598246575584,
+   "ci_last": [
+    -0.03200017443997614,
+    0.05755721301047079
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_rR",
+   "rho_last": 0.02529348700559749,
+   "ci_last": [
+    -0.019400841328957464,
+    0.06526259682244101
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_r1",
+   "rho_last": -0.001567655471692294,
+   "ci_last": [
+    -0.045350748165903974,
+    0.03909316112750956
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_lastloop_frac",
+   "rho_last": 0.021476787101787104,
+   "ci_last": [
+    -0.003995989256258381,
+    0.04657736522998563
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "settle_frac",
+   "rho_last": -0.023378664838497907,
+   "ci_last": [
+    -0.054865885030446954,
+    0.012483293222257035
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "F_mid",
+   "rho_last": -0.012083476407130795,
+   "ci_last": [
+    -0.042238480358168747,
+    0.020259318506485643
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_mean",
+   "rho_last": 0.011226753259331161,
+   "ci_last": [
+    -0.04307504936046013,
+    0.0579319906958009
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_last",
+   "rho_last": -0.01827416956666248,
+   "ci_last": [
+    -0.04804466268701396,
+    0.01282969568203279
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_late_mean",
+   "rho_last": -0.014198045226727941,
+   "ci_last": [
+    -0.04341533112779572,
+    0.019081676703843847
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_mean",
+   "rho_last": 0.08508478360638416,
+   "ci_last": [
+    0.05346048741941091,
+    0.12372671198804344
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_rR",
+   "rho_last": 0.08863824147995536,
+   "ci_last": [
+    0.05656900641851066,
+    0.12745973435598082
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_r1",
+   "rho_last": 0.06163643269698511,
+   "ci_last": [
+    0.03389387308473711,
+    0.09027433850380027
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_lastloop_frac",
+   "rho_last": 0.0039983967480426465,
+   "ci_last": [
+    -0.030467255635456766,
+    0.030263375474069536
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_earlyloop_frac",
+   "rho_last": -0.021039792950203716,
+   "ci_last": [
+    -0.03638930710460456,
+    -0.0022077731443878768
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "source",
+   "rho_last": -0.006346198828851181,
+   "ci_last": [
+    -0.033356459203802515,
+    0.017273250812285198
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_chars",
+   "rho_last": -0.019638469477809374,
+   "ci_last": [
+    -0.04925959020726394,
+    0.010933305208604114
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_word_start",
+   "rho_last": 0.0005235942375754928,
+   "ci_last": [
+    -0.04146383304940103,
+    0.04042468071133007
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_punct",
+   "rho_last": -0.0014098025105727108,
+   "ci_last": [
+    -0.03921696957022418,
+    0.04233213380149206
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_digit",
+   "rho_last": -0.0017242484752776795,
+   "ci_last": [
+    -0.038130580132962624,
+    0.02920251176618397
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "position/lexical",
+   "feature": "tok_upper",
+   "rho_last": -0.00017756061988445562,
+   "ci_last": [
+    -0.0257353650442785,
+    0.022206606627636516
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_mean",
+   "rho_last": 0.013507966162797733,
+   "ci_last": [
+    -0.0164872069774823,
+    0.04831490372671056
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_rR",
+   "rho_last": 0.015552663798017563,
+   "ci_last": [
+    -0.017631963358311444,
+    0.052498052995292865
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_r1",
+   "rho_last": -0.0006245177749430843,
+   "ci_last": [
+    -0.027987962303424756,
+    0.029899073420274078
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "attention (received, loop-R)",
+   "feature": "recv_lastloop_frac",
+   "rho_last": 0.009577228289205193,
+   "ci_last": [
+    -0.020494889869807843,
+    0.036422801037516925
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "settle_frac",
+   "rho_last": 0.015905207274885758,
+   "ci_last": [
+    -0.039661863210295564,
+    0.06435335955702572
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "F_mid",
+   "rho_last": 0.014773077854683379,
+   "ci_last": [
+    -0.005319994143735392,
+    0.032228008908059914
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_mean",
+   "rho_last": -0.009964441015111639,
+   "ci_last": [
+    -0.04340344646040749,
+    0.027188912822789416
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_last",
+   "rho_last": 0.02386870046081654,
+   "ci_last": [
+    0.004436886887568615,
+    0.043017877646012274
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "own trajectory (settle/U)",
+   "feature": "U_late_mean",
+   "rho_last": 0.01489989892522696,
+   "ci_last": [
+    -0.006131785179866167,
+    0.03472765270987772
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_mean",
+   "rho_last": 0.013701446122800602,
+   "ci_last": [
+    -0.030101507332647767,
+    0.05851656770352487
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_rR",
+   "rho_last": 0.016968818465845446,
+   "ci_last": [
+    -0.02834803751248708,
+    0.062052653424103904
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_attn_r1",
+   "rho_last": 0.011599087543266731,
+   "ci_last": [
+    -0.026893343864139826,
+    0.04993879144893432
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_lastloop_frac",
+   "rho_last": 0.016404966536639684,
+   "ci_last": [
+    -0.017472652237397395,
+    0.0552970396936141
+   ],
+   "rho_first": NaN
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "family": "future-query loop profile (oracle)",
+   "feature": "fut_earlyloop_frac",
+   "rho_last": -0.0076087812409086075,
+   "ci_last": [
+    -0.03872317734921362,
+    0.02447067002724691
+   ],
+   "rho_first": NaN
+  }
+ ],
+ "lopo": [
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "features": "position/lexical",
+   "mean_rho": 0.016891375071261757,
+   "ci": [
+    -0.006081289854306848,
+    0.04188925647849161
+   ],
+   "lift": 0.0,
+   "lift_ci": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "features": "+ attention received",
+   "mean_rho": 0.008014161829671747,
+   "ci": [
+    -0.014140162245686318,
+    0.0339218687749141
+   ],
+   "lift": -0.00887721324159001,
+   "lift_ci": [
+    -0.025927757912531272,
+    0.004759920792144585
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "features": "+ own trajectory",
+   "mean_rho": 0.036410217890387855,
+   "ci": [
+    0.0001249488236032114,
+    0.07148379634215327
+   ],
+   "lift": 0.0195188428191261,
+   "lift_ci": [
+    -0.01898568656713133,
+    0.05349776914932721
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "features": "+ attention + trajectory",
+   "mean_rho": 0.03637585954335245,
+   "ci": [
+    0.0008964811549797338,
+    0.06854352662603369
+   ],
+   "lift": 0.019484484472090696,
+   "lift_ci": [
+    -0.017476120432919302,
+    0.05589480554069787
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "features": "+ attention + trajectory + future loop profile (oracle)",
+   "mean_rho": 0.037759857784645315,
+   "ci": [
+    0.00874328791290548,
+    0.06731852602072148
+   ],
+   "lift": 0.02086848271338356,
+   "lift_ci": [
+    -0.011003028487093659,
+    0.05434015052464061
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "features": "position/lexical",
+   "mean_rho": 0.0025644756169319717,
+   "ci": [
+    -0.02281725109315836,
+    0.028404079095639446
+   ],
+   "lift": 0.0,
+   "lift_ci": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "features": "+ attention received",
+   "mean_rho": 0.005448854959983733,
+   "ci": [
+    -0.02279635497707078,
+    0.03460177322960731
+   ],
+   "lift": 0.0028843793430517618,
+   "lift_ci": [
+    -0.011668246425103983,
+    0.019891168536731868
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "features": "+ own trajectory",
+   "mean_rho": 0.03113766115124142,
+   "ci": [
+    0.003977790384428262,
+    0.05629133360136078
+   ],
+   "lift": 0.028573185534309452,
+   "lift_ci": [
+    0.01566585305985432,
+    0.04183943173816282
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "features": "+ attention + trajectory",
+   "mean_rho": 0.02288409941581411,
+   "ci": [
+    -0.006168027949815039,
+    0.050982732834737206
+   ],
+   "lift": 0.020319623798882136,
+   "lift_ci": [
+    0.009169438063493242,
+    0.031317873527288306
+   ]
+  },
+  {
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "features": "+ attention + trajectory + future loop profile (oracle)",
+   "mean_rho": 0.02201836141718784,
+   "ci": [
+    -0.007778189735489943,
+    0.05214379221856143
+   ],
+   "lift": 0.019453885800255866,
+   "lift_ci": [
+    0.0021798032630802448,
+    0.035348151919559284
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "features": "position/lexical",
+   "mean_rho": 0.023197731014657365,
+   "ci": [
+    -0.005113856477170921,
+    0.04761416876324809
+   ],
+   "lift": 0.0,
+   "lift_ci": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "features": "+ attention received",
+   "mean_rho": 0.003065734430819423,
+   "ci": [
+    -0.028767772792206214,
+    0.03663160395632069
+   ],
+   "lift": -0.02013199658383794,
+   "lift_ci": [
+    -0.04493693472092904,
+    0.0019833261246150775
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "features": "+ own trajectory",
+   "mean_rho": 0.003435662739841214,
+   "ci": [
+    -0.03001285875754714,
+    0.04009877044579595
+   ],
+   "lift": -0.01976206827481615,
+   "lift_ci": [
+    -0.035792936996903,
+    -0.003807517042290413
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "features": "+ attention + trajectory",
+   "mean_rho": 0.004324508706590863,
+   "ci": [
+    -0.03198325321200675,
+    0.04372706692111791
+   ],
+   "lift": -0.0188732223080665,
+   "lift_ci": [
+    -0.04695902146327075,
+    0.005264771819304401
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "split": "dev",
+   "features": "+ attention + trajectory + future loop profile (oracle)",
+   "mean_rho": 0.05896642113001886,
+   "ci": [
+    0.03266863173024646,
+    0.08712410111135324
+   ],
+   "lift": 0.0357686901153615,
+   "lift_ci": [
+    0.011268609223637552,
+    0.06050776615578316
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "features": "position/lexical",
+   "mean_rho": -0.02584331862129534,
+   "ci": [
+    -0.04940108645473162,
+    -0.0032517999249103706
+   ],
+   "lift": 0.0,
+   "lift_ci": [
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "features": "+ attention received",
+   "mean_rho": -0.006105516636306757,
+   "ci": [
+    -0.04357569204057487,
+    0.03536567639754557
+   ],
+   "lift": 0.019737801984988583,
+   "lift_ci": [
+    -0.0045431442561895165,
+    0.04885523968034636
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "features": "+ own trajectory",
+   "mean_rho": -0.046896074344623465,
+   "ci": [
+    -0.0665086274052783,
+    -0.02434131087139357
+   ],
+   "lift": -0.021052755723328126,
+   "lift_ci": [
+    -0.04839448786455226,
+    0.0035602263834584105
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "features": "+ attention + trajectory",
+   "mean_rho": -0.029782827278945833,
+   "ci": [
+    -0.0527707318984513,
+    -0.0005634604432132812
+   ],
+   "lift": -0.003939508657650494,
+   "lift_ci": [
+    -0.02548460940967174,
+    0.021740871203397637
+   ]
+  },
+  {
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "split": "dev",
+   "features": "+ attention + trajectory + future loop profile (oracle)",
+   "mean_rho": 0.004630992286350515,
+   "ci": [
+    -0.032039239535978994,
+    0.04541072456386464
+   ],
+   "lift": 0.030474310907645852,
+   "lift_ci": [
+    -0.006387237146825387,
+    0.06931632598446831
+   ]
+  }
+ ]
+}

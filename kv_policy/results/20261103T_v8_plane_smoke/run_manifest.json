@@ -1,0 +1,53 @@
+{
+ "protocol": "plane-budget-v8-v1",
+ "code_sha": "3c7233a27925883cc44e69c5c49f150e3d081c34",
+ "config": {
+  "models": [
+   "ouro-2.6b",
+   "huginn-0125"
+  ],
+  "datasets": [
+   "controlled_retrieval",
+   "hotpotqa_distractor"
+  ],
+  "splits": {
+   "dev": [
+    0,
+    1
+   ],
+   "holdout": [
+    1,
+    1
+   ]
+  },
+  "budgets": [
+   0.1,
+   0.3,
+   0.5
+  ],
+  "semantics": "nearest",
+  "pln_variants": {
+   "dev": [
+    "last",
+    "first",
+    "half"
+   ],
+   "holdout": [
+    "last"
+   ]
+  },
+  "chunk_size": {
+   "ouro-2.6b": 24,
+   "huginn-0125": 16
+  },
+  "horizon": 40,
+  "greedy_tokens": 24
+ },
+ "v5_source_run": "/home1/irteam/batch-loop/kv_policy/results/20261030T164908Z_loopzip_failure_pilot20",
+ "notes": [
+  "Budget counted in loop planes over Context tokens only",
+  "Token scores are label-free; settle depth and received attention come from the clean prefill",
+  "Future-query scores (def4/fut_oracle) are deferred/oracle references, not prompt-time policies",
+  "Full-sized reference KV; reads redirected to kept planes; no HBM claim"
+ ]
+}

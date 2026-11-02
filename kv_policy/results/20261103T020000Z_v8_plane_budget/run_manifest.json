@@ -1,0 +1,57 @@
+{
+ "protocol": "plane-budget-v8-v1",
+ "code_sha": "3744c60caae9cb46e43bf2709c60fd34eca16991",
+ "config": {
+  "models": [
+   "ouro-2.6b",
+   "huginn-0125"
+  ],
+  "datasets": [
+   "controlled_retrieval",
+   "hotpotqa_distractor"
+  ],
+  "splits": {
+   "dev": [
+    0,
+    8
+   ],
+   "holdout": [
+    8,
+    20
+   ]
+  },
+  "budgets": [
+   0.1,
+   0.3,
+   0.5
+  ],
+  "semantics": "nearest",
+  "pln_variants": {
+   "dev": [
+    "last",
+    "exit"
+   ],
+   "holdout": []
+  },
+  "chunk_size": {
+   "ouro-2.6b": 96,
+   "huginn-0125": 64
+  },
+  "horizon": 40,
+  "greedy_tokens": 24
+ },
+ "v5_source_run": "/home1/irteam/batch-loop/kv_policy/results/20261030T164908Z_loopzip_failure_pilot20",
+ "notes": [
+  "Budget counted in loop planes over Context tokens only",
+  "Token scores are label-free; settle depth and received attention come from the clean prefill",
+  "Future-query scores (def4/fut_oracle) are deferred/oracle references, not prompt-time policies",
+  "Full-sized reference KV; reads redirected to kept planes; no HBM claim"
+ ],
+ "code_sha_history": [
+  {
+   "from": "ca043396c961a466c12cd3bf4b6993972a62ef78",
+   "to": "3744c60caae9cb46e43bf2709c60fd34eca16991",
+   "reason": "jobs trimmed at 01:45 (PLN dev-only, variants last+exit) for the 10-12 h budget; REF/TAX/PLN evaluate paths unchanged since ca043396; additive HOR/analysis code only"
+  }
+ ]
+}

@@ -1,0 +1,44 @@
+{
+ "protocol": "standard-transformer-kv-census-v1",
+ "code_sha": "3744c60caae9cb46e43bf2709c60fd34eca16991",
+ "config": {
+  "models": [
+   "qwen2.5-3b"
+  ],
+  "datasets": [],
+  "splits": {
+   "dev": [
+    0,
+    8
+   ],
+   "holdout": [
+    8,
+    20
+   ]
+  },
+  "retention": [
+   0.1,
+   0.3,
+   0.5
+  ],
+  "greedy_tokens": 24,
+  "v6_pool": [
+   "A"
+  ],
+  "horizon": 128,
+  "v6_per_pool_limit": 10
+ },
+ "dataset_sources": {},
+ "models": {
+  "qwen2.5-3b": {
+   "repo": "Qwen/Qwen2.5-3B",
+   "revision": "3aab1f1954e9cc14eb9509a215f9e5ca08227a9b"
+  }
+ },
+ "notes": [
+  "Same frozen v5 pilot20 documents (seed 20261031) rebuilt with the standard tokenizer",
+  "Plain-text prompt (no chat template), gold 'Answer: <x>\\n' continuation; first target excluded",
+  "Eviction = 2D attention mask zeros on prompt positions for all later queries, all layers",
+  "No plane axis exists; budgets are token fractions"
+ ]
+}

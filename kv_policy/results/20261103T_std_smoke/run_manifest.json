@@ -1,0 +1,66 @@
+{
+ "protocol": "standard-transformer-kv-census-v1",
+ "code_sha": "75f867fbeea1bc1a23ba87b8489006a55936acbf",
+ "config": {
+  "models": [
+   "qwen2.5-3b"
+  ],
+  "datasets": [
+   "controlled_retrieval",
+   "hotpotqa_distractor"
+  ],
+  "splits": {
+   "dev": [
+    0,
+    1
+   ],
+   "holdout": [
+    1,
+    1
+   ]
+  },
+  "retention": [
+   0.1,
+   0.3,
+   0.5
+  ],
+  "greedy_tokens": 24
+ },
+ "dataset_sources": {
+  "controlled_retrieval": {
+   "repo": "synthetic-evidence-v2",
+   "revision": "generator-v2",
+   "sha256": "2f73e636a8e17d3bb3493e5d4ad4f9ee5534c2cee277e95083c712148f57ec86",
+   "n": 20,
+   "seed": 20261031,
+   "n_facts": 16,
+   "protocol": "controlled-retrieval-v2"
+  },
+  "hotpotqa_distractor": {
+   "repo": "hotpotqa/hotpot_qa",
+   "revision": "1908d6afbbead072334abe2965f91bd2709910ab",
+   "file": "distractor/validation-00000-of-00001.parquet",
+   "sha256": "c20b638ca82b21d04fe12e14ff417ad05153d4d215a65de54497fca4e972f7c6",
+   "split": "distractor/validation",
+   "n_available": 7403,
+   "n_invalid_support": 2,
+   "n": 20,
+   "seed": 20261031,
+   "context_mode": "evidence_excerpt",
+   "distractor_sentences": 8,
+   "selection_sha256": "3e6cb6dd64762029d201bca04cdbfca4d8caeb88efa5637e6ca4bd8af665f2d2"
+  }
+ },
+ "models": {
+  "qwen2.5-3b": {
+   "repo": "Qwen/Qwen2.5-3B",
+   "revision": "3aab1f1954e9cc14eb9509a215f9e5ca08227a9b"
+  }
+ },
+ "notes": [
+  "Same frozen v5 pilot20 documents (seed 20261031) rebuilt with the standard tokenizer",
+  "Plain-text prompt (no chat template), gold 'Answer: <x>\\n' continuation; first target excluded",
+  "Eviction = 2D attention mask zeros on prompt positions for all later queries, all layers",
+  "No plane axis exists; budgets are token fractions"
+ ]
+}

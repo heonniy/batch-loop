@@ -1,0 +1,23 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 68.93it/s]
+`cache.key_cache[idx]` is deprecated and will be removed in v4.56.0. Use `cache.layers[idx].keys` instead.
+`cache.value_cache[idx]` is deprecated and will be removed in v4.56.0. Use `cache.layers[idx].values` instead.
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00000
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00003
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00005
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00007
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00009
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00011
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00013
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00016
+done UNIT__qwen2.5-3b__controlled_retrieval__controlled-20261031-00018
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5a7249b85542990c210a40b9
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5a7bb7f2554299042af8f7b6
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5a83a7e15542992ef85e2347
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5ab4341c55429942dd415ede
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5abaf6865542996cc5e49f3c
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5ac41379554299204fd21ef1
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5adcb7eb5542994ed6169bd0
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5ae0b8bb55429924de1b7145
+done UNIT__qwen2.5-3b__hotpotqa_distractor__hotpotqa-distractor-5ae2b83c5542992decbdcd7f
