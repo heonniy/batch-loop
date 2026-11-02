@@ -52,7 +52,7 @@ class PersistentEvictionRunner:
         p = next(bb.model.parameters())
         self.device = p.device
         self.T = self.P + horizon + 1
-        self.kv = RoleProbeKV(bb, self.T, self.device, p.dtype, prompt=prompt, mode="none", observe=False)
+        self.kv = self._make_kv(bb, p.dtype)
         self.aux = bb.make_aux([uid], [0], self.T) if bb.family == "huginn" else None
         self.cap = StateCapture(self.kv, self.R)
         self._mask = None            # (frozenset sources, first col, last col, rec loops|None=all, plain)
@@ -99,6 +99,10 @@ class PersistentEvictionRunner:
 
         self.kv.attend = attend
         self._prefill()
+
+    def _make_kv(self, bb, dtype):
+        """Hook for subclasses that need a different (validated) KV store class."""
+        return RoleProbeKV(bb, self.T, self.device, dtype, prompt=self.prompt, mode="none", observe=False)
 
     # ------------------------------------------------------------------ core
     def _step(self, col: int, tid: int):

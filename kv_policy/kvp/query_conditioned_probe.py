@@ -24,6 +24,7 @@ from __future__ import annotations
 import math
 from typing import Sequence
 
+import numpy as np
 import torch
 from torch.nn import functional as F
 
@@ -31,6 +32,7 @@ from .depth_eviction_probe import DepthProbeSpec, _huginn_one, _ouro_one
 from .loopzip_persistent_eviction import PersistentEvictionRunner
 from .loopzip_trajectory_recorder import logit_metrics, paired_metrics, trajectory_metrics
 from .role_data import RolePrompt
+from .role_sensitivity import RoleProbeKV
 
 PREREG_LOOPS = {"ouro": (1, 2, 3, 4), "huginn": (1, 2, 4, 8, 16, 24, 32)}
 
@@ -40,6 +42,35 @@ def anchor_columns(prompt: RolePrompt) -> dict[str, int]:
     as an explicitly separate ablation, the last prompt token (may be a format/chat marker)."""
     q = max(prompt.question_positions) if prompt.question_positions else max(prompt.instruction_positions)
     return {"question_last": int(q), "prompt_last": len(prompt.token_ids) - 1}
+
+
+class PlaneMapProbeKV(RoleProbeKV):
+    """RoleProbeKV whose post-prefill recurrent reads of PROMPT columns come from a per-(loop, column) plane map.
+    plane_map: LongTensor (R, P) or None (identity). Only reads are redirected; stored planes are never modified, so
+    the reference cache is untouched and any map can be applied/removed between branches."""
+
+    plane_map = None
+    plane_cols = 0
+
+    def attend(self, layer, q, k, v, c0, c1, mask):
+        m = self.plane_map
+        if m is None or layer[0] != "rec" or c0 < self.plane_cols:
+            return super().attend(layer, q, k, v, c0, c1, mask)
+        if c1 != c0 + 1:
+            raise ValueError("Token-major reference only")
+        kind, li, r = layer
+        kb, vb = self._buffers(layer)
+        kb[:, :, c0:c1] = k
+        vb[:, :, c0:c1] = v
+        keys = kb[:, :, :c1].clone()
+        vals = vb[:, :, :c1].clone()
+        P = self.plane_cols
+        idx = m[r]                                            # (P,) plane per prompt column
+        ar = torch.arange(P, device=idx.device)
+        keys[0, :, :P] = self.rk[li][idx, 0, :, ar, :].permute(1, 0, 2)   # (P,H,D) -> (H,P,D)
+        vals[0, :, :P] = self.rv[li][idx, 0, :, ar, :].permute(1, 0, 2)
+        self.plane_reads = getattr(self, "plane_reads", 0) + 1
+        return F.scaled_dot_product_attention(q, keys, vals, attn_mask=mask)
 
 
 class QueryConditionedRunner(PersistentEvictionRunner):
@@ -56,6 +87,11 @@ class QueryConditionedRunner(PersistentEvictionRunner):
         self.clean_lp: dict[int, torch.Tensor] = {}
         self.prompt_exit: list[dict] = []
         super().__init__(bb, prompt, uid, horizon=horizon, record_prefill_attention=record_prefill_attention)
+
+    def _make_kv(self, bb, dtype):
+        kv = PlaneMapProbeKV(bb, self.T, self.device, dtype, prompt=self.prompt, mode="none", observe=False)
+        kv.plane_cols = self.P
+        return kv
 
     # ------------------------------------------------------------------ clean census hook
     def _install_watch(self):
@@ -232,8 +268,19 @@ class QueryConditionedRunner(PersistentEvictionRunner):
         return logits, depth
 
     @torch.no_grad()
+    def _set_planes(self, plane_map):
+        if plane_map is None:
+            self.kv.plane_map = None
+            return
+        m = torch.as_tensor(np.asarray(plane_map), dtype=torch.long, device=self.device) if not torch.is_tensor(plane_map) \
+            else plane_map.to(self.device, torch.long)
+        if m.shape != (self.R, self.P) or int(m.min()) < 0 or int(m.max()) >= self.R:
+            raise ValueError("plane_map must be (R, P) with valid plane indices")
+        self.kv.plane_map = m
+        self.kv.plane_reads = 0
+
     def decode(self, sources: Sequence[int], spec: DepthProbeSpec, *, forced_depths: Sequence[int] | None = None,
-               dynamic: bool = False) -> dict:
+               dynamic: bool = False, plane_map=None) -> dict:
         """Teacher-forced reference ids with post-prefill read mask on `sources` (all loops + plain).
         dynamic=True: genuinely re-evaluated native exit at each generated query (spec thresholds);
         forced_depths: recorded-trace replay; neither: fixed full depth. Generated KV is restored after."""
@@ -245,6 +292,7 @@ class QueryConditionedRunner(PersistentEvictionRunner):
             raise ValueError("Choose live exit or recorded replay, not both")
         self._mask = (src, self.P, self.P + n, None, True) if src else None
         self._reset_decode(0)
+        self._set_planes(plane_map)
         depths, losses, kls = [], [], []
         try:
             for t in range(1, n + 1):
@@ -258,21 +306,26 @@ class QueryConditionedRunner(PersistentEvictionRunner):
                     losses.append(float(-lp[self.ref_ids[t]]))
         finally:
             self._mask = None
+            reads = getattr(self.kv, "plane_reads", 0)
+            self._set_planes(None)
             self._restore()
             self._reset_decode(0)
+        if plane_map is not None and reads != self.n_rec * sum(depths):
+            raise RuntimeError(f"plane map applied in {reads} reads, expected {self.n_rec * sum(depths)}")
         first = float(-self.last_prompt_lp[self.ref_ids[0]])
         return {"depths": depths, "token_losses": [first] + losses, "first_target_nll": first,
                 "nll_future": sum(losses) / max(1, len(losses)), "kl_by_t": kls,
                 "total_depth": sum(depths)}
 
     @torch.no_grad()
-    def greedy(self, sources: Sequence[int], max_new: int, eos_ids: set[int]) -> list[int]:
+    def greedy(self, sources: Sequence[int], max_new: int, eos_ids: set[int], plane_map=None) -> list[int]:
         """Fixed-depth greedy free generation under the post-prefill read mask; generated KV restored."""
         src = frozenset(int(s) for s in sources)
         if max_new < 2 or self.P + max_new > self.T:
             raise ValueError("Generation bound exceeds allocated KV")
         self._mask = (src, self.P, self.P + max_new, None, True) if src else None
         self._reset_decode(0)
+        self._set_planes(plane_map)
         out = [int(self.last_prompt_lp.argmax())]
         try:
             if out[0] not in eos_ids:
@@ -284,9 +337,51 @@ class QueryConditionedRunner(PersistentEvictionRunner):
                         break
         finally:
             self._mask = None
+            self._set_planes(None)
             self._restore()
             self._reset_decode(0)
         return out
+
+    @torch.no_grad()
+    def validate_planes(self, tolerance: float = 1e-4) -> dict:
+        """Plane-map semantics gate: identity map == reference (exact); all-last map == independent
+        DepthOracleKV history_policy='last' replay (exact); first-plane map differs; a map restricted to one token
+        changes nothing when that token is also evicted; the stored planes are unchanged afterwards."""
+        from .depth_eviction_probe import run_prefix
+        ref_nll = [-float(self.last_prompt_lp[self.ref_ids[0]])] + [
+            -float(self.ref_lp[i][self.ref_ids[i + 1]]) for i in range(len(self.ref_ids) - 1)]
+        rep = {}
+        R, P = self.R, self.P
+        ident = np.tile(np.arange(R)[:, None], (1, P))
+        d0 = self.decode((), self.spec, plane_map=ident)
+        rep["identity_map_max_abs_nll"] = max(abs(a - b) for a, b in zip(d0["token_losses"], ref_nll))
+        last = np.full((R, P), R - 1)
+        dl = self.decode((), self.spec, plane_map=last)
+        ind = run_prefix(self.bb, list(self.prompt.token_ids) + list(self.ref_ids), self.uid, self.spec,
+                         prompt_len=P, forced_depths=[R] * (P + len(self.ref_ids) - 1), history_policy="last")
+        # The independent 'last' policy also redirects reads of generated history, so only the first generated
+        # query (whose history is the prompt alone) is an exact common path.
+        rep["all_last_vs_independent_max_abs_nll"] = abs(dl["token_losses"][1] - ind["loss_by_future_token"][1])
+        first = np.zeros((R, P), dtype=np.int64)
+        df = self.decode((), self.spec, plane_map=first)
+        rep["first_map_differs_from_last"] = max(abs(a - b) for a, b in zip(df["token_losses"], dl["token_losses"])) > 0
+        c = list(self.prompt.content_positions)[len(self.prompt.content_positions) // 2]
+        one = ident.copy()
+        one[:, c] = 0
+        d1 = self.decode((c,), self.spec, plane_map=one)
+        d2 = self.decode((c,), self.spec)
+        rep["evicted_token_plane_map_irrelevant_max_abs"] = max(abs(a - b) for a, b in zip(d1["token_losses"], d2["token_losses"]))
+        rep["prompt_kv_digest_drift"] = abs(self._kv_digest(0, P) - self.prompt_kv_digest)
+        again = self.decode((), self.spec)
+        rep["after_maps_nomask_max_abs_nll"] = max(abs(a - b) for a, b in zip(again["token_losses"], ref_nll))
+        fail = [k for k in ("identity_map_max_abs_nll", "all_last_vs_independent_max_abs_nll",
+                            "evicted_token_plane_map_irrelevant_max_abs", "prompt_kv_digest_drift",
+                            "after_maps_nomask_max_abs_nll") if rep[k] > tolerance]
+        if not rep["first_map_differs_from_last"]:
+            fail.append("plane_map_has_no_effect")
+        rep["pass"] = not fail
+        rep["failures"] = fail
+        return rep
 
     # ------------------------------------------------------------------ validation
     @torch.no_grad()
