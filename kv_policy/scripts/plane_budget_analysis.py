@@ -140,6 +140,7 @@ def pln_table(run: Path) -> pd.DataFrame:
         z = np.load(raw / f"{ref['key']}.npz")
         R = z["qa"].shape[0]
         recv, ga, settle, U, F = z["recv"], z["gen_attn"], z["settle"], z["prompt_U"], z["prompt_F"]
+        exit_depth = z["exit_depth"] if "exit_depth" in z.files else None
         roles = m["roles"]
         tok = toks[ref["model"]]
         for c in (x for x in jobs if x.get("depends") == ref["key"] and x["kind"] == "PLN"):
@@ -153,6 +154,7 @@ def pln_table(run: Path) -> pd.DataFrame:
                 row = {"model": ref["model"], "dataset": ref["dataset"], "uid": ref["uid"], "split": ref["split"], "source": s,
                        "role": roles[s], "is_evidence": float(roles[s] == "relevant_content"), "R": R,
                        "settle": int(settle[s]), "settle_frac": float(settle[s]) / (R - 1), "F_mid": float(F[s][R // 2]),
+                       "exit_depth": int(exit_depth[s]) if exit_depth is not None else np.nan,
                        "F_last_minus1": float(F[s][R - 1]), "U_mean": float(np.nanmean(U[s][1:])), "U_last": float(U[s][R]),
                        "U_late_mean": float(np.nanmean(U[s][R // 2 + 1:])),
                        "recv_mean": float(recv[:, s].mean()), "recv_rR": float(recv[-1, s]), "recv_r1": float(recv[0, s]),
@@ -181,7 +183,7 @@ def pln_summary(df: pd.DataFrame, out: Path, md: list):
            "frac ΔNLL>0.01 | evidence mean KL | non-evidence mean KL |", "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     res = []
     for (m, ds, sp), g in df.groupby(["model", "dataset", "split"]):
-        for v in ("last", "first", "half"):
+        for v in ("last", "first", "half", "exit"):
             c = f"{v}_kl_mean"
             if c not in g.columns or g[c].isna().all():
                 continue
@@ -195,6 +197,18 @@ def pln_summary(df: pd.DataFrame, out: Path, md: list):
             md.append(f"| {m} | {ds} | {sp} | {v} | {r['n']} | {_f(r['kl_median'])} | {_f(r['kl_mean'])} | {_f(r['kl_p95'])} | {_f(r['top5_share'])} | "
                       f"{_f(r['dnll_mean'])} | {_f(r['frac_dnll_gt_001'])} | {_f(r['kl_evidence'])} | {_f(r['kl_other'])} |")
     md.append("")
+    if "exit_kl_mean" in df.columns:
+        md += ["### Exit-truncated planes (what native early exit would leave) vs last-only, per token", "",
+               "| model | dataset | split | n | mean exit-depth / R | mean KL exit-truncated | mean KL last-only | frac tokens exit KL > last KL | "
+               "ρ(exit depth, exit KL) |", "|---|---|---|---|---|---|---|---|---|"]
+        for (m, ds, sp), g in df.groupby(["model", "dataset", "split"]):
+            g = g[g.exit_kl_mean.notna()]
+            if g.empty:
+                continue
+            md.append(f"| {m} | {ds} | {sp} | {len(g)} | {_f(g.exit_depth.mean() / g.R.iloc[0]) if 'exit_depth' in g.columns else '—'} | "
+                      f"{_f(g.exit_kl_mean.mean())} | {_f(g.last_kl_mean.mean())} | {_f((g.exit_kl_mean > g.last_kl_mean).mean())} | "
+                      f"{_f(np.nanmean([_spearman(gg.exit_depth, gg.exit_kl_mean) for _, gg in g.groupby('uid')])) if 'exit_depth' in g.columns else '—'} |")
+        md.append("")
     # within-prompt correlations of plane damage with feature families
     md += ["### Within-prompt Spearman of per-token plane damage (last-only KL) with clean features (mean over prompts [CI])", "",
            "| model | dataset | split | feature | ρ (last-only KL) | ρ (first-only KL) | ρ (token-eviction KL, for reference: fut_attn_at_t) |", "|---|---|---|---|---|---|---|"]

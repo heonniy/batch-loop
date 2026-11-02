@@ -114,9 +114,9 @@ and results/20261103T021500Z_std_qwen_census, holdout rows; looped scores are th
   ≈2.0, Ouro ≈1.0–1.2) that adds zero ranking lift over the consuming query's attention (QUERY_CONDITIONED_REVIEW.md §2).
 - **The source token's own trajectory** (settle depth, update norms) adds ≤0.025 ranking lift for token eviction in v7;
   its role for *plane* compression is tested in §1 (v8 PLN census).
-- **Heavy tail of single-token damage is shared**: the top 5% of Context tokens carry 98–99% of total KL on CR and
-  63–72% on Hotpot in all three models; evidence tokens make up 41–54% of that top group in Qwen (v8 standard census),
-  34–57% in the looped models (v7). Nothing here separates looped from standard.
+- **Heavy tail of single-token damage is shared**: the top 5% of Context tokens carry 98–99% of total KL on CR in all
+  three models and 79–90% (looped) / 63% (Qwen) on Hotpot; evidence tokens make up 41% (CR) / 54% (Hotpot) of that top
+  group in Qwen and 34–45% / 55–64% in the looped models (v7 dev+holdout). Nothing here separates looped from standard.
 - **Damage from evicting a single critical token decays along the continuation in all three models** (top-5% sources:
   late/early KL ratio 0.02–0.13 for Huginn/Ouro on W1/W2, 0.02 for Qwen; §5): the models recover from a missing token
   once the answer span has been produced. Accumulation, where it appears, comes from the plane axis (§5), not from
