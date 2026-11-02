@@ -148,6 +148,36 @@ def analyze(run: Path) -> dict:
                          "auroc": float(np.nanmean(au)), "lift": float(np.nanmean(lift)), "lift_ci": _boot(lift)})
             md.append(f"| {ds} | {sp} | {name} | {_f(np.nanmean(rhos))}{_ci(_boot(rhos))} | {_f(np.nanmean(au))} | {_f(np.nanmean(lift))}{_ci(_boot(lift))} |")
     md.append("")
+    # query-mismatch diagnostics comparable to the looped phenomenology: anchor vs consuming query agreement, evidence mass
+    md += ["## Query mismatch diagnostics (standard model): Spearman of the question anchor's Context attention vs the consuming "
+           "generated query's, and evidence mass by layer quarter", "",
+           "| dataset | split | ρ(anchor mean-layer, t* mean-layer) [CI] | ρ(anchor late-quarter, t* late-quarter) | ρ(format t=1, t*) | "
+           "anchor evidence mass (early/late quarter) | t* evidence mass (early/late quarter) |", "|---|---|---|---|---|---|---|"]
+    xq = []
+    for j in done:
+        m = json.loads((run / "raw" / f"{j['key']}.json").read_text())
+        z = np.load(run / "raw" / f"{j['key']}.npz")
+        qa, ga = z["qa"], z["gen_attn"]
+        Lq, P = qa.shape
+        q4 = max(1, Lq // 4)
+        content = np.array(m["content_positions"])
+        ev = np.array(m["roles"]) == "relevant_content"
+        tstar = int(ga[:, :, ev].mean(1).sum(1).argmax()) if ev.any() else 0
+        a_m, t_m = qa.mean(0), ga[tstar].mean(0)
+        a_l, t_l = qa[-q4:].mean(0), ga[tstar, -q4:].mean(0)
+        xq.append({"dataset": j["dataset"], "split": j["split"],
+                   "rho_mean": _spearman(a_m[content], t_m[content]), "rho_late": _spearman(a_l[content], t_l[content]),
+                   "rho_format": _spearman(ga[0].mean(0)[content], t_m[content]),
+                   "anchor_ev_early": float(qa[:q4].mean(0)[ev].sum() / max(1e-12, qa[:q4].mean(0)[content].sum())),
+                   "anchor_ev_late": float(a_l[ev].sum() / max(1e-12, a_l[content].sum())),
+                   "t_ev_early": float(ga[tstar, :q4].mean(0)[ev].sum() / max(1e-12, ga[tstar, :q4].mean(0)[content].sum())),
+                   "t_ev_late": float(t_l[ev].sum() / max(1e-12, t_l[content].sum()))})
+    X = pd.DataFrame(xq)
+    for (ds, sp), g in X.groupby(["dataset", "split"]):
+        md.append(f"| {ds} | {sp} | {_f(g.rho_mean.mean())}{_ci(_boot(g.rho_mean.tolist()))} | {_f(g.rho_late.mean())} | {_f(g.rho_format.mean())} | "
+                  f"{_f(g.anchor_ev_early.mean())} / {_f(g.anchor_ev_late.mean())} | {_f(g.t_ev_early.mean())} / {_f(g.t_ev_late.mean())} |")
+    md.append("")
+    X.to_csv(out / "query_mismatch.csv", index=False)
     # policies
     rows = []
     for j in done:
