@@ -178,6 +178,8 @@ def source_table(run: Path) -> pd.DataFrame:
             probes, anchors = cm["probes"], cm["anchors"]
             for si, s in enumerate(zc["sources"]):
                 s = int(s)
+                if s >= qa:
+                    continue   # v6 units list Instruction/Question tokens too; anchor features are undefined there
                 lex = _lexical(tok, m["prompt_ids"][s])
                 row = {"model": ref["model"], "dataset": ref["dataset"], "uid": ref["uid"], "unit": ref["unit"],
                        "source": s, "token_id": int(m["prompt_ids"][s]), "role": roles[s], "P": P, "n_targets": n,
