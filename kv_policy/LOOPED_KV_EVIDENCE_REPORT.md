@@ -16,6 +16,54 @@ report builds on: v7 QUERY_CONDITIONED_REVIEW.md, v6 V6_PILOT_ASSESSMENT.md, v5 
 
 ## 1. The plane axis exists only in looped models — and it is where the cheap budget is
 
+A prompt token of a looped model owns R KV planes (one per recurrence; Huginn 32, Ouro 4); a later query at loop r reads
+plane r. A standard transformer has one KV per token per layer and no such axis. v8 (results/20261103T020000Z_v8_plane_budget,
+scripts/plane_budget_sweep.py; validation: identity plane map == reference exactly, all-last map == independent
+DepthOracleKV 'last' replay exactly, on both checkpoints) measures what the planes are worth.
+
+**1a. The planes are redundant after the first third of the recurrence.** Cosine of a Context token's K (V) at plane r to
+its terminal plane, pooled over 40 prompts × ~400 tokens: Huginn 0.80 (0.46) at r=1, 0.92 (0.75) at r=4, 0.98 (0.93) at
+r=8, 0.998 (0.993) at r=16, 1.0 from r=24; 98% of tokens have cos(K_16, K_32) > 0.99. Ouro: K 0.85 / 0.94 / 0.98 at
+r=1/2/3, V 0.53 / 0.75 / 0.90 — Ouro's 4 planes differ far more from each other than Huginn's last 24 do. Settle depth of
+the token's own state (within 10% of terminal): Huginn mean plane 16.8 of 31 (34% settled by plane 15), Ouro 2.9 of 3
+(no token settles before its last plane).
+
+**1b. Equal-plane-budget two-axis matrix (80 units: dev 8 + holdout 12 UIDs per dataset per model; gold ΔNLL_future /
+greedy EM; budget = kept planes over Context tokens × R).** Keeping ALL tokens with 10% of their planes is lossless;
+keeping 10% of the tokens with all planes is not, under any label-free prompt-time score:
+
+| budget | arm | Huginn CR hold ΔNLL / EM | Huginn Hotpot hold | Ouro CR hold | Ouro Hotpot hold |
+|---|---|---|---|---|---|
+| FULL | — | 0 / 0.92 | 0 / 0.58 | 0 / 1.0 | 0 / 0.50 |
+| 0.1 | plane: last-k (k=3 / 1) | −0.001 / 0.92 | −0.001 / 0.58 | −0.011 / 1.0 | −0.001 / 0.50 |
+| 0.1 | plane: evenly spaced k | −0.002 / 1.0 | 0.003 / 0.58 | −0.011 / 1.0 | −0.001 / 0.50 |
+| 0.1 | plane: most-attended loops | −0.002 / 0.92 | 0.007 / 0.58 | **0.163 / 0.92** | **0.657 / 0.00** |
+| 0.1 | token: question-anchor loop-R attention | 2.48 / 0 | 1.20 / 0.08 | 2.76 / 0 | 1.53 / 0.25 |
+| 0.1 | token: 2-token format lookahead | 1.14 / 0 | 0.37 / 0.42 | 0.78 / 0.17 | 0.38 / 0.75 |
+| 0.1 | token: random | 1.48 / 0 | 1.18 / 0.08 | 1.92 / 0 | 1.29 / 0.25 |
+| 0.1 | token: future-query oracle | −0.05 / 0.83 | −0.11 / 0.58 | −0.01 / 1.0 | −0.08 / 0.75 |
+| 0.1 | mixed: deferred-4 tokens (√b) × last planes (√b) | 0.41 / 0.33 | −0.05 / 0.58 | −0.01 / 1.0 | −0.04 / 0.75 |
+| 0.3 | plane: last-k (k=10 / 1) | 0.000 / 0.92 | −0.006 / 0.58 | −0.011 / 1.0 | −0.001 / 0.50 |
+| 0.3 | token: 2-token format lookahead | 0.63 / 0.25 | 0.19 / 0.58 | 0.06 / 0.92 | 0.41 / 0.75 |
+| 0.3 | token: random | 0.95 / 0.08 | 0.96 / 0.17 | 1.15 / 0 | 1.30 / 0.25 |
+
+(dev cells agree; full table: analysis/tax_summary.csv. "Hotpot" FULL EM is low because the gold answers are free-form;
+ΔNLL is the primary outcome there.)
+
+- For **Huginn** every late-plane policy (last-k, evenly spaced, first+last, settle-adaptive, most-attended) is at the
+  BF16 floor at 10% of the planes (3 of 32); for **Ouro** last-1 / even are at the floor at 1 of 4 planes. The ordering of
+  arms is identical on dev and holdout.
+- **Which plane matters is model-specific**: Ouro must keep its *terminal* plane — the "most-attended loops" policy,
+  which keeps the planes later prompt queries read most (often early loops), costs 0.16–0.92 nats and EM; for Huginn the
+  choice is irrelevant. The v5 'first' plane policy is catastrophic in both (HOR arm: KL 0.26–0.5 and growing).
+- **Map semantics do not matter** (nearest kept plane vs latest kept plane ≤ r: identical to 3 decimals), because kept
+  planes are late and the planes they stand in for are near-identical (1a).
+- **Per-token plane compression has no heavy tail** (PLN census, dev, exhaustive: 2816–3677 tokens per cell): collapsing
+  ONE token to its last plane gives median KL 8e-5 (Huginn CR), 2.3e-4 (Huginn Hotpot), 1e-4 (Ouro CR), p95 ≤ 1.3e-3; the
+  top-5% of tokens carry only 11–21% of the (tiny) total — against 98–99% for single-token *eviction* (§7). No clean
+  feature (position, lexical, attention received, settle depth, update norms, future loop profile) ranks it (LOPO ρ ≤ 0.03,
+  all CIs cross 0). The plane axis is uniformly cheap; the token axis is sparse and expensive.
+
 ## 2. Loop-wise attention is not one attention: the recurrence re-reads the prompt differently at each loop
 
 Source: results/20261102T093000Z_qc_v7_pilotA/analysis/LOOP_PHENOMENOLOGY.md (40 prompts per model, every generated
@@ -104,7 +152,58 @@ and results/20261103T021500Z_std_qwen_census, holdout rows; looped scores are th
 
 ## 5. Decode-horizon accumulation: plane compression of generated tokens vs token eviction
 
+Runs: results/20261103T023000Z_v8_horizon (v6 B pool, 4+4 prompts/model) + results/20261103T025000Z_v8_horizon_poolA
+(v6 A pool, 10+10) on the frozen v6 128-token greedy continuations; standard arm results/20261103T022500Z_std_qwen_v6horizon
++ ..._poolA. Analysis: results/20261103T023000Z_v8_horizon/analysis/HORIZON_FINDINGS.md. Outcome KL(p_full‖p_policy) at
+generated step t, binned t 1–8 / 9–32 / 33–128.
+
+| model | arm (30% of Context planes or tokens unless noted) | t 1–8 | t 33–128 | late/early (median over prompts) |
+|---|---|---|---|---|
+| Huginn W1 | plane last-1, prompt tokens only | 0.0003 | 0.0003 | 1.3 |
+| Huginn W1 | plane last-1, prompt + every generated token converted after it finishes | 0.0004 | 0.0004 | 0.9 |
+| Huginn W1 | plane first-1, prompt + generated | 0.52 | 1.13 | 1.9 |
+| Huginn W1 | exit-truncated planes (what native early exit leaves), prompt + generated | 0.0012 | 0.0011 | 1.1 |
+| Huginn W1 | token eviction 30% kept, future-query oracle | 0.27 | 0.26 | 0.8 |
+| Huginn W1 | token eviction 30% kept, random | 0.62 | 0.48 | 0.5 |
+| Ouro W1 | plane last-1, prompt only | 0.006 | 0.009 | 1.0 |
+| Ouro W1 | plane last-1, prompt + generated | 0.032 | 0.098 | **3.2 (85% of prompts grow)** |
+| Ouro W1 | exit-truncated, prompt + generated | 0.0007 | 0.0014 | 1.5 |
+| Ouro W1 | token eviction 30% kept, future-query oracle | 0.32 | 0.29 | 0.8 |
+| Qwen W1 | token eviction 30% kept, future-query oracle | 0.31 | 0.18 | 0.5 |
+| Qwen W2 | token eviction 30% kept, deferred-4 | 0.17 | 1.27 | **190** |
+
+- **Single-token damage decays in all three models** (top-5% sources: late/early 0.02–0.13 looped, 0.02–0.09 Qwen):
+  once the answer span has been produced the models recover from a missing Context token.
+- **Plane compression of generated tokens accumulates only in Ouro** (last-1 on prompt+generated: 0.03 → 0.10 over 128
+  tokens, 85% of prompts growing; W2 0.05 → 0.09), consistent with the v5 LAST-CONVERT result on long GSM8K/MATH
+  generations (Ouro-2.6B −11 / −52 points; Huginn ±0). Huginn's last plane is a faithful stand-in for every plane of
+  every token, prompt or generated, over at least 128 tokens (KL ≈ 3–5e-4, flat).
+- **Exit-truncated planes are free in both looped models** (≈1e-3 KL, flat): the planes a token never computed under
+  native early exit are not missed by later queries at deeper loops.
+- **Lookahead / deferred token policies are short-answer tricks**: on the W2 summarise/explain continuations the
+  deferred-4 and 2-token-lookahead token selections lose ground as generation proceeds (Qwen 0.17 → 1.27; Huginn W2
+  la2 0.02 → 0.76), because the consuming query keeps moving. This is shared by looped and standard models.
+
 ## 6. Native early exit and the natural plane budget
+
+With native early exit (Ouro Q-exit q=0.7; Huginn fp32 cosine 1e-3, frozen on clean data in v7), prompt tokens would stop
+at depth d_i and no plane ≥ d_i would exist (no-refill). The "natural" plane budget this implies and its cost:
+
+| model | dataset | natural budget (planes kept / all) | ΔNLL natural (exit-truncated) | ΔNLL last-k at the same count | ΔNLL evenly-spaced k | EM natural / FULL |
+|---|---|---|---|---|---|---|
+| Huginn | CR holdout | 0.66 | +0.005 | 0.000 | −0.002 | 0.92 / 0.92 |
+| Huginn | Hotpot holdout | 0.58 | −0.002 | +0.003 | +0.003 | 0.50 / 0.58 |
+| Ouro | CR holdout | 0.82 | 0.000 | −0.005 | 0.000 | 1.0 / 1.0 |
+| Ouro | Hotpot holdout | 0.96 | +0.002 | 0.000 | 0.000 | 0.50 / 0.50 |
+
+- The exit-truncated cache is free (per-token PLN: mean KL 9e-5 / 3.5e-4 Huginn, 7e-5 / 2.4e-5 Ouro; only 3–50% of tokens
+  have a larger KL than the last-only collapse of the same token), but it is also a **weak** budget: Huginn keeps 58–66% of
+  its planes under early exit whereas 10% (last-3) is already lossless. Early exit is therefore not where the KV saving
+  is; converting every token to its late planes is, and it composes with exit (an exited token already is a late-plane
+  token).
+- In v7 the exit depths of generated queries respond to single-token eviction (Huginn 21–33% of queries change depth, Ouro
+  0.5–2%, almost always deeper), without a quality effect (§7). Exit and KV policy interact through the *plane count a
+  token leaves behind*, not through quality.
 
 ## 7. What did NOT differ / negative results
 

@@ -185,3 +185,24 @@ different KV policy than a standard transformer because of the loop. Directions 
 - 01:45 budget correction: the exhaustive PLN census on all 80 units (4 variants) projected to ~9 h/model on 3 GPUs each; the
   v8 run was stopped (43 jobs done, none lost) and its job list trimmed to PLN on the 32 dev units with variants last+exit
   only (REF/TAX on all 80 units unchanged). run_manifest.json records the code SHA change (additive code only).
+
+## 2026-11-03 — E9: v8 results (two-axis budget, phenomenology, standard control, horizon) — see LOOPED_KV_EVIDENCE_REPORT.md
+
+- Plane axis (results/20261103T020000Z_v8_plane_budget, 80 units dev+holdout, both models): keeping ALL Context tokens with
+  10% of their planes (Huginn last-3 of 32, Ouro last-1 of 4) is at the BF16 floor (ΔNLL −0.01…+0.007, EM = FULL) on
+  every cell and split; keeping 10% of tokens with all planes costs 0.4–2.8 nats with every prompt-time score and EM 0 on
+  CR. Ouro must keep its terminal plane (most-attended-loop planes: +0.16–0.92); Huginn is indifferent. Per-token plane
+  compression (PLN, exhaustive dev) has no heavy tail (top-5% share 11–21% vs 98–99% for token eviction) and no feature
+  ranks it (LOPO ρ ≤ 0.03). K/V plane cosine to the terminal plane: Huginn K 0.98 / V 0.93 by r=8, 1.0 from r=24; Ouro K
+  0.85/0.94/0.98, V 0.53/0.75/0.90 at r=1/2/3.
+- Loop-wise attention (LOOP_PHENOMENOLOGY.md): one query's Context attention re-forms across loops (ρ loop1 vs R 0.18–0.51),
+  evidence mass rises 0.09→0.30 (Huginn CR), peaks at ≈R/3; loop-1 attention is anti-informative about the consuming
+  query (ρ −0.19…0.42).
+- Standard control (Qwen2.5-3B, results/20261103T021500Z_std_qwen_census, 40 units): the layer analogue of loop-resolved
+  importance exists but is weaker and non-monotone (last layers worst); prompt-time attention (layer mean) is BETTER than
+  random on CR (EM 0.58 at 30%) where both looped models are at/below random (EM 0); query mismatch is smaller (anchor vs
+  consuming query ρ 0.58 vs 0.29–0.43). Lookahead/deferred/oracle behave the same in all three models.
+- Horizon (HOR pool B+A, std v6 pool B+A): single-token damage decays over 128 tokens in all models; Ouro's last-plane
+  conversion of generated tokens accumulates (0.03→0.10 KL, 85% of prompts), Huginn's stays ≈4e-4; exit-truncated planes
+  are free in both; lookahead/deferred token policies degrade over long W2 generations in all models (Qwen 0.17→1.27).
+- Budget trim (01:45) and extra Ouro workers (03:58) recorded; no job lost; 0 errors in all v8 runs.
