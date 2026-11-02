@@ -162,3 +162,23 @@ Huginn-CR 10%: oracle_r1 EM 0.17 vs oracle_rR EM 0.83). Review with go/no-go: QU
 Status: H2/H3 for a per-source recurrent sensitivity of the later query — UNSUPPORTED (null on dev and holdout). What is
 supported: query mismatch (consuming generated query) + loop choice (late-loop attention). H4: exit depth responds (Huginn
 21–33% of queries) without a quality effect. No deployment/HBM claim.
+
+## 2026-11-03 — E8: v8 autonomous programme — "does the loop change what a good KV policy is?" (10–12 h)
+
+Reframed goal (user, 2026-11-03): collect evidence — patterns and phenomena — for whether a looped transformer needs a
+different KV policy than a standard transformer because of the loop. Directions run in parallel:
+1. PLANE AXIS (looped-only): each prompt token owns R KV planes. v8 sweep (scripts/plane_budget_sweep.py,
+   results/20261103T020000Z_v8_plane_budget; dev = 8 UIDs, holdout = 12 UIDs per dataset per model):
+   PLN = per-token plane compression census (last-only / first-only / even-half / exit-truncated), TAX = equal-plane-budget
+   two-axis matrix (token-only x plane-only x mixed; plane policies last-k, first+last, even, settle-adaptive, most-attended
+   loops; 'natural' arm = planes the token would actually have computed under native early exit). REF also records
+   per-token settle depth, clean native exit depth, and the cosine of each token's K/V at plane r to its terminal plane
+   (per recurrent layer). Validation gate: identity plane map == reference (0), all-last map == independent
+   DepthOracleKV 'last' replay (0) on both checkpoints; bug found and fixed first (a misplaced @torch.no_grad left
+   decode() building autograd graphs: 0.46 GB/decode leak -> OOM on the first Huginn TAX job; memory flat after fix).
+2. LOOP-WISE ATTENTION PHENOMENOLOGY (CPU, from the frozen v7 REF receipts of 40 prompts per model):
+   scripts/loop_attention_phenomenology.py -> results/20261102T093000Z_qc_v7_pilotA/analysis/LOOP_PHENOMENOLOGY.md.
+3. STANDARD-TRANSFORMER CONTROL (Qwen2.5-3B, 36 layers, pinned 3aab1f19): scripts/standard_kv_census.py — the same
+   prompts, gold continuation, exhaustive single-token eviction census, layer-resolved attention importance (the layer
+   analogue of loop-resolved importance), lookahead/deferred/oracle token policies at 10/30/50%.
+4. Planned if time permits: decode-horizon growth of damage (v6 W1/W2 128-token continuations) looped vs standard.

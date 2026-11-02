@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import json
 import sys
-from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
@@ -124,9 +123,31 @@ def main(runs: list[Path]):
         md.append(f"| {m} | {d} | " + " | ".join(_f(hist.get(k, 0.0), 2) for k in ["≤1/8", "1/8–1/4", "1/4–1/2", "1/2–3/4", "3/4–1"]) + f" | {_f(pk.mean())} |")
     md.append("")
     # question anchor vs generated at the last loop: do they look at the same tokens?
-    md += ["## Question anchor vs generated queries at loop R (same prompt): Spearman of their Context attention vectors", ""]
-    for (m, d), g in df.groupby(["model", "dataset"]):
-        pass
+    # cross-query agreement: question anchor vs generated queries, and loop-1 vs loop-R of the same query
+    md += ["## Cross-query / cross-loop agreement of Context attention (Spearman over Context tokens)", "",
+           "| model | dataset | anchor(loop R) vs generated t*(loop R) | anchor(loop 1) vs generated t*(loop R) | generated t*: loop 1 vs loop R | "
+           "generated t=1 (format) vs t* at loop R |", "|---|---|---|---|---|---|"]
+    xq = []
+    for run in runs:
+        jobs = json.loads((run / "jobs.json").read_text())
+        for ref in [j for j in jobs if j["kind"] == "REF" and (run / "raw" / f"{j['key']}.npz").exists()]:
+            m = json.loads((run / "raw" / f"{ref['key']}.json").read_text())
+            z = np.load(run / "raw" / f"{ref['key']}.npz")
+            content = np.array(m["content_positions"])
+            ga = z["gen_attn"]
+            P = len(m["prompt_ids"])
+            qa_raw = z["anchor_question_last_attn"]
+            qa = np.zeros((qa_raw.shape[0], P)); qa[:, :qa_raw.shape[1]] = qa_raw
+            ev = np.array(m["roles"]) == "relevant_content"
+            # consuming query = generated query with the largest evidence mass at loop R
+            tstar = int(ga[:, -1, ev].sum(1).argmax()) if ev.any() else 0
+            xq.append({"model": ref["model"], "dataset": ref["dataset"],
+                       "aR_tR": _spearman(qa[-1, content], ga[tstar, -1, content]), "a1_tR": _spearman(qa[0, content], ga[tstar, -1, content]),
+                       "t1_tR": _spearman(ga[tstar, 0, content], ga[tstar, -1, content]), "f_tR": _spearman(ga[0, -1, content], ga[tstar, -1, content])})
+    X = pd.DataFrame(xq)
+    for (m, d), g in X.groupby(["model", "dataset"]):
+        md.append(f"| {m} | {d} | {_f(g.aR_tR.mean())}{_ci(_boot(g.aR_tR.tolist()))} | {_f(g.a1_tR.mean())} | {_f(g.t1_tR.mean())}{_ci(_boot(g.t1_tR.tolist()))} | {_f(g.f_tR.mean())} |")
+    md.append("")
     _json(out / "loop_phenomenology.json", {"bins": summ, "curves": curves, "peaks": peaks})
     (out / "LOOP_PHENOMENOLOGY.md").write_text("\n".join(md))
     print("\n".join(md[:40]))
