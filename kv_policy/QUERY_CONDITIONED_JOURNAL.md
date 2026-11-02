@@ -139,3 +139,16 @@ The late-loop advantage therefore holds for deployable scores, not only for the 
 Interpretation: in a recurrent-depth model the first recurrence's attention is a poor importance signal; the KV that
 matters is read in the later recurrences. This is the recurrence-specific part of "attention is insufficient"; the
 rest is query mismatch (prompt query vs consuming generated query).
+
+## 2026-11-02 — E6: pilot B held-out replication (results/20261102T103000Z_qc_v7_pilotB_holdout, 12 UIDs/dataset/model)
+
+610/610 jobs, 0 errors, all validation gates pass; 18,951 Context sources. Dev→holdout comparison in
+analysis/DEV_VS_HOLDOUT.md. Replicated: (i) prompt-anchor query probes add nothing (D − C −0.018…+0.007, all CIs
+cross 0); (ii) propagation gains at the consuming query add nothing (G1g − F ≈ 0 in all cells); one-loop E features
+(G1) help only Ouro-CR (+0.027 [0.009,0.045]) and not elsewhere — not a robust recurrence feature; (iii) the future
+consuming query's attention is the main missing information (F − C +0.058 [0.019,0.098] Huginn-CR, +0.029 [0.001,0.060]
+Huginn-Hotpot, +0.017/+0.027 Ouro with CIs crossing 0; prompt-attention-matched informative pairs are 1–3.6 decades
+apart in damage and the future query's attention orders 82–93% of them); (iv) loop-resolved: Huginn loop-1 attention
+ρ ≈ 0.00–0.03 vs 0.19–0.21 at loops ≥16 for all three queries; Ouro loop-1 0.07–0.10 vs loop-4 0.16; (v) exit: Huginn
+changes depth for 21–33% of generated queries, Ouro 0.5–1%; live − recorded-replay ≈ 0 (Huginn-Hotpot −0.006
+[−0.008,−0.005], a tiny benefit), so the live exit response is not a quality mechanism.
