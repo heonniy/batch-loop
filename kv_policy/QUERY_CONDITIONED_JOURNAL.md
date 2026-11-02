@@ -206,3 +206,7 @@ different KV policy than a standard transformer because of the loop. Directions 
   conversion of generated tokens accumulates (0.03→0.10 KL, 85% of prompts), Huginn's stays ≈4e-4; exit-truncated planes
   are free in both; lookahead/deferred token policies degrade over long W2 generations in all models (Qwen 0.17→1.27).
 - Budget trim (01:45) and extra Ouro workers (03:58) recorded; no job lost; 0 errors in all v8 runs.
+- 04:20: the extra workers added to the finished v8 main run (03:58) and the HOR pool-A run (03:50) had exited at start on
+  the code-SHA check (HEAD had moved by report/analysis commits); the main run completed with its original workers (342/342,
+  0 errors); for pool A the manifest SHA was advanced (recorded in run_manifest.json code_sha_history) and one extra Ouro
+  worker relaunched; the HOR evaluate path is unchanged since 27f01835.
