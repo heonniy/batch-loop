@@ -656,6 +656,45 @@ def clean_exit_calibration(run: Path, out: Path, md: list):
     return summ
 
 
+# ------------------------------------------------------------------------------------------- per-prompt reports
+def per_prompt_reports(st: pd.DataFrame, exit_rows, out: Path):
+    """ONE readable report per unit: the most harmful sources with every feature family side by side, the tiny-effect
+    flag, matched pairs and the live-exit subset (if present)."""
+    d = out / "per_prompt"
+    d.mkdir(exist_ok=True)
+    ex = pd.DataFrame(exit_rows) if exit_rows else None
+    for unit, g in st.groupby("unit"):
+        g = g.sort_values("kl_mean", ascending=False)
+        m = [f"# {unit}", "", f"sources {len(g)}, prompt tokens {int(g.P.iloc[0])}, gold continuation {int(g.n_targets.iloc[0])} tokens; "
+             f"evidence tokens {int(g.is_evidence.sum())}", "",
+             "Tiny-effect flags: anchor-probe KL < 1e-4 is at the BF16 floor; E_R ≈ 0.013–0.016 for any mask.", "",
+             "| rank | pos | tok | role | Y mean KL | ΔNLL | qa attn | qa δ | lookahead attn (t≤2) | future attn @t* (t*) | "
+             "future δ @t* | qa probe KL | qf probe KL | qf E_R | qf loop1 gain | src U mean |",
+             "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+        for k, (_, r) in enumerate(g.head(15).iterrows(), 1):
+            m.append(f"| {k} | {int(r.source)} | `{str(r.tok_str).strip()}` | {r.role[:4]} | {_f(r.kl_mean)} | {_f(r.nll_shift_mean)} | "
+                     f"{_f(r.qa_attn_mean, 2)} | {_f(r.qa_delta_mean, 2)} | {_f(r.get('la12_attn_max'), 2)} | "
+                     f"{_f(r.get('fut_attn_at_t'), 2)} ({_f(r.get('fut_t'), 2)}) | {_f(r.get('fut_delta_at_t'), 2)} | "
+                     f"{_f(r.get('qa_all_kl'), 2)} | {_f(r.get('qf_all_kl'), 2)} | {_f(r.get('qf_all_E_R'), 2)} | "
+                     f"{_f(r.get('qf_loop1_gain'), 2)} | {_f(r.src_U_mean, 2)} |")
+        m += ["", "Within-prompt Spearman with Y: " + ", ".join(
+            f"{c}={_f(_spearman(g[c], g.kl_mean), 2)}" for c in ("qa_attn_mean", "qa_delta_mean", "la12_attn_max", "fut_attn_at_t",
+                                                                 "fut_delta_at_t", "qa_all_kl", "qf_all_kl", "src_U_mean") if c in g.columns), ""]
+        if ex is not None and "uid" in ex.columns:
+            e = ex[(ex.uid == g.uid.iloc[0]) & (ex.model == g.model.iloc[0])]
+            if len(e):
+                m += ["## Live exit subset", "", "| pos | top-attn pick | clean mean depth | frac depth changed | Σdepth Δ | fixed ΔNLL | replay ΔNLL | live ΔNLL | EM full→evict |",
+                      "|---|---|---|---|---|---|---|---|---|"]
+                for _, r in e.sort_values("fixed_penalty", ascending=False).iterrows():
+                    if "error" in e.columns and isinstance(r.get("error"), str):
+                        m.append(f"| {int(r.source)} | parity error: {r.error} |")
+                        continue
+                    m.append(f"| {int(r.source)} | {r.in_top_attention} | {_f(r.clean_mean_depth)} | {_f(r.frac_changed)} | {int(r.total_depth_delta)} | "
+                             f"{_f(r.fixed_penalty)} | {_f(r.replay_penalty)} | {_f(r.live_penalty)} | {int(r.em_full)}→{int(r.em_evict)} |")
+                m.append("")
+        (d / f"{unit}.md").write_text("\n".join(m))
+
+
 # ------------------------------------------------------------------------------------------- main
 def analyze(run: Path) -> dict:
     out = run / "analysis"
@@ -683,8 +722,9 @@ def analyze(run: Path) -> dict:
         floor_and_gain(v6, out / "v6", md) if (out / "v6").mkdir(exist_ok=True) or True else None
         univariate(v6, out / "v6", md)
         prediction(v6, out / "v6", md)
-    exit_arms(run, st, out, md)
+    ex = exit_arms(run, st, out, md)
     clean_exit_calibration(run, out, md)
+    per_prompt_reports(st, ex, out)
     (out / "QUERY_CONDITIONED_FINDINGS.md").write_text("\n".join(md))
     return {"complete": comp["complete"], "n_sources": len(st), "units": int(st.unit.nunique()),
             "missing": len(comp["missing"]), "errors": comp["errors"], "problems": comp["problems"]}
