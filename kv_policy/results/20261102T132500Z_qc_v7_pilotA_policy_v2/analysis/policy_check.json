@@ -1,0 +1,1730 @@
+[
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "def4_late",
+  "dnll": 0.6786447730377405,
+  "dnll_ci": [
+   0.3189193045103821,
+   0.9883123967869325
+  ],
+  "kl": 0.8339818857048261,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "def4_r1",
+  "dnll": 1.3971506707639492,
+  "dnll_ci": [
+   1.2823044311098784,
+   1.4914451799721065
+  ],
+  "kl": 1.6063397809184607,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "def4_rR",
+  "dnll": 0.6631193487110068,
+  "dnll_ci": [
+   0.3103275834626402,
+   0.9632788124781657
+  ],
+  "kl": 0.8229334789953513,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "def4_sum",
+  "dnll": 0.7146306643149728,
+  "dnll_ci": [
+   0.3259949624860383,
+   1.057255380112838
+  ],
+  "kl": 0.8713885531107983,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "fut_oracle_late",
+  "dnll": -0.052050709618924856,
+  "dnll_ci": [
+   -0.06181852653171517,
+   -0.04400511372969046
+  ],
+  "kl": 0.008285372932939274,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "la2_late",
+  "dnll": 1.0009660035962953,
+  "dnll_ci": [
+   0.7895304885056249,
+   1.1954633813165858
+  ],
+  "kl": 1.1916740786558337,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "la2_r1",
+  "dnll": 2.406480706802904,
+  "dnll_ci": [
+   2.0800472829252614,
+   2.6314698255215263
+  ],
+  "kl": 2.409634175644235,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "la2_rR",
+  "dnll": 1.0500809500288595,
+  "dnll_ci": [
+   0.8288395442017646,
+   1.2292488615439652
+  ],
+  "kl": 1.2407154300023482,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "la2_sum",
+  "dnll": 1.2824854710510407,
+  "dnll_ci": [
+   1.1026074548844917,
+   1.431594473968289
+  ],
+  "kl": 1.448681251307903,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "def4_late",
+  "dnll": 0.3133958055574112,
+  "dnll_ci": [
+   -0.034101834809553117,
+   0.6479840562060417
+  ],
+  "kl": 0.3957293978919913,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "def4_r1",
+  "dnll": 1.1638628045693622,
+  "dnll_ci": [
+   0.9643411834365906,
+   1.3317429297158014
+  ],
+  "kl": 1.3707276657705216,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "def4_rR",
+  "dnll": 0.3249463651365659,
+  "dnll_ci": [
+   0.06422677411464975,
+   0.5955800062232811
+  ],
+  "kl": 0.4068752144440514,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "def4_sum",
+  "dnll": 0.4614371364650651,
+  "dnll_ci": [
+   0.1625728029946913,
+   0.7706328419857529
+  ],
+  "kl": 0.5591188854092919,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "fut_oracle_late",
+  "dnll": -0.03516220156907364,
+  "dnll_ci": [
+   -0.04090348469444506,
+   -0.02945534911441429
+  ],
+  "kl": 0.0047323985171539625,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "la2_late",
+  "dnll": 0.40578778077469907,
+  "dnll_ci": [
+   0.13817177303862985,
+   0.6462140708288643
+  ],
+  "kl": 0.5065965630217462,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "la2_r1",
+  "dnll": 1.0772545356132466,
+  "dnll_ci": [
+   0.5718256868109164,
+   1.469505152188685
+  ],
+  "kl": 1.1664257612640292,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "la2_rR",
+  "dnll": 0.39354853890217784,
+  "dnll_ci": [
+   0.13801967686176791,
+   0.6196753158750654
+  ],
+  "kl": 0.49533642243849707,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "la2_sum",
+  "dnll": 0.43427181271781595,
+  "dnll_ci": [
+   0.21102973917786585,
+   0.6234655641073914
+  ],
+  "kl": 0.5488465188564956,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "def4_late",
+  "dnll": 0.3406765761901625,
+  "dnll_ci": [
+   -0.0149512944039088,
+   0.6771587607230687
+  ],
+  "kl": 0.36550832940864486,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "def4_r1",
+  "dnll": 1.0254903593073323,
+  "dnll_ci": [
+   0.5483694911812564,
+   1.4576698954080713
+  ],
+  "kl": 1.1514821876507892,
+  "em": 0.125,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "def4_rR",
+  "dnll": 0.2757036348120892,
+  "dnll_ci": [
+   -0.011337748119876756,
+   0.5639162107214362
+  ],
+  "kl": 0.2985114977084774,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "def4_sum",
+  "dnll": 0.268262333327948,
+  "dnll_ci": [
+   -0.014599831308260036,
+   0.5397757602579076
+  ],
+  "kl": 0.2992604488200137,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "fut_oracle_late",
+  "dnll": -0.0202474252256252,
+  "dnll_ci": [
+   -0.02257494776677048,
+   -0.017718897154736638
+  ],
+  "kl": 0.0019249899315693401,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "la2_late",
+  "dnll": 0.315062083855446,
+  "dnll_ci": [
+   0.07946655237064991,
+   0.5844332666474658
+  ],
+  "kl": 0.37572621357057556,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "la2_r1",
+  "dnll": 0.8959479810302583,
+  "dnll_ci": [
+   0.463733904910805,
+   1.2192978565934027
+  ],
+  "kl": 0.9761064201684968,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "la2_rR",
+  "dnll": 0.31472731965332057,
+  "dnll_ci": [
+   0.08087867232297867,
+   0.5829100718459813
+  ],
+  "kl": 0.3755535708476979,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "la2_sum",
+  "dnll": 0.4438366797830895,
+  "dnll_ci": [
+   0.13946786921569582,
+   0.7470476681770378
+  ],
+  "kl": 0.5102355678160548,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "def4_late",
+  "dnll": -0.15610208696103972,
+  "dnll_ci": [
+   -0.2966930148911131,
+   -0.0628556448842747
+  ],
+  "kl": 0.04314344288468906,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "def4_r1",
+  "dnll": 0.015845579144431743,
+  "dnll_ci": [
+   -0.24691804000403864,
+   0.40533436046887444
+  ],
+  "kl": 0.4174648454308627,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "def4_rR",
+  "dnll": -0.1602913819604871,
+  "dnll_ci": [
+   -0.3049380401993158,
+   -0.0646791855247103
+  ],
+  "kl": 0.05156505083231304,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "def4_sum",
+  "dnll": -0.11792316936037293,
+  "dnll_ci": [
+   -0.2829661184321594,
+   0.007516081276493711
+  ],
+  "kl": 0.09325137794210989,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "fut_oracle_late",
+  "dnll": -0.0916529350661972,
+  "dnll_ci": [
+   -0.1474924979494452,
+   -0.03170067270257271
+  ],
+  "kl": 0.04637060516957782,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "la2_late",
+  "dnll": 0.14204069649056345,
+  "dnll_ci": [
+   -0.2042606779386742,
+   0.5966748691993199
+  ],
+  "kl": 0.3385589858598973,
+  "em": 0.125,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "la2_r1",
+  "dnll": 1.3461771286404713,
+  "dnll_ci": [
+   0.4698138142456122,
+   2.252931683783321
+  ],
+  "kl": 1.4067163318247078,
+  "em": 0.125,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "la2_rR",
+  "dnll": 0.13273167849306228,
+  "dnll_ci": [
+   -0.22336364061292052,
+   0.5935540651348197
+  ],
+  "kl": 0.33442080346463476,
+  "em": 0.125,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "la2_sum",
+  "dnll": 0.15010692566452744,
+  "dnll_ci": [
+   -0.1844001508894002,
+   0.5898216386656715
+  ],
+  "kl": 0.3446254085490252,
+  "em": 0.125,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "def4_late",
+  "dnll": -0.047703697658663335,
+  "dnll_ci": [
+   -0.08411837780611472,
+   -0.006785550850872707
+  ],
+  "kl": 0.006286134508120053,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "def4_r1",
+  "dnll": -0.0832608651661007,
+  "dnll_ci": [
+   -0.1886608402265015,
+   0.01999935672467673
+  ],
+  "kl": 0.09945743510303603,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "def4_rR",
+  "dnll": -0.07411572861754337,
+  "dnll_ci": [
+   -0.11829464693183822,
+   -0.024898435800293717
+  ],
+  "kl": 0.007032471913557883,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "def4_sum",
+  "dnll": -0.04082771113819672,
+  "dnll_ci": [
+   -0.07534809626783201,
+   -0.0006059904249519632
+  ],
+  "kl": 0.007005114909743714,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "fut_oracle_late",
+  "dnll": -0.029981433840711086,
+  "dnll_ci": [
+   -0.07056414998871821,
+   0.019469514936988952
+  ],
+  "kl": 0.0068420891070718965,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "la2_late",
+  "dnll": 0.006740221780679373,
+  "dnll_ci": [
+   -0.07528484420292642,
+   0.1408757940791474
+  ],
+  "kl": 0.06313041610654214,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "la2_r1",
+  "dnll": 0.9924232305614488,
+  "dnll_ci": [
+   0.1363318709312403,
+   2.0952171064110843
+  ],
+  "kl": 0.9121047734922023,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "la2_rR",
+  "dnll": 0.011642764544727208,
+  "dnll_ci": [
+   -0.07009072191600096,
+   0.14015498366043178
+  ],
+  "kl": 0.06514293147085153,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "la2_sum",
+  "dnll": 0.02053356526382072,
+  "dnll_ci": [
+   -0.0739624521318532,
+   0.17237923379767126
+  ],
+  "kl": 0.08824326497999622,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "def4_late",
+  "dnll": -0.031195501746887705,
+  "dnll_ci": [
+   -0.05345116769107594,
+   -0.0029617085143400224
+  ],
+  "kl": 0.002323461823413453,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "def4_r1",
+  "dnll": -0.0905284520527756,
+  "dnll_ci": [
+   -0.22985474882370907,
+   0.016005532710935078
+  ],
+  "kl": 0.05635158559653551,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "def4_rR",
+  "dnll": -0.02201569563404185,
+  "dnll_ci": [
+   -0.038753862400179556,
+   -0.0010573259252850686
+  ],
+  "kl": 0.0022191738068405202,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "def4_sum",
+  "dnll": -0.02055586280557692,
+  "dnll_ci": [
+   -0.041578453085094225,
+   0.0033144432094558973
+  ],
+  "kl": 0.002471970620826692,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "fut_oracle_late",
+  "dnll": -0.025145884624406922,
+  "dnll_ci": [
+   -0.048904943652091526,
+   0.005619194814850514
+  ],
+  "kl": 0.002350087436599933,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "la2_late",
+  "dnll": -0.03198846118485668,
+  "dnll_ci": [
+   -0.06106337904015571,
+   0.002049294264846402
+  ],
+  "kl": 0.010041547722077836,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "la2_r1",
+  "dnll": 0.8236374396309946,
+  "dnll_ci": [
+   0.19399807539588695,
+   1.6440895716206954
+  ],
+  "kl": 0.7917172375555104,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "la2_rR",
+  "dnll": -0.024422042033743235,
+  "dnll_ci": [
+   -0.050494068205132,
+   0.006322092440918831
+  ],
+  "kl": 0.008906519269189197,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "la2_sum",
+  "dnll": 0.005793338187182667,
+  "dnll_ci": [
+   -0.06245940952540974,
+   0.1198360748327105
+  ],
+  "kl": 0.0704344862348768,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "def4_late",
+  "dnll": 0.38983272234763716,
+  "dnll_ci": [
+   0.10184106365923072,
+   0.6496156430475821
+  ],
+  "kl": 0.3735885086538143,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "def4_r1",
+  "dnll": 0.9080366435329779,
+  "dnll_ci": [
+   0.46239898257044837,
+   1.2565522444070665
+  ],
+  "kl": 0.8115829030538284,
+  "em": 0.25,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "def4_rR",
+  "dnll": 0.32351123750340777,
+  "dnll_ci": [
+   -0.0016288588674797187,
+   0.64063977458718
+  ],
+  "kl": 0.313363975073199,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "def4_sum",
+  "dnll": 0.6208534260920714,
+  "dnll_ci": [
+   0.2429645284537401,
+   0.9791088481033511
+  ],
+  "kl": 0.5723619426058907,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "fut_oracle_late",
+  "dnll": -0.008469604797573995,
+  "dnll_ci": [
+   -0.013513052927009996,
+   -0.003780404569988606
+  ],
+  "kl": 0.006920408674535462,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "la2_late",
+  "dnll": 0.9844788072106895,
+  "dnll_ci": [
+   0.790931884325255,
+   1.1717784540516731
+  ],
+  "kl": 0.9089543865636023,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "la2_r1",
+  "dnll": 1.786076308239717,
+  "dnll_ci": [
+   1.6774381431278018,
+   1.8902684178203344
+  ],
+  "kl": 1.5702046242728431,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "la2_rR",
+  "dnll": 1.0823731212774874,
+  "dnll_ci": [
+   0.813997979011765,
+   1.3139042235961824
+  ],
+  "kl": 0.9938867798131551,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.1,
+  "policy": "la2_sum",
+  "dnll": 1.0800669300668233,
+  "dnll_ci": [
+   0.8611900279865949,
+   1.2851525984580803
+  ],
+  "kl": 0.9856053957121895,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "def4_late",
+  "dnll": 0.21227229459618682,
+  "dnll_ci": [
+   -0.0024182100089092246,
+   0.4690249972540186
+  ],
+  "kl": 0.19724958185149302,
+  "em": 0.75,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "def4_r1",
+  "dnll": 0.40810849700865215,
+  "dnll_ci": [
+   0.1311062224813213,
+   0.7044086570167564
+  ],
+  "kl": 0.3724024304582372,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "def4_rR",
+  "dnll": 0.18683439452288436,
+  "dnll_ci": [
+   -0.0032294842632836687,
+   0.42777127094232126
+  ],
+  "kl": 0.17506320256677554,
+  "em": 0.75,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "def4_sum",
+  "dnll": 0.21146823743038112,
+  "dnll_ci": [
+   -0.002492932564928196,
+   0.4666565012827049
+  ],
+  "kl": 0.1965461286638298,
+  "em": 0.75,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "fut_oracle_late",
+  "dnll": -0.00280480985820759,
+  "dnll_ci": [
+   -0.004682994628092274,
+   -0.00102650065382477
+  ],
+  "kl": 0.0013094186322591254,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "la2_late",
+  "dnll": 0.12039917107977088,
+  "dnll_ci": [
+   -0.008777811606705656,
+   0.37331418606700023
+  ],
+  "kl": 0.11525705687119046,
+  "em": 0.875,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "la2_r1",
+  "dnll": 1.224399832587369,
+  "dnll_ci": [
+   1.0959693040684215,
+   1.333260196584888
+  ],
+  "kl": 1.1025046251481234,
+  "em": 0.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "la2_rR",
+  "dnll": 0.1269517384484061,
+  "dnll_ci": [
+   -0.008469040142517769,
+   0.39329682471288824
+  ],
+  "kl": 0.12146291528593298,
+  "em": 0.875,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.3,
+  "policy": "la2_sum",
+  "dnll": 0.33965524270315656,
+  "dnll_ci": [
+   -0.0008647249560453912,
+   0.6419712183822412
+  ],
+  "kl": 0.30921445043149604,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "def4_late",
+  "dnll": -0.0013233077945187695,
+  "dnll_ci": [
+   -0.0033349440665915633,
+   0.0008421669248491557
+  ],
+  "kl": 0.0006327166187686958,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "def4_r1",
+  "dnll": 0.1701274155129795,
+  "dnll_ci": [
+   -0.00098673559550661,
+   0.3886439415611676
+  ],
+  "kl": 0.15641924873260263,
+  "em": 0.75,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "def4_rR",
+  "dnll": -0.001960133402462814,
+  "dnll_ci": [
+   -0.004211766163643913,
+   0.00032627013642923426
+  ],
+  "kl": 0.0007907846259136228,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "def4_sum",
+  "dnll": 0.0013724944205023328,
+  "dnll_ci": [
+   -0.000785699510743143,
+   0.004266018538328352
+  ],
+  "kl": 0.000734988086197642,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "fut_oracle_late",
+  "dnll": -0.0018164520064601706,
+  "dnll_ci": [
+   -0.0034429467210429724,
+   -0.00033742887098924673
+  ],
+  "kl": 0.0005438855707056559,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "la2_late",
+  "dnll": -0.000456260415376164,
+  "dnll_ci": [
+   -0.002717888288316317,
+   0.0014868948055664095
+  ],
+  "kl": 0.0007593099218700611,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "la2_r1",
+  "dnll": 0.7186092934469342,
+  "dnll_ci": [
+   0.28923255309782686,
+   1.0938315318730019
+  ],
+  "kl": 0.6515469168595327,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "la2_rR",
+  "dnll": -6.647539266850695e-05,
+  "dnll_ci": [
+   -0.002259529782168101,
+   0.002307390658825171
+  ],
+  "kl": 0.0009514703069209479,
+  "em": 1.0,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "keep": 0.5,
+  "policy": "la2_sum",
+  "dnll": 0.12459956459570093,
+  "dnll_ci": [
+   -0.0009987127596105,
+   0.3725566731278377
+  ],
+  "kl": 0.11284048114551257,
+  "em": 0.875,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "def4_late",
+  "dnll": -0.0070672650156045486,
+  "dnll_ci": [
+   -0.0168765636117314,
+   0.004856583824111457
+  ],
+  "kl": 0.008597265633353519,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "def4_r1",
+  "dnll": -0.011040308944962267,
+  "dnll_ci": [
+   -0.03727738506896125,
+   0.010100955014821132
+  ],
+  "kl": 0.028969202712574943,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "def4_rR",
+  "dnll": -0.007552126155254281,
+  "dnll_ci": [
+   -0.02037109647984229,
+   0.004961423799492569
+  ],
+  "kl": 0.010710988653328882,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "def4_sum",
+  "dnll": -0.017811456373694058,
+  "dnll_ci": [
+   -0.04004930697937241,
+   0.0023444372906519795
+  ],
+  "kl": 0.008930564983962714,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "fut_oracle_late",
+  "dnll": -0.013707932442059884,
+  "dnll_ci": [
+   -0.03597729014090012,
+   0.0034999659580838526
+  ],
+  "kl": 0.008612800177182916,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "la2_late",
+  "dnll": 0.07386258461028483,
+  "dnll_ci": [
+   -0.011283630589605353,
+   0.22158213825420553
+  ],
+  "kl": 0.07576105953581819,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "la2_r1",
+  "dnll": 1.604237102258776,
+  "dnll_ci": [
+   0.7709984087812093,
+   2.467265356174903
+  ],
+  "kl": 1.2352644871549794,
+  "em": 0.125,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "la2_rR",
+  "dnll": 0.006831512049497453,
+  "dnll_ci": [
+   -0.014500985235402657,
+   0.02905911050495761
+  ],
+  "kl": 0.017758496506866367,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.1,
+  "policy": "la2_sum",
+  "dnll": 0.07272129684946747,
+  "dnll_ci": [
+   -0.011529445180591846,
+   0.18370555768615018
+  ],
+  "kl": 0.06474132596131096,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "def4_late",
+  "dnll": -0.0018301359094616589,
+  "dnll_ci": [
+   -0.009638075630775574,
+   0.005815113131843852
+  ],
+  "kl": 0.002274797772404435,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "def4_r1",
+  "dnll": -0.001848465353777147,
+  "dnll_ci": [
+   -0.017997669956613574,
+   0.011857384992375312
+  ],
+  "kl": 0.004807629087497931,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "def4_rR",
+  "dnll": 0.0011424392549319248,
+  "dnll_ci": [
+   -0.006724133024949369,
+   0.008682762590234164
+  ],
+  "kl": 0.00205077168287365,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "def4_sum",
+  "dnll": 0.011718227972631279,
+  "dnll_ci": [
+   -0.0006885154541426824,
+   0.024505685945872997
+  ],
+  "kl": 0.0031752790381839686,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "fut_oracle_late",
+  "dnll": -0.0008695855523997466,
+  "dnll_ci": [
+   -0.008563922819614926,
+   0.007281557453097762
+  ],
+  "kl": 0.0021405003083957907,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "la2_late",
+  "dnll": -0.0011336016244419614,
+  "dnll_ci": [
+   -0.005137310799147518,
+   0.00250444815589744
+  ],
+  "kl": 0.0021217310302203947,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "la2_r1",
+  "dnll": 0.3098786540714966,
+  "dnll_ci": [
+   0.13222534398082644,
+   0.48335107196956717
+  ],
+  "kl": 0.13799733340186515,
+  "em": 0.375,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "la2_rR",
+  "dnll": 0.0046399410860243386,
+  "dnll_ci": [
+   -0.005112830665247099,
+   0.014392712837295776
+  ],
+  "kl": 0.0020095411390197372,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.3,
+  "policy": "la2_sum",
+  "dnll": 0.012299080624310708,
+  "dnll_ci": [
+   -0.0012622678869067434,
+   0.02642693465937294
+  ],
+  "kl": 0.008212059095389381,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "def4_late",
+  "dnll": 0.0005090297186157687,
+  "dnll_ci": [
+   -0.003494576243004602,
+   0.004423062706926065
+  ],
+  "kl": 0.0007853235360156098,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "def4_r1",
+  "dnll": 0.008077872498053303,
+  "dnll_ci": [
+   -0.0012087020534737383,
+   0.020380231796067128
+  ],
+  "kl": 0.0015312635128577226,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "def4_rR",
+  "dnll": -0.0013550702148229996,
+  "dnll_ci": [
+   -0.006936928747907384,
+   0.003926183601115074
+  ],
+  "kl": 0.0009233563950528735,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "def4_sum",
+  "dnll": -0.0016488688101018306,
+  "dnll_ci": [
+   -0.008627771076539316,
+   0.0039494743151451475
+  ],
+  "kl": 0.0009172148861696747,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "fut_oracle_late",
+  "dnll": 0.003438953977814581,
+  "dnll_ci": [
+   -0.0026840402454133827,
+   0.01073660199650072
+  ],
+  "kl": 0.0008447704840423718,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "la2_late",
+  "dnll": -0.002610391439128095,
+  "dnll_ci": [
+   -0.008276877350807697,
+   0.002941933898777241
+  ],
+  "kl": 0.0007576567243566906,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "la2_r1",
+  "dnll": 0.0548492484853976,
+  "dnll_ci": [
+   -0.032885654722867044,
+   0.19809682732544992
+  ],
+  "kl": 0.027388118413636045,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "la2_rR",
+  "dnll": -0.0001664096230385853,
+  "dnll_ci": [
+   -0.005013887011141138,
+   0.005122714980305844
+  ],
+  "kl": 0.0007888845526828109,
+  "em": 0.5,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "keep": 0.5,
+  "policy": "la2_sum",
+  "dnll": -0.002815245911811589,
+  "dnll_ci": [
+   -0.009439567567148605,
+   0.0044031905068550314
+  ],
+  "kl": 0.0009130804017624022,
+  "em": 0.625,
+  "dnll_vs_random": NaN,
+  "dnll_vs_random_ci": null,
+  "em_vs_random": NaN
+ }
+]

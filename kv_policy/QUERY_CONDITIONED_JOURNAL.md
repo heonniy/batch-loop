@@ -128,3 +128,14 @@ from the pilot-A REF census; outcomes = fixed-depth gold ΔNLL_future, KL to FUL
   reaches CR EM 0.25/0.5/0.62 (10/30/50%) vs 0.75/1.0/1.0 with loop-R attention on Huginn; on Ouro (R=4) both are 1.0.
 - Follow-up launched (policy v2): loop-resolved lookahead / deferred variants (la2_r1/rR/late, def4_r1/rR/late) to
   test whether the late-loop advantage also holds for the deployable scores.
+
+## 2026-11-02 — E5: loop-resolved deployable scores (results/20261102T132500Z_qc_v7_pilotA_policy_v2)
+
+Same 32 dev units, same budgets; variants of the lookahead (la2) and deferred (def4) scores built from ONE loop's
+attention. In BOTH models the loop-1 variant is far worse than the loop-R / late-half variant:
+CR 10%: Huginn la2_r1 ΔNLL 2.41 vs la2_rR 1.05, def4_r1 1.40 (EM 0) vs def4_rR 0.66 (EM 0.25); Ouro la2_r1 1.79 vs
+la2_rR 1.08, def4_r1 0.91 (EM 0.25) vs def4_rR 0.32 (EM 0.62). HotpotQA 10%: la2_r1 1.35 / 1.60 vs la2_rR 0.13 / 0.007.
+The late-loop advantage therefore holds for deployable scores, not only for the oracle. "Late half mean" ≈ loop R.
+Interpretation: in a recurrent-depth model the first recurrence's attention is a poor importance signal; the KV that
+matters is read in the later recurrences. This is the recurrence-specific part of "attention is insufficient"; the
+rest is query mismatch (prompt query vs consuming generated query).
