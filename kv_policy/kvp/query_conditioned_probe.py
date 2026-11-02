@@ -64,11 +64,13 @@ class PlaneMapProbeKV(RoleProbeKV):
         vb[:, :, c0:c1] = v
         keys = kb[:, :, :c1].clone()
         vals = vb[:, :, :c1].clone()
-        P = self.plane_cols
-        idx = m[r]                                            # (P,) plane per prompt column
-        ar = torch.arange(P, device=idx.device)
-        keys[0, :, :P] = self.rk[li][idx, 0, :, ar, :].permute(1, 0, 2)   # (P,H,D) -> (H,P,D)
-        vals[0, :, :P] = self.rv[li][idx, 0, :, ar, :].permute(1, 0, 2)
+        # plane_map is (R, P) for prompt-only maps or (R, T) when generated columns are converted too; every
+        # historical column < c0 covered by the map reads its mapped plane (identity entries read plane r).
+        n = min(c0, m.shape[1])
+        idx = m[r, :n]
+        ar = torch.arange(n, device=idx.device)
+        keys[0, :, :n] = self.rk[li][idx, 0, :, ar, :].permute(1, 0, 2)   # (n,H,D) -> (H,n,D)
+        vals[0, :, :n] = self.rv[li][idx, 0, :, ar, :].permute(1, 0, 2)
         self.plane_reads = getattr(self, "plane_reads", 0) + 1
         return F.scaled_dot_product_attention(q, keys, vals, attn_mask=mask)
 
@@ -273,8 +275,8 @@ class QueryConditionedRunner(PersistentEvictionRunner):
             return
         m = torch.as_tensor(np.asarray(plane_map), dtype=torch.long, device=self.device) if not torch.is_tensor(plane_map) \
             else plane_map.to(self.device, torch.long)
-        if m.shape != (self.R, self.P) or int(m.min()) < 0 or int(m.max()) >= self.R:
-            raise ValueError("plane_map must be (R, P) with valid plane indices")
+        if m.shape[0] != self.R or m.shape[1] not in (self.P, self.T) or int(m.min()) < 0 or int(m.max()) >= self.R:
+            raise ValueError("plane_map must be (R, P) or (R, T) with valid plane indices")
         self.kv.plane_map = m
         self.kv.plane_reads = 0
 

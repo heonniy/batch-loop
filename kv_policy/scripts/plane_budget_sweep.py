@@ -72,6 +72,17 @@ def prepare(run: Path, cfg: dict):
                         for k in range(0, len(content), cs):
                             jobs.append(base | {"kind": "PLN", "key": f"PLN__{unit}__{k // cs:03d}", "depends": refk,
                                                 "sources": content[k:k + cs], "variants": variants})
+    if cfg.get("v6_pool"):
+        from query_conditioned_sweep import V6_RUN
+        v6 = json.loads((V6_RUN / "jobs.json").read_text())
+        man = {x["item_id"]: x for x in json.loads((V6_RUN / "manifest.json").read_text())}
+        for ref in (j for j in v6 if j["kind"] == "Bref" and j["model"] in cfg["models"]
+                    and man[j["item_id"]]["pool"] in cfg["v6_pool"]):
+            unit = f"{ref['model']}__v6{ref['workload']}__{ref['item_id']}"
+            base = {"model": ref["model"], "dataset": f"v6_{ref['workload']}", "uid": ref["uid"], "unit": unit, "v6_key": ref["key"],
+                    "item_id": ref["item_id"], "split": man[ref["item_id"]]["pool"], "prompt_len": ref["prompt_len"]}
+            units.append(base)
+            jobs.append(base | {"kind": "HOR", "key": f"HOR__{unit}"})
     if len({j["key"] for j in jobs}) != len(jobs):
         raise RuntimeError("Duplicate job keys")
     _json(run / "jobs.json", jobs)
@@ -107,6 +118,19 @@ def clean_exit_depths(r, R: int) -> "list[int]":
             dist = ex["distance_fp32"]
             d = next((k for k in range(2, R + 1) if dist[k - 1] < EXIT_THRESH["huginn"] or k == R), R)
         out.append(int(d))
+    return out
+
+
+def generated_exit_depths(r, R: int) -> "list[int]":
+    fam = r.bb.family
+    out = []
+    for ex in r.ref_exit:
+        if fam == "ouro":
+            cum = ex["cumulative"]
+            out.append(next((k for k in range(2, R + 1) if k == R or cum[k - 1] >= EXIT_THRESH["ouro"]), R))
+        else:
+            dist = ex["distance_fp32"]
+            out.append(next((k for k in range(2, R + 1) if dist[k - 1] < EXIT_THRESH["huginn"] or k == R), R))
     return out
 
 
@@ -185,6 +209,8 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
                                                              "validation_s": time.time() - t0},
                                                   "peak_gpu_bytes": torch.cuda.max_memory_allocated()})
         return
+    if job["kind"] == "HOR":
+        return _evaluate_horizon(bb, job, cfg, raw, meta, r, p, content, qa, recv, ga, settle, dig)
     ref = json.loads((raw / f"{job['depends']}.json").read_text())
     if abs(dig - ref["ref_state_digest"]) > 1e-3 * max(1.0, dig):
         raise RuntimeError(f"Reference digest drift {dig} vs {ref['ref_state_digest']}")
@@ -270,6 +296,86 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
     raise RuntimeError(job["kind"])
 
 
+def _evaluate_horizon(bb, job, cfg, raw, meta, r, p, content, qa, recv, ga, settle, dig):
+    """Decode-horizon growth of damage over the frozen v6 128-token greedy continuation: plane compression of prompt
+    tokens only vs prompt + generated tokens (converted after each token finishes), token eviction, and mixed arms."""
+    import torch
+    from kvp.plane_policies import plane_map_from_sets, plane_sets
+    from query_conditioned_sweep import V6_RUN
+    v6meta = json.loads((V6_RUN / "raw" / f"{job['v6_key']}.json").read_text())
+    if r.ref["frozen_argmax_agreement"] < 1.0 or abs(dig - v6meta["ref_state_digest"]) > 1e-3 * max(1.0, dig):
+        raise RuntimeError("Frozen v6 reference not reproduced")
+    vp = r.validate_planes()
+    if not vp["pass"]:
+        raise RuntimeError(f"plane validation failed: {vp}")
+    R, P, n, T = bb.R, r.P, len(r.ref_ids), r.T
+    gen_cols = list(range(P, P + n))
+    exit_p = np.array(clean_exit_depths(r, R))
+    exit_g = np.array(generated_exit_depths(r, R))
+    half = max(1, R // 2)
+    sc = token_scores(job["unit"], content, P, qa, recv, ga)
+    ident_T = np.tile(np.arange(R)[:, None], (1, T))
+
+    def pmap(sets_prompt, sets_gen=None, sem="nearest"):
+        m = plane_map_from_sets(sets_prompt, R, P, sem)
+        full = ident_T.copy()
+        full[:, :P] = m
+        if sets_gen:
+            mg = plane_map_from_sets({c - P: v for c, v in sets_gen.items()}, R, n, sem)
+            full[:, P:P + n] = mg
+        return full
+
+    arms = []
+    for scope in ("prompt", "prompt+generated"):
+        gen = scope == "prompt+generated"
+        for pol, k in (("last", 1), ("even", half), ("first", None), ("exit", None)):
+            if pol == "first":
+                sp_ = {c: np.array([0]) for c in content}
+                sg = {c: np.array([0]) for c in gen_cols} if gen else None
+                sem = "nearest"
+            elif pol == "exit":
+                sp_ = {c: np.arange(int(exit_p[c])) for c in content}
+                sg = {c: np.arange(int(exit_g[c - P])) for c in gen_cols} if gen else None
+                sem = "latest"
+            else:
+                sp_ = plane_sets(pol, content, R, k)
+                sg = plane_sets(pol, gen_cols, R, k) if gen else None
+                sem = "nearest"
+            arms.append({"axis": "plane", "scope": scope, "plane_policy": pol, "token_score": "none", "evicted": [],
+                         "map": pmap(sp_, sg, sem), "planes_prompt": int(sum(len(np.unique(v)) for v in sp_.values()))})
+    n_keep = max(1, int(round(0.3 * len(content))))
+    for name in ("random_11", "la2_rR", "def4_rR", "fut_oracle_rR", "qa_rR"):
+        order = sorted(range(len(content)), key=lambda j: (-float(sc[name][content[j]]), int(content[j])))
+        ev = sorted(int(content[j]) for j in order[n_keep:])
+        arms.append({"axis": "token", "scope": "prompt", "plane_policy": "full", "token_score": name, "evicted": ev,
+                     "map": None, "planes_prompt": n_keep * R})
+    for name in ("la2_rR", "fut_oracle_rR"):
+        nk = max(1, int(round(np.sqrt(0.3) * len(content))))
+        order = sorted(range(len(content)), key=lambda j: (-float(sc[name][content[j]]), int(content[j])))
+        kept = sorted(int(content[j]) for j in order[:nk])
+        ev = sorted(set(content) - set(kept))
+        sp_ = plane_sets("last", kept, R, max(1, int(round(np.sqrt(0.3) * R))))
+        sg = plane_sets("last", gen_cols, R, max(1, int(round(np.sqrt(0.3) * R))))
+        arms.append({"axis": "mixed", "scope": "prompt+generated", "plane_policy": "last", "token_score": name, "evicted": ev,
+                     "map": pmap(sp_, sg), "planes_prompt": int(sum(len(np.unique(v)) for v in sp_.values()))})
+    ref_nll = [-float(r.last_prompt_lp[r.ref_ids[0]])] + [-float(r.ref_lp[i][r.ref_ids[i + 1]]) for i in range(n - 1)]
+    rows, kl, nll = [], [], []
+    t0 = time.time()
+    for a in arms:
+        d = r.decode(a["evicted"], r.spec, plane_map=a["map"])
+        kl.append(np.array(d["kl_by_t"], dtype="float32"))
+        nll.append(np.array(d["token_losses"], dtype="float32") - np.array(ref_nll, dtype="float32"))
+        rows.append({k: v for k, v in a.items() if k not in ("map", "evicted")} | {
+            "n_evicted": len(a["evicted"]), "nll_future_shift": d["nll_future"] - sum(ref_nll[1:]) / max(1, n - 1),
+            "kl_mean": float(np.mean(d["kl_by_t"])), "kl_early8": float(np.mean(d["kl_by_t"][:8])),
+            "kl_mid": float(np.mean(d["kl_by_t"][8:32])), "kl_late": float(np.mean(d["kl_by_t"][32:])),
+            "planes_total_prompt": len(content) * R})
+    np.savez_compressed(raw / f"{job['key']}.npz", kl=np.stack(kl), nll_shift=np.stack(nll), exit_prompt=exit_p, exit_gen=exit_g)
+    _json(raw / f"{job['key']}.json", meta | {"rows": rows, "n_tokens": n, "R": R, "n_content": len(content), "validation_planes": vp,
+                                              "elapsed_s": time.time() - t0, "reference_digest": dig,
+                                              "peak_gpu_bytes": torch.cuda.max_memory_allocated()})
+
+
 def worker(run: Path, idx: int, model_filter: str | None):
     import torch
     m = json.loads((run / "run_manifest.json").read_text())
@@ -283,7 +389,7 @@ def worker(run: Path, idx: int, model_filter: str | None):
         d.mkdir(exist_ok=True)
     cur = tok = bb = eos = None
     cache = UnitCache()
-    order = {"REF": 0, "TAX": 1, "PLN": 2}
+    order = {"REF": 0, "TAX": 1, "PLN": 2, "HOR": 0}
     while True:
         pend = [j for j in jobs if not (raw / f"{j['key']}.json").exists() and not (claims / f"{j['key']}.lock").exists()]
         if not pend:
@@ -338,6 +444,7 @@ def main():
     ap.add_argument("--chunk-huginn", type=int, default=64)
     ap.add_argument("--horizon", type=int, default=40)
     ap.add_argument("--greedy-tokens", type=int, default=24)
+    ap.add_argument("--v6-pool", default="", help="v6 manifest pools for the HOR (decode-horizon) units, e.g. B")
     ap.add_argument("--gpu-ids", default="0")
     ap.add_argument("--gpu-models", default="")
     a = ap.parse_args()
@@ -349,7 +456,7 @@ def main():
                "budgets": [float(x) for x in sp(a.budgets)], "semantics": a.semantics,
                "pln_variants": {"dev": sp(a.pln_dev), "holdout": sp(a.pln_holdout)},
                "chunk_size": {"ouro-2.6b": a.chunk_ouro, "huginn-0125": a.chunk_huginn}, "horizon": a.horizon,
-               "greedy_tokens": a.greedy_tokens}
+               "greedy_tokens": a.greedy_tokens, "v6_pool": sp(a.v6_pool)}
         print(json.dumps(prepare(run, cfg), indent=2))
     elif a.worker is not None:
         worker(run, a.worker, a.model_filter)

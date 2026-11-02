@@ -211,3 +211,19 @@ def test_v8_sweep_unit_features_on_fake(runner):
     assert float(abs(sim["k_cos_to_last"][:, R - 1] - 1).max()) < 1e-5
     qa, recv, ga, settle, U = unit_features(runner, P, R, n)
     assert qa.shape == (R, P) and recv.shape == (R, P) and ga.shape == (n, R, P) and settle.shape == (P,)
+
+
+def test_plane_map_over_generated_columns(runner):
+    import numpy as np
+    R, P, T = runner.R, runner.P, runner.T
+    full = runner.decode((), runner.spec)
+    ident = np.tile(np.arange(R)[:, None], (1, T))
+    d0 = runner.decode((), runner.spec, plane_map=ident)
+    assert d0["token_losses"] == full["token_losses"]
+    gen_last = ident.copy()
+    gen_last[:, P:] = R - 1                       # convert generated tokens to their terminal plane after they finish
+    d1 = runner.decode((), runner.spec, plane_map=gen_last)
+    # the first two generated predictions only read prompt history (identity) -> unchanged; later ones differ
+    assert d1["token_losses"][:2] == full["token_losses"][:2]
+    assert any(abs(a - b) > 0 for a, b in zip(d1["token_losses"][2:], full["token_losses"][2:]))
+    assert runner.kv.plane_map is None

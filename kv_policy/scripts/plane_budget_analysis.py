@@ -7,7 +7,6 @@ PLANE_BUDGET_FINDINGS.md}. All comparisons are paired within prompt; CIs are pro
 from __future__ import annotations
 
 import json
-import random
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -58,11 +57,14 @@ def tax_table(run: Path) -> pd.DataFrame:
         for r in d["rows"]:
             rows.append({"model": j["model"], "dataset": j["dataset"], "uid": j["uid"], "split": j["split"], "R": d["R"],
                          "full_em": float(d["full"]["exact_match"]), "full_nll": d["full"]["nll_future"], **r,
+                         "budget": r["budget"] if r["axis"] != "natural" else -1.0,
                          "exact_match": float(r["exact_match"]), "budget_used": r["planes_kept"] / r["planes_total"]})
     return pd.DataFrame(rows)
 
 
 def _arm_name(r):
+    if r.axis == "natural":
+        return f"natural:{r.plane_policy}"
     if r.axis == "token":
         return f"token:{r.token_score}"
     if r.axis == "plane":
@@ -107,6 +109,8 @@ def tax_summary(df: pd.DataFrame, out: Path, md: list) -> pd.DataFrame:
            "| model | dataset | split | budget | best deployable arm | ΔNLL | EM | best plane-only | ΔNLL | best token-only (deployable) | ΔNLL | oracle token-only ΔNLL |",
            "|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for (m, ds, sp, b), g in S.groupby(["model", "dataset", "split", "budget"]):
+        if b < 0:
+            continue
         dep = g[~g.arm.str.contains("def4|fut_oracle")]
         best = dep.loc[dep.dnll_mean.idxmin()]
         pl = g[g.axis == "plane"]
@@ -239,6 +243,43 @@ def pln_summary(df: pd.DataFrame, out: Path, md: list):
     return res
 
 
+def kv_similarity(run: Path, out: Path, md: list):
+    """How redundant are the loop planes? Mean cosine of K and V at plane r to the terminal plane, per model (pooled over
+    Context tokens and prompts), by loop and by recurrent layer; plus the fraction of tokens whose K at plane r is
+    within cos>0.99 of the terminal plane."""
+    jobs = json.loads((run / "jobs.json").read_text())
+    acc = {}
+    for j in (x for x in jobs if x["kind"] == "REF"):
+        f = run / "raw" / f"{j['key']}.npz"
+        if not f.exists():
+            continue
+        z = np.load(f)
+        if "k_cos_to_last" not in z.files:
+            continue
+        content = json.loads((run / "raw" / f"{j['key']}.json").read_text())["content_positions"]
+        for key in ("k_cos_to_last", "v_cos_to_last", "k_cos_to_prev", "v_cos_to_prev"):
+            a = z[key][:, :, content]                       # (n_rec, R, |C|)
+            acc.setdefault((j["model"], key), []).append(a)
+    if not acc:
+        return
+    md += ["## Loop-plane redundancy: cosine of a Context token's K/V at plane r to its terminal plane R (pooled; head-mean)", "",
+           "| model | quantity | " + " | ".join(f"r={r}" for r in (1, 2, 3, 4, 8, 16, 24, 28, 31)) + " | frac tokens cos(K_r,K_R)>0.99 at r=R/2 | per-layer at r=R/2 |",
+           "|---|---|" + "---|" * 11]
+    res = []
+    for (m, key), arrs in sorted(acc.items()):
+        A = np.concatenate(arrs, axis=2)                    # (n_rec, R, N)
+        R = A.shape[1]
+        by_loop = A.mean(axis=(0, 2))
+        half = R // 2 - 1
+        frac = float((A[:, half].mean(0) > 0.99).mean()) if "to_last" in key else np.nan
+        per_layer = A[:, half].mean(1).tolist()
+        res.append({"model": m, "quantity": key, "by_loop": by_loop.tolist(), "frac_gt_099_half": frac, "per_layer_half": per_layer})
+        md.append(f"| {m} | {key} | " + " | ".join(_f(by_loop[r - 1], 3) if r <= R else "—" for r in (1, 2, 3, 4, 8, 16, 24, 28, 31))
+                  + f" | {_f(frac)} | {', '.join(_f(x, 3) for x in per_layer)} |")
+    md.append("")
+    _json(out / "kv_plane_similarity.json", res)
+
+
 def settle_hist(run: Path, md: list):
     jobs = json.loads((run / "jobs.json").read_text())
     acc = defaultdict(lambda: None)
@@ -266,6 +307,7 @@ def analyze(run: Path) -> dict:
           f"Completeness: {comp['completed']}/{comp['expected']} jobs, errors {len(comp['errors'])}, problems {len(comp['problems'])}, "
           f"complete={comp['complete']}", ""]
     settle_hist(run, md)
+    kv_similarity(run, out, md)
     tax = tax_table(run)
     if len(tax):
         tax.to_csv(out / "tax_long.csv", index=False)
