@@ -182,3 +182,6 @@ different KV policy than a standard transformer because of the loop. Directions 
    prompts, gold continuation, exhaustive single-token eviction census, layer-resolved attention importance (the layer
    analogue of loop-resolved importance), lookahead/deferred/oracle token policies at 10/30/50%.
 4. Planned if time permits: decode-horizon growth of damage (v6 W1/W2 128-token continuations) looped vs standard.
+- 01:45 budget correction: the exhaustive PLN census on all 80 units (4 variants) projected to ~9 h/model on 3 GPUs each; the
+  v8 run was stopped (43 jobs done, none lost) and its job list trimmed to PLN on the 32 dev units with variants last+exit
+  only (REF/TAX on all 80 units unchanged). run_manifest.json records the code SHA change (additive code only).
