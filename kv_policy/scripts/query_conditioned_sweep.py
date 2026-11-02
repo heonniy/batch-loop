@@ -392,8 +392,15 @@ def _evaluate_policy(bb, tok, eos, job, cfg, raw, meta, r, p, R, dig):
         scores = {"qa_r1": qa[0], "qa_rR": qa[-1], "qa_mean": qa.mean(0), "qa_late": qa[half:].mean(0),
                   "recv_mean": rc.mean(0), "recv_rR": rc[-1], "lastq_mean": lq.mean(0),
                   "la2_max": ga[:2].mean(1).max(0), "def4_max": ga[:4].mean(1).max(0),
-                  "fut_oracle_max": ga.mean(1).max(0), "fut_oracle_r1": ga[:, 0].max(0), "fut_oracle_rR": ga[:, -1].max(0)}
-        rng_seeds = (11, 29, 47)
+                  "fut_oracle_max": ga.mean(1).max(0), "fut_oracle_r1": ga[:, 0].max(0), "fut_oracle_rR": ga[:, -1].max(0),
+                  # loop-resolved deployable / deferred variants (v2)
+                  "la2_r1": ga[:2, 0].max(0), "la2_rR": ga[:2, -1].max(0), "la2_late": ga[:2, half:].mean(1).max(0),
+                  "def4_r1": ga[:4, 0].max(0), "def4_rR": ga[:4, -1].max(0), "def4_late": ga[:4, half:].mean(1).max(0),
+                  "fut_oracle_late": ga[:, half:].mean(1).max(0),
+                  "la2_sum": ga[:2].mean(1).sum(0), "def4_sum": ga[:4].mean(1).sum(0)}
+        if cfg.get("policy_variants"):
+            scores = {k: v for k, v in scores.items() if k in set(cfg["policy_variants"])}
+        rng_seeds = (11, 29, 47) if not cfg.get("policy_variants") else ()
         gold = _v5_job(job)["gold_answer"]
         full = r.decode((), r.spec)
         g_full = r.greedy((), cfg["greedy_tokens"], eos)
@@ -495,6 +502,7 @@ def main():
     ap.add_argument("--policy-source-run", help="equal-budget policy check (kind POL) using this run's REF census")
     ap.add_argument("--retention", default="0.1,0.3,0.5")
     ap.add_argument("--policy-greedy-tokens", type=int, default=24)
+    ap.add_argument("--policy-variants", default="", help="comma list of score names to run (no random arms)")
     ap.add_argument("--live-ouro-q", type=float)
     ap.add_argument("--live-huginn-cosine", type=float)
     ap.add_argument("--live-min-depth", type=int, default=2)
@@ -519,7 +527,8 @@ def main():
                "chunk_size": {"ouro-2.6b": a.chunk_ouro, "huginn-0125": a.chunk_huginn},
                "v6_units": a.v6_units, "live": live,
                "policy_source_run": str(Path(a.policy_source_run).resolve()) if a.policy_source_run else None,
-               "retention": [float(x) for x in sp(a.retention)], "greedy_tokens": a.policy_greedy_tokens}
+               "retention": [float(x) for x in sp(a.retention)], "greedy_tokens": a.policy_greedy_tokens,
+               "policy_variants": sp(a.policy_variants)}
         print(json.dumps(prepare(run, cfg), indent=2))
     elif a.worker is not None:
         worker(run, a.worker, a.model_filter)
