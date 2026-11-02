@@ -66,7 +66,13 @@ def prepare(run: Path, cfg: dict):
     if cfg.get("v6_pool"):
         from query_conditioned_sweep import V6_RUN
         man = json.loads((V6_RUN / "manifest.json").read_text())
+        limit = cfg.get("v6_per_pool_limit", 0)
+        seen = {}
         for it in (x for x in man if x["pool"] in cfg["v6_pool"]):
+            key = (it["workload"], it["pool"])
+            seen[key] = seen.get(key, 0) + 1
+            if limit and seen[key] > limit:
+                continue
             for mk in cfg["models"]:
                 unit = f"{mk}__v6{it['workload']}__{it['item_id']}"
                 jobs.append({"kind": "V6U", "key": f"V6U__{unit}", "model": mk, "dataset": f"v6_{it['workload']}", "uid": f"v6/{it['item_id']}",
@@ -318,6 +324,7 @@ def main():
     ap.add_argument("--retention", default="0.1,0.3,0.5")
     ap.add_argument("--v6-pool", default="", help="comma list of v6 manifest pools to add as V6U units (e.g. B or A,B)")
     ap.add_argument("--horizon", type=int, default=128)
+    ap.add_argument("--v6-per-pool-limit", type=int, default=0)
     ap.add_argument("--gpu-ids", default="0")
     a = ap.parse_args()
     sp = lambda s: [x.strip() for x in s.split(",") if x.strip()]  # noqa: E731
@@ -326,7 +333,7 @@ def main():
         rng = lambda s: tuple(int(x) for x in s.split(":"))  # noqa: E731
         cfg = {"models": sp(a.models), "datasets": sp(a.datasets), "splits": {"dev": rng(a.dev), "holdout": rng(a.holdout)},
                "retention": [float(x) for x in sp(a.retention)], "greedy_tokens": GREEDY_TOKENS,
-               "v6_pool": sp(a.v6_pool), "horizon": a.horizon}
+               "v6_pool": sp(a.v6_pool), "horizon": a.horizon, "v6_per_pool_limit": a.v6_per_pool_limit}
         print(json.dumps(prepare(run, cfg), indent=2))
     elif a.worker is not None:
         worker(run, a.worker)

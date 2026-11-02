@@ -76,8 +76,14 @@ def prepare(run: Path, cfg: dict):
         from query_conditioned_sweep import V6_RUN
         v6 = json.loads((V6_RUN / "jobs.json").read_text())
         man = {x["item_id"]: x for x in json.loads((V6_RUN / "manifest.json").read_text())}
-        for ref in (j for j in v6 if j["kind"] == "Bref" and j["model"] in cfg["models"]
+        limit = cfg.get("v6_per_pool_limit", 0)
+        seen = {}
+        for ref in (j for j in v6 if j["kind"] in ("Bref", "A") and j["model"] in cfg["models"]
                     and man[j["item_id"]]["pool"] in cfg["v6_pool"]):
+            key = (ref["model"], ref["workload"], man[ref["item_id"]]["pool"])
+            seen[key] = seen.get(key, 0) + 1
+            if limit and seen[key] > limit:
+                continue
             unit = f"{ref['model']}__v6{ref['workload']}__{ref['item_id']}"
             base = {"model": ref["model"], "dataset": f"v6_{ref['workload']}", "uid": ref["uid"], "unit": unit, "v6_key": ref["key"],
                     "item_id": ref["item_id"], "split": man[ref["item_id"]]["pool"], "prompt_len": ref["prompt_len"]}
@@ -444,7 +450,8 @@ def main():
     ap.add_argument("--chunk-huginn", type=int, default=64)
     ap.add_argument("--horizon", type=int, default=40)
     ap.add_argument("--greedy-tokens", type=int, default=24)
-    ap.add_argument("--v6-pool", default="", help="v6 manifest pools for the HOR (decode-horizon) units, e.g. B")
+    ap.add_argument("--v6-pool", default="", help="v6 manifest pools for the HOR (decode-horizon) units, e.g. B or A,B")
+    ap.add_argument("--v6-per-pool-limit", type=int, default=0, help="max HOR units per (model, workload, pool); 0 = all")
     ap.add_argument("--gpu-ids", default="0")
     ap.add_argument("--gpu-models", default="")
     a = ap.parse_args()
@@ -456,7 +463,7 @@ def main():
                "budgets": [float(x) for x in sp(a.budgets)], "semantics": a.semantics,
                "pln_variants": {"dev": sp(a.pln_dev), "holdout": sp(a.pln_holdout)},
                "chunk_size": {"ouro-2.6b": a.chunk_ouro, "huginn-0125": a.chunk_huginn}, "horizon": a.horizon,
-               "greedy_tokens": a.greedy_tokens, "v6_pool": sp(a.v6_pool)}
+               "greedy_tokens": a.greedy_tokens, "v6_pool": sp(a.v6_pool), "v6_per_pool_limit": a.v6_per_pool_limit}
         print(json.dumps(prepare(run, cfg), indent=2))
     elif a.worker is not None:
         worker(run, a.worker, a.model_filter)
