@@ -152,3 +152,13 @@ apart in damage and the future query's attention orders 82–93% of them); (iv) 
 ρ ≈ 0.00–0.03 vs 0.19–0.21 at loops ≥16 for all three queries; Ouro loop-1 0.07–0.10 vs loop-4 0.16; (v) exit: Huginn
 changes depth for 21–33% of generated queries, Ouro 0.5–1%; live − recorded-replay ≈ 0 (Huginn-Hotpot −0.006
 [−0.008,−0.005], a tiny benefit), so the live exit response is not a quality mechanism.
+
+## 2026-11-02 — E7: holdout policy check (results/20261102T140000Z_qc_v7_pilotB_policy) and close-out
+
+48/48 units. Replicates E4/E5 on the held-out UIDs: prompt-time attention policies ≤ random at 10% retention (CR: worse than
+random in both models), the format lookahead / deferred-4 decision far better, and the loop-1 variants of every lookahead /
+deferred / oracle score far worse than the loop-R variants (e.g. Ouro-CR 30%: la2_r1 ΔNLL 1.30 EM 0 vs la2_rR 0.06 EM 0.92;
+Huginn-CR 10%: oracle_r1 EM 0.17 vs oracle_rR EM 0.83). Review with go/no-go: QUERY_CONDITIONED_REVIEW.md.
+Status: H2/H3 for a per-source recurrent sensitivity of the later query — UNSUPPORTED (null on dev and holdout). What is
+supported: query mismatch (consuming generated query) + loop choice (late-loop attention). H4: exit depth responds (Huginn
+21–33% of queries) without a quality effect. No deployment/HBM claim.
