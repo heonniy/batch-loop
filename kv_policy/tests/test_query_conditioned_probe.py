@@ -197,3 +197,17 @@ def test_plane_policy_builders():
     for a in arms:
         assert a["planes"] <= a["target"] + R or a["axis"] == "plane"
         assert set(a["evicted"]).isdisjoint(a["sets"])
+
+
+def test_v8_sweep_unit_features_on_fake(runner):
+    import sys
+    sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parents[1] / "scripts"))
+    from plane_budget_sweep import clean_exit_depths, kv_plane_similarity, unit_features
+    R, P, n = runner.R, runner.P, len(runner.ref_ids)
+    d = clean_exit_depths(runner, R)
+    assert len(d) == P and all(2 <= x <= R for x in d)
+    sim = kv_plane_similarity(runner, P, R)
+    assert sim["k_cos_to_last"].shape == (runner.n_rec, R, P)
+    assert float(abs(sim["k_cos_to_last"][:, R - 1] - 1).max()) < 1e-5
+    qa, recv, ga, settle, U = unit_features(runner, P, R, n)
+    assert qa.shape == (R, P) and recv.shape == (R, P) and ga.shape == (n, R, P) and settle.shape == (P,)

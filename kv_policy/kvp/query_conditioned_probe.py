@@ -267,7 +267,6 @@ class QueryConditionedRunner(PersistentEvictionRunner):
                 raise RuntimeError(f"Mask applied {self._applied} times at col {col}, expected {want}")
         return logits, depth
 
-    @torch.no_grad()
     def _set_planes(self, plane_map):
         if plane_map is None:
             self.kv.plane_map = None
@@ -279,6 +278,7 @@ class QueryConditionedRunner(PersistentEvictionRunner):
         self.kv.plane_map = m
         self.kv.plane_reads = 0
 
+    @torch.no_grad()
     def decode(self, sources: Sequence[int], spec: DepthProbeSpec, *, forced_depths: Sequence[int] | None = None,
                dynamic: bool = False, plane_map=None) -> dict:
         """Teacher-forced reference ids with post-prefill read mask on `sources` (all loops + plain).

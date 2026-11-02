@@ -23,6 +23,8 @@ from __future__ import annotations
 import argparse
 import json
 import os
+
+import numpy as np
 import subprocess
 import sys
 import time
@@ -90,9 +92,49 @@ def _settle(F, R: int) -> int:
     return int(idx[0]) if len(idx) else R - 1
 
 
+EXIT_THRESH = {"ouro": 0.7, "huginn": 1e-3}   # frozen clean-only thresholds (v7 E2); min depth 2
+
+
+def clean_exit_depths(r, R: int) -> "list[int]":
+    """Native exit depth each PROMPT token would have taken (Ouro Q-exit q=0.7; Huginn fp32 cosine 1e-3)."""
+    fam = r.bb.family
+    out = []
+    for ex in r.prompt_exit:
+        if fam == "ouro":
+            cum = ex["cumulative"]
+            d = next((k for k in range(2, R + 1) if k == R or cum[k - 1] >= EXIT_THRESH["ouro"]), R)
+        else:
+            dist = ex["distance_fp32"]
+            d = next((k for k in range(2, R + 1) if dist[k - 1] < EXIT_THRESH["huginn"] or k == R), R)
+        out.append(int(d))
+    return out
+
+
+def kv_plane_similarity(r, P: int, R: int):
+    """Cosine similarity of each prompt token's K and V at plane r to its terminal plane and to the previous plane,
+    per recurrent layer (head-averaged): (n_rec, R, P) arrays. Measures how redundant the loop planes are."""
+    import torch
+    outs = {}
+    for name, bufs in (("k", r.kv.rk), ("v", r.kv.rv)):
+        to_last, to_prev = [], []
+        for li in range(r.n_rec):
+            b = bufs[li][:, 0, :, :P, :].float()                     # (R, H, P, D)
+            last = b[R - 1:R]
+            cl = torch.nn.functional.cosine_similarity(b, last.expand_as(b), dim=-1).mean(1)        # (R, P)
+            prev = torch.cat([b[:1], b[:-1]], 0)
+            cp = torch.nn.functional.cosine_similarity(b, prev, dim=-1).mean(1)
+            to_last.append(cl.cpu().numpy())
+            to_prev.append(cp.cpu().numpy())
+        outs[f"{name}_cos_to_last"] = np.stack(to_last).astype("float32")
+        outs[f"{name}_cos_to_prev"] = np.stack(to_prev).astype("float32")
+    return outs
+
+
 def unit_features(r, P: int, R: int, n: int):
     import numpy as np
-    qa = r.census(r.anchors["question_last"])["attn"].numpy()                              # (R, P)
+    qa_raw = r.census(r.anchors["question_last"])["attn"].numpy()                          # (R, anchor col)
+    qa = np.zeros((R, P), dtype=qa_raw.dtype)
+    qa[:, :qa_raw.shape[1]] = qa_raw                                                        # (R, P)
     recv = r.source_features()["recv_mean"].numpy()                                        # (R, P)
     ga = np.stack([r.local[P + t]["attn"][:, :P].cpu().numpy() for t in range(n)])          # (n, R, P)
     settle = np.array([_settle(m["F"].numpy(), R) for m in r.prompt_metrics], dtype=np.int64)
@@ -114,7 +156,7 @@ def token_scores(unit: str, content, P: int, qa, recv, ga):
 def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
     import numpy as np
     import torch
-    from kvp.plane_policies import plane_map_from_sets, two_axis_arms
+    from kvp.plane_policies import plane_map_from_sets, plane_sets, two_axis_arms
     from kvp.role_generation import score_free_answer
     raw = run / "raw"
     meta = {k: job[k] for k in ("key", "kind", "model", "dataset", "uid", "unit", "split")} | {"sha": git_sha()}
@@ -129,13 +171,16 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
         vp = r.validate_planes()
         if not v7["pass"] or not vp["pass"]:
             raise RuntimeError(f"validation failed: {v7['failures']} {vp['failures']}")
+        exit_d = clean_exit_depths(r, R)
         np.savez_compressed(raw / f"{job['key']}.npz", qa=qa.astype("float32"), recv=recv.astype("float32"),
                             gen_attn=ga.astype("float32"), settle=settle, prompt_U=U.astype("float32"),
-                            prompt_F=np.stack([m["F"].numpy() for m in r.prompt_metrics]).astype("float32"))
+                            prompt_F=np.stack([m["F"].numpy() for m in r.prompt_metrics]).astype("float32"),
+                            exit_depth=np.array(exit_d, dtype=np.int64), **kv_plane_similarity(r, P, R))
         _json(raw / f"{job['key']}.json", meta | {"prompt_ids": list(p.token_ids), "roles": list(p.roles),
                                                   "content_positions": content, "anchors": r.anchors, "ref": r.ref,
                                                   "target_ids": targets, "validation_v7": v7, "validation_planes": vp,
                                                   "ref_state_digest": dig, "settle_hist": np.bincount(settle[content], minlength=R).tolist(),
+                                                  "exit_depth_hist": np.bincount(np.array(exit_d)[content], minlength=R + 1).tolist(),
                                                   "timing": {"prefill_s": r.t_prefill, "reference_s": r.t_reference,
                                                              "validation_s": time.time() - t0},
                                                   "peak_gpu_bytes": torch.cuda.max_memory_allocated()})
@@ -145,6 +190,7 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
         raise RuntimeError(f"Reference digest drift {dig} vs {ref['ref_state_digest']}")
     full = r.decode((), r.spec)
     if job["kind"] == "PLN":
+        exit_d = clean_exit_depths(r, R)
         variants = {"last": [R - 1], "first": [0], "half": list(np.unique(np.round(np.linspace(0, R - 1, max(1, R // 2))).astype(int)))}
         out = {f"{v}_{k}": np.full(len(job["sources"]), np.nan, dtype="float32")
                for v in job["variants"] for k in ("dnll", "kl_mean", "kl_max", "first_dnll")}
@@ -152,7 +198,10 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
         for si, s in enumerate(job["sources"]):
             t0 = time.time()
             for v in job["variants"]:
-                m = plane_map_from_sets({int(s): np.array(variants[v])}, R, P, cfg["semantics"])
+                if v == "exit":   # the token's own native early exit: planes >= d_i were never computed (no-refill)
+                    m = plane_map_from_sets({int(s): np.arange(exit_d[int(s)])}, R, P, "latest")
+                else:
+                    m = plane_map_from_sets({int(s): np.array(variants[v])}, R, P, cfg["semantics"])
                 d = r.decode((), r.spec, plane_map=m)
                 out[f"{v}_dnll"][si] = d["nll_future"] - full["nll_future"]
                 out[f"{v}_kl_mean"][si] = float(np.mean(d["kl_by_t"]))
@@ -161,6 +210,7 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
             times.append(time.time() - t0)
         np.savez_compressed(raw / f"{job['key']}.npz", sources=np.array(job["sources"]), **out)
         _json(raw / f"{job['key']}.json", meta | {"sources": job["sources"], "variants": job["variants"], "per_source_s": times,
+                                                  "exit_depth": [exit_d[int(s)] for s in job["sources"]],
                                                   "reference_digest": dig, "full_nll_future": full["nll_future"]})
         return
     if job["kind"] == "TAX":
@@ -169,6 +219,28 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
         g_full = r.greedy((), cfg["greedy_tokens"], eos)
         rows = []
         t0 = time.time()
+        # "natural" plane budget of a looped model with native early exit: every Context token keeps only the planes it
+        # actually computed (0..d_i-1, read with 'latest' semantics), vs last-k / even-k at the SAME total plane count.
+        exit_d = np.array(clean_exit_depths(r, R))
+        nat_sets = {int(c): np.arange(int(exit_d[c])) for c in content}
+        nat_planes = int(sum(len(v) for v in nat_sets.values()))
+        k_nat = max(1, int(round(nat_planes / len(content))))
+        natural = [("exit_truncated", nat_sets, "latest"),
+                   ("last", plane_sets("last", content, R, k_nat), cfg["semantics"]),
+                   ("even", plane_sets("even", content, R, k_nat), cfg["semantics"]),
+                   ("settle", plane_sets("settle", content, R, k_nat, settle=settle, plane_budget=nat_planes), cfg["semantics"])]
+        for pol, sets, sem in natural:
+            m = plane_map_from_sets(sets, R, P, sem)
+            d = r.decode((), r.spec, plane_map=m)
+            g = r.greedy((), cfg["greedy_tokens"], eos, plane_map=m)
+            em = score_free_answer(tok, gold, {"token_ids": g, "decoded_tokens": len(g)})
+            rows.append({"budget": round(nat_planes / (len(content) * R), 4), "axis": "natural", "token_score": "none",
+                         "plane_policy": pol, "semantics": sem, "token_frac": 1.0, "planes_per_token": k_nat, "n_evicted": 0,
+                         "n_kept": len(content), "planes_kept": int(sum(len(np.unique(v)) for v in sets.values())),
+                         "planes_target": nat_planes, "planes_total": len(content) * R,
+                         "nll_future": d["nll_future"], "delta_nll_future": d["nll_future"] - full["nll_future"],
+                         "kl_mean": float(np.mean(d["kl_by_t"])), "kl_max": float(np.max(d["kl_by_t"])),
+                         "exact_match": em["exact_match"], "extracted": em["extracted_answer"][:40]})
         for b in cfg["budgets"]:
             arms = two_axis_arms(content, R, b, sc, settle, recv)
             extra = []
@@ -192,7 +264,8 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
             "full": {"nll_future": full["nll_future"], "first_target_nll": full["first_target_nll"],
                      "exact_match": score_free_answer(tok, gold, {"token_ids": g_full, "decoded_tokens": len(g_full)})["exact_match"]},
             "n_content": len(content), "R": R, "rows": rows, "gold_answer": gold, "elapsed_s": time.time() - t0,
-            "reference_digest": dig, "settle_hist": np.bincount(settle[content], minlength=R).tolist()})
+            "reference_digest": dig, "settle_hist": np.bincount(settle[content], minlength=R).tolist(),
+            "exit_depth_hist": np.bincount(exit_d[content], minlength=R + 1).tolist(), "natural_planes": nat_planes})
         return
     raise RuntimeError(job["kind"])
 
@@ -259,8 +332,8 @@ def main():
     ap.add_argument("--holdout", default="8:20")
     ap.add_argument("--budgets", default="0.1,0.3,0.5")
     ap.add_argument("--semantics", default="nearest", choices=("nearest", "latest"))
-    ap.add_argument("--pln-dev", default="last,first,half")
-    ap.add_argument("--pln-holdout", default="last")
+    ap.add_argument("--pln-dev", default="last,first,half,exit")
+    ap.add_argument("--pln-holdout", default="last,exit")
     ap.add_argument("--chunk-ouro", type=int, default=96)
     ap.add_argument("--chunk-huginn", type=int, default=64)
     ap.add_argument("--horizon", type=int, default=40)
