@@ -219,6 +219,9 @@ def source_table(run: Path) -> pd.DataFrame:
                         "la2_delta": float(gd[min(1, n - 1)].mean()), "la12_delta_max": float(gd[:2].mean(1).max()),
                         "qa_lastloop_frac": float(A["attn"][-1, s] / max(1e-12, A["attn"][:, s].sum()))}
                 row |= {f"fut_prof_r{r + 1}": float(prof[r]) for r in range(R)}
+                row |= {f"fut_attn_r{r + 1}": float(ga[tstar, r]) for r in range(R)}
+                row |= {f"la12_attn_r{r + 1}": float(ga[:2, r].max()) for r in range(R)}
+                row |= {f"qa_attn_r{r + 1}": float(A["attn"][r, s]) for r in range(R)}
                 qprof = A["attn"][:, s] / max(1e-12, A["attn"][:, s].sum())
                 row |= {f"qa_prof_r{r + 1}": float(qprof[r]) for r in range(R)}
                 # Y
@@ -327,13 +330,19 @@ def prediction(st: pd.DataFrame, out: Path, md: list) -> list:
     L = _logfeat(st)
     D = d_feats(st)
     G = d_feats(st, "qf")
+    G1 = [c for c in G if "_loop" in c and not c.endswith("_kl")]          # one-loop probes: E_s, E_R, gain only
+    G1g = [c for c in G if c.endswith("_gain")]                             # scale-free propagation gains only
+    G2 = [c for c in G if c.startswith("qf_all") or c.endswith("_kl")]     # all-loop probe = within-query damage at t*
     FF = F_FEATS + [c for c in ("fut_attn_at_t", "fut_delta_at_t") if c in st.columns]
     sets = [("A attention/position/lexical", A_FEATS), ("B = A + source trajectory", A_FEATS + B_FEATS),
             ("C = A + value/local-perturbation", A_FEATS + C_FEATS), ("S = C + cheap surrogates", A_FEATS + C_FEATS + S_FEATS),
             ("L = C + 2-token format lookahead (deployable, +2 steps)", A_FEATS + C_FEATS + L_FEATS),
             ("D = C + prompt-anchor query probes (oracle)", A_FEATS + C_FEATS + D),
             ("F = C + future-query census (oracle)", A_FEATS + C_FEATS + FF),
-            ("G = F + future-query loop probes (oracle)", A_FEATS + C_FEATS + FF + G),
+            ("G1 = F + one-loop probes at t* (E_s,E_R,gain; oracle)", A_FEATS + C_FEATS + FF + G1),
+            ("G1g = F + propagation gains only at t* (oracle)", A_FEATS + C_FEATS + FF + G1g),
+            ("G2 = F + all-loop probe at t* (≈ within-query damage component)", A_FEATS + C_FEATS + FF + G2),
+            ("G = F + all future-query probes (oracle)", A_FEATS + C_FEATS + FF + G),
             ("D+F", A_FEATS + C_FEATS + D + FF)]
     res = []
     for (m, ds), g in L.groupby(["model", "dataset"]):
@@ -353,7 +362,9 @@ def prediction(st: pd.DataFrame, out: Path, md: list) -> list:
                      ("L = C + 2-token format lookahead (deployable, +2 steps)", "F = C + future-query census (oracle)"),
                      ("C = A + value/local-perturbation", "D = C + prompt-anchor query probes (oracle)"),
                      ("C = A + value/local-perturbation", "F = C + future-query census (oracle)"),
-                     ("F = C + future-query census (oracle)", "G = F + future-query loop probes (oracle)"),
+                     ("F = C + future-query census (oracle)", "G1 = F + one-loop probes at t* (E_s,E_R,gain; oracle)"),
+                     ("F = C + future-query census (oracle)", "G1g = F + propagation gains only at t* (oracle)"),
+                     ("F = C + future-query census (oracle)", "G2 = F + all-loop probe at t* (≈ within-query damage component)"),
                      ("F = C + future-query census (oracle)", "D+F")):
             lift = [y - x for x, y in zip(per[a], per[b]) if np.isfinite(x) and np.isfinite(y)]
             res.append({"model": m, "dataset": ds, "features": f"LIFT {b.split(' ')[0]} − {a.split(' ')[0]}",
@@ -454,7 +465,8 @@ def matched_pairs(st: pd.DataFrame, out: Path, md: list, seed=20261102):
            "Pairs are same-role, |Δpos|≤16, within prompt. 'attention' = clean question-anchor attention (deployable); "
            "'future' = the consuming generated query's clean attention (oracle). δ = closed-form local attention-output "
            "perturbation at the same query. If Y dispersion stays large under future-attn+δ matching, the damage is not "
-           "a local/attention quantity at the consuming query either (propagation / recurrence or later history).", "",
+           "a local/attention quantity at the consuming query either (propagation / recurrence or later history). Pairs where both "
+           "members have mean KL < 1e-3 (BF16 floor) are excluded as uninformative.", "",
            "| model | dataset | pairing | n pairs | median |log10 Y ratio| | frac >10× | probe-KL (anchor of the pairing) sign agreement with Y [CI] | "
            "future-attn sign agreement [CI] |", "|---|---|---|---|---|---|---|---|"]
     for (m, ds), g in st.groupby(["model", "dataset"]):
@@ -489,6 +501,8 @@ def matched_pairs(st: pd.DataFrame, out: Path, md: list, seed=20261102):
                 cands.sort()
                 for _, i, j in cands:
                     if i in used or j in used:
+                        continue
+                    if max(y[i], y[j]) < 1e-3:   # both at the BF16 floor: ordering is noise, not information
                         continue
                     used |= {i, j}
                     npairs += 1
@@ -556,6 +570,32 @@ def loop_profiles(st: pd.DataFrame, out: Path, md: list):
     return res
 
 
+# ------------------------------------------------------------------------------------------- loop-resolved importance
+def loop_resolved(st: pd.DataFrame, out: Path, md: list):
+    """Which loop's attention is the better importance signal? Within-prompt Spearman of attention at loop r with Y,
+    for the consuming query t* (oracle), the 2-token lookahead (deployable) and the question anchor (deployable)."""
+    md += ["## Loop-resolved attention importance: ρ(attention at loop r, Y) within prompt (mean over prompts)", "",
+           "| model | dataset | query | " + " | ".join(f"r={r}" for r in (1, 2, 3, 4, 8, 16, 24, 32)) + " | mean over r |",
+           "|---|---|---|" + "---|" * 9]
+    res = []
+    for (m, ds), g in st.groupby(["model", "dataset"]):
+        g = g[g.kl_mean.notna()]
+        R = 4 if m.startswith("ouro") else 32
+        for pre, label, meanc in (("fut_attn", "consuming query t* (oracle)", "fut_attn_at_t"),
+                                  ("la12_attn", "2-token lookahead", "la12_attn_max"), ("qa_attn", "question anchor", "qa_attn_mean")):
+            rho = {}
+            for r in range(1, R + 1):
+                c = f"{pre}_r{r}"
+                if c in g.columns:
+                    rho[r] = float(np.nanmean([_spearman(gg[c], gg.kl_mean) for _, gg in g.groupby("uid")]))
+            mean_r = float(np.nanmean([_spearman(gg[meanc], gg.kl_mean) for _, gg in g.groupby("uid")]))
+            res.append({"model": m, "dataset": ds, "query": label, "rho_by_loop": rho, "rho_mean_over_loops": mean_r})
+            md.append(f"| {m} | {ds} | {label} | " + " | ".join(_f(rho.get(r)) for r in (1, 2, 3, 4, 8, 16, 24, 32)) + f" | {_f(mean_r)} |")
+    md.append("")
+    _json(out / "loop_resolved_importance.json", res)
+    return res
+
+
 # ------------------------------------------------------------------------------------------- exit arms
 def exit_arms(run: Path, st: pd.DataFrame, out: Path, md: list):
     from kvp.query_conditioned_analysis import summarize_live_replay
@@ -572,15 +612,17 @@ def exit_arms(run: Path, st: pd.DataFrame, out: Path, md: list):
         P, n = j["prompt_len"], len(a["full_live"]["depths"])
         R = 4 if j["model"].startswith("ouro") else 32
         pad = [R] * P
+        # summarize_live_replay indexes depths by token position 0..P+n-2 (the n-th generated query scores nothing)
+        dep = lambda arm: pad + list(arm["depths"][:n - 1])  # noqa: E731
         for s in d["per_source"]:
             try:
                 sm = summarize_live_replay(prompt_len=P, target_len=n, native_max_depth=R,
-                                           full_live={**a["full_live"], "depths": pad + a["full_live"]["depths"]},
-                                           full_replay={**a["full_replay"], "depths": pad + a["full_replay"]["depths"]},
-                                           full_fixed={**a["full_fixed"], "depths": pad + a["full_fixed"]["depths"]},
-                                           evicted_live={**s["evict_live"], "depths": pad + s["evict_live"]["depths"]},
-                                           evicted_replay={**s["evict_replay"], "depths": pad + s["evict_replay"]["depths"]},
-                                           evicted_fixed={**s["evict_fixed"], "depths": pad + s["evict_fixed"]["depths"]})
+                                           full_live={**a["full_live"], "depths": dep(a["full_live"])},
+                                           full_replay={**a["full_replay"], "depths": dep(a["full_replay"])},
+                                           full_fixed={**a["full_fixed"], "depths": dep(a["full_fixed"])},
+                                           evicted_live={**s["evict_live"], "depths": dep(s["evict_live"])},
+                                           evicted_replay={**s["evict_replay"], "depths": dep(s["evict_replay"])},
+                                           evicted_fixed={**s["evict_fixed"], "depths": dep(s["evict_fixed"])})
             except ValueError as e:
                 rows.append({"model": j["model"], "dataset": j["dataset"], "uid": j["uid"], "source": s["source"], "error": str(e)})
                 continue
@@ -598,7 +640,10 @@ def exit_arms(run: Path, st: pd.DataFrame, out: Path, md: list):
     md += ["## Gate D — native dynamic exit under post-prefill single-token eviction (label-blind subset)", ""]
     if "error" in df.columns and df.error.notna().any():
         md.append(f"Parity failures: {int(df.error.notna().sum())} rows (see exit_arms.csv).")
-    ok = df[df.get("error", pd.Series([np.nan] * len(df))).isna()] if "error" in df.columns else df
+    ok = df[df.error.isna()] if "error" in df.columns else df
+    if ok.empty or "fixed_penalty" not in ok.columns:
+        md.append("No parity-passing live rows.")
+        return rows
     md += ["| model | dataset | n (prompt×source) | clean mean depth | frac queries depth-changed | mean Σdepth Δ | "
            "mean fixed ΔNLL | mean replay ΔNLL | mean live ΔNLL | live−replay [CI] | EM full→evict |",
            "|---|---|---|---|---|---|---|---|---|---|---|"]
@@ -715,6 +760,7 @@ def analyze(run: Path) -> dict:
         univariate(main, out, md)
         matched_pairs(main, out, md)
         loop_profiles(main, out, md)
+        loop_resolved(main, out, md)
         prediction(main, out, md)
     v6 = st[~st.dataset.isin(("controlled_retrieval", "hotpotqa_distractor"))]
     if not v6.empty:
