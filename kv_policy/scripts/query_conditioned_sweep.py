@@ -266,6 +266,8 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
             "timing": {"prefill_s": r.t_prefill, "reference_s": r.t_reference, "validation_s": t_val},
             "peak_gpu_bytes": torch.cuda.max_memory_allocated(), "prereg_loops": PREREG_LOOPS[bb.family]})
         return
+    if job["kind"] == "POL":
+        return _evaluate_policy(bb, tok, eos, job, cfg, raw, meta, r, p, R, dig)
     ref = json.loads((raw / f"{job['depends']}.json").read_text())
     if abs(dig - ref["ref_state_digest"]) > 1e-3 * max(1.0, dig):
         raise RuntimeError(f"Reference digest drift {dig} vs {ref['ref_state_digest']}")
@@ -371,7 +373,12 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
                                                   "elapsed_s": time.time() - t0, "reference_digest": dig,
                                                   "peak_gpu_bytes": torch.cuda.max_memory_allocated()})
         return
-    if job["kind"] == "POL":
+    raise RuntimeError(f"Unknown job kind {job['kind']}")
+
+
+def _evaluate_policy(bb, tok, eos, job, cfg, raw, meta, r, p, R, dig):
+    import numpy as np
+    if True:
         from kvp.role_generation import score_free_answer
         src = Path(cfg["policy_source_run"])
         z = np.load(src / "raw" / f"{job['source_ref']}.npz")
@@ -417,7 +424,6 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
             "n_content": int(len(content)), "rows": rows, "gold_answer": gold, "elapsed_s": time.time() - t0,
             "reference_digest": dig, "policies": list(scores) + [f"random_{sd}" for sd in rng_seeds]})
         return
-    raise RuntimeError(f"Unknown job kind {job['kind']}")
 
 
 def worker(run: Path, idx: int, model_filter: str | None):
