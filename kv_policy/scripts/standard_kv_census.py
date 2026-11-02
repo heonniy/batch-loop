@@ -92,7 +92,7 @@ class StdUnit:
         self.targets = [int(x) for x in targets]
         with torch.no_grad():
             out = model(input_ids=self.ids, use_cache=True, output_attentions=True)
-        qa = max(prompt.question_positions)
+        qa = max(prompt.question_positions) if prompt.question_positions else max(prompt.instruction_positions)
         self.anchors = {"question_last": qa, "prompt_last": self.P - 1}
         # per-layer head-mean attention rows of the anchors over the prompt: (L, P)
         self.anchor_attn = {name: torch.stack([a[0, :, col, :].float().mean(0) for a in out.attentions]).cpu().numpy()
