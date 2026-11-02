@@ -12,7 +12,40 @@ report builds on: v7 QUERY_CONDITIONED_REVIEW.md, v6 V6_PILOT_ASSESSMENT.md, v5 
 
 ## 0. Summary of the evidence
 
-(filled at close-out)
+Question: does the loop make a looped transformer need a different KV-cache policy than a standard transformer? Evidence
+collected in ~10 h on Huginn-0125 (R=32), Ouro-2.6B (R=4) and a non-looped control (Qwen2.5-3B), same prompts, same gold
+continuations, dev/holdout splits, 0 worker errors (provenance at the end):
+
+1. **Yes — the budget lives on an axis that standard transformers do not have (§1).** Every Context token of a looped
+   model stores R KV planes; after ≈R/3 recurrences they are near-duplicates (Huginn K/V cosine to the terminal plane
+   0.98/0.93 by r=8, 1.0 from r=24). Keeping ALL tokens with 10% of their planes (Huginn last-3 of 32, Ouro last-1 of 4)
+   is lossless on dev and holdout (ΔNLL −0.011…+0.007, EM = FULL), whereas keeping 10% of the tokens with all planes
+   costs 0.4–2.8 nats and EM 0 on Controlled Retrieval with every label-free prompt-time score. Per-token plane
+   compression has no heavy tail (top-5% share 11–22% vs 98–99% for token eviction) and nothing predicts it: it is
+   uniformly cheap. Which plane to keep is model-specific — Ouro needs its terminal plane (keeping the most-attended,
+   often early, planes costs 0.16–0.73 nats), Huginn is indifferent.
+2. **Yes — "attention importance" is loop-indexed (§2, §3).** One query's attention over the prompt re-forms across the
+   recurrence (ρ between loop 1 and loop R 0.18–0.51), converges after ≈R/3, and finds the evidence late (Huginn evidence
+   mass 0.09 → 0.30). Loop-1 attention is anti-informative about what the consuming query will read (ρ −0.19…0.42) and
+   its token policies are far worse than loop-R ones (future oracle built from loop 1: EM 0.17 vs 0.83). The standard
+   model has a layer analogue, but weaker and non-monotone (its last layers are the worst), so "use the last recurrence"
+   is a rule only the looped models support.
+3. **Partly — query mismatch is universal, but the looped models' prompt query is a worse proxy (§4).** In all three
+   models the KV that matters is read by a later generated query; deferring the decision or using the answer-format
+   prefix as a lookahead recovers most of the oracle on short-answer tasks, and all of this degrades on long free-form
+   generations. But prompt-time attention selection is below random at 10% in both looped models (CR) while the standard
+   model's layer-mean attention beats random by 0.75 nats and keeps EM 0.58 at 30% (looped: 0); the anchor-vs-consuming
+   query agreement is 0.58 (Qwen) vs 0.29–0.43 (looped, last loop).
+4. **Yes, with a model-specific twist — decode-horizon accumulation (§5).** Damage from a missing token decays along the
+   continuation in all three models. Collapsing *generated* tokens to one plane is flat for Huginn over 128 tokens
+   (KL ≈ 4e-4) but accumulates for Ouro (0.03 → 0.10, 85% of prompts), matching v5's long-generation collapse of
+   LAST-CONVERT on Ouro. Few, non-convergent loops (Ouro) and many, convergent loops (Huginn) need different conversion
+   rules for generated tokens.
+5. **Native early exit sets a "natural" plane budget that is free but weak (§6)**: exit-truncated caches cost ~1e-3 KL in
+   both models yet retain 58–96% of the planes; late-plane conversion retains 10% at the same cost and composes with exit.
+6. **What is not different (§7)**: heavy-tailed token importance, the dominance of evidence tokens, the usefulness of
+   lookahead/deferred decisions, the decay of single-token damage, and the absence of a per-source "recurrent
+   sensitivity" of the later query (v7) — these look the same in looped and standard models.
 
 ## 1. The plane axis exists only in looped models — and it is where the cheap budget is
 
@@ -34,18 +67,18 @@ keeping 10% of the tokens with all planes is not, under any label-free prompt-ti
 
 | budget | arm | Huginn CR hold ΔNLL / EM | Huginn Hotpot hold | Ouro CR hold | Ouro Hotpot hold |
 |---|---|---|---|---|---|
-| FULL | — | 0 / 0.92 | 0 / 0.58 | 0 / 1.0 | 0 / 0.50 |
-| 0.1 | plane: last-k (k=3 / 1) | −0.001 / 0.92 | −0.001 / 0.58 | −0.011 / 1.0 | −0.001 / 0.50 |
-| 0.1 | plane: evenly spaced k | −0.002 / 1.0 | 0.003 / 0.58 | −0.011 / 1.0 | −0.001 / 0.50 |
-| 0.1 | plane: most-attended loops | −0.002 / 0.92 | 0.007 / 0.58 | **0.163 / 0.92** | **0.657 / 0.00** |
-| 0.1 | token: question-anchor loop-R attention | 2.48 / 0 | 1.20 / 0.08 | 2.76 / 0 | 1.53 / 0.25 |
-| 0.1 | token: 2-token format lookahead | 1.14 / 0 | 0.37 / 0.42 | 0.78 / 0.17 | 0.38 / 0.75 |
-| 0.1 | token: random | 1.48 / 0 | 1.18 / 0.08 | 1.92 / 0 | 1.29 / 0.25 |
-| 0.1 | token: future-query oracle | −0.05 / 0.83 | −0.11 / 0.58 | −0.01 / 1.0 | −0.08 / 0.75 |
-| 0.1 | mixed: deferred-4 tokens (√b) × last planes (√b) | 0.41 / 0.33 | −0.05 / 0.58 | −0.01 / 1.0 | −0.04 / 0.75 |
-| 0.3 | plane: last-k (k=10 / 1) | 0.000 / 0.92 | −0.006 / 0.58 | −0.011 / 1.0 | −0.001 / 0.50 |
-| 0.3 | token: 2-token format lookahead | 0.63 / 0.25 | 0.19 / 0.58 | 0.06 / 0.92 | 0.41 / 0.75 |
-| 0.3 | token: random | 0.95 / 0.08 | 0.96 / 0.17 | 1.15 / 0 | 1.30 / 0.25 |
+| FULL | — | 0 / 0.92 | 0 / 0.58 | 0 / 1.0 | 0 / 0.58 |
+| 0.1 | plane: last-k (k=3 / 1) | −0.001 / 0.92 | −0.001 / 0.58 | −0.011 / 1.0 | 0.007 / 0.58 |
+| 0.1 | plane: evenly spaced k | −0.002 / 1.0 | 0.003 / 0.58 | −0.011 / 1.0 | 0.007 / 0.58 |
+| 0.1 | plane: most-attended loops | −0.002 / 0.92 | 0.007 / 0.58 | **0.163 / 0.92** | **0.733 / 0.00** |
+| 0.1 | token: question-anchor loop-R attention | 2.48 / 0 | 1.20 / 0.08 | 2.76 / 0 | 1.11 / 0.25 |
+| 0.1 | token: 2-token format lookahead | 1.14 / 0 | 0.37 / 0.42 | 0.78 / 0.17 | 0.26 / 0.58 |
+| 0.1 | token: random | 1.48 / 0 | 1.18 / 0.08 | 1.92 / 0 | 0.93 / 0.33 |
+| 0.1 | token: future-query oracle | −0.05 / 0.83 | −0.11 / 0.58 | −0.01 / 1.0 | −0.03 / 0.67 |
+| 0.1 | mixed: deferred-4 tokens (√b) × last planes (√b) | 0.41 / 0.33 | −0.05 / 0.58 | −0.01 / 1.0 | −0.01 / 0.67 |
+| 0.3 | plane: last-k (k=10 / 1) | 0.000 / 0.92 | −0.006 / 0.58 | −0.011 / 1.0 | 0.007 / 0.58 |
+| 0.3 | token: 2-token format lookahead | 0.63 / 0.25 | 0.19 / 0.58 | 0.06 / 0.92 | 0.15 / 0.67 |
+| 0.3 | token: random | 0.95 / 0.08 | 0.96 / 0.17 | 1.15 / 0 | 0.89 / 0.33 |
 
 (dev cells agree; full table: analysis/tax_summary.csv. "Hotpot" FULL EM is low because the gold answers are free-form;
 ΔNLL is the primary outcome there.)
@@ -60,9 +93,10 @@ keeping 10% of the tokens with all planes is not, under any label-free prompt-ti
   planes are late and the planes they stand in for are near-identical (1a).
 - **Per-token plane compression has no heavy tail** (PLN census, dev, exhaustive: 2816–3677 tokens per cell): collapsing
   ONE token to its last plane gives median KL 8e-5 (Huginn CR), 2.3e-4 (Huginn Hotpot), 1e-4 (Ouro CR), p95 ≤ 1.3e-3; the
-  top-5% of tokens carry only 11–21% of the (tiny) total — against 98–99% for single-token *eviction* (§7). No clean
-  feature (position, lexical, attention received, settle depth, update norms, future loop profile) ranks it (LOPO ρ ≤ 0.03,
-  all CIs cross 0). The plane axis is uniformly cheap; the token axis is sparse and expensive.
+  top-5% of tokens carry only 11–22% of the (tiny) total — against 98–99% for single-token *eviction* (§7). Clean features
+  barely rank it: leave-one-UID-out ρ ≤ 0.06 for every family; the token's own trajectory (settle depth, update norms)
+  adds +0.02–0.03 (CI > 0 only for Huginn Hotpot) and the oracle future loop profile +0.036 for Ouro CR. The plane axis is
+  uniformly cheap; the token axis is sparse and expensive.
 
 ## 2. Loop-wise attention is not one attention: the recurrence re-reads the prompt differently at each loop
 
@@ -194,7 +228,7 @@ at depth d_i and no plane ≥ d_i would exist (no-refill). The "natural" plane b
 | Huginn | CR holdout | 0.66 | +0.005 | 0.000 | −0.002 | 0.92 / 0.92 |
 | Huginn | Hotpot holdout | 0.58 | −0.002 | +0.003 | +0.003 | 0.50 / 0.58 |
 | Ouro | CR holdout | 0.82 | 0.000 | −0.005 | 0.000 | 1.0 / 1.0 |
-| Ouro | Hotpot holdout | 0.96 | +0.002 | 0.000 | 0.000 | 0.50 / 0.50 |
+| Ouro | Hotpot holdout | 0.96 | +0.001 | 0.000 | 0.000 | 0.58 / 0.58 |
 
 - The exit-truncated cache is free (per-token PLN: mean KL 9e-5 / 3.5e-4 Huginn, 7e-5 / 2.4e-5 Ouro; only 3–50% of tokens
   have a larger KL than the last-only collapse of the same token), but it is also a **weak** budget: Huginn keeps 58–66% of
@@ -226,4 +260,39 @@ at depth d_i and no plane ≥ d_i would exist (no-refill). The "natural" plane b
 
 ## 8. Practical reading (not a serving claim)
 
+1. **Compress planes before evicting tokens.** In both looped models the first thing to drop is the recurrence axis:
+   Huginn keeps 3 of 32 planes per token, Ouro 1 of 4 (the terminal one), at the BF16 floor on short-answer QA and over
+   128-token continuations (Huginn). A standard transformer has no such lever; its only axis is the token, where every
+   label-free prompt-time score is far from the oracle. This is the one policy decision that is categorically different.
+2. **Convert after prefill, not during.** The planes must be computed (the token's own recurrence needs them); the saving
+   is in what is *retained* for later reads. Exit-truncated caches (native early exit) are free but weak (58–96% retained).
+3. **Score tokens with late-loop attention, never loop-1**, if tokens must be evicted. Loop-1 attention is
+   anti-informative; the attention converges after ≈R/3 and the late-loop score plateaus. The standard model's layer
+   analogue is weaker and non-monotone (the last layers are poor), so "take the last loop" is a looped-model rule.
+4. **Defer the token decision** to after the first generated tokens (or use the known answer-format prefix as a lookahead
+   query) for short-answer tasks; this helps all three models and is not loop-specific, and it stops helping on long
+   free-form generations where the consuming query keeps moving.
+5. **Ouro-type models (few, non-convergent loops) must not convert *generated* tokens to a single plane over long
+   generations** (damage accumulates ×3 by 128 tokens; v5: −11/−52 points on GSM8K/MATH); Huginn-type models (many,
+   convergent loops) can.
+
 ## Provenance
+
+| run | content | code |
+|---|---|---|
+| results/20261103T020000Z_v8_plane_budget | REF/TAX on 80 units (dev 8 + holdout 12 UIDs × 2 datasets × 2 models), PLN exhaustive census on the 32 dev units (variants last, exit) | ca043396 → 3744c60c (job list trimmed 01:45; evaluate paths unchanged; run_manifest.json records both) |
+| results/20261103T023000Z_v8_horizon | HOR decode-horizon arms on the v6 B pool (4 W1 + 4 W2 prompts per model), frozen v6 greedy 128-token continuations | 27f01835 |
+| results/20261103T025000Z_v8_horizon_poolA | HOR on the v6 A pool (10 W1 + 10 W2 per model) | f9f4daea |
+| results/20261103T021500Z_std_qwen_census | Qwen2.5-3B (3aab1f19) exhaustive single-token census + token policies on the same CR/Hotpot prompts (40 units) | 75f867fb |
+| results/20261103T022500Z_std_qwen_v6horizon, ..._poolA | Qwen2.5-3B on the v6 B pool (8) and A pool (20) with its own 128-token greedy continuation | 2245320f / 2245320f+ |
+| results/20261102T093000Z_qc_v7_pilotA/analysis/LOOP_PHENOMENOLOGY.md | loop-wise attention statistics from the v7 dev+holdout REF receipts (40 prompts per model) | 9b79c099 |
+| results/20261103T_v8_plane_smoke, results/20261103T_std_smoke | validation/timing receipts | 3c7233a2, 75f867fb |
+| v7 (results/20261102T*_qc_v7_*) | query-conditioned study: QUERY_CONDITIONED_REVIEW.md | 283dbe52 |
+
+Code: kvp/plane_policies.py, kvp/query_conditioned_probe.py (PlaneMapProbeKV, validate_planes), scripts/plane_budget_sweep.py,
+scripts/plane_budget_analysis.py, scripts/horizon_analysis.py, scripts/loop_attention_phenomenology.py,
+scripts/standard_kv_census.py, scripts/standard_kv_analysis.py; CPU tests tests/test_query_conditioned_probe.py (12).
+All GPU work: H200×8, ~/ddn/envs/kvp (torch 2.6, transformers 4.54.1), B=1, BF16; exact commands in each run's execute.log
+and run_manifest.json. Incidents: a misplaced @torch.no_grad (fixed in ca043396, 0.46 GB/decode leak, first Huginn TAX OOM
+in the smoke run); the v8 job list was trimmed at 01:45 for the time budget (PLN holdout and first/half variants dropped);
+no completed job was discarded, 0 worker errors across all v8 runs.
