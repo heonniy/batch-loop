@@ -63,6 +63,14 @@ def prepare(run: Path, cfg: dict):
                     unit = f"{mk}__{ds}__{d['uid']}"
                     jobs.append({"kind": "UNIT", "key": f"UNIT__{unit}", "model": mk, "dataset": ds, "uid": d["uid"], "unit": unit,
                                  "split": split})
+    if cfg.get("v6_pool"):
+        from query_conditioned_sweep import V6_RUN
+        man = json.loads((V6_RUN / "manifest.json").read_text())
+        for it in (x for x in man if x["pool"] in cfg["v6_pool"]):
+            for mk in cfg["models"]:
+                unit = f"{mk}__v6{it['workload']}__{it['item_id']}"
+                jobs.append({"kind": "V6U", "key": f"V6U__{unit}", "model": mk, "dataset": f"v6_{it['workload']}", "uid": f"v6/{it['item_id']}",
+                             "unit": unit, "split": it["pool"], "item_id": it["item_id"]})
     _json(run / "jobs.json", jobs)
     _json(run / "run_manifest.json", {"protocol": PROTOCOL, "code_sha": git_sha(), "config": cfg, "dataset_sources": sources,
                                       "models": {k: {"repo": v[0], "revision": v[1]} for k, v in STD_MODELS.items() if k in cfg["models"]},
@@ -75,7 +83,7 @@ def prepare(run: Path, cfg: dict):
 
 # ------------------------------------------------------------------------------------------- engine
 class StdUnit:
-    def __init__(self, model, tok, prompt, targets, device):
+    def __init__(self, model, tok, prompt, targets, device, eos_ids=None, horizon=128):
         import torch
         from transformers import DynamicCache
         self.model, self.tok, self.p, self.device = model, tok, prompt, device
@@ -93,8 +101,11 @@ class StdUnit:
         self.last_prompt_lp = torch.log_softmax(out.logits[0, -1].float(), -1)
         self.prefix = out.past_key_values
         self.DynamicCache = DynamicCache
-        self.n = len(self.targets)
         del out
+        if not self.targets:                      # frozen greedy continuation of this model (v6-style workloads)
+            self.eos = eos_ids or set()
+            self.targets = self._run((), greedy=True, max_new=horizon)
+        self.n = len(self.targets)
         self.ref_lp, self.gen_attn = self._run(evicted=(), record=True)
         self.ref_ids = self.targets
 
@@ -114,8 +125,10 @@ class StdUnit:
         lps, attn = [], []
         cur = self.targets[0] if not greedy else int(self.last_prompt_lp.argmax())
         out_ids = [cur]
+        if greedy and cur in self.eos:
+            return out_ids
         with torch.no_grad():
-            for t in range(1, n + 1):
+            for t in range(1, (n if greedy else n + 1)):
                 col = self.P + t - 1
                 o = self.model(input_ids=torch.tensor([[cur]], device=self.device), past_key_values=cache, use_cache=True,
                                attention_mask=mask[:, :col + 1], position_ids=torch.tensor([[col]], device=self.device),
@@ -156,14 +169,25 @@ def evaluate(model, tok, eos, job, cfg, run: Path):
     from kvp.role_data import build_evidence_prompt
     from kvp.role_generation import score_free_answer
     raw = run / "raw"
-    docs, _ = _docs(job["dataset"])
-    doc = next(d for d in docs if d["uid"] == job["uid"])
-    p = build_evidence_prompt(tok, "ouro", doc)         # plain text; exact tokenizer-offset roles
-    target_text = "Answer: " + doc["answer"].strip() + "\n"
-    targets = tok.encode(target_text, add_special_tokens=False)[:64]
+    if job["kind"] == "V6U":
+        from kvp.loopzip_trajectory_data import build_trajectory_prompt
+        from query_conditioned_sweep import V6_RUN
+        it = next(x for x in json.loads((V6_RUN / "manifest.json").read_text()) if x["item_id"] == job["item_id"])
+        p = build_trajectory_prompt(tok, "ouro", it["context"], it["instruction"], it["question"])
+        targets, doc, gold = [], None, None
+    else:
+        docs, _ = _docs(job["dataset"])
+        doc = next(d for d in docs if d["uid"] == job["uid"])
+        p = build_evidence_prompt(tok, "ouro", doc)         # plain text; exact tokenizer-offset roles
+        target_text = "Answer: " + doc["answer"].strip() + "\n"
+        targets = tok.encode(target_text, add_special_tokens=False)[:64]
+        gold = doc["answer"]
     t0 = time.time()
-    u = StdUnit(model, tok, p, targets, next(model.parameters()).device)
+    u = StdUnit(model, tok, p, targets, next(model.parameters()).device, eos_ids=eos, horizon=cfg.get("horizon", 128))
     u.eos = eos
+    targets = list(u.targets)
+    if len(targets) < 2:
+        raise RuntimeError("Continuation too short")
     t_pre = time.time() - t0
     content = [int(c) for c in p.content_positions]
     P, L, n = u.P, u.L, u.n
@@ -203,8 +227,7 @@ def evaluate(model, tok, eos, job, cfg, run: Path):
     for sd in (11, 29):
         rng = np.random.default_rng(int(hashlib.sha256(f"{job['unit']}/{sd}".encode()).hexdigest()[:8], 16))
         scores[f"random_{sd}"] = rng.random(P)
-    gold = doc["answer"]
-    g_full = u._run((), greedy=True, max_new=GREEDY_TOKENS)
+    g_full = u._run((), greedy=True, max_new=GREEDY_TOKENS) if gold is not None else list(targets)
     rows = []
     t2 = time.time()
     for keep in cfg["retention"]:
@@ -213,10 +236,14 @@ def evaluate(model, tok, eos, job, cfg, run: Path):
             order = sorted(range(len(content)), key=lambda j: (-float(sc[content[j]]), int(content[j])))
             ev = sorted(int(content[j]) for j in order[n_keep:])
             d = u.score(tuple(ev))
-            g = u._run(tuple(ev), greedy=True, max_new=GREEDY_TOKENS)
-            em = score_free_answer(tok, gold, {"token_ids": g, "decoded_tokens": len(g)})
+            if gold is not None:
+                g = u._run(tuple(ev), greedy=True, max_new=GREEDY_TOKENS)
+                em = score_free_answer(tok, gold, {"token_ids": g, "decoded_tokens": len(g)})
+            else:
+                em = {"exact_match": float("nan"), "extracted_answer": ""}
             rows.append({"retention": keep, "policy": name, "n_evicted": len(ev), "n_kept": len(content) - len(ev),
                          "delta_nll_future": d["delta_nll_future"], "kl_mean": float(np.mean(d["kl_by_t"])),
+                         "kl_early8": float(np.mean(d["kl_by_t"][:8])), "kl_late": float(np.mean(d["kl_by_t"][len(d["kl_by_t"]) // 2:])),
                          "exact_match": em["exact_match"], "extracted": em["extracted_answer"][:40]})
     np.savez_compressed(raw / f"{job['key']}.npz", sources=np.array(content), qa=qa.astype("float32"),
                         qb=u.anchor_attn["prompt_last"].astype("float32"), gen_attn=ga.astype("float32"),
@@ -225,7 +252,8 @@ def evaluate(model, tok, eos, job, cfg, run: Path):
         "sha": git_sha(), "prompt_ids": list(p.token_ids), "roles": list(p.roles), "content_positions": content,
         "relevant_positions": list(p.relevant_positions), "anchors": u.anchors, "target_ids": targets, "n_layers": L,
         "validation": val, "ref_nll": ref_nll, "policy_rows": rows, "gold_answer": gold,
-        "full_exact_match": score_free_answer(tok, gold, {"token_ids": g_full, "decoded_tokens": len(g_full)})["exact_match"],
+        "full_exact_match": (score_free_answer(tok, gold, {"token_ids": g_full, "decoded_tokens": len(g_full)})["exact_match"]
+                             if gold is not None else None), "continuation": targets if gold is None else None,
         "timing": {"prefill_ref_s": t_pre, "census_s": t_cen, "policy_s": time.time() - t2},
         "peak_gpu_bytes": torch.cuda.max_memory_allocated()})
 
@@ -288,6 +316,8 @@ def main():
     ap.add_argument("--dev", default="0:8")
     ap.add_argument("--holdout", default="8:20")
     ap.add_argument("--retention", default="0.1,0.3,0.5")
+    ap.add_argument("--v6-pool", default="", help="comma list of v6 manifest pools to add as V6U units (e.g. B or A,B)")
+    ap.add_argument("--horizon", type=int, default=128)
     ap.add_argument("--gpu-ids", default="0")
     a = ap.parse_args()
     sp = lambda s: [x.strip() for x in s.split(",") if x.strip()]  # noqa: E731
@@ -295,7 +325,8 @@ def main():
     if a.prepare:
         rng = lambda s: tuple(int(x) for x in s.split(":"))  # noqa: E731
         cfg = {"models": sp(a.models), "datasets": sp(a.datasets), "splits": {"dev": rng(a.dev), "holdout": rng(a.holdout)},
-               "retention": [float(x) for x in sp(a.retention)], "greedy_tokens": GREEDY_TOKENS}
+               "retention": [float(x) for x in sp(a.retention)], "greedy_tokens": GREEDY_TOKENS,
+               "v6_pool": sp(a.v6_pool), "horizon": a.horizon}
         print(json.dumps(prepare(run, cfg), indent=2))
     elif a.worker is not None:
         worker(run, a.worker)
