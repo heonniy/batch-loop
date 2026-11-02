@@ -780,6 +780,55 @@ def per_prompt_reports(st: pd.DataFrame, exit_rows, out: Path):
         (d / f"{unit}.md").write_text("\n".join(m))
 
 
+# ------------------------------------------------------------------------------------------- policy check
+def policy_check(run: Path, out: Path, md: list):
+    """Equal-budget Context retention (10/30/50% kept) with label-free scores. Paired per prompt vs random (mean of 3
+    seeds): ΔNLL_future, mean KL to the FULL reference, greedy exact match. Oracle rows use future generated-query
+    attention (not deployable); def4 uses the first 4 generated tokens (deferred decision)."""
+    jobs = json.loads((run / "jobs.json").read_text())
+    raw = run / "raw"
+    rows = []
+    for j in (j for j in jobs if j["kind"] == "POL" and (raw / f"{j['key']}.json").exists()):
+        d = json.loads((raw / f"{j['key']}.json").read_text())
+        for r in d["rows"]:
+            rows.append({"model": j["model"], "dataset": j["dataset"], "uid": j["uid"], "full_em": float(d["full"]["exact_match"]),
+                         "full_nll": d["full"]["nll_future"], **r, "exact_match": float(r["exact_match"])})
+    if not rows:
+        return None
+    df = pd.DataFrame(rows)
+    df["family"] = df.policy.str.replace(r"random_\d+", "random", regex=True)
+    df.to_csv(out / "policy_long.csv", index=False)
+    md += ["## Equal-budget Context retention policies (label-free scores; paired vs random per prompt)", "",
+           "Lower ΔNLL / KL is better; EM = greedy exact match of the answer (FULL EM in header row). "
+           "qa_* = question-anchor attention at loop 1 / loop R / mean / late half; recv = all later prompt queries; "
+           "lastq = last prompt token; la2 = first 2 generated (format) queries; def4 = first 4 generated queries "
+           "(deferred decision); fut_oracle = all generated queries (oracle), with loop-1 / loop-R variants.", ""]
+    res = []
+    for (m, ds), g in df.groupby(["model", "dataset"]):
+        md += [f"### {m} / {ds} — {g.uid.nunique()} prompts, FULL EM {g.groupby('uid').full_em.first().mean():.2f}", "",
+               "| keep | policy | ΔNLL_future mean [CI] | KL mean | EM | ΔNLL − random [CI] | EM − random |", "|---|---|---|---|---|---|---|"]
+        for keep, gk in g.groupby("retention"):
+            rnd = gk[gk.family == "random"].groupby("uid")[["delta_nll_future", "kl_mean", "exact_match"]].mean()
+            for pol, gp in gk.groupby("policy"):
+                if pol.startswith("random_"):
+                    continue
+                gp = gp.set_index("uid")
+                pr = gp.delta_nll_future - rnd.delta_nll_future.reindex(gp.index)
+                pe = gp.exact_match - rnd.exact_match.reindex(gp.index)
+                r = {"model": m, "dataset": ds, "keep": keep, "policy": pol, "dnll": float(gp.delta_nll_future.mean()),
+                     "dnll_ci": _boot(gp.delta_nll_future.tolist()), "kl": float(gp.kl_mean.mean()), "em": float(gp.exact_match.mean()),
+                     "dnll_vs_random": float(pr.mean()), "dnll_vs_random_ci": _boot(pr.tolist()), "em_vs_random": float(pe.mean())}
+                res.append(r)
+                md.append(f"| {keep} | {pol} | {_f(r['dnll'])}{_ci(r['dnll_ci'])} | {_f(r['kl'])} | {_f(r['em'], 2)} | "
+                          f"{_f(r['dnll_vs_random'])}{_ci(r['dnll_vs_random_ci'])} | {_f(r['em_vs_random'], 2)} |")
+            rr = {"keep": keep, "policy": "random (mean of 3)", "dnll": float(rnd.delta_nll_future.mean()),
+                  "kl": float(rnd.kl_mean.mean()), "em": float(rnd.exact_match.mean())}
+            md.append(f"| {keep} | random (mean of 3) | {_f(rr['dnll'])} | {_f(rr['kl'])} | {_f(rr['em'], 2)} | 0 | 0 |")
+        md.append("")
+    _json(out / "policy_check.json", res)
+    return res
+
+
 # ------------------------------------------------------------------------------------------- main
 def analyze(run: Path) -> dict:
     out = run / "analysis"
@@ -788,6 +837,10 @@ def analyze(run: Path) -> dict:
     md = [f"# v7 query-conditioned sensitivity — findings ({run.name})", "",
           f"Completeness: {comp['completed']}/{comp['expected']} jobs, errors {len(comp['errors'])}, "
           f"problems {len(comp['problems'])}, complete={comp['complete']}", ""]
+    if json.loads((run / "run_manifest.json").read_text())["config"].get("policy_source_run"):
+        policy_check(run, out, md)
+        (out / "QUERY_CONDITIONED_FINDINGS.md").write_text("\n".join(md))
+        return {"complete": comp["complete"], "missing": len(comp["missing"]), "errors": comp["errors"], "problems": comp["problems"]}
     st = source_table(run)
     st.to_parquet(out / "source_long.parquet", index=False)
     st.drop(columns=[c for c in st.columns if c.endswith("_dircos_mean")]).to_csv(out / "source_long.csv", index=False)
