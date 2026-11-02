@@ -28,6 +28,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 
 TOP_FRAC = 0.10
+LOOKAHEAD_K = (1, 2, 3, 4, 6, 8)
 
 
 def _json(path: Path, value):
@@ -218,6 +219,11 @@ def source_table(run: Path) -> pd.DataFrame:
                         "la12_attn_max": float(ga[:2].mean(1).max()), "la1_delta": float(gd[0].mean()),
                         "la2_delta": float(gd[min(1, n - 1)].mean()), "la12_delta_max": float(gd[:2].mean(1).max()),
                         "qa_lastloop_frac": float(A["attn"][-1, s] / max(1e-12, A["attn"][:, s].sum()))}
+                for k in LOOKAHEAD_K:
+                    kk = min(k, n)
+                    row[f"lk{k}_attn_max"] = float(ga[:kk].mean(1).max())
+                    row[f"lk{k}_delta_max"] = float(gd[:kk].mean(1).max())
+                    row[f"lk{k}_attn_lastloop_max"] = float(ga[:kk, -1].max())
                 row |= {f"fut_prof_r{r + 1}": float(prof[r]) for r in range(R)}
                 row |= {f"fut_attn_r{r + 1}": float(ga[tstar, r]) for r in range(R)}
                 row |= {f"la12_attn_r{r + 1}": float(ga[:2, r].max()) for r in range(R)}
@@ -570,6 +576,38 @@ def loop_profiles(st: pd.DataFrame, out: Path, md: list):
     return res
 
 
+# ------------------------------------------------------------------------------------------- lookahead curve
+def lookahead_curve(st: pd.DataFrame, out: Path, md: list):
+    """Deferred-eviction diagnostic: if the eviction decision is taken after the first k generated tokens (their
+    clean attention is then available at no extra cost), how much of the future-query oracle is recovered?
+    LOPO ridge C + {max over t<=k of generated-query attention / local perturbation}. k=0 is C."""
+    st = st[st.kl_mean.notna()].copy()
+    st["y"] = np.log10(st.kl_mean.clip(lower=1e-9))
+    L = _logfeat(st)
+    res = []
+    md += ["## Deferred-eviction lookahead curve: LOPO ranking with the first k generated queries' clean attention", "",
+           "| model | dataset | k | mean ρ [CI] | AUROC top-10% | LIFT over k=0 [CI] | univariate ρ(max attn t≤k) |",
+           "|---|---|---|---|---|---|---|"]
+    for (m, ds), g in L.groupby(["model", "dataset"]):
+        if g.uid.nunique() < 3:
+            continue
+        base, _ = _ridge_lopo(g, A_FEATS + C_FEATS, "y")
+        res.append({"model": m, "dataset": ds, "k": 0, "mean_spearman": float(np.nanmean(base)), "ci": _boot(base)})
+        md.append(f"| {m} | {ds} | 0 (C) | {_f(np.nanmean(base))}{_ci(_boot(base))} | — | — | — |")
+        for k in LOOKAHEAD_K:
+            feats = A_FEATS + C_FEATS + [f"lk{k}_attn_max", f"lk{k}_delta_max", f"lk{k}_attn_lastloop_max"]
+            rhos, au = _ridge_lopo(g, feats, "y")
+            lift = [b - a for a, b in zip(base, rhos) if np.isfinite(a) and np.isfinite(b)]
+            uni = float(np.nanmean([_spearman(gg[f"lk{k}_attn_max"], gg.y) for _, gg in g.groupby("uid")]))
+            r = {"model": m, "dataset": ds, "k": k, "mean_spearman": float(np.nanmean(rhos)), "ci": _boot(rhos),
+                 "auroc": float(np.nanmean(au)), "lift": float(np.mean(lift)), "lift_ci": _boot(lift), "uni_rho": uni}
+            res.append(r)
+            md.append(f"| {m} | {ds} | {k} | {_f(r['mean_spearman'])}{_ci(r['ci'])} | {_f(r['auroc'])} | {_f(r['lift'])}{_ci(r['lift_ci'])} | {_f(uni)} |")
+    md.append("")
+    _json(out / "lookahead_curve.json", res)
+    return res
+
+
 # ------------------------------------------------------------------------------------------- loop-resolved importance
 def loop_resolved(st: pd.DataFrame, out: Path, md: list):
     """Which loop's attention is the better importance signal? Within-prompt Spearman of attention at loop r with Y,
@@ -762,6 +800,7 @@ def analyze(run: Path) -> dict:
         loop_profiles(main, out, md)
         loop_resolved(main, out, md)
         prediction(main, out, md)
+        lookahead_curve(main, out, md)
     v6 = st[~st.dataset.isin(("controlled_retrieval", "hotpotqa_distractor"))]
     if not v6.empty:
         md += ["# Generalisation arm: v6 W1/W2 prompts (128-token greedy continuation outcome from the frozen v6 census)", ""]
