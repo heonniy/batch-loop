@@ -17,13 +17,20 @@ import pandas as pd
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 sys.path.insert(0, str(HERE))
-from query_conditioned_analysis import _boot, _ci, _f, _json  # noqa: E402
+from query_conditioned_analysis import _boot, _f, _json  # noqa: E402
 from query_conditioned_sweep import V6_RUN  # noqa: E402
 
 BINS = [(0, 8, "t 1–8"), (8, 32, "t 9–32"), (32, 128, "t 33–128")]
 
 
-def hor_rows(run: Path) -> pd.DataFrame:
+def hor_rows(runs) -> pd.DataFrame:
+    rows = []
+    for run in (runs if isinstance(runs, (list, tuple)) else [runs]):
+        rows += _hor_rows_one(run)
+    return pd.DataFrame(rows)
+
+
+def _hor_rows_one(run: Path) -> list:
     jobs = json.loads((run / "jobs.json").read_text())
     rows = []
     for j in (x for x in jobs if x["kind"] == "HOR"):
@@ -39,8 +46,9 @@ def hor_rows(run: Path) -> pd.DataFrame:
             for lo, hi, lab in BINS:
                 row[lab] = float(np.mean(kl[lo:min(hi, n)])) if n > lo else np.nan
             row["kl_curve"] = kl.tolist()
+            row["pool"] = j.get("split", "")
             rows.append(row)
-    return pd.DataFrame(rows)
+    return rows
 
 
 def looped_single_token_curves() -> pd.DataFrame:
@@ -66,7 +74,16 @@ def looped_single_token_curves() -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-def standard_curves(std_run: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
+def standard_curves(std_runs) -> tuple[pd.DataFrame, pd.DataFrame]:
+    cen, pol = [], []
+    for std_run in (std_runs if isinstance(std_runs, (list, tuple)) else [std_runs]):
+        c, p = _standard_one(std_run)
+        cen += c
+        pol += p
+    return pd.DataFrame(cen), pd.DataFrame(pol)
+
+
+def _standard_one(std_run: Path):
     jobs = json.loads((std_run / "jobs.json").read_text())
     cen, pol = [], []
     for j in (x for x in jobs if x["kind"] == "V6U"):
@@ -84,7 +101,7 @@ def standard_curves(std_run: Path) -> tuple[pd.DataFrame, pd.DataFrame]:
             cen.append(row)
         for r in d["policy_rows"]:
             pol.append({"model": j["model"], "dataset": j["dataset"], "uid": j["uid"], "n": n, **r})
-    return pd.DataFrame(cen), pd.DataFrame(pol)
+    return cen, pol
 
 
 def growth_table(df: pd.DataFrame, md: list, title: str, group_cols: list):
@@ -108,16 +125,19 @@ def growth_table(df: pd.DataFrame, md: list, title: str, group_cols: list):
     return out
 
 
-def analyze(hor_run: Path, std_run: Path | None):
-    out = hor_run / "analysis"
+def analyze(hor_runs, std_runs):
+    hor_runs = [Path(x) for x in hor_runs]
+    std_runs = [Path(x) for x in std_runs if Path(x).exists()]
+    out = hor_runs[0] / "analysis"
     out.mkdir(exist_ok=True)
     md = ["# Decode-horizon growth of KV damage: looped (Huginn R=32, Ouro R=4) vs standard (Qwen2.5-3B)", "",
+          f"Runs: {', '.join(r.name for r in hor_runs)}; standard: {', '.join(r.name for r in std_runs)}", "",
           "Outcome: KL(p_full || p_policy) at generated step t of the model's OWN frozen greedy 128-token continuation "
           "(v6 W1 continuation / W2 summarise-explain prompts), teacher-forced; binned over t. 'late/early' = mean KL at "
           "t 33–128 over mean KL at t 1–8 (per prompt, median; CI on log10). Growth > 1 means damage accumulates through the "
           "generated history; < 1 means the model recovers.", ""]
     res = {}
-    hor = hor_rows(hor_run)
+    hor = hor_rows(hor_runs)
     if len(hor):
         hor.drop(columns=["kl_curve"]).to_csv(out / "horizon_long.csv", index=False)
         hor["arm"] = hor.axis + ":" + hor.plane_policy + "@" + hor.scope + ("+" + hor.token_score).where(hor.token_score != "none", "")
@@ -129,8 +149,8 @@ def analyze(hor_run: Path, std_run: Path | None):
         # top-5% harmful sources only
         top = lo[lo.groupby(["model", "dataset", "uid"])["t 1–8"].transform(lambda s: s >= s.quantile(0.95))]
         res["looped_single_top5"] = growth_table(top, md, "Looped models: single-token eviction, top-5% sources by early damage", ["model", "dataset"])
-    if std_run is not None and std_run.exists():
-        cen, pol = standard_curves(std_run)
+    if std_runs:
+        cen, pol = standard_curves(std_runs)
         if len(cen):
             res["std_single"] = growth_table(cen, md, "Standard model: single Context-token eviction (mean over sources)", ["model", "dataset"])
             top = cen[cen.groupby(["model", "dataset", "uid"])["t 1–8"].transform(lambda s: s >= s.quantile(0.95))]
@@ -146,4 +166,7 @@ def analyze(hor_run: Path, std_run: Path | None):
 
 
 if __name__ == "__main__":
-    print(json.dumps(analyze(Path(sys.argv[1]).resolve(), Path(sys.argv[2]).resolve() if len(sys.argv) > 2 else None), indent=2, default=str))
+    # usage: horizon_analysis.py <hor_run>[,<hor_run>...] [<std_run>[,<std_run>...]]
+    hor = [Path(x).resolve() for x in sys.argv[1].split(",")]
+    std = [Path(x).resolve() for x in sys.argv[2].split(",")] if len(sys.argv) > 2 else []
+    print(json.dumps(analyze(hor, std), indent=2, default=str))
