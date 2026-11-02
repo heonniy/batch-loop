@@ -78,3 +78,37 @@ features (LOPO, prompt bootstrap); (4) does eviction change live depth and does 
   (prompt tokens: 61% exit at 3, 39% at 4; generated 6/11 at 3), Huginn fp32 cosine 1e-3 (generated mean 24.8,
   9% at R; BF16 model-dtype cosine is recorded only as a diagnostic). min_depth 2.
 - The smoke was stopped after 1 CR unit per model (partial CEN kept as receipts); it is NOT part of the pilot data.
+
+## 2026-11-02 — E3: pilot A (dev), results/20261102T093000Z_qc_v7_pilotA, code 2d5b6136 (analysis up to d93eba0f)
+
+466/466 jobs, 0 errors, 48 units (8 CR + 8 HotpotQA per model, exhaustive 352–589 Context sources each; 4 v6 W1 +
+4 v6 W2 Bref prompts per model), all validation gates pass. Findings file: analysis/QUERY_CONDITIONED_FINDINGS.md.
+
+1. Prompt-anchor query-conditioned probes are a NULL. At the last Question token (and the last prompt token) the
+   all-loop / one-loop mask responses sit at the BF16 floor for every attention decile (KL ~1e-5, E_R ≈ 0.014 in
+   both models, identical in the lowest and highest attention decile) and add negative LOPO lift (D − C: −0.01 to
+   −0.02 in all four model×dataset cells). The later query's recurrence AT PROMPT TIME does not carry information.
+2. The dominant reason attention fails is QUERY MISMATCH, not recurrence. The damage is consumed by a later
+   generated query t*; its clean attention (oracle F) adds +0.04–0.07 LOPO lift (CI>0 in 3/4 cells) and, on the
+   v6 128-token continuations, within-prompt ρ 0.77–0.79 vs 0.03–0.26 for question-anchor attention. Among
+   prompt-attention-matched informative pairs (Y dispersion 2–3 decades, 80% >10x apart) the future query's attention
+   orders 83–87%; matching on future attention + local δ shrinks the dispersion to 0.6–0.8 decades.
+3. Recurrent propagation at the consuming query is NOT a per-source property that predicts damage: propagation
+   gains E_R/E_s (G1g) give zero lift in all cells; one-loop E_s/E_R (G1) give +0.028 [0.001,0.056] only for
+   Huginn-CR and ≤0 elsewhere. Huginn's gain ≈ 2 and Ouro's ≈ 1.0–1.2 at every loop are floor-amplification constants.
+4. The recurrence-specific signal that DOES exist is WHICH LOOP'S attention one reads: for Huginn, attention at
+   loops ≥16 is a 2–3x stronger within-prompt predictor than first-loop attention (ρ 0.07 → 0.20–0.24; same for the
+   consuming query, the 2-token lookahead and the question anchor); the top-5% harm sources are read at loop ~23–25
+   whereas the rest peak at loops 1–4. Ouro: loop 4 (0.15) > loop 1 (0.09). A one-pass (first-loop) attention
+   score is the weakest choice in a recurrent model.
+5. Deployable partial fixes: the 2-token format lookahead ("Answer:") gives +0.01–0.035 lift; deferring the eviction
+   decision to after k generated tokens recovers most of the oracle (k=3–8: +0.03–0.06, CI>0 for Huginn-Hotpot and
+   both Ouro cells).
+6. Gate D: Huginn changes exit depth for 21–29% of generated queries (both directions; ρ(Σdepth Δ, damage)=0.07–0.23);
+   Ouro changes depth for 1–2% (always deeper). Live − recorded-replay future NLL ≈ 0 (CI includes 0 in 3/4 cells):
+   the native exit response neither rescues nor worsens quality; it is an exit-system observation only.
+
+DECISION: no protocol change. Pilot B = the remaining 12 UIDs per dataset per model (held-out confirmation, same
+code/thresholds; results/20261102T103000Z_qc_v7_pilotB_holdout). In parallel, add an equal-budget POLICY check of
+the cheap alternatives suggested by 4–5 (loop-resolved anchor attention, lookahead, deferred-k) vs the oracle and
+random, on the frozen dev prompts first (kind POL). The expensive query-recomputation oracle is NOT carried forward.

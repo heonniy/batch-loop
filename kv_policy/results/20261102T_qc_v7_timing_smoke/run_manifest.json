@@ -1,0 +1,32 @@
+{
+ "protocol": "query-conditioned-v7-pilot-v1",
+ "code_sha": "47138db5a10d9ca30dceaa3168dcb40446832b07",
+ "config": {
+  "models": [
+   "ouro-2.6b",
+   "huginn-0125"
+  ],
+  "datasets": [
+   "controlled_retrieval",
+   "hotpotqa_distractor"
+  ],
+  "n_examples": 1,
+  "skip_examples": 0,
+  "horizon": 40,
+  "chunk_size": {
+   "ouro-2.6b": 6,
+   "huginn-0125": 6
+  },
+  "v6_units": false,
+  "live": null
+ },
+ "v5_source_run": "/home1/irteam/batch-loop/kv_policy/results/20261030T164908Z_loopzip_failure_pilot20",
+ "v6_source_run": "/home1/irteam/batch-loop/kv_policy/results/20261031T070815Z_loopzip_v6_trajectory_pilot",
+ "notes": [
+  "Prompts/targets are the frozen v5 pilot20 Controlled Retrieval + HotpotQA evidence_excerpt prompts (seed 20261031); gold 'Answer: <x>\\n' continuation",
+  "CEN sources are exhaustive over aligned Context tokens; no label enters selection",
+  "LIVE subset = positional hash + top clean question-anchor attention (label-blind)",
+  "Live thresholds are frozen from clean-only REF receipts of an earlier run",
+  "Full-sized reference KV + read masks; no HBM claim"
+ ]
+}

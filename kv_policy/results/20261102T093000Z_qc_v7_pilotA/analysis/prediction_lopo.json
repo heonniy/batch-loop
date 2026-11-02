@@ -1,0 +1,1302 @@
+[
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "A attention/position/lexical",
+  "n_feats": 16,
+  "mean_spearman": 0.14537370875897787,
+  "ci": [
+   0.09781305509881996,
+   0.1926139252626505
+  ],
+  "mean_auroc_top10": 0.6999604430379747,
+  "auroc_ci": [
+   0.628428270042194,
+   0.7698993495077355
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "B = A + source trajectory",
+  "n_feats": 20,
+  "mean_spearman": 0.13574033674069083,
+  "ci": [
+   0.09471739898439616,
+   0.17613130790361667
+  ],
+  "mean_auroc_top10": 0.6920380625879043,
+  "auroc_ci": [
+   0.6265493143459915,
+   0.7551643811533052
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "C = A + value/local-perturbation",
+  "n_feats": 21,
+  "mean_spearman": 0.14891650488321875,
+  "ci": [
+   0.10486112486820702,
+   0.1940933289640797
+  ],
+  "mean_auroc_top10": 0.7032019163150492,
+  "auroc_ci": [
+   0.6425479078762307,
+   0.7640097573839663
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "S = C + cheap surrogates",
+  "n_feats": 23,
+  "mean_spearman": 0.1521582957489473,
+  "ci": [
+   0.11515366813702507,
+   0.18962588403098324
+  ],
+  "mean_auroc_top10": 0.708915699718706,
+  "auroc_ci": [
+   0.6484704641350211,
+   0.7691631504922644
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "L = C + 2-token format lookahead (deployable, +2 steps)",
+  "n_feats": 27,
+  "mean_spearman": 0.157292684691764,
+  "ci": [
+   0.11102337523194462,
+   0.2060837386173789
+  ],
+  "mean_auroc_top10": 0.7236506680731364,
+  "auroc_ci": [
+   0.6619308192686358,
+   0.7833377285513361
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "D = C + prompt-anchor query probes (oracle)",
+  "n_feats": 62,
+  "mean_spearman": 0.13922115714785688,
+  "ci": [
+   0.09741647241647242,
+   0.1849312406589319
+  ],
+  "mean_auroc_top10": 0.6895987165963432,
+  "auroc_ci": [
+   0.6269558720112517,
+   0.7505823663853728
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "F = C + future-query census (oracle)",
+  "n_feats": 29,
+  "mean_spearman": 0.18726637011870723,
+  "ci": [
+   0.14532824155699509,
+   0.23238888806346314
+  ],
+  "mean_auroc_top10": 0.7365396448663855,
+  "auroc_ci": [
+   0.683786040787623,
+   0.794149964838256
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "G1 = F + one-loop probes at t* (E_s,E_R,gain; oracle)",
+  "n_feats": 53,
+  "mean_spearman": 0.21533050184785313,
+  "ci": [
+   0.18172339542736146,
+   0.24492273739794984
+  ],
+  "mean_auroc_top10": 0.7592409458509142,
+  "auroc_ci": [
+   0.7114209739803093,
+   0.8118956575246132
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "G1g = F + propagation gains only at t* (oracle)",
+  "n_feats": 37,
+  "mean_spearman": 0.17968951197527683,
+  "ci": [
+   0.13800774689584885,
+   0.2267422192616952
+  ],
+  "mean_auroc_top10": 0.7395393811533052,
+  "auroc_ci": [
+   0.6891152426160339,
+   0.794149964838256
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "G2 = F + all-loop probe at t* (\u2248 within-query damage component)",
+  "n_feats": 42,
+  "mean_spearman": 0.22097472876509705,
+  "ci": [
+   0.16457056674832876,
+   0.2619381670815807
+  ],
+  "mean_auroc_top10": 0.7509559599156118,
+  "auroc_ci": [
+   0.7009493670886078,
+   0.8051160337552743
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "G = F + all future-query probes (oracle)",
+  "n_feats": 70,
+  "mean_spearman": 0.20947647921798063,
+  "ci": [
+   0.15785761983531107,
+   0.2523643288958445
+  ],
+  "mean_auroc_top10": 0.7498132032348805,
+  "auroc_ci": [
+   0.6968508263009845,
+   0.8041930379746837
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "D+F",
+  "n_feats": 70,
+  "mean_spearman": 0.18312149469196215,
+  "ci": [
+   0.13683068976978324,
+   0.23136542891323345
+  ],
+  "mean_auroc_top10": 0.7375175808720112,
+  "auroc_ci": [
+   0.685115594233474,
+   0.7937434071729959
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT B \u2212 A",
+  "mean_spearman": -0.009633372018287024,
+  "ci": [
+   -0.022330586866705845,
+   -0.00021588322756876293
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT C \u2212 A",
+  "mean_spearman": 0.003542796124240888,
+  "ci": [
+   -0.007295972637686516,
+   0.013326326844386342
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT S \u2212 C",
+  "mean_spearman": 0.003241790865728544,
+  "ci": [
+   -0.007815750113908731,
+   0.01389838128506684
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT L \u2212 C",
+  "mean_spearman": 0.008376179808545256,
+  "ci": [
+   -0.009052409858004748,
+   0.024808790123945917
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT F \u2212 L",
+  "mean_spearman": 0.029973685426943206,
+  "ci": [
+   -0.004776773234634452,
+   0.06738744907123093
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT D \u2212 C",
+  "mean_spearman": -0.009695347735361895,
+  "ci": [
+   -0.02512269265987395,
+   0.004419501453849891
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT F \u2212 C",
+  "mean_spearman": 0.038349865235488466,
+  "ci": [
+   -0.004558860835418895,
+   0.08388041864493703
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT G1 \u2212 F",
+  "mean_spearman": 0.028064131729145902,
+  "ci": [
+   0.001113671306660003,
+   0.055588503800260175
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT G1g \u2212 F",
+  "mean_spearman": -0.0075768581434303844,
+  "ci": [
+   -0.019092819951531004,
+   0.0032299253705061065
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT G2 \u2212 F",
+  "mean_spearman": 0.03370835864638981,
+  "ci": [
+   -0.007316367532373202,
+   0.07277118537741768
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT D+F \u2212 F",
+  "mean_spearman": -0.004144875426745092,
+  "ci": [
+   -0.013795684564098134,
+   0.002568243449971506
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "A attention/position/lexical",
+  "n_feats": 16,
+  "mean_spearman": 0.1611991108306935,
+  "ci": [
+   0.10062307550511565,
+   0.2200439361577981
+  ],
+  "mean_auroc_top10": 0.7122568291318754,
+  "auroc_ci": [
+   0.6363518936965531,
+   0.7833981079420771
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "B = A + source trajectory",
+  "n_feats": 20,
+  "mean_spearman": 0.1581721357401721,
+  "ci": [
+   0.09302513535776616,
+   0.22206007858203777
+  ],
+  "mean_auroc_top10": 0.7073733217865552,
+  "auroc_ci": [
+   0.6268198453811619,
+   0.7818675737312116
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "C = A + value/local-perturbation",
+  "n_feats": 21,
+  "mean_spearman": 0.155806726909679,
+  "ci": [
+   0.09899635556612486,
+   0.21085881414575902
+  ],
+  "mean_auroc_top10": 0.7079273625089808,
+  "auroc_ci": [
+   0.6314698073311146,
+   0.7786984995717187
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "S = C + cheap surrogates",
+  "n_feats": 23,
+  "mean_spearman": 0.1555227400826876,
+  "ci": [
+   0.09801312941434867,
+   0.2095440313640065
+  ],
+  "mean_auroc_top10": 0.7077272298307455,
+  "auroc_ci": [
+   0.6311737657140681,
+   0.777717112218681
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "L = C + 2-token format lookahead (deployable, +2 steps)",
+  "n_feats": 27,
+  "mean_spearman": 0.17210188281123112,
+  "ci": [
+   0.11030599518421186,
+   0.2247273868803442
+  ],
+  "mean_auroc_top10": 0.735985728212335,
+  "auroc_ci": [
+   0.6644788263957512,
+   0.802075142764618
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "D = C + prompt-anchor query probes (oracle)",
+  "n_feats": 62,
+  "mean_spearman": 0.14692342380316897,
+  "ci": [
+   0.09257712766335817,
+   0.1993396557017146
+  ],
+  "mean_auroc_top10": 0.693372097494217,
+  "auroc_ci": [
+   0.6169630687827303,
+   0.7633256337874217
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "F = C + future-query census (oracle)",
+  "n_feats": 29,
+  "mean_spearman": 0.22251576752252739,
+  "ci": [
+   0.16033416721060742,
+   0.2714847335295368
+  ],
+  "mean_auroc_top10": 0.794238609610427,
+  "auroc_ci": [
+   0.7196912790336105,
+   0.8581097080001194
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "G1 = F + one-loop probes at t* (E_s,E_R,gain; oracle)",
+  "n_feats": 53,
+  "mean_spearman": 0.20877526176093136,
+  "ci": [
+   0.14687108757253414,
+   0.26023601998890045
+  ],
+  "mean_auroc_top10": 0.7705154448398017,
+  "auroc_ci": [
+   0.7019412750783869,
+   0.8329218703597776
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "G1g = F + propagation gains only at t* (oracle)",
+  "n_feats": 37,
+  "mean_spearman": 0.22696360425401188,
+  "ci": [
+   0.16628337628786824,
+   0.2745947886800253
+  ],
+  "mean_auroc_top10": 0.7931669598473099,
+  "auroc_ci": [
+   0.7214471676962815,
+   0.8509137156132357
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "G2 = F + all-loop probe at t* (\u2248 within-query damage component)",
+  "n_feats": 42,
+  "mean_spearman": 0.2261575584207151,
+  "ci": [
+   0.16411527549364302,
+   0.2752935645404911
+  ],
+  "mean_auroc_top10": 0.7923452533783525,
+  "auroc_ci": [
+   0.71684490623778,
+   0.855640384868605
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "G = F + all future-query probes (oracle)",
+  "n_feats": 70,
+  "mean_spearman": 0.22004524700297257,
+  "ci": [
+   0.156173615831881,
+   0.27678772379575145
+  ],
+  "mean_auroc_top10": 0.7749384762675742,
+  "auroc_ci": [
+   0.6969028718907788,
+   0.8415063248848259
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "D+F",
+  "n_feats": 70,
+  "mean_spearman": 0.2195436681496345,
+  "ci": [
+   0.1588266561925017,
+   0.2694242701811636
+  ],
+  "mean_auroc_top10": 0.7884564115032289,
+  "auroc_ci": [
+   0.7168439104300295,
+   0.8499114522282646
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT B \u2212 A",
+  "mean_spearman": -0.0030269750905213954,
+  "ci": [
+   -0.010954160919040038,
+   0.004832331199825358
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT C \u2212 A",
+  "mean_spearman": -0.0053923839210145074,
+  "ci": [
+   -0.01119887632210561,
+   0.0009706017512683971
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT S \u2212 C",
+  "mean_spearman": -0.0002839868269913972,
+  "ci": [
+   -0.0024729103446145956,
+   0.0020644057244331975
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT L \u2212 C",
+  "mean_spearman": 0.016295155901552116,
+  "ci": [
+   0.006019588971992026,
+   0.026314531884107435
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT F \u2212 L",
+  "mean_spearman": 0.05041388471129624,
+  "ci": [
+   0.006299999249907718,
+   0.10221447832670766
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT D \u2212 C",
+  "mean_spearman": -0.008883303106510046,
+  "ci": [
+   -0.01443404407534776,
+   -0.0032108934612081197
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT F \u2212 C",
+  "mean_spearman": 0.06670904061284835,
+  "ci": [
+   0.02945490254979837,
+   0.11238174012476324
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT G1 \u2212 F",
+  "mean_spearman": -0.013740505761595995,
+  "ci": [
+   -0.04270075847175109,
+   0.011859514066437829
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT G1g \u2212 F",
+  "mean_spearman": 0.004447836731484513,
+  "ci": [
+   -0.0007932153878693719,
+   0.009688525881721272
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT G2 \u2212 F",
+  "mean_spearman": 0.003641790898187746,
+  "ci": [
+   -0.005935034444585842,
+   0.012183496125907675
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT D+F \u2212 F",
+  "mean_spearman": -0.00297209937289289,
+  "ci": [
+   -0.011664366917131925,
+   0.004461257509903093
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "A attention/position/lexical",
+  "n_feats": 16,
+  "mean_spearman": 0.06416264821895132,
+  "ci": [
+   0.03230871170849924,
+   0.09438743503899309
+  ],
+  "mean_auroc_top10": 0.613132911392405,
+  "auroc_ci": [
+   0.607342211673699,
+   0.6191653481012659
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "B = A + source trajectory",
+  "n_feats": 20,
+  "mean_spearman": 0.09392034724010645,
+  "ci": [
+   0.06320625491128323,
+   0.1262242095722974
+  ],
+  "mean_auroc_top10": 0.6436027601969059,
+  "auroc_ci": [
+   0.6211212201125176,
+   0.6710728727144866
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "C = A + value/local-perturbation",
+  "n_feats": 21,
+  "mean_spearman": 0.08900332041266887,
+  "ci": [
+   0.057292629663380376,
+   0.11835711109790431
+  ],
+  "mean_auroc_top10": 0.6283074015471168,
+  "auroc_ci": [
+   0.6131768635724333,
+   0.6454047995780591
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "S = C + cheap surrogates",
+  "n_feats": 23,
+  "mean_spearman": 0.09381785687557642,
+  "ci": [
+   0.06057758341752678,
+   0.12431978039272659
+  ],
+  "mean_auroc_top10": 0.6300215365682138,
+  "auroc_ci": [
+   0.6168358825597751,
+   0.6430423699015472
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "L = C + 2-token format lookahead (deployable, +2 steps)",
+  "n_feats": 27,
+  "mean_spearman": 0.11239547358527528,
+  "ci": [
+   0.07747356711591842,
+   0.14173591988747797
+  ],
+  "mean_auroc_top10": 0.6573927566807314,
+  "auroc_ci": [
+   0.6235935302390998,
+   0.6845002637130803
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "D = C + prompt-anchor query probes (oracle)",
+  "n_feats": 62,
+  "mean_spearman": 0.07932523783267409,
+  "ci": [
+   0.04131183677040617,
+   0.11906670210494572
+  ],
+  "mean_auroc_top10": 0.6138691104078762,
+  "auroc_ci": [
+   0.5962992264416315,
+   0.63451564697609
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "F = C + future-query census (oracle)",
+  "n_feats": 29,
+  "mean_spearman": 0.11271652981107656,
+  "ci": [
+   0.08277317878061505,
+   0.14686363663877827
+  ],
+  "mean_auroc_top10": 0.6677105309423348,
+  "auroc_ci": [
+   0.6532832278481012,
+   0.6819400492264415
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "G1 = F + one-loop probes at t* (E_s,E_R,gain; oracle)",
+  "n_feats": 53,
+  "mean_spearman": 0.12252269095399407,
+  "ci": [
+   0.09622617408559335,
+   0.15019993875340898
+  ],
+  "mean_auroc_top10": 0.6793139064697609,
+  "auroc_ci": [
+   0.6611177039381153,
+   0.6964442686357244
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "G1g = F + propagation gains only at t* (oracle)",
+  "n_feats": 37,
+  "mean_spearman": 0.11286730758225091,
+  "ci": [
+   0.0846455195339756,
+   0.14629330183508654
+  ],
+  "mean_auroc_top10": 0.6676775668073136,
+  "auroc_ci": [
+   0.6533381680731365,
+   0.6806654360056258
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "G2 = F + all-loop probe at t* (\u2248 within-query damage component)",
+  "n_feats": 42,
+  "mean_spearman": 0.12338371319426558,
+  "ci": [
+   0.0868022882452769,
+   0.1597968544675343
+  ],
+  "mean_auroc_top10": 0.6724573663853727,
+  "auroc_ci": [
+   0.6485803445850914,
+   0.6947411216596343
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "G = F + all future-query probes (oracle)",
+  "n_feats": 70,
+  "mean_spearman": 0.13474322242912895,
+  "ci": [
+   0.11566470985734441,
+   0.15906545846347545
+  ],
+  "mean_auroc_top10": 0.6839508614627285,
+  "auroc_ci": [
+   0.6713365857946555,
+   0.6976749296765121
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "D+F",
+  "n_feats": 70,
+  "mean_spearman": 0.1171043899443333,
+  "ci": [
+   0.08885746080328233,
+   0.14742912206616177
+  ],
+  "mean_auroc_top10": 0.6706333509142053,
+  "auroc_ci": [
+   0.6571839838255977,
+   0.6837091244725738
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT B \u2212 A",
+  "mean_spearman": 0.029757699021155125,
+  "ci": [
+   0.011685724371630894,
+   0.04781099841298144
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT C \u2212 A",
+  "mean_spearman": 0.024840672193717526,
+  "ci": [
+   0.012695770353348264,
+   0.03602319638969782
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT S \u2212 C",
+  "mean_spearman": 0.004814536462907576,
+  "ci": [
+   -0.00375685653660157,
+   0.012554003479994979
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT L \u2212 C",
+  "mean_spearman": 0.023392153172606435,
+  "ci": [
+   0.0018606472218370348,
+   0.046588577263152325
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT F \u2212 L",
+  "mean_spearman": 0.00032105622580126843,
+  "ci": [
+   -0.0303222902373044,
+   0.03748839588959984
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT D \u2212 C",
+  "mean_spearman": -0.009678082579994769,
+  "ci": [
+   -0.02219528582843031,
+   0.0055335854733871565
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT F \u2212 C",
+  "mean_spearman": 0.0237132093984077,
+  "ci": [
+   -0.0035217133747586903,
+   0.05238144960170456
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT G1 \u2212 F",
+  "mean_spearman": 0.009806161142917505,
+  "ci": [
+   -0.00895170791594305,
+   0.031588218202949075
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT G1g \u2212 F",
+  "mean_spearman": 0.00015077777117436,
+  "ci": [
+   -0.005203277600586387,
+   0.0045996162320524805
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT G2 \u2212 F",
+  "mean_spearman": 0.01066718338318903,
+  "ci": [
+   -0.00838250807266389,
+   0.027463152994314437
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "features": "LIFT D+F \u2212 F",
+  "mean_spearman": 0.004387860133256736,
+  "ci": [
+   -0.0038874801622676997,
+   0.012981058129783339
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "A attention/position/lexical",
+  "n_feats": 16,
+  "mean_spearman": 0.08018462904122448,
+  "ci": [
+   0.05349871150466518,
+   0.10993811086434091
+  ],
+  "mean_auroc_top10": 0.6094497753176776,
+  "auroc_ci": [
+   0.5704936987055951,
+   0.6509131880422749
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "B = A + source trajectory",
+  "n_feats": 20,
+  "mean_spearman": 0.06960709434469249,
+  "ci": [
+   0.029866185401672712,
+   0.11124929377937075
+  ],
+  "mean_auroc_top10": 0.5866599514812783,
+  "auroc_ci": [
+   0.5439703904191474,
+   0.6350832740084759
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "C = A + value/local-perturbation",
+  "n_feats": 21,
+  "mean_spearman": 0.09869877090530477,
+  "ci": [
+   0.072332304060462,
+   0.128004344566299
+  ],
+  "mean_auroc_top10": 0.6267437617035658,
+  "auroc_ci": [
+   0.57744611375934,
+   0.6740796234445191
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "S = C + cheap surrogates",
+  "n_feats": 23,
+  "mean_spearman": 0.10671645572662805,
+  "ci": [
+   0.07081647605372077,
+   0.1461164165721307
+  ],
+  "mean_auroc_top10": 0.6276858317272467,
+  "auroc_ci": [
+   0.576965696047135,
+   0.6829822616407983
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "L = C + 2-token format lookahead (deployable, +2 steps)",
+  "n_feats": 27,
+  "mean_spearman": 0.13317637723188336,
+  "ci": [
+   0.09184039356912412,
+   0.17543489692077596
+  ],
+  "mean_auroc_top10": 0.6992533164509466,
+  "auroc_ci": [
+   0.6632333039304193,
+   0.7413185259618617
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "D = C + prompt-anchor query probes (oracle)",
+  "n_feats": 62,
+  "mean_spearman": 0.08112654936913691,
+  "ci": [
+   0.052572886029863417,
+   0.1086815445714948
+  ],
+  "mean_auroc_top10": 0.5902500801137449,
+  "auroc_ci": [
+   0.5577833616885631,
+   0.6217001739967555
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "F = C + future-query census (oracle)",
+  "n_feats": 29,
+  "mean_spearman": 0.15859237595599993,
+  "ci": [
+   0.12771925151126207,
+   0.19098592269673298
+  ],
+  "mean_auroc_top10": 0.7134281274735566,
+  "auroc_ci": [
+   0.6704637488045413,
+   0.754201960398595
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "G1 = F + one-loop probes at t* (E_s,E_R,gain; oracle)",
+  "n_feats": 53,
+  "mean_spearman": 0.14431751958570643,
+  "ci": [
+   0.11403988959399788,
+   0.17526255869830354
+  ],
+  "mean_auroc_top10": 0.7202483548101108,
+  "auroc_ci": [
+   0.679454640886443,
+   0.760450742161702
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "G1g = F + propagation gains only at t* (oracle)",
+  "n_feats": 37,
+  "mean_spearman": 0.152857106640736,
+  "ci": [
+   0.12304701648388114,
+   0.186803466506934
+  ],
+  "mean_auroc_top10": 0.7162985615610273,
+  "auroc_ci": [
+   0.6796255381936482,
+   0.7507112126457102
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "G2 = F + all-loop probe at t* (\u2248 within-query damage component)",
+  "n_feats": 42,
+  "mean_spearman": 0.1481812018824196,
+  "ci": [
+   0.11595575871769828,
+   0.18060257460598664
+  ],
+  "mean_auroc_top10": 0.7154322501443695,
+  "auroc_ci": [
+   0.6714633947190102,
+   0.7565812032418953
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "G = F + all future-query probes (oracle)",
+  "n_feats": 70,
+  "mean_spearman": 0.14068020714248894,
+  "ci": [
+   0.10641687686699672,
+   0.1786992748253958
+  ],
+  "mean_auroc_top10": 0.7128192308549324,
+  "auroc_ci": [
+   0.674933070256887,
+   0.7492789426121349
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "D+F",
+  "n_feats": 70,
+  "mean_spearman": 0.16659778170790782,
+  "ci": [
+   0.1321295950094271,
+   0.19865136709719444
+  ],
+  "mean_auroc_top10": 0.7120512867409841,
+  "auroc_ci": [
+   0.671207430428189,
+   0.7489226662605614
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT B \u2212 A",
+  "mean_spearman": -0.010577534696531974,
+  "ci": [
+   -0.027431344533562507,
+   0.004995510251641574
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT C \u2212 A",
+  "mean_spearman": 0.01851414186408031,
+  "ci": [
+   0.0038232071991734177,
+   0.03682205643431699
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT S \u2212 C",
+  "mean_spearman": 0.008017684821323274,
+  "ci": [
+   -0.005035387655698592,
+   0.020626219554480307
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT L \u2212 C",
+  "mean_spearman": 0.034477606326578564,
+  "ci": [
+   -0.019056878205615656,
+   0.08390663374543067
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT F \u2212 L",
+  "mean_spearman": 0.025415998724116567,
+  "ci": [
+   -0.017219122057907654,
+   0.07202204489196679
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT D \u2212 C",
+  "mean_spearman": -0.017572221536167873,
+  "ci": [
+   -0.036909856385400286,
+   0.002746908114696451
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT F \u2212 C",
+  "mean_spearman": 0.05989360505069513,
+  "ci": [
+   0.039175285746185826,
+   0.07946663253112038
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT G1 \u2212 F",
+  "mean_spearman": -0.014274856370293488,
+  "ci": [
+   -0.03192155822291542,
+   0.0024465987736064405
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT G1g \u2212 F",
+  "mean_spearman": -0.005735269315263908,
+  "ci": [
+   -0.02112463760229221,
+   0.006852511617278189
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT G2 \u2212 F",
+  "mean_spearman": -0.010411174073580325,
+  "ci": [
+   -0.018583917866417825,
+   -0.0028631779433641313
+  ],
+  "n_prompts": 8
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "features": "LIFT D+F \u2212 F",
+  "mean_spearman": 0.008005405751907906,
+  "ci": [
+   -0.00014552300374780572,
+   0.01606918184680016
+  ],
+  "n_prompts": 8
+ }
+]

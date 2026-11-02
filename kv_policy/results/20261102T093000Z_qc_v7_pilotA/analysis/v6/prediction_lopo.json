@@ -1,0 +1,1302 @@
+[
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "A attention/position/lexical",
+  "n_feats": 16,
+  "mean_spearman": 0.41956189328646654,
+  "ci": [
+   0.25206811907019844,
+   0.5686106723575118
+  ],
+  "mean_auroc_top10": 0.7105463055463055,
+  "auroc_ci": [
+   0.6125874125874127,
+   0.7838927738927739
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "B = A + source trajectory",
+  "n_feats": 20,
+  "mean_spearman": 0.4201357587623574,
+  "ci": [
+   0.2613841242572561,
+   0.5557069583098244
+  ],
+  "mean_auroc_top10": 0.7182193732193731,
+  "auroc_ci": [
+   0.6173076923076923,
+   0.7976923076923077
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "C = A + value/local-perturbation",
+  "n_feats": 21,
+  "mean_spearman": 0.4271761067310127,
+  "ci": [
+   0.2640102960446247,
+   0.5708094301696975
+  ],
+  "mean_auroc_top10": 0.7094411144411145,
+  "auroc_ci": [
+   0.595,
+   0.7847552447552448
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "S = C + cheap surrogates",
+  "n_feats": 23,
+  "mean_spearman": 0.42485162020253986,
+  "ci": [
+   0.25442799418090656,
+   0.5769908434246858
+  ],
+  "mean_auroc_top10": 0.7107668257668258,
+  "auroc_ci": [
+   0.5973076923076923,
+   0.7853146853146853
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "L = C + 2-token format lookahead (deployable, +2 steps)",
+  "n_feats": 27,
+  "mean_spearman": 0.46617313870734933,
+  "ci": [
+   0.3163612941006114,
+   0.6051334554073656
+  ],
+  "mean_auroc_top10": 0.7307823657823658,
+  "auroc_ci": [
+   0.5847334147334147,
+   0.8260489510489512
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "D = C + prompt-anchor query probes (oracle)",
+  "n_feats": 62,
+  "mean_spearman": 0.37713411111880446,
+  "ci": [
+   0.26386521754685144,
+   0.45251259320281134
+  ],
+  "mean_auroc_top10": 0.7041497391497391,
+  "auroc_ci": [
+   0.6165734265734265,
+   0.7744289044289043
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "F = C + future-query census (oracle)",
+  "n_feats": 29,
+  "mean_spearman": 0.750124798790898,
+  "ci": [
+   0.6850079448843536,
+   0.7888889018927819
+  ],
+  "mean_auroc_top10": 0.9511895511895512,
+  "auroc_ci": [
+   0.9021794871794871,
+   0.9845127095127094
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "G1 = F + one-loop probes at t* (E_s,E_R,gain; oracle)",
+  "n_feats": 53,
+  "mean_spearman": 0.7345097609274931,
+  "ci": [
+   0.6664410980197912,
+   0.7956253468944754
+  ],
+  "mean_auroc_top10": 0.9594337144337144,
+  "auroc_ci": [
+   0.9361771561771561,
+   0.9826902726902726
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "G1g = F + propagation gains only at t* (oracle)",
+  "n_feats": 37,
+  "mean_spearman": 0.7117004947776335,
+  "ci": [
+   0.6408882037795454,
+   0.7772679672695414
+  ],
+  "mean_auroc_top10": 0.9482291782291782,
+  "auroc_ci": [
+   0.9052564102564102,
+   0.9820651570651571
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "G2 = F + all-loop probe at t* (\u2248 within-query damage component)",
+  "n_feats": 42,
+  "mean_spearman": 0.767499962314847,
+  "ci": [
+   0.7023517534871839,
+   0.8282490116193058
+  ],
+  "mean_auroc_top10": 0.9674662374662375,
+  "auroc_ci": [
+   0.95009324009324,
+   0.9867460317460318
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "G = F + all future-query probes (oracle)",
+  "n_feats": 70,
+  "mean_spearman": 0.7374261046047036,
+  "ci": [
+   0.6892302039101209,
+   0.7795665328399237
+  ],
+  "mean_auroc_top10": 0.9628142228142228,
+  "auroc_ci": [
+   0.9413752913752913,
+   0.9842531542531543
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "D+F",
+  "n_feats": 70,
+  "mean_spearman": 0.7288216541427023,
+  "ci": [
+   0.6669136545634688,
+   0.7734017855873379
+  ],
+  "mean_auroc_top10": 0.9427293077293077,
+  "auroc_ci": [
+   0.8978205128205128,
+   0.9759015059015059
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT B \u2212 A",
+  "mean_spearman": 0.0005738654758908474,
+  "ci": [
+   -0.01429580516631107,
+   0.017896042752856237
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT C \u2212 A",
+  "mean_spearman": 0.007614213444546117,
+  "ci": [
+   -0.0037218548260116446,
+   0.020037773817584023
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT S \u2212 C",
+  "mean_spearman": -0.0023244865284728147,
+  "ci": [
+   -0.009965265040615387,
+   0.0053162919836697575
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT L \u2212 C",
+  "mean_spearman": 0.038997031976336693,
+  "ci": [
+   0.016165218101626244,
+   0.06182884585104714
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT F \u2212 L",
+  "mean_spearman": 0.28395166008354866,
+  "ci": [
+   0.15859878219591753,
+   0.44684498504172565
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT D \u2212 C",
+  "mean_spearman": -0.050041995612208214,
+  "ci": [
+   -0.12556266127874782,
+   -0.0001161234451267229
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT F \u2212 C",
+  "mean_spearman": 0.32294869205988536,
+  "ci": [
+   0.19238087417019215,
+   0.5118131002991655
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT G1 \u2212 F",
+  "mean_spearman": -0.015615037863405012,
+  "ci": [
+   -0.03969204583545169,
+   0.01325884987610873
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT G1g \u2212 F",
+  "mean_spearman": -0.03842430401326449,
+  "ci": [
+   -0.07291012446096434,
+   -0.0035004330026766894
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT G2 \u2212 F",
+  "mean_spearman": 0.01737516352394891,
+  "ci": [
+   -0.011175730790639798,
+   0.04301684774051315
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W1",
+  "features": "LIFT D+F \u2212 F",
+  "mean_spearman": -0.02130314464819577,
+  "ci": [
+   -0.040169580837420144,
+   -0.00892608062600303
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "A attention/position/lexical",
+  "n_feats": 16,
+  "mean_spearman": 0.04140267933233412,
+  "ci": [
+   -0.011964227660024699,
+   0.09090622189251193
+  ],
+  "mean_auroc_top10": 0.4721211923536799,
+  "auroc_ci": [
+   0.4253599498051648,
+   0.518882434902195
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "B = A + source trajectory",
+  "n_feats": 20,
+  "mean_spearman": 0.10572660175029117,
+  "ci": [
+   0.04046927288807985,
+   0.1709839306125025
+  ],
+  "mean_auroc_top10": 0.5177137407330613,
+  "auroc_ci": [
+   0.4370252955551152,
+   0.5984021859110074
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "C = A + value/local-perturbation",
+  "n_feats": 21,
+  "mean_spearman": 0.054101578579302256,
+  "ci": [
+   -0.010736331461508377,
+   0.10563936155260006
+  ],
+  "mean_auroc_top10": 0.47745955513216415,
+  "auroc_ci": [
+   0.4214579035497694,
+   0.5334612067145589
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "S = C + cheap surrogates",
+  "n_feats": 23,
+  "mean_spearman": 0.047494973417185546,
+  "ci": [
+   -0.010538758583458143,
+   0.10552870541782924
+  ],
+  "mean_auroc_top10": 0.4872855687701549,
+  "auroc_ci": [
+   0.43663436248285725,
+   0.5494787919689942
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "L = C + 2-token format lookahead (deployable, +2 steps)",
+  "n_feats": 27,
+  "mean_spearman": 0.10352131810021524,
+  "ci": [
+   0.03493483518246488,
+   0.14423406384894694
+  ],
+  "mean_auroc_top10": 0.5164241276908399,
+  "auroc_ci": [
+   0.4486780148952785,
+   0.5841702404864013
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "D = C + prompt-anchor query probes (oracle)",
+  "n_feats": 62,
+  "mean_spearman": 0.03185720405734442,
+  "ci": [
+   -0.07555500183729294,
+   0.13926940995198178
+  ],
+  "mean_auroc_top10": 0.4641505105957202,
+  "auroc_ci": [
+   0.432021281349138,
+   0.5142440089511368
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "F = C + future-query census (oracle)",
+  "n_feats": 29,
+  "mean_spearman": 0.8358630056703452,
+  "ci": [
+   0.8070956164015093,
+   0.8710563650058503
+  ],
+  "mean_auroc_top10": 0.8743679426629404,
+  "auroc_ci": [
+   0.8293483073702854,
+   0.9184913372752955
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "G1 = F + one-loop probes at t* (E_s,E_R,gain; oracle)",
+  "n_feats": 53,
+  "mean_spearman": 0.8586446000366637,
+  "ci": [
+   0.8266743723352614,
+   0.890614827738066
+  ],
+  "mean_auroc_top10": 0.9133529771317173,
+  "auroc_ci": [
+   0.891927777027971,
+   0.929413667372383
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "G1g = F + propagation gains only at t* (oracle)",
+  "n_feats": 37,
+  "mean_spearman": 0.8317499877783521,
+  "ci": [
+   0.7946670157132287,
+   0.8771255125194652
+  ],
+  "mean_auroc_top10": 0.8828578687543923,
+  "auroc_ci": [
+   0.8412647689626779,
+   0.9228186334519694
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "G2 = F + all-loop probe at t* (\u2248 within-query damage component)",
+  "n_feats": 42,
+  "mean_spearman": 0.9117028660193494,
+  "ci": [
+   0.8716130623975121,
+   0.9366766371166702
+  ],
+  "mean_auroc_top10": 0.9812216913822731,
+  "auroc_ci": [
+   0.9728458444521793,
+   0.9912427801111332
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "G = F + all future-query probes (oracle)",
+  "n_feats": 70,
+  "mean_spearman": 0.9031219088450859,
+  "ci": [
+   0.8680209132616936,
+   0.9254428007982649
+  ],
+  "mean_auroc_top10": 0.9728682825127534,
+  "auroc_ci": [
+   0.9612670321915205,
+   0.9856787375144234
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "D+F",
+  "n_feats": 70,
+  "mean_spearman": 0.8059370270922712,
+  "ci": [
+   0.752672117808955,
+   0.856552712475258
+  ],
+  "mean_auroc_top10": 0.8585104768638889,
+  "auroc_ci": [
+   0.8049935950711645,
+   0.8946734120812236
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT B \u2212 A",
+  "mean_spearman": 0.06432392241795705,
+  "ci": [
+   0.0034260723090375547,
+   0.1371287878924988
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT C \u2212 A",
+  "mean_spearman": 0.012698899246968133,
+  "ci": [
+   -0.00860168690407144,
+   0.033999485398007706
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT S \u2212 C",
+  "mean_spearman": -0.006606605162116703,
+  "ci": [
+   -0.03358540760977502,
+   0.020372197285541613
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT L \u2212 C",
+  "mean_spearman": 0.049419739520912984,
+  "ci": [
+   0.02645496259678097,
+   0.07985750495077379
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT F \u2212 L",
+  "mean_spearman": 0.73234168757013,
+  "ci": [
+   0.6834050766622879,
+   0.781278298477972
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT D \u2212 C",
+  "mean_spearman": -0.022244374521957835,
+  "ci": [
+   -0.08327830686086567,
+   0.03363004839938172
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT F \u2212 C",
+  "mean_spearman": 0.7817614270910429,
+  "ci": [
+   0.7196369228990764,
+   0.8407114260318495
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT G1 \u2212 F",
+  "mean_spearman": 0.02278159436631852,
+  "ci": [
+   0.009489671440377156,
+   0.03927635572482627
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT G1g \u2212 F",
+  "mean_spearman": -0.004113017891993143,
+  "ci": [
+   -0.016980935645314943,
+   0.008754899861328658
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT G2 \u2212 F",
+  "mean_spearman": 0.07583986034900428,
+  "ci": [
+   0.039527343915151114,
+   0.11215237678285744
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "v6_W2",
+  "features": "LIFT D+F \u2212 F",
+  "mean_spearman": -0.02992597857807397,
+  "ci": [
+   -0.08135287807132371,
+   0.0015660178349033438
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "A attention/position/lexical",
+  "n_feats": 16,
+  "mean_spearman": -0.017363927693500793,
+  "ci": [
+   -0.14143989709191376,
+   0.1539421023149236
+  ],
+  "mean_auroc_top10": 0.4808392793309245,
+  "auroc_ci": [
+   0.3621943566825456,
+   0.6618686453075854
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "B = A + source trajectory",
+  "n_feats": 20,
+  "mean_spearman": -0.0007466063449230002,
+  "ci": [
+   -0.19048876423731714,
+   0.21551662859932041
+  ],
+  "mean_auroc_top10": 0.5171932028922939,
+  "auroc_ci": [
+   0.3546548903691761,
+   0.7008197096042718
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "C = A + value/local-perturbation",
+  "n_feats": 21,
+  "mean_spearman": -0.009192348294434433,
+  "ci": [
+   -0.14519927568674668,
+   0.1601042330627127
+  ],
+  "mean_auroc_top10": 0.47772622898171724,
+  "auroc_ci": [
+   0.3547295933122705,
+   0.6718052812522859
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "S = C + cheap surrogates",
+  "n_feats": 23,
+  "mean_spearman": -0.00971325748173937,
+  "ci": [
+   -0.14518261321425324,
+   0.15857312819662045
+  ],
+  "mean_auroc_top10": 0.47689681082946445,
+  "auroc_ci": [
+   0.3535536748135173,
+   0.6718052812522859
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "L = C + 2-token format lookahead (deployable, +2 steps)",
+  "n_feats": 27,
+  "mean_spearman": 0.004445267983394697,
+  "ci": [
+   -0.12394977753967756,
+   0.1640726762614436
+  ],
+  "mean_auroc_top10": 0.45808564683274394,
+  "auroc_ci": [
+   0.32057233842948124,
+   0.6604060833121665
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "D = C + prompt-anchor query probes (oracle)",
+  "n_feats": 62,
+  "mean_spearman": 0.01480438105656241,
+  "ci": [
+   -0.0932448050307973,
+   0.16535202351479755
+  ],
+  "mean_auroc_top10": 0.47033906672953807,
+  "auroc_ci": [
+   0.32614167771648084,
+   0.629571721161583
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "F = C + future-query census (oracle)",
+  "n_feats": 29,
+  "mean_spearman": 0.701301877067044,
+  "ci": [
+   0.6137196812755138,
+   0.7888840728585744
+  ],
+  "mean_auroc_top10": 0.8537826600131564,
+  "auroc_ci": [
+   0.7709380329474944,
+   0.9100913435590855
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "G1 = F + one-loop probes at t* (E_s,E_R,gain; oracle)",
+  "n_feats": 53,
+  "mean_spearman": 0.7181573696570036,
+  "ci": [
+   0.6492120979213081,
+   0.8072708189186304
+  ],
+  "mean_auroc_top10": 0.8994057779933083,
+  "auroc_ci": [
+   0.8384077899825931,
+   0.9475888761603047
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "G1g = F + propagation gains only at t* (oracle)",
+  "n_feats": 37,
+  "mean_spearman": 0.669903453708729,
+  "ci": [
+   0.5507953299753543,
+   0.7890115774421037
+  ],
+  "mean_auroc_top10": 0.8592606851814371,
+  "auroc_ci": [
+   0.7593290758010087,
+   0.9270039270039271
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "G2 = F + all-loop probe at t* (\u2248 within-query damage component)",
+  "n_feats": 42,
+  "mean_spearman": 0.7477979542818495,
+  "ci": [
+   0.6818494362573931,
+   0.821594972511686
+  ],
+  "mean_auroc_top10": 0.9198097315511318,
+  "auroc_ci": [
+   0.8833808828331942,
+   0.9459759710335747
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "G = F + all future-query probes (oracle)",
+  "n_feats": 70,
+  "mean_spearman": 0.7624184599507284,
+  "ci": [
+   0.70478366770485,
+   0.822317217789577
+  ],
+  "mean_auroc_top10": 0.93019630891787,
+  "auroc_ci": [
+   0.8835725171450343,
+   0.955811482597197
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "D+F",
+  "n_feats": 70,
+  "mean_spearman": 0.7074739139513999,
+  "ci": [
+   0.6229594251317119,
+   0.7943354325062486
+  ],
+  "mean_auroc_top10": 0.8685908467316084,
+  "auroc_ci": [
+   0.7997768210366636,
+   0.9169993948219755
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT B \u2212 A",
+  "mean_spearman": 0.016617321348577796,
+  "ci": [
+   -0.055549172485265655,
+   0.08878381518242123
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT C \u2212 A",
+  "mean_spearman": 0.008171579399066362,
+  "ci": [
+   -0.023225738889228444,
+   0.04157834633863845
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT S \u2212 C",
+  "mean_spearman": -0.0005209091873049371,
+  "ci": [
+   -0.003972294435669998,
+   0.0034680477208584876
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT L \u2212 C",
+  "mean_spearman": 0.01363761627782913,
+  "ci": [
+   0.0019986546552525353,
+   0.022680948833072447
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT F \u2212 L",
+  "mean_spearman": 0.6968566090836493,
+  "ci": [
+   0.6191844431194278,
+   0.7472476221936707
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT D \u2212 C",
+  "mean_spearman": 0.023996729350996837,
+  "ci": [
+   -0.034675884166166446,
+   0.08266934286816013
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT F \u2212 C",
+  "mean_spearman": 0.7104942253614785,
+  "ci": [
+   0.6206447599172054,
+   0.7665273317972615
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT G1 \u2212 F",
+  "mean_spearman": 0.01685549258995958,
+  "ci": [
+   -0.02063845037362394,
+   0.044378913665935216
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT G1g \u2212 F",
+  "mean_spearman": -0.03139842335831508,
+  "ci": [
+   -0.10652414387441328,
+   0.016983430952334233
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT G2 \u2212 F",
+  "mean_spearman": 0.046496077214805365,
+  "ci": [
+   0.0014607311001678391,
+   0.09124878954239285
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W1",
+  "features": "LIFT D+F \u2212 F",
+  "mean_spearman": 0.006172036884355803,
+  "ci": [
+   -0.0038233018940648233,
+   0.013099668690934207
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "A attention/position/lexical",
+  "n_feats": 16,
+  "mean_spearman": 0.23102852476864538,
+  "ci": [
+   0.10022176953357864,
+   0.43038652307671965
+  ],
+  "mean_auroc_top10": 0.5647951929536812,
+  "auroc_ci": [
+   0.5119971771347918,
+   0.6173094237695078
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "B = A + source trajectory",
+  "n_feats": 20,
+  "mean_spearman": 0.35894896123242326,
+  "ci": [
+   0.22274961415226097,
+   0.5507879492830967
+  ],
+  "mean_auroc_top10": 0.6792795835106566,
+  "auroc_ci": [
+   0.6198233057043094,
+   0.7387358613170039
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "C = A + value/local-perturbation",
+  "n_feats": 21,
+  "mean_spearman": 0.23003118210902854,
+  "ci": [
+   0.07070410691925644,
+   0.43309453078272814
+  ],
+  "mean_auroc_top10": 0.5477280361685959,
+  "auroc_ci": [
+   0.4875306156336917,
+   0.6079254567035001
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "S = C + cheap surrogates",
+  "n_feats": 23,
+  "mean_spearman": 0.21892438665323832,
+  "ci": [
+   0.040445845855859155,
+   0.43431718221802185
+  ],
+  "mean_auroc_top10": 0.5441628427423663,
+  "auroc_ci": [
+   0.4807530869322558,
+   0.6075725985524768
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "L = C + 2-token format lookahead (deployable, +2 steps)",
+  "n_feats": 27,
+  "mean_spearman": 0.20901617317766863,
+  "ci": [
+   0.025122736575136702,
+   0.4029462595127238
+  ],
+  "mean_auroc_top10": 0.5324210018046268,
+  "auroc_ci": [
+   0.4653974151410741,
+   0.587557535364181
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "D = C + prompt-anchor query probes (oracle)",
+  "n_feats": 62,
+  "mean_spearman": 0.268095947807366,
+  "ci": [
+   0.14170041718530063,
+   0.44714015220358116
+  ],
+  "mean_auroc_top10": 0.543485128113819,
+  "auroc_ci": [
+   0.45464590799857935,
+   0.6323243482290588
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "F = C + future-query census (oracle)",
+  "n_feats": 29,
+  "mean_spearman": 0.7273386146773113,
+  "ci": [
+   0.6647459382348575,
+   0.7899312911197653
+  ],
+  "mean_auroc_top10": 0.8673882279329046,
+  "auroc_ci": [
+   0.830015339469121,
+   0.9154904728299224
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "G1 = F + one-loop probes at t* (E_s,E_R,gain; oracle)",
+  "n_feats": 53,
+  "mean_spearman": 0.7328147774775537,
+  "ci": [
+   0.6947514468431047,
+   0.7708781081120029
+  ],
+  "mean_auroc_top10": 0.8846630630610277,
+  "auroc_ci": [
+   0.8357676403894891,
+   0.923606210303458
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "G1g = F + propagation gains only at t* (oracle)",
+  "n_feats": 37,
+  "mean_spearman": 0.7094703128381684,
+  "ci": [
+   0.6656133297313362,
+   0.7533272959450006
+  ],
+  "mean_auroc_top10": 0.859248292353874,
+  "auroc_ci": [
+   0.8272392290249433,
+   0.9026111503175724
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "G2 = F + all-loop probe at t* (\u2248 within-query damage component)",
+  "n_feats": 42,
+  "mean_spearman": 0.80334904152515,
+  "ci": [
+   0.7692963508103066,
+   0.8374017322399935
+  ],
+  "mean_auroc_top10": 0.9227043557954822,
+  "auroc_ci": [
+   0.8899391796238608,
+   0.9554695319671035
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "G = F + all future-query probes (oracle)",
+  "n_feats": 70,
+  "mean_spearman": 0.7816480165788853,
+  "ci": [
+   0.7555737938021574,
+   0.8077222393556129
+  ],
+  "mean_auroc_top10": 0.9221966397709402,
+  "auroc_ci": [
+   0.8938081231081,
+   0.9505851564337804
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "D+F",
+  "n_feats": 70,
+  "mean_spearman": 0.7181865786760361,
+  "ci": [
+   0.6602048464265016,
+   0.7761683109255706
+  ],
+  "mean_auroc_top10": 0.8576236363752746,
+  "auroc_ci": [
+   0.828514739229025,
+   0.9060546884008838
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT B \u2212 A",
+  "mean_spearman": 0.12792043646377793,
+  "ci": [
+   0.10379981980507999,
+   0.15677696734402616
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT C \u2212 A",
+  "mean_spearman": -0.0009973426596168455,
+  "ci": [
+   -0.04072667717052364,
+   0.03502664148566465
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT S \u2212 C",
+  "mean_spearman": -0.01110679545579021,
+  "ci": [
+   -0.027970476306863997,
+   0.0009120318814622996
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT L \u2212 C",
+  "mean_spearman": -0.021015008931359925,
+  "ci": [
+   -0.05471463268276419,
+   0.012684614820044335
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT F \u2212 L",
+  "mean_spearman": 0.5183224414996427,
+  "ci": [
+   0.384380132244623,
+   0.7048207774645932
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT D \u2212 C",
+  "mean_spearman": 0.03806476569833748,
+  "ci": [
+   0.014045621420853027,
+   0.07099631026604417
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT F \u2212 C",
+  "mean_spearman": 0.4973074325682828,
+  "ci": [
+   0.3542318609746186,
+   0.6592394071204734
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT G1 \u2212 F",
+  "mean_spearman": 0.0054761628002424345,
+  "ci": [
+   -0.033968230889462464,
+   0.0300055086082473
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT G1g \u2212 F",
+  "mean_spearman": -0.017868301839142925,
+  "ci": [
+   -0.04231034858783764,
+   0.0008673914964787977
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT G2 \u2212 F",
+  "mean_spearman": 0.07601042684783868,
+  "ci": [
+   0.042369828927932895,
+   0.10455041257544917
+  ],
+  "n_prompts": 4
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "v6_W2",
+  "features": "LIFT D+F \u2212 F",
+  "mean_spearman": -0.00915203600127526,
+  "ci": [
+   -0.015306653775079143,
+   -0.004541091808355935
+  ],
+  "n_prompts": 4
+ }
+]
