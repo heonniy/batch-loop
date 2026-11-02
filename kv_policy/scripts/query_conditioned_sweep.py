@@ -87,7 +87,7 @@ def prepare(run: Path, cfg: dict):
     run.mkdir(parents=True)
     v5 = json.loads((V5_RUN / "jobs.json").read_text())
     jobs, units = [], []
-    for model in cfg["models"]:
+    for model in ([] if cfg.get("policy_source_run") else cfg["models"]):
         for ds in cfg["datasets"]:
             rows = sorted((j for j in v5 if j["model"] == model and j["dataset"] == ds), key=lambda j: j["uid"])
             rows = rows[cfg["skip_examples"]:cfg["skip_examples"] + cfg["n_examples"]]
@@ -107,6 +107,15 @@ def prepare(run: Path, cfg: dict):
                                         "sources": content[k:k + cs]})
                 if cfg.get("live"):
                     jobs.append(base | {"kind": "LIVE", "key": f"LIVE__{unit}", "depends": refk})
+    if cfg.get("policy_source_run"):
+        src = Path(cfg["policy_source_run"])
+        sj = json.loads((src / "jobs.json").read_text())
+        for ref in (j for j in sj if j["kind"] == "REF" and j["model"] in cfg["models"] and j["dataset"] in cfg["datasets"]):
+            if not (src / "raw" / f"{ref['key']}.npz").exists():
+                raise RuntimeError(f"Source REF missing: {ref['key']}")
+            base = {k: ref[k] for k in ("model", "dataset", "uid", "unit", "v5_key", "prompt_len", "n_targets")}
+            units.append(base)
+            jobs.append(base | {"kind": "POL", "key": f"POL__{ref['unit']}", "source_ref": ref["key"]})
     if cfg.get("v6_units"):
         v6 = json.loads((V6_RUN / "jobs.json").read_text())
         for ref in (j for j in v6 if j["kind"] == "Bref" and j["model"] in cfg["models"]):
@@ -362,6 +371,52 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
                                                   "elapsed_s": time.time() - t0, "reference_digest": dig,
                                                   "peak_gpu_bytes": torch.cuda.max_memory_allocated()})
         return
+    if job["kind"] == "POL":
+        from kvp.role_generation import score_free_answer
+        src = Path(cfg["policy_source_run"])
+        z = np.load(src / "raw" / f"{job['source_ref']}.npz")
+        sm = json.loads((src / "raw" / f"{job['source_ref']}.json").read_text())
+        if abs(dig - sm["ref_state_digest"]) > 1e-3 * max(1.0, dig):
+            raise RuntimeError("Source REF digest drift")
+        content = np.array(p.content_positions)
+        qa, ga = z["anchor_question_last_attn"], z["gen_attn"]            # (R,P), (n,R,P)
+        rc, lq = z["src_recv_mean"], z["src_last_query"]
+        half = R // 2
+        scores = {"qa_r1": qa[0], "qa_rR": qa[-1], "qa_mean": qa.mean(0), "qa_late": qa[half:].mean(0),
+                  "recv_mean": rc.mean(0), "recv_rR": rc[-1], "lastq_mean": lq.mean(0),
+                  "la2_max": ga[:2].mean(1).max(0), "def4_max": ga[:4].mean(1).max(0),
+                  "fut_oracle_max": ga.mean(1).max(0), "fut_oracle_r1": ga[:, 0].max(0), "fut_oracle_rR": ga[:, -1].max(0)}
+        rng_seeds = (11, 29, 47)
+        gold = _v5_job(job)["gold_answer"]
+        full = r.decode((), r.spec)
+        g_full = r.greedy((), cfg["greedy_tokens"], eos)
+        rows = []
+        t0 = time.time()
+        for keep in cfg["retention"]:
+            n_keep = max(1, int(round(keep * len(content))))
+            arms = {}
+            for name, sc in scores.items():
+                order = sorted(range(len(content)), key=lambda i: (float(sc[content[i]]), int(content[i])))
+                arms[name] = [int(content[i]) for i in order[:len(content) - n_keep]]
+            for sd in rng_seeds:
+                import random as _r
+                perm = list(range(len(content)))
+                _r.Random(f"{job['unit']}/{sd}").shuffle(perm)
+                arms[f"random_{sd}"] = [int(content[i]) for i in perm[:len(content) - n_keep]]
+            for name, ev in arms.items():
+                d = r.decode(ev, r.spec)
+                g = r.greedy(ev, cfg["greedy_tokens"], eos)
+                em = score_free_answer(tok, gold, {"token_ids": g, "decoded_tokens": len(g)})
+                rows.append({"retention": keep, "policy": name, "n_evicted": len(ev), "n_kept": len(content) - len(ev),
+                             "nll_future": d["nll_future"], "delta_nll_future": d["nll_future"] - full["nll_future"],
+                             "kl_mean": float(np.mean(d["kl_by_t"])), "first_target_nll": d["first_target_nll"],
+                             "exact_match": em["exact_match"], "extracted": em["extracted_answer"][:40]})
+        _json(raw / f"{job['key']}.json", meta | {
+            "full": {"nll_future": full["nll_future"], "first_target_nll": full["first_target_nll"],
+                     "exact_match": score_free_answer(tok, gold, {"token_ids": g_full, "decoded_tokens": len(g_full)})["exact_match"]},
+            "n_content": int(len(content)), "rows": rows, "gold_answer": gold, "elapsed_s": time.time() - t0,
+            "reference_digest": dig, "policies": list(scores) + [f"random_{sd}" for sd in rng_seeds]})
+        return
     raise RuntimeError(f"Unknown job kind {job['kind']}")
 
 
@@ -378,7 +433,7 @@ def worker(run: Path, idx: int, model_filter: str | None):
         d.mkdir(exist_ok=True)
     cur = tok = bb = eos = None
     cache = UnitCache()
-    order = {"REF": 0, "V6R": 0, "CEN": 1, "LIVE": 2, "V6F": 3}
+    order = {"REF": 0, "V6R": 0, "CEN": 1, "LIVE": 2, "V6F": 3, "POL": 4}
     while True:
         pend = [j for j in jobs if not (raw / f"{j['key']}.json").exists()
                 and not (claims / f"{j['key']}.lock").exists()]
@@ -431,6 +486,9 @@ def main():
     ap.add_argument("--chunk-ouro", type=int, default=48)
     ap.add_argument("--chunk-huginn", type=int, default=32)
     ap.add_argument("--v6-units", action="store_true")
+    ap.add_argument("--policy-source-run", help="equal-budget policy check (kind POL) using this run's REF census")
+    ap.add_argument("--retention", default="0.1,0.3,0.5")
+    ap.add_argument("--policy-greedy-tokens", type=int, default=24)
     ap.add_argument("--live-ouro-q", type=float)
     ap.add_argument("--live-huginn-cosine", type=float)
     ap.add_argument("--live-min-depth", type=int, default=2)
@@ -453,7 +511,9 @@ def main():
         cfg = {"models": sp(a.models), "datasets": sp(a.datasets), "n_examples": a.n_examples,
                "skip_examples": a.skip_examples, "horizon": a.horizon,
                "chunk_size": {"ouro-2.6b": a.chunk_ouro, "huginn-0125": a.chunk_huginn},
-               "v6_units": a.v6_units, "live": live}
+               "v6_units": a.v6_units, "live": live,
+               "policy_source_run": str(Path(a.policy_source_run).resolve()) if a.policy_source_run else None,
+               "retention": [float(x) for x in sp(a.retention)], "greedy_tokens": a.policy_greedy_tokens}
         print(json.dumps(prepare(run, cfg), indent=2))
     elif a.worker is not None:
         worker(run, a.worker, a.model_filter)

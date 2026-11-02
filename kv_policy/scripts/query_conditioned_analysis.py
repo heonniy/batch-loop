@@ -67,7 +67,7 @@ def completeness(run: Path) -> dict:
     jobs = json.loads((run / "jobs.json").read_text())
     raw = run / "raw"
     missing = [j["key"] for j in jobs if not (raw / f"{j['key']}.json").exists()
-               or (j["kind"] != "LIVE" and not (raw / f"{j['key']}.npz").exists())]
+               or (j["kind"] not in ("LIVE", "POL") and not (raw / f"{j['key']}.npz").exists())]
     errs = sorted(p.stem for p in (run / "errors").glob("*.json")) if (run / "errors").exists() else []
     problems = []
     cov = defaultdict(set)
