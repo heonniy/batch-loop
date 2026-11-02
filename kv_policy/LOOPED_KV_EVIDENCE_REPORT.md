@@ -186,8 +186,8 @@ and results/20261103T021500Z_std_qwen_census, holdout rows; looped scores are th
 
 ## 5. Decode-horizon accumulation: plane compression of generated tokens vs token eviction
 
-Runs: results/20261103T023000Z_v8_horizon (v6 B pool, 4+4 prompts/model) + results/20261103T025000Z_v8_horizon_poolA
-(v6 A pool, 10+10) on the frozen v6 128-token greedy continuations; standard arm results/20261103T022500Z_std_qwen_v6horizon
+Runs: results/20261103T023000Z_v8_horizon (v6 B pool, 4 W1 + 4 W2 prompts/model) + results/20261103T025000Z_v8_horizon_poolA
+(v6 A pool, 10 + 10) on the frozen v6 greedy continuations (128 tokens, or shorter where the model hit EOS); standard arm results/20261103T022500Z_std_qwen_v6horizon
 + ..._poolA. Analysis: results/20261103T023000Z_v8_horizon/analysis/HORIZON_FINDINGS.md. Outcome KL(p_full‖p_policy) at
 generated step t, binned t 1–8 / 9–32 / 33–128.
 
@@ -199,24 +199,25 @@ generated step t, binned t 1–8 / 9–32 / 33–128.
 | Huginn W1 | exit-truncated planes (what native early exit leaves), prompt + generated | 0.0012 | 0.0011 | 1.1 |
 | Huginn W1 | token eviction 30% kept, future-query oracle | 0.27 | 0.26 | 0.8 |
 | Huginn W1 | token eviction 30% kept, random | 0.62 | 0.48 | 0.5 |
-| Ouro W1 | plane last-1, prompt only | 0.006 | 0.009 | 1.0 |
-| Ouro W1 | plane last-1, prompt + generated | 0.032 | 0.098 | **3.2 (85% of prompts grow)** |
-| Ouro W1 | exit-truncated, prompt + generated | 0.0007 | 0.0014 | 1.5 |
-| Ouro W1 | token eviction 30% kept, future-query oracle | 0.32 | 0.29 | 0.8 |
+| Ouro W1 | plane last-1, prompt only | 0.006 | 0.008 | 1.0 |
+| Ouro W1 | plane last-1, prompt + generated | 0.030 | 0.095 | **4.4 (86% of prompts grow)** |
+| Ouro W1 | exit-truncated, prompt + generated | 0.0007 | 0.0013 | 1.5 |
+| Ouro W1 | token eviction 30% kept, future-query oracle | 0.37 | 0.35 | 0.8 |
 | Qwen W1 | token eviction 30% kept, future-query oracle | 0.31 | 0.18 | 0.5 |
 | Qwen W2 | token eviction 30% kept, deferred-4 | 0.17 | 1.27 | **190** |
 
 - **Single-token damage decays in all three models** (top-5% sources: late/early 0.02–0.13 looped, 0.02–0.09 Qwen):
   once the answer span has been produced the models recover from a missing Context token.
 - **Plane compression of generated tokens accumulates only in Ouro** (last-1 on prompt+generated: 0.03 → 0.10 over 128
-  tokens, 85% of prompts growing; W2 0.05 → 0.09), consistent with the v5 LAST-CONVERT result on long GSM8K/MATH
+  tokens, 86% of prompts growing; W2 0.04 → 0.08), consistent with the v5 LAST-CONVERT result on long GSM8K/MATH
   generations (Ouro-2.6B −11 / −52 points; Huginn ±0). Huginn's last plane is a faithful stand-in for every plane of
   every token, prompt or generated, over at least 128 tokens (KL ≈ 3–5e-4, flat).
 - **Exit-truncated planes are free in both looped models** (≈1e-3 KL, flat): the planes a token never computed under
   native early exit are not missed by later queries at deeper loops.
 - **Lookahead / deferred token policies are short-answer tricks**: on the W2 summarise/explain continuations the
   deferred-4 and 2-token-lookahead token selections lose ground as generation proceeds (Qwen 0.17 → 1.27; Huginn W2
-  la2 0.02 → 0.76), because the consuming query keeps moving. This is shared by looped and standard models.
+  la2 0.06 → 1.05; Ouro W2 la2 0.18 → 1.08), because the consuming query keeps moving. This is shared by looped and
+  standard models. (14 prompts per cell: v6 B pool 4 + A pool 10.)
 
 ## 6. Native early exit and the natural plane budget
 
@@ -282,7 +283,7 @@ at depth d_i and no plane ≥ d_i would exist (no-refill). The "natural" plane b
 |---|---|---|
 | results/20261103T020000Z_v8_plane_budget | REF/TAX on 80 units (dev 8 + holdout 12 UIDs × 2 datasets × 2 models), PLN exhaustive census on the 32 dev units (variants last, exit) | ca043396 → 3744c60c (job list trimmed 01:45; evaluate paths unchanged; run_manifest.json records both) |
 | results/20261103T023000Z_v8_horizon | HOR decode-horizon arms on the v6 B pool (4 W1 + 4 W2 prompts per model), frozen v6 greedy 128-token continuations | 27f01835 |
-| results/20261103T025000Z_v8_horizon_poolA | HOR on the v6 A pool (10 W1 + 10 W2 per model) | f9f4daea |
+| results/20261103T025000Z_v8_horizon_poolA | HOR on the v6 A pool (10 W1 + 10 W2 per model) | f9f4daea (manifest SHA advanced at 04:20 for one extra worker; HOR path unchanged) |
 | results/20261103T021500Z_std_qwen_census | Qwen2.5-3B (3aab1f19) exhaustive single-token census + token policies on the same CR/Hotpot prompts (40 units) | 75f867fb |
 | results/20261103T022500Z_std_qwen_v6horizon, ..._poolA | Qwen2.5-3B on the v6 B pool (8) and A pool (20) with its own 128-token greedy continuation | 2245320f / 2245320f+ |
 | results/20261102T093000Z_qc_v7_pilotA/analysis/LOOP_PHENOMENOLOGY.md | loop-wise attention statistics from the v7 dev+holdout REF receipts (40 prompts per model) | 9b79c099 |
