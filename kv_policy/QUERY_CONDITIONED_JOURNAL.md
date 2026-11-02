@@ -112,3 +112,19 @@ DECISION: no protocol change. Pilot B = the remaining 12 UIDs per dataset per mo
 code/thresholds; results/20261102T103000Z_qc_v7_pilotB_holdout). In parallel, add an equal-budget POLICY check of
 the cheap alternatives suggested by 4–5 (loop-resolved anchor attention, lookahead, deferred-k) vs the oracle and
 random, on the frozen dev prompts first (kind POL). The expensive query-recomputation oracle is NOT carried forward.
+
+## 2026-11-02 — E4: equal-budget policy check on the dev prompts (results/20261102T112500Z_qc_v7_pilotA_policy)
+
+32 units (pilot-A CR/HotpotQA prompts, both models), keep 10/30/50% of Context tokens, label-free scores computed
+from the pilot-A REF census; outcomes = fixed-depth gold ΔNLL_future, KL to FULL, greedy EM (24 tokens).
+- Prompt-time attention policies (question-anchor loop-1 / loop-R / mean / late, all-later-prompt-queries, last
+  prompt token) are WORSE THAN RANDOM at 10% retention in all four model×dataset cells (ΔNLL 2.4–2.9 vs random
+  1.1–1.8; EM 0 on CR) and no better than random at 30–50%. The prompt queries attend to the shared template tokens,
+  so they keep structure and evict the answer-bearing tokens.
+- The 2-token format lookahead ("Answer:" queries, deployable at +2 steps) and the deferred-4-token decision recover
+  a large part of the oracle: CR EM at 30% 0.38/0.62 (Huginn) and 0.75/0.75 (Ouro) vs 0 for every prompt-time policy
+  and 1.0 for the future-query oracle; HotpotQA ΔNLL ≈ 0 vs 0.3–1.7.
+- Loop choice matters in the deep-recurrence model: the oracle built from the consuming query's loop-1 attention
+  reaches CR EM 0.25/0.5/0.62 (10/30/50%) vs 0.75/1.0/1.0 with loop-R attention on Huginn; on Ouro (R=4) both are 1.0.
+- Follow-up launched (policy v2): loop-resolved lookahead / deferred variants (la2_r1/rR/late, def4_r1/rR/late) to
+  test whether the late-loop advantage also holds for the deployable scores.
