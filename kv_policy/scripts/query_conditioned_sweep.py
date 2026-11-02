@@ -265,7 +265,11 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
         probes = [("all", None, True)] + ([("rec", None, False), ("plain", (), True)] if bb.n_plain else []) \
             + [(f"loop{s}", (s,), False) for s in loops]
         N = len(job["sources"])
-        anchors = list(r.anchors.items())
+        # Third anchor (ORACLE, per source): the generated query t* with the largest clean attention to the source
+        # (mean over loops) — the query that actually consumes the KV. Its column differs per source.
+        anchors = list(r.anchors.items()) + [("future_maxattn", None)]
+        fut_att = np.stack([r.local[P + t]["attn"][:, :P].cpu().numpy().mean(0) for t in range(n)])  # (n, P)
+        fut_t = {int(s): int(fut_att[:, int(s)].argmax()) for s in job["sources"]}
         f32 = lambda *s: np.full(s, np.nan, dtype="float32")  # noqa: E731
         out = {}
         if job["kind"] == "CEN":
@@ -297,6 +301,8 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
                         v = cl[t]["token"][k]
                         out[f"clean_{k}"][si, t - 1] = np.nan if v is None else float(v)
             for ai, (aname, col) in enumerate(anchors):
+                if col is None:
+                    col = P + fut_t[int(s)]
                 if s >= col:
                     continue
                 for qi, (pname, lp, plain) in enumerate(probes):
@@ -310,6 +316,7 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
             times.append(time.time() - t0)
         if job["kind"] == "CEN" and np.isnan(out["acc_E"][..., 1:]).any():
             raise RuntimeError("NaN in accumulated state error")
+        out["future_t"] = np.array([fut_t[int(s)] for s in job["sources"]], dtype="int32")
         np.savez_compressed(raw / f"{job['key']}.npz", sources=np.array(job["sources"]), **out)
         _json(raw / f"{job['key']}.json", meta | {"sources": job["sources"], "n_tokens": n,
                                                   "anchors": [a for a, _ in anchors], "probes": [q[0] for q in probes],
