@@ -223,3 +223,14 @@ different KV policy than a standard transformer because of the loop. Directions 
   Ouro-1.4B (0.31 → 0.00). Negative controls (first plane, 50% question tokens evicted) catastrophic everywhere. Caveats:
   zero-shot accuracy is low, 56–88% of Ouro generations hit the cap, generations are not token-identical to FULL.
 - Smoke (1 problem/model) kept as receipts; arm set trimmed before the main run for the time budget.
+
+## 2026-11-03 — E11: v9 (branch research/kv-ffn-gate-depth-causal-20261103, parent v8b): Context eviction → recurrent FFN gate → exit/answer
+
+Plan: FFN_GATE_DEPTH_CAUSAL_PLAN.md (authored without GPU). Code: kvp/ffn_gate_causal.py (hooks on core recurrent MLP
+gate/up/ffn; GateCausalRunner over the v8 plane-map runner), scripts/ffn_gate_causal_sweep.py (calibrate/execute/analyze
+per model×dataset), scripts/ffn_gate_causal_report.py; 7 CPU tests pass (+ 12 v8 runner tests).
+Execution plan: (1) 1-prompt smoke (Ouro-2.6B CR) for timing, clean-gate-restore parity and the exit calibration;
+(2) 6 cells (Huginn/Ouro-2.6B/Ouro-1.4B × CR/Hotpot), 3 clean-only calibration UIDs + 5 evaluation UIDs, width 4, one
+GPU each; (3) cross-cell pooling (scripts/ffn_gate_causal_cross.py); (4) if the gate-only repair beats the up/shift controls
+above the floor, extend: 20 evaluation UIDs, width 8, and a standard-transformer (Qwen2.5-3B gate_proj) layer-wise FFN
+restoration control to test loop-specificity.
