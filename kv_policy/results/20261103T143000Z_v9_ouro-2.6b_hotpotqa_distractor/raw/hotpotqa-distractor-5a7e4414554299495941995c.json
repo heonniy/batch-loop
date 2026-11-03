@@ -1,0 +1,2763 @@
+{
+  "uid": "hotpotqa-distractor-5a7e4414554299495941995c",
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "n_prompt": 618,
+  "n_targets": 6,
+  "n_sources": 6,
+  "width": 4,
+  "full_fixed_grade": {
+    "exact_match": false,
+    "generated_text": "Answer:\n50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+    "extracted_answer": "50",
+    "generated_tokens": 24
+  },
+  "full_fixed_nll": 1.5132083736360074,
+  "clean_gate_restore_parity": true,
+  "full_dynamic": [
+    {
+      "threshold": 0.85,
+      "depths": [
+        3,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "sum_depth": 23,
+      "nll_future": 1.3694936238229274,
+      "grade": {
+        "exact_match": false,
+        "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+        "extracted_answer": "50",
+        "generated_tokens": 24
+      },
+      "greedy_ids": [
+        21350,
+        42,
+        216,
+        37,
+        32,
+        198,
+        198,
+        25464,
+        42,
+        198,
+        9801,
+        260,
+        2468,
+        288,
+        2988,
+        260,
+        1962,
+        30,
+        2720,
+        318,
+        282,
+        260,
+        216,
+        33
+      ]
+    },
+    {
+      "threshold": 0.7,
+      "depths": [
+        2,
+        3,
+        4,
+        4,
+        3,
+        4
+      ],
+      "sum_depth": 20,
+      "nll_future": 1.349891264922917,
+      "grade": {
+        "exact_match": false,
+        "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+        "extracted_answer": "50",
+        "generated_tokens": 24
+      },
+      "greedy_ids": [
+        21350,
+        42,
+        216,
+        37,
+        32,
+        198,
+        198,
+        25464,
+        42,
+        198,
+        9801,
+        260,
+        2468,
+        288,
+        2988,
+        260,
+        1962,
+        30,
+        2720,
+        318,
+        42,
+        933,
+        70,
+        1950
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "source": [
+        79,
+        80,
+        81,
+        82
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 1.7925881028175354,
+        "delta_nll_vs_clean": 0.2793797291815281,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.2793797291815281,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.07422742620110512,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 24,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.4863620847463608,
+          "delta_nll_vs_clean": -0.026846288889646575,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.2793797291815281,
+            "nll_recovered": 0.30622601807117467,
+            "fraction_recovered": 1.0960924723074776
+          },
+          "kl_to_clean": 0.0007970614446094259,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.01694834912389827
+        },
+        "restore_up": {
+          "future_nll": 15.528258419036865,
+          "delta_nll_vs_clean": 14.015050045400857,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.2793797291815281,
+            "nll_recovered": -13.735670316219329,
+            "fraction_recovered": -49.16487805489468
+          },
+          "kl_to_clean": 13.450024604797363,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.0480185228987264
+        },
+        "shift_gate": {
+          "future_nll": 1.4878553826361895,
+          "delta_nll_vs_clean": -0.025352990999817804,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.2793797291815281,
+            "nll_recovered": 0.3047327201813459,
+            "fraction_recovered": 1.0907474249262537
+          },
+          "kl_to_clean": 0.002048159181140363,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.043347422343989216
+        },
+        "restore_ffn": {
+          "future_nll": 14.901076080463827,
+          "delta_nll_vs_clean": 13.38786770682782,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.2793797291815281,
+            "nll_recovered": -13.108487977646291,
+            "fraction_recovered": -46.91996808805337
+          },
+          "kl_to_clean": 11.55581575706601,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.3365769685201991
+        },
+        "gate_loops_1_2": {
+          "future_nll": 1.506111941486597,
+          "delta_nll_vs_clean": -0.007096432149410248,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.2793797291815281,
+            "nll_recovered": 0.28647616133093834,
+            "fraction_recovered": 1.025400669440836
+          },
+          "kl_to_clean": 0.0008731805835850536,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.01710414344577455
+        },
+        "gate_loops_3_4": {
+          "future_nll": 1.704844868183136,
+          "delta_nll_vs_clean": 0.19163649454712872,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.2793797291815281,
+            "nll_recovered": 0.08774323463439937,
+            "fraction_recovered": 0.31406442726339623
+          },
+          "kl_to_clean": 0.17521586939692496,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.21155166479810658
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\n50\n\nInstruction:\nUse the context to answer the question. Reply:\n[V",
+        "extracted_answer": "50",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.07164343723383758,
+            "gate_mean_sign_flip_frac": 0.023787065694098903,
+            "gate_max_relative_change": 0.32324206829071045,
+            "ffn_mean_relative_change": 0.051851672213565,
+            "ffn_mean_sign_flip_frac": 0.03268093532986111,
+            "ffn_max_relative_change": 0.3010135591030121
+          },
+          {
+            "loop": 2,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.15773493905564667,
+            "gate_mean_sign_flip_frac": 0.05180590242950226,
+            "gate_max_relative_change": 0.982876181602478,
+            "ffn_mean_relative_change": 0.1369654925494817,
+            "ffn_mean_sign_flip_frac": 0.07855902777777778,
+            "ffn_max_relative_change": 0.66923588514328
+          },
+          {
+            "loop": 3,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.1806674087808157,
+            "gate_mean_sign_flip_frac": 0.0589285204073854,
+            "gate_max_relative_change": 0.616199254989624,
+            "ffn_mean_relative_change": 0.16365103788363436,
+            "ffn_mean_sign_flip_frac": 0.09067789713541667,
+            "ffn_max_relative_change": 0.7556275129318237
+          },
+          {
+            "loop": 4,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.16694394525580314,
+            "gate_mean_sign_flip_frac": 0.055138791822375625,
+            "gate_max_relative_change": 0.44771599769592285,
+            "ffn_mean_relative_change": 0.15438245767210093,
+            "ffn_mean_sign_flip_frac": 0.08379448784722222,
+            "ffn_max_relative_change": 0.44270971417427063
+          }
+        ],
+        "total_positions": 2304,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.4863140977919103,
+          "evicted_replay_nll": 1.4863140977919103,
+          "gate_restored_replay_nll": 1.3816600177437066,
+          "gate_restored_replay_nll_recovery": 0.10465408004820365,
+          "gate_restored_live_ORACLE_nll": 1.4434180829674006,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.0541253674775362,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\n50\n\nInstruction:\nUse the context to answer the question. Reply:\n[V",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            198,
+            75,
+            70
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            282,
+            260,
+            216,
+            33
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 87,
+          "evicted_live_total_compute": 87
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.4115645274519921,
+          "evicted_replay_nll": 1.4115645274519921,
+          "gate_restored_replay_nll": 1.3462907247245313,
+          "gate_restored_replay_nll_recovery": 0.06527380272746086,
+          "gate_restored_live_ORACLE_nll": 1.6032183103263378,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.018216761387884618,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            933,
+            70,
+            1950
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            933,
+            70,
+            1950
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 74,
+          "evicted_live_total_compute": 75
+        }
+      ]
+    },
+    {
+      "source": [
+        215,
+        216,
+        217,
+        218
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 1.6834719121456145,
+        "delta_nll_vs_clean": 0.17026353850960718,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.17026353850960718,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.03440950652584433,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 24,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.5099287535995245,
+          "delta_nll_vs_clean": -0.0032796200364828554,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.17026353850960718,
+            "nll_recovered": 0.17354315854609004,
+            "fraction_recovered": 1.0192620220699677
+          },
+          "kl_to_clean": 0.0016055246349424123,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.02435894312919926
+        },
+        "restore_up": {
+          "future_nll": 16.127056121826172,
+          "delta_nll_vs_clean": 14.613847748190164,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.17026353850960718,
+            "nll_recovered": -14.443584209680557,
+            "fraction_recovered": -84.83075317306161
+          },
+          "kl_to_clean": 14.157988166809082,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.095076335000259
+        },
+        "shift_gate": {
+          "future_nll": 1.7474779203534125,
+          "delta_nll_vs_clean": 0.23426954671740519,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.17026353850960718,
+            "nll_recovered": -0.064006008207798,
+            "fraction_recovered": -0.37592316457223424
+          },
+          "kl_to_clean": 0.06774105774238706,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.15677886545624156
+        },
+        "restore_ffn": {
+          "future_nll": 14.250450044870377,
+          "delta_nll_vs_clean": 12.737241671234369,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.17026353850960718,
+            "nll_recovered": -12.566978132724762,
+            "fraction_recovered": -73.80898014177983
+          },
+          "kl_to_clean": 11.360007774829864,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.333333550349683
+        },
+        "gate_loops_1_2": {
+          "future_nll": 1.4913362503051757,
+          "delta_nll_vs_clean": -0.02187212333083166,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.17026353850960718,
+            "nll_recovered": 0.19213566184043884,
+            "fraction_recovered": 1.1284604062754018
+          },
+          "kl_to_clean": 0.0008897029190848115,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.0197397613725722
+        },
+        "gate_loops_3_4": {
+          "future_nll": 1.6025684110820293,
+          "delta_nll_vs_clean": 0.08936003744602194,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.17026353850960718,
+            "nll_recovered": 0.08090350106358524,
+            "fraction_recovered": 0.4751663319802333
+          },
+          "kl_to_clean": 0.07983968183398246,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.1372295036433368
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\n50\n\nInstruction:\nUse the context to answer the question. Reply:\n[V",
+        "extracted_answer": "50",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.0581701710285011,
+            "gate_mean_sign_flip_frac": 0.019256284094808507,
+            "gate_max_relative_change": 0.24816018342971802,
+            "ffn_mean_relative_change": 0.04204749717973755,
+            "ffn_mean_sign_flip_frac": 0.026562160915798612,
+            "ffn_max_relative_change": 0.23331154882907867
+          },
+          {
+            "loop": 2,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.12047149661197586,
+            "gate_mean_sign_flip_frac": 0.03965990591172562,
+            "gate_max_relative_change": 0.7897505164146423,
+            "ffn_mean_relative_change": 0.10411902621369033,
+            "ffn_mean_sign_flip_frac": 0.060017903645833336,
+            "ffn_max_relative_change": 0.5018249154090881
+          },
+          {
+            "loop": 3,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.13091312061038074,
+            "gate_mean_sign_flip_frac": 0.04270241584648223,
+            "gate_max_relative_change": 0.39959508180618286,
+            "ffn_mean_relative_change": 0.12263689327907439,
+            "ffn_mean_sign_flip_frac": 0.06669447157118055,
+            "ffn_max_relative_change": 0.5242723226547241
+          },
+          {
+            "loop": 4,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.12491312162536714,
+            "gate_mean_sign_flip_frac": 0.04124805301964645,
+            "gate_max_relative_change": 0.3488605320453644,
+            "ffn_mean_relative_change": 0.11424965022726813,
+            "ffn_mean_sign_flip_frac": 0.06317308213975695,
+            "ffn_max_relative_change": 0.3432070314884186
+          }
+        ],
+        "total_positions": 2304,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.418511774390936,
+          "evicted_replay_nll": 1.418511774390936,
+          "gate_restored_replay_nll": 1.3640481505542994,
+          "gate_restored_replay_nll_recovery": 0.0544636238366365,
+          "gate_restored_live_ORACLE_nll": 1.4286755476146937,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.024726397916674615,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply:\n[V",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            198,
+            75,
+            70
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            282,
+            260,
+            216,
+            33
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 87,
+          "evicted_live_total_compute": 87
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.3671212695538997,
+          "evicted_replay_nll": 1.3671212695538997,
+          "gate_restored_replay_nll": 1.3227507108822465,
+          "gate_restored_replay_nll_recovery": 0.04437055867165318,
+          "gate_restored_live_ORACLE_nll": 1.5685229415073991,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.008271936234086752,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply:\n[V",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            198,
+            75,
+            70
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            933,
+            70,
+            1950
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 74,
+          "evicted_live_total_compute": 76
+        }
+      ]
+    },
+    {
+      "source": [
+        340,
+        341,
+        342,
+        343
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 1.5965844064950943,
+        "delta_nll_vs_clean": 0.0833760328590869,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.0833760328590869,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.006571053765946999,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 24,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.5201574612408877,
+          "delta_nll_vs_clean": 0.006949087604880333,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0833760328590869,
+            "nll_recovered": 0.07642694525420657,
+            "fraction_recovered": 0.9166536549343272
+          },
+          "kl_to_clean": 0.0016184321430046111,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.019464320315415132
+        },
+        "restore_up": {
+          "future_nll": 15.999742603302002,
+          "delta_nll_vs_clean": 14.486534229665994,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0833760328590869,
+            "nll_recovered": -14.403158196806908,
+            "fraction_recovered": -172.7493825611679
+          },
+          "kl_to_clean": 13.891351222991943,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.0704377819197868
+        },
+        "shift_gate": {
+          "future_nll": 1.5353161200881005,
+          "delta_nll_vs_clean": 0.022107746452093124,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0833760328590869,
+            "nll_recovered": 0.06126828640699378,
+            "fraction_recovered": 0.7348429075600511
+          },
+          "kl_to_clean": 0.0906793713569641,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.18409923125768224
+        },
+        "restore_ffn": {
+          "future_nll": 14.768026589043439,
+          "delta_nll_vs_clean": 13.25481821540743,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0833760328590869,
+            "nll_recovered": -13.171442182548345,
+            "fraction_recovered": -157.97636000275142
+          },
+          "kl_to_clean": 11.513289012014866,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.3006454690418348
+        },
+        "gate_loops_1_2": {
+          "future_nll": 1.5207489971071482,
+          "delta_nll_vs_clean": 0.007540623471140817,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0833760328590869,
+            "nll_recovered": 0.07583540938794608,
+            "fraction_recovered": 0.9095588598718152
+          },
+          "kl_to_clean": 0.000847628635528963,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.016231616182065207
+        },
+        "gate_loops_3_4": {
+          "future_nll": 1.508748060464859,
+          "delta_nll_vs_clean": -0.004460313171148256,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0833760328590869,
+            "nll_recovered": 0.08783634603023516,
+            "fraction_recovered": 1.0534963468301088
+          },
+          "kl_to_clean": 0.011864503379911184,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.05447149426779813
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\n50\n\nInstruction:\nUse the context to answer the question. Reply:\n[V",
+        "extracted_answer": "50",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.03134021142856606,
+            "gate_mean_sign_flip_frac": 0.010336519802876865,
+            "gate_max_relative_change": 0.10794968903064728,
+            "ffn_mean_relative_change": 0.02370353580954543,
+            "ffn_mean_sign_flip_frac": 0.014270358615451388,
+            "ffn_max_relative_change": 0.1039874404668808
+          },
+          {
+            "loop": 2,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.050422834405455634,
+            "gate_mean_sign_flip_frac": 0.016498604702873208,
+            "gate_max_relative_change": 0.26302698254585266,
+            "ffn_mean_relative_change": 0.047067549871927544,
+            "ffn_mean_sign_flip_frac": 0.024773491753472224,
+            "ffn_max_relative_change": 0.19486087560653687
+          },
+          {
+            "loop": 3,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.057534342214542754,
+            "gate_mean_sign_flip_frac": 0.018771085450781457,
+            "gate_max_relative_change": 0.12440551072359085,
+            "ffn_mean_relative_change": 0.05348370714151921,
+            "ffn_mean_sign_flip_frac": 0.0293731689453125,
+            "ffn_max_relative_change": 0.15869614481925964
+          },
+          {
+            "loop": 4,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.052861919387295425,
+            "gate_mean_sign_flip_frac": 0.017351247272421863,
+            "gate_max_relative_change": 0.14158323407173157,
+            "ffn_mean_relative_change": 0.04772951333304971,
+            "ffn_mean_sign_flip_frac": 0.026377360026041668,
+            "ffn_max_relative_change": 0.1379167139530182
+          }
+        ],
+        "total_positions": 2304,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.3762528784573078,
+          "evicted_replay_nll": 1.3762528784573078,
+          "gate_restored_replay_nll": 1.3666539300233125,
+          "gate_restored_replay_nll_recovery": 0.009598948433995336,
+          "gate_restored_live_ORACLE_nll": 1.4285395491868258,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.003660922893323004,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            282,
+            260,
+            216,
+            33
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            282,
+            260,
+            216,
+            33
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 87,
+          "evicted_live_total_compute": 87
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.363774686679244,
+          "evicted_replay_nll": 1.363774686679244,
+          "gate_restored_replay_nll": 1.357653339765966,
+          "gate_restored_replay_nll_recovery": 0.006121346913277925,
+          "gate_restored_live_ORACLE_nll": 1.5474825462326407,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00195792883168906,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            933,
+            70,
+            1950
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            933,
+            70,
+            1950
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 74,
+          "evicted_live_total_compute": 75
+        }
+      ]
+    },
+    {
+      "source": [
+        467,
+        468,
+        469,
+        470
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 1.5951493769884109,
+        "delta_nll_vs_clean": 0.08194100335240351,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.08194100335240351,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.01711669540964067,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 24,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.4883677039295435,
+          "delta_nll_vs_clean": -0.024840669706463814,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.08194100335240351,
+            "nll_recovered": 0.10678167305886732,
+            "fraction_recovered": 1.3031531063835233
+          },
+          "kl_to_clean": 0.000734780006314395,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.018277157697715058
+        },
+        "restore_up": {
+          "future_nll": 15.911158466339112,
+          "delta_nll_vs_clean": 14.397950092703104,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.08194100335240351,
+            "nll_recovered": -14.3160090893507,
+            "fraction_recovered": -174.71117637871566
+          },
+          "kl_to_clean": 13.882466030120849,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.0579856993200438
+        },
+        "shift_gate": {
+          "future_nll": 1.4968871854245662,
+          "delta_nll_vs_clean": -0.01632118821144113,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.08194100335240351,
+            "nll_recovered": 0.09826219156384464,
+            "fraction_recovered": 1.1991821864964067
+          },
+          "kl_to_clean": 0.11148886792361737,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.17357390525830851
+        },
+        "restore_ffn": {
+          "future_nll": 14.770896556973458,
+          "delta_nll_vs_clean": 13.25768818333745,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.08194100335240351,
+            "nll_recovered": -13.175747179985047,
+            "fraction_recovered": -160.79553143034065
+          },
+          "kl_to_clean": 11.501262179017067,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.3504085526174094
+        },
+        "gate_loops_1_2": {
+          "future_nll": 1.5032705277204514,
+          "delta_nll_vs_clean": -0.00993784591555591,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.08194100335240351,
+            "nll_recovered": 0.09187884926795942,
+            "fraction_recovered": 1.12128050071362
+          },
+          "kl_to_clean": 0.0008832945604808629,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.020706663280482946
+        },
+        "gate_loops_3_4": {
+          "future_nll": 1.5830271743237971,
+          "delta_nll_vs_clean": 0.06981880068778978,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.08194100335240351,
+            "nll_recovered": 0.012122202664613724,
+            "fraction_recovered": 0.1479381770867485
+          },
+          "kl_to_clean": 0.03913422934710979,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.101956798397522
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\n50\n\nInstruction:\nUse the context to answer the question. Reply:\n[V",
+        "extracted_answer": "50",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.052366978213993005,
+            "gate_mean_sign_flip_frac": 0.017272333201819694,
+            "gate_max_relative_change": 0.16470375657081604,
+            "ffn_mean_relative_change": 0.038246993074709384,
+            "ffn_mean_sign_flip_frac": 0.023698594835069444,
+            "ffn_max_relative_change": 0.15606732666492462
+          },
+          {
+            "loop": 2,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.08518748056182328,
+            "gate_mean_sign_flip_frac": 0.027545968234941636,
+            "gate_max_relative_change": 0.4563189744949341,
+            "ffn_mean_relative_change": 0.07882041390661874,
+            "ffn_mean_sign_flip_frac": 0.0422515869140625,
+            "ffn_max_relative_change": 0.2927241623401642
+          },
+          {
+            "loop": 3,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.09614570437568343,
+            "gate_mean_sign_flip_frac": 0.03136590606623536,
+            "gate_max_relative_change": 0.2299422323703766,
+            "ffn_mean_relative_change": 0.08978082987919657,
+            "ffn_mean_sign_flip_frac": 0.048848470052083336,
+            "ffn_max_relative_change": 0.27477967739105225
+          },
+          {
+            "loop": 4,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.09031941815434645,
+            "gate_mean_sign_flip_frac": 0.02959342042676225,
+            "gate_max_relative_change": 0.270501047372818,
+            "ffn_mean_relative_change": 0.0825076231687692,
+            "ffn_mean_sign_flip_frac": 0.04534742567274305,
+            "ffn_max_relative_change": 0.2665421962738037
+          }
+        ],
+        "total_positions": 2304,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.392683259770274,
+          "evicted_replay_nll": 1.392683259770274,
+          "gate_restored_replay_nll": 1.378158240392804,
+          "gate_restored_replay_nll_recovery": 0.014525019377469972,
+          "gate_restored_live_ORACLE_nll": 1.440641586855054,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.011802575225010515,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            282,
+            260,
+            216,
+            33
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            282,
+            260,
+            216,
+            33
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 87,
+          "evicted_live_total_compute": 87
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.3844473894685507,
+          "evicted_replay_nll": 1.3844473894685507,
+          "gate_restored_replay_nll": 1.3408252712339164,
+          "gate_restored_replay_nll_recovery": 0.043622118234634355,
+          "gate_restored_live_ORACLE_nll": 1.5989911790937186,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.0035323014250025152,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            933,
+            70,
+            1950
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            933,
+            70,
+            1950
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 74,
+          "evicted_live_total_compute": 75
+        }
+      ]
+    },
+    {
+      "source": [
+        161,
+        162,
+        163,
+        164
+      ],
+      "stratum": "oracle_evidence",
+      "evict_fixed": {
+        "future_nll": 1.6385672494769097,
+        "delta_nll_vs_clean": 0.12535887584090233,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.12535887584090233,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.015390214882791043,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 24,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.4919729433953761,
+          "delta_nll_vs_clean": -0.021235430240631237,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12535887584090233,
+            "nll_recovered": 0.14659430608153357,
+            "fraction_recovered": 1.1693971017064793
+          },
+          "kl_to_clean": 0.0011556713259778916,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.016296850229991833
+        },
+        "restore_up": {
+          "future_nll": 15.37574315071106,
+          "delta_nll_vs_clean": 13.862534777075052,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12535887584090233,
+            "nll_recovered": -13.73717590123415,
+            "fraction_recovered": -109.58279427033564
+          },
+          "kl_to_clean": 13.149165964126587,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.0417880852154566
+        },
+        "shift_gate": {
+          "future_nll": 1.4425574142485857,
+          "delta_nll_vs_clean": -0.07065095938742161,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12535887584090233,
+            "nll_recovered": 0.19600983522832394,
+            "fraction_recovered": 1.563589605550447
+          },
+          "kl_to_clean": 0.011809165263548494,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.05873549063532361
+        },
+        "restore_ffn": {
+          "future_nll": 14.411771932244301,
+          "delta_nll_vs_clean": 12.898563558608293,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12535887584090233,
+            "nll_recovered": -12.77320468276739,
+            "fraction_recovered": -101.89310168175363
+          },
+          "kl_to_clean": 11.362539854645728,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.328527021309027
+        },
+        "gate_loops_1_2": {
+          "future_nll": 1.522134741023183,
+          "delta_nll_vs_clean": 0.00892636738717556,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12535887584090233,
+            "nll_recovered": 0.11643250845372677,
+            "fraction_recovered": 0.9287934952567352
+          },
+          "kl_to_clean": 0.0007993825303856284,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.015164155819446832
+        },
+        "gate_loops_3_4": {
+          "future_nll": 1.580554635822773,
+          "delta_nll_vs_clean": 0.06734626218676554,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12535887584090233,
+            "nll_recovered": 0.05801261365413679,
+            "fraction_recovered": 0.46277228688427924
+          },
+          "kl_to_clean": 0.033679634891450407,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.08592144611045821
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\n50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+        "extracted_answer": "50",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.04248302760728014,
+            "gate_mean_sign_flip_frac": 0.014167554860654895,
+            "gate_max_relative_change": 0.15491637587547302,
+            "ffn_mean_relative_change": 0.031016617778328107,
+            "ffn_mean_sign_flip_frac": 0.019317626953125,
+            "ffn_max_relative_change": 0.1494470238685608
+          },
+          {
+            "loop": 2,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.07114872044055826,
+            "gate_mean_sign_flip_frac": 0.023130475310608745,
+            "gate_max_relative_change": 0.41945698857307434,
+            "ffn_mean_relative_change": 0.06260510717402212,
+            "ffn_mean_sign_flip_frac": 0.0353240966796875,
+            "ffn_max_relative_change": 0.28144383430480957
+          },
+          {
+            "loop": 3,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.08191464976536939,
+            "gate_mean_sign_flip_frac": 0.02656693975586677,
+            "gate_max_relative_change": 0.2020215392112732,
+            "ffn_mean_relative_change": 0.07669759567620026,
+            "ffn_mean_sign_flip_frac": 0.041663275824652776,
+            "ffn_max_relative_change": 0.24210171401500702
+          },
+          {
+            "loop": 4,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.07734791939340842,
+            "gate_mean_sign_flip_frac": 0.025452277400796045,
+            "gate_max_relative_change": 0.23146799206733704,
+            "ffn_mean_relative_change": 0.07021128888138467,
+            "ffn_mean_sign_flip_frac": 0.038777669270833336,
+            "ffn_max_relative_change": 0.22745098173618317
+          }
+        ],
+        "total_positions": 2304,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.4406742103397847,
+          "evicted_replay_nll": 1.4406742103397847,
+          "gate_restored_replay_nll": 1.3753187436610461,
+          "gate_restored_replay_nll_recovery": 0.0653554666787386,
+          "gate_restored_live_ORACLE_nll": 1.4229138631373643,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.014198147272691131,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            282,
+            260,
+            216,
+            33
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            282,
+            260,
+            216,
+            33
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 87,
+          "evicted_live_total_compute": 87
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.3989363741129637,
+          "evicted_replay_nll": 1.3989363741129637,
+          "gate_restored_replay_nll": 1.3332643015310168,
+          "gate_restored_replay_nll_recovery": 0.06567207258194685,
+          "gate_restored_live_ORACLE_nll": 1.590161751024425,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.0037439443287439643,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply:\n[V",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            198,
+            75,
+            70
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            933,
+            70,
+            1950
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 74,
+          "evicted_live_total_compute": 76
+        }
+      ]
+    },
+    {
+      "source": [
+        274,
+        275,
+        276,
+        277
+      ],
+      "stratum": "oracle_distractor",
+      "evict_fixed": {
+        "future_nll": 1.6684226833283902,
+        "delta_nll_vs_clean": 0.1552143096923828,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.1552143096923828,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.02707596989348531,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 24,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.5007992185652257,
+          "delta_nll_vs_clean": -0.012409155070781663,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.1552143096923828,
+            "nll_recovered": 0.16762346476316448,
+            "fraction_recovered": 1.079948524690637
+          },
+          "kl_to_clean": 0.0008082719810772687,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.014889753415142573
+        },
+        "restore_up": {
+          "future_nll": 15.668851089477538,
+          "delta_nll_vs_clean": 14.15564271584153,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.1552143096923828,
+            "nll_recovered": -14.000428406149148,
+            "fraction_recovered": -90.20062927120838
+          },
+          "kl_to_clean": 13.45660572052002,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.062494904709941
+        },
+        "shift_gate": {
+          "future_nll": 1.5016984198242427,
+          "delta_nll_vs_clean": -0.011509953811764673,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.1552143096923828,
+            "nll_recovered": 0.16672426350414749,
+            "fraction_recovered": 1.0741552362960354
+          },
+          "kl_to_clean": 0.01723756822757423,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 0.05785880021014438
+        },
+        "restore_ffn": {
+          "future_nll": 14.811445650458335,
+          "delta_nll_vs_clean": 13.298237276822327,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.1552143096923828,
+            "nll_recovered": -13.143022967129944,
+            "fraction_recovered": -84.67661901262794
+          },
+          "kl_to_clean": 11.373457720130682,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 1152,
+          "mean_relative_patch": 1.31925025648454
+        },
+        "gate_loops_1_2": {
+          "future_nll": 1.51692245490849,
+          "delta_nll_vs_clean": 0.0037140812724827388,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.1552143096923828,
+            "nll_recovered": 0.15150022841990007,
+            "fraction_recovered": 0.9760712702337585
+          },
+          "kl_to_clean": 0.00043267749715596436,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.014132916772521438
+        },
+        "gate_loops_3_4": {
+          "future_nll": 1.6013135828077794,
+          "delta_nll_vs_clean": 0.088105209171772,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.1552143096923828,
+            "nll_recovered": 0.06710910052061081,
+            "fraction_recovered": 0.43236413352360004
+          },
+          "kl_to_clean": 0.05450614020228386,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 24,
+          "patches": 576,
+          "mean_relative_patch": 0.11474263080162928
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\n50\n\nInstruction:\nUse the context to answer the question. Reply:\n[V",
+        "extracted_answer": "50",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.047707909490984295,
+            "gate_mean_sign_flip_frac": 0.015829067464437685,
+            "gate_max_relative_change": 0.2015061378479004,
+            "ffn_mean_relative_change": 0.03450511456018527,
+            "ffn_mean_sign_flip_frac": 0.021889580620659724,
+            "ffn_max_relative_change": 0.18610572814941406
+          },
+          {
+            "loop": 2,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.09515853805189384,
+            "gate_mean_sign_flip_frac": 0.031150741744164004,
+            "gate_max_relative_change": 0.6087105870246887,
+            "ffn_mean_relative_change": 0.08222199179807729,
+            "ffn_mean_sign_flip_frac": 0.047324286566840276,
+            "ffn_max_relative_change": 0.3852292001247406
+          },
+          {
+            "loop": 3,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.10914248837960056,
+            "gate_mean_sign_flip_frac": 0.035542806964561656,
+            "gate_max_relative_change": 0.29347676038742065,
+            "ffn_mean_relative_change": 0.10180436377413571,
+            "ffn_mean_sign_flip_frac": 0.055670844184027776,
+            "ffn_max_relative_change": 0.3737207055091858
+          },
+          {
+            "loop": 4,
+            "n_observations": 576,
+            "gate_mean_relative_change": 0.10236411687219515,
+            "gate_mean_sign_flip_frac": 0.033705587146363944,
+            "gate_max_relative_change": 0.30255669355392456,
+            "ffn_mean_relative_change": 0.09346761494978434,
+            "ffn_mean_sign_flip_frac": 0.05149502224392361,
+            "ffn_max_relative_change": 0.2975374460220337
+          }
+        ],
+        "total_positions": 2304,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.404871240630746,
+          "evicted_replay_nll": 1.404871240630746,
+          "gate_restored_replay_nll": 1.3743792992085218,
+          "gate_restored_replay_nll_recovery": 0.030491941422224222,
+          "gate_restored_live_ORACLE_nll": 1.4381211142987014,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.019727325858548285,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply of the 1",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            282,
+            260,
+            216,
+            33
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            282,
+            260,
+            216,
+            33
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 87,
+          "evicted_live_total_compute": 87
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 1.3809297490864991,
+          "evicted_replay_nll": 1.3809297490864991,
+          "gate_restored_replay_nll": 1.3561864135786892,
+          "gate_restored_replay_nll_recovery": 0.024743335507809938,
+          "gate_restored_live_ORACLE_nll": 1.6117756245657802,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            4,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.004211495839990675,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: 50\n\nInstruction:\nUse the context to answer the question. Reply: [Vinc",
+            "extracted_answer": "50",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            933,
+            70,
+            1950
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            216,
+            37,
+            32,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            42,
+            933,
+            70,
+            1950
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 74,
+          "evicted_live_total_compute": 75
+        }
+      ]
+    }
+  ]
+}

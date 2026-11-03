@@ -1,0 +1,4955 @@
+{
+  "uid": "hotpotqa-distractor-5ab4341c55429942dd415ede",
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "n_prompt": 616,
+  "n_targets": 10,
+  "n_sources": 6,
+  "width": 4,
+  "full_fixed_grade": {
+    "exact_match": false,
+    "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+    "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+    "generated_tokens": 18
+  },
+  "full_fixed_nll": 1.167160349075857,
+  "clean_gate_restore_parity": true,
+  "full_dynamic": [
+    {
+      "threshold": 0.0001,
+      "depths": [
+        16,
+        24,
+        16,
+        17,
+        14,
+        17,
+        20,
+        16,
+        21,
+        22
+      ],
+      "sum_depth": 183,
+      "nll_future": 1.1603566840923223,
+      "grade": {
+        "exact_match": false,
+        "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "generated_tokens": 18
+      },
+      "greedy_ids": [
+        8718,
+        58,
+        428,
+        3584,
+        56596,
+        8874,
+        42642,
+        1531,
+        374,
+        36983,
+        59794,
+        286,
+        264,
+        24180,
+        28327,
+        449,
+        46,
+        65508
+      ]
+    },
+    {
+      "threshold": 0.00025,
+      "depths": [
+        14,
+        21,
+        14,
+        14,
+        13,
+        14,
+        14,
+        13,
+        16,
+        17
+      ],
+      "sum_depth": 150,
+      "nll_future": 1.1556464989532995,
+      "grade": {
+        "exact_match": false,
+        "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "generated_tokens": 18
+      },
+      "greedy_ids": [
+        8718,
+        58,
+        428,
+        3584,
+        56596,
+        8874,
+        42642,
+        1531,
+        374,
+        36983,
+        59794,
+        286,
+        264,
+        24180,
+        28327,
+        449,
+        46,
+        65508
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "source": [
+        116,
+        117,
+        118,
+        119
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 1.2953040859760625,
+        "delta_nll_vs_clean": 0.12814373690020542,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.12814373690020542,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.01674340439896898,
+        "depths": [
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32
+        ],
+        "total_depth": 320,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.3615592417659679,
+          "delta_nll_vs_clean": 0.1943988926901108,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12814373690020542,
+            "nll_recovered": -0.06625515578990537,
+            "fraction_recovered": -0.5170377998380283
+          },
+          "kl_to_clean": 0.025259730626279026,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.035882202685752415
+        },
+        "restore_up": {
+          "future_nll": 1.521677215978141,
+          "delta_nll_vs_clean": 0.354516866902284,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12814373690020542,
+            "nll_recovered": -0.2263731300020786,
+            "fraction_recovered": -1.766556333364707
+          },
+          "kl_to_clean": 1.4197986915299023,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.3284181924974291
+        },
+        "shift_gate": {
+          "future_nll": 1.2788380183709604,
+          "delta_nll_vs_clean": 0.11167766929510337,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12814373690020542,
+            "nll_recovered": 0.016466067605102053,
+            "fraction_recovered": 0.12849685832031996
+          },
+          "kl_to_clean": 0.016923769987695576,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.08815618994722171
+        },
+        "restore_ffn": {
+          "future_nll": 1.3901576260751527,
+          "delta_nll_vs_clean": 0.2229972769992956,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12814373690020542,
+            "nll_recovered": -0.0948535400990902,
+            "fraction_recovered": -0.7402120649326728
+          },
+          "kl_to_clean": 0.03790296145732302,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.09192226483646664
+        },
+        "gate_loops_1_8": {
+          "future_nll": 1.3088837604324606,
+          "delta_nll_vs_clean": 0.1417234113566035,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12814373690020542,
+            "nll_recovered": -0.013579674456398072,
+            "fraction_recovered": -0.10597220578149304
+          },
+          "kl_to_clean": 0.01775330505130215,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.03945529483899009
+        },
+        "gate_loops_9_16": {
+          "future_nll": 1.283516599787011,
+          "delta_nll_vs_clean": 0.11635625071115396,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12814373690020542,
+            "nll_recovered": 0.011787486189051455,
+            "fraction_recovered": 0.09198644018186548
+          },
+          "kl_to_clean": 0.01663049863903628,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.051923828931467145
+        },
+        "gate_loops_17_24": {
+          "future_nll": 1.2839220027534692,
+          "delta_nll_vs_clean": 0.11676165367761215,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12814373690020542,
+            "nll_recovered": 0.011382083222593264,
+            "fraction_recovered": 0.08882278211893646
+          },
+          "kl_to_clean": 0.01663802005047425,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.05113830700720427
+        },
+        "gate_loops_25_32": {
+          "future_nll": 1.3617844879481709,
+          "delta_nll_vs_clean": 0.19462413887231378,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.12814373690020542,
+            "nll_recovered": -0.06648040197210836,
+            "fraction_recovered": -0.5187955617673405
+          },
+          "kl_to_clean": 0.025355165444175834,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.04025777018541703
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "generated_tokens": 18
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.024085618142271413,
+            "gate_mean_sign_flip_frac": 0.007551618319121189,
+            "gate_max_relative_change": 0.04663088172674179,
+            "ffn_mean_relative_change": 0.03842743549030274,
+            "ffn_mean_sign_flip_frac": 0.011775567769655026,
+            "ffn_max_relative_change": 0.07573138177394867
+          },
+          {
+            "loop": 2,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.04986308227526024,
+            "gate_mean_sign_flip_frac": 0.014654017938300967,
+            "gate_max_relative_change": 0.09442364424467087,
+            "ffn_mean_relative_change": 0.07657378527801484,
+            "ffn_mean_sign_flip_frac": 0.02406249916530214,
+            "ffn_max_relative_change": 0.14831441640853882
+          },
+          {
+            "loop": 3,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.06355564588448033,
+            "gate_mean_sign_flip_frac": 0.019236886393628083,
+            "gate_max_relative_change": 0.1276940554380417,
+            "ffn_mean_relative_change": 0.10611753636039793,
+            "ffn_mean_sign_flip_frac": 0.03347064291592687,
+            "ffn_max_relative_change": 0.22063817083835602
+          },
+          {
+            "loop": 4,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.07808096405351535,
+            "gate_mean_sign_flip_frac": 0.02346261182392482,
+            "gate_max_relative_change": 0.1715318262577057,
+            "ffn_mean_relative_change": 0.12858660388737916,
+            "ffn_mean_sign_flip_frac": 0.039985793989035304,
+            "ffn_max_relative_change": 0.2948576509952545
+          },
+          {
+            "loop": 5,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.08968038612511009,
+            "gate_mean_sign_flip_frac": 0.027400948712602256,
+            "gate_max_relative_change": 0.20490026473999023,
+            "ffn_mean_relative_change": 0.14368213305715472,
+            "ffn_mean_sign_flip_frac": 0.044583331857575105,
+            "ffn_max_relative_change": 0.3289819061756134
+          },
+          {
+            "loop": 6,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10013298529665918,
+            "gate_mean_sign_flip_frac": 0.03080078138737008,
+            "gate_max_relative_change": 0.22377729415893555,
+            "ffn_mean_relative_change": 0.15730770803056657,
+            "ffn_mean_sign_flip_frac": 0.048910983558744195,
+            "ffn_max_relative_change": 0.3745816946029663
+          },
+          {
+            "loop": 7,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10235053655924276,
+            "gate_mean_sign_flip_frac": 0.03153738863184117,
+            "gate_max_relative_change": 0.22173763811588287,
+            "ffn_mean_relative_change": 0.15781709696166218,
+            "ffn_mean_sign_flip_frac": 0.04901988435885869,
+            "ffn_max_relative_change": 0.3650173544883728
+          },
+          {
+            "loop": 8,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10168508939677849,
+            "gate_mean_sign_flip_frac": 0.03189453142986167,
+            "gate_max_relative_change": 0.19799283146858215,
+            "ffn_mean_relative_change": 0.15563327085692436,
+            "ffn_mean_sign_flip_frac": 0.048267044342355805,
+            "ffn_max_relative_change": 0.32033273577690125
+          },
+          {
+            "loop": 9,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10049296811921522,
+            "gate_mean_sign_flip_frac": 0.03145786850363948,
+            "gate_max_relative_change": 0.19820642471313477,
+            "ffn_mean_relative_change": 0.1533686837879941,
+            "ffn_mean_sign_flip_frac": 0.04820075624156743,
+            "ffn_max_relative_change": 0.3139159083366394
+          },
+          {
+            "loop": 10,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.09995568008162081,
+            "gate_mean_sign_flip_frac": 0.031389509106520566,
+            "gate_max_relative_change": 0.20355094969272614,
+            "ffn_mean_relative_change": 0.15310604146216064,
+            "ffn_mean_sign_flip_frac": 0.04837121058953926,
+            "ffn_max_relative_change": 0.3247710168361664
+          },
+          {
+            "loop": 11,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10078928404254839,
+            "gate_mean_sign_flip_frac": 0.03165457623836119,
+            "gate_max_relative_change": 0.2059275060892105,
+            "ffn_mean_relative_change": 0.15430080790538342,
+            "ffn_mean_sign_flip_frac": 0.04807291523902677,
+            "ffn_max_relative_change": 0.326032817363739
+          },
+          {
+            "loop": 12,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10182072446914389,
+            "gate_mean_sign_flip_frac": 0.03199916350422427,
+            "gate_max_relative_change": 0.21198734641075134,
+            "ffn_mean_relative_change": 0.1554965026676655,
+            "ffn_mean_sign_flip_frac": 0.048626892297761515,
+            "ffn_max_relative_change": 0.3352152407169342
+          },
+          {
+            "loop": 13,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10152104515582323,
+            "gate_mean_sign_flip_frac": 0.0317564175784355,
+            "gate_max_relative_change": 0.214021697640419,
+            "ffn_mean_relative_change": 0.155267698969692,
+            "ffn_mean_sign_flip_frac": 0.04880681639770046,
+            "ffn_max_relative_change": 0.34218719601631165
+          },
+          {
+            "loop": 14,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10175405158661306,
+            "gate_mean_sign_flip_frac": 0.03180943084589671,
+            "gate_max_relative_change": 0.21812933683395386,
+            "ffn_mean_relative_change": 0.155450030695647,
+            "ffn_mean_sign_flip_frac": 0.04847064219648019,
+            "ffn_max_relative_change": 0.3472185432910919
+          },
+          {
+            "loop": 15,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10184082456398755,
+            "gate_mean_sign_flip_frac": 0.03187081501819193,
+            "gate_max_relative_change": 0.21935904026031494,
+            "ffn_mean_relative_change": 0.15560763261746616,
+            "ffn_mean_sign_flip_frac": 0.048778407284407875,
+            "ffn_max_relative_change": 0.35072535276412964
+          },
+          {
+            "loop": 16,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10187106551602483,
+            "gate_mean_sign_flip_frac": 0.03187918551266193,
+            "gate_max_relative_change": 0.2186015397310257,
+            "ffn_mean_relative_change": 0.15593684932682664,
+            "ffn_mean_sign_flip_frac": 0.048773672454990445,
+            "ffn_max_relative_change": 0.34920409321784973
+          },
+          {
+            "loop": 17,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10194919157074764,
+            "gate_mean_sign_flip_frac": 0.031926618504803626,
+            "gate_max_relative_change": 0.22179466485977173,
+            "ffn_mean_relative_change": 0.15592538230121136,
+            "ffn_mean_sign_flip_frac": 0.04912878620089032,
+            "ffn_max_relative_change": 0.3540479838848114
+          },
+          {
+            "loop": 18,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10184977828757838,
+            "gate_mean_sign_flip_frac": 0.03187500011408702,
+            "gate_max_relative_change": 0.22136113047599792,
+            "ffn_mean_relative_change": 0.15568309926893562,
+            "ffn_mean_sign_flip_frac": 0.04872158923535608,
+            "ffn_max_relative_change": 0.35383984446525574
+          },
+          {
+            "loop": 19,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10191101129166782,
+            "gate_mean_sign_flip_frac": 0.032028460010769776,
+            "gate_max_relative_change": 0.2218329906463623,
+            "ffn_mean_relative_change": 0.15587120442651212,
+            "ffn_mean_sign_flip_frac": 0.04873579377890565,
+            "ffn_max_relative_change": 0.3559439182281494
+          },
+          {
+            "loop": 20,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10177734836470335,
+            "gate_mean_sign_flip_frac": 0.0318666296225274,
+            "gate_max_relative_change": 0.22015468776226044,
+            "ffn_mean_relative_change": 0.15598250939510763,
+            "ffn_mean_sign_flip_frac": 0.048821021291951185,
+            "ffn_max_relative_change": 0.35307684540748596
+          },
+          {
+            "loop": 21,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.1020695791230537,
+            "gate_mean_sign_flip_frac": 0.03201729935244657,
+            "gate_max_relative_change": 0.21855731308460236,
+            "ffn_mean_relative_change": 0.1562828821130097,
+            "ffn_mean_sign_flip_frac": 0.04926609675749205,
+            "ffn_max_relative_change": 0.35197606682777405
+          },
+          {
+            "loop": 22,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10190573970321566,
+            "gate_mean_sign_flip_frac": 0.03208147350524086,
+            "gate_max_relative_change": 0.21556417644023895,
+            "ffn_mean_relative_change": 0.15572515244130045,
+            "ffn_mean_sign_flip_frac": 0.04895359685178846,
+            "ffn_max_relative_change": 0.3465065360069275
+          },
+          {
+            "loop": 23,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10139829005347564,
+            "gate_mean_sign_flip_frac": 0.0318247771152528,
+            "gate_max_relative_change": 0.21238349378108978,
+            "ffn_mean_relative_change": 0.15529554241802543,
+            "ffn_mean_sign_flip_frac": 0.04901988503988832,
+            "ffn_max_relative_change": 0.34132423996925354
+          },
+          {
+            "loop": 24,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10127086811698974,
+            "gate_mean_sign_flip_frac": 0.03176339285564609,
+            "gate_max_relative_change": 0.21245534718036652,
+            "ffn_mean_relative_change": 0.15500124639365823,
+            "ffn_mean_sign_flip_frac": 0.04877367272274569,
+            "ffn_max_relative_change": 0.34034761786460876
+          },
+          {
+            "loop": 25,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10143994220998138,
+            "gate_mean_sign_flip_frac": 0.03182198681170121,
+            "gate_max_relative_change": 0.21261104941368103,
+            "ffn_mean_relative_change": 0.15526435484644024,
+            "ffn_mean_sign_flip_frac": 0.048499050945974884,
+            "ffn_max_relative_change": 0.3414194583892822
+          },
+          {
+            "loop": 26,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10128482470754534,
+            "gate_mean_sign_flip_frac": 0.03172991089813877,
+            "gate_max_relative_change": 0.21408070623874664,
+            "ffn_mean_relative_change": 0.1551270055351779,
+            "ffn_mean_sign_flip_frac": 0.04871211957070045,
+            "ffn_max_relative_change": 0.34390076994895935
+          },
+          {
+            "loop": 27,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10116705925902351,
+            "gate_mean_sign_flip_frac": 0.03165457604336552,
+            "gate_max_relative_change": 0.2121528685092926,
+            "ffn_mean_relative_change": 0.1548667284892872,
+            "ffn_mean_sign_flip_frac": 0.048461172825773245,
+            "ffn_max_relative_change": 0.34100955724716187
+          },
+          {
+            "loop": 28,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.1009197336039506,
+            "gate_mean_sign_flip_frac": 0.03167829245503526,
+            "gate_max_relative_change": 0.21303725242614746,
+            "ffn_mean_relative_change": 0.15431018702220173,
+            "ffn_mean_sign_flip_frac": 0.04818655175040476,
+            "ffn_max_relative_change": 0.3403853178024292
+          },
+          {
+            "loop": 29,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10143190760863945,
+            "gate_mean_sign_flip_frac": 0.03183175241574645,
+            "gate_max_relative_change": 0.21363364160060883,
+            "ffn_mean_relative_change": 0.1551281745545566,
+            "ffn_mean_sign_flip_frac": 0.04862689264700748,
+            "ffn_max_relative_change": 0.34138956665992737
+          },
+          {
+            "loop": 30,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10127151578199119,
+            "gate_mean_sign_flip_frac": 0.03179687520023435,
+            "gate_max_relative_change": 0.21428485214710236,
+            "ffn_mean_relative_change": 0.15477451025508343,
+            "ffn_mean_sign_flip_frac": 0.04821969540498685,
+            "ffn_max_relative_change": 0.34314030408859253
+          },
+          {
+            "loop": 31,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10116096367128194,
+            "gate_mean_sign_flip_frac": 0.03167410731839482,
+            "gate_max_relative_change": 0.21379539370536804,
+            "ffn_mean_relative_change": 0.1547893930459395,
+            "ffn_mean_sign_flip_frac": 0.048451703105820344,
+            "ffn_max_relative_change": 0.3422856330871582
+          },
+          {
+            "loop": 32,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.10120248289313168,
+            "gate_mean_sign_flip_frac": 0.031729910796275365,
+            "gate_max_relative_change": 0.21557451784610748,
+            "ffn_mean_relative_change": 0.15469768575858325,
+            "ffn_mean_sign_flip_frac": 0.04844223348773084,
+            "ffn_max_relative_change": 0.34382057189941406
+          }
+        ],
+        "total_positions": 2560,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.0001,
+          "full_depths": [
+            16,
+            24,
+            16,
+            17,
+            14,
+            17,
+            20,
+            16,
+            21,
+            22
+          ],
+          "evicted_depths": [
+            17,
+            29,
+            18,
+            18,
+            16,
+            17,
+            18,
+            18,
+            23,
+            24
+          ],
+          "depth_deltas": [
+            1,
+            5,
+            2,
+            1,
+            2,
+            0,
+            -2,
+            2,
+            2,
+            2
+          ],
+          "n_depth_changed": 9,
+          "sum_depth_delta": 15,
+          "evicted_live_nll": 1.283385039395297,
+          "evicted_replay_nll": 1.2919524903724475,
+          "gate_restored_replay_nll": 1.346055318909445,
+          "gate_restored_replay_nll_recovery": -0.05410282853699755,
+          "gate_restored_live_ORACLE_nll": 1.3538454725170999,
+          "gate_restored_live_ORACLE_depths": [
+            16,
+            27,
+            18,
+            17,
+            15,
+            17,
+            18,
+            18,
+            21,
+            22
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 6,
+          "evicted_live_kl_to_clean": 0.018327143846325573,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 334,
+          "evicted_live_total_compute": 342
+        },
+        {
+          "threshold": 0.00025,
+          "full_depths": [
+            14,
+            21,
+            14,
+            14,
+            13,
+            14,
+            14,
+            13,
+            16,
+            17
+          ],
+          "evicted_depths": [
+            14,
+            18,
+            16,
+            14,
+            14,
+            15,
+            14,
+            14,
+            16,
+            17
+          ],
+          "depth_deltas": [
+            0,
+            -3,
+            2,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "n_depth_changed": 5,
+          "sum_depth_delta": 2,
+          "evicted_live_nll": 1.283528101501967,
+          "evicted_replay_nll": 1.2842592866776006,
+          "gate_restored_replay_nll": 1.3489829109934766,
+          "gate_restored_replay_nll_recovery": -0.06472362431587597,
+          "gate_restored_live_ORACLE_nll": 1.3562364001004932,
+          "gate_restored_live_ORACLE_depths": [
+            14,
+            19,
+            14,
+            14,
+            13,
+            14,
+            14,
+            14,
+            15,
+            17
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 5,
+          "evicted_live_kl_to_clean": 0.01981161776186329,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 273,
+          "evicted_live_total_compute": 275
+        }
+      ]
+    },
+    {
+      "source": [
+        266,
+        267,
+        268,
+        269
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 1.1592432992717174,
+        "delta_nll_vs_clean": -0.007917049804139653,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.007917049804139653,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 5.682243722699493e-05,
+        "depths": [
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32
+        ],
+        "total_depth": 320,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.1469582152082392,
+          "delta_nll_vs_clean": -0.020202133867617933,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.007917049804139653,
+            "nll_recovered": 0.01228508406347828,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 5.601249408786973e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.0063342875448142875
+        },
+        "restore_up": {
+          "future_nll": 1.1399009965308424,
+          "delta_nll_vs_clean": -0.02725935254501466,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.007917049804139653,
+            "nll_recovered": 0.019342302740875006,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 6.99995464654219e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.006558100560687308
+        },
+        "shift_gate": {
+          "future_nll": 1.1668644514983397,
+          "delta_nll_vs_clean": -0.0002958975775173567,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.007917049804139653,
+            "nll_recovered": -0.007621152226622296,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 2.7279948259067372e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.00953603483230836
+        },
+        "restore_ffn": {
+          "future_nll": 1.166049119431894,
+          "delta_nll_vs_clean": -0.001111229643963041,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.007917049804139653,
+            "nll_recovered": -0.006805820160176612,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00014478444675268697,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.010511623555794358
+        },
+        "gate_loops_1_8": {
+          "future_nll": 1.1538506704152194,
+          "delta_nll_vs_clean": -0.013309678660637703,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.007917049804139653,
+            "nll_recovered": 0.00539262885649805,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 6.636947177519737e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006124056032422232
+        },
+        "gate_loops_9_16": {
+          "future_nll": 1.1593946143200609,
+          "delta_nll_vs_clean": -0.0077657347557962275,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.007917049804139653,
+            "nll_recovered": -0.00015131504834342557,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 2.9130190085879804e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006908240779011976
+        },
+        "gate_loops_17_24": {
+          "future_nll": 1.1593100425501082,
+          "delta_nll_vs_clean": -0.007850306525748918,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.007917049804139653,
+            "nll_recovered": -6.674327839073513e-05,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 4.548443739062059e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006915360856510233
+        },
+        "gate_loops_25_32": {
+          "future_nll": 1.1593579149521247,
+          "delta_nll_vs_clean": -0.007802434123732382,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.007917049804139653,
+            "nll_recovered": -0.00011461568040727066,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 4.911913856631145e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.00664341446972685
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "generated_tokens": 18
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.0052811291127,
+            "gate_mean_sign_flip_frac": 0.0015736607412691229,
+            "gate_max_relative_change": 0.00735944090411067,
+            "ffn_mean_relative_change": 0.007853826903738082,
+            "ffn_mean_sign_flip_frac": 0.0023390150687191635,
+            "ffn_max_relative_change": 0.011591603048145771
+          },
+          {
+            "loop": 2,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008079957030713559,
+            "gate_mean_sign_flip_frac": 0.002506975459982641,
+            "gate_max_relative_change": 0.010503154247999191,
+            "ffn_mean_relative_change": 0.011782761814538389,
+            "ffn_mean_sign_flip_frac": 0.0036316286597866563,
+            "ffn_max_relative_change": 0.015998050570487976
+          },
+          {
+            "loop": 3,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00834687949391082,
+            "gate_mean_sign_flip_frac": 0.002774832595605403,
+            "gate_max_relative_change": 0.009772115387022495,
+            "ffn_mean_relative_change": 0.012556454329751433,
+            "ffn_mean_sign_flip_frac": 0.0037499998579733074,
+            "ffn_max_relative_change": 0.01563204824924469
+          },
+          {
+            "loop": 4,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009397790266666562,
+            "gate_mean_sign_flip_frac": 0.0029994419746799394,
+            "gate_max_relative_change": 0.011506227776408195,
+            "ffn_mean_relative_change": 0.013867806224152446,
+            "ffn_mean_sign_flip_frac": 0.004431818061857484,
+            "ffn_max_relative_change": 0.017612528055906296
+          },
+          {
+            "loop": 5,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009461188735440374,
+            "gate_mean_sign_flip_frac": 0.003122209815774113,
+            "gate_max_relative_change": 0.011635132133960724,
+            "ffn_mean_relative_change": 0.013839100603945553,
+            "ffn_mean_sign_flip_frac": 0.004502840747591108,
+            "ffn_max_relative_change": 0.01767212152481079
+          },
+          {
+            "loop": 6,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009834744327235967,
+            "gate_mean_sign_flip_frac": 0.0031738281599245966,
+            "gate_max_relative_change": 0.013255706988275051,
+            "ffn_mean_relative_change": 0.0144175142981112,
+            "ffn_mean_sign_flip_frac": 0.004801136205787771,
+            "ffn_max_relative_change": 0.019033698365092278
+          },
+          {
+            "loop": 7,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009532763087190688,
+            "gate_mean_sign_flip_frac": 0.003078962065046653,
+            "gate_max_relative_change": 0.012597315013408661,
+            "ffn_mean_relative_change": 0.014009624789468943,
+            "ffn_mean_sign_flip_frac": 0.004270833195187151,
+            "ffn_max_relative_change": 0.018563851714134216
+          },
+          {
+            "loop": 8,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009730352158658206,
+            "gate_mean_sign_flip_frac": 0.0032310267881257458,
+            "gate_max_relative_change": 0.014502115547657013,
+            "ffn_mean_relative_change": 0.014309802278876304,
+            "ffn_mean_sign_flip_frac": 0.004602272599004209,
+            "ffn_max_relative_change": 0.02175980433821678
+          },
+          {
+            "loop": 9,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010035613516811282,
+            "gate_mean_sign_flip_frac": 0.0033021763316355645,
+            "gate_max_relative_change": 0.014608042314648628,
+            "ffn_mean_relative_change": 0.014703878201544285,
+            "ffn_mean_sign_flip_frac": 0.0045643937890417876,
+            "ffn_max_relative_change": 0.02228400483727455
+          },
+          {
+            "loop": 10,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010188041580840945,
+            "gate_mean_sign_flip_frac": 0.003388671885477379,
+            "gate_max_relative_change": 0.014312180690467358,
+            "ffn_mean_relative_change": 0.015137144853360951,
+            "ffn_mean_sign_flip_frac": 0.004517045302782208,
+            "ffn_max_relative_change": 0.022921888157725334
+          },
+          {
+            "loop": 11,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010392973641864955,
+            "gate_mean_sign_flip_frac": 0.003397042420692742,
+            "gate_max_relative_change": 0.013772895559668541,
+            "ffn_mean_relative_change": 0.015452078776434064,
+            "ffn_mean_sign_flip_frac": 0.004730113482219167,
+            "ffn_max_relative_change": 0.02200394682586193
+          },
+          {
+            "loop": 12,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010147332842461766,
+            "gate_mean_sign_flip_frac": 0.0032979910844005643,
+            "gate_max_relative_change": 0.012469720095396042,
+            "ffn_mean_relative_change": 0.014943229267373681,
+            "ffn_mean_sign_flip_frac": 0.004839014986646362,
+            "ffn_max_relative_change": 0.019855918362736702
+          },
+          {
+            "loop": 13,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010005056404042988,
+            "gate_mean_sign_flip_frac": 0.003257533494615927,
+            "gate_max_relative_change": 0.012812120839953423,
+            "ffn_mean_relative_change": 0.014594877255149186,
+            "ffn_mean_sign_flip_frac": 0.004588068026350811,
+            "ffn_max_relative_change": 0.020090630277991295
+          },
+          {
+            "loop": 14,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010197336005512625,
+            "gate_mean_sign_flip_frac": 0.0033761160913854836,
+            "gate_max_relative_change": 0.012864353135228157,
+            "ffn_mean_relative_change": 0.014848165400326251,
+            "ffn_mean_sign_flip_frac": 0.004403408968937583,
+            "ffn_max_relative_change": 0.020334096625447273
+          },
+          {
+            "loop": 15,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010138412204105407,
+            "gate_mean_sign_flip_frac": 0.003359375026775524,
+            "gate_max_relative_change": 0.014129316434264183,
+            "ffn_mean_relative_change": 0.014900468592531978,
+            "ffn_mean_sign_flip_frac": 0.004744318046141416,
+            "ffn_max_relative_change": 0.020971251651644707
+          },
+          {
+            "loop": 16,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010065165325067937,
+            "gate_mean_sign_flip_frac": 0.0032603236846625804,
+            "gate_max_relative_change": 0.01279101986438036,
+            "ffn_mean_relative_change": 0.01483942666091025,
+            "ffn_mean_sign_flip_frac": 0.00455965894216206,
+            "ffn_max_relative_change": 0.019440658390522003
+          },
+          {
+            "loop": 17,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010038621525745839,
+            "gate_mean_sign_flip_frac": 0.0032547433220315725,
+            "gate_max_relative_change": 0.012915934436023235,
+            "ffn_mean_relative_change": 0.01472860723733902,
+            "ffn_mean_sign_flip_frac": 0.0045075756032019855,
+            "ffn_max_relative_change": 0.020783042535185814
+          },
+          {
+            "loop": 18,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009821652329992502,
+            "gate_mean_sign_flip_frac": 0.0031947544717695563,
+            "gate_max_relative_change": 0.012992438860237598,
+            "ffn_mean_relative_change": 0.01440306887961924,
+            "ffn_mean_sign_flip_frac": 0.004408143792534247,
+            "ffn_max_relative_change": 0.02120070531964302
+          },
+          {
+            "loop": 19,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00985077532241121,
+            "gate_mean_sign_flip_frac": 0.0031891740916762503,
+            "gate_max_relative_change": 0.013099991716444492,
+            "ffn_mean_relative_change": 0.014530684892088174,
+            "ffn_mean_sign_flip_frac": 0.004270833201007918,
+            "ffn_max_relative_change": 0.021098708733916283
+          },
+          {
+            "loop": 20,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009947901428677141,
+            "gate_mean_sign_flip_frac": 0.0031808035826543348,
+            "gate_max_relative_change": 0.013359026052057743,
+            "ffn_mean_relative_change": 0.014548619603738188,
+            "ffn_mean_sign_flip_frac": 0.004147727170493454,
+            "ffn_max_relative_change": 0.0205113273113966
+          },
+          {
+            "loop": 21,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009604734310414642,
+            "gate_mean_sign_flip_frac": 0.0030901227990398185,
+            "gate_max_relative_change": 0.012610790319740772,
+            "ffn_mean_relative_change": 0.014144006930291653,
+            "ffn_mean_sign_flip_frac": 0.0041051134932786225,
+            "ffn_max_relative_change": 0.01970234140753746
+          },
+          {
+            "loop": 22,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010112408711574972,
+            "gate_mean_sign_flip_frac": 0.0033663504815194755,
+            "gate_max_relative_change": 0.012958136387169361,
+            "ffn_mean_relative_change": 0.014886275236494838,
+            "ffn_mean_sign_flip_frac": 0.004455492290435359,
+            "ffn_max_relative_change": 0.01932404935359955
+          },
+          {
+            "loop": 23,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.010035702027380466,
+            "gate_mean_sign_flip_frac": 0.0033356584899593145,
+            "gate_max_relative_change": 0.012689073570072651,
+            "ffn_mean_relative_change": 0.01479850965552032,
+            "ffn_mean_sign_flip_frac": 0.00457386348862201,
+            "ffn_max_relative_change": 0.019195767119526863
+          },
+          {
+            "loop": 24,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009847691154573113,
+            "gate_mean_sign_flip_frac": 0.003302176366560161,
+            "gate_max_relative_change": 0.012803304009139538,
+            "ffn_mean_relative_change": 0.014508140436373652,
+            "ffn_mean_sign_flip_frac": 0.004393939243163914,
+            "ffn_max_relative_change": 0.020105743780732155
+          },
+          {
+            "loop": 25,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009835186367854475,
+            "gate_mean_sign_flip_frac": 0.003212890643044375,
+            "gate_max_relative_change": 0.013223215937614441,
+            "ffn_mean_relative_change": 0.014473955216817557,
+            "ffn_mean_sign_flip_frac": 0.004408143786713481,
+            "ffn_max_relative_change": 0.02128593809902668
+          },
+          {
+            "loop": 26,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009741080936510115,
+            "gate_mean_sign_flip_frac": 0.0032393973262514917,
+            "gate_max_relative_change": 0.012961339205503464,
+            "ffn_mean_relative_change": 0.01437713096383959,
+            "ffn_mean_sign_flip_frac": 0.00427083317481447,
+            "ffn_max_relative_change": 0.021460985764861107
+          },
+          {
+            "loop": 27,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009861830121371895,
+            "gate_mean_sign_flip_frac": 0.0032114955683937296,
+            "gate_max_relative_change": 0.013117427006363869,
+            "ffn_mean_relative_change": 0.014389492850750685,
+            "ffn_mean_sign_flip_frac": 0.004488636209862307,
+            "ffn_max_relative_change": 0.02179265394806862
+          },
+          {
+            "loop": 28,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009629243181552737,
+            "gate_mean_sign_flip_frac": 0.0031194196548312903,
+            "gate_max_relative_change": 0.014252842403948307,
+            "ffn_mean_relative_change": 0.0140825264621526,
+            "ffn_mean_sign_flip_frac": 0.004190340777859092,
+            "ffn_max_relative_change": 0.022313334047794342
+          },
+          {
+            "loop": 29,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009742691472638398,
+            "gate_mean_sign_flip_frac": 0.0032031250069849194,
+            "gate_max_relative_change": 0.015978112816810608,
+            "ffn_mean_relative_change": 0.014191925106570125,
+            "ffn_mean_sign_flip_frac": 0.004332386230817065,
+            "ffn_max_relative_change": 0.023744072765111923
+          },
+          {
+            "loop": 30,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009757416532374918,
+            "gate_mean_sign_flip_frac": 0.003144531272118911,
+            "gate_max_relative_change": 0.015150739811360836,
+            "ffn_mean_relative_change": 0.014358779438771308,
+            "ffn_mean_sign_flip_frac": 0.004190340777859092,
+            "ffn_max_relative_change": 0.023095926269888878
+          },
+          {
+            "loop": 31,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009759873687289655,
+            "gate_mean_sign_flip_frac": 0.003176618309225887,
+            "gate_max_relative_change": 0.013403942808508873,
+            "ffn_mean_relative_change": 0.014330800552852452,
+            "ffn_mean_sign_flip_frac": 0.00441761349211447,
+            "ffn_max_relative_change": 0.021604223176836967
+          },
+          {
+            "loop": 32,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009922272129915654,
+            "gate_mean_sign_flip_frac": 0.0033231027133297174,
+            "gate_max_relative_change": 0.013361752033233643,
+            "ffn_mean_relative_change": 0.014673045789822935,
+            "ffn_mean_sign_flip_frac": 0.004299242311390117,
+            "ffn_max_relative_change": 0.021813254803419113
+          }
+        ],
+        "total_positions": 2560,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.0001,
+          "full_depths": [
+            16,
+            24,
+            16,
+            17,
+            14,
+            17,
+            20,
+            16,
+            21,
+            22
+          ],
+          "evicted_depths": [
+            16,
+            24,
+            16,
+            17,
+            14,
+            18,
+            20,
+            16,
+            22,
+            23
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1
+          ],
+          "n_depth_changed": 3,
+          "sum_depth_delta": 3,
+          "evicted_live_nll": 1.1543567477007552,
+          "evicted_replay_nll": 1.1543309715173866,
+          "gate_restored_replay_nll": 1.156454543432321,
+          "gate_restored_replay_nll_recovery": -0.002123571914934397,
+          "gate_restored_live_ORACLE_nll": 1.1473334301889635,
+          "gate_restored_live_ORACLE_depths": [
+            16,
+            26,
+            17,
+            17,
+            15,
+            17,
+            18,
+            17,
+            22,
+            22
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 7,
+          "evicted_live_kl_to_clean": 4.959162636768926e-05,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 334,
+          "evicted_live_total_compute": 343
+        },
+        {
+          "threshold": 0.00025,
+          "full_depths": [
+            14,
+            21,
+            14,
+            14,
+            13,
+            14,
+            14,
+            13,
+            16,
+            17
+          ],
+          "evicted_depths": [
+            13,
+            18,
+            13,
+            14,
+            13,
+            14,
+            14,
+            13,
+            16,
+            16
+          ],
+          "depth_deltas": [
+            -1,
+            -3,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -1
+          ],
+          "n_depth_changed": 4,
+          "sum_depth_delta": -6,
+          "evicted_live_nll": 1.1409212726693012,
+          "evicted_replay_nll": 1.1547155371586593,
+          "gate_restored_replay_nll": 1.1478490785872661,
+          "gate_restored_replay_nll_recovery": 0.006866458571393119,
+          "gate_restored_live_ORACLE_nll": 1.1455306335956266,
+          "gate_restored_live_ORACLE_depths": [
+            13,
+            19,
+            13,
+            14,
+            13,
+            14,
+            14,
+            14,
+            16,
+            17
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 3,
+          "evicted_live_kl_to_clean": 0.000370233000751341,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 273,
+          "evicted_live_total_compute": 273
+        }
+      ]
+    },
+    {
+      "source": [
+        311,
+        312,
+        313,
+        314
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 1.1603878403281367,
+        "delta_nll_vs_clean": -0.006772508747720396,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.006772508747720396,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 3.43854990647843e-05,
+        "depths": [
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32
+        ],
+        "total_depth": 320,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.1624460878984892,
+          "delta_nll_vs_clean": -0.00471426117736784,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.006772508747720396,
+            "nll_recovered": -0.002058247570352556,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00021075224504269526,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.00596574500832503
+        },
+        "restore_up": {
+          "future_nll": 1.1548647946914974,
+          "delta_nll_vs_clean": -0.012295554384359697,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.006772508747720396,
+            "nll_recovered": 0.005523045636639301,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 6.099018447021839e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.006065776273771917
+        },
+        "shift_gate": {
+          "future_nll": 1.1667005421412695,
+          "delta_nll_vs_clean": -0.00045980693458758104,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.006772508747720396,
+            "nll_recovered": -0.006312701813132815,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 4.740341652759778e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.009043280886908178
+        },
+        "restore_ffn": {
+          "future_nll": 1.1617655092316757,
+          "delta_nll_vs_clean": -0.005394839844181432,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.006772508747720396,
+            "nll_recovered": -0.0013776689035389644,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00022671955151230982,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.00939565530679829
+        },
+        "gate_loops_1_8": {
+          "future_nll": 1.1491410768317616,
+          "delta_nll_vs_clean": -0.018019272244095497,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.006772508747720396,
+            "nll_recovered": 0.0112467634963751,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00020287774542677225,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.005776203601271845
+        },
+        "gate_loops_9_16": {
+          "future_nll": 1.1544385542005733,
+          "delta_nll_vs_clean": -0.012721794875283798,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.006772508747720396,
+            "nll_recovered": 0.005949286127563402,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 6.0310811452129405e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.00661566860799212
+        },
+        "gate_loops_17_24": {
+          "future_nll": 1.1495741837792997,
+          "delta_nll_vs_clean": -0.017586165296557432,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.006772508747720396,
+            "nll_recovered": 0.010813656548837036,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0002267146209860016,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006516185245709493
+        },
+        "gate_loops_25_32": {
+          "future_nll": 1.1566626296201623,
+          "delta_nll_vs_clean": -0.010497719455694776,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.006772508747720396,
+            "nll_recovered": 0.00372521070797438,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00022612370787555847,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006329694156011101
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "generated_tokens": 18
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.004761975898873061,
+            "gate_mean_sign_flip_frac": 0.001425781278521754,
+            "gate_max_relative_change": 0.006520062685012817,
+            "ffn_mean_relative_change": 0.007112885604146868,
+            "ffn_mean_sign_flip_frac": 0.0019839014363242312,
+            "ffn_max_relative_change": 0.009524810127913952
+          },
+          {
+            "loop": 2,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.007382338645402342,
+            "gate_mean_sign_flip_frac": 0.002293526811990887,
+            "gate_max_relative_change": 0.009175613522529602,
+            "ffn_mean_relative_change": 0.010696167929563672,
+            "ffn_mean_sign_flip_frac": 0.0031534089968772603,
+            "ffn_max_relative_change": 0.013965586200356483
+          },
+          {
+            "loop": 3,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.007816408481448888,
+            "gate_mean_sign_flip_frac": 0.002511160745052621,
+            "gate_max_relative_change": 0.00911852065473795,
+            "ffn_mean_relative_change": 0.011667763837613166,
+            "ffn_mean_sign_flip_frac": 0.0035085226350929587,
+            "ffn_max_relative_change": 0.013682633638381958
+          },
+          {
+            "loop": 4,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00860857383813709,
+            "gate_mean_sign_flip_frac": 0.0027413504489231856,
+            "gate_max_relative_change": 0.01059473305940628,
+            "ffn_mean_relative_change": 0.01256322527769953,
+            "ffn_mean_sign_flip_frac": 0.003825757442973554,
+            "ffn_max_relative_change": 0.015653232112526894
+          },
+          {
+            "loop": 5,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008417776471469551,
+            "gate_mean_sign_flip_frac": 0.0027497210016008467,
+            "gate_max_relative_change": 0.010057424195110798,
+            "ffn_mean_relative_change": 0.01224424473475665,
+            "ffn_mean_sign_flip_frac": 0.003617424124968238,
+            "ffn_max_relative_change": 0.015457849018275738
+          },
+          {
+            "loop": 6,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008659635949879885,
+            "gate_mean_sign_flip_frac": 0.002716238857829012,
+            "gate_max_relative_change": 0.011031419038772583,
+            "ffn_mean_relative_change": 0.012520987796597183,
+            "ffn_mean_sign_flip_frac": 0.004199810477439314,
+            "ffn_max_relative_change": 0.016456110402941704
+          },
+          {
+            "loop": 7,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00867659788345918,
+            "gate_mean_sign_flip_frac": 0.0027734375209547578,
+            "gate_max_relative_change": 0.010882721282541752,
+            "ffn_mean_relative_change": 0.012630765629000961,
+            "ffn_mean_sign_flip_frac": 0.0039488635258749126,
+            "ffn_max_relative_change": 0.016018226742744446
+          },
+          {
+            "loop": 8,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008799532998818905,
+            "gate_mean_sign_flip_frac": 0.002978515639551915,
+            "gate_max_relative_change": 0.011203602887690067,
+            "ffn_mean_relative_change": 0.012876926315948367,
+            "ffn_mean_sign_flip_frac": 0.004190340742934495,
+            "ffn_max_relative_change": 0.01679684966802597
+          },
+          {
+            "loop": 9,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009026395610999317,
+            "gate_mean_sign_flip_frac": 0.0028822544787544756,
+            "gate_max_relative_change": 0.011029488407075405,
+            "ffn_mean_relative_change": 0.013181160180829465,
+            "ffn_mean_sign_flip_frac": 0.004218749867868609,
+            "ffn_max_relative_change": 0.01599949225783348
+          },
+          {
+            "loop": 10,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00935569453286007,
+            "gate_mean_sign_flip_frac": 0.0029854910913854837,
+            "gate_max_relative_change": 0.011177985928952694,
+            "ffn_mean_relative_change": 0.01375050968490541,
+            "ffn_mean_sign_flip_frac": 0.004365530179347843,
+            "ffn_max_relative_change": 0.018118157982826233
+          },
+          {
+            "loop": 11,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.0093575703445822,
+            "gate_mean_sign_flip_frac": 0.0030608258995926006,
+            "gate_max_relative_change": 0.011730627156794071,
+            "ffn_mean_relative_change": 0.013633097149431705,
+            "ffn_mean_sign_flip_frac": 0.004218749835854396,
+            "ffn_max_relative_change": 0.018444936722517014
+          },
+          {
+            "loop": 12,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00923405037028715,
+            "gate_mean_sign_flip_frac": 0.0029938616120489315,
+            "gate_max_relative_change": 0.011125963181257248,
+            "ffn_mean_relative_change": 0.013491477794013917,
+            "ffn_mean_sign_flip_frac": 0.004195075621828437,
+            "ffn_max_relative_change": 0.018117016181349754
+          },
+          {
+            "loop": 13,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008971411373931915,
+            "gate_mean_sign_flip_frac": 0.002965959854191169,
+            "gate_max_relative_change": 0.011063150130212307,
+            "ffn_mean_relative_change": 0.013021909794770182,
+            "ffn_mean_sign_flip_frac": 0.004176136199384927,
+            "ffn_max_relative_change": 0.016911668702960014
+          },
+          {
+            "loop": 14,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009058780223131179,
+            "gate_mean_sign_flip_frac": 0.0030287388508440927,
+            "gate_max_relative_change": 0.010823003016412258,
+            "ffn_mean_relative_change": 0.013169917347840964,
+            "ffn_mean_sign_flip_frac": 0.0038636362529359757,
+            "ffn_max_relative_change": 0.017029527574777603
+          },
+          {
+            "loop": 15,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00917355134151876,
+            "gate_mean_sign_flip_frac": 0.002940848222351633,
+            "gate_max_relative_change": 0.012124135158956051,
+            "ffn_mean_relative_change": 0.013218589220196008,
+            "ffn_mean_sign_flip_frac": 0.004142992288689129,
+            "ffn_max_relative_change": 0.017988499253988266
+          },
+          {
+            "loop": 16,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009064715658314525,
+            "gate_mean_sign_flip_frac": 0.003020368318539113,
+            "gate_max_relative_change": 0.011360123753547668,
+            "ffn_mean_relative_change": 0.01307430723682046,
+            "ffn_mean_sign_flip_frac": 0.003887310482969042,
+            "ffn_max_relative_change": 0.017167361453175545
+          },
+          {
+            "loop": 17,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008887331769801676,
+            "gate_mean_sign_flip_frac": 0.0029115513490978627,
+            "gate_max_relative_change": 0.011236708611249924,
+            "ffn_mean_relative_change": 0.012947427504695953,
+            "ffn_mean_sign_flip_frac": 0.00389678017818369,
+            "ffn_max_relative_change": 0.017222030088305473
+          },
+          {
+            "loop": 18,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009153413528110832,
+            "gate_mean_sign_flip_frac": 0.0029645647504366935,
+            "gate_max_relative_change": 0.011539915576577187,
+            "ffn_mean_relative_change": 0.013285748078487813,
+            "ffn_mean_sign_flip_frac": 0.004024621084681712,
+            "ffn_max_relative_change": 0.01778991147875786
+          },
+          {
+            "loop": 19,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009550046583171934,
+            "gate_mean_sign_flip_frac": 0.003221261175349355,
+            "gate_max_relative_change": 0.011838890612125397,
+            "ffn_mean_relative_change": 0.014023188292048872,
+            "ffn_mean_sign_flip_frac": 0.004133522578922566,
+            "ffn_max_relative_change": 0.01765182986855507
+          },
+          {
+            "loop": 20,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009194382571149618,
+            "gate_mean_sign_flip_frac": 0.002998046885477379,
+            "gate_max_relative_change": 0.011604581959545612,
+            "ffn_mean_relative_change": 0.013506322936154901,
+            "ffn_mean_sign_flip_frac": 0.003948863520054147,
+            "ffn_max_relative_change": 0.01761055178940296
+          },
+          {
+            "loop": 21,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009154584596399219,
+            "gate_mean_sign_flip_frac": 0.003024553583236411,
+            "gate_max_relative_change": 0.012131713330745697,
+            "ffn_mean_relative_change": 0.013260741159319878,
+            "ffn_mean_sign_flip_frac": 0.00397253775736317,
+            "ffn_max_relative_change": 0.017153339460492134
+          },
+          {
+            "loop": 22,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009181021293625236,
+            "gate_mean_sign_flip_frac": 0.002938058043946512,
+            "gate_max_relative_change": 0.011577249504625797,
+            "ffn_mean_relative_change": 0.013318677619099616,
+            "ffn_mean_sign_flip_frac": 0.0038257574604358526,
+            "ffn_max_relative_change": 0.01773853227496147
+          },
+          {
+            "loop": 23,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009063710120972245,
+            "gate_mean_sign_flip_frac": 0.003016183039289899,
+            "gate_max_relative_change": 0.0125326719135046,
+            "ffn_mean_relative_change": 0.013273422908969223,
+            "ffn_mean_sign_flip_frac": 0.003920454389299266,
+            "ffn_max_relative_change": 0.01925061084330082
+          },
+          {
+            "loop": 24,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009073386213276535,
+            "gate_mean_sign_flip_frac": 0.00301199778332375,
+            "gate_max_relative_change": 0.011665813624858856,
+            "ffn_mean_relative_change": 0.013225187198258936,
+            "ffn_mean_sign_flip_frac": 0.0039488635258749126,
+            "ffn_max_relative_change": 0.017532268539071083
+          },
+          {
+            "loop": 25,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00917842232156545,
+            "gate_mean_sign_flip_frac": 0.002998046888387762,
+            "gate_max_relative_change": 0.011349913664162159,
+            "ffn_mean_relative_change": 0.013475518277846276,
+            "ffn_mean_sign_flip_frac": 0.004138257433078251,
+            "ffn_max_relative_change": 0.01706131547689438
+          },
+          {
+            "loop": 26,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009020247485022993,
+            "gate_mean_sign_flip_frac": 0.0029534040339058267,
+            "gate_max_relative_change": 0.010946894064545631,
+            "ffn_mean_relative_change": 0.013133295858278871,
+            "ffn_mean_sign_flip_frac": 0.0038778407964855433,
+            "ffn_max_relative_change": 0.016215765848755836
+          },
+          {
+            "loop": 27,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00922847727779299,
+            "gate_mean_sign_flip_frac": 0.0030622210004366936,
+            "gate_max_relative_change": 0.011262782849371433,
+            "ffn_mean_relative_change": 0.013443532958626747,
+            "ffn_mean_sign_flip_frac": 0.004024621061398647,
+            "ffn_max_relative_change": 0.016995392739772797
+          },
+          {
+            "loop": 28,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009077749447897077,
+            "gate_mean_sign_flip_frac": 0.003049665194703266,
+            "gate_max_relative_change": 0.010729189030826092,
+            "ffn_mean_relative_change": 0.013174478407017886,
+            "ffn_mean_sign_flip_frac": 0.00409564382280223,
+            "ffn_max_relative_change": 0.016328252851963043
+          },
+          {
+            "loop": 29,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008912182168569417,
+            "gate_mean_sign_flip_frac": 0.00295758931315504,
+            "gate_max_relative_change": 0.010515614412724972,
+            "ffn_mean_relative_change": 0.012917472701519727,
+            "ffn_mean_sign_flip_frac": 0.0038825755967991427,
+            "ffn_max_relative_change": 0.01633286289870739
+          },
+          {
+            "loop": 30,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008862221520394087,
+            "gate_mean_sign_flip_frac": 0.0029241071519209073,
+            "gate_max_relative_change": 0.010474428534507751,
+            "ffn_mean_relative_change": 0.012835091701708734,
+            "ffn_mean_sign_flip_frac": 0.003958333207992837,
+            "ffn_max_relative_change": 0.01570451445877552
+          },
+          {
+            "loop": 31,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008780392049811781,
+            "gate_mean_sign_flip_frac": 0.0029589843819849194,
+            "gate_max_relative_change": 0.010688400827348232,
+            "ffn_mean_relative_change": 0.012779365037567913,
+            "ffn_mean_sign_flip_frac": 0.0037452650460181756,
+            "ffn_max_relative_change": 0.015588867478072643
+          },
+          {
+            "loop": 32,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009004157001618296,
+            "gate_mean_sign_flip_frac": 0.002950613864231855,
+            "gate_max_relative_change": 0.010658817365765572,
+            "ffn_mean_relative_change": 0.013010811409913003,
+            "ffn_mean_sign_flip_frac": 0.003882575614261441,
+            "ffn_max_relative_change": 0.015865543857216835
+          }
+        ],
+        "total_positions": 2560,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.0001,
+          "full_depths": [
+            16,
+            24,
+            16,
+            17,
+            14,
+            17,
+            20,
+            16,
+            21,
+            22
+          ],
+          "evicted_depths": [
+            16,
+            26,
+            16,
+            17,
+            15,
+            17,
+            19,
+            16,
+            19,
+            21
+          ],
+          "depth_deltas": [
+            0,
+            2,
+            0,
+            0,
+            1,
+            0,
+            -1,
+            0,
+            -2,
+            -1
+          ],
+          "n_depth_changed": 5,
+          "sum_depth_delta": -1,
+          "evicted_live_nll": 1.154762840420315,
+          "evicted_replay_nll": 1.1545829969614312,
+          "gate_restored_replay_nll": 1.1554129121242214,
+          "gate_restored_replay_nll_recovery": -0.0008299151627901846,
+          "gate_restored_live_ORACLE_nll": 1.1473454465303803,
+          "gate_restored_live_ORACLE_depths": [
+            15,
+            26,
+            17,
+            17,
+            15,
+            17,
+            19,
+            19,
+            21,
+            22
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 5,
+          "evicted_live_kl_to_clean": 4.8192288517946556e-05,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 334,
+          "evicted_live_total_compute": 341
+        },
+        {
+          "threshold": 0.00025,
+          "full_depths": [
+            14,
+            21,
+            14,
+            14,
+            13,
+            14,
+            14,
+            13,
+            16,
+            17
+          ],
+          "evicted_depths": [
+            13,
+            19,
+            13,
+            14,
+            13,
+            14,
+            14,
+            13,
+            16,
+            17
+          ],
+          "depth_deltas": [
+            -1,
+            -2,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 3,
+          "sum_depth_delta": -4,
+          "evicted_live_nll": 1.1529743186034063,
+          "evicted_replay_nll": 1.1474249650657131,
+          "gate_restored_replay_nll": 1.1548382818206544,
+          "gate_restored_replay_nll_recovery": -0.007413316754941279,
+          "gate_restored_live_ORACLE_nll": 1.1458037579274485,
+          "gate_restored_live_ORACLE_depths": [
+            13,
+            19,
+            13,
+            14,
+            13,
+            14,
+            15,
+            14,
+            16,
+            17
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 2,
+          "evicted_live_kl_to_clean": 0.00022918958227810846,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 273,
+          "evicted_live_total_compute": 275
+        }
+      ]
+    },
+    {
+      "source": [
+        559,
+        560,
+        561,
+        562
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 1.1546221206161944,
+        "delta_nll_vs_clean": -0.012538228459662681,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.012538228459662681,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 4.033334696767415e-05,
+        "depths": [
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32
+        ],
+        "total_depth": 320,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.1555536538572697,
+          "delta_nll_vs_clean": -0.01160669521858737,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.012538228459662681,
+            "nll_recovered": -0.0009315332410753108,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00022184313241998174,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.006306730643882474
+        },
+        "restore_up": {
+          "future_nll": 1.1487626011904568,
+          "delta_nll_vs_clean": -0.018397747885400273,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.012538228459662681,
+            "nll_recovered": 0.0058595194257375915,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00020856743141608704,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.00659359520959697
+        },
+        "shift_gate": {
+          "future_nll": 1.160795124359235,
+          "delta_nll_vs_clean": -0.006365224716622153,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.012538228459662681,
+            "nll_recovered": -0.006173003743040528,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00026367625049772414,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.009827917388793139
+        },
+        "restore_ffn": {
+          "future_nll": 1.1539026937934977,
+          "delta_nll_vs_clean": -0.013257655282359337,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.012538228459662681,
+            "nll_recovered": 0.000719426822696656,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 5.683690716532889e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.010298785485429108
+        },
+        "gate_loops_1_8": {
+          "future_nll": 1.1541018511509011,
+          "delta_nll_vs_clean": -0.013058497924955947,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.012538228459662681,
+            "nll_recovered": 0.000520269465293266,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 8.99210420415544e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006399631195381517
+        },
+        "gate_loops_9_16": {
+          "future_nll": 1.1720278129182082,
+          "delta_nll_vs_clean": 0.00486746384235115,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.012538228459662681,
+            "nll_recovered": -0.01740569230201383,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0001266273813690254,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006731283872795757
+        },
+        "gate_loops_17_24": {
+          "future_nll": 1.1663790875071653,
+          "delta_nll_vs_clean": -0.0007812615686917379,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.012538228459662681,
+            "nll_recovered": -0.011756966890970943,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 3.0083359838783963e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006718530919170007
+        },
+        "gate_loops_25_32": {
+          "future_nll": 1.1674093949691775,
+          "delta_nll_vs_clean": 0.00024904589332042093,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.012538228459662681,
+            "nll_recovered": -0.012787274352983102,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 1.556648711403202e-05,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006584536397713237
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "generated_tokens": 18
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.007024251500843093,
+            "gate_mean_sign_flip_frac": 0.002172154051368125,
+            "gate_max_relative_change": 0.01090731006115675,
+            "ffn_mean_relative_change": 0.01040370820555836,
+            "ffn_mean_sign_flip_frac": 0.0030303029081551356,
+            "ffn_max_relative_change": 0.016952387988567352
+          },
+          {
+            "loop": 2,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008861246600281448,
+            "gate_mean_sign_flip_frac": 0.0028529576142318548,
+            "gate_max_relative_change": 0.011227285489439964,
+            "ffn_mean_relative_change": 0.01285535228671506,
+            "ffn_mean_sign_flip_frac": 0.004195075610186905,
+            "ffn_max_relative_change": 0.01829361915588379
+          },
+          {
+            "loop": 3,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008769571816083043,
+            "gate_mean_sign_flip_frac": 0.0028627232444705442,
+            "gate_max_relative_change": 0.011518225073814392,
+            "ffn_mean_relative_change": 0.013171060429885983,
+            "ffn_mean_sign_flip_frac": 0.003986742257256992,
+            "ffn_max_relative_change": 0.017347587272524834
+          },
+          {
+            "loop": 4,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009455432696267963,
+            "gate_mean_sign_flip_frac": 0.002957589307334274,
+            "gate_max_relative_change": 0.011445378884673119,
+            "ffn_mean_relative_change": 0.013919072318822145,
+            "ffn_mean_sign_flip_frac": 0.004356060453574173,
+            "ffn_max_relative_change": 0.01704377308487892
+          },
+          {
+            "loop": 5,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009471655113156886,
+            "gate_mean_sign_flip_frac": 0.0030998884118162095,
+            "gate_max_relative_change": 0.011872410774230957,
+            "ffn_mean_relative_change": 0.014046429097652436,
+            "ffn_mean_sign_flip_frac": 0.004422348341904581,
+            "ffn_max_relative_change": 0.018910465762019157
+          },
+          {
+            "loop": 6,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009561022487469017,
+            "gate_mean_sign_flip_frac": 0.0030929129716241732,
+            "gate_max_relative_change": 0.012451679445803165,
+            "ffn_mean_relative_change": 0.014115484454669059,
+            "ffn_mean_sign_flip_frac": 0.0044318180356640365,
+            "ffn_max_relative_change": 0.01891362853348255
+          },
+          {
+            "loop": 7,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009439358988311141,
+            "gate_mean_sign_flip_frac": 0.0029757254407741128,
+            "gate_max_relative_change": 0.011521507054567337,
+            "ffn_mean_relative_change": 0.013760562380775809,
+            "ffn_mean_sign_flip_frac": 0.003967802919214591,
+            "ffn_max_relative_change": 0.017382636666297913
+          },
+          {
+            "loop": 8,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009235984273254871,
+            "gate_mean_sign_flip_frac": 0.003116629464784637,
+            "gate_max_relative_change": 0.011581497266888618,
+            "ffn_mean_relative_change": 0.013438634667545557,
+            "ffn_mean_sign_flip_frac": 0.004228219552896917,
+            "ffn_max_relative_change": 0.017240455374121666
+          },
+          {
+            "loop": 9,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009311308909673244,
+            "gate_mean_sign_flip_frac": 0.002998046888387762,
+            "gate_max_relative_change": 0.011748258955776691,
+            "ffn_mean_relative_change": 0.013584820507094263,
+            "ffn_mean_sign_flip_frac": 0.004299242270644754,
+            "ffn_max_relative_change": 0.01760243996977806
+          },
+          {
+            "loop": 10,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009194072126410902,
+            "gate_mean_sign_flip_frac": 0.0029854910855647175,
+            "gate_max_relative_change": 0.011368254199624062,
+            "ffn_mean_relative_change": 0.013358488818630576,
+            "ffn_mean_sign_flip_frac": 0.004393939260626212,
+            "ffn_max_relative_change": 0.016743909567594528
+          },
+          {
+            "loop": 11,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009386270202230661,
+            "gate_mean_sign_flip_frac": 0.0031375558231957258,
+            "gate_max_relative_change": 0.011686508543789387,
+            "ffn_mean_relative_change": 0.013709944277070462,
+            "ffn_mean_sign_flip_frac": 0.0041950755985453725,
+            "ffn_max_relative_change": 0.017469018697738647
+          },
+          {
+            "loop": 12,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009255997138097882,
+            "gate_mean_sign_flip_frac": 0.0029827009013388304,
+            "gate_max_relative_change": 0.011411317624151707,
+            "ffn_mean_relative_change": 0.01346523272804916,
+            "ffn_mean_sign_flip_frac": 0.004142992291599512,
+            "ffn_max_relative_change": 0.017445608973503113
+          },
+          {
+            "loop": 13,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009255749359726905,
+            "gate_mean_sign_flip_frac": 0.0030901227844879033,
+            "gate_max_relative_change": 0.012300565838813782,
+            "ffn_mean_relative_change": 0.013491145707666874,
+            "ffn_mean_sign_flip_frac": 0.004185605933889747,
+            "ffn_max_relative_change": 0.0183291956782341
+          },
+          {
+            "loop": 14,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009393029648344963,
+            "gate_mean_sign_flip_frac": 0.0031040736590512096,
+            "gate_max_relative_change": 0.012259021401405334,
+            "ffn_mean_relative_change": 0.013813556800596417,
+            "ffn_mean_sign_flip_frac": 0.003963068051962182,
+            "ffn_max_relative_change": 0.01977386884391308
+          },
+          {
+            "loop": 15,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009542336605954915,
+            "gate_mean_sign_flip_frac": 0.0032463727606227622,
+            "gate_max_relative_change": 0.012229193933308125,
+            "ffn_mean_relative_change": 0.01387161014135927,
+            "ffn_mean_sign_flip_frac": 0.004431818041484803,
+            "ffn_max_relative_change": 0.01899740844964981
+          },
+          {
+            "loop": 16,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009409419365692884,
+            "gate_mean_sign_flip_frac": 0.003190569224534556,
+            "gate_max_relative_change": 0.012441975064575672,
+            "ffn_mean_relative_change": 0.013866371451877057,
+            "ffn_mean_sign_flip_frac": 0.004038825625320897,
+            "ffn_max_relative_change": 0.018931489437818527
+          },
+          {
+            "loop": 17,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009724641602952033,
+            "gate_mean_sign_flip_frac": 0.0031919642933644354,
+            "gate_max_relative_change": 0.012995115481317043,
+            "ffn_mean_relative_change": 0.014218663843348623,
+            "ffn_mean_sign_flip_frac": 0.004384469555225224,
+            "ffn_max_relative_change": 0.020270122215151787
+          },
+          {
+            "loop": 18,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009545275359414518,
+            "gate_mean_sign_flip_frac": 0.0030678013397846373,
+            "gate_max_relative_change": 0.012124196626245975,
+            "ffn_mean_relative_change": 0.013916741777211427,
+            "ffn_mean_sign_flip_frac": 0.004176136222667992,
+            "ffn_max_relative_change": 0.01872721128165722
+          },
+          {
+            "loop": 19,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009326437197159976,
+            "gate_mean_sign_flip_frac": 0.003067801336874254,
+            "gate_max_relative_change": 0.011953791603446007,
+            "ffn_mean_relative_change": 0.01368633694946766,
+            "ffn_mean_sign_flip_frac": 0.0038020832085749134,
+            "ffn_max_relative_change": 0.018085351213812828
+          },
+          {
+            "loop": 20,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009397759148851038,
+            "gate_mean_sign_flip_frac": 0.0030678013397846373,
+            "gate_max_relative_change": 0.011742009781301022,
+            "ffn_mean_relative_change": 0.013657978433184326,
+            "ffn_mean_sign_flip_frac": 0.004209280165378004,
+            "ffn_max_relative_change": 0.018049631267786026
+          },
+          {
+            "loop": 21,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009171892772428691,
+            "gate_mean_sign_flip_frac": 0.002963169652502984,
+            "gate_max_relative_change": 0.011373027227818966,
+            "ffn_mean_relative_change": 0.013319727103225886,
+            "ffn_mean_sign_flip_frac": 0.004043560492573306,
+            "ffn_max_relative_change": 0.017066029831767082
+          },
+          {
+            "loop": 22,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009416536428034306,
+            "gate_mean_sign_flip_frac": 0.0031166294793365523,
+            "gate_max_relative_change": 0.012082789093255997,
+            "ffn_mean_relative_change": 0.013719140109606088,
+            "ffn_mean_sign_flip_frac": 0.004138257415615953,
+            "ffn_max_relative_change": 0.017489749938249588
+          },
+          {
+            "loop": 23,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009530166012700647,
+            "gate_mean_sign_flip_frac": 0.0031612723338184877,
+            "gate_max_relative_change": 0.01242632232606411,
+            "ffn_mean_relative_change": 0.014106539264321327,
+            "ffn_mean_sign_flip_frac": 0.004559658950893208,
+            "ffn_max_relative_change": 0.020027047023177147
+          },
+          {
+            "loop": 24,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009503169276285917,
+            "gate_mean_sign_flip_frac": 0.003161272342549637,
+            "gate_max_relative_change": 0.011409935541450977,
+            "ffn_mean_relative_change": 0.01382161893416196,
+            "ffn_mean_sign_flip_frac": 0.00410037866095081,
+            "ffn_max_relative_change": 0.018101545050740242
+          },
+          {
+            "loop": 25,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.0095963463652879,
+            "gate_mean_sign_flip_frac": 0.0031863839481957256,
+            "gate_max_relative_change": 0.011916370131075382,
+            "ffn_mean_relative_change": 0.01403512228280306,
+            "ffn_mean_sign_flip_frac": 0.0042945074150338765,
+            "ffn_max_relative_change": 0.017702843993902206
+          },
+          {
+            "loop": 26,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009439350583124905,
+            "gate_mean_sign_flip_frac": 0.0030873326293658467,
+            "gate_max_relative_change": 0.011567020788788795,
+            "ffn_mean_relative_change": 0.013728141807951033,
+            "ffn_mean_sign_flip_frac": 0.00424242410226725,
+            "ffn_max_relative_change": 0.01791083998978138
+          },
+          {
+            "loop": 27,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009505338966846466,
+            "gate_mean_sign_flip_frac": 0.0031208147323923186,
+            "gate_max_relative_change": 0.012346182018518448,
+            "ffn_mean_relative_change": 0.013841476337984205,
+            "ffn_mean_sign_flip_frac": 0.00438920438173227,
+            "ffn_max_relative_change": 0.01888667792081833
+          },
+          {
+            "loop": 28,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00963827958330512,
+            "gate_mean_sign_flip_frac": 0.0032519531319849192,
+            "gate_max_relative_change": 0.012385498732328415,
+            "ffn_mean_relative_change": 0.013912751222960651,
+            "ffn_mean_sign_flip_frac": 0.004232954431790859,
+            "ffn_max_relative_change": 0.018365513533353806
+          },
+          {
+            "loop": 29,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009527864388655872,
+            "gate_mean_sign_flip_frac": 0.003109654039144516,
+            "gate_max_relative_change": 0.012440788559615612,
+            "ffn_mean_relative_change": 0.01381067829206586,
+            "ffn_mean_sign_flip_frac": 0.004498105909442529,
+            "ffn_max_relative_change": 0.01808048225939274
+          },
+          {
+            "loop": 30,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009532489825505763,
+            "gate_mean_sign_flip_frac": 0.0031040736648719758,
+            "gate_max_relative_change": 0.01176049467176199,
+            "ffn_mean_relative_change": 0.014001817023381592,
+            "ffn_mean_sign_flip_frac": 0.004095643825712614,
+            "ffn_max_relative_change": 0.017979390919208527
+          },
+          {
+            "loop": 31,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009432257316075266,
+            "gate_mean_sign_flip_frac": 0.0031710379524156453,
+            "gate_max_relative_change": 0.012208636850118637,
+            "ffn_mean_relative_change": 0.013764385064132512,
+            "ffn_mean_sign_flip_frac": 0.004161931702401489,
+            "ffn_max_relative_change": 0.018159450963139534
+          },
+          {
+            "loop": 32,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009289982228074223,
+            "gate_mean_sign_flip_frac": 0.0030482700967695564,
+            "gate_max_relative_change": 0.011624895967543125,
+            "ffn_mean_relative_change": 0.013605507835745812,
+            "ffn_mean_sign_flip_frac": 0.003996211991761811,
+            "ffn_max_relative_change": 0.018231013789772987
+          }
+        ],
+        "total_positions": 2560,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.0001,
+          "full_depths": [
+            16,
+            24,
+            16,
+            17,
+            14,
+            17,
+            20,
+            16,
+            21,
+            22
+          ],
+          "evicted_depths": [
+            15,
+            27,
+            18,
+            18,
+            14,
+            17,
+            19,
+            16,
+            22,
+            24
+          ],
+          "depth_deltas": [
+            -1,
+            3,
+            2,
+            1,
+            0,
+            0,
+            -1,
+            0,
+            1,
+            2
+          ],
+          "n_depth_changed": 7,
+          "sum_depth_delta": 7,
+          "evicted_live_nll": 1.159866031909688,
+          "evicted_replay_nll": 1.1675226216801902,
+          "gate_restored_replay_nll": 1.1669636729917936,
+          "gate_restored_replay_nll_recovery": 0.0005589486883965655,
+          "gate_restored_live_ORACLE_nll": 1.1543869935703697,
+          "gate_restored_live_ORACLE_depths": [
+            16,
+            26,
+            17,
+            17,
+            14,
+            17,
+            18,
+            17,
+            22,
+            21
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 7,
+          "evicted_live_kl_to_clean": 4.466694074444099e-05,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 334,
+          "evicted_live_total_compute": 345
+        },
+        {
+          "threshold": 0.00025,
+          "full_depths": [
+            14,
+            21,
+            14,
+            14,
+            13,
+            14,
+            14,
+            13,
+            16,
+            17
+          ],
+          "evicted_depths": [
+            13,
+            19,
+            14,
+            14,
+            13,
+            14,
+            14,
+            13,
+            16,
+            18
+          ],
+          "depth_deltas": [
+            -1,
+            -2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "n_depth_changed": 3,
+          "sum_depth_delta": -2,
+          "evicted_live_nll": 1.1472619329187081,
+          "evicted_replay_nll": 1.1479351773171704,
+          "gate_restored_replay_nll": 1.1547634414443262,
+          "gate_restored_replay_nll_recovery": -0.006828264127155759,
+          "gate_restored_live_ORACLE_nll": 1.1658632274047704,
+          "gate_restored_live_ORACLE_depths": [
+            14,
+            19,
+            14,
+            14,
+            13,
+            14,
+            14,
+            14,
+            16,
+            17
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 3,
+          "evicted_live_kl_to_clean": 0.00012431039115057274,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 273,
+          "evicted_live_total_compute": 269
+        }
+      ]
+    },
+    {
+      "source": [
+        37,
+        38,
+        39,
+        40
+      ],
+      "stratum": "oracle_evidence",
+      "evict_fixed": {
+        "future_nll": 1.1788344922796468,
+        "delta_nll_vs_clean": 0.011674143203789678,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.011674143203789678,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.0006912312489141135,
+        "depths": [
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32
+        ],
+        "total_depth": 320,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.1696471020885737,
+          "delta_nll_vs_clean": 0.0024867530127166138,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.011674143203789678,
+            "nll_recovered": 0.009187390191073064,
+            "fraction_recovered": 0.7869862507846092
+          },
+          "kl_to_clean": 0.000783378217188139,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.0077261157503016875
+        },
+        "restore_up": {
+          "future_nll": 1.1479920484327724,
+          "delta_nll_vs_clean": -0.019168300643084724,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.011674143203789678,
+            "nll_recovered": 0.0308424438468744,
+            "fraction_recovered": 2.6419449640520325
+          },
+          "kl_to_clean": 0.00043037094946877613,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.009318692210945301
+        },
+        "shift_gate": {
+          "future_nll": 1.1675286699978136,
+          "delta_nll_vs_clean": 0.0003683209219564887,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.011674143203789678,
+            "nll_recovered": 0.011305822281833189,
+            "fraction_recovered": 0.96844985404694
+          },
+          "kl_to_clean": 0.0006892954164009603,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.012917718952303403
+        },
+        "restore_ffn": {
+          "future_nll": 1.1613306145186977,
+          "delta_nll_vs_clean": -0.005829734557159405,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.011674143203789678,
+            "nll_recovered": 0.017503877760949083,
+            "fraction_recovered": 1.4993715132145156
+          },
+          "kl_to_clean": 0.00044558623167587384,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.013288702714635291
+        },
+        "gate_loops_1_8": {
+          "future_nll": 1.1692806149613817,
+          "delta_nll_vs_clean": 0.002120265885524608,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.011674143203789678,
+            "nll_recovered": 0.00955387731826507,
+            "fraction_recovered": 0.8183793149944979
+          },
+          "kl_to_clean": 0.0005168261638846477,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.007500685767445248
+        },
+        "gate_loops_9_16": {
+          "future_nll": 1.1715258667019144,
+          "delta_nll_vs_clean": 0.0043655176260573025,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.011674143203789678,
+            "nll_recovered": 0.007308625577732375,
+            "fraction_recovered": 0.6260524177363045
+          },
+          "kl_to_clean": 0.0007331287902129841,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.008713284211989959
+        },
+        "gate_loops_17_24": {
+          "future_nll": 1.1718544175382704,
+          "delta_nll_vs_clean": 0.00469406846241327,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.011674143203789678,
+            "nll_recovered": 0.0069800747413764075,
+            "fraction_recovered": 0.5979089531050574
+          },
+          "kl_to_clean": 0.0006789964053872666,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.008937515638535842
+        },
+        "gate_loops_25_32": {
+          "future_nll": 1.1636735510142495,
+          "delta_nll_vs_clean": -0.0034867980616075656,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.011674143203789678,
+            "nll_recovered": 0.015160941265397243,
+            "fraction_recovered": 1.2986769993086666
+          },
+          "kl_to_clean": 0.000693970632934477,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.00845798304217169
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "generated_tokens": 18
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.005297748767770827,
+            "gate_mean_sign_flip_frac": 0.0015387835126603022,
+            "gate_max_relative_change": 0.0070726387202739716,
+            "ffn_mean_relative_change": 0.007953968271613121,
+            "ffn_mean_sign_flip_frac": 0.002301136283494998,
+            "ffn_max_relative_change": 0.01053653098642826
+          },
+          {
+            "loop": 2,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.01019723656354472,
+            "gate_mean_sign_flip_frac": 0.00316266740555875,
+            "gate_max_relative_change": 0.012872816063463688,
+            "ffn_mean_relative_change": 0.014985795388929546,
+            "ffn_mean_sign_flip_frac": 0.004640151347848587,
+            "ffn_max_relative_change": 0.021044280380010605
+          },
+          {
+            "loop": 3,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.011217033246066422,
+            "gate_mean_sign_flip_frac": 0.003632812513387762,
+            "gate_max_relative_change": 0.015217569656670094,
+            "ffn_mean_relative_change": 0.016931542893871665,
+            "ffn_mean_sign_flip_frac": 0.004966855887323618,
+            "ffn_max_relative_change": 0.02406814694404602
+          },
+          {
+            "loop": 4,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.011973627866245807,
+            "gate_mean_sign_flip_frac": 0.0038797432964202015,
+            "gate_max_relative_change": 0.01579820178449154,
+            "ffn_mean_relative_change": 0.017729385709390044,
+            "ffn_mean_sign_flip_frac": 0.005411931633716449,
+            "ffn_max_relative_change": 0.025551769882440567
+          },
+          {
+            "loop": 5,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.011686864739749581,
+            "gate_mean_sign_flip_frac": 0.003876953147118911,
+            "gate_max_relative_change": 0.015896541997790337,
+            "ffn_mean_relative_change": 0.01751065666321665,
+            "ffn_mean_sign_flip_frac": 0.005303030088543892,
+            "ffn_max_relative_change": 0.025025710463523865
+          },
+          {
+            "loop": 6,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012138693779706954,
+            "gate_mean_sign_flip_frac": 0.003782087046420202,
+            "gate_max_relative_change": 0.017170248553156853,
+            "ffn_mean_relative_change": 0.018041319074109198,
+            "ffn_mean_sign_flip_frac": 0.005984848324442282,
+            "ffn_max_relative_change": 0.02571745589375496
+          },
+          {
+            "loop": 7,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.01248016133904457,
+            "gate_mean_sign_flip_frac": 0.004084821435390041,
+            "gate_max_relative_change": 0.018860984593629837,
+            "ffn_mean_relative_change": 0.018534590140916407,
+            "ffn_mean_sign_flip_frac": 0.005535037664230913,
+            "ffn_max_relative_change": 0.027637489140033722
+          },
+          {
+            "loop": 8,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012744083616416902,
+            "gate_mean_sign_flip_frac": 0.004291294678114355,
+            "gate_max_relative_change": 0.020804155617952347,
+            "ffn_mean_relative_change": 0.01900088272523135,
+            "ffn_mean_sign_flip_frac": 0.006283143721520901,
+            "ffn_max_relative_change": 0.03095093183219433
+          },
+          {
+            "loop": 9,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012462345708627254,
+            "gate_mean_sign_flip_frac": 0.004026227662689052,
+            "gate_max_relative_change": 0.02072640135884285,
+            "ffn_mean_relative_change": 0.018424097588285802,
+            "ffn_mean_sign_flip_frac": 0.005942234658868983,
+            "ffn_max_relative_change": 0.03144387528300285
+          },
+          {
+            "loop": 10,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012410923978313804,
+            "gate_mean_sign_flip_frac": 0.004038783512078226,
+            "gate_max_relative_change": 0.02276982180774212,
+            "ffn_mean_relative_change": 0.01844196142628789,
+            "ffn_mean_sign_flip_frac": 0.0060606058686971664,
+            "ffn_max_relative_change": 0.03444483131170273
+          },
+          {
+            "loop": 11,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012534034450072794,
+            "gate_mean_sign_flip_frac": 0.004217354927095585,
+            "gate_max_relative_change": 0.02355615422129631,
+            "ffn_mean_relative_change": 0.01863841633312404,
+            "ffn_mean_sign_flip_frac": 0.005970643763430416,
+            "ffn_max_relative_change": 0.035617947578430176
+          },
+          {
+            "loop": 12,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.01297408165410161,
+            "gate_mean_sign_flip_frac": 0.004319196444703266,
+            "gate_max_relative_change": 0.02346106432378292,
+            "ffn_mean_relative_change": 0.019124689418822526,
+            "ffn_mean_sign_flip_frac": 0.006235795290558599,
+            "ffn_max_relative_change": 0.035867784172296524
+          },
+          {
+            "loop": 13,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012783246918115766,
+            "gate_mean_sign_flip_frac": 0.00421037946944125,
+            "gate_max_relative_change": 0.02190389484167099,
+            "ffn_mean_relative_change": 0.018838629918172957,
+            "ffn_mean_sign_flip_frac": 0.006103219470242038,
+            "ffn_max_relative_change": 0.033895254135131836
+          },
+          {
+            "loop": 14,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012882668746169657,
+            "gate_mean_sign_flip_frac": 0.004178292397409677,
+            "gate_max_relative_change": 0.02298450656235218,
+            "ffn_mean_relative_change": 0.019049053359776736,
+            "ffn_mean_sign_flip_frac": 0.005975378589937463,
+            "ffn_max_relative_change": 0.035643983632326126
+          },
+          {
+            "loop": 15,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.013189705566037446,
+            "gate_mean_sign_flip_frac": 0.004401506704743952,
+            "gate_max_relative_change": 0.023130718618631363,
+            "ffn_mean_relative_change": 0.019571529631502927,
+            "ffn_mean_sign_flip_frac": 0.00609848462336231,
+            "ffn_max_relative_change": 0.036602504551410675
+          },
+          {
+            "loop": 16,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012725244637113064,
+            "gate_mean_sign_flip_frac": 0.004225725500145927,
+            "gate_max_relative_change": 0.021919578313827515,
+            "ffn_mean_relative_change": 0.018875446915626527,
+            "ffn_mean_sign_flip_frac": 0.005738636146998033,
+            "ffn_max_relative_change": 0.03459004685282707
+          },
+          {
+            "loop": 17,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.01296506873331964,
+            "gate_mean_sign_flip_frac": 0.004248046869179234,
+            "gate_max_relative_change": 0.02205084078013897,
+            "ffn_mean_relative_change": 0.01928469685371965,
+            "ffn_mean_sign_flip_frac": 0.0060321967699565,
+            "ffn_max_relative_change": 0.034240856766700745
+          },
+          {
+            "loop": 18,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.013446721923537552,
+            "gate_mean_sign_flip_frac": 0.004376395099097863,
+            "gate_max_relative_change": 0.023342519998550415,
+            "ffn_mean_relative_change": 0.019965072837658228,
+            "ffn_mean_sign_flip_frac": 0.006240530096692965,
+            "ffn_max_relative_change": 0.03797575831413269
+          },
+          {
+            "loop": 19,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.013228599971625954,
+            "gate_mean_sign_flip_frac": 0.004391741106519476,
+            "gate_max_relative_change": 0.023866135627031326,
+            "ffn_mean_relative_change": 0.019610475352965295,
+            "ffn_mean_sign_flip_frac": 0.005681817990262061,
+            "ffn_max_relative_change": 0.038505781441926956
+          },
+          {
+            "loop": 20,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.013073106959927827,
+            "gate_mean_sign_flip_frac": 0.004296875023283064,
+            "gate_max_relative_change": 0.023059720173478127,
+            "ffn_mean_relative_change": 0.019414206850342453,
+            "ffn_mean_sign_flip_frac": 0.005800189240835607,
+            "ffn_max_relative_change": 0.037492211908102036
+          },
+          {
+            "loop": 21,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.013140381744597108,
+            "gate_mean_sign_flip_frac": 0.004273158495198004,
+            "gate_max_relative_change": 0.023128053173422813,
+            "ffn_mean_relative_change": 0.01942306668497622,
+            "ffn_mean_sign_flip_frac": 0.006013257364975289,
+            "ffn_max_relative_change": 0.03682246804237366
+          },
+          {
+            "loop": 22,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.0132076938287355,
+            "gate_mean_sign_flip_frac": 0.0043903459707507865,
+            "gate_max_relative_change": 0.02309073507785797,
+            "ffn_mean_relative_change": 0.019481804687529802,
+            "ffn_mean_sign_flip_frac": 0.006079545244574547,
+            "ffn_max_relative_change": 0.03597378730773926
+          },
+          {
+            "loop": 23,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012951117183547467,
+            "gate_mean_sign_flip_frac": 0.00433314734546002,
+            "gate_max_relative_change": 0.02310771681368351,
+            "ffn_mean_relative_change": 0.019213899108581244,
+            "ffn_mean_sign_flip_frac": 0.005696022519259714,
+            "ffn_max_relative_change": 0.035699326545000076
+          },
+          {
+            "loop": 24,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012955332326237112,
+            "gate_mean_sign_flip_frac": 0.004347098217112944,
+            "gate_max_relative_change": 0.023254720494151115,
+            "ffn_mean_relative_change": 0.01922887903638184,
+            "ffn_mean_sign_flip_frac": 0.005984848286607303,
+            "ffn_max_relative_change": 0.037343040108680725
+          },
+          {
+            "loop": 25,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012994604813866318,
+            "gate_mean_sign_flip_frac": 0.004294084844877944,
+            "gate_max_relative_change": 0.023312922567129135,
+            "ffn_mean_relative_change": 0.01940717832185328,
+            "ffn_mean_sign_flip_frac": 0.006131628586445004,
+            "ffn_max_relative_change": 0.03769352659583092
+          },
+          {
+            "loop": 26,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.013101135951001198,
+            "gate_mean_sign_flip_frac": 0.00437360493815504,
+            "gate_max_relative_change": 0.023281313478946686,
+            "ffn_mean_relative_change": 0.019297869433648883,
+            "ffn_mean_sign_flip_frac": 0.006103219528449699,
+            "ffn_max_relative_change": 0.037957753986120224
+          },
+          {
+            "loop": 27,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.013037458504550159,
+            "gate_mean_sign_flip_frac": 0.004348493338329718,
+            "gate_max_relative_change": 0.023099713027477264,
+            "ffn_mean_relative_change": 0.019513618084602058,
+            "ffn_mean_sign_flip_frac": 0.006074810400605202,
+            "ffn_max_relative_change": 0.03801708295941353
+          },
+          {
+            "loop": 28,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.01292065200395882,
+            "gate_mean_sign_flip_frac": 0.004241071449359879,
+            "gate_max_relative_change": 0.023696403950452805,
+            "ffn_mean_relative_change": 0.019210742553696036,
+            "ffn_mean_sign_flip_frac": 0.005904355889651924,
+            "ffn_max_relative_change": 0.03885359317064285
+          },
+          {
+            "loop": 29,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012753667146898805,
+            "gate_mean_sign_flip_frac": 0.004182477667927742,
+            "gate_max_relative_change": 0.024332979694008827,
+            "ffn_mean_relative_change": 0.01911566106136888,
+            "ffn_mean_sign_flip_frac": 0.0058333331428002564,
+            "ffn_max_relative_change": 0.03912465646862984
+          },
+          {
+            "loop": 30,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012973008456174284,
+            "gate_mean_sign_flip_frac": 0.0042271205718861895,
+            "gate_max_relative_change": 0.023358697071671486,
+            "ffn_mean_relative_change": 0.019195679808035493,
+            "ffn_mean_sign_flip_frac": 0.006084280094364658,
+            "ffn_max_relative_change": 0.03781088814139366
+          },
+          {
+            "loop": 31,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.01282531648175791,
+            "gate_mean_sign_flip_frac": 0.0042661830666475,
+            "gate_max_relative_change": 0.022872358560562134,
+            "ffn_mean_relative_change": 0.018985652085393667,
+            "ffn_mean_sign_flip_frac": 0.005838067962031346,
+            "ffn_max_relative_change": 0.03678956255316734
+          },
+          {
+            "loop": 32,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.012779414409305901,
+            "gate_mean_sign_flip_frac": 0.004207589314319193,
+            "gate_max_relative_change": 0.022926393896341324,
+            "ffn_mean_relative_change": 0.01896440112031996,
+            "ffn_mean_sign_flip_frac": 0.005975378619041294,
+            "ffn_max_relative_change": 0.03766558691859245
+          }
+        ],
+        "total_positions": 2560,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.0001,
+          "full_depths": [
+            16,
+            24,
+            16,
+            17,
+            14,
+            17,
+            20,
+            16,
+            21,
+            22
+          ],
+          "evicted_depths": [
+            16,
+            24,
+            15,
+            17,
+            14,
+            17,
+            18,
+            17,
+            20,
+            21
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -2,
+            1,
+            -1,
+            -1
+          ],
+          "n_depth_changed": 5,
+          "sum_depth_delta": -4,
+          "evicted_live_nll": 1.1816876013791544,
+          "evicted_replay_nll": 1.1886912033514818,
+          "gate_restored_replay_nll": 1.169197434540062,
+          "gate_restored_replay_nll_recovery": 0.019493768811419843,
+          "gate_restored_live_ORACLE_nll": 1.1695857687187123,
+          "gate_restored_live_ORACLE_depths": [
+            16,
+            26,
+            17,
+            17,
+            14,
+            17,
+            18,
+            19,
+            21,
+            22
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 5,
+          "evicted_live_kl_to_clean": 0.0005163801220725696,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 334,
+          "evicted_live_total_compute": 336
+        },
+        {
+          "threshold": 0.00025,
+          "full_depths": [
+            14,
+            21,
+            14,
+            14,
+            13,
+            14,
+            14,
+            13,
+            16,
+            17
+          ],
+          "evicted_depths": [
+            13,
+            18,
+            14,
+            14,
+            12,
+            14,
+            14,
+            13,
+            15,
+            18
+          ],
+          "depth_deltas": [
+            -1,
+            -3,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            1
+          ],
+          "n_depth_changed": 5,
+          "sum_depth_delta": -5,
+          "evicted_live_nll": 1.173826608143928,
+          "evicted_replay_nll": 1.1837016510439247,
+          "gate_restored_replay_nll": 1.1764102555983602,
+          "gate_restored_replay_nll_recovery": 0.0072913954455644525,
+          "gate_restored_live_ORACLE_nll": 1.162048165784654,
+          "gate_restored_live_ORACLE_depths": [
+            13,
+            19,
+            13,
+            14,
+            13,
+            14,
+            14,
+            14,
+            16,
+            17
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 6,
+          "evicted_live_kl_to_clean": 0.0009521964449908814,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 273,
+          "evicted_live_total_compute": 272
+        }
+      ]
+    },
+    {
+      "source": [
+        100,
+        101,
+        102,
+        103
+      ],
+      "stratum": "oracle_distractor",
+      "evict_fixed": {
+        "future_nll": 1.1572060708741547,
+        "delta_nll_vs_clean": -0.00995427820170236,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.00995427820170236,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.00023340411991057408,
+        "depths": [
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32,
+          32
+        ],
+        "total_depth": 320,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 1.1567508676166147,
+          "delta_nll_vs_clean": -0.010409481459242365,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00995427820170236,
+            "nll_recovered": 0.00045520325754000446,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00021372405800058737,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.006222162018457311
+        },
+        "restore_up": {
+          "future_nll": 1.1617766594863497,
+          "delta_nll_vs_clean": -0.005383689589507412,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00995427820170236,
+            "nll_recovered": -0.004570588612194948,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00010752996578844431,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.006142967803771171
+        },
+        "shift_gate": {
+          "future_nll": 1.1701357795088068,
+          "delta_nll_vs_clean": 0.0029754304329496772,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00995427820170236,
+            "nll_recovered": -0.012929708634652037,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00020245231451099244,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.009909913141018478
+        },
+        "restore_ffn": {
+          "future_nll": 1.1589410942554725,
+          "delta_nll_vs_clean": -0.008219254820384547,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00995427820170236,
+            "nll_recovered": -0.0017350233813178129,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00037540218250361096,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 1280,
+          "mean_relative_patch": 0.009947954251401825
+        },
+        "gate_loops_1_8": {
+          "future_nll": 1.163069453520115,
+          "delta_nll_vs_clean": -0.004090895555742158,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00995427820170236,
+            "nll_recovered": -0.005863382645960202,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0001366926264299511,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006248322367173387
+        },
+        "gate_loops_9_16": {
+          "future_nll": 1.158104902520184,
+          "delta_nll_vs_clean": -0.009055446555673141,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00995427820170236,
+            "nll_recovered": -0.0008988316460292189,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0003226221318312936,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.0067974887220771055
+        },
+        "gate_loops_17_24": {
+          "future_nll": 1.156133668116834,
+          "delta_nll_vs_clean": -0.01102668095902315,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00995427820170236,
+            "nll_recovered": 0.0010724027573207895,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00012759092170079434,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.006684811662125867
+        },
+        "gate_loops_25_32": {
+          "future_nll": 1.1521476412712621,
+          "delta_nll_vs_clean": -0.01501270780459496,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00995427820170236,
+            "nll_recovered": 0.0050584296028926,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0003928528361419757,
+          "depths": [
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32,
+            32
+          ],
+          "total_depth": 320,
+          "patches": 320,
+          "mean_relative_patch": 0.0064933925779769195
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+        "generated_tokens": 18
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.005168109305668622,
+            "gate_mean_sign_flip_frac": 0.0014955357401049696,
+            "gate_max_relative_change": 0.009380646049976349,
+            "ffn_mean_relative_change": 0.007755135919433087,
+            "ffn_mean_sign_flip_frac": 0.0021827650707564317,
+            "ffn_max_relative_change": 0.014289186336100101
+          },
+          {
+            "loop": 2,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008708734612446279,
+            "gate_mean_sign_flip_frac": 0.002787388433353044,
+            "gate_max_relative_change": 0.014512513764202595,
+            "ffn_mean_relative_change": 0.012674051069188863,
+            "ffn_mean_sign_flip_frac": 0.0038068180554546418,
+            "ffn_max_relative_change": 0.021931033581495285
+          },
+          {
+            "loop": 3,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.008692756318487227,
+            "gate_mean_sign_flip_frac": 0.0028013393020955846,
+            "gate_max_relative_change": 0.012026852928102016,
+            "ffn_mean_relative_change": 0.013108692248351872,
+            "ffn_mean_sign_flip_frac": 0.004114583181217313,
+            "ffn_max_relative_change": 0.01908169500529766
+          },
+          {
+            "loop": 4,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00934271588921547,
+            "gate_mean_sign_flip_frac": 0.0030231584998546166,
+            "gate_max_relative_change": 0.012076767161488533,
+            "ffn_mean_relative_change": 0.013752779085189104,
+            "ffn_mean_sign_flip_frac": 0.004408143786713481,
+            "ffn_max_relative_change": 0.018231024965643883
+          },
+          {
+            "loop": 5,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009388038178440184,
+            "gate_mean_sign_flip_frac": 0.0031263950950233266,
+            "gate_max_relative_change": 0.01187235489487648,
+            "ffn_mean_relative_change": 0.01369490723591298,
+            "ffn_mean_sign_flip_frac": 0.004133522574556991,
+            "ffn_max_relative_change": 0.01833404414355755
+          },
+          {
+            "loop": 6,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009388362930621952,
+            "gate_mean_sign_flip_frac": 0.002993861641152762,
+            "gate_max_relative_change": 0.011719693429768085,
+            "ffn_mean_relative_change": 0.013753023627214134,
+            "ffn_mean_sign_flip_frac": 0.004341855918755755,
+            "ffn_max_relative_change": 0.01787530444562435
+          },
+          {
+            "loop": 7,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.0092452218872495,
+            "gate_mean_sign_flip_frac": 0.0029729352798312904,
+            "gate_max_relative_change": 0.012211072258651257,
+            "ffn_mean_relative_change": 0.013583635608665646,
+            "ffn_mean_sign_flip_frac": 0.0040530301455874,
+            "ffn_max_relative_change": 0.01810312643647194
+          },
+          {
+            "loop": 8,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.0093611930613406,
+            "gate_mean_sign_flip_frac": 0.0031040736677823587,
+            "gate_max_relative_change": 0.011409187689423561,
+            "ffn_mean_relative_change": 0.01376214378979057,
+            "ffn_mean_sign_flip_frac": 0.004540719551732764,
+            "ffn_max_relative_change": 0.01738937571644783
+          },
+          {
+            "loop": 9,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009472017060033977,
+            "gate_mean_sign_flip_frac": 0.003060825893771835,
+            "gate_max_relative_change": 0.01283217128366232,
+            "ffn_mean_relative_change": 0.013871391327120364,
+            "ffn_mean_sign_flip_frac": 0.0045501892163883895,
+            "ffn_max_relative_change": 0.01960906945168972
+          },
+          {
+            "loop": 10,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009743697673548013,
+            "gate_mean_sign_flip_frac": 0.0031891741236904636,
+            "gate_max_relative_change": 0.013351472094655037,
+            "ffn_mean_relative_change": 0.014317420870065689,
+            "ffn_mean_sign_flip_frac": 0.004625946813030168,
+            "ffn_max_relative_change": 0.020107712596654892
+          },
+          {
+            "loop": 11,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009665155096445232,
+            "gate_mean_sign_flip_frac": 0.003168247774010524,
+            "gate_max_relative_change": 0.012536639347672462,
+            "ffn_mean_relative_change": 0.014170222519896924,
+            "ffn_mean_sign_flip_frac": 0.004431818076409399,
+            "ffn_max_relative_change": 0.019518986344337463
+          },
+          {
+            "loop": 12,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00966531919548288,
+            "gate_mean_sign_flip_frac": 0.0031082589528523387,
+            "gate_max_relative_change": 0.011368641629815102,
+            "ffn_mean_relative_change": 0.014269489049911498,
+            "ffn_mean_sign_flip_frac": 0.004436552897095681,
+            "ffn_max_relative_change": 0.017224162817001343
+          },
+          {
+            "loop": 13,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00933672352693975,
+            "gate_mean_sign_flip_frac": 0.0030705915472935886,
+            "gate_max_relative_change": 0.011542496271431446,
+            "ffn_mean_relative_change": 0.013762217480689287,
+            "ffn_mean_sign_flip_frac": 0.0044176134979352355,
+            "ffn_max_relative_change": 0.018176278099417686
+          },
+          {
+            "loop": 14,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009393446345347911,
+            "gate_mean_sign_flip_frac": 0.0030719865957507865,
+            "gate_max_relative_change": 0.011652939952909946,
+            "ffn_mean_relative_change": 0.013643291359767318,
+            "ffn_mean_sign_flip_frac": 0.004095643816981465,
+            "ffn_max_relative_change": 0.01709534414112568
+          },
+          {
+            "loop": 15,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009101563470903785,
+            "gate_mean_sign_flip_frac": 0.0029492187488358466,
+            "gate_max_relative_change": 0.012533565983176231,
+            "ffn_mean_relative_change": 0.013328041811473668,
+            "ffn_mean_sign_flip_frac": 0.004299242276465521,
+            "ffn_max_relative_change": 0.018299264833331108
+          },
+          {
+            "loop": 16,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009100299421697855,
+            "gate_mean_sign_flip_frac": 0.003011997771682218,
+            "gate_max_relative_change": 0.01209954172372818,
+            "ffn_mean_relative_change": 0.013288681348785757,
+            "ffn_mean_sign_flip_frac": 0.004034090775530785,
+            "ffn_max_relative_change": 0.01763940043747425
+          },
+          {
+            "loop": 17,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009358445461839438,
+            "gate_mean_sign_flip_frac": 0.0030580357037251816,
+            "gate_max_relative_change": 0.012137115933001041,
+            "ffn_mean_relative_change": 0.013750924123451113,
+            "ffn_mean_sign_flip_frac": 0.004161931667476892,
+            "ffn_max_relative_change": 0.019097506999969482
+          },
+          {
+            "loop": 18,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009708142885938287,
+            "gate_mean_sign_flip_frac": 0.003104073676513508,
+            "gate_max_relative_change": 0.011858177371323109,
+            "ffn_mean_relative_change": 0.014186409115791321,
+            "ffn_mean_sign_flip_frac": 0.0041571968526113775,
+            "ffn_max_relative_change": 0.018558472394943237
+          },
+          {
+            "loop": 19,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009565412637311966,
+            "gate_mean_sign_flip_frac": 0.003074776803259738,
+            "gate_max_relative_change": 0.012274636887013912,
+            "ffn_mean_relative_change": 0.014084883383475244,
+            "ffn_mean_sign_flip_frac": 0.004095643776236102,
+            "ffn_max_relative_change": 0.018239665776491165
+          },
+          {
+            "loop": 20,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009543213725555688,
+            "gate_mean_sign_flip_frac": 0.0030761718691792337,
+            "gate_max_relative_change": 0.012566358782351017,
+            "ffn_mean_relative_change": 0.014136974629946054,
+            "ffn_mean_sign_flip_frac": 0.0042187498649582265,
+            "ffn_max_relative_change": 0.01926129311323166
+          },
+          {
+            "loop": 21,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00935805137269199,
+            "gate_mean_sign_flip_frac": 0.003065011161379516,
+            "gate_max_relative_change": 0.011674364097416401,
+            "ffn_mean_relative_change": 0.013818712113425136,
+            "ffn_mean_sign_flip_frac": 0.004071969544747844,
+            "ffn_max_relative_change": 0.017461085692048073
+          },
+          {
+            "loop": 22,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009616458381060511,
+            "gate_mean_sign_flip_frac": 0.0030915178707800806,
+            "gate_max_relative_change": 0.013426556251943111,
+            "ffn_mean_relative_change": 0.013921571034006774,
+            "ffn_mean_sign_flip_frac": 0.00418560592806898,
+            "ffn_max_relative_change": 0.01988223008811474
+          },
+          {
+            "loop": 23,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00939794050063938,
+            "gate_mean_sign_flip_frac": 0.0030259486491559075,
+            "gate_max_relative_change": 0.012874424457550049,
+            "ffn_mean_relative_change": 0.013777277641929686,
+            "ffn_mean_sign_flip_frac": 0.004071969579672441,
+            "ffn_max_relative_change": 0.019259212538599968
+          },
+          {
+            "loop": 24,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009384294878691435,
+            "gate_mean_sign_flip_frac": 0.0031194196548312903,
+            "gate_max_relative_change": 0.012116162106394768,
+            "ffn_mean_relative_change": 0.013779811118729413,
+            "ffn_mean_sign_flip_frac": 0.0041571968526113775,
+            "ffn_max_relative_change": 0.017366940155625343
+          },
+          {
+            "loop": 25,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009414049703627825,
+            "gate_mean_sign_flip_frac": 0.0030831473297439514,
+            "gate_max_relative_change": 0.011654413305222988,
+            "ffn_mean_relative_change": 0.01393331999424845,
+            "ffn_mean_sign_flip_frac": 0.004114583181217313,
+            "ffn_max_relative_change": 0.017936531454324722
+          },
+          {
+            "loop": 26,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009430139209143817,
+            "gate_mean_sign_flip_frac": 0.003051060251891613,
+            "gate_max_relative_change": 0.011312384158372879,
+            "ffn_mean_relative_change": 0.013885334739461542,
+            "ffn_mean_sign_flip_frac": 0.004195075645111501,
+            "ffn_max_relative_change": 0.017386119812726974
+          },
+          {
+            "loop": 27,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00936095106881112,
+            "gate_mean_sign_flip_frac": 0.0030315290438011288,
+            "gate_max_relative_change": 0.011367983184754848,
+            "ffn_mean_relative_change": 0.013698686007410288,
+            "ffn_mean_sign_flip_frac": 0.004261363472323865,
+            "ffn_max_relative_change": 0.017659036442637444
+          },
+          {
+            "loop": 28,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009300264669582248,
+            "gate_mean_sign_flip_frac": 0.0030622209887951612,
+            "gate_max_relative_change": 0.010991130024194717,
+            "ffn_mean_relative_change": 0.013570995978079736,
+            "ffn_mean_sign_flip_frac": 0.004185605916427448,
+            "ffn_max_relative_change": 0.01726682297885418
+          },
+          {
+            "loop": 29,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.00910888493526727,
+            "gate_mean_sign_flip_frac": 0.0029868861805880443,
+            "gate_max_relative_change": 0.011152748018503189,
+            "ffn_mean_relative_change": 0.013313972624018788,
+            "ffn_mean_sign_flip_frac": 0.003996211997582577,
+            "ffn_max_relative_change": 0.016356972977519035
+          },
+          {
+            "loop": 30,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009161903779022396,
+            "gate_mean_sign_flip_frac": 0.0029324777133297175,
+            "gate_max_relative_change": 0.012202030047774315,
+            "ffn_mean_relative_change": 0.013428307883441449,
+            "ffn_mean_sign_flip_frac": 0.004024621105054393,
+            "ffn_max_relative_change": 0.017761992290616035
+          },
+          {
+            "loop": 31,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009134789102245123,
+            "gate_mean_sign_flip_frac": 0.0028808594011934473,
+            "gate_max_relative_change": 0.010985513217747211,
+            "ffn_mean_relative_change": 0.013442118442617357,
+            "ffn_mean_sign_flip_frac": 0.004247158952057362,
+            "ffn_max_relative_change": 0.018110942095518112
+          },
+          {
+            "loop": 32,
+            "n_observations": 80,
+            "gate_mean_relative_change": 0.009114642010536045,
+            "gate_mean_sign_flip_frac": 0.0029799107112921776,
+            "gate_max_relative_change": 0.01088800746947527,
+            "ffn_mean_relative_change": 0.013423681491985917,
+            "ffn_mean_sign_flip_frac": 0.003929924100521021,
+            "ffn_max_relative_change": 0.016984017565846443
+          }
+        ],
+        "total_positions": 2560,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.0001,
+          "full_depths": [
+            16,
+            24,
+            16,
+            17,
+            14,
+            17,
+            20,
+            16,
+            21,
+            22
+          ],
+          "evicted_depths": [
+            15,
+            25,
+            17,
+            17,
+            14,
+            18,
+            18,
+            16,
+            21,
+            23
+          ],
+          "depth_deltas": [
+            -1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            -2,
+            0,
+            0,
+            1
+          ],
+          "n_depth_changed": 6,
+          "sum_depth_delta": 1,
+          "evicted_live_nll": 1.169177366211645,
+          "evicted_replay_nll": 1.169252696856549,
+          "gate_restored_replay_nll": 1.1519494951030032,
+          "gate_restored_replay_nll_recovery": 0.017303201753545938,
+          "gate_restored_live_ORACLE_nll": 1.1499208508555765,
+          "gate_restored_live_ORACLE_depths": [
+            16,
+            26,
+            17,
+            17,
+            15,
+            17,
+            18,
+            19,
+            22,
+            23
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 6,
+          "evicted_live_kl_to_clean": 0.00013460284526603219,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 334,
+          "evicted_live_total_compute": 338
+        },
+        {
+          "threshold": 0.00025,
+          "full_depths": [
+            14,
+            21,
+            14,
+            14,
+            13,
+            14,
+            14,
+            13,
+            16,
+            17
+          ],
+          "evicted_depths": [
+            13,
+            18,
+            13,
+            14,
+            13,
+            14,
+            14,
+            14,
+            15,
+            17
+          ],
+          "depth_deltas": [
+            -1,
+            -3,
+            -1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            -1,
+            0
+          ],
+          "n_depth_changed": 5,
+          "sum_depth_delta": -5,
+          "evicted_live_nll": 1.1552930173776177,
+          "evicted_replay_nll": 1.1625900360264092,
+          "gate_restored_replay_nll": 1.1573759310526333,
+          "gate_restored_replay_nll_recovery": 0.005214104973775946,
+          "gate_restored_live_ORACLE_nll": 1.17457495739614,
+          "gate_restored_live_ORACLE_depths": [
+            13,
+            19,
+            13,
+            14,
+            13,
+            14,
+            15,
+            14,
+            16,
+            17
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 3,
+          "evicted_live_kl_to_clean": 0.00042845178338366295,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "extracted_answer": "The Sh\u014dgitai were an elite corps of the Shogunate.",
+            "generated_tokens": 18
+          },
+          "evicted_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "full_live_greedy_ids": [
+            8718,
+            58,
+            428,
+            3584,
+            56596,
+            8874,
+            42642,
+            1531,
+            374,
+            36983,
+            59794,
+            286,
+            264,
+            24180,
+            28327,
+            449,
+            46,
+            65508
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 8718,
+          "evicted_live_first_token": 8718,
+          "live_answer_changed": false,
+          "full_live_total_compute": 273,
+          "evicted_live_total_compute": 270
+        }
+      ]
+    }
+  ]
+}

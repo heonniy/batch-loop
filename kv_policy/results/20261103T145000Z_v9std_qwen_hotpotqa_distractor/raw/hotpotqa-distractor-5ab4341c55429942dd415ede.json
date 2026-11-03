@@ -1,0 +1,437 @@
+{
+ "uid": "hotpotqa-distractor-5ab4341c55429942dd415ede",
+ "n_prompt": 525,
+ "n_targets": 9,
+ "width": 4,
+ "full_nll": 0.9098354171183018,
+ "n_layers": 36,
+ "candidates": [
+  {
+   "source": [
+    116,
+    117,
+    118,
+    119
+   ],
+   "stratum": "main_position_hash",
+   "evict_dnll": -0.02206505115464097,
+   "evict_kl": 0.0015404895910806874,
+   "restorations": {
+    "restore_gate": {
+     "dnll_vs_clean": 0.007570079700826682,
+     "recovered": -0.02963513085546765,
+     "patches": 324,
+     "relpatch_mean": 0.007390495493180222,
+     "relpatch_max": 0.020814519375562668
+    },
+    "restore_up": {
+     "dnll_vs_clean": -0.0002532415771838714,
+     "recovered": -0.021811809577457097,
+     "patches": 324,
+     "relpatch_mean": 0.028126698783182046,
+     "relpatch_max": 0.06380221992731094
+    },
+    "shift_gate": {
+     "dnll_vs_clean": 0.02239648400018268,
+     "recovered": -0.04446153515482365,
+     "patches": 324,
+     "relpatch_mean": 0.013396019719140086,
+     "relpatch_max": 0.04011295363306999
+    },
+    "restore_ffn": {
+     "dnll_vs_clean": -0.006491534461702031,
+     "recovered": -0.015573516692938938,
+     "patches": 324,
+     "relpatch_mean": 0.020973321950109102,
+     "relpatch_max": 0.05168132483959198
+    },
+    "gate_layers_1_9": {
+     "dnll_vs_clean": -0.006533545581532962,
+     "recovered": -0.015531505573108007,
+     "patches": 81,
+     "relpatch_mean": 0.002795449682269935
+    },
+    "gate_layers_10_18": {
+     "dnll_vs_clean": -0.01102897095302069,
+     "recovered": -0.01103608020162028,
+     "patches": 81,
+     "relpatch_mean": 0.006329839390898009
+    },
+    "gate_layers_19_27": {
+     "dnll_vs_clean": -0.00720761715115259,
+     "recovered": -0.014857434003488379,
+     "patches": 81,
+     "relpatch_mean": 0.01256727016772385
+    },
+    "gate_layers_28_36": {
+     "dnll_vs_clean": -0.005323164878063835,
+     "recovered": -0.016741886276577134,
+     "patches": 81,
+     "relpatch_mean": 0.010236232409276713
+    }
+   },
+   "gate_change_by_layer_quarter": [
+    0.002813217842399522,
+    0.007682893922506475,
+    0.013721169593433538,
+    0.012406044915594437
+   ]
+  },
+  {
+   "source": [
+    236,
+    237,
+    238,
+    239
+   ],
+   "stratum": "main_position_hash",
+   "evict_dnll": 0.005466455498890355,
+   "evict_kl": 0.0016097355657444092,
+   "restorations": {
+    "restore_gate": {
+     "dnll_vs_clean": 0.03485075236267221,
+     "recovered": -0.029384296863781856,
+     "patches": 324,
+     "relpatch_mean": 0.011012125345587265,
+     "relpatch_max": 0.043760403990745544
+    },
+    "restore_up": {
+     "dnll_vs_clean": 0.06443367188921911,
+     "recovered": -0.05896721639032876,
+     "patches": 324,
+     "relpatch_mean": 0.04938382601647862,
+     "relpatch_max": 0.17753922939300537
+    },
+    "shift_gate": {
+     "dnll_vs_clean": 0.02399529896547392,
+     "recovered": -0.018528843466583567,
+     "patches": 324,
+     "relpatch_mean": 0.02298056103303859,
+     "relpatch_max": 0.07918044924736023
+    },
+    "restore_ffn": {
+     "dnll_vs_clean": 0.05459847051884026,
+     "recovered": -0.049132015019949904,
+     "patches": 324,
+     "relpatch_mean": 0.034092098489593436,
+     "relpatch_max": 0.12798599898815155
+    },
+    "gate_layers_1_9": {
+     "dnll_vs_clean": 0.02421119802852445,
+     "recovered": -0.018744742529634095,
+     "patches": 81,
+     "relpatch_mean": 0.0037188083274767125
+    },
+    "gate_layers_10_18": {
+     "dnll_vs_clean": 0.012231786314828241,
+     "recovered": -0.006765330815937887,
+     "patches": 81,
+     "relpatch_mean": 0.010909382889139247
+    },
+    "gate_layers_19_27": {
+     "dnll_vs_clean": 0.02780126381435366,
+     "recovered": -0.022334808315463306,
+     "patches": 81,
+     "relpatch_mean": 0.021266084796760554
+    },
+    "gate_layers_28_36": {
+     "dnll_vs_clean": 0.03216626388552868,
+     "recovered": -0.026699808386638324,
+     "patches": 81,
+     "relpatch_mean": 0.01723182972313629
+    }
+   },
+   "gate_change_by_layer_quarter": [
+    0.004035670633634759,
+    0.014935288805353605,
+    0.026070418227234004,
+    0.021428897367491397
+   ]
+  },
+  {
+   "source": [
+    266,
+    267,
+    268,
+    269
+   ],
+   "stratum": "main_position_hash",
+   "evict_dnll": -0.013251390124878526,
+   "evict_kl": 0.0008899081183212982,
+   "restorations": {
+    "restore_gate": {
+     "dnll_vs_clean": 0.003533860704919789,
+     "recovered": -0.016785250829798315,
+     "patches": 324,
+     "relpatch_mean": 0.007326159236397893,
+     "relpatch_max": 0.022325892001390457
+    },
+    "restore_up": {
+     "dnll_vs_clean": -0.0044536464158682065,
+     "recovered": -0.00879774370901032,
+     "patches": 324,
+     "relpatch_mean": 0.026813660017293763,
+     "relpatch_max": 0.056092459708452225
+    },
+    "shift_gate": {
+     "dnll_vs_clean": 0.011607442912122679,
+     "recovered": -0.024858833037001205,
+     "patches": 324,
+     "relpatch_mean": 0.014944518183952307,
+     "relpatch_max": 0.039479102939367294
+    },
+    "restore_ffn": {
+     "dnll_vs_clean": 0.00030465433383142226,
+     "recovered": -0.013556044458709948,
+     "patches": 324,
+     "relpatch_mean": 0.020372165190947047,
+     "relpatch_max": 0.05052017793059349
+    },
+    "gate_layers_1_9": {
+     "dnll_vs_clean": 0.005296624745142253,
+     "recovered": -0.01854801487002078,
+     "patches": 81,
+     "relpatch_mean": 0.002951507360306511
+    },
+    "gate_layers_10_18": {
+     "dnll_vs_clean": 0.008279447248014549,
+     "recovered": -0.021530837372893075,
+     "patches": 81,
+     "relpatch_mean": 0.006475532769489987
+    },
+    "gate_layers_19_27": {
+     "dnll_vs_clean": 0.0011477840409952478,
+     "recovered": -0.014399174165873774,
+     "patches": 81,
+     "relpatch_mean": 0.012186302791958974
+    },
+    "gate_layers_28_36": {
+     "dnll_vs_clean": 0.007568804278207608,
+     "recovered": -0.020820194403086134,
+     "patches": 81,
+     "relpatch_mean": 0.010685738567032931
+    }
+   },
+   "gate_change_by_layer_quarter": [
+    0.0029069072693402383,
+    0.007649840516854583,
+    0.014722658884654075,
+    0.01275001804884753
+   ]
+  },
+  {
+   "source": [
+    460,
+    461,
+    462,
+    463
+   ],
+   "stratum": "main_position_hash",
+   "evict_dnll": 0.006662924654165181,
+   "evict_kl": 0.0004520056110695552,
+   "restorations": {
+    "restore_gate": {
+     "dnll_vs_clean": 0.0081612529324957,
+     "recovered": -0.0014983282783305185,
+     "patches": 324,
+     "relpatch_mean": 0.007661419565448779,
+     "relpatch_max": 0.019260939210653305
+    },
+    "restore_up": {
+     "dnll_vs_clean": 0.022971833916244577,
+     "recovered": -0.016308909262079396,
+     "patches": 324,
+     "relpatch_mean": 0.02848128932704258,
+     "relpatch_max": 0.06540084630250931
+    },
+    "shift_gate": {
+     "dnll_vs_clean": 0.03172375704366459,
+     "recovered": -0.02506083238949941,
+     "patches": 324,
+     "relpatch_mean": 0.013679545058510956,
+     "relpatch_max": 0.0375823937356472
+    },
+    "restore_ffn": {
+     "dnll_vs_clean": -0.002009719640682306,
+     "recovered": 0.008672644294847487,
+     "patches": 324,
+     "relpatch_mean": 0.02212051422490428,
+     "relpatch_max": 0.05133557692170143
+    },
+    "gate_layers_1_9": {
+     "dnll_vs_clean": -0.0016861591193446657,
+     "recovered": 0.008349083773509847,
+     "patches": 81,
+     "relpatch_mean": 0.0033638464843129944
+    },
+    "gate_layers_10_18": {
+     "dnll_vs_clean": 0.0016584691377374838,
+     "recovered": 0.005004455516427697,
+     "patches": 81,
+     "relpatch_mean": 0.006876015949442431
+    },
+    "gate_layers_19_27": {
+     "dnll_vs_clean": 0.008159985426345884,
+     "recovered": -0.0014970607721807028,
+     "patches": 81,
+     "relpatch_mean": 0.012688298261275998
+    },
+    "gate_layers_28_36": {
+     "dnll_vs_clean": 0.011049258883986113,
+     "recovered": -0.004386334229820932,
+     "patches": 81,
+     "relpatch_mean": 0.010714822489032407
+    }
+   },
+   "gate_change_by_layer_quarter": [
+    0.003558311457630753,
+    0.00813898252737191,
+    0.015275695430183853,
+    0.01268107308373775
+   ]
+  },
+  {
+   "source": [
+    22,
+    23,
+    24,
+    25
+   ],
+   "stratum": "oracle_evidence",
+   "evict_dnll": -0.04551424515034341,
+   "evict_kl": 0.031559849720780325,
+   "restorations": {
+    "restore_gate": {
+     "dnll_vs_clean": -0.0508553739753097,
+     "recovered": 0.00534112882496629,
+     "patches": 324,
+     "relpatch_mean": 0.012867991800670064,
+     "relpatch_max": 0.07318572700023651
+    },
+    "restore_up": {
+     "dnll_vs_clean": -0.04620332216927636,
+     "recovered": 0.0006890770189329487,
+     "patches": 324,
+     "relpatch_mean": 0.04367505440888725,
+     "relpatch_max": 0.14356090128421783
+    },
+    "shift_gate": {
+     "dnll_vs_clean": -0.03834918376128371,
+     "recovered": -0.0071650613890597015,
+     "patches": 324,
+     "relpatch_mean": 0.02312746017928419,
+     "relpatch_max": 0.09206313639879227
+    },
+    "restore_ffn": {
+     "dnll_vs_clean": -0.05284333180475187,
+     "recovered": 0.0073290866544084565,
+     "patches": 324,
+     "relpatch_mean": 0.03720478932904999,
+     "relpatch_max": 0.18137021362781525
+    },
+    "gate_layers_1_9": {
+     "dnll_vs_clean": -0.029694038734078276,
+     "recovered": -0.015820206416265137,
+     "patches": 81,
+     "relpatch_mean": 0.0035283607387639306
+    },
+    "gate_layers_10_18": {
+     "dnll_vs_clean": -0.03556174227014708,
+     "recovered": -0.009952502880196334,
+     "patches": 81,
+     "relpatch_mean": 0.008782256498104997
+    },
+    "gate_layers_19_27": {
+     "dnll_vs_clean": -0.0369320370521109,
+     "recovered": -0.008582208098232513,
+     "patches": 81,
+     "relpatch_mean": 0.019232260396727072
+    },
+    "gate_layers_28_36": {
+     "dnll_vs_clean": -0.06239096381636955,
+     "recovered": 0.016876718666026136,
+     "patches": 81,
+     "relpatch_mean": 0.02423700667273851
+    }
+   },
+   "gate_change_by_layer_quarter": [
+    0.0037248436797030823,
+    0.010610945330196877,
+    0.02338471515449109,
+    0.028000549022338273
+   ]
+  },
+  {
+   "source": [
+    313,
+    314,
+    315,
+    316
+   ],
+   "stratum": "oracle_distractor",
+   "evict_dnll": 0.006664190202172904,
+   "evict_kl": 0.0008415283231910406,
+   "restorations": {
+    "restore_gate": {
+     "dnll_vs_clean": -0.0030657320705813618,
+     "recovered": 0.009729922272754266,
+     "patches": 324,
+     "relpatch_mean": 0.007199762834783609,
+     "relpatch_max": 0.01795177534222603
+    },
+    "restore_up": {
+     "dnll_vs_clean": -0.017916052281407246,
+     "recovered": 0.02458024248358015,
+     "patches": 324,
+     "relpatch_mean": 0.02710535500560065,
+     "relpatch_max": 0.06083422899246216
+    },
+    "shift_gate": {
+     "dnll_vs_clean": 0.007958977900784703,
+     "recovered": -0.001294787698611799,
+     "patches": 324,
+     "relpatch_mean": 0.013177375580805043,
+     "relpatch_max": 0.03309470787644386
+    },
+    "restore_ffn": {
+     "dnll_vs_clean": -0.006290325847430722,
+     "recovered": 0.012954516049603626,
+     "patches": 324,
+     "relpatch_mean": 0.02145872412128719,
+     "relpatch_max": 0.05720097944140434
+    },
+    "gate_layers_1_9": {
+     "dnll_vs_clean": -0.0005088752702704369,
+     "recovered": 0.007173065472443341,
+     "patches": 81,
+     "relpatch_mean": 0.0028719094899529018
+    },
+    "gate_layers_10_18": {
+     "dnll_vs_clean": 0.016851483627533526,
+     "recovered": -0.010187293425360622,
+     "patches": 81,
+     "relpatch_mean": 0.006302713229677376
+    },
+    "gate_layers_19_27": {
+     "dnll_vs_clean": -0.008221207849601342,
+     "recovered": 0.014885398051774246,
+     "patches": 81,
+     "relpatch_mean": 0.011958575336101614
+    },
+    "gate_layers_28_36": {
+     "dnll_vs_clean": 0.003126796349079086,
+     "recovered": 0.0035373938530938176,
+     "patches": 81,
+     "relpatch_mean": 0.010038514644551425
+    }
+   },
+   "gate_change_by_layer_quarter": [
+    0.002983948628326165,
+    0.007551062650932574,
+    0.014273087034162916,
+    0.012356676937391361
+   ]
+  }
+ ],
+ "elapsed_s": 10.66035532951355
+}

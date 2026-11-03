@@ -1,0 +1,23 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 11.05it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 11.02it/s]
+`cache.key_cache[idx]` is deprecated and will be removed in v4.56.0. Use `cache.layers[idx].keys` instead.
+`cache.value_cache[idx]` is deprecated and will be removed in v4.56.0. Use `cache.layers[idx].values` instead.
+complete controlled-20261031-00003
+complete controlled-20261031-00004
+complete controlled-20261031-00005
+complete controlled-20261031-00006
+complete controlled-20261031-00007
+# Standard-transformer FFN restoration control (20261103T145000Z_v9std_qwen_controlled_retrieval)
+
+| stratum | n | ΔNLL evict | gate rec | up rec | shift rec | ffn rec | relpatch gate / up / ffn (mean, max) | gate change by layer quarter |
+|---|---|---|---|---|---|---|---|---|
+| main_position_hash | 20 | 0.1326 | 0.1219 | -0.8077 | -0.01328 | 0.0942 | 0.01281/0.06791, 0.07689/0.2198, 0.04275/0.1909 | 0.004141, 0.0166, 0.03658, 0.03378 |
+| oracle_distractor | 5 | -0.005264 | -0.002475 | -0.0003064 | -0.002071 | -0.002151 | 0.007298/0.01936, 0.02856/0.06184, 0.02257/0.05399 | 0.003388, 0.007856, 0.01397, 0.01189 |
+| oracle_evidence | 5 | 0.3266 | 0.3358 | -0.8709 | 0.01315 | 0.3363 | 0.02188/0.08936, 0.1249/0.317, 0.0713/0.2593 | 0.006128, 0.03139, 0.06702, 0.0671 |
+
+| stratum | gate layers 1–9 | 10–18 | 19–27 | 28–36 |
+|---|---|---|---|---|
+| main_position_hash | 0.004319 | 0.01187 | 0.02254 | 0.1121 |
+| oracle_distractor | 0.0002712 | -0.001694 | 0.00396 | 0.0001038 |
+| oracle_evidence | 0.01859 | 0.03433 | 0.211 | 0.3019 |

@@ -1,0 +1,2671 @@
+{
+  "uid": "hotpotqa-distractor-5ab298fb554299449642c922",
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "n_prompt": 545,
+  "n_targets": 5,
+  "n_sources": 6,
+  "width": 4,
+  "full_fixed_grade": {
+    "exact_match": false,
+    "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+    "extracted_answer": "Larry David",
+    "generated_tokens": 24
+  },
+  "full_fixed_nll": 0.5658008501632139,
+  "clean_gate_restore_parity": true,
+  "full_dynamic": [
+    {
+      "threshold": 0.85,
+      "depths": [
+        3,
+        4,
+        3,
+        4,
+        4
+      ],
+      "sum_depth": 18,
+      "nll_future": 0.6471668150043115,
+      "grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+        "extracted_answer": "Larry David",
+        "generated_tokens": 24
+      },
+      "greedy_ids": [
+        21350,
+        42,
+        198,
+        60,
+        15875,
+        5259,
+        198,
+        198,
+        25464,
+        42,
+        198,
+        17548,
+        42,
+        198,
+        75,
+        504,
+        8445,
+        282,
+        12532,
+        42023,
+        365,
+        4607,
+        532,
+        8307
+      ]
+    },
+    {
+      "threshold": 0.7,
+      "depths": [
+        2,
+        4,
+        2,
+        3,
+        4
+      ],
+      "sum_depth": 15,
+      "nll_future": 0.4687522604363039,
+      "grade": {
+        "exact_match": true,
+        "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+        "extracted_answer": "James Gregory",
+        "generated_tokens": 24
+      },
+      "greedy_ids": [
+        21350,
+        42,
+        5037,
+        21473,
+        198,
+        198,
+        25464,
+        42,
+        198,
+        9801,
+        260,
+        2468,
+        288,
+        2988,
+        260,
+        1962,
+        30,
+        2720,
+        318,
+        351,
+        637,
+        21350,
+        42,
+        2067
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "source": [
+        48,
+        49,
+        50,
+        51
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.582789437379688,
+        "delta_nll_vs_clean": 0.016988587216474116,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.016988587216474116,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.0008234881443058839,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 20,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.5672075573820621,
+          "delta_nll_vs_clean": 0.0014067072188481688,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.016988587216474116,
+            "nll_recovered": 0.015581879997625947,
+            "fraction_recovered": 0.9171969275064814
+          },
+          "kl_to_clean": 0.0002827583257385413,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.014387331158165277
+        },
+        "restore_up": {
+          "future_nll": 17.17423469386995,
+          "delta_nll_vs_clean": 16.608433843706734,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.016988587216474116,
+            "nll_recovered": -16.59144525649026,
+            "fraction_recovered": -976.6230143258327
+          },
+          "kl_to_clean": 14.614398639649153,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 1.0107201744065
+        },
+        "shift_gate": {
+          "future_nll": 0.6201340997940861,
+          "delta_nll_vs_clean": 0.05433324963087216,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.016988587216474116,
+            "nll_recovered": -0.037344662414398044,
+            "fraction_recovered": -2.1982206017804886
+          },
+          "kl_to_clean": 0.0028601674202946015,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.03465800841343783
+        },
+        "restore_ffn": {
+          "future_nll": 18.497482527513057,
+          "delta_nll_vs_clean": 17.931681677349843,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.016988587216474116,
+            "nll_recovered": -17.91469309013337,
+            "fraction_recovered": -1054.5134131436894
+          },
+          "kl_to_clean": 14.518535353709012,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 1.269745240340247
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.5528578631929122,
+          "delta_nll_vs_clean": -0.012942986970301718,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.016988587216474116,
+            "nll_recovered": 0.029931574186775833,
+            "fraction_recovered": 1.76186364442069
+          },
+          "kl_to_clean": 0.00036336850052975933,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.015302575356812061
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.5801729669910856,
+          "delta_nll_vs_clean": 0.01437211682787165,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.016988587216474116,
+            "nll_recovered": 0.0026164703886024654,
+            "fraction_recovered": 0.1540134182591258
+          },
+          "kl_to_clean": 0.0004673514013120439,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.013975109627547984
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+        "extracted_answer": "Larry David",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.018917899129640623,
+            "gate_mean_sign_flip_frac": 0.006096117603010498,
+            "gate_max_relative_change": 0.04309234023094177,
+            "ffn_mean_relative_change": 0.015535057446201487,
+            "ffn_mean_sign_flip_frac": 0.008742268880208333,
+            "ffn_max_relative_change": 0.03484676405787468
+          },
+          {
+            "loop": 2,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.01818081603657144,
+            "gate_mean_sign_flip_frac": 0.005729906654839093,
+            "gate_max_relative_change": 0.04947216063737869,
+            "ffn_mean_relative_change": 0.017746042072152097,
+            "ffn_mean_sign_flip_frac": 0.008957926432291667,
+            "ffn_max_relative_change": 0.04501277953386307
+          },
+          {
+            "loop": 3,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.017120829977405567,
+            "gate_mean_sign_flip_frac": 0.005533854310730627,
+            "gate_max_relative_change": 0.038035061210393906,
+            "ffn_mean_relative_change": 0.017199766533061243,
+            "ffn_mean_sign_flip_frac": 0.008758544921875,
+            "ffn_max_relative_change": 0.044810701161623
+          },
+          {
+            "loop": 4,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.01646655484607133,
+            "gate_mean_sign_flip_frac": 0.005314127755021521,
+            "gate_max_relative_change": 0.03259164094924927,
+            "ffn_mean_relative_change": 0.01674424567221043,
+            "ffn_mean_sign_flip_frac": 0.008544921875,
+            "ffn_max_relative_change": 0.03897016495466232
+          }
+        ],
+        "total_positions": 1920,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.6361180925741792,
+          "evicted_replay_nll": 0.6361180925741792,
+          "gate_restored_replay_nll": 0.6211473246803507,
+          "gate_restored_replay_nll_recovery": 0.014970767893828452,
+          "gate_restored_live_ORACLE_nll": 0.5551184618379921,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00031089523781702155,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+            "extracted_answer": "Larry David",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\n\n\n\n\n\n\n\n\n",
+            "extracted_answer": "Answer:",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            198,
+            2,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            60,
+            15875,
+            5259,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            17548,
+            42,
+            198,
+            75,
+            504,
+            8445,
+            282,
+            12532,
+            42023,
+            365,
+            4607,
+            532,
+            8307
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": true,
+          "full_live_total_compute": 84,
+          "evicted_live_total_compute": 83
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.47659815184306353,
+          "evicted_replay_nll": 0.47659815184306353,
+          "gate_restored_replay_nll": 0.46027220401447266,
+          "gate_restored_replay_nll_recovery": 0.01632594782859087,
+          "gate_restored_live_ORACLE_nll": 0.38295388547703624,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 1,
+          "evicted_live_kl_to_clean": 0.00041642658561613644,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 66,
+          "evicted_live_total_compute": 66
+        }
+      ]
+    },
+    {
+      "source": [
+        156,
+        157,
+        158,
+        159
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.5756408222950995,
+        "delta_nll_vs_clean": 0.009839972131885588,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.009839972131885588,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.00044319160770101007,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 20,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.5721737378044054,
+          "delta_nll_vs_clean": 0.0063728876411914825,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.009839972131885588,
+            "nll_recovered": 0.0034670844906941056,
+            "fraction_recovered": 0.35234698271749315
+          },
+          "kl_to_clean": 0.00024009144590309006,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.01373214351964028
+        },
+        "restore_up": {
+          "future_nll": 16.975663135759532,
+          "delta_nll_vs_clean": 16.40986228559632,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.009839972131885588,
+            "nll_recovered": -16.400022313464433,
+            "fraction_recovered": -1666.6736545240371
+          },
+          "kl_to_clean": 14.39217489771545,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.9974142631486757
+        },
+        "shift_gate": {
+          "future_nll": 0.5343186978716403,
+          "delta_nll_vs_clean": -0.031482152291573584,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.009839972131885588,
+            "nll_recovered": 0.04132212442345917,
+            "fraction_recovered": 4.199414781832396
+          },
+          "kl_to_clean": 0.0011393409627089568,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.03518623291383847
+        },
+        "restore_ffn": {
+          "future_nll": 19.103814369882457,
+          "delta_nll_vs_clean": 18.538013519719243,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.009839972131885588,
+            "nll_recovered": -18.528173547587357,
+            "fraction_recovered": -1882.9497989682711
+          },
+          "kl_to_clean": 14.850045058235992,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 1.2728159366221614
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.549505575618241,
+          "delta_nll_vs_clean": -0.016295274544972926,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.009839972131885588,
+            "nll_recovered": 0.026135246676858515,
+            "fraction_recovered": 2.656028525951764
+          },
+          "kl_to_clean": 0.0005708123637759854,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.013855260126971795
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.5699093221919611,
+          "delta_nll_vs_clean": 0.004108472028747201,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.009839972131885588,
+            "nll_recovered": 0.005731500103138387,
+            "fraction_recovered": 0.5824711723080954
+          },
+          "kl_to_clean": 0.00024452267462038435,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.014103299564643143
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+        "extracted_answer": "Larry David",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.020664945193372357,
+            "gate_mean_sign_flip_frac": 0.006630267698831934,
+            "gate_max_relative_change": 0.06861434876918793,
+            "ffn_mean_relative_change": 0.016059434781588302,
+            "ffn_mean_sign_flip_frac": 0.00960693359375,
+            "ffn_max_relative_change": 0.053245529532432556
+          },
+          {
+            "loop": 2,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.018599818053189665,
+            "gate_mean_sign_flip_frac": 0.005916341312452763,
+            "gate_max_relative_change": 0.039265356957912445,
+            "ffn_mean_relative_change": 0.018580150953494013,
+            "ffn_mean_sign_flip_frac": 0.009476725260416667,
+            "ffn_max_relative_change": 0.03713631257414818
+          },
+          {
+            "loop": 3,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.016656119535521915,
+            "gate_mean_sign_flip_frac": 0.00550426152573588,
+            "gate_max_relative_change": 0.029749678447842598,
+            "ffn_mean_relative_change": 0.01704131210378061,
+            "ffn_mean_sign_flip_frac": 0.008697509765625,
+            "ffn_max_relative_change": 0.029851574450731277
+          },
+          {
+            "loop": 4,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.015774623413259786,
+            "gate_mean_sign_flip_frac": 0.005064068556627414,
+            "gate_max_relative_change": 0.030224068090319633,
+            "ffn_mean_relative_change": 0.01615371543933482,
+            "ffn_mean_sign_flip_frac": 0.008286539713541667,
+            "ffn_max_relative_change": 0.033109571784734726
+          }
+        ],
+        "total_positions": 1920,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.6413852692348883,
+          "evicted_replay_nll": 0.6413852692348883,
+          "gate_restored_replay_nll": 0.605675560538657,
+          "gate_restored_replay_nll_recovery": 0.035709708696231246,
+          "gate_restored_live_ORACLE_nll": 0.5837318205740303,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00041082707969053445,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+            "extracted_answer": "Larry David",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\n\n\n\n\n\n\n\n\n",
+            "extracted_answer": "Answer:",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            198,
+            2,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            60,
+            15875,
+            5259,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            17548,
+            42,
+            198,
+            75,
+            504,
+            8445,
+            282,
+            12532,
+            42023,
+            365,
+            4607,
+            532,
+            8307
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": true,
+          "full_live_total_compute": 84,
+          "evicted_live_total_compute": 83
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.4798146419925615,
+          "evicted_replay_nll": 0.4798146419925615,
+          "gate_restored_replay_nll": 0.45950437302235514,
+          "gate_restored_replay_nll_recovery": 0.02031026897020638,
+          "gate_restored_live_ORACLE_nll": 0.37087681354023516,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 1,
+          "evicted_live_kl_to_clean": 0.0006778369554467645,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 66,
+          "evicted_live_total_compute": 67
+        }
+      ]
+    },
+    {
+      "source": [
+        252,
+        253,
+        254,
+        255
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.6065770569257438,
+        "delta_nll_vs_clean": 0.04077620676252991,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.04077620676252991,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.00592022681121307,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 20,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.6646982415113598,
+          "delta_nll_vs_clean": 0.0988973913481459,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.04077620676252991,
+            "nll_recovered": -0.05812118458561599,
+            "fraction_recovered": -1.425370067502815
+          },
+          "kl_to_clean": 0.009220455068316369,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.05063617898243441
+        },
+        "restore_up": {
+          "future_nll": 17.29993014782667,
+          "delta_nll_vs_clean": 16.734129297663458,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.04077620676252991,
+            "nll_recovered": -16.693353090900928,
+            "fraction_recovered": -409.38955376890993
+          },
+          "kl_to_clean": 14.597077913582325,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 1.0172561163786062
+        },
+        "shift_gate": {
+          "future_nll": 0.5499245094833896,
+          "delta_nll_vs_clean": -0.015876340679824352,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.04077620676252991,
+            "nll_recovered": 0.05665254744235426,
+            "fraction_recovered": 1.389353055135414
+          },
+          "kl_to_clean": 0.00454897834242729,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.08077128247605288
+        },
+        "restore_ffn": {
+          "future_nll": 19.55020318122115,
+          "delta_nll_vs_clean": 18.984402331057936,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.04077620676252991,
+            "nll_recovered": -18.943626124295406,
+            "fraction_recovered": -464.57548723495023
+          },
+          "kl_to_clean": 15.329034496448003,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 1.2842818802741627
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.6334824356017634,
+          "delta_nll_vs_clean": 0.06768158543854952,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.04077620676252991,
+            "nll_recovered": -0.02690537867601961,
+            "fraction_recovered": -0.6598303474550632
+          },
+          "kl_to_clean": 0.007430553112385496,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.04727258035757889
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.6627372542861849,
+          "delta_nll_vs_clean": 0.096936404122971,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.04077620676252991,
+            "nll_recovered": -0.05616019736044109,
+            "fraction_recovered": -1.3772786097417928
+          },
+          "kl_to_clean": 0.008916007643165358,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.05103329670576689
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+        "extracted_answer": "Larry David",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.04263706275572379,
+            "gate_mean_sign_flip_frac": 0.014024029803598145,
+            "gate_max_relative_change": 0.19674517214298248,
+            "ffn_mean_relative_change": 0.03488003012074235,
+            "ffn_mean_sign_flip_frac": 0.020161946614583332,
+            "ffn_max_relative_change": 0.15962639451026917
+          },
+          {
+            "loop": 2,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.07400756598605464,
+            "gate_mean_sign_flip_frac": 0.0239368793394533,
+            "gate_max_relative_change": 0.27597305178642273,
+            "ffn_mean_relative_change": 0.07309764714057868,
+            "ffn_mean_sign_flip_frac": 0.037445068359375,
+            "ffn_max_relative_change": 0.23808027803897858
+          },
+          {
+            "loop": 3,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.06034621201106347,
+            "gate_mean_sign_flip_frac": 0.019764293901486478,
+            "gate_max_relative_change": 0.18240678310394287,
+            "ffn_mean_relative_change": 0.05875209013465792,
+            "ffn_mean_sign_flip_frac": 0.031626383463541664,
+            "ffn_max_relative_change": 0.22213497757911682
+          },
+          {
+            "loop": 4,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.051906224930038054,
+            "gate_mean_sign_flip_frac": 0.017050633714825382,
+            "gate_max_relative_change": 0.17169414460659027,
+            "ffn_mean_relative_change": 0.05126928252672466,
+            "ffn_mean_sign_flip_frac": 0.027390543619791666,
+            "ffn_max_relative_change": 0.17527362704277039
+          }
+        ],
+        "total_positions": 1920,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            4,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "n_depth_changed": 1,
+          "sum_depth_delta": 1,
+          "evicted_live_nll": 0.7267333077033982,
+          "evicted_replay_nll": 0.7136947441613302,
+          "gate_restored_replay_nll": 0.7356657994678244,
+          "gate_restored_replay_nll_recovery": -0.021971055306494236,
+          "gate_restored_live_ORACLE_nll": 0.6882554235635325,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 1,
+          "evicted_live_kl_to_clean": 0.007775602156470995,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+            "extracted_answer": "Larry David",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+            "extracted_answer": "Larry David",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            60,
+            15875,
+            5259,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            17548,
+            42,
+            198,
+            75,
+            504,
+            8445,
+            282,
+            12532,
+            42023,
+            365,
+            4607,
+            532,
+            8307
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            60,
+            15875,
+            5259,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            17548,
+            42,
+            198,
+            75,
+            504,
+            8445,
+            282,
+            12532,
+            42023,
+            365,
+            4607,
+            532,
+            8307
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 84,
+          "evicted_live_total_compute": 83
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            4,
+            3,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "n_depth_changed": 1,
+          "sum_depth_delta": 1,
+          "evicted_live_nll": 0.48164936527609825,
+          "evicted_replay_nll": 0.49292619549669325,
+          "gate_restored_replay_nll": 0.5098622880177572,
+          "gate_restored_replay_nll_recovery": -0.016936092521063983,
+          "gate_restored_live_ORACLE_nll": 0.4357967321993783,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 2,
+          "evicted_live_kl_to_clean": 0.004779802220582496,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 66,
+          "evicted_live_total_compute": 68
+        }
+      ]
+    },
+    {
+      "source": [
+        353,
+        354,
+        355,
+        356
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.5633215124253184,
+        "delta_nll_vs_clean": -0.0024793377378955483,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.0024793377378955483,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.0004842851149078342,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 20,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.5682303724461235,
+          "delta_nll_vs_clean": 0.002429522282909602,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0024793377378955483,
+            "nll_recovered": -0.00490886002080515,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0001821736741476343,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.01384522359027566
+        },
+        "restore_up": {
+          "future_nll": 16.750613295007497,
+          "delta_nll_vs_clean": 16.184812444844283,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0024793377378955483,
+            "nll_recovered": -16.18729178258218,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 14.173896764172241,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.9845719717117997
+        },
+        "shift_gate": {
+          "future_nll": 0.5666099100490101,
+          "delta_nll_vs_clean": 0.0008090598857961595,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0024793377378955483,
+            "nll_recovered": -0.003288397623691708,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0005087833114885143,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.03177714970006491
+        },
+        "restore_ffn": {
+          "future_nll": 18.764082542737015,
+          "delta_nll_vs_clean": 18.1982816925738,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0024793377378955483,
+            "nll_recovered": -18.200761030311696,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 14.782804433372803,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 1.255143485444205
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.565508492058143,
+          "delta_nll_vs_clean": -0.000292358105070889,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0024793377378955483,
+            "nll_recovered": -0.0021869796328246593,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00023755051370244473,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.013868355669061808
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.5638275181408972,
+          "delta_nll_vs_clean": -0.001973332022316754,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0024793377378955483,
+            "nll_recovered": -0.0005060057155787945,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0003014925550814951,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.014033958551590332
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+        "extracted_answer": "Larry David",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.01752391200279817,
+            "gate_mean_sign_flip_frac": 0.005573804600377722,
+            "gate_max_relative_change": 0.0362744964659214,
+            "ffn_mean_relative_change": 0.01430488469292565,
+            "ffn_mean_sign_flip_frac": 0.008022054036458334,
+            "ffn_max_relative_change": 0.03345807269215584
+          },
+          {
+            "loop": 2,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.01655426720584122,
+            "gate_mean_sign_flip_frac": 0.005236446645722026,
+            "gate_max_relative_change": 0.03675597161054611,
+            "ffn_mean_relative_change": 0.01596624782347741,
+            "ffn_mean_sign_flip_frac": 0.008412679036458334,
+            "ffn_max_relative_change": 0.03281828761100769
+          },
+          {
+            "loop": 3,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.01493191616027616,
+            "gate_mean_sign_flip_frac": 0.004771839637396624,
+            "gate_max_relative_change": 0.02407926321029663,
+            "ffn_mean_relative_change": 0.015187402911639463,
+            "ffn_mean_sign_flip_frac": 0.00740966796875,
+            "ffn_max_relative_change": 0.024136824533343315
+          },
+          {
+            "loop": 4,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.01549977251367333,
+            "gate_mean_sign_flip_frac": 0.005015240428959563,
+            "gate_max_relative_change": 0.029757823795080185,
+            "ffn_mean_relative_change": 0.01593610945662173,
+            "ffn_mean_sign_flip_frac": 0.007889811197916667,
+            "ffn_max_relative_change": 0.029462702572345734
+          }
+        ],
+        "total_positions": 1920,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.6354583558859304,
+          "evicted_replay_nll": 0.6354583558859304,
+          "gate_restored_replay_nll": 0.6291502035455778,
+          "gate_restored_replay_nll_recovery": 0.006308152340352535,
+          "gate_restored_live_ORACLE_nll": 0.5924523310968652,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00038345528719219146,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+            "extracted_answer": "Larry David",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\n\n\n\n\n\n\n\n\n",
+            "extracted_answer": "Answer:",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            198,
+            2,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198,
+            1,
+            1,
+            198
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            60,
+            15875,
+            5259,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            17548,
+            42,
+            198,
+            75,
+            504,
+            8445,
+            282,
+            12532,
+            42023,
+            365,
+            4607,
+            532,
+            8307
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": true,
+          "full_live_total_compute": 84,
+          "evicted_live_total_compute": 83
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.46388320287223905,
+          "evicted_replay_nll": 0.46388320287223905,
+          "gate_restored_replay_nll": 0.4787869303836487,
+          "gate_restored_replay_nll_recovery": -0.01490372751140967,
+          "gate_restored_live_ORACLE_nll": 0.3902295743464492,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 1,
+          "evicted_live_kl_to_clean": 0.0008592258864155156,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 66,
+          "evicted_live_total_compute": 66
+        }
+      ]
+    },
+    {
+      "source": [
+        305,
+        306,
+        307,
+        308
+      ],
+      "stratum": "oracle_evidence",
+      "evict_fixed": {
+        "future_nll": 0.5725709630642086,
+        "delta_nll_vs_clean": 0.006770112900994718,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.006770112900994718,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.00033376802093698643,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 20,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.5887584124575369,
+          "delta_nll_vs_clean": 0.022957562294322997,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.006770112900994718,
+            "nll_recovered": -0.01618744939332828,
+            "fraction_recovered": -2.391016166207493
+          },
+          "kl_to_clean": 0.0006264062376430957,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.014748385658701105
+        },
+        "restore_up": {
+          "future_nll": 17.683075547218323,
+          "delta_nll_vs_clean": 17.11727469705511,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.006770112900994718,
+            "nll_recovered": -17.110504584154114,
+            "fraction_recovered": -2527.3588246423637
+          },
+          "kl_to_clean": 14.943218648433685,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 1.0334967328686617
+        },
+        "shift_gate": {
+          "future_nll": 0.5706582815037109,
+          "delta_nll_vs_clean": 0.004857431340496987,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.006770112900994718,
+            "nll_recovered": 0.001912681560497731,
+            "fraction_recovered": 0.28251841416362566
+          },
+          "kl_to_clean": 0.0009591887037458946,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.03825227323080374
+        },
+        "restore_ffn": {
+          "future_nll": 18.891473580151796,
+          "delta_nll_vs_clean": 18.325672729988582,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.006770112900994718,
+            "nll_recovered": -18.318902617087588,
+            "fraction_recovered": -2705.8489104954265
+          },
+          "kl_to_clean": 14.924476929707453,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 1.286843363357184
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.576475769164972,
+          "delta_nll_vs_clean": 0.010674919001758099,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.006770112900994718,
+            "nll_recovered": -0.0039048061007633805,
+            "fraction_recovered": -0.5767711939027864
+          },
+          "kl_to_clean": 0.0003981403169746045,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.014736222115364702
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.5702862493344583,
+          "delta_nll_vs_clean": 0.004485399171244353,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.006770112900994718,
+            "nll_recovered": 0.002284713729750365,
+            "fraction_recovered": 0.3374705508108553
+          },
+          "kl_to_clean": 0.0004614121644408442,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.015387608230230398
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+        "extracted_answer": "Larry David",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.021161634109254614,
+            "gate_mean_sign_flip_frac": 0.006898082587334405,
+            "gate_max_relative_change": 0.06643398106098175,
+            "ffn_mean_relative_change": 0.017355208401568234,
+            "ffn_mean_sign_flip_frac": 0.00958251953125,
+            "ffn_max_relative_change": 0.05291403830051422
+          },
+          {
+            "loop": 2,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.016844354527226338,
+            "gate_mean_sign_flip_frac": 0.005428799861935355,
+            "gate_max_relative_change": 0.033149197697639465,
+            "ffn_mean_relative_change": 0.016700233107743163,
+            "ffn_mean_sign_flip_frac": 0.008487955729166666,
+            "ffn_max_relative_change": 0.028869517147541046
+          },
+          {
+            "loop": 3,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.01510400958553267,
+            "gate_mean_sign_flip_frac": 0.004793294405196017,
+            "gate_max_relative_change": 0.025222958996891975,
+            "ffn_mean_relative_change": 0.015414021709390605,
+            "ffn_mean_sign_flip_frac": 0.007674153645833333,
+            "ffn_max_relative_change": 0.033567387610673904
+          },
+          {
+            "loop": 4,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.014546646567760035,
+            "gate_mean_sign_flip_frac": 0.004643850741558708,
+            "gate_max_relative_change": 0.02306501567363739,
+            "ffn_mean_relative_change": 0.014990232192212715,
+            "ffn_mean_sign_flip_frac": 0.0073506673177083336,
+            "ffn_max_relative_change": 0.026990404352545738
+          }
+        ],
+        "total_positions": 1920,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.6610229009529576,
+          "evicted_replay_nll": 0.6610229009529576,
+          "gate_restored_replay_nll": 0.6402610538061708,
+          "gate_restored_replay_nll_recovery": 0.02076184714678675,
+          "gate_restored_live_ORACLE_nll": 0.6071316390298307,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.0002830579171586578,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+            "extracted_answer": "Larry David",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+            "extracted_answer": "Larry David",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            60,
+            15875,
+            5259,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            17548,
+            42,
+            198,
+            75,
+            504,
+            8445,
+            282,
+            12532,
+            42023,
+            365,
+            4607,
+            532,
+            8307
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            60,
+            15875,
+            5259,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            17548,
+            42,
+            198,
+            75,
+            504,
+            8445,
+            282,
+            12532,
+            42023,
+            365,
+            4607,
+            532,
+            8307
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 84,
+          "evicted_live_total_compute": 84
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.4765526211122051,
+          "evicted_replay_nll": 0.4765526211122051,
+          "gate_restored_replay_nll": 0.48496701440308243,
+          "gate_restored_replay_nll_recovery": -0.008414393290877342,
+          "gate_restored_live_ORACLE_nll": 0.3838613332482055,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 1,
+          "evicted_live_kl_to_clean": 0.00041383215398127504,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 66,
+          "evicted_live_total_compute": 67
+        }
+      ]
+    },
+    {
+      "source": [
+        83,
+        84,
+        85,
+        86
+      ],
+      "stratum": "oracle_distractor",
+      "evict_fixed": {
+        "future_nll": 0.5703914038022049,
+        "delta_nll_vs_clean": 0.0045905536389909685,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.0045905536389909685,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.00031886254328128416,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 20,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.5609802134567872,
+          "delta_nll_vs_clean": -0.00482063670642674,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0045905536389909685,
+            "nll_recovered": 0.009411190345417708,
+            "fraction_recovered": 2.0501209844236445
+          },
+          "kl_to_clean": 0.0003094037447226583,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.015142699480202282
+        },
+        "restore_up": {
+          "future_nll": 17.755819410085678,
+          "delta_nll_vs_clean": 17.190018559922464,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0045905536389909685,
+            "nll_recovered": -17.185428006283473,
+            "fraction_recovered": -3743.6504085944925
+          },
+          "kl_to_clean": 15.082754276692867,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 1.0369605615996988
+        },
+        "shift_gate": {
+          "future_nll": 0.6202717170817778,
+          "delta_nll_vs_clean": 0.05447086691856384,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0045905536389909685,
+            "nll_recovered": -0.049880313279572874,
+            "fraction_recovered": -10.865860025227125
+          },
+          "kl_to_clean": 0.0031012314593681367,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 0.035909862651169536
+        },
+        "restore_ffn": {
+          "future_nll": 18.54028154007392,
+          "delta_nll_vs_clean": 17.974480689910706,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0045905536389909685,
+            "nll_recovered": -17.969890136271715,
+            "fraction_recovered": -3914.536578690671
+          },
+          "kl_to_clean": 14.490147457807325,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 960,
+          "mean_relative_patch": 1.2804225508808789
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.5707403911510482,
+          "delta_nll_vs_clean": 0.004939540987834334,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0045905536389909685,
+            "nll_recovered": -0.0003489873488433659,
+            "fraction_recovered": -0.0760229323711977
+          },
+          "kl_to_clean": 0.0003653014637166052,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.01589401523427417
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.558783944346942,
+          "delta_nll_vs_clean": -0.007016905816271901,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0045905536389909685,
+            "nll_recovered": 0.01160745945526287,
+            "fraction_recovered": 2.5285532787749454
+          },
+          "kl_to_clean": 0.0005262382710498059,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 20,
+          "patches": 480,
+          "mean_relative_patch": 0.014546008829105025
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+        "extracted_answer": "Larry David",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.022421621776690395,
+            "gate_mean_sign_flip_frac": 0.007277610307210125,
+            "gate_max_relative_change": 0.05475258082151413,
+            "ffn_mean_relative_change": 0.017731493612518533,
+            "ffn_mean_sign_flip_frac": 0.010426839192708334,
+            "ffn_max_relative_change": 0.051748309284448624
+          },
+          {
+            "loop": 2,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.021365409028173115,
+            "gate_mean_sign_flip_frac": 0.006858132285803246,
+            "gate_max_relative_change": 0.05148513615131378,
+            "ffn_mean_relative_change": 0.021077818287691723,
+            "ffn_mean_sign_flip_frac": 0.010723876953125,
+            "ffn_max_relative_change": 0.04811621084809303
+          },
+          {
+            "loop": 3,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.018859329965198412,
+            "gate_mean_sign_flip_frac": 0.006062085875115978,
+            "gate_max_relative_change": 0.04014009237289429,
+            "ffn_mean_relative_change": 0.019065556155207258,
+            "ffn_mean_sign_flip_frac": 0.009615071614583333,
+            "ffn_max_relative_change": 0.04723484814167023
+          },
+          {
+            "loop": 4,
+            "n_observations": 480,
+            "gate_mean_relative_change": 0.01723802581351871,
+            "gate_mean_sign_flip_frac": 0.005502781865167587,
+            "gate_max_relative_change": 0.048109401017427444,
+            "ffn_mean_relative_change": 0.017391794254460063,
+            "ffn_mean_sign_flip_frac": 0.009226481119791666,
+            "ffn_max_relative_change": 0.04191556200385094
+          }
+        ],
+        "total_positions": 1920,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.6358073535375297,
+          "evicted_replay_nll": 0.6358073535375297,
+          "gate_restored_replay_nll": 0.6395201492123306,
+          "gate_restored_replay_nll_recovery": -0.003712795674800873,
+          "gate_restored_live_ORACLE_nll": 0.5794090798590332,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.0004624076791515108,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+            "extracted_answer": "Larry David",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nLarry David\n\nInstruction:\nContext:\n[The Year of Living Dangerous (novel)]",
+            "extracted_answer": "Larry David",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            60,
+            15875,
+            5259,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            17548,
+            42,
+            198,
+            75,
+            504,
+            8445,
+            282,
+            12532,
+            42023,
+            365,
+            4607,
+            532,
+            8307
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            60,
+            15875,
+            5259,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            17548,
+            42,
+            198,
+            75,
+            504,
+            8445,
+            282,
+            12532,
+            42023,
+            365,
+            4607,
+            532,
+            8307
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 84,
+          "evicted_live_total_compute": 84
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            4,
+            2,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.4759902749210596,
+          "evicted_replay_nll": 0.4759902749210596,
+          "gate_restored_replay_nll": 0.46749028988415375,
+          "gate_restored_replay_nll_recovery": 0.008499985036905855,
+          "gate_restored_live_ORACLE_nll": 0.3814700458315201,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 1,
+          "evicted_live_kl_to_clean": 0.0004521364207903389,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: James Gregory\n\nInstruction:\nUse the context to answer the question. Reply with 'Answer: <",
+            "extracted_answer": "James Gregory",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            5037,
+            21473,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351,
+            637,
+            21350,
+            42,
+            2067
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 66,
+          "evicted_live_total_compute": 67
+        }
+      ]
+    }
+  ]
+}

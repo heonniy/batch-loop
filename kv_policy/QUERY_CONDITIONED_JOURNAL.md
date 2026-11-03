@@ -234,3 +234,15 @@ Execution plan: (1) 1-prompt smoke (Ouro-2.6B CR) for timing, clean-gate-restore
 GPU each; (3) cross-cell pooling (scripts/ffn_gate_causal_cross.py); (4) if the gate-only repair beats the up/shift controls
 above the floor, extend: 20 evaluation UIDs, width 8, and a standard-transformer (Qwen2.5-3B gate_proj) layer-wise FFN
 restoration control to test loop-specificity.
+
+## 2026-11-03 — E12: v9 pilot results (6 looped cells + standard control) → FFN_GATE_CAUSAL_RESULTS.md
+
+- Mechanics validated (clean parity 0, evicted self-reference parity 0). Label-blind width-4 windows are at the BF16 floor for Huginn
+  and Ouro-2.6B; evidence windows and Ouro-1.4B carry the penalty.
+- Gate-only restoration: standard Qwen recovers ~100% (late layers), looped models: Ouro-1.4B 75% (CI crosses 0, late loops),
+  Huginn/Ouro-2.6B evidence windows HURT (−0.39/−0.33, late loops). Up/whole-FFN restoration compounds to +16…+22 nats in Ouro
+  (recurrence instability), benign in Qwen. Exit depth responds (Huginn 24–71% of queries) with no quality effect; gate-restored
+  replay/live changes exits without consistent gain. Verdict: no loop-specific FFN-gate mechanism (NO-GO); new looped-specific
+  observation = instability of activation restoration under recurrence. Huginn exit thresholds saturated on the plan's grid.
+- Autonomous additions this session: standard-transformer control (scripts/std_ffn_gate_control.py), cross-cell pooling, stability
+  diagnostics (scripts/diag/v9_*). Not done: 20-UID expansion (no robust signal to confirm), width-8 windows.

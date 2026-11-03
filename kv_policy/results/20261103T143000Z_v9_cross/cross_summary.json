@@ -1,0 +1,1560 @@
+{
+ "cells": {
+  "huginn-0125/controlled_retrieval": {
+   "protocol": "ffn-gate-causal-v9-20261103",
+   "model": "huginn-0125",
+   "dataset": "controlled_retrieval",
+   "code_sha_at_calibration": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "calibration_uids": [
+    "controlled-20261031-00000",
+    "controlled-20261031-00001",
+    "controlled-20261031-00002"
+   ],
+   "evaluation_uids": [
+    "controlled-20261031-00003",
+    "controlled-20261031-00004",
+    "controlled-20261031-00005",
+    "controlled-20261031-00006",
+    "controlled-20261031-00007"
+   ],
+   "width": 4,
+   "greedy_tokens": 24,
+   "n_cal": 3,
+   "n_eval": 5,
+   "sharing": "last-bank-for-all-prompt-and-generated-histories",
+   "thresholds": {
+    "family": "huginn",
+    "dtype_exit": "fp32_cosine_diagnostic",
+    "n_clean_queries": 33,
+    "grid": [
+     {
+      "threshold": 0.0001,
+      "early_fraction": 1.0,
+      "mean_depth": 20.21212121212121,
+      "distinct_depths": 12,
+      "depth_hist": {
+       "15": 1,
+       "16": 2,
+       "17": 3,
+       "18": 6,
+       "19": 2,
+       "20": 4,
+       "21": 8,
+       "22": 1,
+       "23": 2,
+       "25": 1,
+       "27": 2,
+       "28": 1
+      }
+     },
+     {
+      "threshold": 0.00025,
+      "early_fraction": 1.0,
+      "mean_depth": 16.272727272727273,
+      "distinct_depths": 10,
+      "depth_hist": {
+       "13": 1,
+       "14": 10,
+       "15": 5,
+       "16": 5,
+       "17": 3,
+       "18": 3,
+       "19": 1,
+       "20": 1,
+       "21": 3,
+       "22": 1
+      }
+     },
+     {
+      "threshold": 0.0005,
+      "early_fraction": 1.0,
+      "mean_depth": 14.393939393939394,
+      "distinct_depths": 8,
+      "depth_hist": {
+       "12": 4,
+       "13": 11,
+       "14": 6,
+       "15": 3,
+       "16": 3,
+       "17": 3,
+       "18": 1,
+       "19": 2
+      }
+     },
+     {
+      "threshold": 0.001,
+      "early_fraction": 1.0,
+      "mean_depth": 12.969696969696969,
+      "distinct_depths": 8,
+      "depth_hist": {
+       "10": 1,
+       "11": 5,
+       "12": 10,
+       "13": 8,
+       "14": 1,
+       "15": 4,
+       "16": 3,
+       "17": 1
+      }
+     },
+     {
+      "threshold": 0.002,
+      "early_fraction": 1.0,
+      "mean_depth": 11.575757575757576,
+      "distinct_depths": 6,
+      "depth_hist": {
+       "9": 1,
+       "10": 9,
+       "11": 10,
+       "12": 4,
+       "13": 5,
+       "15": 4
+      }
+     },
+     {
+      "threshold": 0.004,
+      "early_fraction": 1.0,
+      "mean_depth": 10.393939393939394,
+      "distinct_depths": 5,
+      "depth_hist": {
+       "9": 10,
+       "10": 12,
+       "11": 5,
+       "12": 3,
+       "14": 3
+      }
+     },
+     {
+      "threshold": 0.008,
+      "early_fraction": 1.0,
+      "mean_depth": 9.212121212121213,
+      "distinct_depths": 5,
+      "depth_hist": {
+       "8": 9,
+       "9": 15,
+       "10": 5,
+       "11": 1,
+       "12": 3
+      }
+     },
+     {
+      "threshold": 0.016,
+      "early_fraction": 1.0,
+      "mean_depth": 8.090909090909092,
+      "distinct_depths": 5,
+      "depth_hist": {
+       "7": 10,
+       "8": 15,
+       "9": 5,
+       "10": 1,
+       "11": 2
+      }
+     }
+    ],
+    "selected": [
+     {
+      "threshold": 0.0001,
+      "early_fraction": 1.0,
+      "mean_depth": 20.21212121212121,
+      "distinct_depths": 12,
+      "depth_hist": {
+       "15": 1,
+       "16": 2,
+       "17": 3,
+       "18": 6,
+       "19": 2,
+       "20": 4,
+       "21": 8,
+       "22": 1,
+       "23": 2,
+       "25": 1,
+       "27": 2,
+       "28": 1
+      },
+      "target_early_fraction": 0.25
+     },
+     {
+      "threshold": 0.00025,
+      "early_fraction": 1.0,
+      "mean_depth": 16.272727272727273,
+      "distinct_depths": 10,
+      "depth_hist": {
+       "13": 1,
+       "14": 10,
+       "15": 5,
+       "16": 5,
+       "17": 3,
+       "18": 3,
+       "19": 1,
+       "20": 1,
+       "21": 3,
+       "22": 1
+      },
+      "target_early_fraction": 0.6
+     }
+    ]
+   },
+   "note": "calibrated on CLEAN full-depth LAST-sharing reference; dynamic evaluated under SAME shared last-bank reads; no eviction outcomes used",
+   "execution_code_sha": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "run": "/home1/irteam/batch-loop/kv_policy/results/20261103T143000Z_v9_huginn-0125_controlled_retrieval",
+   "n_done": 5
+  },
+  "huginn-0125/hotpotqa_distractor": {
+   "protocol": "ffn-gate-causal-v9-20261103",
+   "model": "huginn-0125",
+   "dataset": "hotpotqa_distractor",
+   "code_sha_at_calibration": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "calibration_uids": [
+    "hotpotqa-distractor-5a7249b85542990c210a40b9",
+    "hotpotqa-distractor-5a79c9395542994bb94570a2",
+    "hotpotqa-distractor-5a7bb7f2554299042af8f7b6"
+   ],
+   "evaluation_uids": [
+    "hotpotqa-distractor-5a7e4414554299495941995c",
+    "hotpotqa-distractor-5a83a7e15542992ef85e2347",
+    "hotpotqa-distractor-5a8ed10b5542995085b374a0",
+    "hotpotqa-distractor-5ab298fb554299449642c922",
+    "hotpotqa-distractor-5ab4341c55429942dd415ede"
+   ],
+   "width": 4,
+   "greedy_tokens": 24,
+   "n_cal": 3,
+   "n_eval": 5,
+   "sharing": "last-bank-for-all-prompt-and-generated-histories",
+   "thresholds": {
+    "family": "huginn",
+    "dtype_exit": "fp32_cosine_diagnostic",
+    "n_clean_queries": 19,
+    "grid": [
+     {
+      "threshold": 0.0001,
+      "early_fraction": 0.8947368421052632,
+      "mean_depth": 19.157894736842106,
+      "distinct_depths": 9,
+      "depth_hist": {
+       "14": 2,
+       "15": 4,
+       "16": 1,
+       "17": 4,
+       "19": 3,
+       "21": 1,
+       "24": 1,
+       "26": 1,
+       "32": 2
+      }
+     },
+     {
+      "threshold": 0.00025,
+      "early_fraction": 0.9473684210526315,
+      "mean_depth": 15.736842105263158,
+      "distinct_depths": 8,
+      "depth_hist": {
+       "12": 2,
+       "13": 4,
+       "14": 4,
+       "15": 3,
+       "16": 2,
+       "18": 1,
+       "20": 2,
+       "32": 1
+      }
+     },
+     {
+      "threshold": 0.0005,
+      "early_fraction": 0.9473684210526315,
+      "mean_depth": 14.473684210526315,
+      "distinct_depths": 9,
+      "depth_hist": {
+       "11": 2,
+       "12": 5,
+       "13": 5,
+       "14": 2,
+       "15": 1,
+       "16": 1,
+       "18": 1,
+       "19": 1,
+       "32": 1
+      }
+     },
+     {
+      "threshold": 0.001,
+      "early_fraction": 0.9473684210526315,
+      "mean_depth": 13.210526315789474,
+      "distinct_depths": 8,
+      "depth_hist": {
+       "10": 2,
+       "11": 6,
+       "12": 5,
+       "13": 2,
+       "14": 1,
+       "16": 1,
+       "17": 1,
+       "32": 1
+      }
+     },
+     {
+      "threshold": 0.002,
+      "early_fraction": 0.9473684210526315,
+      "mean_depth": 12,
+      "distinct_depths": 7,
+      "depth_hist": {
+       "9": 2,
+       "10": 8,
+       "11": 4,
+       "12": 2,
+       "14": 1,
+       "16": 1,
+       "32": 1
+      }
+     },
+     {
+      "threshold": 0.004,
+      "early_fraction": 1.0,
+      "mean_depth": 10.789473684210526,
+      "distinct_depths": 7,
+      "depth_hist": {
+       "8": 1,
+       "9": 9,
+       "10": 4,
+       "11": 2,
+       "13": 1,
+       "15": 1,
+       "26": 1
+      }
+     },
+     {
+      "threshold": 0.008,
+      "early_fraction": 1.0,
+      "mean_depth": 9.105263157894736,
+      "distinct_depths": 6,
+      "depth_hist": {
+       "8": 10,
+       "9": 5,
+       "10": 1,
+       "11": 1,
+       "13": 1,
+       "14": 1
+      }
+     },
+     {
+      "threshold": 0.016,
+      "early_fraction": 1.0,
+      "mean_depth": 7.842105263157895,
+      "distinct_depths": 5,
+      "depth_hist": {
+       "7": 11,
+       "8": 4,
+       "9": 1,
+       "10": 2,
+       "11": 1
+      }
+     }
+    ],
+    "selected": [
+     {
+      "threshold": 0.0001,
+      "early_fraction": 0.8947368421052632,
+      "mean_depth": 19.157894736842106,
+      "distinct_depths": 9,
+      "depth_hist": {
+       "14": 2,
+       "15": 4,
+       "16": 1,
+       "17": 4,
+       "19": 3,
+       "21": 1,
+       "24": 1,
+       "26": 1,
+       "32": 2
+      },
+      "target_early_fraction": 0.25
+     },
+     {
+      "threshold": 0.00025,
+      "early_fraction": 0.9473684210526315,
+      "mean_depth": 15.736842105263158,
+      "distinct_depths": 8,
+      "depth_hist": {
+       "12": 2,
+       "13": 4,
+       "14": 4,
+       "15": 3,
+       "16": 2,
+       "18": 1,
+       "20": 2,
+       "32": 1
+      },
+      "target_early_fraction": 0.6
+     }
+    ]
+   },
+   "note": "calibrated on CLEAN full-depth LAST-sharing reference; dynamic evaluated under SAME shared last-bank reads; no eviction outcomes used",
+   "execution_code_sha": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "run": "/home1/irteam/batch-loop/kv_policy/results/20261103T143000Z_v9_huginn-0125_hotpotqa_distractor",
+   "n_done": 5
+  },
+  "ouro-1.4b/controlled_retrieval": {
+   "protocol": "ffn-gate-causal-v9-20261103",
+   "model": "ouro-1.4b",
+   "dataset": "controlled_retrieval",
+   "code_sha_at_calibration": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "calibration_uids": [
+    "controlled-20261031-00000",
+    "controlled-20261031-00001",
+    "controlled-20261031-00002"
+   ],
+   "evaluation_uids": [
+    "controlled-20261031-00003",
+    "controlled-20261031-00004",
+    "controlled-20261031-00005",
+    "controlled-20261031-00006",
+    "controlled-20261031-00007"
+   ],
+   "width": 4,
+   "greedy_tokens": 24,
+   "n_cal": 3,
+   "n_eval": 5,
+   "sharing": "last-bank-for-all-prompt-and-generated-histories",
+   "thresholds": {
+    "family": "ouro",
+    "dtype_exit": "q-exit",
+    "n_clean_queries": 33,
+    "grid": [
+     {
+      "threshold": 0.25,
+      "early_fraction": 1.0,
+      "mean_depth": 2,
+      "distinct_depths": 1,
+      "depth_hist": {
+       "2": 33
+      }
+     },
+     {
+      "threshold": 0.4,
+      "early_fraction": 1.0,
+      "mean_depth": 2.1818181818181817,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "2": 27,
+       "3": 6
+      }
+     },
+     {
+      "threshold": 0.55,
+      "early_fraction": 1.0,
+      "mean_depth": 2.8484848484848486,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "2": 5,
+       "3": 28
+      }
+     },
+     {
+      "threshold": 0.7,
+      "early_fraction": 0.7272727272727273,
+      "mean_depth": 3.242424242424242,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 1,
+       "3": 23,
+       "4": 9
+      }
+     },
+     {
+      "threshold": 0.85,
+      "early_fraction": 0.030303030303030304,
+      "mean_depth": 3.9696969696969697,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "3": 1,
+       "4": 32
+      }
+     },
+     {
+      "threshold": 0.95,
+      "early_fraction": 0.0,
+      "mean_depth": 4,
+      "distinct_depths": 1,
+      "depth_hist": {
+       "4": 33
+      }
+     }
+    ],
+    "selected": [
+     {
+      "threshold": 0.85,
+      "early_fraction": 0.030303030303030304,
+      "mean_depth": 3.9696969696969697,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "3": 1,
+       "4": 32
+      },
+      "target_early_fraction": 0.25
+     },
+     {
+      "threshold": 0.7,
+      "early_fraction": 0.7272727272727273,
+      "mean_depth": 3.242424242424242,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 1,
+       "3": 23,
+       "4": 9
+      },
+      "target_early_fraction": 0.6
+     }
+    ]
+   },
+   "note": "calibrated on CLEAN full-depth LAST-sharing reference; dynamic evaluated under SAME shared last-bank reads; no eviction outcomes used",
+   "execution_code_sha": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "run": "/home1/irteam/batch-loop/kv_policy/results/20261103T143000Z_v9_ouro-1.4b_controlled_retrieval",
+   "n_done": 5
+  },
+  "ouro-1.4b/hotpotqa_distractor": {
+   "protocol": "ffn-gate-causal-v9-20261103",
+   "model": "ouro-1.4b",
+   "dataset": "hotpotqa_distractor",
+   "code_sha_at_calibration": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "calibration_uids": [
+    "hotpotqa-distractor-5a7249b85542990c210a40b9",
+    "hotpotqa-distractor-5a79c9395542994bb94570a2",
+    "hotpotqa-distractor-5a7bb7f2554299042af8f7b6"
+   ],
+   "evaluation_uids": [
+    "hotpotqa-distractor-5a7e4414554299495941995c",
+    "hotpotqa-distractor-5a83a7e15542992ef85e2347",
+    "hotpotqa-distractor-5a8ed10b5542995085b374a0",
+    "hotpotqa-distractor-5ab298fb554299449642c922",
+    "hotpotqa-distractor-5ab4341c55429942dd415ede"
+   ],
+   "width": 4,
+   "greedy_tokens": 24,
+   "n_cal": 3,
+   "n_eval": 5,
+   "sharing": "last-bank-for-all-prompt-and-generated-histories",
+   "thresholds": {
+    "family": "ouro",
+    "dtype_exit": "q-exit",
+    "n_clean_queries": 19,
+    "grid": [
+     {
+      "threshold": 0.25,
+      "early_fraction": 1.0,
+      "mean_depth": 2.1052631578947367,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "2": 17,
+       "3": 2
+      }
+     },
+     {
+      "threshold": 0.4,
+      "early_fraction": 1.0,
+      "mean_depth": 2.4210526315789473,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "2": 11,
+       "3": 8
+      }
+     },
+     {
+      "threshold": 0.55,
+      "early_fraction": 0.8947368421052632,
+      "mean_depth": 2.8421052631578947,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 5,
+       "3": 12,
+       "4": 2
+      }
+     },
+     {
+      "threshold": 0.7,
+      "early_fraction": 0.5263157894736842,
+      "mean_depth": 3.3684210526315788,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 2,
+       "3": 8,
+       "4": 9
+      }
+     },
+     {
+      "threshold": 0.85,
+      "early_fraction": 0.15789473684210525,
+      "mean_depth": 3.8421052631578947,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "3": 3,
+       "4": 16
+      }
+     },
+     {
+      "threshold": 0.95,
+      "early_fraction": 0.0,
+      "mean_depth": 4,
+      "distinct_depths": 1,
+      "depth_hist": {
+       "4": 19
+      }
+     }
+    ],
+    "selected": [
+     {
+      "threshold": 0.85,
+      "early_fraction": 0.15789473684210525,
+      "mean_depth": 3.8421052631578947,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "3": 3,
+       "4": 16
+      },
+      "target_early_fraction": 0.25
+     },
+     {
+      "threshold": 0.7,
+      "early_fraction": 0.5263157894736842,
+      "mean_depth": 3.3684210526315788,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 2,
+       "3": 8,
+       "4": 9
+      },
+      "target_early_fraction": 0.6
+     }
+    ]
+   },
+   "note": "calibrated on CLEAN full-depth LAST-sharing reference; dynamic evaluated under SAME shared last-bank reads; no eviction outcomes used",
+   "execution_code_sha": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "run": "/home1/irteam/batch-loop/kv_policy/results/20261103T143000Z_v9_ouro-1.4b_hotpotqa_distractor",
+   "n_done": 5
+  },
+  "ouro-2.6b/controlled_retrieval": {
+   "protocol": "ffn-gate-causal-v9-20261103",
+   "model": "ouro-2.6b",
+   "dataset": "controlled_retrieval",
+   "code_sha_at_calibration": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "calibration_uids": [
+    "controlled-20261031-00000",
+    "controlled-20261031-00001",
+    "controlled-20261031-00002"
+   ],
+   "evaluation_uids": [
+    "controlled-20261031-00003",
+    "controlled-20261031-00004",
+    "controlled-20261031-00005",
+    "controlled-20261031-00006",
+    "controlled-20261031-00007"
+   ],
+   "width": 4,
+   "greedy_tokens": 24,
+   "n_cal": 3,
+   "n_eval": 5,
+   "sharing": "last-bank-for-all-prompt-and-generated-histories",
+   "thresholds": {
+    "family": "ouro",
+    "dtype_exit": "q-exit",
+    "n_clean_queries": 33,
+    "grid": [
+     {
+      "threshold": 0.25,
+      "early_fraction": 1.0,
+      "mean_depth": 2.090909090909091,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "2": 30,
+       "3": 3
+      }
+     },
+     {
+      "threshold": 0.4,
+      "early_fraction": 0.9393939393939394,
+      "mean_depth": 2.212121212121212,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 28,
+       "3": 3,
+       "4": 2
+      }
+     },
+     {
+      "threshold": 0.55,
+      "early_fraction": 0.9090909090909091,
+      "mean_depth": 2.4545454545454546,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 21,
+       "3": 9,
+       "4": 3
+      }
+     },
+     {
+      "threshold": 0.7,
+      "early_fraction": 0.7878787878787878,
+      "mean_depth": 2.787878787878788,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 14,
+       "3": 12,
+       "4": 7
+      }
+     },
+     {
+      "threshold": 0.85,
+      "early_fraction": 0.42424242424242425,
+      "mean_depth": 3.393939393939394,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 6,
+       "3": 8,
+       "4": 19
+      }
+     },
+     {
+      "threshold": 0.95,
+      "early_fraction": 0.15151515151515152,
+      "mean_depth": 3.727272727272727,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 4,
+       "3": 1,
+       "4": 28
+      }
+     }
+    ],
+    "selected": [
+     {
+      "threshold": 0.95,
+      "early_fraction": 0.15151515151515152,
+      "mean_depth": 3.727272727272727,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 4,
+       "3": 1,
+       "4": 28
+      },
+      "target_early_fraction": 0.25
+     },
+     {
+      "threshold": 0.85,
+      "early_fraction": 0.42424242424242425,
+      "mean_depth": 3.393939393939394,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 6,
+       "3": 8,
+       "4": 19
+      },
+      "target_early_fraction": 0.6
+     }
+    ]
+   },
+   "note": "calibrated on CLEAN full-depth LAST-sharing reference; dynamic evaluated under SAME shared last-bank reads; no eviction outcomes used",
+   "execution_code_sha": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "run": "/home1/irteam/batch-loop/kv_policy/results/20261103T143000Z_v9_ouro-2.6b_controlled_retrieval",
+   "n_done": 5
+  },
+  "ouro-2.6b/hotpotqa_distractor": {
+   "protocol": "ffn-gate-causal-v9-20261103",
+   "model": "ouro-2.6b",
+   "dataset": "hotpotqa_distractor",
+   "code_sha_at_calibration": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "calibration_uids": [
+    "hotpotqa-distractor-5a7249b85542990c210a40b9",
+    "hotpotqa-distractor-5a79c9395542994bb94570a2",
+    "hotpotqa-distractor-5a7bb7f2554299042af8f7b6"
+   ],
+   "evaluation_uids": [
+    "hotpotqa-distractor-5a7e4414554299495941995c",
+    "hotpotqa-distractor-5a83a7e15542992ef85e2347",
+    "hotpotqa-distractor-5a8ed10b5542995085b374a0",
+    "hotpotqa-distractor-5ab298fb554299449642c922",
+    "hotpotqa-distractor-5ab4341c55429942dd415ede"
+   ],
+   "width": 4,
+   "greedy_tokens": 24,
+   "n_cal": 3,
+   "n_eval": 5,
+   "sharing": "last-bank-for-all-prompt-and-generated-histories",
+   "thresholds": {
+    "family": "ouro",
+    "dtype_exit": "q-exit",
+    "n_clean_queries": 19,
+    "grid": [
+     {
+      "threshold": 0.25,
+      "early_fraction": 1.0,
+      "mean_depth": 2.1052631578947367,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "2": 17,
+       "3": 2
+      }
+     },
+     {
+      "threshold": 0.4,
+      "early_fraction": 1.0,
+      "mean_depth": 2.3157894736842106,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "2": 13,
+       "3": 6
+      }
+     },
+     {
+      "threshold": 0.55,
+      "early_fraction": 0.9473684210526315,
+      "mean_depth": 2.526315789473684,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 10,
+       "3": 8,
+       "4": 1
+      }
+     },
+     {
+      "threshold": 0.7,
+      "early_fraction": 0.7368421052631579,
+      "mean_depth": 2.8947368421052633,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 7,
+       "3": 7,
+       "4": 5
+      }
+     },
+     {
+      "threshold": 0.85,
+      "early_fraction": 0.3684210526315789,
+      "mean_depth": 3.6315789473684212,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "3": 7,
+       "4": 12
+      }
+     },
+     {
+      "threshold": 0.95,
+      "early_fraction": 0.0,
+      "mean_depth": 4,
+      "distinct_depths": 1,
+      "depth_hist": {
+       "4": 19
+      }
+     }
+    ],
+    "selected": [
+     {
+      "threshold": 0.85,
+      "early_fraction": 0.3684210526315789,
+      "mean_depth": 3.6315789473684212,
+      "distinct_depths": 2,
+      "depth_hist": {
+       "3": 7,
+       "4": 12
+      },
+      "target_early_fraction": 0.25
+     },
+     {
+      "threshold": 0.7,
+      "early_fraction": 0.7368421052631579,
+      "mean_depth": 2.8947368421052633,
+      "distinct_depths": 3,
+      "depth_hist": {
+       "2": 7,
+       "3": 7,
+       "4": 5
+      },
+      "target_early_fraction": 0.6
+     }
+    ]
+   },
+   "note": "calibrated on CLEAN full-depth LAST-sharing reference; dynamic evaluated under SAME shared last-bank reads; no eviction outcomes used",
+   "execution_code_sha": "bee4436beb8aaf4d9aa3f2b0aff6f75cce0eb609",
+   "run": "/home1/irteam/batch-loop/kv_policy/results/20261103T143000Z_v9_ouro-2.6b_hotpotqa_distractor",
+   "n_done": 5
+  }
+ },
+ "strata": {
+  "huginn-0125/controlled_retrieval/main_position_hash": {
+   "n": 20,
+   "n_prompts": 5,
+   "evict_dnll": 0.0026912024102057398,
+   "evict_dnll_ci": [
+    -0.0020374780720157915,
+    0.007419882892427271
+   ],
+   "evict_kl": 6.862791064902395e-05,
+   "frac_harm": 0.1,
+   "full_em": 1.0,
+   "evict_em": 1.0,
+   "rec": {
+    "restore_gate": 0.0022207704983156886,
+    "restore_up": -0.06881802443203924,
+    "shift_gate": 0.0010969219859543965,
+    "restore_ffn": 0.0019480072490114242
+   },
+   "gate_ci": [
+    1.5858736296631148e-05,
+    0.004629711243323997
+   ],
+   "gate_minus_up": 0.07103879493035493,
+   "gate_minus_up_ci": [
+    -0.004913552523139497,
+    0.18078075421806714
+   ],
+   "gate_minus_shift": 0.0011238485123612918,
+   "gate_minus_shift_ci": [
+    -0.0034691328046028537,
+    0.00637334024329903
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_8": 0.0006590588380640916,
+    "rec_gate_loops_9_16": 0.0015174562440370132,
+    "rec_gate_loops_17_24": 0.0007702729690936494,
+    "rec_gate_loops_25_32": 0.0026025292153644907
+   }
+  },
+  "huginn-0125/controlled_retrieval/oracle_distractor": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": 0.003067411344381976,
+   "evict_dnll_ci": [
+    0.0002771940006641493,
+    0.005857628688099803
+   ],
+   "evict_kl": 7.191757858885595e-05,
+   "frac_harm": 0.0,
+   "full_em": 1.0,
+   "evict_em": 1.0,
+   "rec": {
+    "restore_gate": 0.0031923414301127107,
+    "restore_up": 0.004782658382900995,
+    "shift_gate": -0.0007254496324458071,
+    "restore_ffn": 0.0007292662162217356
+   },
+   "gate_ci": [
+    -0.00028305232990535336,
+    0.006250913584372042
+   ],
+   "gate_minus_up": -0.0015903169527882843,
+   "gate_minus_up_ci": [
+    -0.0077637816237984495,
+    0.004237078155565533
+   ],
+   "gate_minus_shift": 0.003917791062558518,
+   "gate_minus_shift_ci": [
+    -0.004263313777046274,
+    0.010864809372578721
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_8": 0.004342432070989144,
+    "rec_gate_loops_9_16": 0.004211172744107894,
+    "rec_gate_loops_17_24": 0.0031915133135043796,
+    "rec_gate_loops_25_32": 0.00541552999900885
+   }
+  },
+  "huginn-0125/controlled_retrieval/oracle_evidence": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": 0.3366124454746023,
+   "evict_dnll_ci": [
+    0.006708754498104108,
+    0.6894876188840136
+   ],
+   "evict_kl": 0.40294445178270566,
+   "frac_harm": 0.8,
+   "full_em": 1.0,
+   "evict_em": 0.6,
+   "rec": {
+    "restore_gate": -0.3879968627545167,
+    "restore_up": -0.372468602207664,
+    "shift_gate": -0.04778249744005738,
+    "restore_ffn": -0.05673053820675709
+   },
+   "gate_ci": [
+    -0.9864143004463403,
+    0.011092869362910318
+   ],
+   "gate_minus_up": -0.0155282605468527,
+   "gate_minus_up_ci": [
+    -0.4416084406711159,
+    0.3169850867538481
+   ],
+   "gate_minus_shift": -0.3402143653144593,
+   "gate_minus_shift_ci": [
+    -0.800828939640778,
+    -0.0011582344281486855
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_8": -0.0029316147207282483,
+    "rec_gate_loops_9_16": -0.0158125010735239,
+    "rec_gate_loops_17_24": -0.012857951282057934,
+    "rec_gate_loops_25_32": -0.38116257154237254
+   }
+  },
+  "huginn-0125/hotpotqa_distractor/main_position_hash": {
+   "n": 20,
+   "n_prompts": 5,
+   "evict_dnll": -0.008555427502717428,
+   "evict_dnll_ci": [
+    -0.025901848384237435,
+    0.011842986107907816
+   ],
+   "evict_kl": 0.0023813946663290516,
+   "frac_harm": 0.15,
+   "full_em": 0.2,
+   "evict_em": 0.2,
+   "rec": {
+    "restore_gate": -0.002594949686289394,
+    "restore_up": -0.010628778103447733,
+    "shift_gate": 0.0022858943275250176,
+    "restore_ffn": -0.007311239522829904
+   },
+   "gate_ci": [
+    -0.009215449424724898,
+    0.0030718929923023277
+   ],
+   "gate_minus_up": 0.008033828417158339,
+   "gate_minus_up_ci": [
+    -0.010031760650703547,
+    0.026099417485020225
+   ],
+   "gate_minus_shift": -0.004880844013814412,
+   "gate_minus_shift_ci": [
+    -0.016573171262303187,
+    0.008122923850718966
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_8": 0.0018640471317542984,
+    "rec_gate_loops_9_16": 0.004020209915690376,
+    "rec_gate_loops_17_24": 0.002179209211983768,
+    "rec_gate_loops_25_32": -0.0035216334287306084
+   }
+  },
+  "huginn-0125/hotpotqa_distractor/oracle_distractor": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": -0.012295967097801164,
+   "evict_dnll_ci": [
+    -0.028446324011343282,
+    0.0002864353956876009
+   ],
+   "evict_kl": 0.00033572608623899213,
+   "frac_harm": 0.0,
+   "full_em": 0.2,
+   "evict_em": 0.2,
+   "rec": {
+    "restore_gate": 0.003255817100899172,
+    "restore_up": -0.0052590230012673714,
+    "shift_gate": -0.006399695258361237,
+    "restore_ffn": 0.001797993629496375
+   },
+   "gate_ci": [
+    -0.0011363925780945472,
+    0.007731738424322376
+   ],
+   "gate_minus_up": 0.008514840102166544,
+   "gate_minus_up_ci": [
+    -0.008758675056615406,
+    0.03241412728700595
+   ],
+   "gate_minus_shift": 0.00965551235926041,
+   "gate_minus_shift_ci": [
+    -0.0027479487306128814,
+    0.0220589734491337
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_8": -0.0017584797770472172,
+    "rec_gate_loops_9_16": 0.0026696803752889408,
+    "rec_gate_loops_17_24": -0.0073723180186546335,
+    "rec_gate_loops_25_32": -0.002239273356591065
+   }
+  },
+  "huginn-0125/hotpotqa_distractor/oracle_evidence": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": -0.021371668967543566,
+   "evict_dnll_ci": [
+    -0.04725889378834318,
+    0.0021445428621114536
+   ],
+   "evict_kl": 0.0026074031472564227,
+   "frac_harm": 0.2,
+   "full_em": 0.2,
+   "evict_em": 0.2,
+   "rec": {
+    "restore_gate": -0.01269953119356484,
+    "restore_up": -0.2993905421187949,
+    "shift_gate": 0.015742418468723863,
+    "restore_ffn": -0.011434257886021903
+   },
+   "gate_ci": [
+    -0.04020313501158461,
+    0.00935245824221056
+   ],
+   "gate_minus_up": 0.28669101092523,
+   "gate_minus_up_ci": [
+    -0.015200482003371452,
+    0.8731137906436441
+   ],
+   "gate_minus_shift": -0.0284419496622887,
+   "gate_minus_shift_ci": [
+    -0.0814926381369255,
+    0.0036011189620087426
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_8": 0.001146520774502946,
+    "rec_gate_loops_9_16": 0.00020190342659058834,
+    "rec_gate_loops_17_24": 1.6641623739221956e-05,
+    "rec_gate_loops_25_32": -0.018377603240459405
+   }
+  },
+  "ouro-1.4b/controlled_retrieval/main_position_hash": {
+   "n": 20,
+   "n_prompts": 5,
+   "evict_dnll": 0.12307660515420135,
+   "evict_dnll_ci": [
+    -0.041160468719899555,
+    0.3306011808756738
+   ],
+   "evict_kl": 0.13256780524359782,
+   "frac_harm": 0.45,
+   "full_em": 0.0,
+   "evict_em": 0.0,
+   "rec": {
+    "restore_gate": 0.09281677193008356,
+    "restore_up": -8.282251366814599,
+    "shift_gate": -1.5378493428975344,
+    "restore_ffn": -5.4253312607202675
+   },
+   "gate_ci": [
+    -0.07731143390759823,
+    0.322422589091584
+   ],
+   "gate_minus_up": 8.375068138744682,
+   "gate_minus_up_ci": [
+    4.747421088553965,
+    13.739287127181889
+   ],
+   "gate_minus_shift": 1.630666114827618,
+   "gate_minus_shift_ci": [
+    0.44413640264421705,
+    3.327719382075593
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": 0.08762130452319969,
+    "rec_gate_loops_3_4": 0.14774954414460806
+   }
+  },
+  "ouro-1.4b/controlled_retrieval/oracle_distractor": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": 0.1261692523024976,
+   "evict_dnll_ci": [
+    0.00802800755947839,
+    0.27649767234921435
+   ],
+   "evict_kl": 0.022316185625095387,
+   "frac_harm": 0.6,
+   "full_em": 0.0,
+   "evict_em": 0.0,
+   "rec": {
+    "restore_gate": 0.1334897882118819,
+    "restore_up": -8.212476851828397,
+    "shift_gate": -1.7972584016248585,
+    "restore_ffn": -5.371120593287051
+   },
+   "gate_ci": [
+    0.0010917013138532106,
+    0.28758174989372454
+   ],
+   "gate_minus_up": 8.345966640040277,
+   "gate_minus_up_ci": [
+    4.911561333090067,
+    13.480967737734318
+   ],
+   "gate_minus_shift": 1.9307481898367405,
+   "gate_minus_shift_ci": [
+    0.7929584383964539,
+    3.576470861583948
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": 0.11623375866562129,
+    "rec_gate_loops_3_4": 0.17484294030815356
+   }
+  },
+  "ouro-1.4b/controlled_retrieval/oracle_evidence": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": 0.1252771420218053,
+   "evict_dnll_ci": [
+    -0.03316198598593454,
+    0.36759745232760943
+   ],
+   "evict_kl": 0.02067966427814099,
+   "frac_harm": 0.8,
+   "full_em": 0.0,
+   "evict_em": 0.0,
+   "rec": {
+    "restore_gate": 0.03154507316648978,
+    "restore_up": -8.159934909641743,
+    "shift_gate": -0.9718262518942354,
+    "restore_ffn": -5.617374037969857
+   },
+   "gate_ci": [
+    -0.04674825243651872,
+    0.09532624036073711
+   ],
+   "gate_minus_up": 8.191479982808232,
+   "gate_minus_up_ci": [
+    4.454103564471007,
+    13.568868928328156
+   ],
+   "gate_minus_shift": 1.003371325060725,
+   "gate_minus_shift_ci": [
+    -1.0952002947032449,
+    3.8806272288411847
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": 0.007423204872757471,
+    "rec_gate_loops_3_4": 0.035193919595331156
+   }
+  },
+  "ouro-1.4b/hotpotqa_distractor/main_position_hash": {
+   "n": 20,
+   "n_prompts": 5,
+   "evict_dnll": 0.025650921654303115,
+   "evict_dnll_ci": [
+    -0.0229419921722106,
+    0.1097730363719974
+   ],
+   "evict_kl": 0.052911265054412536,
+   "frac_harm": 0.45,
+   "full_em": 0.0,
+   "evict_em": 0.0,
+   "rec": {
+    "restore_gate": 0.03125192472154995,
+    "restore_up": -11.392625223450459,
+    "shift_gate": -2.9694718336929706,
+    "restore_ffn": -8.84593849705638
+   },
+   "gate_ci": [
+    -0.04582352864879393,
+    0.13120602985844013
+   ],
+   "gate_minus_up": 11.423877148172009,
+   "gate_minus_up_ci": [
+    7.420795087508596,
+    16.124588427603364
+   ],
+   "gate_minus_shift": 3.0007237584145203,
+   "gate_minus_shift_ci": [
+    1.897930330682575,
+    4.293768503513956
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": 0.027133949728283445,
+    "rec_gate_loops_3_4": -0.021705630767080188
+   }
+  },
+  "ouro-1.4b/hotpotqa_distractor/oracle_distractor": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": -0.008350746788293329,
+   "evict_dnll_ci": [
+    -0.04918678962285554,
+    0.02499905418669286
+   ],
+   "evict_kl": 0.009407510783670341,
+   "frac_harm": 0.6,
+   "full_em": 0.0,
+   "evict_em": 0.0,
+   "rec": {
+    "restore_gate": 0.008537889875772819,
+    "restore_up": -11.22010286199547,
+    "shift_gate": -1.910850684217386,
+    "restore_ffn": -8.70674172106989
+   },
+   "gate_ci": [
+    -0.02100531599758799,
+    0.04156918126261892
+   ],
+   "gate_minus_up": 11.228640751871243,
+   "gate_minus_up_ci": [
+    7.083836371148936,
+    16.222460726438648
+   ],
+   "gate_minus_shift": 1.9193885740931589,
+   "gate_minus_shift_ci": [
+    0.49410081041178555,
+    4.093285519250203
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": 0.01635511046492617,
+    "rec_gate_loops_3_4": 0.01777322988555241
+   }
+  },
+  "ouro-1.4b/hotpotqa_distractor/oracle_evidence": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": 0.04859143662082577,
+   "evict_dnll_ci": [
+    -0.03857237402333071,
+    0.13939204139841932
+   ],
+   "evict_kl": 0.01621774927681246,
+   "frac_harm": 0.6,
+   "full_em": 0.0,
+   "evict_em": 0.0,
+   "rec": {
+    "restore_gate": 0.04281874466389022,
+    "restore_up": -11.60276145246108,
+    "shift_gate": -3.8684499308197955,
+    "restore_ffn": -8.749829825176958
+   },
+   "gate_ci": [
+    -0.05341897301384187,
+    0.1405411003275759
+   ],
+   "gate_minus_up": 11.64558019712497,
+   "gate_minus_up_ci": [
+    7.6320946658099995,
+    16.28081224728139
+   ],
+   "gate_minus_shift": 3.9112686754836856,
+   "gate_minus_shift_ci": [
+    1.830614689141512,
+    6.086586418419999
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": 0.08819026834215045,
+    "rec_gate_loops_3_4": 0.06458663188564114
+   }
+  },
+  "ouro-2.6b/controlled_retrieval/main_position_hash": {
+   "n": 20,
+   "n_prompts": 5,
+   "evict_dnll": -0.017178414011432348,
+   "evict_dnll_ci": [
+    -0.05003094817308019,
+    -0.00023046274727676203
+   ],
+   "evict_kl": 0.004226764125306773,
+   "frac_harm": 0.05,
+   "full_em": 0.8,
+   "evict_em": 0.8,
+   "rec": {
+    "restore_gate": -0.01914132618199802,
+    "restore_up": -22.016089713392137,
+    "shift_gate": 0.03660914992215111,
+    "restore_ffn": -15.499652207536565
+   },
+   "gate_ci": [
+    -0.057414430930512066,
+    0.0009074273487203772
+   ],
+   "gate_minus_up": 21.996948387210143,
+   "gate_minus_up_ci": [
+    19.973004224181057,
+    23.709363688553275
+   ],
+   "gate_minus_shift": -0.055750476104149134,
+   "gate_minus_shift_ci": [
+    -0.1661870318950969,
+    0.0007942256686510531
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": -0.022127161194221135,
+    "rec_gate_loops_3_4": -0.027402312221238387
+   }
+  },
+  "ouro-2.6b/controlled_retrieval/oracle_distractor": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": -0.0103405767143704,
+   "evict_dnll_ci": [
+    -0.03082760370336473,
+    0.0009454838279634697
+   ],
+   "evict_kl": 0.0009305465231663845,
+   "frac_harm": 0.0,
+   "full_em": 0.8,
+   "evict_em": 0.8,
+   "rec": {
+    "restore_gate": -0.01189884767052718,
+    "restore_up": -21.629937237835257,
+    "shift_gate": -0.029435045541031254,
+    "restore_ffn": -15.366008716531796
+   },
+   "gate_ci": [
+    -0.0319983242941089,
+    0.00011019934550858534
+   ],
+   "gate_minus_up": 21.61803839016473,
+   "gate_minus_up_ci": [
+    19.344327942579984,
+    23.541025078652893
+   ],
+   "gate_minus_shift": 0.017536197870504075,
+   "gate_minus_shift_ci": [
+    -0.00640402080724016,
+    0.061255528102628784
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": -0.016794503477867675,
+    "rec_gate_loops_3_4": -0.007762079840758782
+   }
+  },
+  "ouro-2.6b/controlled_retrieval/oracle_evidence": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": 0.08107275401824153,
+   "evict_dnll_ci": [
+    -0.6927987165539526,
+    0.897629303886788
+   ],
+   "evict_kl": 0.522817876903091,
+   "frac_harm": 0.4,
+   "full_em": 0.8,
+   "evict_em": 0.6,
+   "rec": {
+    "restore_gate": -0.32786245590308677,
+    "restore_up": -21.634073874559252,
+    "shift_gate": -0.20148433986701997,
+    "restore_ffn": -15.314757551886142
+   },
+   "gate_ci": [
+    -0.8072616590000689,
+    0.0024910996691323824
+   ],
+   "gate_minus_up": 21.306211418656165,
+   "gate_minus_up_ci": [
+    19.094142078375445,
+    23.51828075893689
+   ],
+   "gate_minus_shift": -0.1263781160360668,
+   "gate_minus_shift_ci": [
+    -0.6606453216960654,
+    0.22686385943670756
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": -0.1451265438995324,
+    "rec_gate_loops_3_4": -0.26754365650005635
+   }
+  },
+  "ouro-2.6b/hotpotqa_distractor/main_position_hash": {
+   "n": 20,
+   "n_prompts": 5,
+   "evict_dnll": 0.03358159810134638,
+   "evict_dnll_ci": [
+    -0.0014749517272566349,
+    0.09350319499016868
+   ],
+   "evict_kl": 0.007283924405441255,
+   "frac_harm": 0.35,
+   "full_em": 0.4,
+   "evict_em": 0.4,
+   "rec": {
+    "restore_gate": 0.027177590233826304,
+    "restore_up": -18.134547771831368,
+    "shift_gate": 0.018618193686189544,
+    "restore_ffn": -18.548115992818843
+   },
+   "gate_ci": [
+    -0.010648023340544316,
+    0.09721570942188713
+   ],
+   "gate_minus_up": 18.161725362065194,
+   "gate_minus_up_ci": [
+    15.451514903610223,
+    21.210263825709088
+   ],
+   "gate_minus_shift": 0.008559396547636761,
+   "gate_minus_shift_ci": [
+    -0.01515536806324409,
+    0.03814097673690411
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": 0.036898464878692125,
+    "rec_gate_loops_3_4": 0.006786824393479723
+   }
+  },
+  "ouro-2.6b/hotpotqa_distractor/oracle_distractor": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": 0.027613599364653196,
+   "evict_dnll_ci": [
+    -0.007617547542654979,
+    0.09153561498452394
+   ],
+   "evict_kl": 0.005686562398268651,
+   "frac_harm": 0.2,
+   "full_em": 0.4,
+   "evict_em": 0.4,
+   "rec": {
+    "restore_gate": 0.030345448133025688,
+    "restore_up": -18.361943676103873,
+    "shift_gate": 0.021483936528786152,
+    "restore_ffn": -18.4380145712066
+   },
+   "gate_ci": [
+    -0.00893820660477056,
+    0.09820456051267681
+   ],
+   "gate_minus_up": 18.3922891242369,
+   "gate_minus_up_ci": [
+    15.791783026172778,
+    21.36696216770551
+   ],
+   "gate_minus_shift": 0.008861511604239536,
+   "gate_minus_shift_ci": [
+    -0.010205522761680208,
+    0.035203304095193746
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": 0.026356919593924298,
+    "rec_gate_loops_3_4": 0.013506649360836809
+   }
+  },
+  "ouro-2.6b/hotpotqa_distractor/oracle_evidence": {
+   "n": 5,
+   "n_prompts": 5,
+   "evict_dnll": 0.019237270997467616,
+   "evict_dnll_ci": [
+    -0.014524029668731009,
+    0.07258499922297364
+   ],
+   "evict_kl": 0.004772157224552569,
+   "frac_harm": 0.2,
+   "full_em": 0.4,
+   "evict_em": 0.2,
+   "rec": {
+    "restore_gate": 0.027264388095890567,
+    "restore_up": -18.31116642253296,
+    "shift_gate": 0.03680620305406461,
+    "restore_ffn": -18.518571633692417
+   },
+   "gate_ci": [
+    -0.01548462880642285,
+    0.09092933901921957
+   ],
+   "gate_minus_up": 18.33843081062885,
+   "gate_minus_up_ci": [
+    15.826239304300065,
+    21.234554548925825
+   ],
+   "gate_minus_shift": -0.009541814958174044,
+   "gate_minus_shift_ci": [
+    -0.03339228093956721,
+    0.01795160572953699
+   ],
+   "loop_local": {
+    "rec_gate_loops_1_2": 0.02320662776954353,
+    "rec_gate_loops_3_4": 0.01204603281356248
+   }
+  }
+ }
+}

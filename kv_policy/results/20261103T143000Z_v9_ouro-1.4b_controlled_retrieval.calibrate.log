@@ -1,0 +1,93 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+{
+  "family": "ouro",
+  "dtype_exit": "q-exit",
+  "n_clean_queries": 33,
+  "grid": [
+    {
+      "threshold": 0.25,
+      "early_fraction": 1.0,
+      "mean_depth": 2,
+      "distinct_depths": 1,
+      "depth_hist": {
+        "2": 33
+      }
+    },
+    {
+      "threshold": 0.4,
+      "early_fraction": 1.0,
+      "mean_depth": 2.1818181818181817,
+      "distinct_depths": 2,
+      "depth_hist": {
+        "2": 27,
+        "3": 6
+      }
+    },
+    {
+      "threshold": 0.55,
+      "early_fraction": 1.0,
+      "mean_depth": 2.8484848484848486,
+      "distinct_depths": 2,
+      "depth_hist": {
+        "2": 5,
+        "3": 28
+      }
+    },
+    {
+      "threshold": 0.7,
+      "early_fraction": 0.7272727272727273,
+      "mean_depth": 3.242424242424242,
+      "distinct_depths": 3,
+      "depth_hist": {
+        "2": 1,
+        "3": 23,
+        "4": 9
+      }
+    },
+    {
+      "threshold": 0.85,
+      "early_fraction": 0.030303030303030304,
+      "mean_depth": 3.9696969696969697,
+      "distinct_depths": 2,
+      "depth_hist": {
+        "3": 1,
+        "4": 32
+      }
+    },
+    {
+      "threshold": 0.95,
+      "early_fraction": 0.0,
+      "mean_depth": 4,
+      "distinct_depths": 1,
+      "depth_hist": {
+        "4": 33
+      }
+    }
+  ],
+  "selected": [
+    {
+      "threshold": 0.85,
+      "early_fraction": 0.030303030303030304,
+      "mean_depth": 3.9696969696969697,
+      "distinct_depths": 2,
+      "depth_hist": {
+        "3": 1,
+        "4": 32
+      },
+      "target_early_fraction": 0.25
+    },
+    {
+      "threshold": 0.7,
+      "early_fraction": 0.7272727272727273,
+      "mean_depth": 3.242424242424242,
+      "distinct_depths": 3,
+      "depth_hist": {
+        "2": 1,
+        "3": 23,
+        "4": 9
+      },
+      "target_early_fraction": 0.6
+    }
+  ]
+}

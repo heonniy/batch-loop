@@ -1,0 +1,115 @@
+{
+  "protocol": "ffn-gate-causal-v9-20261103",
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "code_sha_at_calibration": "e5ff681eda09ad240d9814345da912691408a350",
+  "calibration_uids": [
+    "controlled-20261031-00000"
+  ],
+  "evaluation_uids": [
+    "controlled-20261031-00001"
+  ],
+  "width": 4,
+  "greedy_tokens": 24,
+  "n_cal": 1,
+  "n_eval": 1,
+  "sharing": "last-bank-for-all-prompt-and-generated-histories",
+  "thresholds": {
+    "family": "ouro",
+    "dtype_exit": "q-exit",
+    "n_clean_queries": 11,
+    "grid": [
+      {
+        "threshold": 0.25,
+        "early_fraction": 1.0,
+        "mean_depth": 2.272727272727273,
+        "distinct_depths": 2,
+        "depth_hist": {
+          "2": 8,
+          "3": 3
+        }
+      },
+      {
+        "threshold": 0.4,
+        "early_fraction": 0.8181818181818182,
+        "mean_depth": 2.4545454545454546,
+        "distinct_depths": 3,
+        "depth_hist": {
+          "2": 8,
+          "3": 1,
+          "4": 2
+        }
+      },
+      {
+        "threshold": 0.55,
+        "early_fraction": 0.7272727272727273,
+        "mean_depth": 2.727272727272727,
+        "distinct_depths": 3,
+        "depth_hist": {
+          "2": 6,
+          "3": 2,
+          "4": 3
+        }
+      },
+      {
+        "threshold": 0.7,
+        "early_fraction": 0.5454545454545454,
+        "mean_depth": 3,
+        "distinct_depths": 3,
+        "depth_hist": {
+          "2": 5,
+          "3": 1,
+          "4": 5
+        }
+      },
+      {
+        "threshold": 0.85,
+        "early_fraction": 0.45454545454545453,
+        "mean_depth": 3.3636363636363638,
+        "distinct_depths": 3,
+        "depth_hist": {
+          "2": 2,
+          "3": 3,
+          "4": 6
+        }
+      },
+      {
+        "threshold": 0.95,
+        "early_fraction": 0.09090909090909091,
+        "mean_depth": 3.8181818181818183,
+        "distinct_depths": 2,
+        "depth_hist": {
+          "2": 1,
+          "4": 10
+        }
+      }
+    ],
+    "selected": [
+      {
+        "threshold": 0.95,
+        "early_fraction": 0.09090909090909091,
+        "mean_depth": 3.8181818181818183,
+        "distinct_depths": 2,
+        "depth_hist": {
+          "2": 1,
+          "4": 10
+        },
+        "target_early_fraction": 0.25
+      },
+      {
+        "threshold": 0.7,
+        "early_fraction": 0.5454545454545454,
+        "mean_depth": 3,
+        "distinct_depths": 3,
+        "depth_hist": {
+          "2": 5,
+          "3": 1,
+          "4": 5
+        },
+        "target_early_fraction": 0.6
+      }
+    ]
+  },
+  "note": "calibrated on CLEAN full-depth LAST-sharing reference; dynamic evaluated under SAME shared last-bank reads; no eviction outcomes used",
+  "execution_code_sha": "e5ff681eda09ad240d9814345da912691408a350"
+}

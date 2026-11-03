@@ -1,0 +1,23 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 68.01it/s]
+`cache.key_cache[idx]` is deprecated and will be removed in v4.56.0. Use `cache.layers[idx].keys` instead.
+`cache.value_cache[idx]` is deprecated and will be removed in v4.56.0. Use `cache.layers[idx].values` instead.
+complete hotpotqa-distractor-5a7e4414554299495941995c
+complete hotpotqa-distractor-5a83a7e15542992ef85e2347
+complete hotpotqa-distractor-5a8ed10b5542995085b374a0
+complete hotpotqa-distractor-5ab298fb554299449642c922
+complete hotpotqa-distractor-5ab4341c55429942dd415ede
+# Standard-transformer FFN restoration control (20261103T145000Z_v9std_qwen_hotpotqa_distractor)
+
+| stratum | n | ΔNLL evict | gate rec | up rec | shift rec | ffn rec | relpatch gate / up / ffn (mean, max) | gate change by layer quarter |
+|---|---|---|---|---|---|---|---|---|
+| main_position_hash | 20 | 0.01022 | 0.01395 | 0.01777 | -0.0002859 | 0.01238 | 0.008343/0.02671, 0.03255/0.08262, 0.0249/0.07805 | 0.003341, 0.008612, 0.01739, 0.01503 |
+| oracle_distractor | 5 | 0.002281 | 0.01282 | 0.0224 | -0.01017 | -0.007658 | 0.00743/0.02305, 0.02948/0.06433, 0.0224/0.07009 | 0.003239, 0.008077, 0.01525, 0.01311 |
+| oracle_evidence | 5 | -0.001763 | 0.002949 | -0.01084 | -0.01162 | 0.0161 | 0.008769/0.03063, 0.03301/0.08423, 0.02595/0.08993 | 0.003304, 0.008293, 0.01708, 0.01654 |
+
+| stratum | gate layers 1–9 | 10–18 | 19–27 | 28–36 |
+|---|---|---|---|---|
+| main_position_hash | 0.005685 | 0.003792 | 0.00331 | 0.008024 |
+| oracle_distractor | 0.002475 | -0.00677 | -0.002629 | 0.001156 |
+| oracle_evidence | -0.01058 | -0.0007415 | -0.01059 | 0.01177 |

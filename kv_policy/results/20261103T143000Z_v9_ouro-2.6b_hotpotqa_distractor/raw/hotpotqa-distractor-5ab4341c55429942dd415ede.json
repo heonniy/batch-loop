@@ -1,0 +1,3099 @@
+{
+  "uid": "hotpotqa-distractor-5ab4341c55429942dd415ede",
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "n_prompt": 566,
+  "n_targets": 10,
+  "n_sources": 6,
+  "width": 4,
+  "full_fixed_grade": {
+    "exact_match": true,
+    "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+    "extracted_answer": "the Tokugawa shogunate",
+    "generated_tokens": 24
+  },
+  "full_fixed_nll": 0.5285380138731044,
+  "clean_gate_restore_parity": true,
+  "full_dynamic": [
+    {
+      "threshold": 0.85,
+      "depths": [
+        3,
+        4,
+        3,
+        3,
+        4,
+        3,
+        3,
+        4,
+        3,
+        4
+      ],
+      "sum_depth": 34,
+      "nll_future": 0.5119520891845847,
+      "grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\nSh\u014dgitai\n\n\nInstruction:\nUse the context to answer the question. Reply with",
+        "extracted_answer": "Sh\u014dgitai",
+        "generated_tokens": 24
+      },
+      "greedy_ids": [
+        21350,
+        42,
+        198,
+        4370,
+        15037,
+        16422,
+        2554,
+        198,
+        198,
+        198,
+        25464,
+        42,
+        198,
+        9801,
+        260,
+        2468,
+        288,
+        2988,
+        260,
+        1962,
+        30,
+        2720,
+        318,
+        351
+      ]
+    },
+    {
+      "threshold": 0.7,
+      "depths": [
+        2,
+        3,
+        2,
+        2,
+        3,
+        2,
+        2,
+        4,
+        3,
+        4
+      ],
+      "sum_depth": 27,
+      "nll_future": 0.5366237507356951,
+      "grade": {
+        "exact_match": true,
+        "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+        "extracted_answer": "the Tokugawa shogunate",
+        "generated_tokens": 24
+      },
+      "greedy_ids": [
+        21350,
+        42,
+        260,
+        40080,
+        1433,
+        10734,
+        443,
+        435,
+        419,
+        368,
+        198,
+        198,
+        198,
+        25464,
+        42,
+        198,
+        9801,
+        260,
+        2468,
+        288,
+        2988,
+        260,
+        1962,
+        30
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "source": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.5190681361903747,
+        "delta_nll_vs_clean": -0.009469877682729666,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.009469877682729666,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.0004852893364133908,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 40,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.5404579045846023,
+          "delta_nll_vs_clean": 0.011919890711497905,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.009469877682729666,
+            "nll_recovered": -0.02138976839422757,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0001927650983917475,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.019541625943262867
+        },
+        "restore_up": {
+          "future_nll": 24.06943596733941,
+          "delta_nll_vs_clean": 23.540897953466306,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.009469877682729666,
+            "nll_recovered": -23.550367831149035,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 22.72446420457628,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.2549104334335426
+        },
+        "shift_gate": {
+          "future_nll": 0.5193536862627499,
+          "delta_nll_vs_clean": -0.009184327610354481,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.009469877682729666,
+            "nll_recovered": -0.0002855500723751847,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0011659159222795602,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.06357922878899748
+        },
+        "restore_ffn": {
+          "future_nll": 20.500832799408172,
+          "delta_nll_vs_clean": 19.97229478553507,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.009469877682729666,
+            "nll_recovered": -19.9817646632178,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 18.374973522292244,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.4906905187420003
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.5194967756720467,
+          "delta_nll_vs_clean": -0.009041238201057733,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.009469877682729666,
+            "nll_recovered": -0.000428639481671933,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00023814874010794383,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.021755153367606302
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.5394681504824095,
+          "delta_nll_vs_clean": 0.010930136609305086,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.009469877682729666,
+            "nll_recovered": -0.02040001429203475,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0005901385523732946,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.020602159811824096
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+        "extracted_answer": "the Tokugawa shogunate",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.03440967607117879,
+            "gate_mean_sign_flip_frac": 0.011239346914953785,
+            "gate_max_relative_change": 0.10290492326021194,
+            "ffn_mean_relative_change": 0.028281912855891277,
+            "ffn_mean_sign_flip_frac": 0.015950520833333332,
+            "ffn_max_relative_change": 0.13285896182060242
+          },
+          {
+            "loop": 2,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.027308538286403443,
+            "gate_mean_sign_flip_frac": 0.008787583102821373,
+            "gate_max_relative_change": 0.0820990726351738,
+            "ffn_mean_relative_change": 0.028220926250408715,
+            "ffn_mean_sign_flip_frac": 0.013926188151041666,
+            "ffn_max_relative_change": 0.06980060040950775
+          },
+          {
+            "loop": 3,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.029083583168297386,
+            "gate_mean_sign_flip_frac": 0.009478575095514922,
+            "gate_max_relative_change": 0.09257069230079651,
+            "ffn_mean_relative_change": 0.03064124851759213,
+            "ffn_mean_sign_flip_frac": 0.015104166666666667,
+            "ffn_max_relative_change": 0.07534229010343552
+          },
+          {
+            "loop": 4,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.0311902132195731,
+            "gate_mean_sign_flip_frac": 0.010070801076168815,
+            "gate_max_relative_change": 0.10150089859962463,
+            "ffn_mean_relative_change": 0.03328035745653324,
+            "ffn_mean_sign_flip_frac": 0.016168212890625,
+            "ffn_max_relative_change": 0.08616553246974945
+          }
+        ],
+        "total_positions": 3840,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.5002964606327522,
+          "evicted_replay_nll": 0.5002964606327522,
+          "gate_restored_replay_nll": 0.5136310669929824,
+          "gate_restored_replay_nll_recovery": -0.013334606360230206,
+          "gate_restored_live_ORACLE_nll": 0.542542244359437,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00034791919966260646,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nSh\u014dgitai\n\n\nInstruction:\nUse the context to answer the question. Reply with",
+            "extracted_answer": "Sh\u014dgitai",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nShogunate",
+            "extracted_answer": "Shogunate",
+            "generated_tokens": 8
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            435,
+            419,
+            368,
+            0
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            15037,
+            16422,
+            2554,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": true,
+          "full_live_total_compute": 85,
+          "evicted_live_total_compute": 27
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.5316092970574068,
+          "evicted_replay_nll": 0.5316092970574068,
+          "gate_restored_replay_nll": 0.5408934663929459,
+          "gate_restored_replay_nll_recovery": -0.009284169335539105,
+          "gate_restored_live_ORACLE_nll": 0.5545631972038083,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00036696791074872535,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 63,
+          "evicted_live_total_compute": 63
+        }
+      ]
+    },
+    {
+      "source": [
+        236,
+        237,
+        238,
+        239
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.5246014941302646,
+        "delta_nll_vs_clean": -0.003936519742839817,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.003936519742839817,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.0002200003812807457,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 40,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.53463797749848,
+          "delta_nll_vs_clean": 0.006099963625375571,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003936519742839817,
+            "nll_recovered": -0.010036483368215388,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0009362410074673891,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.014587464839254001
+        },
+        "restore_up": {
+          "future_nll": 23.132419519954258,
+          "delta_nll_vs_clean": 22.603881506081155,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003936519742839817,
+            "nll_recovered": -22.607818025823992,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 21.491820759243435,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.2186896787842367
+        },
+        "shift_gate": {
+          "future_nll": 0.5241474105924782,
+          "delta_nll_vs_clean": -0.004390603280626237,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003936519742839817,
+            "nll_recovered": 0.0004540835377864205,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0007054134469702452,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.039249450702603404
+        },
+        "restore_ffn": {
+          "future_nll": 20.516557482795584,
+          "delta_nll_vs_clean": 19.98801946892248,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003936519742839817,
+            "nll_recovered": -19.991955988665318,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 18.305735552890432,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.4592730804114884
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.5117886561589936,
+          "delta_nll_vs_clean": -0.01674935771411079,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003936519742839817,
+            "nll_recovered": 0.012812837971270974,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00020051372100877215,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.014407625078456476
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.5255649139871821,
+          "delta_nll_vs_clean": -0.0029730998859223146,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003936519742839817,
+            "nll_recovered": -0.0009634198569175023,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0003158526171268426,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.01769443702796707
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+        "extracted_answer": "the Tokugawa shogunate",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.018553209868938818,
+            "gate_mean_sign_flip_frac": 0.00608797958229843,
+            "gate_max_relative_change": 0.037415191531181335,
+            "ffn_mean_relative_change": 0.014848647855857659,
+            "ffn_mean_sign_flip_frac": 0.008658854166666667,
+            "ffn_max_relative_change": 0.051214490085840225
+          },
+          {
+            "loop": 2,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.02337310689035803,
+            "gate_mean_sign_flip_frac": 0.007511763346701628,
+            "gate_max_relative_change": 0.08005543798208237,
+            "ffn_mean_relative_change": 0.025164189003407954,
+            "ffn_mean_sign_flip_frac": 0.0116363525390625,
+            "ffn_max_relative_change": 0.0823727548122406
+          },
+          {
+            "loop": 3,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.024277910826882968,
+            "gate_mean_sign_flip_frac": 0.007764041999083323,
+            "gate_max_relative_change": 0.05709528923034668,
+            "ffn_mean_relative_change": 0.02614274777927979,
+            "ffn_mean_sign_flip_frac": 0.0123382568359375,
+            "ffn_max_relative_change": 0.06021276116371155
+          },
+          {
+            "loop": 4,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.023132644906096782,
+            "gate_mean_sign_flip_frac": 0.0074525777576733765,
+            "gate_max_relative_change": 0.051456112414598465,
+            "ffn_mean_relative_change": 0.025261268426159708,
+            "ffn_mean_sign_flip_frac": 0.0119720458984375,
+            "ffn_max_relative_change": 0.0638233870267868
+          }
+        ],
+        "total_positions": 3840,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.5085321496913416,
+          "evicted_replay_nll": 0.5085321496913416,
+          "gate_restored_replay_nll": 0.5041549527603719,
+          "gate_restored_replay_nll_recovery": 0.004377196930969718,
+          "gate_restored_live_ORACLE_nll": 0.522970488980516,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.0003089358483773847,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nSh\u014dgitai\n\n\nInstruction:\nUse the context to answer the question. Reply with",
+            "extracted_answer": "Sh\u014dgitai",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nSh\u014dgitai\n\n\nInstruction:\nUse the context to answer the question. Reply with",
+            "extracted_answer": "Sh\u014dgitai",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            15037,
+            16422,
+            2554,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            15037,
+            16422,
+            2554,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 85,
+          "evicted_live_total_compute": 85
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.5445495033119288,
+          "evicted_replay_nll": 0.5445495033119288,
+          "gate_restored_replay_nll": 0.5427607925246574,
+          "gate_restored_replay_nll_recovery": 0.0017887107872713859,
+          "gate_restored_live_ORACLE_nll": 0.5580856341144277,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00016260856601648912,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 63,
+          "evicted_live_total_compute": 63
+        }
+      ]
+    },
+    {
+      "source": [
+        266,
+        267,
+        268,
+        269
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.5238994221694561,
+        "delta_nll_vs_clean": -0.0046385917036483315,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.0046385917036483315,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.0002444079782940713,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 40,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.5347443549479876,
+          "delta_nll_vs_clean": 0.006206341074883159,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0046385917036483315,
+            "nll_recovered": -0.01084493277853149,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0002666641460867443,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.014992771317338338
+        },
+        "restore_up": {
+          "future_nll": 23.791781425476074,
+          "delta_nll_vs_clean": 23.26324341160297,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0046385917036483315,
+            "nll_recovered": -23.267882003306617,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 22.195839087168377,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.2229684602183017
+        },
+        "shift_gate": {
+          "future_nll": 0.5257204322325479,
+          "delta_nll_vs_clean": -0.0028175816405564547,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0046385917036483315,
+            "nll_recovered": -0.0018210100630918769,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.001201166381280119,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.05196289186860668
+        },
+        "restore_ffn": {
+          "future_nll": 20.380102204676305,
+          "delta_nll_vs_clean": 19.851564190803202,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0046385917036483315,
+            "nll_recovered": -19.85620278250685,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 18.098530453991973,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.4439946724754311
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.5261830762416745,
+          "delta_nll_vs_clean": -0.0023549376314299098,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0046385917036483315,
+            "nll_recovered": -0.0022836540722184218,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 9.222721721218679e-05,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.016297997070796554
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.528172746520593,
+          "delta_nll_vs_clean": -0.0003652673525114114,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0046385917036483315,
+            "nll_recovered": -0.00427332435113692,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0001853450538267983,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.016742988993549566
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+        "extracted_answer": "the Tokugawa shogunate",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.02833200140739791,
+            "gate_mean_sign_flip_frac": 0.009209280569848488,
+            "gate_max_relative_change": 0.07648833841085434,
+            "ffn_mean_relative_change": 0.02402436917060792,
+            "ffn_mean_sign_flip_frac": 0.0133209228515625,
+            "ffn_max_relative_change": 0.19886943697929382
+          },
+          {
+            "loop": 2,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.02373029924056027,
+            "gate_mean_sign_flip_frac": 0.007659727381906123,
+            "gate_max_relative_change": 0.10096415877342224,
+            "ffn_mean_relative_change": 0.02514149945345707,
+            "ffn_mean_sign_flip_frac": 0.011731974283854167,
+            "ffn_max_relative_change": 0.09963231533765793
+          },
+          {
+            "loop": 3,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.021485041875469808,
+            "gate_mean_sign_flip_frac": 0.006882176468328301,
+            "gate_max_relative_change": 0.08562060445547104,
+            "ffn_mean_relative_change": 0.022436319230958665,
+            "ffn_mean_sign_flip_frac": 0.011104329427083334,
+            "ffn_max_relative_change": 0.05906626582145691
+          },
+          {
+            "loop": 4,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.02166208042084084,
+            "gate_mean_sign_flip_frac": 0.006916948021777595,
+            "gate_max_relative_change": 0.06219419464468956,
+            "ffn_mean_relative_change": 0.02301703713455936,
+            "ffn_mean_sign_flip_frac": 0.011107381184895833,
+            "ffn_max_relative_change": 0.08093529939651489
+          }
+        ],
+        "total_positions": 3840,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.5077850255442576,
+          "evicted_replay_nll": 0.5077850255442576,
+          "gate_restored_replay_nll": 0.5090434229932725,
+          "gate_restored_replay_nll_recovery": -0.001258397449014903,
+          "gate_restored_live_ORACLE_nll": 0.5390568044967949,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00022295733490156836,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nSh\u014dgitai\n\n\nInstruction:\nUse the context to answer the question. Reply with",
+            "extracted_answer": "Sh\u014dgitai",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nSh\u014dgitai\n\n\nInstruction:\nUse the context to answer the question. Reply with",
+            "extracted_answer": "Sh\u014dgitai",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            15037,
+            16422,
+            2554,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            15037,
+            16422,
+            2554,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 85,
+          "evicted_live_total_compute": 85
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.533539994749137,
+          "evicted_replay_nll": 0.533539994749137,
+          "gate_restored_replay_nll": 0.5395308263703353,
+          "gate_restored_replay_nll_recovery": -0.005990831621198289,
+          "gate_restored_live_ORACLE_nll": 0.5596142581974467,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00025228677926255233,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 63,
+          "evicted_live_total_compute": 62
+        }
+      ]
+    },
+    {
+      "source": [
+        484,
+        485,
+        486,
+        487
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.5237714084925957,
+        "delta_nll_vs_clean": -0.0047666053805086595,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.0047666053805086595,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.00021905407498302843,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 40,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.5285865203477442,
+          "delta_nll_vs_clean": 4.8506474639831154e-05,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0047666053805086595,
+            "nll_recovered": -0.004815111855148491,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00013661880221762758,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.014868012799828042
+        },
+        "restore_up": {
+          "future_nll": 23.324939966201782,
+          "delta_nll_vs_clean": 22.79640195232868,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0047666053805086595,
+            "nll_recovered": -22.801168557709186,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 21.731461763381958,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.2217857531950964
+        },
+        "shift_gate": {
+          "future_nll": 0.5372864180373855,
+          "delta_nll_vs_clean": 0.008748404164281132,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0047666053805086595,
+            "nll_recovered": -0.013515009544789791,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0005082489126506415,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.031056170230416076
+        },
+        "restore_ffn": {
+          "future_nll": 20.46964219564365,
+          "delta_nll_vs_clean": 19.941104181770548,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0047666053805086595,
+            "nll_recovered": -19.945870787151055,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 18.043557019800776,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.4534818571657524
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.5196272583238574,
+          "delta_nll_vs_clean": -0.00891075554924703,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0047666053805086595,
+            "nll_recovered": 0.00414415016873837,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0001333866949708964,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.015328680059853165
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.5257414020727285,
+          "delta_nll_vs_clean": -0.0027966118003759366,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0047666053805086595,
+            "nll_recovered": -0.001969993580132723,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0001955250563191334,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.01689270798815414
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+        "extracted_answer": "the Tokugawa shogunate",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.022593491416288695,
+            "gate_mean_sign_flip_frac": 0.007330137518753569,
+            "gate_max_relative_change": 0.054320648312568665,
+            "ffn_mean_relative_change": 0.01755338490547729,
+            "ffn_mean_sign_flip_frac": 0.010576375325520833,
+            "ffn_max_relative_change": 0.06349623203277588
+          },
+          {
+            "loop": 2,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.01827387529386518,
+            "gate_mean_sign_flip_frac": 0.005902284740174461,
+            "gate_max_relative_change": 0.040682487189769745,
+            "ffn_mean_relative_change": 0.0192274775065016,
+            "ffn_mean_sign_flip_frac": 0.0092559814453125,
+            "ffn_max_relative_change": 0.060647301375865936
+          },
+          {
+            "loop": 3,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.01689652812395555,
+            "gate_mean_sign_flip_frac": 0.005447665270912694,
+            "gate_max_relative_change": 0.03401719778776169,
+            "ffn_mean_relative_change": 0.018027974678746735,
+            "ffn_mean_sign_flip_frac": 0.008629353841145833,
+            "ffn_max_relative_change": 0.040312882512807846
+          },
+          {
+            "loop": 4,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.01765650799983026,
+            "gate_mean_sign_flip_frac": 0.005689216548368374,
+            "gate_max_relative_change": 0.03807281702756882,
+            "ffn_mean_relative_change": 0.019259197083980932,
+            "ffn_mean_sign_flip_frac": 0.009031168619791667,
+            "ffn_max_relative_change": 0.041858188807964325
+          }
+        ],
+        "total_positions": 3840,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.5046074935493784,
+          "evicted_replay_nll": 0.5046074935493784,
+          "gate_restored_replay_nll": 0.5175886435253132,
+          "gate_restored_replay_nll_recovery": -0.012981149975934803,
+          "gate_restored_live_ORACLE_nll": 0.51855906810508,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.0004169651349204489,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nSh\u014dgitai\n\n\nInstruction:\nUse the context to answer the question. Reply with",
+            "extracted_answer": "Sh\u014dgitai",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nSh\u014dgitai\n\n\nInstruction:\nUse the context to answer the question. Reply with",
+            "extracted_answer": "Sh\u014dgitai",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            15037,
+            16422,
+            2554,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            15037,
+            16422,
+            2554,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 85,
+          "evicted_live_total_compute": 85
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.539531505614933,
+          "evicted_replay_nll": 0.539531505614933,
+          "gate_restored_replay_nll": 0.548374328451852,
+          "gate_restored_replay_nll_recovery": -0.008842822836918951,
+          "gate_restored_live_ORACLE_nll": 0.5538162446011685,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00020186110946775039,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 63,
+          "evicted_live_total_compute": 63
+        }
+      ]
+    },
+    {
+      "source": [
+        22,
+        23,
+        24,
+        25
+      ],
+      "stratum": "oracle_evidence",
+      "evict_fixed": {
+        "future_nll": 0.5057470115263842,
+        "delta_nll_vs_clean": -0.022791002346720157,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.022791002346720157,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.007396876672929566,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 40,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.4746957852815588,
+          "delta_nll_vs_clean": -0.05384222859154558,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.022791002346720157,
+            "nll_recovered": 0.031051226244825425,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.01827820275007576,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.02567300561107307
+        },
+        "restore_up": {
+          "future_nll": 23.546946419609917,
+          "delta_nll_vs_clean": 23.018408405736814,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.022791002346720157,
+            "nll_recovered": -23.041199408083532,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 21.975742869906956,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.2393215824803823
+        },
+        "shift_gate": {
+          "future_nll": 0.5132171878487699,
+          "delta_nll_vs_clean": -0.015320826024334488,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.022791002346720157,
+            "nll_recovered": -0.007470176322385669,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.007778917551655063,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.058425885991285516
+        },
+        "restore_ffn": {
+          "future_nll": 20.38574544588725,
+          "delta_nll_vs_clean": 19.857207432014146,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.022791002346720157,
+            "nll_recovered": -19.879998434360864,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 18.159008310900795,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.4762430499136827
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.49531359671770286,
+          "delta_nll_vs_clean": -0.03322441715540153,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.022791002346720157,
+            "nll_recovered": 0.010433414808681374,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.007453840319107662,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.023491514205670683
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.4876651858083076,
+          "delta_nll_vs_clean": -0.04087282806479681,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.022791002346720157,
+            "nll_recovered": 0.01808182571807665,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.019394417695568537,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.033709172229767624
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": false,
+        "generated_text": "Answer:\nThe Sh\u014dgitai were an elite Corps of the Tokugawa Shogunate.\n\n",
+        "extracted_answer": "The Sh\u014dgitai were an elite Corps of the Tokugawa Shogunate.",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.031384339927656886,
+            "gate_mean_sign_flip_frac": 0.010288678105765333,
+            "gate_max_relative_change": 0.12054901570081711,
+            "ffn_mean_relative_change": 0.02575575222460126,
+            "ffn_mean_sign_flip_frac": 0.014725748697916667,
+            "ffn_max_relative_change": 0.13569721579551697
+          },
+          {
+            "loop": 2,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.03612249229530183,
+            "gate_mean_sign_flip_frac": 0.011659934639465065,
+            "gate_max_relative_change": 0.12361256778240204,
+            "ffn_mean_relative_change": 0.04018835470778868,
+            "ffn_mean_sign_flip_frac": 0.018505859375,
+            "ffn_max_relative_change": 0.13880562782287598
+          },
+          {
+            "loop": 3,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.03847036973068801,
+            "gate_mean_sign_flip_frac": 0.012546609044269038,
+            "gate_max_relative_change": 0.12336577475070953,
+            "ffn_mean_relative_change": 0.04311572502289588,
+            "ffn_mean_sign_flip_frac": 0.020069376627604166,
+            "ffn_max_relative_change": 0.12856201827526093
+          },
+          {
+            "loop": 4,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.04044079618761316,
+            "gate_mean_sign_flip_frac": 0.013064483059133635,
+            "gate_max_relative_change": 0.11870011687278748,
+            "ffn_mean_relative_change": 0.04556436210211056,
+            "ffn_mean_sign_flip_frac": 0.021319580078125,
+            "ffn_max_relative_change": 0.13276627659797668
+          }
+        ],
+        "total_positions": 3840,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.4844115980538643,
+          "evicted_replay_nll": 0.4844115980538643,
+          "gate_restored_replay_nll": 0.4605341304041859,
+          "gate_restored_replay_nll_recovery": 0.023877467649678408,
+          "gate_restored_live_ORACLE_nll": 0.4855263983158188,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.009442336383168973,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nSh\u014dgitai\n\n\nInstruction:\nUse the context to answer the question. Reply with",
+            "extracted_answer": "Sh\u014dgitai",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nThe Sh\u014dgitai were an elite Corps of the Tokugawa Shogunate.\n\n",
+            "extracted_answer": "The Sh\u014dgitai were an elite Corps of the Tokugawa Shogunate.",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            504,
+            1541,
+            15037,
+            16422,
+            2554,
+            592,
+            354,
+            15671,
+            12940,
+            282,
+            260,
+            40080,
+            1433,
+            10734,
+            1541,
+            435,
+            419,
+            368,
+            30,
+            198,
+            198
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            15037,
+            16422,
+            2554,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": true,
+          "full_live_total_compute": 85,
+          "evicted_live_total_compute": 84
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.5126751096815698,
+          "evicted_replay_nll": 0.5126751096815698,
+          "gate_restored_replay_nll": 0.4996919919633203,
+          "gate_restored_replay_nll_recovery": 0.012983117718249504,
+          "gate_restored_live_ORACLE_nll": 0.5223965142698338,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.008935080692026531,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "evicted_fixed_correct": false,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 63,
+          "evicted_live_total_compute": 63
+        }
+      ]
+    },
+    {
+      "source": [
+        313,
+        314,
+        315,
+        316
+      ],
+      "stratum": "oracle_distractor",
+      "evict_fixed": {
+        "future_nll": 0.52455558679584,
+        "delta_nll_vs_clean": -0.003982427077264372,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.003982427077264372,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.000214750120196388,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 40,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.5353418175105212,
+          "delta_nll_vs_clean": 0.006803803637416839,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003982427077264372,
+            "nll_recovered": -0.01078623071468121,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0002016053883077499,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.014029504114781351
+        },
+        "restore_up": {
+          "future_nll": 23.702031559414333,
+          "delta_nll_vs_clean": 23.17349354554123,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003982427077264372,
+            "nll_recovered": -23.177475972618492,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 21.938512484232586,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.2281024673129044
+        },
+        "shift_gate": {
+          "future_nll": 0.5177331454017096,
+          "delta_nll_vs_clean": -0.010804868471394835,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003982427077264372,
+            "nll_recovered": 0.006822441394130463,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0003561373502331359,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 0.027058308522343092
+        },
+        "restore_ffn": {
+          "future_nll": 20.224125740014845,
+          "delta_nll_vs_clean": 19.695587726141742,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003982427077264372,
+            "nll_recovered": -19.699570153219003,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 17.899594099157387,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 1920,
+          "mean_relative_patch": 1.4405703970513666
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.522299715744642,
+          "delta_nll_vs_clean": -0.006238298128462438,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003982427077264372,
+            "nll_recovered": 0.002255871051198066,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0001603338579217153,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.013908961197982232
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.5239616833989404,
+          "delta_nll_vs_clean": -0.004576330474163948,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.003982427077264372,
+            "nll_recovered": 0.0005939033968995755,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00029320031050398637,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 40,
+          "patches": 960,
+          "mean_relative_patch": 0.0150875448040703
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+        "extracted_answer": "the Tokugawa shogunate",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.01933606835324705,
+            "gate_mean_sign_flip_frac": 0.006275523979153755,
+            "gate_max_relative_change": 0.04800109192728996,
+            "ffn_mean_relative_change": 0.015511213787491821,
+            "ffn_mean_sign_flip_frac": 0.008980305989583333,
+            "ffn_max_relative_change": 0.05655553564429283
+          },
+          {
+            "loop": 2,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.020014510716039997,
+            "gate_mean_sign_flip_frac": 0.006483783335473466,
+            "gate_max_relative_change": 0.048435647040605545,
+            "ffn_mean_relative_change": 0.022039391755242832,
+            "ffn_mean_sign_flip_frac": 0.0101654052734375,
+            "ffn_max_relative_change": 0.05802830308675766
+          },
+          {
+            "loop": 3,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.020258572458017928,
+            "gate_mean_sign_flip_frac": 0.00655924498848132,
+            "gate_max_relative_change": 0.04580191150307655,
+            "ffn_mean_relative_change": 0.02162744278903119,
+            "ffn_mean_sign_flip_frac": 0.010484822591145833,
+            "ffn_max_relative_change": 0.0492052398622036
+          },
+          {
+            "loop": 4,
+            "n_observations": 960,
+            "gate_mean_relative_change": 0.021478684573958164,
+            "gate_mean_sign_flip_frac": 0.006876627795403086,
+            "gate_max_relative_change": 0.049968454986810684,
+            "ffn_mean_relative_change": 0.02328988199927456,
+            "ffn_mean_sign_flip_frac": 0.011197916666666667,
+            "ffn_max_relative_change": 0.05392371490597725
+          }
+        ],
+        "total_positions": 3840,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.5023382497537467,
+          "evicted_replay_nll": 0.5023382497537467,
+          "gate_restored_replay_nll": 0.5010383324568264,
+          "gate_restored_replay_nll_recovery": 0.001299917296920361,
+          "gate_restored_live_ORACLE_nll": 0.5221584105812427,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            3,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00016623408979891488,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nSh\u014dgitai\n\n\nInstruction:\nUse the context to answer the question. Reply with",
+            "extracted_answer": "Sh\u014dgitai",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer:\nShogunate",
+            "extracted_answer": "Shogunate",
+            "generated_tokens": 8
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            435,
+            419,
+            368,
+            0
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            198,
+            4370,
+            15037,
+            16422,
+            2554,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30,
+            2720,
+            318,
+            351
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": true,
+          "full_live_total_compute": 85,
+          "evicted_live_total_compute": 27
+        },
+        {
+          "threshold": 0.7,
+          "full_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "evicted_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.545225799549371,
+          "evicted_replay_nll": 0.545225799549371,
+          "gate_restored_replay_nll": 0.5356974315363914,
+          "gate_restored_replay_nll_recovery": 0.009528368012979627,
+          "gate_restored_live_ORACLE_nll": 0.5502420102194365,
+          "gate_restored_live_ORACLE_depths": [
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            4
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.0003419292667482902,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: the Tokugawa shogunate\n\n\nInstruction:\nUse the context to answer the question.",
+            "extracted_answer": "the Tokugawa shogunate",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            260,
+            40080,
+            1433,
+            10734,
+            443,
+            435,
+            419,
+            368,
+            198,
+            198,
+            198,
+            25464,
+            42,
+            198,
+            9801,
+            260,
+            2468,
+            288,
+            2988,
+            260,
+            1962,
+            30
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 63,
+          "evicted_live_total_compute": 63
+        }
+      ]
+    }
+  ]
+}

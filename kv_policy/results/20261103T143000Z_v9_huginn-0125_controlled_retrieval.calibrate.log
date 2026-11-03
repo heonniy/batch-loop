@@ -1,0 +1,175 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:18<00:56, 18.91s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:37<00:38, 19.00s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:57<00:19, 19.25s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:02<00:00, 13.79s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:02<00:00, 15.74s/it]
+{
+  "family": "huginn",
+  "dtype_exit": "fp32_cosine_diagnostic",
+  "n_clean_queries": 33,
+  "grid": [
+    {
+      "threshold": 0.0001,
+      "early_fraction": 1.0,
+      "mean_depth": 20.21212121212121,
+      "distinct_depths": 12,
+      "depth_hist": {
+        "15": 1,
+        "16": 2,
+        "17": 3,
+        "18": 6,
+        "19": 2,
+        "20": 4,
+        "21": 8,
+        "22": 1,
+        "23": 2,
+        "25": 1,
+        "27": 2,
+        "28": 1
+      }
+    },
+    {
+      "threshold": 0.00025,
+      "early_fraction": 1.0,
+      "mean_depth": 16.272727272727273,
+      "distinct_depths": 10,
+      "depth_hist": {
+        "13": 1,
+        "14": 10,
+        "15": 5,
+        "16": 5,
+        "17": 3,
+        "18": 3,
+        "19": 1,
+        "20": 1,
+        "21": 3,
+        "22": 1
+      }
+    },
+    {
+      "threshold": 0.0005,
+      "early_fraction": 1.0,
+      "mean_depth": 14.393939393939394,
+      "distinct_depths": 8,
+      "depth_hist": {
+        "12": 4,
+        "13": 11,
+        "14": 6,
+        "15": 3,
+        "16": 3,
+        "17": 3,
+        "18": 1,
+        "19": 2
+      }
+    },
+    {
+      "threshold": 0.001,
+      "early_fraction": 1.0,
+      "mean_depth": 12.969696969696969,
+      "distinct_depths": 8,
+      "depth_hist": {
+        "10": 1,
+        "11": 5,
+        "12": 10,
+        "13": 8,
+        "14": 1,
+        "15": 4,
+        "16": 3,
+        "17": 1
+      }
+    },
+    {
+      "threshold": 0.002,
+      "early_fraction": 1.0,
+      "mean_depth": 11.575757575757576,
+      "distinct_depths": 6,
+      "depth_hist": {
+        "9": 1,
+        "10": 9,
+        "11": 10,
+        "12": 4,
+        "13": 5,
+        "15": 4
+      }
+    },
+    {
+      "threshold": 0.004,
+      "early_fraction": 1.0,
+      "mean_depth": 10.393939393939394,
+      "distinct_depths": 5,
+      "depth_hist": {
+        "9": 10,
+        "10": 12,
+        "11": 5,
+        "12": 3,
+        "14": 3
+      }
+    },
+    {
+      "threshold": 0.008,
+      "early_fraction": 1.0,
+      "mean_depth": 9.212121212121213,
+      "distinct_depths": 5,
+      "depth_hist": {
+        "8": 9,
+        "9": 15,
+        "10": 5,
+        "11": 1,
+        "12": 3
+      }
+    },
+    {
+      "threshold": 0.016,
+      "early_fraction": 1.0,
+      "mean_depth": 8.090909090909092,
+      "distinct_depths": 5,
+      "depth_hist": {
+        "7": 10,
+        "8": 15,
+        "9": 5,
+        "10": 1,
+        "11": 2
+      }
+    }
+  ],
+  "selected": [
+    {
+      "threshold": 0.0001,
+      "early_fraction": 1.0,
+      "mean_depth": 20.21212121212121,
+      "distinct_depths": 12,
+      "depth_hist": {
+        "15": 1,
+        "16": 2,
+        "17": 3,
+        "18": 6,
+        "19": 2,
+        "20": 4,
+        "21": 8,
+        "22": 1,
+        "23": 2,
+        "25": 1,
+        "27": 2,
+        "28": 1
+      },
+      "target_early_fraction": 0.25
+    },
+    {
+      "threshold": 0.00025,
+      "early_fraction": 1.0,
+      "mean_depth": 16.272727272727273,
+      "distinct_depths": 10,
+      "depth_hist": {
+        "13": 1,
+        "14": 10,
+        "15": 5,
+        "16": 5,
+        "17": 3,
+        "18": 3,
+        "19": 1,
+        "20": 1,
+        "21": 3,
+        "22": 1
+      },
+      "target_early_fraction": 0.6
+    }
+  ]
+}

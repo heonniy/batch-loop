@@ -1,0 +1,3080 @@
+{
+  "uid": "controlled-20261031-00004",
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "n_prompt": 419,
+  "n_targets": 11,
+  "n_sources": 6,
+  "width": 4,
+  "full_fixed_grade": {
+    "exact_match": true,
+    "generated_text": "Answer: VX-56947\n\n\n\n\n\n0\n0\n0\n0\n",
+    "extracted_answer": "VX-56947",
+    "generated_tokens": 24
+  },
+  "full_fixed_nll": 0.10634067174978554,
+  "clean_gate_restore_parity": true,
+  "full_dynamic": [
+    {
+      "threshold": 0.95,
+      "depths": [
+        4,
+        4,
+        4,
+        4,
+        3,
+        4,
+        4,
+        4,
+        4,
+        4,
+        2
+      ],
+      "sum_depth": 41,
+      "nll_future": 0.10766505971550941,
+      "grade": {
+        "exact_match": true,
+        "generated_text": "Answer: VX-56947\n\n",
+        "extracted_answer": "VX-56947",
+        "generated_tokens": 13
+      },
+      "greedy_ids": [
+        21350,
+        42,
+        717,
+        72,
+        29,
+        37,
+        38,
+        41,
+        36,
+        39,
+        198,
+        198,
+        0
+      ]
+    },
+    {
+      "threshold": 0.85,
+      "depths": [
+        3,
+        4,
+        3,
+        4,
+        2,
+        4,
+        4,
+        4,
+        4,
+        4,
+        2
+      ],
+      "sum_depth": 38,
+      "nll_future": 2.6891511205234564,
+      "grade": {
+        "exact_match": false,
+        "generated_text": "Answer: VX-37-0\n YX\n ZX\n WX.\n VX.\n",
+        "extracted_answer": "VX-37-0",
+        "generated_tokens": 24
+      },
+      "greedy_ids": [
+        21350,
+        42,
+        717,
+        72,
+        29,
+        35,
+        39,
+        29,
+        32,
+        198,
+        718,
+        72,
+        198,
+        1777,
+        72,
+        198,
+        408,
+        72,
+        30,
+        198,
+        717,
+        72,
+        30,
+        198
+      ]
+    }
+  ],
+  "candidates": [
+    {
+      "source": [
+        51,
+        52,
+        53,
+        54
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.10316155698383227,
+        "delta_nll_vs_clean": -0.00317911476595327,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.00317911476595327,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 7.399233954856755e-05,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 44,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.10224327859468758,
+          "delta_nll_vs_clean": -0.004097393155097953,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00317911476595327,
+            "nll_recovered": 0.0009182783891446833,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0001774993828917104,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.01527139406376095
+        },
+        "restore_up": {
+          "future_nll": 24.56281671524048,
+          "delta_nll_vs_clean": 24.456476043490696,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00317911476595327,
+            "nll_recovered": -24.45965515825665,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 24.486246979236604,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.066390651939869
+        },
+        "shift_gate": {
+          "future_nll": 0.09833236165577545,
+          "delta_nll_vs_clean": -0.008008310094010082,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00317911476595327,
+            "nll_recovered": 0.004829195328056812,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0009866497450275347,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.047756984907623104
+        },
+        "restore_ffn": {
+          "future_nll": 17.051316941715775,
+          "delta_nll_vs_clean": 16.94497626996599,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00317911476595327,
+            "nll_recovered": -16.948155384731944,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 16.80774624980986,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.4782032476701494
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.10247320671333,
+          "delta_nll_vs_clean": -0.0038674650364555335,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00317911476595327,
+            "nll_recovered": 0.0006883502705022637,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 7.888528532475902e-05,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.014105920021944312
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.10194300982402638,
+          "delta_nll_vs_clean": -0.004397661925759161,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.00317911476595327,
+            "nll_recovered": 0.0012185471598058911,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00020588913513392982,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.019497720117656034
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: VX-56947\n\n\n\n0\n0\n0\n0\n0\n",
+        "extracted_answer": "VX-56947",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.01731148538722967,
+            "gate_mean_sign_flip_frac": 0.005751428680069335,
+            "gate_max_relative_change": 0.04876740649342537,
+            "ffn_mean_relative_change": 0.019828495544722748,
+            "ffn_mean_sign_flip_frac": 0.008246219519412878,
+            "ffn_max_relative_change": 0.06078815460205078
+          },
+          {
+            "loop": 2,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.023362784808727378,
+            "gate_mean_sign_flip_frac": 0.007697491824783907,
+            "gate_max_relative_change": 0.06634459644556046,
+            "ffn_mean_relative_change": 0.022417867362188797,
+            "ffn_mean_sign_flip_frac": 0.011310924183238636,
+            "ffn_max_relative_change": 0.06192966550588608
+          },
+          {
+            "loop": 3,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.02015061000411427,
+            "gate_mean_sign_flip_frac": 0.006634841142813181,
+            "gate_max_relative_change": 0.03371105343103409,
+            "ffn_mean_relative_change": 0.01797157409336333,
+            "ffn_mean_sign_flip_frac": 0.009874748461174242,
+            "ffn_max_relative_change": 0.04016796126961708
+          },
+          {
+            "loop": 4,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.01933495155676748,
+            "gate_mean_sign_flip_frac": 0.006257196611951451,
+            "gate_max_relative_change": 0.0386202409863472,
+            "ffn_mean_relative_change": 0.018609786239473826,
+            "ffn_mean_sign_flip_frac": 0.009819261955492424,
+            "ffn_max_relative_change": 0.050903961062431335
+          }
+        ],
+        "total_positions": 4224,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.95,
+          "full_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.10703317179577425,
+          "evicted_replay_nll": 0.10703317179577425,
+          "gate_restored_replay_nll": 0.10591472000814975,
+          "gate_restored_replay_nll_recovery": 0.0011184517876244998,
+          "gate_restored_live_ORACLE_nll": 0.12099707634188235,
+          "gate_restored_live_ORACLE_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00013980309238377232,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 45,
+          "evicted_live_total_compute": 45
+        },
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 2.136410099628847,
+          "evicted_replay_nll": 2.136410099628847,
+          "gate_restored_replay_nll": 2.71863146557007,
+          "gate_restored_replay_nll_recovery": -0.5822213659412228,
+          "gate_restored_live_ORACLE_nll": 0.3615997221088037,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.1581264340953851,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37-0\n YX\n ZX\n WX.\n VX.\n",
+            "extracted_answer": "VX-37-0",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37- AX\n CX.\n DX.\n EX\n EX.",
+            "extracted_answer": "VX-37- AX",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            330,
+            72,
+            198,
+            340,
+            72,
+            30,
+            198,
+            422,
+            72,
+            30,
+            198,
+            14250,
+            198,
+            414,
+            72,
+            30
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            32,
+            198,
+            718,
+            72,
+            198,
+            1777,
+            72,
+            198,
+            408,
+            72,
+            30,
+            198,
+            717,
+            72,
+            30,
+            198
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": true,
+          "full_live_total_compute": 76,
+          "evicted_live_total_compute": 78
+        }
+      ]
+    },
+    {
+      "source": [
+        148,
+        149,
+        150,
+        151
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.10288161600474269,
+        "delta_nll_vs_clean": -0.0034590557450428494,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.0034590557450428494,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.00034864174726862985,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 44,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.10354557095561176,
+          "delta_nll_vs_clean": -0.002795100794173777,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0034590557450428494,
+            "nll_recovered": -0.0006639549508690723,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00010181724719586782,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.016853130636952825
+        },
+        "restore_up": {
+          "future_nll": 25.091788053512573,
+          "delta_nll_vs_clean": 24.98544738176279,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0034590557450428494,
+            "nll_recovered": -24.98890643750783,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 25.003540897369383,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.0743366599788053
+        },
+        "shift_gate": {
+          "future_nll": 0.10311159997945651,
+          "delta_nll_vs_clean": -0.003229071770329023,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0034590557450428494,
+            "nll_recovered": -0.0002299839747138266,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0011852410780193168,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.05336323875775578
+        },
+        "restore_ffn": {
+          "future_nll": 16.951726330071686,
+          "delta_nll_vs_clean": 16.845385658321902,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0034590557450428494,
+            "nll_recovered": -16.848844714066942,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 16.735879739467055,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.4617715679451067
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.10567362895235419,
+          "delta_nll_vs_clean": -0.0006670427974313498,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0034590557450428494,
+            "nll_recovered": -0.0027920129476114997,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00025477641008819774,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.017451474100667067
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.10184073352720588,
+          "delta_nll_vs_clean": -0.004499938222579658,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0034590557450428494,
+            "nll_recovered": 0.0010408824775368086,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0003509081007337045,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.025613615567139772
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: VX-56947\n\n\n\n\n\n0\n0\n0\n0\n",
+        "extracted_answer": "VX-56947",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.018464143477930604,
+            "gate_mean_sign_flip_frac": 0.006012047137174346,
+            "gate_max_relative_change": 0.05799798667430878,
+            "ffn_mean_relative_change": 0.020302203697197416,
+            "ffn_mean_sign_flip_frac": 0.00861797910748106,
+            "ffn_max_relative_change": 0.1111069768667221
+          },
+          {
+            "loop": 2,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.032213882967356985,
+            "gate_mean_sign_flip_frac": 0.010610701616149692,
+            "gate_max_relative_change": 0.13261312246322632,
+            "ffn_mean_relative_change": 0.03429009673929999,
+            "ffn_mean_sign_flip_frac": 0.01549090761126894,
+            "ffn_max_relative_change": 0.1929025799036026
+          },
+          {
+            "loop": 3,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.03204411523113253,
+            "gate_mean_sign_flip_frac": 0.010555887674193153,
+            "gate_max_relative_change": 0.09722840040922165,
+            "ffn_mean_relative_change": 0.028153125773480333,
+            "ffn_mean_sign_flip_frac": 0.015579686020359848,
+            "ffn_max_relative_change": 0.11149122565984726
+          },
+          {
+            "loop": 4,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.03312080394155628,
+            "gate_mean_sign_flip_frac": 0.010746559452386326,
+            "gate_max_relative_change": 0.10936605930328369,
+            "ffn_mean_relative_change": 0.031422979499135785,
+            "ffn_mean_sign_flip_frac": 0.016553474195075756,
+            "ffn_max_relative_change": 0.15595386922359467
+          }
+        ],
+        "total_positions": 4224,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.95,
+          "full_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.10584797749761492,
+          "evicted_replay_nll": 0.10584797749761492,
+          "gate_restored_replay_nll": 0.1092751510674134,
+          "gate_restored_replay_nll_recovery": -0.003427173569798478,
+          "gate_restored_live_ORACLE_nll": 0.12271223312709481,
+          "gate_restored_live_ORACLE_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.0003520459255469177,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 45,
+          "evicted_live_total_compute": 45
+        },
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 2.4051505672221536,
+          "evicted_replay_nll": 2.4051505672221536,
+          "gate_restored_replay_nll": 2.7199513134139126,
+          "gate_restored_replay_nll_recovery": -0.314800746191759,
+          "gate_restored_live_ORACLE_nll": 0.3589472389779985,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.033684987772653587,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37-0\n YX\n ZX\n WX.\n VX.\n",
+            "extracted_answer": "VX-37-0",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37-0\n YX\n ZX\n WX.\n VX.\n",
+            "extracted_answer": "VX-37-0",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            32,
+            198,
+            718,
+            72,
+            198,
+            1777,
+            72,
+            198,
+            408,
+            72,
+            30,
+            198,
+            717,
+            72,
+            30,
+            198
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            32,
+            198,
+            718,
+            72,
+            198,
+            1777,
+            72,
+            198,
+            408,
+            72,
+            30,
+            198,
+            717,
+            72,
+            30,
+            198
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 76,
+          "evicted_live_total_compute": 76
+        }
+      ]
+    },
+    {
+      "source": [
+        266,
+        267,
+        268,
+        269
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.10407271486474201,
+        "delta_nll_vs_clean": -0.002267956885043526,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.002267956885043526,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.0005239568573870201,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 44,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.10330240412149579,
+          "delta_nll_vs_clean": -0.003038267628289751,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.002267956885043526,
+            "nll_recovered": 0.0007703107432462247,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 8.791689263603076e-05,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.018093451956122986
+        },
+        "restore_up": {
+          "future_nll": 24.809239149093628,
+          "delta_nll_vs_clean": 24.702898477343844,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.002267956885043526,
+            "nll_recovered": -24.705166434228886,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 24.75749816894531,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.072253087912307
+        },
+        "shift_gate": {
+          "future_nll": 0.1076498485985212,
+          "delta_nll_vs_clean": 0.0013091768487356603,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.002267956885043526,
+            "nll_recovered": -0.0035771337337791864,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.000713635429247006,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.05210271073861584
+        },
+        "restore_ffn": {
+          "future_nll": 16.673074659518896,
+          "delta_nll_vs_clean": 16.566733987769112,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.002267956885043526,
+            "nll_recovered": -16.569001944654154,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 16.458618131652475,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.4662955760952283
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.10362859714077785,
+          "delta_nll_vs_clean": -0.0027120746090076864,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.002267956885043526,
+            "nll_recovered": 0.00044411772396416027,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00012423340879195167,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.01814269691782432
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.10251896505942568,
+          "delta_nll_vs_clean": -0.0038217066903598607,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.002267956885043526,
+            "nll_recovered": 0.0015537498053163346,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0002783752191135136,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.024782276062813417
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: VX-56947\n\n\n\n\n0\n0\n0\n0\n0",
+        "extracted_answer": "VX-56947",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.02320734917355532,
+            "gate_mean_sign_flip_frac": 0.007599970063672641,
+            "gate_max_relative_change": 0.10755254328250885,
+            "ffn_mean_relative_change": 0.026217018034389406,
+            "ffn_mean_sign_flip_frac": 0.01091327089251894,
+            "ffn_max_relative_change": 0.10701864212751389
+          },
+          {
+            "loop": 2,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.03252001617996333,
+            "gate_mean_sign_flip_frac": 0.010657108512091465,
+            "gate_max_relative_change": 0.08464279025793076,
+            "ffn_mean_relative_change": 0.0325290374581307,
+            "ffn_mean_sign_flip_frac": 0.015625924775094696,
+            "ffn_max_relative_change": 0.11226897686719894
+          },
+          {
+            "loop": 3,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.03620425933199427,
+            "gate_mean_sign_flip_frac": 0.011878484210628261,
+            "gate_max_relative_change": 0.10779145359992981,
+            "ffn_mean_relative_change": 0.03210159466570159,
+            "ffn_mean_sign_flip_frac": 0.017561479048295456,
+            "ffn_max_relative_change": 0.08525488525629044
+          },
+          {
+            "loop": 4,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.03827206363414668,
+            "gate_mean_sign_flip_frac": 0.012395013161784102,
+            "gate_max_relative_change": 0.12301148474216461,
+            "ffn_mean_relative_change": 0.03682419068751518,
+            "ffn_mean_sign_flip_frac": 0.019108627781723484,
+            "ffn_max_relative_change": 0.13312380015850067
+          }
+        ],
+        "total_positions": 4224,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.95,
+          "full_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.1076757698203437,
+          "evicted_replay_nll": 0.1076757698203437,
+          "gate_restored_replay_nll": 0.11001505714375526,
+          "gate_restored_replay_nll_recovery": -0.002339287323411557,
+          "gate_restored_live_ORACLE_nll": 0.12334480981808156,
+          "gate_restored_live_ORACLE_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00029174045298532294,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 45,
+          "evicted_live_total_compute": 45
+        },
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 2.716224470618181,
+          "evicted_replay_nll": 2.716224470618181,
+          "gate_restored_replay_nll": 2.6933269710745664,
+          "gate_restored_replay_nll_recovery": 0.02289749954361442,
+          "gate_restored_live_ORACLE_nll": 0.36360340191749857,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.010424864415432467,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37-0\n YX\n ZX\n WX.\n VX.\n",
+            "extracted_answer": "VX-37-0",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37- VX- VX- VX\n VX. VX. V",
+            "extracted_answer": "VX-37- VX- VX- VX",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            717,
+            72,
+            29,
+            717,
+            72,
+            29,
+            717,
+            72,
+            198,
+            717,
+            72,
+            30,
+            717,
+            72,
+            30,
+            717
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            32,
+            198,
+            718,
+            72,
+            198,
+            1777,
+            72,
+            198,
+            408,
+            72,
+            30,
+            198,
+            717,
+            72,
+            30,
+            198
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": true,
+          "full_live_total_compute": 76,
+          "evicted_live_total_compute": 77
+        }
+      ]
+    },
+    {
+      "source": [
+        342,
+        343,
+        344,
+        345
+      ],
+      "stratum": "main_position_hash",
+      "evict_fixed": {
+        "future_nll": 0.10538443281548097,
+        "delta_nll_vs_clean": -0.0009562389343045624,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.0009562389343045624,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.00048810658538513965,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 44,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.1044269002857618,
+          "delta_nll_vs_clean": -0.0019137714640237308,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0009562389343045624,
+            "nll_recovered": 0.0009575325297191684,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 7.416983797838838e-05,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.019916664821556133
+        },
+        "restore_up": {
+          "future_nll": 24.131705839931964,
+          "delta_nll_vs_clean": 24.02536516818218,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0009562389343045624,
+            "nll_recovered": -24.026321407116484,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 24.052020241320132,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.0720570941729504
+        },
+        "shift_gate": {
+          "future_nll": 0.10594173088902607,
+          "delta_nll_vs_clean": -0.0003989408607594641,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0009562389343045624,
+            "nll_recovered": -0.0005572980735450983,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 9.978804378079076e-05,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.04026669206084052
+        },
+        "restore_ffn": {
+          "future_nll": 16.707258614804594,
+          "delta_nll_vs_clean": 16.60091794305481,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0009562389343045624,
+            "nll_recovered": -16.601874181989114,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 16.507358718384058,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.4615070963271026
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.09941866596927866,
+          "delta_nll_vs_clean": -0.006922005780506876,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0009562389343045624,
+            "nll_recovered": 0.005965766846202314,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0004477265391415131,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.01891034612984213
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.106007708190009,
+          "delta_nll_vs_clean": -0.00033296355977653624,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0009562389343045624,
+            "nll_recovered": -0.0006232753745280262,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 6.693831950315144e-05,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.021089224245797872
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: VX-56947\n\n\n\n\n\n0\n0\n0\n0\n",
+        "extracted_answer": "VX-56947",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.0246689397291365,
+            "gate_mean_sign_flip_frac": 0.008186109371859911,
+            "gate_max_relative_change": 0.08582929521799088,
+            "ffn_mean_relative_change": 0.029190222098391547,
+            "ffn_mean_sign_flip_frac": 0.01158465761126894,
+            "ffn_max_relative_change": 0.09809695184230804
+          },
+          {
+            "loop": 2,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.03172413289554022,
+            "gate_mean_sign_flip_frac": 0.010396826322517662,
+            "gate_max_relative_change": 0.11515410244464874,
+            "ffn_mean_relative_change": 0.03057536267266242,
+            "ffn_mean_sign_flip_frac": 0.01572302616003788,
+            "ffn_max_relative_change": 0.11101466417312622
+          },
+          {
+            "loop": 3,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.033019617098475326,
+            "gate_mean_sign_flip_frac": 0.010864258150501304,
+            "gate_max_relative_change": 0.08618250489234924,
+            "ffn_mean_relative_change": 0.029647940144500215,
+            "ffn_mean_sign_flip_frac": 0.01625384706439394,
+            "ffn_max_relative_change": 0.08989851921796799
+          },
+          {
+            "loop": 4,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.03359693303443209,
+            "gate_mean_sign_flip_frac": 0.01095169140634508,
+            "gate_max_relative_change": 0.13234981894493103,
+            "ffn_mean_relative_change": 0.03241276845889815,
+            "ffn_mean_sign_flip_frac": 0.016891017104640152,
+            "ffn_max_relative_change": 0.13886487483978271
+          }
+        ],
+        "total_positions": 4224,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.95,
+          "full_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.11154599586734548,
+          "evicted_replay_nll": 0.11154599586734548,
+          "gate_restored_replay_nll": 0.10683744748821482,
+          "gate_restored_replay_nll_recovery": 0.004708548379130664,
+          "gate_restored_live_ORACLE_nll": 0.1044269002857618,
+          "gate_restored_live_ORACLE_depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 1,
+          "evicted_live_kl_to_clean": 0.0002494417405841887,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 45,
+          "evicted_live_total_compute": 45
+        },
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 2.5143709441646935,
+          "evicted_replay_nll": 2.5143709441646935,
+          "gate_restored_replay_nll": 2.688758758327458,
+          "gate_restored_replay_nll_recovery": -0.1743878141627646,
+          "gate_restored_live_ORACLE_nll": 0.36647884171688927,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.02257947901209718,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37-0\n YX\n ZX\n WX.\n VX.\n",
+            "extracted_answer": "VX-37-0",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37-0\n YX\n ZX\n WX.\n VX.\n",
+            "extracted_answer": "VX-37-0",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            32,
+            198,
+            718,
+            72,
+            198,
+            1777,
+            72,
+            198,
+            408,
+            72,
+            30,
+            198,
+            717,
+            72,
+            30,
+            198
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            32,
+            198,
+            718,
+            72,
+            198,
+            1777,
+            72,
+            198,
+            408,
+            72,
+            30,
+            198,
+            717,
+            72,
+            30,
+            198
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 76,
+          "evicted_live_total_compute": 76
+        }
+      ]
+    },
+    {
+      "source": [
+        193,
+        194,
+        195,
+        196
+      ],
+      "stratum": "oracle_evidence",
+      "evict_fixed": {
+        "future_nll": 0.10264249214669689,
+        "delta_nll_vs_clean": -0.0036981796030886444,
+        "relative_nll_recovery": {
+          "eviction_penalty": -0.0036981796030886444,
+          "nll_recovered": 0.0,
+          "fraction_recovered": null
+        },
+        "kl_to_clean": 0.00026007190249401904,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 44,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.10622065304778516,
+          "delta_nll_vs_clean": -0.00012001870200037401,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0036981796030886444,
+            "nll_recovered": -0.0035781609010882703,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 7.587613408759353e-05,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.016808860054879915
+        },
+        "restore_up": {
+          "future_nll": 24.45547616481781,
+          "delta_nll_vs_clean": 24.349135493068026,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0036981796030886444,
+            "nll_recovered": -24.352833672671114,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 24.410590445995332,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.0764095441614203
+        },
+        "shift_gate": {
+          "future_nll": 0.10074890796095133,
+          "delta_nll_vs_clean": -0.005591763788834206,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0036981796030886444,
+            "nll_recovered": 0.0018935841857455615,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.0007063266903287513,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.04737189204895527
+        },
+        "restore_ffn": {
+          "future_nll": 17.108582789683716,
+          "delta_nll_vs_clean": 17.002242117933932,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0036981796030886444,
+            "nll_recovered": -17.00594029753702,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 16.89973094416782,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.4894763523587962
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.10371792535297572,
+          "delta_nll_vs_clean": -0.0026227463968098164,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0036981796030886444,
+            "nll_recovered": -0.001075433206278828,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 9.69659170777959e-05,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.015635790476429094
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.10081590350018814,
+          "delta_nll_vs_clean": -0.005524768249597398,
+          "relative_nll_recovery": {
+            "eviction_penalty": -0.0036981796030886444,
+            "nll_recovered": 0.0018265886465087533,
+            "fraction_recovered": null
+          },
+          "kl_to_clean": 0.00025272940360991923,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.026398200035063466
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: VX-56947\n\n\n\n0\n0\n0\n0\n0\n",
+        "extracted_answer": "VX-56947",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.022331249905453824,
+            "gate_mean_sign_flip_frac": 0.007389457659111499,
+            "gate_max_relative_change": 0.059973184019327164,
+            "ffn_mean_relative_change": 0.025441664331910117,
+            "ffn_mean_sign_flip_frac": 0.010513768051609848,
+            "ffn_max_relative_change": 0.1198858842253685
+          },
+          {
+            "loop": 2,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.026503053977097752,
+            "gate_mean_sign_flip_frac": 0.008688514481918624,
+            "gate_max_relative_change": 0.060986053198575974,
+            "ffn_mean_relative_change": 0.026452361029276453,
+            "ffn_mean_sign_flip_frac": 0.012952399976325758,
+            "ffn_max_relative_change": 0.08393969386816025
+          },
+          {
+            "loop": 3,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.029170939758786874,
+            "gate_mean_sign_flip_frac": 0.00962405061132317,
+            "gate_max_relative_change": 0.09031509608030319,
+            "ffn_mean_relative_change": 0.025275723386033806,
+            "ffn_mean_sign_flip_frac": 0.014110218394886364,
+            "ffn_max_relative_change": 0.06752835214138031
+          },
+          {
+            "loop": 4,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.02905053420655542,
+            "gate_mean_sign_flip_frac": 0.009464316741893223,
+            "gate_max_relative_change": 0.10317408293485641,
+            "ffn_mean_relative_change": 0.027710211786942444,
+            "ffn_mean_sign_flip_frac": 0.01456613251657197,
+            "ffn_max_relative_change": 0.10964902490377426
+          }
+        ],
+        "total_positions": 4224,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.95,
+          "full_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.10948321655159816,
+          "evicted_replay_nll": 0.10948321655159816,
+          "gate_restored_replay_nll": 0.10460731005296112,
+          "gate_restored_replay_nll_recovery": 0.004875906498637048,
+          "gate_restored_live_ORACLE_nll": 0.12138356436043977,
+          "gate_restored_live_ORACLE_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.00010696396361709049,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 45,
+          "evicted_live_total_compute": 45
+        },
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 2.805916134954896,
+          "evicted_replay_nll": 2.805916134954896,
+          "gate_restored_replay_nll": 2.6819752263138072,
+          "gate_restored_replay_nll_recovery": 0.12394090864108875,
+          "gate_restored_live_ORACLE_nll": 0.35913543849019336,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.008496520137902053,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37-0\n YX\n ZX\n WX.\n VX.\n",
+            "extracted_answer": "VX-37-0",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37- AX\n CX. DX. EX. FX. Q",
+            "extracted_answer": "VX-37- AX",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            330,
+            72,
+            198,
+            340,
+            72,
+            30,
+            422,
+            72,
+            30,
+            414,
+            72,
+            30,
+            426,
+            72,
+            30,
+            1606
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            32,
+            198,
+            718,
+            72,
+            198,
+            1777,
+            72,
+            198,
+            408,
+            72,
+            30,
+            198,
+            717,
+            72,
+            30,
+            198
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": true,
+          "full_live_total_compute": 76,
+          "evicted_live_total_compute": 76
+        }
+      ]
+    },
+    {
+      "source": [
+        95,
+        96,
+        97,
+        98
+      ],
+      "stratum": "oracle_distractor",
+      "evict_fixed": {
+        "future_nll": 0.10733048286056146,
+        "delta_nll_vs_clean": 0.0009898111107759233,
+        "relative_nll_recovery": {
+          "eviction_penalty": 0.0009898111107759233,
+          "nll_recovered": 0.0,
+          "fraction_recovered": 0.0
+        },
+        "kl_to_clean": 0.0002522987036172708,
+        "depths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "total_depth": 44,
+        "patches": 0,
+        "mean_relative_patch": null
+      },
+      "restorations": {
+        "restore_gate": {
+          "future_nll": 0.1064154205378145,
+          "delta_nll_vs_clean": 7.474878802896101e-05,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0009898111107759233,
+            "nll_recovered": 0.0009150623227469623,
+            "fraction_recovered": 0.9244817650406403
+          },
+          "kl_to_clean": 5.822646310207347e-05,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.017836514165758148
+        },
+        "restore_up": {
+          "future_nll": 24.569957745075225,
+          "delta_nll_vs_clean": 24.46361707332544,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0009898111107759233,
+            "nll_recovered": -24.462627262214664,
+            "fraction_recovered": -24714.439953132223
+          },
+          "kl_to_clean": 24.47213331460953,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.0595163906354257
+        },
+        "shift_gate": {
+          "future_nll": 0.09871975257992745,
+          "delta_nll_vs_clean": -0.00762091916985809,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0009898111107759233,
+            "nll_recovered": 0.008610730280634013,
+            "fraction_recovered": 8.69936716903892
+          },
+          "kl_to_clean": 0.001861220601858804,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 0.05878432306395332
+        },
+        "restore_ffn": {
+          "future_nll": 17.01342682703398,
+          "delta_nll_vs_clean": 16.907086155284198,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0009898111107759233,
+            "nll_recovered": -16.90609634417342,
+            "fraction_recovered": -17080.12383385003
+          },
+          "kl_to_clean": 16.80240816771984,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 2112,
+          "mean_relative_patch": 1.4627344020777717
+        },
+        "gate_loops_1_2": {
+          "future_nll": 0.1042658198159188,
+          "delta_nll_vs_clean": -0.0020748519338667365,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0009898111107759233,
+            "nll_recovered": 0.00306466304464266,
+            "fraction_recovered": 3.096209985196305
+          },
+          "kl_to_clean": 0.00017029658225737877,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.016877062596022646
+        },
+        "gate_loops_3_4": {
+          "future_nll": 0.10383777786046267,
+          "delta_nll_vs_clean": -0.0025028938893228714,
+          "relative_nll_recovery": {
+            "eviction_penalty": 0.0009898111107759233,
+            "nll_recovered": 0.0034927050000987947,
+            "fraction_recovered": 3.5286581066571645
+          },
+          "kl_to_clean": 0.0002180615418751586,
+          "depths": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "total_depth": 44,
+          "patches": 1056,
+          "mean_relative_patch": 0.026892540213972978
+        }
+      },
+      "evicted_fixed_grade": {
+        "exact_match": true,
+        "generated_text": "Answer: VX-56947\n\n\n\n\n0\n0\n0\n0\n0",
+        "extracted_answer": "VX-56947",
+        "generated_tokens": 24
+      },
+      "gate_trace": {
+        "by_loop": [
+          {
+            "loop": 1,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.0168386671302318,
+            "gate_mean_sign_flip_frac": 0.005585305431767748,
+            "gate_max_relative_change": 0.04766323044896126,
+            "ffn_mean_relative_change": 0.018903244911295285,
+            "ffn_mean_sign_flip_frac": 0.00786428740530303,
+            "ffn_max_relative_change": 0.05805402621626854
+          },
+          {
+            "loop": 2,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.023207558124947052,
+            "gate_mean_sign_flip_frac": 0.00762653636378342,
+            "gate_max_relative_change": 0.07073403149843216,
+            "ffn_mean_relative_change": 0.02298619366025157,
+            "ffn_mean_sign_flip_frac": 0.011346990411931818,
+            "ffn_max_relative_change": 0.09089997410774231
+          },
+          {
+            "loop": 3,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.029594728784021838,
+            "gate_mean_sign_flip_frac": 0.009692652136987872,
+            "gate_max_relative_change": 0.16150948405265808,
+            "ffn_mean_relative_change": 0.02595231501794787,
+            "ffn_mean_sign_flip_frac": 0.014471805456912878,
+            "ffn_max_relative_change": 0.13388264179229736
+          },
+          {
+            "loop": 4,
+            "n_observations": 1056,
+            "gate_mean_relative_change": 0.028454245111347656,
+            "gate_mean_sign_flip_frac": 0.009195627527360833,
+            "gate_max_relative_change": 0.11405880004167557,
+            "ffn_mean_relative_change": 0.02669150683637285,
+            "ffn_mean_sign_flip_frac": 0.014152758049242424,
+            "ffn_max_relative_change": 0.097225122153759
+          }
+        ],
+        "total_positions": 4224,
+        "note": "Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"
+      },
+      "dynamic": [
+        {
+          "threshold": 0.95,
+          "full_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.11358087196713314,
+          "evicted_replay_nll": 0.11358087196713314,
+          "gate_restored_replay_nll": 0.10862658624537289,
+          "gate_restored_replay_nll_recovery": 0.0049542857217602515,
+          "gate_restored_live_ORACLE_nll": 0.12468508975580335,
+          "gate_restored_live_ORACLE_depths": [
+            4,
+            4,
+            4,
+            4,
+            3,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.0002155327489163028,
+          "full_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_grade": {
+            "exact_match": true,
+            "generated_text": "Answer: VX-56947\n\n",
+            "extracted_answer": "VX-56947",
+            "generated_tokens": 13
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            37,
+            38,
+            41,
+            36,
+            39,
+            198,
+            198,
+            0
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": false,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 45,
+          "evicted_live_total_compute": 45
+        },
+        {
+          "threshold": 0.85,
+          "full_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "evicted_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "depth_deltas": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "n_depth_changed": 0,
+          "sum_depth_delta": 0,
+          "evicted_live_nll": 0.9125488305464386,
+          "evicted_replay_nll": 0.9125488305464386,
+          "gate_restored_replay_nll": 2.7466207279707304,
+          "gate_restored_replay_nll_recovery": -1.8340718974242918,
+          "gate_restored_live_ORACLE_nll": 0.3648834272520617,
+          "gate_restored_live_ORACLE_depths": [
+            3,
+            4,
+            3,
+            4,
+            2,
+            4,
+            4,
+            4,
+            4,
+            4,
+            2
+          ],
+          "gate_restored_live_ORACLE_delta_depth_vs_evict": 0,
+          "evicted_live_kl_to_clean": 0.9699893280232914,
+          "full_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37-0\n YX\n ZX\n WX.\n VX.\n",
+            "extracted_answer": "VX-37-0",
+            "generated_tokens": 24
+          },
+          "evicted_live_grade": {
+            "exact_match": false,
+            "generated_text": "Answer: VX-37-0\n YX\n ZX\n WX.\n\n\n VX",
+            "extracted_answer": "VX-37-0",
+            "generated_tokens": 24
+          },
+          "evicted_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            32,
+            198,
+            718,
+            72,
+            198,
+            1777,
+            72,
+            198,
+            408,
+            72,
+            30,
+            198,
+            198,
+            198,
+            717,
+            72
+          ],
+          "full_live_greedy_ids": [
+            21350,
+            42,
+            717,
+            72,
+            29,
+            35,
+            39,
+            29,
+            32,
+            198,
+            718,
+            72,
+            198,
+            1777,
+            72,
+            198,
+            408,
+            72,
+            30,
+            198,
+            717,
+            72,
+            30,
+            198
+          ],
+          "evicted_fixed_correct": true,
+          "live_vs_fixed_correctness_changed": true,
+          "full_live_first_token": 21350,
+          "evicted_live_first_token": 21350,
+          "live_answer_changed": false,
+          "full_live_total_compute": 76,
+          "evicted_live_total_compute": 77
+        }
+      ]
+    }
+  ]
+}
