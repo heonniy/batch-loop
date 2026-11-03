@@ -32,9 +32,11 @@ class TrajectorySharingRunner(GateCausalRunner):
             # observe_initial() clears 'seen' for each generated query.
             if not all(self.cap.seen[:depth+1]):
                 raise RuntimeError("The recurrent observer missed a state")
-            H = self.cap.buf[:depth+1].detach().float().cpu().clone()
-            self._states.append(H)
-            self._exit_stats.append(self.exit_stats(H))
+            # Ouro's learned early-exit gate resides on GPU: compute its
+            # statistic BEFORE moving the observer state to CPU.
+            H_gpu = self.cap.buf[:depth+1].detach().clone()
+            self._exit_stats.append(self.exit_stats(H_gpu))
+            self._states.append(H_gpu.float().cpu().clone())
             self._logprob_trace.append(
                 F.log_softmax(logits[0,0].float(),dim=-1).detach().cpu())
         return logits, depth
