@@ -41,7 +41,7 @@ Main source windows: four position-hash-stratified label-blind Context windows, 
 
 ## Dynamic depth: actual gate re-evaluation, not fake replay
 
-Clean-only calibration UIDs are disjoint from evaluation UIDs. Each model chooses two thresholds from a frozen grid, targeting approximately 25% and 60% of clean generated queries exiting early. Report actual depth histogram and fail closed if neither choice yields a useful distribution.
+Clean-only calibration UIDs are disjoint from evaluation UIDs. Calibration replays full-depth queries with the exact same LAST-sharing historical-KV read map used for evaluation; it gathers exit statistics without performing eviction. Each model chooses two thresholds from a frozen grid, targeting approximately 25% and 60% of clean generated queries exiting early. Report actual depth histogram and fail closed if neither choice yields a useful distribution.
 
 Ouro: native cumulative Q-exit gate, q in [0.25,0.40,0.55,0.70,0.85,0.95], min_depth=2.
 Huginn: cosine-distance criterion with FP32 arithmetic over BF16 states, theta in [1e-4,2.5e-4,5e-4,1e-3,2e-3,4e-3,8e-3,1.6e-2], min_depth=2. This is a **FP32 diagnostic**; do not call it literal BF16 native exit.
