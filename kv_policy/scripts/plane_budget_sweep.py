@@ -433,10 +433,9 @@ def _evaluate_gsm(bb, tok, eos, job, cfg, raw, meta):
             m[:, P:] = plane_map_from_sets({c - P: v for c, v in sets_gen.items()}, R, T - P)
         return m
 
-    ks = sorted({max(1, int(round(0.1 * R))), 1, max(1, R // 2)})
-    arms = []
+    ks = sorted({1, max(1, int(round(0.1 * R)))})
+    arms = [("last1@prompt", [], pmap(plane_sets("last", content, R, 1)))]
     for k in ks:
-        arms.append((f"last{k}@prompt", [], pmap(plane_sets("last", content, R, k))))
         arms.append((f"last{k}@prompt+generated", [], pmap(plane_sets("last", content, R, k), plane_sets("last", gen_cols, R, k))))
     arms.append(("first1@prompt+generated", [], pmap({c: np.array([0]) for c in content},
                                                    {c: np.array([0]) for c in gen_cols})))
