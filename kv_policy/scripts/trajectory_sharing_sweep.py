@@ -193,6 +193,10 @@ def evaluate_doc(bb,tok,eos,doc,m):
     clean={}
     fixed_greedy={}
     clean_dyn={}
+    # Native Coda/LM-head is evaluated at these FORCED query depths;
+    # NLL damage always compares Full/Shared at the same depth.
+    depth_probe_values=[8,16,24,32] if bb.family=="huginn" else [2,3,4]
+    clean_depth_probe={}
     for policy,pmap in policy_maps.items():
         clean[policy]=r.trajectory_arm(plane_map=pmap)
         if policy=="full":
@@ -215,6 +219,11 @@ def evaluate_doc(bb,tok,eos,doc,m):
             clean_dyn[policy][q]={"live":live,"replay_max_gap":parity,
                                  "greedy":gg,"grade":gold_score(tok,doc["gold_answer"],gg["token_ids"])}
         clean[policy]["repeat_full_logits_floor"]=floor
+        clean_depth_probe[policy]={}
+        for d in depth_probe_values:
+            arm=(clean[policy] if d==bb.R else
+                 r.trajectory_arm(plane_map=pmap,forced_depths=[d]*len(r.ref_ids)))
+            clean_depth_probe[policy][d]=arm
 
     out={"uid":doc["uid"],"model":m["model"],"dataset":m["dataset"],
          "full_prompt_tokens":r.P,"n_gold_targets":len(frozen_targets),
@@ -257,11 +266,25 @@ def evaluate_doc(bb,tok,eos,doc,m):
                 "eviction_fixed_penalty":ev["nll_future"]-base["nll_future"],
                 "fixed_kl":kval,
                 "recurrent_trajectory":_trace_shift(base,ev),
+                "depth_probe":{},
                 "evicted_fixed_greedy_ids":evgreedy[policy],
                 "evicted_fixed_grade":gold_score(tok,doc["gold_answer"],evgreedy[policy]),
                 "clean_fixed_grade":out["clean"][policy]["fixed_grade"],
                 "dynamic":{},
             }
+            for d in depth_probe_values:
+                pe=(ev if d==bb.R else
+                    r.trajectory_arm(sources=src,plane_map=pmap,
+                                     forced_depths=[d]*len(r.ref_ids)))
+                pc=clean_depth_probe[policy][d]
+                _assert_first(pc,pe)
+                st=_trace_shift(pc,pe)
+                row["by_policy"][policy]["depth_probe"][str(d)]={
+                    "eviction_nll_penalty":pe["nll_future"]-pc["nll_future"],
+                    "eviction_kl":r.full_vs_evicted_kl(pc,pe)["mean_scored_kl"],
+                    "mean_final_trajectory_error":statistics.mean(
+                        st["per_query_final_relative_error"]),
+                    "per_query_final_trajectory_error":st["per_query_final_relative_error"]}
             for q in thresholds:
                 spec=_spec(bb,q)
                 live=r.trajectory_arm(sources=src,plane_map=pmap,spec=spec,dynamic=True)
@@ -304,6 +327,13 @@ def evaluate_doc(bb,tok,eos,doc,m):
             clean["full"]["nll_future"],evfixed["full"]["nll_future"],
             clean[policies[1]]["nll_future"],evfixed[policies[1]]["nll_future"])
         row["fixed_eviction_sharing_interaction"]=inter
+        row["depth_probe_interaction"]={str(d):{
+            "full_penalty":row["by_policy"]["full"]["depth_probe"][str(d)]["eviction_nll_penalty"],
+            "shared_penalty":row["by_policy"][policies[1]]["depth_probe"][str(d)]["eviction_nll_penalty"],
+            "shared_minus_full_penalty":(
+                row["by_policy"][policies[1]]["depth_probe"][str(d)]["eviction_nll_penalty"]-
+                row["by_policy"]["full"]["depth_probe"][str(d)]["eviction_nll_penalty"])}
+            for d in depth_probe_values}
         row["eviction_trajectory_sharing_interaction"]={
             "mean_relative_error_shared_minus_full_by_loop":(
                 np.array(row["by_policy"][policies[1]]["recurrent_trajectory"]["mean_relative_error_by_loop"])
@@ -361,6 +391,10 @@ def analyze(a):
                  "shared_eviction_penalty":dd["shared_eviction_penalty"],
                  "interaction":dd["sharing_minus_full_eviction_penalty"],
                  "clean_sharing_shift":dd["sharing_baseline_nll_shift"]}
+            for d,rr in c["depth_probe_interaction"].items():
+                row["depth"+d+"_interaction"]=rr["shared_minus_full_penalty"]
+                row["depth"+d+"_full_penalty"]=rr["full_penalty"]
+                row["depth"+d+"_shared_penalty"]=rr["shared_penalty"]
             for policy in ("full",sh):
                 arm=c["by_policy"][policy]
                 row[policy+"_fixed_kl"]=arm["fixed_kl"]["mean_scored_kl"]
@@ -413,6 +447,13 @@ def analyze(a):
                       " | "+f"{mean(grp,'interaction'):.4g}"+
                       " | "+f"{mean(grp,'full_mean_trajectory_error'):.4g}"+
                       " | "+f"{mean(grp,m['shared_policy']+'_mean_trajectory_error'):.4g} |")
+    report+=["","## Fixed-depth recurrent damage curve (equal depth within each policy)",
+             "| forced depth | Full eviction ΔNLL | Shared eviction ΔNLL | Interaction |",
+             "|---|---:|---:|---:|"]
+    for d in ([8,16,24,32] if m["family"]=="huginn" else [2,3,4]):
+        report.append(f"| {d} | {mean(rows,'depth'+str(d)+'_full_penalty'):.4g} | "
+                      f"{mean(rows,'depth'+str(d)+'_shared_penalty'):.4g} | "
+                      f"{mean(rows,'depth'+str(d)+'_interaction'):.4g} |")
     report+=["","## Native exit conditions (clean-calibrated, same threshold for both policies)"]
     for j,th in enumerate(m["thresholds"]["selected"]):
         report+=["",f"Threshold {th['threshold']}; CLEAN pooled early fraction {th['early_fraction']:.3f}; saturated={th['saturated']}",
