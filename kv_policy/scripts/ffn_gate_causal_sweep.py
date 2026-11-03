@@ -36,7 +36,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from kvp.depth_eviction_probe import DepthProbeSpec
-from kvp.ffn_gate_causal import GateCausalRunner, nll_recovery, paired_logit_kl
+from kvp.ffn_gate_causal import GateCausalRunner, nll_recovery, paired_logit_kl, gate_trace_comparison
 
 MODELS = ("huginn-0125", "ouro-2.6b", "ouro-1.4b")
 DATASETS = ("controlled_retrieval", "hotpotqa_distractor")
@@ -71,15 +71,6 @@ def load_v5_jobs(model, dataset):
 def last_plane_map(r):
     """Every historical recurrent read uses that source's LAST plane."""
     return np.full((r.R, r.T), r.R-1, dtype=np.int64)
-
-
-def _make_run(model, doc, greedy_tokens):
-    from kvp.models import eos_ids, load, make_runner
-    from loopzip_failure_screen import make_prompt
-    _, tok, mdl = load(model)
-    # Creation of one model per request is for calibration alone.
-    # Execution reuses the loaded model through load_backbone.
-    raise RuntimeError("Use load_backbone() to avoid repeated checkpoint loads")
 
 
 def load_backbone(model):
@@ -285,6 +276,7 @@ def evaluate_doc(bb,tok,eos,doc,manifest):
         src=cand["positions"]
         ev=r.run_gate_arm(sources=src,spec=r.spec,plane_map=last)
         restore={}
+        trace_diff=gate_trace_comparison(clean["ffn_trace"],ev["ffn_trace"],bb.family)
         for mode in ("restore_gate","restore_up","shift_gate","restore_ffn"):
             cur=r.run_gate_arm(sources=src,spec=r.spec,plane_map=last,
                                mode=mode,reference=clean["ffn_trace"])
@@ -300,6 +292,7 @@ def evaluate_doc(bb,tok,eos,doc,manifest):
         causal={"source":src,"stratum":cand["stratum"],"evict_fixed":arm_summary(clean,ev,ev),
                 "restorations":restore,
                 "evicted_fixed_grade":gold_score(tok,gold,ev_fixed_greedy),
+                "gate_trace":trace_diff,
                 "dynamic":[]}
         for q in manifest["thresholds"]["selected"]:
             k=str(q["threshold"])
@@ -311,6 +304,11 @@ def evaluate_doc(bb,tok,eos,doc,manifest):
             eg=r.run_gate_arm(sources=src,spec=spec,forced_depths=fl["depths"],
                                plane_map=last,mode="restore_gate",
                                reference=fl["ffn_trace"])
+            # Diagnostic ORACLE: restoring gates from the clean FULL-FIXED
+            # path at every depth, then letting the native exit gate re-decide.
+            # This is not a deployable intervention or pure mediation estimate.
+            egl=r.run_gate_arm(sources=src,spec=spec,dynamic=True,plane_map=last,
+                                mode="restore_gate",reference=clean["ffn_trace"])
             gd=r.greedy_dynamic(sources=src,spec=spec,max_new=manifest["greedy_tokens"],
                                  eos_ids=eos,plane_map=last)
             # full_live and evicted_live may have different generated KV and
@@ -325,6 +323,9 @@ def evaluate_doc(bb,tok,eos,doc,manifest):
                 "evicted_replay_nll":er["nll_future"],
                 "gate_restored_replay_nll":eg["nll_future"],
                 "gate_restored_replay_nll_recovery":er["nll_future"]-eg["nll_future"],
+                "gate_restored_live_ORACLE_nll":egl["nll_future"],
+                "gate_restored_live_ORACLE_depths":egl["depths"],
+                "gate_restored_live_ORACLE_delta_depth_vs_evict":sum(a!=b for a,b in zip(egl["depths"],el["depths"])),
                 "evicted_live_kl_to_clean":paired_logit_kl(fl["logprobs"],el["logprobs"])["mean_future_kl"],
                 "full_live_grade":full_dyn[k]["grade"],
                 "evicted_live_grade":gold_score(tok,gold,gd["token_ids"]),
@@ -383,7 +384,9 @@ def analyze(a):
         for c in d["candidates"]:
             rec={"uid":uid,"model":manifest["model"],"dataset":manifest["dataset"],
                  "stratum":c["stratum"],"source":c["source"],
-                 "eviction_penalty":c["evict_fixed"]["relative_nll_recovery"]["eviction_penalty"]}
+                 "eviction_penalty":c["evict_fixed"]["relative_nll_recovery"]["eviction_penalty"],
+                 "gate_trace_peak_relative":max((x.get("gate_max_relative_change",0.0)
+                    for x in c.get("gate_trace",{}).get("by_loop",[])),default=0.0)}
             for name,x in c["restorations"].items():
                 rec["recovery_"+name]=x["relative_nll_recovery"]["nll_recovered"]
                 rec["fraction_"+name]=x["relative_nll_recovery"]["fraction_recovered"]
@@ -392,6 +395,7 @@ def analyze(a):
                 rec[f"nll_live_{j}"]=x["evicted_live_nll"]
                 rec[f"nll_replay_{j}"]=x["evicted_replay_nll"]
                 rec[f"nll_gate_replay_{j}"]=x["gate_restored_replay_nll"]
+                rec[f"n_gate_restored_live_exit_changes_{j}"]=x["gate_restored_live_ORACLE_delta_depth_vs_evict"]
                 rec[f"answer_changed_{j}"]=x["live_answer_changed"]
                 rec[f"full_live_correct_{j}"]=x["full_live_grade"]["exact_match"]
                 rec[f"evict_live_correct_{j}"]=x["evicted_live_grade"]["exact_match"]
