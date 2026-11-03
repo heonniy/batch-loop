@@ -1,0 +1,55 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+{
+  "selected": [
+    {
+      "threshold": 0.8,
+      "mean_depth": 3.75,
+      "early_fraction": 0.25,
+      "distinct_depths": 2,
+      "hist": {
+        "3": 11,
+        "4": 33
+      },
+      "target_early_fraction": 0.25,
+      "saturated": false
+    },
+    {
+      "threshold": 0.7,
+      "mean_depth": 3.25,
+      "early_fraction": 0.75,
+      "distinct_depths": 2,
+      "hist": {
+        "3": 33,
+        "4": 11
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false
+    }
+  ],
+  "n_observations": {
+    "full": 22,
+    "first_last": 22
+  }
+}
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+done controlled-20261031-00002
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+{
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "shared_policy": "first_last",
+  "completed_prompts": 1,
+  "expected_prompts": 1,
+  "n_source_windows": 6,
+  "missing": [],
+  "errors": [],
+  "complete": true,
+  "status": "EXPLORATORY: no physical HBM savings or loop-specific causal claim"
+}
+
+real	7m0.425s
+user	7m44.276s
+sys	0m19.675s

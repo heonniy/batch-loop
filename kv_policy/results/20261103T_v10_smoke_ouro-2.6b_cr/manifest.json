@@ -1,0 +1,196 @@
+{
+  "protocol": "full-vs-model-sharing-trajectory-exit-v10-20261103",
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "family": "ouro",
+  "calibration_uids": [
+    "controlled-20261031-00000",
+    "controlled-20261031-00001"
+  ],
+  "evaluation_uids": [
+    "controlled-20261031-00002"
+  ],
+  "n_cal": 2,
+  "n_eval": 1,
+  "source_width": 4,
+  "greedy_tokens": 24,
+  "shared_policy": "first_last",
+  "ouro_firstlast_semantics": "first_for_r1_last_for_r2_plus",
+  "code_sha": "9b6b0b9102d97234ec1411e8ae1f916bcd6b8c9c",
+  "policy_groups": [
+    "full",
+    "model_specific_shared"
+  ],
+  "notes": [
+    "FULL-depth untouched prefill, causal post-prefill Context eviction only",
+    "Huginn all historical recurrent query reads -> last source plane",
+    "Ouro query recurrence 1 reads source plane 1, recurrences >=2 read last",
+    "Current token always reads its own plane r; no lookahead into current token",
+    "Same source positions and frozen target token IDs in all arms",
+    "Source selection is position-hash blind; evidence/distractor oracle strata separate",
+    "Full-sized KV reference + read maps, not HBM or latency evidence",
+    "Dynamic threshold calibrated from both CLEAN KV policies with no eviction labels",
+    "Huginn FP32-cosine over BF16 model hidden states is diagnostic only"
+  ],
+  "thresholds": {
+    "family": "ouro",
+    "calibration_from": "full_and_shared_clean_fixed_depth",
+    "n_clean_query_observations": 44,
+    "min_depth": 2,
+    "cosine_arithmetic": null,
+    "selected": [
+      {
+        "threshold": 0.8,
+        "mean_depth": 3.75,
+        "early_fraction": 0.25,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 11,
+          "4": 33
+        },
+        "target_early_fraction": 0.25,
+        "saturated": false
+      },
+      {
+        "threshold": 0.7,
+        "mean_depth": 3.25,
+        "early_fraction": 0.75,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 33,
+          "4": 11
+        },
+        "target_early_fraction": 0.6,
+        "saturated": false
+      }
+    ],
+    "candidates": [
+      {
+        "threshold": 0.2,
+        "mean_depth": 2.2045454545454546,
+        "early_fraction": 0.9772727272727273,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 36,
+          "3": 7,
+          "4": 1
+        }
+      },
+      {
+        "threshold": 0.3,
+        "mean_depth": 2.227272727272727,
+        "early_fraction": 0.9772727272727273,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 35,
+          "3": 8,
+          "4": 1
+        }
+      },
+      {
+        "threshold": 0.4,
+        "mean_depth": 2.2954545454545454,
+        "early_fraction": 0.9545454545454546,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 33,
+          "3": 9,
+          "4": 2
+        }
+      },
+      {
+        "threshold": 0.5,
+        "mean_depth": 2.8181818181818183,
+        "early_fraction": 0.8409090909090909,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 15,
+          "3": 22,
+          "4": 7
+        }
+      },
+      {
+        "threshold": 0.6,
+        "mean_depth": 2.9545454545454546,
+        "early_fraction": 0.7954545454545454,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 11,
+          "3": 24,
+          "4": 9
+        }
+      },
+      {
+        "threshold": 0.7,
+        "mean_depth": 3.25,
+        "early_fraction": 0.75,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 33,
+          "4": 11
+        }
+      },
+      {
+        "threshold": 0.8,
+        "mean_depth": 3.75,
+        "early_fraction": 0.25,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 11,
+          "4": 33
+        }
+      },
+      {
+        "threshold": 0.85,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 44
+        }
+      },
+      {
+        "threshold": 0.9,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 44
+        }
+      },
+      {
+        "threshold": 0.95,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 44
+        }
+      },
+      {
+        "threshold": 0.98,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 44
+        }
+      },
+      {
+        "threshold": 0.995,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 44
+        }
+      }
+    ]
+  },
+  "calibration_observations_by_policy": {
+    "full": 22,
+    "first_last": 22
+  },
+  "code_sha_at_calibration": "9b6b0b9102d97234ec1411e8ae1f916bcd6b8c9c",
+  "execution_code_sha": "9b6b0b9102d97234ec1411e8ae1f916bcd6b8c9c"
+}

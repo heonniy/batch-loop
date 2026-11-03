@@ -1,0 +1,193 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.32it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.15it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:01,  1.04s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.28it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.20it/s]
+{
+  "selected": [
+    {
+      "threshold": 5.901813507080078e-05,
+      "mean_depth": 30.681818181818183,
+      "early_fraction": 0.22727272727272727,
+      "distinct_depths": 11,
+      "hist": {
+        "19": 1,
+        "21": 1,
+        "23": 1,
+        "24": 1,
+        "25": 3,
+        "26": 1,
+        "27": 2,
+        "29": 1,
+        "30": 2,
+        "31": 2,
+        "32": 51
+      },
+      "target_early_fraction": 0.25,
+      "saturated": false,
+      "anchor": "pooled",
+      "clean_early_fraction_by_policy": {
+        "full": 0.0,
+        "last": 0.45454545454545453
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "32": 33
+        },
+        "last": {
+          "19": 1,
+          "21": 1,
+          "23": 1,
+          "24": 1,
+          "25": 3,
+          "26": 1,
+          "27": 2,
+          "29": 1,
+          "30": 2,
+          "31": 2,
+          "32": 18
+        }
+      },
+      "saturated_policies": [
+        "full"
+      ]
+    },
+    {
+      "threshold": 0.00010836124420166016,
+      "mean_depth": 25.78787878787879,
+      "early_fraction": 0.5,
+      "distinct_depths": 12,
+      "hist": {
+        "15": 1,
+        "16": 4,
+        "17": 6,
+        "18": 3,
+        "19": 2,
+        "20": 8,
+        "21": 3,
+        "23": 2,
+        "24": 1,
+        "26": 2,
+        "28": 1,
+        "32": 33
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false,
+      "anchor": "pooled",
+      "clean_early_fraction_by_policy": {
+        "full": 0.0,
+        "last": 1.0
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "32": 33
+        },
+        "last": {
+          "15": 1,
+          "16": 4,
+          "17": 6,
+          "18": 3,
+          "19": 2,
+          "20": 8,
+          "21": 3,
+          "23": 2,
+          "24": 1,
+          "26": 2,
+          "28": 1
+        }
+      },
+      "saturated_policies": [
+        "full",
+        "last"
+      ]
+    },
+    {
+      "threshold": 0.00026405453681945803,
+      "mean_depth": 31.393939393939394,
+      "early_fraction": 0.30303030303030304,
+      "distinct_depths": 4,
+      "hist": {
+        "29": 4,
+        "30": 2,
+        "31": 4,
+        "32": 23
+      },
+      "target_early_fraction": 0.25,
+      "saturated": false,
+      "anchor": "full_only",
+      "clean_early_fraction_by_policy": {
+        "full": 0.30303030303030304,
+        "last": 1.0
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "29": 4,
+          "30": 2,
+          "31": 4,
+          "32": 23
+        },
+        "last": {
+          "13": 2,
+          "14": 9,
+          "15": 6,
+          "16": 5,
+          "17": 3,
+          "18": 2,
+          "19": 2,
+          "20": 2,
+          "21": 1,
+          "22": 1
+        }
+      },
+      "saturated_policies": [
+        "last"
+      ]
+    },
+    {
+      "threshold": 0.0003294616937637329,
+      "mean_depth": 30.424242424242426,
+      "early_fraction": 0.6363636363636364,
+      "distinct_depths": 6,
+      "hist": {
+        "27": 1,
+        "28": 4,
+        "29": 4,
+        "30": 7,
+        "31": 5,
+        "32": 12
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false,
+      "anchor": "full_only",
+      "clean_early_fraction_by_policy": {
+        "full": 0.6363636363636364,
+        "last": 1.0
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "27": 1,
+          "28": 4,
+          "29": 4,
+          "30": 7,
+          "31": 5,
+          "32": 12
+        },
+        "last": {
+          "13": 7,
+          "14": 7,
+          "15": 6,
+          "16": 5,
+          "17": 3,
+          "18": 3,
+          "20": 1,
+          "21": 1
+        }
+      },
+      "saturated_policies": [
+        "last"
+      ]
+    }
+  ],
+  "n_observations": {
+    "full": 33,
+    "last": 33
+  }
+}

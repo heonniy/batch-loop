@@ -1,0 +1,98 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+{
+  "selected": [
+    {
+      "threshold": 0.8,
+      "mean_depth": 3.9545454545454546,
+      "early_fraction": 0.045454545454545456,
+      "distinct_depths": 2,
+      "hist": {
+        "3": 3,
+        "4": 63
+      },
+      "target_early_fraction": 0.25,
+      "saturated": false,
+      "anchor": "pooled",
+      "clean_early_fraction_by_policy": {
+        "full": 0.0,
+        "first_last": 0.09090909090909091
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "4": 33
+        },
+        "first_last": {
+          "3": 3,
+          "4": 30
+        }
+      },
+      "saturated_policies": [
+        "full"
+      ]
+    },
+    {
+      "threshold": 0.7,
+      "mean_depth": 3.242424242424242,
+      "early_fraction": 0.7575757575757576,
+      "distinct_depths": 2,
+      "hist": {
+        "3": 50,
+        "4": 16
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false,
+      "anchor": "pooled",
+      "clean_early_fraction_by_policy": {
+        "full": 0.5151515151515151,
+        "first_last": 1.0
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "3": 17,
+          "4": 16
+        },
+        "first_last": {
+          "3": 33
+        }
+      },
+      "saturated_policies": [
+        "first_last"
+      ]
+    },
+    {
+      "threshold": 0.6,
+      "mean_depth": 3.3333333333333335,
+      "early_fraction": 0.6666666666666666,
+      "distinct_depths": 2,
+      "hist": {
+        "3": 22,
+        "4": 11
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false,
+      "anchor": "full_only",
+      "clean_early_fraction_by_policy": {
+        "full": 0.6666666666666666,
+        "first_last": 1.0
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "3": 22,
+          "4": 11
+        },
+        "first_last": {
+          "2": 10,
+          "3": 23
+        }
+      },
+      "saturated_policies": [
+        "first_last"
+      ]
+    }
+  ],
+  "n_observations": {
+    "full": 33,
+    "first_last": 33
+  }
+}

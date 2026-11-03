@@ -1,0 +1,181 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.13s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.18s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.17s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.19it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.04it/s]
+{
+  "selected": [
+    {
+      "threshold": 5.829334259033203e-05,
+      "mean_depth": 29.81578947368421,
+      "early_fraction": 0.2894736842105263,
+      "distinct_depths": 11,
+      "hist": {
+        "16": 1,
+        "18": 1,
+        "21": 1,
+        "22": 1,
+        "23": 1,
+        "26": 1,
+        "27": 1,
+        "28": 2,
+        "29": 1,
+        "31": 1,
+        "32": 27
+      },
+      "target_early_fraction": 0.25,
+      "saturated": false,
+      "anchor": "pooled",
+      "clean_early_fraction_by_policy": {
+        "full": 0.0,
+        "last": 0.5789473684210527
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "32": 19
+        },
+        "last": {
+          "16": 1,
+          "18": 1,
+          "21": 1,
+          "22": 1,
+          "23": 1,
+          "26": 1,
+          "27": 1,
+          "28": 2,
+          "29": 1,
+          "31": 1,
+          "32": 8
+        }
+      },
+      "saturated_policies": [
+        "full"
+      ]
+    },
+    {
+      "threshold": 0.0001,
+      "mean_depth": 25.57894736842105,
+      "early_fraction": 0.4473684210526316,
+      "distinct_depths": 9,
+      "hist": {
+        "14": 2,
+        "15": 4,
+        "16": 1,
+        "17": 4,
+        "19": 3,
+        "21": 1,
+        "24": 1,
+        "26": 1,
+        "32": 21
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false,
+      "anchor": "pooled",
+      "clean_early_fraction_by_policy": {
+        "full": 0.0,
+        "last": 0.8947368421052632
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "32": 19
+        },
+        "last": {
+          "14": 2,
+          "15": 4,
+          "16": 1,
+          "17": 4,
+          "19": 3,
+          "21": 1,
+          "24": 1,
+          "26": 1,
+          "32": 2
+        }
+      },
+      "saturated_policies": [
+        "full"
+      ]
+    },
+    {
+      "threshold": 0.00018330931663513184,
+      "mean_depth": 30.894736842105264,
+      "early_fraction": 0.42105263157894735,
+      "distinct_depths": 5,
+      "hist": {
+        "25": 1,
+        "27": 1,
+        "30": 3,
+        "31": 3,
+        "32": 11
+      },
+      "target_early_fraction": 0.25,
+      "saturated": false,
+      "anchor": "full_only",
+      "clean_early_fraction_by_policy": {
+        "full": 0.42105263157894735,
+        "last": 0.9473684210526315
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "25": 1,
+          "27": 1,
+          "30": 3,
+          "31": 3,
+          "32": 11
+        },
+        "last": {
+          "13": 4,
+          "14": 4,
+          "15": 2,
+          "16": 2,
+          "17": 3,
+          "19": 1,
+          "21": 2,
+          "32": 1
+        }
+      }
+    },
+    {
+      "threshold": 0.0002111107110977173,
+      "mean_depth": 30.263157894736842,
+      "early_fraction": 0.631578947368421,
+      "distinct_depths": 6,
+      "hist": {
+        "24": 1,
+        "26": 1,
+        "29": 4,
+        "30": 1,
+        "31": 5,
+        "32": 7
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false,
+      "anchor": "full_only",
+      "clean_early_fraction_by_policy": {
+        "full": 0.631578947368421,
+        "last": 0.9473684210526315
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "24": 1,
+          "26": 1,
+          "29": 4,
+          "30": 1,
+          "31": 5,
+          "32": 7
+        },
+        "last": {
+          "13": 5,
+          "14": 4,
+          "15": 3,
+          "16": 2,
+          "17": 1,
+          "19": 1,
+          "20": 2,
+          "32": 1
+        }
+      }
+    }
+  ],
+  "n_observations": {
+    "full": 19,
+    "last": 19
+  }
+}

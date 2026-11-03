@@ -1,0 +1,12 @@
+{
+  "model": "ouro-2.6b",
+  "dataset": "hotpotqa_distractor",
+  "shared_policy": "first_last",
+  "completed_prompts": 5,
+  "expected_prompts": 5,
+  "n_source_windows": 30,
+  "missing": [],
+  "errors": [],
+  "complete": true,
+  "status": "EXPLORATORY: no physical HBM savings or loop-specific causal claim"
+}

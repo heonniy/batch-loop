@@ -1,0 +1,383 @@
+{
+  "protocol": "full-vs-model-sharing-trajectory-exit-v10-20261103",
+  "model": "ouro-1.4b",
+  "dataset": "controlled_retrieval",
+  "family": "ouro",
+  "calibration_uids": [
+    "controlled-20261031-00000",
+    "controlled-20261031-00001",
+    "controlled-20261031-00002"
+  ],
+  "evaluation_uids": [
+    "controlled-20261031-00003",
+    "controlled-20261031-00004",
+    "controlled-20261031-00005",
+    "controlled-20261031-00006",
+    "controlled-20261031-00007"
+  ],
+  "n_cal": 3,
+  "n_eval": 5,
+  "source_width": 4,
+  "greedy_tokens": 24,
+  "shared_policy": "first_last",
+  "ouro_firstlast_semantics": "first_for_r1_last_for_r2_plus",
+  "code_sha": "cc4a30f4e35ecafb18649a49a7732fe92e2e6faa",
+  "policy_groups": [
+    "full",
+    "model_specific_shared"
+  ],
+  "notes": [
+    "FULL-depth untouched prefill, causal post-prefill Context eviction only",
+    "Huginn all historical recurrent query reads -> last source plane",
+    "Ouro query recurrence 1 reads source plane 1, recurrences >=2 read last",
+    "Current token always reads its own plane r; no lookahead into current token",
+    "Same source positions and frozen target token IDs in all arms",
+    "Source selection is position-hash blind; evidence/distractor oracle strata separate",
+    "Full-sized KV reference + read maps, not HBM or latency evidence",
+    "Dynamic threshold calibrated from both CLEAN KV policies with no eviction labels",
+    "Huginn FP32-cosine over BF16 model hidden states is diagnostic only"
+  ],
+  "thresholds": {
+    "family": "ouro",
+    "calibration_from": "full_and_shared_clean_fixed_depth",
+    "n_clean_query_observations": 66,
+    "min_depth": 2,
+    "cosine_arithmetic": null,
+    "selected": [
+      {
+        "threshold": 0.8,
+        "mean_depth": 3.9545454545454546,
+        "early_fraction": 0.045454545454545456,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 3,
+          "4": 63
+        },
+        "target_early_fraction": 0.25,
+        "saturated": false,
+        "anchor": "pooled",
+        "clean_early_fraction_by_policy": {
+          "full": 0.0,
+          "first_last": 0.09090909090909091
+        },
+        "clean_hist_by_policy": {
+          "full": {
+            "4": 33
+          },
+          "first_last": {
+            "3": 3,
+            "4": 30
+          }
+        },
+        "saturated_policies": [
+          "full"
+        ]
+      },
+      {
+        "threshold": 0.7,
+        "mean_depth": 3.242424242424242,
+        "early_fraction": 0.7575757575757576,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 50,
+          "4": 16
+        },
+        "target_early_fraction": 0.6,
+        "saturated": false,
+        "anchor": "pooled",
+        "clean_early_fraction_by_policy": {
+          "full": 0.5151515151515151,
+          "first_last": 1.0
+        },
+        "clean_hist_by_policy": {
+          "full": {
+            "3": 17,
+            "4": 16
+          },
+          "first_last": {
+            "3": 33
+          }
+        },
+        "saturated_policies": [
+          "first_last"
+        ]
+      },
+      {
+        "threshold": 0.6,
+        "mean_depth": 3.3333333333333335,
+        "early_fraction": 0.6666666666666666,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 22,
+          "4": 11
+        },
+        "target_early_fraction": 0.6,
+        "saturated": false,
+        "anchor": "full_only",
+        "clean_early_fraction_by_policy": {
+          "full": 0.6666666666666666,
+          "first_last": 1.0
+        },
+        "clean_hist_by_policy": {
+          "full": {
+            "3": 22,
+            "4": 11
+          },
+          "first_last": {
+            "2": 10,
+            "3": 23
+          }
+        },
+        "saturated_policies": [
+          "first_last"
+        ]
+      }
+    ],
+    "candidates": [
+      {
+        "threshold": 0.2,
+        "mean_depth": 2.1666666666666665,
+        "early_fraction": 1.0,
+        "distinct_depths": 2,
+        "hist": {
+          "2": 55,
+          "3": 11
+        }
+      },
+      {
+        "threshold": 0.3,
+        "mean_depth": 2.272727272727273,
+        "early_fraction": 0.9242424242424242,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 53,
+          "3": 8,
+          "4": 5
+        }
+      },
+      {
+        "threshold": 0.4,
+        "mean_depth": 2.3333333333333335,
+        "early_fraction": 0.9090909090909091,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 50,
+          "3": 10,
+          "4": 6
+        }
+      },
+      {
+        "threshold": 0.5,
+        "mean_depth": 2.8181818181818183,
+        "early_fraction": 0.8636363636363636,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 21,
+          "3": 36,
+          "4": 9
+        }
+      },
+      {
+        "threshold": 0.6,
+        "mean_depth": 3.015151515151515,
+        "early_fraction": 0.8333333333333334,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 10,
+          "3": 45,
+          "4": 11
+        }
+      },
+      {
+        "threshold": 0.7,
+        "mean_depth": 3.242424242424242,
+        "early_fraction": 0.7575757575757576,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 50,
+          "4": 16
+        }
+      },
+      {
+        "threshold": 0.8,
+        "mean_depth": 3.9545454545454546,
+        "early_fraction": 0.045454545454545456,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 3,
+          "4": 63
+        }
+      },
+      {
+        "threshold": 0.85,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 66
+        }
+      },
+      {
+        "threshold": 0.9,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 66
+        }
+      },
+      {
+        "threshold": 0.95,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 66
+        }
+      },
+      {
+        "threshold": 0.98,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 66
+        }
+      },
+      {
+        "threshold": 0.995,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 66
+        }
+      }
+    ],
+    "full_only_candidates": [
+      {
+        "threshold": 0.2,
+        "mean_depth": 2.3333333333333335,
+        "early_fraction": 1.0,
+        "distinct_depths": 2,
+        "hist": {
+          "2": 22,
+          "3": 11
+        }
+      },
+      {
+        "threshold": 0.3,
+        "mean_depth": 2.5454545454545454,
+        "early_fraction": 0.8484848484848485,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 20,
+          "3": 8,
+          "4": 5
+        }
+      },
+      {
+        "threshold": 0.4,
+        "mean_depth": 2.6666666666666665,
+        "early_fraction": 0.8181818181818182,
+        "distinct_depths": 3,
+        "hist": {
+          "2": 17,
+          "3": 10,
+          "4": 6
+        }
+      },
+      {
+        "threshold": 0.5,
+        "mean_depth": 3.272727272727273,
+        "early_fraction": 0.7272727272727273,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 24,
+          "4": 9
+        }
+      },
+      {
+        "threshold": 0.6,
+        "mean_depth": 3.3333333333333335,
+        "early_fraction": 0.6666666666666666,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 22,
+          "4": 11
+        }
+      },
+      {
+        "threshold": 0.7,
+        "mean_depth": 3.484848484848485,
+        "early_fraction": 0.5151515151515151,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 17,
+          "4": 16
+        }
+      },
+      {
+        "threshold": 0.8,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 33
+        }
+      },
+      {
+        "threshold": 0.85,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 33
+        }
+      },
+      {
+        "threshold": 0.9,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 33
+        }
+      },
+      {
+        "threshold": 0.95,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 33
+        }
+      },
+      {
+        "threshold": 0.98,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 33
+        }
+      },
+      {
+        "threshold": 0.995,
+        "mean_depth": 4.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "4": 33
+        }
+      }
+    ],
+    "selection_note": "pooled Full+Shared 25/60% targets (plan) + Full-anchored 25/60% targets (E13); same thresholds for both policies"
+  },
+  "calibration_observations_by_policy": {
+    "full": 33,
+    "first_last": 33
+  },
+  "code_sha_at_calibration": "cc4a30f4e35ecafb18649a49a7732fe92e2e6faa",
+  "execution_code_sha": "cc4a30f4e35ecafb18649a49a7732fe92e2e6faa"
+}

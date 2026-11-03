@@ -1,0 +1,73 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:20<01:01, 20.63s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:40<00:40, 20.10s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [01:00<00:20, 20.09s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:06<00:00, 14.44s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:06<00:00, 16.56s/it]
+{
+  "selected": [
+    {
+      "threshold": 5.867362022399902e-05,
+      "mean_depth": 30.886363636363637,
+      "early_fraction": 0.20454545454545456,
+      "distinct_depths": 9,
+      "hist": {
+        "23": 1,
+        "24": 1,
+        "25": 2,
+        "26": 1,
+        "27": 1,
+        "28": 1,
+        "30": 1,
+        "31": 1,
+        "32": 35
+      },
+      "target_early_fraction": 0.25,
+      "saturated": false
+    },
+    {
+      "threshold": 0.00010689496994018557,
+      "mean_depth": 25.772727272727273,
+      "early_fraction": 0.5,
+      "distinct_depths": 11,
+      "hist": {
+        "15": 1,
+        "16": 4,
+        "17": 1,
+        "18": 3,
+        "19": 1,
+        "20": 6,
+        "21": 3,
+        "24": 1,
+        "26": 1,
+        "28": 1,
+        "32": 22
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false
+    }
+  ],
+  "n_observations": {
+    "full": 22,
+    "last": 22
+  }
+}
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:02,  1.40it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.29it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:02<00:00,  1.26it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.75it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:02<00:00,  1.55it/s]
+done controlled-20261031-00002
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+{
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "shared_policy": "last",
+  "completed_prompts": 1,
+  "expected_prompts": 1,
+  "n_source_windows": 6,
+  "missing": [],
+  "errors": [],
+  "complete": true,
+  "status": "EXPLORATORY: no physical HBM savings or loop-specific causal claim"
+}
+
+real	6m37.814s
+user	30m32.438s
+sys	34m42.224s

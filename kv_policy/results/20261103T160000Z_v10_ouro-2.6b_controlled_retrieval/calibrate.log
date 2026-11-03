@@ -1,0 +1,94 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+{
+  "selected": [
+    {
+      "threshold": 0.8,
+      "mean_depth": 3.787878787878788,
+      "early_fraction": 0.21212121212121213,
+      "distinct_depths": 2,
+      "hist": {
+        "3": 14,
+        "4": 52
+      },
+      "target_early_fraction": 0.25,
+      "saturated": false,
+      "anchor": "pooled",
+      "clean_early_fraction_by_policy": {
+        "full": 0.0,
+        "first_last": 0.42424242424242425
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "4": 33
+        },
+        "first_last": {
+          "3": 14,
+          "4": 19
+        }
+      },
+      "saturated_policies": [
+        "full"
+      ]
+    },
+    {
+      "threshold": 0.7,
+      "mean_depth": 3.242424242424242,
+      "early_fraction": 0.7575757575757576,
+      "distinct_depths": 2,
+      "hist": {
+        "3": 50,
+        "4": 16
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false,
+      "anchor": "pooled",
+      "clean_early_fraction_by_policy": {
+        "full": 0.5454545454545454,
+        "first_last": 0.9696969696969697
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "3": 18,
+          "4": 15
+        },
+        "first_last": {
+          "3": 32,
+          "4": 1
+        }
+      }
+    },
+    {
+      "threshold": 0.6,
+      "mean_depth": 3.3636363636363638,
+      "early_fraction": 0.6363636363636364,
+      "distinct_depths": 2,
+      "hist": {
+        "3": 21,
+        "4": 12
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false,
+      "anchor": "full_only",
+      "clean_early_fraction_by_policy": {
+        "full": 0.6363636363636364,
+        "first_last": 0.9696969696969697
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "3": 21,
+          "4": 12
+        },
+        "first_last": {
+          "2": 15,
+          "3": 17,
+          "4": 1
+        }
+      }
+    }
+  ],
+  "n_observations": {
+    "full": 33,
+    "first_last": 33
+  }
+}

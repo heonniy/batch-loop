@@ -1,0 +1,931 @@
+{
+  "protocol": "full-vs-model-sharing-trajectory-exit-v10-20261103",
+  "model": "huginn-0125",
+  "dataset": "hotpotqa_distractor",
+  "family": "huginn",
+  "calibration_uids": [
+    "hotpotqa-distractor-5a7249b85542990c210a40b9",
+    "hotpotqa-distractor-5a79c9395542994bb94570a2",
+    "hotpotqa-distractor-5a7bb7f2554299042af8f7b6"
+  ],
+  "evaluation_uids": [
+    "hotpotqa-distractor-5a7e4414554299495941995c",
+    "hotpotqa-distractor-5a83a7e15542992ef85e2347",
+    "hotpotqa-distractor-5a8ed10b5542995085b374a0",
+    "hotpotqa-distractor-5ab298fb554299449642c922",
+    "hotpotqa-distractor-5ab4341c55429942dd415ede"
+  ],
+  "n_cal": 3,
+  "n_eval": 5,
+  "source_width": 4,
+  "greedy_tokens": 24,
+  "shared_policy": "last",
+  "ouro_firstlast_semantics": "first_for_r1_last_for_r2_plus",
+  "code_sha": "cc4a30f4e35ecafb18649a49a7732fe92e2e6faa",
+  "policy_groups": [
+    "full",
+    "model_specific_shared"
+  ],
+  "notes": [
+    "FULL-depth untouched prefill, causal post-prefill Context eviction only",
+    "Huginn all historical recurrent query reads -> last source plane",
+    "Ouro query recurrence 1 reads source plane 1, recurrences >=2 read last",
+    "Current token always reads its own plane r; no lookahead into current token",
+    "Same source positions and frozen target token IDs in all arms",
+    "Source selection is position-hash blind; evidence/distractor oracle strata separate",
+    "Full-sized KV reference + read maps, not HBM or latency evidence",
+    "Dynamic threshold calibrated from both CLEAN KV policies with no eviction labels",
+    "Huginn FP32-cosine over BF16 model hidden states is diagnostic only"
+  ],
+  "thresholds": {
+    "family": "huginn",
+    "calibration_from": "full_and_shared_clean_fixed_depth",
+    "n_clean_query_observations": 38,
+    "min_depth": 2,
+    "cosine_arithmetic": "fp32_on_bf16_states",
+    "selected": [
+      {
+        "threshold": 5.829334259033203e-05,
+        "mean_depth": 29.81578947368421,
+        "early_fraction": 0.2894736842105263,
+        "distinct_depths": 11,
+        "hist": {
+          "16": 1,
+          "18": 1,
+          "21": 1,
+          "22": 1,
+          "23": 1,
+          "26": 1,
+          "27": 1,
+          "28": 2,
+          "29": 1,
+          "31": 1,
+          "32": 27
+        },
+        "target_early_fraction": 0.25,
+        "saturated": false,
+        "anchor": "pooled",
+        "clean_early_fraction_by_policy": {
+          "full": 0.0,
+          "last": 0.5789473684210527
+        },
+        "clean_hist_by_policy": {
+          "full": {
+            "32": 19
+          },
+          "last": {
+            "16": 1,
+            "18": 1,
+            "21": 1,
+            "22": 1,
+            "23": 1,
+            "26": 1,
+            "27": 1,
+            "28": 2,
+            "29": 1,
+            "31": 1,
+            "32": 8
+          }
+        },
+        "saturated_policies": [
+          "full"
+        ]
+      },
+      {
+        "threshold": 0.0001,
+        "mean_depth": 25.57894736842105,
+        "early_fraction": 0.4473684210526316,
+        "distinct_depths": 9,
+        "hist": {
+          "14": 2,
+          "15": 4,
+          "16": 1,
+          "17": 4,
+          "19": 3,
+          "21": 1,
+          "24": 1,
+          "26": 1,
+          "32": 21
+        },
+        "target_early_fraction": 0.6,
+        "saturated": false,
+        "anchor": "pooled",
+        "clean_early_fraction_by_policy": {
+          "full": 0.0,
+          "last": 0.8947368421052632
+        },
+        "clean_hist_by_policy": {
+          "full": {
+            "32": 19
+          },
+          "last": {
+            "14": 2,
+            "15": 4,
+            "16": 1,
+            "17": 4,
+            "19": 3,
+            "21": 1,
+            "24": 1,
+            "26": 1,
+            "32": 2
+          }
+        },
+        "saturated_policies": [
+          "full"
+        ]
+      },
+      {
+        "threshold": 0.00018330931663513184,
+        "mean_depth": 30.894736842105264,
+        "early_fraction": 0.42105263157894735,
+        "distinct_depths": 5,
+        "hist": {
+          "25": 1,
+          "27": 1,
+          "30": 3,
+          "31": 3,
+          "32": 11
+        },
+        "target_early_fraction": 0.25,
+        "saturated": false,
+        "anchor": "full_only",
+        "clean_early_fraction_by_policy": {
+          "full": 0.42105263157894735,
+          "last": 0.9473684210526315
+        },
+        "clean_hist_by_policy": {
+          "full": {
+            "25": 1,
+            "27": 1,
+            "30": 3,
+            "31": 3,
+            "32": 11
+          },
+          "last": {
+            "13": 4,
+            "14": 4,
+            "15": 2,
+            "16": 2,
+            "17": 3,
+            "19": 1,
+            "21": 2,
+            "32": 1
+          }
+        }
+      },
+      {
+        "threshold": 0.0002111107110977173,
+        "mean_depth": 30.263157894736842,
+        "early_fraction": 0.631578947368421,
+        "distinct_depths": 6,
+        "hist": {
+          "24": 1,
+          "26": 1,
+          "29": 4,
+          "30": 1,
+          "31": 5,
+          "32": 7
+        },
+        "target_early_fraction": 0.6,
+        "saturated": false,
+        "anchor": "full_only",
+        "clean_early_fraction_by_policy": {
+          "full": 0.631578947368421,
+          "last": 0.9473684210526315
+        },
+        "clean_hist_by_policy": {
+          "full": {
+            "24": 1,
+            "26": 1,
+            "29": 4,
+            "30": 1,
+            "31": 5,
+            "32": 7
+          },
+          "last": {
+            "13": 5,
+            "14": 4,
+            "15": 3,
+            "16": 2,
+            "17": 1,
+            "19": 1,
+            "20": 2,
+            "32": 1
+          }
+        }
+      }
+    ],
+    "candidates": [
+      {
+        "threshold": 1e-09,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 38
+        }
+      },
+      {
+        "threshold": 3e-09,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 38
+        }
+      },
+      {
+        "threshold": 1e-08,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 38
+        }
+      },
+      {
+        "threshold": 3e-08,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 38
+        }
+      },
+      {
+        "threshold": 1e-07,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 38
+        }
+      },
+      {
+        "threshold": 3e-07,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 38
+        }
+      },
+      {
+        "threshold": 1e-06,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 38
+        }
+      },
+      {
+        "threshold": 3e-06,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 38
+        }
+      },
+      {
+        "threshold": 1e-05,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 38
+        }
+      },
+      {
+        "threshold": 3e-05,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 38
+        }
+      },
+      {
+        "threshold": 5.22005558013916e-05,
+        "mean_depth": 30.894736842105264,
+        "early_fraction": 0.13157894736842105,
+        "distinct_depths": 5,
+        "hist": {
+          "19": 1,
+          "22": 1,
+          "23": 1,
+          "27": 2,
+          "32": 33
+        }
+      },
+      {
+        "threshold": 5.829334259033203e-05,
+        "mean_depth": 29.81578947368421,
+        "early_fraction": 0.2894736842105263,
+        "distinct_depths": 11,
+        "hist": {
+          "16": 1,
+          "18": 1,
+          "21": 1,
+          "22": 1,
+          "23": 1,
+          "26": 1,
+          "27": 1,
+          "28": 2,
+          "29": 1,
+          "31": 1,
+          "32": 27
+        }
+      },
+      {
+        "threshold": 6.37054443359375e-05,
+        "mean_depth": 27.894736842105264,
+        "early_fraction": 0.39473684210526316,
+        "distinct_depths": 11,
+        "hist": {
+          "16": 1,
+          "17": 3,
+          "18": 1,
+          "19": 1,
+          "20": 1,
+          "21": 2,
+          "23": 1,
+          "26": 1,
+          "27": 3,
+          "28": 1,
+          "32": 23
+        }
+      },
+      {
+        "threshold": 8.766651153564454e-05,
+        "mean_depth": 25.86842105263158,
+        "early_fraction": 0.4473684210526316,
+        "distinct_depths": 11,
+        "hist": {
+          "14": 1,
+          "15": 3,
+          "16": 2,
+          "17": 4,
+          "18": 1,
+          "19": 1,
+          "20": 2,
+          "22": 1,
+          "25": 1,
+          "28": 1,
+          "32": 21
+        }
+      },
+      {
+        "threshold": 0.0001,
+        "mean_depth": 25.57894736842105,
+        "early_fraction": 0.4473684210526316,
+        "distinct_depths": 9,
+        "hist": {
+          "14": 2,
+          "15": 4,
+          "16": 1,
+          "17": 4,
+          "19": 3,
+          "21": 1,
+          "24": 1,
+          "26": 1,
+          "32": 21
+        }
+      },
+      {
+        "threshold": 0.0003,
+        "mean_depth": 21.789473684210527,
+        "early_fraction": 0.8947368421052632,
+        "distinct_depths": 17,
+        "hist": {
+          "12": 4,
+          "13": 4,
+          "14": 4,
+          "15": 2,
+          "16": 1,
+          "18": 1,
+          "20": 2,
+          "23": 1,
+          "24": 2,
+          "25": 1,
+          "26": 1,
+          "27": 1,
+          "28": 4,
+          "29": 2,
+          "30": 3,
+          "31": 1,
+          "32": 4
+        }
+      },
+      {
+        "threshold": 0.00033347308635711665,
+        "mean_depth": 21.5,
+        "early_fraction": 0.9210526315789473,
+        "distinct_depths": 18,
+        "hist": {
+          "12": 5,
+          "13": 3,
+          "14": 4,
+          "15": 2,
+          "16": 1,
+          "17": 1,
+          "19": 1,
+          "20": 1,
+          "23": 2,
+          "24": 1,
+          "25": 2,
+          "26": 1,
+          "27": 2,
+          "28": 3,
+          "29": 2,
+          "30": 2,
+          "31": 2,
+          "32": 3
+        }
+      },
+      {
+        "threshold": 0.001,
+        "mean_depth": 18.105263157894736,
+        "early_fraction": 0.9736842105263158,
+        "distinct_depths": 18,
+        "hist": {
+          "10": 2,
+          "11": 6,
+          "12": 5,
+          "13": 2,
+          "14": 1,
+          "16": 1,
+          "17": 1,
+          "19": 1,
+          "20": 3,
+          "21": 2,
+          "22": 5,
+          "23": 1,
+          "24": 3,
+          "26": 1,
+          "27": 1,
+          "28": 1,
+          "30": 1,
+          "32": 1
+        }
+      },
+      {
+        "threshold": 0.0015065968036651611,
+        "mean_depth": 17.0,
+        "early_fraction": 0.9736842105263158,
+        "distinct_depths": 15,
+        "hist": {
+          "10": 8,
+          "11": 3,
+          "12": 4,
+          "13": 1,
+          "15": 1,
+          "16": 1,
+          "19": 6,
+          "20": 3,
+          "21": 4,
+          "22": 1,
+          "23": 1,
+          "24": 1,
+          "26": 1,
+          "28": 2,
+          "32": 1
+        }
+      },
+      {
+        "threshold": 0.003,
+        "mean_depth": 15.31578947368421,
+        "early_fraction": 1.0,
+        "distinct_depths": 14,
+        "hist": {
+          "9": 5,
+          "10": 7,
+          "11": 4,
+          "13": 1,
+          "15": 1,
+          "16": 2,
+          "17": 8,
+          "18": 1,
+          "19": 2,
+          "20": 1,
+          "22": 2,
+          "25": 2,
+          "26": 1,
+          "31": 1
+        }
+      },
+      {
+        "threshold": 0.007500720024108888,
+        "mean_depth": 12.5,
+        "early_fraction": 1.0,
+        "distinct_depths": 11,
+        "hist": {
+          "8": 10,
+          "9": 5,
+          "10": 1,
+          "11": 1,
+          "13": 3,
+          "14": 4,
+          "15": 6,
+          "16": 4,
+          "17": 1,
+          "19": 1,
+          "22": 2
+        }
+      },
+      {
+        "threshold": 0.01,
+        "mean_depth": 11.657894736842104,
+        "early_fraction": 1.0,
+        "distinct_depths": 10,
+        "hist": {
+          "7": 3,
+          "8": 9,
+          "9": 4,
+          "11": 1,
+          "12": 3,
+          "13": 7,
+          "14": 2,
+          "15": 4,
+          "16": 3,
+          "20": 2
+        }
+      },
+      {
+        "threshold": 0.04301388263702394,
+        "mean_depth": 7.973684210526316,
+        "early_fraction": 1.0,
+        "distinct_depths": 8,
+        "hist": {
+          "5": 2,
+          "6": 13,
+          "7": 1,
+          "8": 3,
+          "9": 11,
+          "10": 4,
+          "11": 3,
+          "12": 1
+        }
+      },
+      {
+        "threshold": 0.14484913945198064,
+        "mean_depth": 5.0,
+        "early_fraction": 1.0,
+        "distinct_depths": 5,
+        "hist": {
+          "4": 15,
+          "5": 12,
+          "6": 8,
+          "7": 2,
+          "8": 1
+        }
+      },
+      {
+        "threshold": 0.27732463777065247,
+        "mean_depth": 3.5,
+        "early_fraction": 1.0,
+        "distinct_depths": 3,
+        "hist": {
+          "3": 21,
+          "4": 15,
+          "5": 2
+        }
+      },
+      {
+        "threshold": 0.4506734812259674,
+        "mean_depth": 2.6052631578947367,
+        "early_fraction": 1.0,
+        "distinct_depths": 2,
+        "hist": {
+          "2": 15,
+          "3": 23
+        }
+      }
+    ],
+    "full_only_candidates": [
+      {
+        "threshold": 1e-09,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 3e-09,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 1e-08,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 3e-08,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 1e-07,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 3e-07,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 1e-06,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 3e-06,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 1e-05,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 3e-05,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 0.0001,
+        "mean_depth": 32.0,
+        "early_fraction": 0.0,
+        "distinct_depths": 1,
+        "hist": {
+          "32": 19
+        }
+      },
+      {
+        "threshold": 0.00018330931663513184,
+        "mean_depth": 30.894736842105264,
+        "early_fraction": 0.42105263157894735,
+        "distinct_depths": 5,
+        "hist": {
+          "25": 1,
+          "27": 1,
+          "30": 3,
+          "31": 3,
+          "32": 11
+        }
+      },
+      {
+        "threshold": 0.0002111107110977173,
+        "mean_depth": 30.263157894736842,
+        "early_fraction": 0.631578947368421,
+        "distinct_depths": 6,
+        "hist": {
+          "24": 1,
+          "26": 1,
+          "29": 4,
+          "30": 1,
+          "31": 5,
+          "32": 7
+        }
+      },
+      {
+        "threshold": 0.00026023387908935547,
+        "mean_depth": 28.94736842105263,
+        "early_fraction": 0.7894736842105263,
+        "distinct_depths": 8,
+        "hist": {
+          "24": 2,
+          "26": 2,
+          "27": 1,
+          "28": 3,
+          "29": 2,
+          "30": 2,
+          "31": 3,
+          "32": 4
+        }
+      },
+      {
+        "threshold": 0.0003,
+        "mean_depth": 28.210526315789473,
+        "early_fraction": 0.8421052631578947,
+        "distinct_depths": 10,
+        "hist": {
+          "23": 1,
+          "24": 2,
+          "25": 1,
+          "26": 1,
+          "27": 1,
+          "28": 4,
+          "29": 2,
+          "30": 3,
+          "31": 1,
+          "32": 3
+        }
+      },
+      {
+        "threshold": 0.0004876017570495606,
+        "mean_depth": 25.94736842105263,
+        "early_fraction": 0.9473684210526315,
+        "distinct_depths": 10,
+        "hist": {
+          "22": 2,
+          "23": 2,
+          "24": 3,
+          "25": 2,
+          "26": 3,
+          "27": 3,
+          "29": 1,
+          "30": 1,
+          "31": 1,
+          "32": 1
+        }
+      },
+      {
+        "threshold": 0.001,
+        "mean_depth": 23.0,
+        "early_fraction": 1.0,
+        "distinct_depths": 10,
+        "hist": {
+          "19": 1,
+          "20": 3,
+          "21": 2,
+          "22": 5,
+          "23": 1,
+          "24": 3,
+          "26": 1,
+          "27": 1,
+          "28": 1,
+          "30": 1
+        }
+      },
+      {
+        "threshold": 0.0015201330184936523,
+        "mean_depth": 21.473684210526315,
+        "early_fraction": 1.0,
+        "distinct_depths": 9,
+        "hist": {
+          "18": 1,
+          "19": 5,
+          "20": 3,
+          "21": 4,
+          "22": 1,
+          "23": 1,
+          "24": 1,
+          "26": 1,
+          "28": 2
+        }
+      },
+      {
+        "threshold": 0.003,
+        "mean_depth": 19.157894736842106,
+        "early_fraction": 1.0,
+        "distinct_depths": 8,
+        "hist": {
+          "16": 2,
+          "17": 8,
+          "18": 1,
+          "19": 2,
+          "20": 1,
+          "22": 2,
+          "25": 2,
+          "26": 1
+        }
+      },
+      {
+        "threshold": 0.005255550146102905,
+        "mean_depth": 17.0,
+        "early_fraction": 1.0,
+        "distinct_depths": 7,
+        "hist": {
+          "14": 3,
+          "15": 2,
+          "16": 6,
+          "17": 3,
+          "18": 2,
+          "22": 1,
+          "23": 2
+        }
+      },
+      {
+        "threshold": 0.01,
+        "mean_depth": 14.631578947368421,
+        "early_fraction": 1.0,
+        "distinct_depths": 6,
+        "hist": {
+          "12": 2,
+          "13": 6,
+          "14": 2,
+          "15": 4,
+          "16": 3,
+          "20": 2
+        }
+      },
+      {
+        "threshold": 0.017291036248207093,
+        "mean_depth": 12.526315789473685,
+        "early_fraction": 1.0,
+        "distinct_depths": 6,
+        "hist": {
+          "11": 6,
+          "12": 6,
+          "13": 2,
+          "14": 3,
+          "15": 1,
+          "17": 1
+        }
+      },
+      {
+        "threshold": 0.06806660890579232,
+        "mean_depth": 8.0,
+        "early_fraction": 1.0,
+        "distinct_depths": 4,
+        "hist": {
+          "7": 6,
+          "8": 9,
+          "9": 2,
+          "10": 2
+        }
+      },
+      {
+        "threshold": 0.17842280864715584,
+        "mean_depth": 5.0,
+        "early_fraction": 1.0,
+        "distinct_depths": 3,
+        "hist": {
+          "4": 5,
+          "5": 9,
+          "6": 5
+        }
+      },
+      {
+        "threshold": 0.28558203577995295,
+        "mean_depth": 3.526315789473684,
+        "early_fraction": 1.0,
+        "distinct_depths": 2,
+        "hist": {
+          "3": 9,
+          "4": 10
+        }
+      },
+      {
+        "threshold": 0.4672024285793305,
+        "mean_depth": 2.6315789473684212,
+        "early_fraction": 1.0,
+        "distinct_depths": 2,
+        "hist": {
+          "2": 7,
+          "3": 12
+        }
+      }
+    ],
+    "selection_note": "pooled Full+Shared 25/60% targets (plan) + Full-anchored 25/60% targets (E13); same thresholds for both policies"
+  },
+  "calibration_observations_by_policy": {
+    "full": 19,
+    "last": 19
+  },
+  "code_sha_at_calibration": "cc4a30f4e35ecafb18649a49a7732fe92e2e6faa",
+  "execution_code_sha": "cc4a30f4e35ecafb18649a49a7732fe92e2e6faa"
+}

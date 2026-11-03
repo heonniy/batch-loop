@@ -1,0 +1,126 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+{
+  "selected": [
+    {
+      "threshold": 0.7,
+      "mean_depth": 3.6578947368421053,
+      "early_fraction": 0.34210526315789475,
+      "distinct_depths": 2,
+      "hist": {
+        "3": 13,
+        "4": 25
+      },
+      "target_early_fraction": 0.25,
+      "saturated": false,
+      "anchor": "pooled",
+      "clean_early_fraction_by_policy": {
+        "full": 0.10526315789473684,
+        "first_last": 0.5789473684210527
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "3": 2,
+          "4": 17
+        },
+        "first_last": {
+          "3": 11,
+          "4": 8
+        }
+      }
+    },
+    {
+      "threshold": 0.5,
+      "mean_depth": 3.1842105263157894,
+      "early_fraction": 0.6578947368421053,
+      "distinct_depths": 3,
+      "hist": {
+        "2": 6,
+        "3": 19,
+        "4": 13
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false,
+      "anchor": "pooled",
+      "clean_early_fraction_by_policy": {
+        "full": 0.3684210526315789,
+        "first_last": 0.9473684210526315
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "3": 7,
+          "4": 12
+        },
+        "first_last": {
+          "2": 6,
+          "3": 12,
+          "4": 1
+        }
+      }
+    },
+    {
+      "threshold": 0.6,
+      "mean_depth": 3.789473684210526,
+      "early_fraction": 0.21052631578947367,
+      "distinct_depths": 2,
+      "hist": {
+        "3": 4,
+        "4": 15
+      },
+      "target_early_fraction": 0.25,
+      "saturated": false,
+      "anchor": "full_only",
+      "clean_early_fraction_by_policy": {
+        "full": 0.21052631578947367,
+        "first_last": 0.8421052631578947
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "3": 4,
+          "4": 15
+        },
+        "first_last": {
+          "2": 2,
+          "3": 14,
+          "4": 3
+        }
+      }
+    },
+    {
+      "threshold": 0.3,
+      "mean_depth": 3.210526315789474,
+      "early_fraction": 0.631578947368421,
+      "distinct_depths": 3,
+      "hist": {
+        "2": 3,
+        "3": 9,
+        "4": 7
+      },
+      "target_early_fraction": 0.6,
+      "saturated": false,
+      "anchor": "full_only",
+      "clean_early_fraction_by_policy": {
+        "full": 0.631578947368421,
+        "first_last": 1.0
+      },
+      "clean_hist_by_policy": {
+        "full": {
+          "2": 3,
+          "3": 9,
+          "4": 7
+        },
+        "first_last": {
+          "2": 15,
+          "3": 4
+        }
+      },
+      "saturated_policies": [
+        "first_last"
+      ]
+    }
+  ],
+  "n_observations": {
+    "full": 19,
+    "first_last": 19
+  }
+}
