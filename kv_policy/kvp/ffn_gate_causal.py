@@ -293,3 +293,46 @@ def nll_recovery(full: float, evict: float, restore: float, tol: float = 1e-8) -
     repaired = evict - restore
     return {"eviction_penalty": damage, "nll_recovered": repaired,
             "fraction_recovered": (repaired / damage if damage > tol else None)}
+
+
+@torch.no_grad()
+def gate_trace_comparison(clean: Mapping, evicted: Mapping, family: str) -> dict:
+    """Query×loop-resolved FFN internal response to EXACTLY the same source mask.
+
+    Gate is pre-SiLU. Sign flips are a descriptive channel-activation
+    diagnostic, NOT a sparse routing decision. Full versus Evict histories
+    share the exact same token IDs and number of recurrences.
+    """
+    groups: dict[int,list[dict]] = defaultdict(list)
+    for (col,r,l,component), a in clean.items():
+        if component not in (("fc", "ffn") if family=="huginn" else ("gate", "ffn")):
+            continue
+        key=(col,r,l,component)
+        if key not in evicted:
+            raise RuntimeError(f"Missing evicted FFN trace {key}")
+        b=evicted[key].to(a.device)
+        if a.shape!=b.shape:
+            raise RuntimeError(f"FFN activation shape mismatch {key}")
+        if component=="fc":
+            a=a[...,:a.shape[-1]//2]
+            b=b[...,:b.shape[-1]//2]
+        af,bf=a.float(),b.float()
+        diff=(bf-af).norm()
+        denom=af.norm()+EPS
+        row={"col":col,"r":r,"layer":l,"component":"ffn" if component=="ffn" else "gate",
+             "relative_change":float((diff/denom).item()),
+             "abs_change":float(diff.item()),
+             "sign_flip_frac":float(((af>0)!=(bf>0)).float().mean().item())}
+        groups[r].append(row)
+    by_loop=[]
+    for r,rows in sorted(groups.items()):
+        d={"loop":r,"n_observations":len(rows)}
+        for cmp in ("gate","ffn"):
+            rr=[x for x in rows if x["component"]==cmp]
+            if rr:
+                d[cmp+"_mean_relative_change"]=sum(x["relative_change"] for x in rr)/len(rr)
+                d[cmp+"_mean_sign_flip_frac"]=sum(x["sign_flip_frac"] for x in rr)/len(rr)
+                d[cmp+"_max_relative_change"]=max(x["relative_change"] for x in rr)
+        by_loop.append(d)
+    return {"by_loop":by_loop,"total_positions":sum(len(x) for x in groups.values()),
+            "note":"Pre-SiLU gate sign changes are continuous-MLP features, not MoE expert switches"}
