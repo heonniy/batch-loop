@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0084",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0084",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0084",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "15",
+   "n_tokens": 266,
+   "finish": "stop",
+   "text": "Let's denote the number of games the football team lost as \\( L \\). According to the problem, the team won 8 more games than they lost, so the number of games they won can be expressed as \\( L + 8 \\).\n\nThe total number of games played is the sum of the games won and the games lost. Therefore, we can write the equation:\n\\[\nL + (L + 8) = 22\n\\]\n\nSimplify the left side of the equation:\n\\[\n2L + 8 = 22\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 32,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "15",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Let's denote the number of games the football team lost as \\( L \\). According to the problem, the team won 8 more games than they lost. Therefore, the number of games they won can be expressed as \\( L + 8 \\).\n\nThe total number of games played is the sum of the games won and the games lost. We are given that the team played 22 games in total. So, we can write the equation:\n\\[\nL + (L + 8) = 22\n\\]\n\nS"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 8,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Let's denote the number of games the team lost as x.\nAccording to the problem, the team won 8 more games than they lost, so the number of games they won is x + 8.\nThe total number of games played is 22, so we can write the equation:\nx + (x + 8) = 22\nSimplifying the equation, we get:\n2x + 8 = 22\nSubtracting 8 from both sides, we get:\n2x = 14\nDividing both sides by 2, we get:\nx = 7\nSo the team lost "
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 15,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Let's denote the number of games the football team lost as \\( L\\ \\text{games} \\\\).\n\nAccording to the problem, the team won 8 more games than they lost. Therefore, the number of games they won can be expressed as \\( L + 8\\ \\games\\).\n\nSince the team played a total of 22 games games, we can set up the following equation to represent the total number of games played:\n\\[\nL + (L + 8) = 22\n\\]\n\nNow, let's"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 12,
+   "identical_to_full": false,
+   "first_divergence": 197,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "42",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Let's denote the number of games the football team lost as \\( L \\). According to the problem, the team won 8 more games than they lost, so the number of games they won can be expressed as \\( L + 8 \\).\n\nThe total number of games played is the sum of the games won and the games lost. Therefore, we can write the equation:\n\\[\nL + (L + 8) = 22\n\\]\n\nSimplify the left side of the equation:\n\\[\n2L + 8 = 22\n"
+  }
+ ],
+ "R": 4,
+ "P": 56,
+ "n_content": 24,
+ "gold": "= <<22-7=15>>15 games.\n#### 15",
+ "elapsed_s": 202.92143654823303,
+ "peak_gpu_bytes": 14027771904
+}

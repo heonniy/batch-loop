@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0122",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0122",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0122",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Sadie slept 8 hours on Monday. Then for the next two days, she slept 2 hours less each. So that would be Tuesday and Wednesday, right? So each of those days she slept 8 - 2 = 6 hours. Then, for the rest of the week, she slept 1 hour more than those two days. Wait, the rest of the week after the next two days? So after Tuesday and Wednesday, that would be Thursday, Frid"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 40,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Sadie slept 8 hours on Monday. Then for the next two days, she slept 2 hours less each. So that's Tuesday and Wednesday. Then the rest of the week, she slept 1 hour more than those two days. Hmm, need to break this down step by step.\n\nFirst, Monday is straightforward: 8 hours. Then Tuesday and Wednesday, each day she slept 2 hours less than Monday. Wait, does \"2 hours "
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\n\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nAssistant\nSure! Let's break down the information and solve the problem step by step.\n\nOn Monday, Sadie slept for 8 hours.\n\nFor the next two days (Tuesday and Wednesday), she slept 2 hours less each day, so she slept for 8 - 2 = 6 hours on Tuesday and 6 - 2 = 4 hours on Wednesday.\n\nOn Thursday, she slept for 1 hour more than on Wednesday, so she slept for 4 +1 = 5 hours on Thursday.\n\nOn Friday, sh"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 30,
+   "identical_to_full": false,
+   "first_divergence": 14,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. The problem is about calculating how many hours Sadie slept in a week. Let me break it down step by step.\n\nFirst, the problem says she slept 8 hours on Monday. That's straightforward. Then, for the next two days, which would be Tuesday and Wednesday, she slept 1 hour less each day because of assignments. So, each of those days she slept 8 - 1 = 7 hours. Wait, but the p"
+  }
+ ],
+ "R": 4,
+ "P": 93,
+ "n_content": 61,
+ "gold": "<8+12+28=48>>48 hours.\n#### 48",
+ "elapsed_s": 214.1750431060791,
+ "peak_gpu_bytes": 21535828480
+}

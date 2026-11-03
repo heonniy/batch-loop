@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0044",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0044",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0044",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "20",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nAssistant\nSure, let's break down the problem step by step.\n\n1. Charlie can make 10 tapered candles from 1 pound of beeswax.\n2. The cost of 1 pound of beeswax and the wicks is $10.00.\n3. Charlie sells each candle for $2.00.\n4. Charlie makes and sells 20 candles.\n\nTo find Charlie's net profit, we need to calculate his total revenue and subtract his total cost.\n\nTotal revenue = number of candles sol"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "20",
+   "n_tokens": 218,
+   "finish": "stop",
+   "text": "\nassistant\nTo determine Charlie's net profit, we need to calculate the total revenue from selling the candles and subtract the total cost of supplies.\n\nFirst, let's calculate the total revenue from selling 20 candles:\nTotal revenue = Number of candles sold \u00d7 Price per candle\nTotal revenue = 20 \u00d7 $2.00\nTotal revenue = $40.00\n\nNext, let's calculate the total cost of supplies for making 20 candles:\nT"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 142,
+   "finish": "stop",
+   "text": "\n\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 38,
+   "identical_to_full": false,
+   "first_divergence": 27,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "4",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nAssistant\nSure, let's break down the problem step by step.\n\n1. Charlie can make 10 candles from 1 pound of beeswax.\n2. The cost of 1 pound of beeswax and the wicks is $10.00.\n3. Charlie sells each candle for $2.00.\n4. Charlie sells 20 candles (20 = 10 candles/pound * 2 pounds).\n\nNow, let's calculate the total revenue and total cost:\n\nTotal revenue = number of candles sold * price per candle\nTotal"
+  }
+ ],
+ "R": 4,
+ "P": 108,
+ "n_content": 76,
+ "gold": " $<<40-20=20.00>>20.00\n#### 20",
+ "elapsed_s": 90.66741681098938,
+ "peak_gpu_bytes": 8319908352
+}

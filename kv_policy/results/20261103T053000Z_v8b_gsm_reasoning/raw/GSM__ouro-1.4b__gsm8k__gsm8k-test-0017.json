@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0017",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0017",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0017",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Jill's annual salary is $34,000.\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 7,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Jill's annual salary is $17,000.\n\nJill's annual salary is $17,000.\n\nJill's annual salary is $17,000.\n\nJill's annual salary is $17,000.\n\nJill's annual salary is $17,000.\n\nJill's annual salary is $17,000.\n\nJill's annual salary is $17,000.\n\nJill's annual salary is $17,000.\n\nJill's annual salary is $17,000.\n\nJill's annual salary is $17,000.\n\nJill's annual salary is $17,000.\n\nJill's annual salary is $1"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 7,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Jill's annual salary is $20 * 35 * 50 + $30 * 15 * 50 = $35000 + $22500 = $57500.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 7,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Jill's annual salary is $12,000.\n"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 29,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Jordan is a freelance graphic designer who charges $50 per hour for her services. She works 40 hours per week and has been working for the past 3 years. How much money has Jordan earned in total?\nInstruction:\nSolve the mathematical question given in the Content section. Show the reasoning and state the final answer clearly.\nAnswer:\nA bakery sells 120 loaves of bread per day. If each loaf costs $2."
+  }
+ ],
+ "R": 4,
+ "P": 90,
+ "n_content": 58,
+ "gold": "50*50=57500>>57,500\n#### 57500",
+ "elapsed_s": 105.7501130104065,
+ "peak_gpu_bytes": 4336251392
+}

@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0126",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0126",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0126",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Dylan bought some sausages for a party. The problem says he bought 38 chicken sausages and 6 more fish sausages than chicken sausages. I need to find the total number of sausages he bought.\n\nFirst, let me break down the information. The number of chicken sausages is given directly as 38. Then, the number of fish sausages is 6 more than the chicken ones. So, if there ar"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 16,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Dylan needs to buy sausages for a party. The problem says he bought 38 chicken sausages and 6 more fish sausages than chicken sausages. I need to find the total number of sausages he bought.\n\nFirst, let me break down the information. The number of chicken sausages is given directly as 38. Then, the fish sausages are 6 more than the chicken ones. So, if there are 38 chi"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "82",
+   "n_tokens": 127,
+   "finish": "stop",
+   "text": "\nAssistant\nDylan bought 38 chicken sausages and 6 more fish sausages than chicken sausages.\n\nTo find the total number of sausages Dylan bought, we need to add the number of chicken sausages and the number of fish sausages together.\n\nNumber of chicken sausages: 38\nNumber of fish sausages: 38 + 6 = 44\n\nTotal number of sausages: 38 + 44 = 82\n\nThe answer is: \\boxed{82} sausages.\n\n"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 25,
+   "identical_to_full": false,
+   "first_divergence": 16,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Dylan needs to make chicken and fish sausages for the party. The problem says he has 38 chicken sausages and 68 fish sausages. Wait, no, wait. Wait, the problem says he has 38 chicken sausages and 68 fish sausages? Wait, no, let me check again.\n\nWait, the problem states: \"He has 38 chicken sausages and 68 fish sausages.\" Wait, no, wait. Wait, the original problem says:"
+  }
+ ],
+ "R": 4,
+ "P": 82,
+ "n_content": 50,
+ "gold": "2>>82 sausages in all.\n#### 82",
+ "elapsed_s": 204.19350481033325,
+ "peak_gpu_bytes": 21467730432
+}

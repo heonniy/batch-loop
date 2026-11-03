@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0074",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0074",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0074",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "<tool_call>\n# Prices of flowers\nmarigold_price = 2.74\npetunia_price = 1.87\nbegonia_price = 2.12\n\n# Number of pots sold\nmarigold_pots = 12\npetunia_pots = 9\nbegonia_pots = 17\n\n# Rounding prices to the nearest dollar\nrounded_marigold_price = round(marigold_price)\nrounded_petunia_price = round(petunia_price)\nrounded_begonia_price = round(begonia_price)\n\n# Calculating total earnings\ntotal_earnings = (r"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 82,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "<tool_call>\n# Prices of flowers\nmarigold_price = 2.74\npetunia_price = 1.87\nbegonia_price = 2.12\n\n# Number of pots sold\nmarigold_pots = 12\npetunia_pots = 9\nbegonia_pots = 17\n\n\n# Rounding prices to the nearest dollar\nrounded_marigold_price = round(marigold_price)\nrounded_petunia_price = round(petunia_price)\nrounded_begonia_price = round(begonia_price)\n\n\n# Calculating total earnings\ntotal_earnings = "
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "<tool_call>\nHere is the solution to the problem:\n\n1. **Marigolds**:\n   - Original price: $2.74 per pot\n   - Rounded to the nearest dollar: $3 per pot\n   - Total from marigolds: 12 pots * $3 = $36\n\n2. **Petunias**:\n   - Original price: $1.87 per pot\n   - Rounded to the nearest dollar: $2 per pot\n   - Total from petunias:    9 pots * $2 = $18\n\n3. **Begonias**:\n   - Original price: $2.12 per pot\n   -"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "< output> To determine Artie's total earnings from the sale of his flowers, we need to follow these steps:\n\n\n\n1. **Identify the original prices per pot:**:**\n   - Marigolds: \\( \\$2.74 \\) per pot\n   - Petunias:: \\( \\\\$1.87 \\) \\text{ per per}\n   - Begonias: : \\( \\\\text{2.12} \\) per per\n\n2. **Round each price to the nearest dollar:**:**\n   - **Marigolds:** : \\( \\$2.74 \\) rounds up to \\( \\\\$3 \\)\n   - "
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 61,
+   "identical_to_full": false,
+   "first_divergence": 7,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "<tool_call>\n# Given data\nmarigold_price = 2.7\npetunia_price = 1.77\nbegonia_price = 2.1\n\n# Number of pots sold\nmarigold_pots = 1\npetunia_pots = 9\nbegonia_pots = 17\n\n# Rounding prices to the nearest dollar\nrounded_marigold_price = round(marigold_price)\nrounded_petunia_price = round(petunia_price)\nrounded_begonia_price = round(begonia_price)\n\n# Calculating total earnings\ntotal_earnings = (rounded_mar"
+  }
+ ],
+ "R": 4,
+ "P": 155,
+ "n_content": 123,
+ "gold": "4 = $<<36+18+34=88>>88\n#### 88",
+ "elapsed_s": 109.42062854766846,
+ "peak_gpu_bytes": 10412112384
+}

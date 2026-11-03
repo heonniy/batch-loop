@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0103",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0103",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0103",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "140",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The fog bank covers 3 miles in 10 minutes. To cover 42 miles, it will take 42 / 3 * 10 = 140 minutes.\nFinal Answer:\nThe final answer is 140 minutes.\n\nQuestion:"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 29,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "140",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The fog bank covers 3 miles in 10 minutes. To cover 42 miles, it will take 42 / 3 = 14 sets of 10 minutes. Therefore, the total time is 14 * 10 = 140 minutes.\nFinal Answer:\nThe final answer is 140 minutes.\n\nInstruction:\nA fog bank rolls in from the ocean to cover a city. It takes 10 minutes to cover every 3 miles of the city. If the city is 42 miles across from the oceanfront to the opposite inlan"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The fog bank will take 140 minutes to cover the whole city.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n:\n:\n\n by this instruction\n\n by this instruction\n\n by this instruction\n by this instruction\n\n by this instruction\n by this instruction\n by this instruction\n\n by this instruction\n by this instruction\n by this instruction\n\n by this "
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 7,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The fog bank covers 3 miles every 10 minutes. To cover 42 miles, we need to calculate how many 3-mile segments are there in 42 miles.\n\nFirst, we can calculate the number of 3-mile segments in 42 miles by dividing 42 by 3:\n\n\\[\n\\frac{42 \\text{ miles}} {3 \\ \\text{miles}} \\times \\frac {10 \\ \\text {minutes} } { 3 \\ \\ \\text {miles} } } { \\frac {42 \\ \\ \\ \\text {miles} } { 3 \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ "
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 32,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The mathematical question is:\nA bank of clouds is moving in from the ocean to cover a city. It takes 1 hour to cover 4 miles of the city. If the city is 4 miles wide, how long will it take for the bank of clouds to cover the whole city?\nTo solve this problem, we need to know the speed of the bank of clouds. We are told that it takes 1 hour to cover 4 miles of the city, so the speed of the bank of "
+  }
+ ],
+ "R": 4,
+ "P": 96,
+ "n_content": 64,
+ "gold": "cover the whole city.\n#### 140",
+ "elapsed_s": 105.871994972229,
+ "peak_gpu_bytes": 5638474752
+}

@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0084",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0084",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0084",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The football team won 15 games.\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 15,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The football team won 15 games.\n"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The football team won 12 games.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnswer:\nThe football team won won   won won  won\n\n by\n\n by\n\n by\n\n by\n\n by\n\n by verification that the answer is correct.\n\n by\n\n by verification that the answer is correct.\n\n by\n by\n\n by\n\n by\n\n by by\n by\n\n by\n by\n by\n\n by\n by\n by"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 15,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The football team won 15 games.\n"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 12,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The mathematical question is: A basketball team played 22 games and won 14 more than they lost. How many games did they win?\nReasoning:\nLet's denote the number of games the team lost as x.\nSince the team won 14 more games than they lost, the number of games they won is x + 14.\nThe total number of games played is the sum of the games won and the games lost, which is 22.\nSo, we can set up the equati"
+  }
+ ],
+ "R": 4,
+ "P": 56,
+ "n_content": 24,
+ "gold": "= <<22-7=15>>15 games.\n#### 15",
+ "elapsed_s": 104.56818675994873,
+ "peak_gpu_bytes": 11704484352
+}

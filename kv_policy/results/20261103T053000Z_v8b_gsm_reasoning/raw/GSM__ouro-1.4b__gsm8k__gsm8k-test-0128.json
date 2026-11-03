@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0128",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0128",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0128",
+ "split": "gsm",
+ "sha": "e21f652f58418380dcfe6f12c56c76f3720bd13c",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total amount of money Dillon will spend, we need to calculate the cost of each type of fruit and then sum them up.\n\nFirst, let's determine the cost of each fruit:\n- The cost of one pepper is $15.\n- The cost of one watermelon is three times the cost of one pepper, so:\n  \\[\n  \\text{Cost of one watermelon} = 3 \\times 15 = 45 \\text{ dollars}\n  \\]\n- The cost of one orange is $5 less than th"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 25,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total amount of money Dillon will spend, we need to calculate the cost of each type of fruit and then add them together.\n\nFirst, let's find the cost of one watermelon. Since a watermelon costs three times what each pepper costs, and each pepper costs $15, the cost of one watermelon is:\n\\[ 3 \\times 15 = 45 \\text{ dollars} \\]\n\nNext, let's find the cost of one orange. Since an orange cost"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 20,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total amount of money Dillon will spend, we need to calculate the cost of each item and then add them together.\n\nFirst, let's find the cost of one watermelon. Since a watermelon costs three times what each pepper costs, and each pepper costs 15$, the cost of one watermelon is:\n3 * 15 = 2$45\nNext, let's find the cost of 4 watermelons. Since each watermelon costs 2$45, the cost of 4 wate"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total amount Dillon will spend, we need to calculate the cost of each type of fruit and then sum these costs.\n\nFirst, let's determine the cost of each type of fruit:\n1. **Watermelons**: Each watermelon costs three times as much as a pepper. Since each pepper of 15 is 15, the cost of one watermelon is:\n   \\ \\text{Cost of one watermelon}} = 3 \\times 15 = 45 \\text{ dollars} \\]\n\n2. **"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 42,
+   "identical_to_full": false,
+   "first_divergence": 5,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total amount Dillon will spend, we need to calculate the cost of each type of fruit and then sum them up.\n\n1. **Cost of one pepper:**\n   \\[\n   \\text{Cost of one pepper} = 15 \\text{ dollars}\n   \\]\n\n2. **Cost of 4 peppers:**\n   \\[\n   \\text{Cost of 4 peppers} = 4 \\times 15 = 60 \\text{ dollars}\n   \\]\n\n3. **Cost of one watermelon:**\n   \\[\n   \\text{Cost of one watermelon} = 3 \\times \\text{Co"
+  }
+ ],
+ "R": 4,
+ "P": 116,
+ "n_content": 84,
+ "gold": "400+300+180=880>>880.\n#### 880",
+ "elapsed_s": 120.58905506134033,
+ "peak_gpu_bytes": 9711308288
+}

@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0104",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0104",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0104",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to follow these steps:\n1. Determine the number of pieces placed by Poppy.\n2. Calculate the remaining pieces after Poppy's contribution.\n3. Determine the number of pieces placed by her mom.\n4. Calculate the remaining pieces after her mom's contribution.\n5. State the final answer.\n\nStep 1: Determine the number of pieces placed by Poppy.\nPoppy places a quarter of the 10"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 17,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to follow these steps:\n1. Determine the total number of pieces in the puzzle.\n2. Calculate the number of pieces placed by Poppy.\n3. Calculate the number of remaining pieces after Poppy's contribution.\n4. Determine the number of pieces placed by her mom.\n5. Calculate the number of pieces left to be placed.\n\nLet's go through each step in detail:\n\n1. **Total number of p"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 8,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to determine the number of pieces left to be placed after Poppy and her mom have placed their respective fractions of the remaining pieces.\n\nFirst, we know that Poppy places a quarter of the pieces on the board. Since the puzzle has 1000 pieces, a quarter of 1000 is:\n\\[ \\frac{1}{4} \\times 1000 = 250 \\]\nSo, Poppy places  total of 250 pieces on the board.\n\nNext, we nee"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 12,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to follow these steps:\n\n ----\n1. Start with the total number of jigsaw pieces, which is 1000.\n2. Poppy places a quarter (1/4) of the pieces on the board.\n3. Calculate the number of pieces remaining after Poppy's placement:\n   \\[\n   1000 \\times \\frac{1}{4} = 250 \\\n   \\\n   \\text{pieces remaining after Poppy's placement}}\n   \\\n   \\text{(250 pieces)}\n   \\\n   \\text{(250 p"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 24,
+   "identical_to_full": false,
+   "first_divergence": 8,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "500",
+   "n_tokens": 295,
+   "finish": "stop",
+   "text": "To solve this problem, we need to determine how many pieces of the puzzle are left after Poppy and her mom have placed their respective pieces.\n\nFirst, let's find out how many pieces Poppy placed. She placed a quarter of the total pieces:\n\\[\n\\text{Pieces placed by Poppy} = \\frac{1}{4} \\times 1000 = 250\n\\]\n\nNext, we need to find out how many pieces are left after Poppy has placed her pieces:\n\\[\n\\te"
+  }
+ ],
+ "R": 4,
+ "P": 81,
+ "n_content": 49,
+ "gold": "es left to be placed.\n#### 500",
+ "elapsed_s": 103.5954372882843,
+ "peak_gpu_bytes": 6297307648
+}

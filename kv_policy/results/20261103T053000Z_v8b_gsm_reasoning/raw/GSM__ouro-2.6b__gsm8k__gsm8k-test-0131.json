@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0131",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0131",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0131",
+ "split": "gsm",
+ "sha": "e21f652f58418380dcfe6f12c56c76f3720bd13c",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. The problem says Joseph's expenditure in May was $500. Then in June, it was $60 less. I need to find the total expenditure for both months.\n\nFirst, I should figure out how much he spent in June. Since June's expenditure is $60 less than May's, I subtract 60 from 500. Let me do that: 500 minus 60. Hmm, 500 minus 60 is 440. So June's expenditure is $440.\n\nNow, to find th"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 32,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. The problem says Joseph's expenditure in May was $500. Then in June, his expenditure was $60 less. I need to find the total expenditure for both months.\n\nFirst, I should figure out how much he spent in June. Since June's expenditure is $60 less than May's, I subtract 60 from May's amount. So, May is $500, subtract $60 gives June's expenditure. Let me write that down: J"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\n\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nAssistant\nTo find Joseph's total expenditure for May and June, we need to add the expenditures for each month.\n\nIn May, Joseph spent $500.\nIn June, his expenditure was $60 less than in May. So, we need to subtract $60 from the May expenditure to find the June expenditure:\n\nJune (expenditure) = $500 - $60\nJune (expenditurement) = $440\n\nNow, we add the expenditures for May and June to find the tota"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 17,
+   "identical_to_full": false,
+   "first_divergence": 17,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. The problem says that in May, his expenditure was $600. Then in June, it was $60 less. So I need to find the total expenditure for both months.\n\nFirst, May's expenditure is straightforward: $600. Then June's is $60 less than May. So June would be May's amount minus $60. Let me write that down.\n\nMay: $600\nJune: $600 - $60 = $540\n\nNow, to find the total expenditure for b"
+  }
+ ],
+ "R": 4,
+ "P": 66,
+ "n_content": 34,
+ "gold": " $<<500+440=940>>940.\n#### 940",
+ "elapsed_s": 225.93488311767578,
+ "peak_gpu_bytes": 22669924864
+}

@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0040",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0040",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0040",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Brandon's iPhone is four times as old as Ben's iPhone. Ben's iPhone is two times older than Suzy's iPhone. If Suzy\u2019s iPhone is 1 year old, how old is Brandon\u2019s iPhone?\n\nReasoning:\nLet's denote the age of Brandon's iPhone as B, Ben's iPhone as b, and Suzy's iPhone as s.\n\nGiven:\n- B = 4b (Brandon's iPhone is four times as old as Ben's iPhone)\n- b = 2s (Ben's iPhone is two times older than Suzy's iPh"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 39,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Brandon's iPhone is four times as old as Ben's iPhone. Ben's iPhone is two times older than Suzy's iPhone. If Suzy\u2019s iPhone is 1 year old, then Ben's iPhone is 2 years old. Therefore, Brandon's iPhone is 4 times 2, which is 8 years old.\n\nQuestion:\nAmy is 10 years old. Her brother is 3 years older than her, and their sister is 2 years younger than their brother. How old will their sister be in 3 ye"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 5,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "8",
+   "n_tokens": 82,
+   "finish": "stop",
+   "text": "Brandon's iPhone is 4 times as old as Ben's iPhone. Ben's iPhone is 2 times older than Suzy's iPhone. Suzy's iPhone is 1 year old.\nBrandon's iPhone is 4 times 2 times 1 year old.\nBrandon's iPhone is 8 years old.\nThe final answer is 8.\n\n\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 49,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Brandon's iPhone is four times as old as Ben's iPhone. Ben's iPhone is two times older than Suzy's iPhone. If Suzy\u2019s iPhone is 1 year old, how old is Brandon\u2019s iPhone?\n\nAssistant\nTo determine the age of Brandon's iPhone, we need to work backwards from the information given about the ages of the iPhones.\n\n1. **Suzy's iPhone Age:**\n   Suzy's iPhone is 1 year old.\n\n2. **Ben's iPhone's Age Relationshi"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 24,
+   "identical_to_full": false,
+   "first_divergence": 10,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Brandon's iPhone is four times as old as Suzy's iPhone. Since Suzy's iPhone is 1 year old, Brandon's iPhone is 4 years old.\n\nQuestion:"
+  }
+ ],
+ "R": 4,
+ "P": 80,
+ "n_content": 48,
+ "gold": "= <<4*2=8>>8 years old.\n#### 8",
+ "elapsed_s": 186.20056319236755,
+ "peak_gpu_bytes": 10318579200
+}

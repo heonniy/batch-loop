@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0091",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0091",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0091",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of pets that Jan, Marcia, and Cindy have, we need to follow these steps:\n\n1. Identify the number of pets Cindy has.\n2. Use the information about Marcia's pets to find out how many pets Marcia has.\n3. Use the information about Jan's pets to find out how many pets Jan has.\n4. Add the number of pets each person has to get the total number of pets.\n\nLet's start with the i"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": true,
+   "first_divergence": 320,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of pets that Jan, Marcia, and Cindy have, we need to follow these steps:\n\n1. Identify the number of pets Cindy has.\n2. Use the information about Marcia's pets to find out how many pets Marcia has.\n3. Use the information about Jan's pets to find out how many pets Jan has.\n4. Add the number of pets each person has to get the total number of pets.\n\nLet's start with the i"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 43,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of pets that Jan, Marcia, and Cindy have, we need to follow these steps:\n\n1. Identify the number of pets Cindy has.\n2. Use the information given to find out how many pets Marcia has.\n3. Use the information given to find out how many pets Jan has.\n4. Add the number of pets each person has to get the total.\n\nLet's start with the information given:\n- Cindy has 4 pets.\nSi"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 22,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "12",
+   "n_tokens": 232,
+   "finish": "stop",
+   "text": "To determine the total number of pets that Jan, Marcia, and Cindy have, we need to follow the relationships given in the problem step by step.\n\n1. **Identify the number of pets Cindy has:**\n   Cindy has 4 pets.\n\n2. **Determine the number of pets Jan has:**\n   Jan has three times the number of pets as Marcia. Since Cindy has 4 pets, Jan has:\n   \\\n  \n   \\[\n   \\text{Number of pets Jan has}} = 3 \\time"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 19,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of items that Cindy, Marcia, and the person with three times the number of items as Marcia have, we will follow these steps:\n\n1. Identify the number of items Cindy has.\n2. Calculate the number of items Marcia has.\n3. Calculate the number of items the person with three times the number of items as Marcia has.\n4. Sum the number of items each person has.\n\nLet's start wit"
+  }
+ ],
+ "R": 4,
+ "P": 70,
+ "n_content": 38,
+ "gold": " <<4+6+18=28>>28 pets.\n#### 28",
+ "elapsed_s": 202.6501612663269,
+ "peak_gpu_bytes": 15249315328
+}

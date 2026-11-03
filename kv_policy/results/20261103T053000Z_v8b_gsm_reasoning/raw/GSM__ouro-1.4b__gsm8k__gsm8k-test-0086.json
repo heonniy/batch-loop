@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0086",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0086",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0086",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The alarm rang a total of 17 times.\nReasoning:\nThe first time the alarm went off, it rang four times.\nThe second time the alarm went off, it rang for three times as long as the first time, which is 3 x 4 = 12 times.\nThe third time the alarm went off, it rang for half as long as the second time, which is 12 / 2 = 6 times.\nTherefore, the total number of times the alarm rang is 4 + 12 + 6 = 22 times."
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 8,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The alarm rang a total of 19 times.\nReasoning:\nThe first time the alarm went off, it rang for 4 times.\nThe second time the alarm went off, it rang for 3 times as long as the first time, which is 3 * 4 = 12 times.\nThe third time the alarm went off, it rang for half as long as the second time, which is 12 / 2 = 6 times.\nTherefore, the total number of times the alarm rang is 4 + 12 + 6 = 22 times.\nHo"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The alarm rang 12 times in all.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "11",
+   "n_tokens": 195,
+   "finish": "stop",
+   "text": "The alarm rang for a total of 11 times.\n\nReasoning:\n1. The first alarm ring lasted for 4 minutes.\n2. The second alarm ring lasted for 4 * 3 = 12 minutes.\n3. The third alarm ring lasted for 12 / 2 = 6 minutes.\n4. Total ringing time = 4 + 12 + 6 = 22 minutes.\n5. Since the total time is 22 minutes and the first alarm ringed for 4 minutes, the number of times the alarm rang is 22 / 4 = 5.5, but since "
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 44,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "12",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The answer is 12.\n"
+  }
+ ],
+ "R": 4,
+ "P": 120,
+ "n_content": 88,
+ "gold": "<<4+12+6=22>>22 times.\n#### 22",
+ "elapsed_s": 99.30193090438843,
+ "peak_gpu_bytes": 12396203008
+}

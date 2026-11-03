@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0126",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0126",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0126",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "82",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total number of sausages Dylan bought, we need to calculate the number of fish sausages and then add it to the number of chicken sausages.\n\nFirst, we know that Dylan bought 38 chicken sausages.\n\nNext, we are told that he bought 6 more fish sausages than chicken sausages. Therefore, the number of fish sausages is:\n\\[ 38 + 6 = 44 \\]\n\nNow, we add the number of chicken sausages and the num"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 23,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "82",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total number of sausages Dylan bought, we need to calculate the number of fish sausages and add it to the number of chicken sausages.\n\nDylan bought 38 chicken sausages.\nHe bought 6 more fish sausages than chicken sausages, so the number of fish sausages is 38 + 6 = 44.\n\nThe total number of sausages is the sum of chicken sausages and fish sausages:\n38 (chicken sausages) + 44 (fish sausa"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 15,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total number of sausages Dylan bought, we need to add the number of chicken sausages and fish sausages.\nDylan bought 38 chicken sausages and 6 more fish sausages than chicken sausages.\nSo, the number of fish sausages is 38 + 6 = 44.\nTherefore, the total number of sausages is 38 + 44 = c82.\nFinal answer: c82c sausages.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "82",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of sausages Dylan bought, we need to follow these steps:\n\n1. **Identify the number of chicken and fish sausages bought:**\n   - Dylan bought 38 chicken-sausages.\n   - Dylan also bought 6 more fish-sausages than chicken-sausages.\n\n2. **Calculate the number of fish-sausages bought:**:**\n   - Since D bought 6 more fish-sausages than chicken-saus, we add  6 to the number o"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 25,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "12",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of sausages Dylan bought, we need to follow these steps:\n\n1. Identify the number of chicken sausages Dylan bought.\n2. Determine the number of beef sausages Dylan bought based on the information given.\n3. Calculate the total number of sausages by adding the number of chicken sausages and beef sausages.\n\nStep 1: Dylan bought 3 chicken sausages.\n\nStep 2: Dylan bought 6 b"
+  }
+ ],
+ "R": 4,
+ "P": 82,
+ "n_content": 50,
+ "gold": "2>>82 sausages in all.\n#### 82",
+ "elapsed_s": 119.23819375038147,
+ "peak_gpu_bytes": 9681936896
+}

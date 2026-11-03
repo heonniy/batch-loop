@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0119",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0119",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0119",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. The problem is about Adrien and Lylah's salaries. Let me try to break it down step by step.\n\nFirst, the problem says that Adrien's total salary was 30% higher than Lylah's. Then, four years later, his salary had increased, and he was earning 40% more than what he was making four years ago. We need to find the total salary they were receiving four years later, given tha"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 63,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. The problem is about Adrien and Lylah's salaries. Let me try to break it down step by step.\n\nFirst, the problem says that Adrien's total salary was 30% higher than Lylah's. So, if I let Lylah's salary be some amount, say L, then Adrien's salary would be L plus 30% of L. That would be 1.3 times L, right? So Adrien's salary is 1.3L.\n\nThen, four years later, Adrien's sala"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nAssistant\nLet's denote Adrien's salary four years ago as $A$ and Lylah's salary as $L$.\n\nFrom the information given, we know that Adrien's total salary was 30 percent higher than Lylah's, so:\n\n$$A = 1.3L$$\n\nFour years later, Adrien's salary had increased, and he was earning 40% more than what he was making four years ago. So, his salary four years later was:\n\n$$A + 0.4(A - L) = 1.4A - 0.4L$$\n\nSin"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 41,
+   "identical_to_full": false,
+   "first_divergence": 26,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. The problem is about Adrien and Lylah's salaries over time. Let me try to parse the information step by step.\n\nFirst, it says that Adrien's salary was 30% of Lylah's salary. So, if I let Lylah's salary be, say, L, then Adrien's salary would be 0.3L. That makes sense.\n\nThen, it mentions that five years later, Adrien's salary had increased, and he was earning 40% more th"
+  }
+ ],
+ "R": 4,
+ "P": 115,
+ "n_content": 83,
+ "gold": "+56000=95200>>95200\n#### 95200",
+ "elapsed_s": 216.74238395690918,
+ "peak_gpu_bytes": 20269713408
+}

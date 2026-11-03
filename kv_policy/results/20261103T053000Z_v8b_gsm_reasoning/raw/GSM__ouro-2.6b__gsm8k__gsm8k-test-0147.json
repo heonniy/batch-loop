@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0147",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0147",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0147",
+ "split": "gsm",
+ "sha": "e21f652f58418380dcfe6f12c56c76f3720bd13c",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "75",
+   "n_tokens": 295,
+   "finish": "stop",
+   "text": "To determine how many bees Debra saw return to the hive in the last 6 hours of the day, we need to follow the sequence of events step by step.\n\n1. **First 6 hours:**\n   - Debra sees 30 bees leave the hive.\n\n2. **Next 6 hours:**\n   - Debra sees \\(\\frac{1}{2}\\) of the bees that left in the first 6 hours return.\n   - Number of bees returning: \\(\\frac{1}{2} \\times 30 = 15\\).\n\n3. **Next 6 hours:**\n   -"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 56,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "75",
+   "n_tokens": 315,
+   "finish": "stop",
+   "text": "To determine how many bees Debra saw return to the hive in the last 6 hours of the day, we need to follow the sequence of events step by step.\n\n1. **First 6 hours:**\n   - Debra sees 30 bees leave the hive.\n   - Number of bees that leave: \\(30\\)\n\n2. **Next 6 hours:**\n   - Debra sees \\(\\frac{1}{2}\\) of the bees that left in the first 6 hours return.\n   - Number of bees that return: \\(\\frac{1}{2} \\ti"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 30,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many bees Debra saw return to the hive in the last 6 hours of the day, we need to follow the sequence of events and calculate the number of bees that left and returned at each stage.\n\n1. In the first 6 hours, 30 bees leave the hive.\n2. In the next 6 hours, 1/2 of the bees that left in the first 6 hours return. So, the number of bees that return is:\n   \\[\n   \\frac{1}{2} \\times 30 ="
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 5,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many bees returned to the hive in the last 6 hours of the day, we need to break down the bee activity into the 6-hour intervals and calculate the number of bees returning in each interval.\n\n1. **First 6 Hours:**\n   - Bees leaving: 30 bees\n   - Bees returning: \\(\\frac{1}{2}\\\\(^{\\text{th}}\\) of the bees that left, which is \\\\(\\\\frac{1}{2} \\times 30 = 15\\\\) bees.\n\n2 **Next 6 Hours:**"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 62,
+   "identical_to_full": false,
+   "first_divergence": 12,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many bees Debra saw return to the hive, we need to follow the sequence of events step by step.\n\n1. **Bees leaving the hive in the first 6 hours:**\n   Debra sees 3 bees leave the hive in the first 6 hours.\n\n2. **Bees returning to the hive in the next 6 hours:**\n   She sees half as many bees return as she saw leave. Since 3 bees left, she sees:\n   \\[\n   \\frac{3}{2} = 1.5 \\text{ bees"
+  }
+ ],
+ "R": 4,
+ "P": 157,
+ "n_content": 125,
+ "gold": "st 6 hours of the day.\n#### 75",
+ "elapsed_s": 228.17572379112244,
+ "peak_gpu_bytes": 23346156032
+}

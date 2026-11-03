@@ -13,7 +13,7 @@ report builds on: v7 QUERY_CONDITIONED_REVIEW.md, v6 V6_PILOT_ASSESSMENT.md, v5 
 ## 0. Summary of the evidence
 
 Question: does the loop make a looped transformer need a different KV-cache policy than a standard transformer? Evidence
-collected in ~10 h on Huginn-0125 (R=32), Ouro-2.6B (R=4) and a non-looped control (Qwen2.5-3B), same prompts, same gold
+collected in ~12 h on Huginn-0125 (R=32), Ouro-2.6B and Ouro-1.4B (R=4) and a non-looped control (Qwen2.5-3B), same prompts, same gold
 continuations, dev/holdout splits, 0 worker errors (provenance at the end):
 
 1. **Yes — the budget lives on an axis that standard transformers do not have (§1).** Every Context token of a looped
@@ -36,11 +36,12 @@ continuations, dev/holdout splits, 0 worker errors (provenance at the end):
    generations. But prompt-time attention selection is below random at 10% in both looped models (CR) while the standard
    model's layer-mean attention beats random by 0.75 nats and keeps EM 0.58 at 30% (looped: 0); the anchor-vs-consuming
    query agreement is 0.58 (Qwen) vs 0.29–0.43 (looped, last loop).
-4. **Yes, with a model-specific twist — decode-horizon accumulation (§5).** Damage from a missing token decays along the
-   continuation in all three models. Collapsing *generated* tokens to one plane is flat for Huginn over 128 tokens
-   (KL ≈ 4e-4) but accumulates for Ouro (0.03 → 0.10, 85% of prompts), matching v5's long-generation collapse of
-   LAST-CONVERT on Ouro. Few, non-convergent loops (Ouro) and many, convergent loops (Huginn) need different conversion
-   rules for generated tokens.
+4. **Yes, with a model-specific twist — decode-horizon accumulation (§5, §1d).** Damage from a missing token decays along
+   the continuation in all three models. Collapsing *generated* tokens to one plane is flat for Huginn over 128 tokens
+   (KL ≈ 4e-4; GSM8K accuracy unchanged at 1 of 32 planes) but accumulates for Ouro-2.6B (0.03 → 0.10, 86% of prompts)
+   and destroys Ouro-1.4B's reasoning (GSM8K 0.31 → 0.00 when generated tokens are converted; 0.38 when only the prompt
+   is) — the v5 LAST-CONVERT collapse reproduced and localised. Few, non-convergent loops (Ouro) and many, convergent
+   loops (Huginn) need different conversion rules for generated tokens; prompt-plane conversion is safe in all three.
 5. **Native early exit sets a "natural" plane budget that is free but weak (§6)**: exit-truncated caches cost ~1e-3 KL in
    both models yet retain 58–96% of the planes; late-plane conversion retains 10% at the same cost and composes with exit.
 6. **What is not different (§7)**: heavy-tailed token importance, the dominance of evidence tokens, the usefulness of
@@ -121,6 +122,30 @@ same frozen prompts (identical tokenizer to Ouro-2.6B), 40 units (results/202611
   to the terminal plane: K 0.84 / 0.96 / 0.99, V 0.62 / 0.84 / 0.95 at r=1/2/3 — *more* redundant than Ouro-2.6B's planes
   (V 0.53 / 0.75 / 0.90), so the v5 LAST-CONVERT collapse of this model on long generations is not explained by prompt-plane
   dissimilarity; §5/§1d locate it in the conversion of *generated* tokens.
+
+
+**1d. Reasoning arm — zero-shot GSM8K, plane policies on prompt vs prompt + generated tokens (results/20261103T053000Z_v8b_gsm_reasoning;
+32 problems of the frozen GSM8K-200 subset per model, greedy ≤320 tokens, Content/Instruction/Answer zero-shot format, paired
+with each model's FULL generation; accuracy = kvp.grading.grade_gsm8k).**
+
+| model | FULL acc | last-1 planes, prompt only | last-1 planes, prompt + generated | last-3 planes, prompt + generated | first-1 plane, prompt + generated | 50% of question tokens evicted |
+|---|---|---|---|---|---|---|
+| Huginn R=32 | 0.31 | 0.25 (−0.06 [−0.16, 0.00]) | 0.31 (0.00 [−0.13, +0.13]) | 0.34 (+0.03 [0.00, +0.09]) | 0.00 (−0.31) | 0.03 (−0.28) |
+| Ouro-2.6B R=4 | 0.34 | 0.38 (+0.03) | 0.38 (+0.03 [−0.16, +0.22]) | — | 0.12 (−0.22) | 0.03 (−0.31) |
+| Ouro-1.4B R=4 | 0.31 | 0.38 (+0.06 [0.00, +0.16]) | **0.00 (−0.31 [−0.47, −0.16])** | — | 0.09 (−0.22) | 0.03 (−0.28) |
+
+(Δacc vs FULL with 95% problem bootstrap; greedy generations are *not* token-identical to FULL under any map — identical in
+0–6% of problems, first divergence at token ≈10–150 — so this is accuracy-level, not output-level, equivalence. Zero-shot
+accuracy is low and 56–88% of Ouro generations hit the 320-token cap; the arm is a paired within-model comparison only.)
+
+- The prompt-only last-plane conversion is harmless for all three models on reasoning as on retrieval (the question is short;
+  the reasoning lives in the generated tokens).
+- Converting *generated* tokens is where the models split: Huginn is unaffected even at 1 of 32 planes (its generated
+  tokens' planes converge like its prompt tokens'); Ouro-2.6B is unaffected at this length and n (+0.03, wide CI; v5 found
+  −11 points on few-shot GSM8K with longer generations); **Ouro-1.4B collapses to 0/32** — the v5 LAST-CONVERT collapse
+  reproduced and localised: it is the generated-token conversion, not the prompt planes (prompt-only is +0.06), and not
+  plane dissimilarity (its K/V planes are the most similar of the three models, §1c).
+- First-plane conversion and evicting half the question are catastrophic for all three — both negative controls behave.
 
 ## 2. Loop-wise attention is not one attention: the recurrence re-reads the prompt differently at each loop
 
@@ -311,7 +336,9 @@ at depth d_i and no plane ≥ d_i would exist (no-refill). The "natural" plane b
 | results/20261103T021500Z_std_qwen_census | Qwen2.5-3B (3aab1f19) exhaustive single-token census + token policies on the same CR/Hotpot prompts (40 units) | 75f867fb |
 | results/20261103T022500Z_std_qwen_v6horizon, ..._poolA | Qwen2.5-3B on the v6 B pool (8) and A pool (20) with its own 128-token greedy continuation | 2245320f / 2245320f+ |
 | results/20261102T093000Z_qc_v7_pilotA/analysis/LOOP_PHENOMENOLOGY.md | loop-wise attention statistics from the v7 dev+holdout REF receipts (40 prompts per model) | 9b79c099 |
-| results/20261103T_v8_plane_smoke, results/20261103T_std_smoke | validation/timing receipts | 3c7233a2, 75f867fb |
+| results/20261103T051500Z_v8b_ouro14b_tax | Ouro-1.4B two-axis matrix (40 units, dev+holdout; prompts shared with Ouro-2.6B, identical tokenizer) | 24e7b7d1 |
+| results/20261103T053000Z_v8b_gsm_reasoning | zero-shot GSM8K reasoning arm, 32 problems × 3 looped models, 6 arms each | 87b99838 |
+| results/20261103T_v8_plane_smoke, results/20261103T_std_smoke, results/20261103T_v8b_gsm_smoke | validation/timing receipts | 3c7233a2, 75f867fb, 24e7b7d1 |
 | v7 (results/20261102T*_qc_v7_*) | query-conditioned study: QUERY_CONDITIONED_REVIEW.md | 283dbe52 |
 
 Code: kvp/plane_policies.py, kvp/query_conditioned_probe.py (PlaneMapProbeKV, validate_planes), scripts/plane_budget_sweep.py,

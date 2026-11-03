@@ -1,0 +1,962 @@
+[
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0005",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0005",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0005"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0005",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0005",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0005"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0005",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0005",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0005"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0010",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0010",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0010"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0010",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0010",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0010"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0010",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0010",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0010"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0011",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0011",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0011"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0011",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0011",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0011"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0011",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0011",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0011"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0017",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0017",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0017"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0017",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0017",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0017"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0017",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0017",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0017"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0023",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0023",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0023"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0023",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0023",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0023"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0023",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0023",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0023"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0028",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0028",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0028"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0028",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0028",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0028"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0028",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0028",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0028"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0029",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0029",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0029"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0029",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0029",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0029"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0029",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0029",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0029"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0036",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0036",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0036"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0036",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0036",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0036"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0036",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0036",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0036"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0040",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0040",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0040"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0040",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0040",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0040"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0040",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0040",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0040"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0044",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0044",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0044"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0044",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0044",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0044"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0044",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0044",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0044"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0058",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0058",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0058"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0058",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0058",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0058"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0058",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0058",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0058"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0063",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0063",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0063"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0063",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0063",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0063"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0063",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0063",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0063"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0074",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0074",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0074"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0074",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0074",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0074"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0074",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0074",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0074"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0078",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0078",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0078"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0078",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0078",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0078"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0078",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0078",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0078"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0084",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0084",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0084"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0084",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0084",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0084"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0084",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0084",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0084"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0086",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0086",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0086"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0086",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0086",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0086"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0086",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0086",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0086"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0091",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0091",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0091"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0091",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0091",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0091"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0091",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0091",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0091"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0093",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0093",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0093"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0093",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0093",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0093"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0093",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0093",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0093"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0099",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0099",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0099"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0099",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0099",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0099"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0099",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0099",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0099"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0103",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0103",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0103"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0103",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0103",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0103"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0103",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0103",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0103"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0104",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0104",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0104"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0104",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0104",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0104"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0104",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0104",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0104"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0115",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0115",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0115"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0115",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0115",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0115"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0115",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0115",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0115"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0116",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0116",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0116"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0116",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0116",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0116"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0116",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0116",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0116"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0118",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0118",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0118"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0118",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0118",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0118"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0118",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0118",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0118"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0119",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0119",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0119"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0119",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0119",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0119"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0119",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0119",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0119"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0121",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0121",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0121"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0121",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0121",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0121"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0121",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0121",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0121"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0122",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0122",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0122"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0122",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0122",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0122"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0122",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0122",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0122"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0126",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0126",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0126"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0126",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0126",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0126"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0126",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0126",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0126"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0128",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0128",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0128"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0128",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0128",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0128"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0128",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0128",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0128"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0131",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0131",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0131"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0131",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0131",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0131"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0131",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0131",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0131"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0133",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0133",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0133"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0133",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0133",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0133"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0133",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0133",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0133"
+ },
+ {
+  "model": "ouro-2.6b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0147",
+  "unit": "ouro-2.6b__gsm8k__gsm8k-test-0147",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0147"
+ },
+ {
+  "model": "huginn-0125",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0147",
+  "unit": "huginn-0125__gsm8k__gsm8k-test-0147",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__huginn-0125__gsm8k__gsm8k-test-0147"
+ },
+ {
+  "model": "ouro-1.4b",
+  "dataset": "gsm8k",
+  "uid": "gsm8k-test-0147",
+  "unit": "ouro-1.4b__gsm8k__gsm8k-test-0147",
+  "split": "gsm",
+  "prompt_len": null,
+  "kind": "GSM",
+  "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0147"
+ }
+]

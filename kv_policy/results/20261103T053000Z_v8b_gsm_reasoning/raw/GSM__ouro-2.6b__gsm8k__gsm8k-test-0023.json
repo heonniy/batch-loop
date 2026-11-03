@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0023",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0023",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0023",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "8",
+   "n_tokens": 270,
+   "finish": "stop",
+   "text": "To determine how many centimeters shorter a candle will be after burning from 1:00 PM to 5:00 PM, we need to follow these steps:\n\n1. **Calculate the total time the candle burns:**\n   - The candle burns from 1:00 PM to 5:00 PM.\n   - The time difference between 1:00 PM and 5:00 PM is 4 hours.\n\n2. **Determine the rate at which the candle melts:**\n   - The candle melts by 2 centimeters every hour.\n\n3."
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "8",
+   "n_tokens": 275,
+   "finish": "stop",
+   "text": "To determine how many centimeters shorter the candle will be after burning from 1:00 PM to 5:00 PM, we need to follow these steps:\n\n1. Calculate the total time the candle is burning.\n2. Determine the rate at which the candle melts.\n3. Multiply the total time by the melting rate to find the total length of the candle that melts.\n\nFirst, let's calculate the total time the candle is burning. The cand"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 18,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "8",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many centimeters shorter a candle will be after burning from 1:000 PM to 5:000 PM, we need to follow these steps:\n\n1. Calculate the total time the candle is burning.\n2. Determine the rate at which the candle melts.\n3. Multiply the total time by the rate of melting to find the total reduction in length.\n\nFirst, let's calculate the total time the candle is burning. The candle starts"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 30,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 199,
+   "finish": "stop",
+   "text": "To determine how many centimeters shorter a candle will be after burning from 1:00 PM to 5:00 PM, we need to calculate the total time the candle burns and then convert that time into centimeters.\n\n1. Determine the burning time:\n   - From 1:00 PM to 5:00 PM is 4 hours.\n\n2. Convert hours to centimeters:\n   - Since the candle melts by 2 centimeters every hour, we multiply the burning time by the melt"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 19,
+   "identical_to_full": false,
+   "first_divergence": 5,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "8",
+   "n_tokens": 268,
+   "finish": "stop",
+   "text": "To determine how many centimeters a candle will be shorter after burning from 1:00 PM to 5:00 PM, we need to follow these steps:\n\n1. Calculate the total time the candle is burning.\n2. Determine the rate at which the candle melts.\n3. Multiply the total time by the melting rate to find the total reduction in height.\n\nFirst, let's calculate the total time the candle is burning. The candle starts at 1"
+  }
+ ],
+ "R": 4,
+ "P": 70,
+ "n_content": 38,
+ "gold": ">8 centimeters shorter.\n#### 8",
+ "elapsed_s": 177.838121175766,
+ "peak_gpu_bytes": 7815123968
+}

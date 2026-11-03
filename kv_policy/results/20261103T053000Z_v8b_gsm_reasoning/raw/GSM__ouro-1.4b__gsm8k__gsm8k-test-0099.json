@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0099",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0099",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0099",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many potted plants Mary will remain with, we need to follow these steps:\n\n1. **Calculate the total number of potted plants Mary currently has:**\n   - Mary has 2 potted plants on each of the 40 window ledges.\n   - Therefore, the total number of potted plants is:\n     \\[\n     2 \\text{ plants/ledge} \\times 40 \\text{ ledges} = 80 \\text{ plants}\n     \\]\n\n2. **Add the new potted plants "
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 32,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many potted plants Mary will remain with, we need to follow these steps:\n\n1. **Calculate the total number of potted plants Mary received from the nursery:**\n   Mary received 18 new potted plants.\n\n2. ** Calculate the total number of potted plants Mary already has:**\n   Mary has 2 potted plants on each of the 40 window ledges.\n   \\[\n   2 \\text{ plants/ledge} \\times 40 \\text{ ledges"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 22,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many potted plants Mary will remain with, we need to follow these steps:\n\n1. Calculate the total number of potted plants Mary received from her favorite plant nursery.\n2. Calculate the total number of potted plants Mary has on her window ledges.\n3. Calculate the total number of potted plants Mary will give to friends and family.\n4. Subtract the total number of potted plants given "
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 13,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many potted plants Mary will remain with, we can follow these steps:\n\n1. **Calculate the total number of potted plants Mary initially has:**\n   - Mary received 1 potted plant from the nursery.\n   - She already has 2 potted plants on each of the 40-ledge window ledges.\n   - Total potted plants initially:\n     \\ \\ 18 \\text{ (from nursery)}) + (2 \\times 40 \\text{ (from each ledge)}) "
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 41,
+   "identical_to_full": false,
+   "first_divergence": 9,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "0",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many potted plants Mary will have left after giving some away, we need to follow these steps:\n\n1. **Calculate the total number of potted plants Mary initially has:**\n   - Mary has 20 potted plants in her home.\n   - She received 1 new potted plant.\n   - Therefore, the total number of potted plants she has is:\n     \\[\n     20 + 1 = 21\n     \\]\n\n2. **Determine how many potted plants M"
+  }
+ ],
+ "R": 4,
+ "P": 115,
+ "n_content": 83,
+ "gold": "=58>>58 potted plants.\n#### 58",
+ "elapsed_s": 107.00882458686829,
+ "peak_gpu_bytes": 4959868416
+}

@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0133",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0133",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0133",
+ "split": "gsm",
+ "sha": "e21f652f58418380dcfe6f12c56c76f3720bd13c",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Walt walked 24 miles on Tuesday. His total mileage Monday through Wednesday was 41 miles. Therefore, he walked 17 miles on Wednesday.\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 4,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Walt walked 4 miles on Monday. On Tuesday, he walked 6 times as many miles as he walked on Monday, which is 6 * 4 = 24 miles. His total mileage Monday through Wednesday was 41 miles. To find out how many miles he walked on Wednesday, we subtract the miles he walked on Monday and Tuesday from the total mileage: 41 - 4 - 24 = 13 miles.\nFinal Answer:\nWalt walked 13 miles on Wednesday.\n\n\nassistant\n\nOk"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 27,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Walt walked 24 miles on Tuesday. His total mileage Monday through Wednesday was 41 miles. Therefore, he walked 41 - 4 - 24 = 13 miles on Wednesday.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\native\n\native\n\native\n\n\native\n\native\n\n\native\n\native\n\native\n\native\n\native\n\native\n\native\n\native\n\native\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 4,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Walt walked 6 miles on Tuesday.\n\nQuestion:\nOn Monday, Walt walked 4 miles. Tuesday, he walked 6 times as many miles as on Monday. His total mileage Monday through Wednesday was 41 miles. How many miles did he walk on Wednesday?\n\nassistant\n\nFirst, I need to determine how many miles Walt walked on Tuesday. Since he walked 6 times as many miles on Tuesday as on Monday, I'll multiply the 4 miles he wa"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 23,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Wrong Answer: 10\nCorrect Answer: 12\nReasoning:\nMonday: 4 miles\nTuesday: 6 * 4 = 24 miles\nWednesday: 41 - 4 - 24 = 13 miles\nThe correct answer is 13, not 12.\n\nassistant\n\nOkay, let's see. The problem is about calculating the total miles walked by someone named Monday from Monday through Wednesday, given some information. Let me try to break it down step by step.\n\nFirst, the problem states that on Mo"
+  }
+ ],
+ "R": 4,
+ "P": 78,
+ "n_content": 46,
+ "gold": " <<41-28=13>>13 miles.\n#### 13",
+ "elapsed_s": 118.29013991355896,
+ "peak_gpu_bytes": 9678562304
+}

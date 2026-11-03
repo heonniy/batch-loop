@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0147",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0147",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0147",
+ "split": "gsm",
+ "sha": "e21f652f58418380dcfe6f12c56c76f3720bd13c",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's try to figure out how many bees Debra saw return to the hive in the last 6 hours of the day. Hmm, let's break down the problem step by step.\n\nFirst, the problem says Debra sees 30 bees leave the hive in the first 6 hours. So, that's 30 bees gone. Then, in the next 6 hours, she sees half as many bees return. Half of 30 is 15, right? So, 15 bees come back. Now, the total numb"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 12,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Debra is monitoring a beehive and tracking how many bees come and go. The problem is asking how many bees she saw return to the hive in the last 6 hours of the day. Let me break down the information step by step.\n\n\nFirst, in the first 6 hours, she sees 30 bees leave the hive. So that's 30 bees exiting. Then, in the next 6 hours, she sees half as many bees return. Half "
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nh\n\n\n\n\nh\n\n\n\n\n\n\n\n\nh\nh\n\n\nch\n\nch\nh\nh\n\nch\ncherche\nh\nh\ncherche\ncherche\nh\n\nh\n\nh\nh\nh\nh\nh\nh\nherche\nherche\n\n\nherche\nh\n\nh\nherche\nherche\n\nh\n\n.\nh\n............................................."
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 62,
+   "identical_to_full": false,
+   "first_divergence": 19,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's try to figure out how many bees returned in the last 6 hours. The problem says Debra saw 30 bees leave the hive in the first 6 hours. Then, in the next 6 hours, she saw 30 bees return. Wait, no, the problem says \"then she sees 30 bees return in the next 6 hours.\" Hmm, but then there's another part: \"Then, she sees 30 bees leave the hive in the next 6 hours. Then, all the be"
+  }
+ ],
+ "R": 4,
+ "P": 157,
+ "n_content": 125,
+ "gold": "st 6 hours of the day.\n#### 75",
+ "elapsed_s": 122.90011096000671,
+ "peak_gpu_bytes": 9746714624
+}

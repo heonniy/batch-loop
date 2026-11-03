@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0086",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0086",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0086",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "42",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of times the alarm rang, we need to calculate the number of times it rang each time it went off and then sum these amounts.\n\n1. The first time the alarm went off, it rang 4 times.\n2. The second time the alarm went off, it rang for three times as long as the first time. Therefore, the number of times it rang the second time is:\n   \\[\n   3 \\times 4 = 12\n   \\]\n3. The thi"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 284,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "42",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of times the alarm rang, we need to calculate the number of times it rang each time it went off and then sum these amounts.\n\n1. The first time the alarm went off, it rang 4 times.\n2. The second time the alarm went off, it rang for three times as long as the first time. Therefore, the number of times it rang the second time is:\n   \\[\n   3 \\times 4 = 12\n   \\]\n3. The thi"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 101,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "22",
+   "n_tokens": 233,
+   "finish": "stop",
+   "text": "To determine the total number of times the alarm rang, we need to calculate the number of times it rang each time it went off and then sum these amounts.\n\n1. The first time the alarm went off, it rang 4 times.\n2. The second time the alarm went off, it rang for three times as long as the first time. Therefore, the number of times it rang the second time is:\n   \\[\n   3 \\times 4 = 12\n   \\]\n\n3. The th"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 10,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of times the alarm rang today, we need to add up the number of rings for each alarm.\n\n1. **First alarm:**\n   The alarm rang four times.\n   \\[\n   4 \\text{ rings}\n   \\]\n\n2. **Second alarm:**\n   The alarm rang for three times as long as the first time. Since the first alarm rang four times, the second alarm rang:\n   \\[\n   3 \\times 4 = 12 \\ \\ \\\\text{rings}}\n   \\ \\ \\text{("
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 44,
+   "identical_to_full": false,
+   "first_divergence": 30,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "52",
+   "n_tokens": 218,
+   "finish": "stop",
+   "text": "To determine the total number of times the alarm rang, we need to calculate the number of times it rang each time it went off and then sum these values.\n\n1. The first time the alarm went off, it rang 4 times.\n2. The second time the alarm went off, it rang 3 times as long as the first time. Therefore, the number of times it rang the second time is:\n   \\[\n   3 \\times 4 = 12\n   \\]\n3. The third time t"
+  }
+ ],
+ "R": 4,
+ "P": 120,
+ "n_content": 88,
+ "gold": "<<4+12+6=22>>22 times.\n#### 22",
+ "elapsed_s": 209.18784880638123,
+ "peak_gpu_bytes": 13994180608
+}

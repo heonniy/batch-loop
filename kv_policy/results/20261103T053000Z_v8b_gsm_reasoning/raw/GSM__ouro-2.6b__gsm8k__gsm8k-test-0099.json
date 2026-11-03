@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0099",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0099",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0099",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many potted plants Mary will remain with, we need to follow these steps:\n\n1. Calculate the total number of potted plants Mary currently has.\n2. Determine how many potted plants she will give away.\n3. Subtract the number of potted plants given away from the total number of potted plants she currently has.\n\n**Step 1: Calculate the total number of potted plants Mary currently has.**\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 95,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many potted plants Mary will remain with, we need to follow these steps:\n\n1. Calculate the total number of potted plants Mary currently has.\n2. Determine how many potted plants she will give away.\n3. Subtract the number of potted plants given away from the total number of potted plants she currently has.\n\n**Step 1: Calculate the total number of potted plants Mary currently has.**\n"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 37,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "58",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many potted plants Mary will remain with, we need to follow these steps:\n\n1. Calculate the total number of potted plants Mary currently has.\n2. Subtract the number of potted plants she will give away.\n\nFirst, let's calculate the total number of potted plants Mary currently has. She has 2 potted plants on each of the 40 window ledges, so:\n\\[ 2 \\text{ plants/ledge} \\times 40 \\text{ "
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 11,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many potted plants Mary will remain with after giving some to her friends and family, we need to follow these steps:\n\n1. Calculate the total number of potted plants Mary received yesterday.\n2. Determine how many potted plants Mary will give away tomorrow.\n3. Subtract the number of potted plants to be given away from the initial total number of potted plants.\n\nLet's break it down s"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 41,
+   "identical_to_full": false,
+   "first_divergence": 11,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "18",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many potted plants Mary will remain with after giving some away, we need to follow these steps:\n\n1. Calculate the total number of potted plants Mary has before giving any away.\n2. Determine how many potted plants she gives away.\n3. Subtract the number of potted plants given away from the total number of potted plants she had.\n\nFirst, let's find the total number of potted plants Ma"
+  }
+ ],
+ "R": 4,
+ "P": 115,
+ "n_content": 83,
+ "gold": "=58>>58 potted plants.\n#### 58",
+ "elapsed_s": 218.182448387146,
+ "peak_gpu_bytes": 16531360256
+}

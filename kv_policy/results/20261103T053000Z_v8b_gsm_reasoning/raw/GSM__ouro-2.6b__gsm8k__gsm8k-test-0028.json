@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0028",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0028",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0028",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "25",
+   "n_tokens": 255,
+   "finish": "stop",
+   "text": "To determine how many miles Henry traveled between his first and second stops, we need to follow these steps:\n\n1. Identify the total distance of the trip.\n2. Determine the distance from the start to the first stop.\n3. Determine the distance from the second stop to the end of the trip.\n4. Calculate the distance between the first and second stops.\n\nThe total distance of the trip is 60 miles. Henry's"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 38,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "25",
+   "n_tokens": 273,
+   "finish": "stop",
+   "text": "To determine how many miles Henry traveled between his first and second stops, we need to follow these steps:\n\n1. Identify the total distance of the trip.\n2. Determine the distance traveled before the first stop.\n3. Determine the distance traveled after the second stop.\n4. Calculate the distance traveled between the first and second stops.\n\nThe total distance of the trip is 60 miles. Henry first s"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 38,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "25",
+   "n_tokens": 240,
+   "finish": "stop",
+   "text": "To determine how many miles Henry traveled between his first and second stops, we need to follow these steps:\n\n1. Identify the total distance of the trip.\n2. Determine the distance of the first stop.\n3. Determine the distance of the second stop from the end of the trip.\nThe total distance of the trip is 60 miles. Henry's first stop was after 20 miles. His second stop was 15 miles before the end of"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 2,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "25",
+   "n_tokens": 283,
+   "finish": "stop",
+   "text": "To determine the distance Henry traveled between his first and second stops, we need to analyze the information provided in the question step by step.\n\n1. **Identify the total trip distance:**\n   Henry's entire bike trip is 60 miles.\n\n2. **Determine the distance after the first stop:**\n   Henry stopped after 20 miles. This means he has already traveled 20 miles from the starting point.\n\n3. **Deter"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 25,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "30",
+   "n_tokens": 238,
+   "finish": "stop",
+   "text": "To determine how many miles Henry biked between his first and second stops, we need to follow these steps:\n\n1. Identify the total distance of the trip.\n2. Determine the distance from the start to the first stop.\n3. Determine the distance from the second stop to the end of the trip.\n4. Calculate the distance between the first and second stops.\n\nThe total distance of the trip is 60 miles. Henry's fi"
+  }
+ ],
+ "R": 4,
+ "P": 83,
+ "n_content": 51,
+ "gold": "first and second stop.\n#### 25",
+ "elapsed_s": 184.92214632034302,
+ "peak_gpu_bytes": 7805838336
+}

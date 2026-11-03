@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0011",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0011",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0011",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The total cost of the pastries is $223.\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 9,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The total cost of the pastries is $238.\n"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 9,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The total cost of the pastries is $216.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nial\n\n\n\n\n\n\n\n\n\n\n\n\nial\n\n\n\n\n\n\nctive\nial\n\n\n\n\nial\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nutive\n\n\n\n\nctive\n\nutive\n\nutive\n\n\n\n\n\nutive\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nutive\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 4,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The total cost of Toula's purchases is $208.\n\nExplanation:\nTo find the total cost of Toula's purchases, we need to calculate the cost of each type of item separately and then add them together.\n\n- The cost of the donuts is: 3 dozen * $68/dozen = 3 * $68 = = $204\n- The cost of the mini cupcakes is: 2 2 dozen * * $80/dozen = 2 * 2 * * $80 = =\n- The cost of the mini cheesecakes is: 6 dozen * * $55/do"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 33,
+   "identical_to_full": false,
+   "first_divergence": 5,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The total cost of the items Tina bought is $245.\n\nQuestion:\nTina went to the bakery and bought various items. She bought 2 dozen cupcakes which cost $10 per cupcake, 3 dozen mini cheesecakes which cost $15 per cheesecake, and 1 dozen mini cheesecakes which cost $12 per cheesecake. How much was she charged for the items?\nAnswer:\nThe total cost of the items Tina bought is $100.\n\nQuestion:\nTina went "
+  }
+ ],
+ "R": 4,
+ "P": 98,
+ "n_content": 66,
+ "gold": "204+160+330=694>>694.\n#### 694",
+ "elapsed_s": 106.35608839988708,
+ "peak_gpu_bytes": 4653594624
+}

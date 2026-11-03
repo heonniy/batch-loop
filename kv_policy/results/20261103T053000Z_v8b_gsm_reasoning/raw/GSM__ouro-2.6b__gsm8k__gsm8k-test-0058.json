@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0058",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0058",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0058",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the final price of Stephen's groceries, we need to follow these steps:\n\n1. Calculate the 25% fee on the original bill.\n2. Add the 25% fee to the original bill.\n3. Add the delivery fee.\n4. Add the tip.\n\nLet's start with the original bill, which is $40.00.\n\n**Step 1: Calculate the 25% fee.**\nThe 25% fee is calculated as follows:\n\\[ 25\\% \\text{ of } \\$40.00 = 0.25 \\times 40 = \\$10.00 \\]\n\n**St"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 13,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "57",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the final price of Stephen's groceries, we need to account for the additional fees and the tip he added. Let's break it down step by step.\n\n1. **Initial Bill**: The initial bill for the groceries is $40.00.\n2. **25% Fee**: The delivery vendor added a 25% fee to the initial bill. To find the amount of this fee, we calculate 25% of $40.00.\n   \\[\n   \\text{25% fee} = 0.25 \\times 40 = 10\n   \\]\n"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 82,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the final price of Stephen's groceries, we need to follow these steps:\n\n1. Calculate the 25% fee on the original bill.\n2. Add the 25% fee to the original bill.\n3. Add the delivery fee.\n4. Add the tip.\n\nLet's start with the original bill, which is $40.00.\nStep 1: Calculate the 25% fee.\nThe 25% fee is calculated as follows:\n\\[ 25\\% \\text{ of } 40.00 = 0.25 \\times 40.00 = 10.00 \\]\n\nStep 2: Ad"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the final price of Stephen's groceries, we need to account for the initial bill, the delivery fee, and the tip tip. Let's break it down step by step.\n\n1. **Initial Bill:**\n   Stephen's initial bill for groceries was $40.00.\n\n2. **Delivery Fee:**\n   The delivery vendor added a 25% fee to the initial bill. To calculate the delivery fee:\n   \\\n  \n   \\text{Delivery Fee}} = 25\\\\% \\text{ of "
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 42,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total cost of Stephen's online grocery order, we need to account for the original cost of the groceries, the additional 25% fee, the $3.00 in fees, and the $3.00 that Stephen added. Let's break it down step by step.\n\n1. **Original Cost of Groceries:**\n   Let the original cost of the groceries be \\( x \\).\n\n2. **25% Fee:**\n   The 25% fee is added to the original cost. Therefore, the"
+  }
+ ],
+ "R": 4,
+ "P": 116,
+ "n_content": 84,
+ "gold": "<<40+10+7=57.00>>57.00\n#### 57",
+ "elapsed_s": 218.62093353271484,
+ "peak_gpu_bytes": 11602253312
+}

@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0010",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0010",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0010",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of downloads over the three months, we need to calculate the number of downloads for each month and then sum them up.\n\n1. **First Month:**\n   The number of downloads in the first month is given as 60.\n\n2. **Second Month:**\n   The number of downloads in the second month is three times the number of downloads in the first month.\n   \\[\n   \\text{Downloads in the second mo"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 127,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "366",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of downloads over the three months, we need to calculate the number of downloads for each month and then sum them up.\n\n1. **First Month:**\n   The number of downloads in the first month is given as 60.\n\n2. **Second Month:**\n   The number of downloads in the second month is three times the number of downloads in the first month.\n   \\[\n   \\text{Downloads in the second mo"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 80,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "366",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of downloads over the three months, we need to calculate the number of downloads for each month and then sum them up.\n\n1. **First Month:**\n   The number of downloads in the first month is given as 60.\n\n2. **Second Month:**\n   The number of downloads in the second month is three times the number of downloads in the first month. Therefore, we calculate:\n   \\[\n   3 \\time"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 17,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "366",
+   "n_tokens": 273,
+   "finish": "stop",
+   "text": "To determine the total number of downloads over the three months, we need to calculate the downloads for each month and then sum them up.\n\n1. **First Month:**\n   The number of downloads in the first month is given as 60.\n\n2. **Second Month:**\n   The number of downloads in the second month was three times as many as the downloads in the first month.\n   \\\n   \\[\n   \\text{Second month downloads}} = 3 "
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 30,
+   "identical_to_full": false,
+   "first_divergence": 7,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of downloads for the program over the three months, we need to calculate the number of downloads for each month and then sum them up.\n\n1. **First Month:**\n   The number of downloads in the first month is given as 100.\n\n2. **Second Month:**\n   The number of downloads in the second month is three times the number of downloads in the first month, but then reduced by 30.\n"
+  }
+ ],
+ "R": 4,
+ "P": 92,
+ "n_content": 60,
+ "gold": " = <<126+240=366>>366\n#### 366",
+ "elapsed_s": 208.77196145057678,
+ "peak_gpu_bytes": 6711781888
+}

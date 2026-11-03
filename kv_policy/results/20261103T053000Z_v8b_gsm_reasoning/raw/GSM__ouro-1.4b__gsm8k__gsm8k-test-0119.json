@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0119",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0119",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0119",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The total salary the two were receiving four years later is $120000.\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 21,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The total salary the two were receiving four years later is $120000.\n\n\nQuestion:"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 21,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The total salary the two were receiving four years later is $120000.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlate\nul\nul\nul\nul\nul\n\nul\nul\nul\n\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul\nul"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The total salary Adrien received four years later was $60000.\n\nExplanation:\nLet L be the Lylah's salary four years ago.\n\nAdrien's salary four years ago was 30% higher than Lylah's salary.\n\nSo, L + 30% of L = Adrien's salary four years ago.\n\nL + 0.3L = 1.3L\n\nL = 1.3L\n\nL = 13/10L\n\nL = 1.3L\n\nL = 1.3L\n\nL = 1.3L\n\nL = 1.3L\n\nL = 1.3L\n\nL = 1.3L\n\nL = 1.3L\n\nL = 1.3L\n\nL = 1.3L\n\nL = 1.3L\n\nL = 1.3L\n\nL = 1.3L\n\n"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 41,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "480",
+   "n_tokens": 189,
+   "finish": "stop",
+   "text": "The final answer is $\\boxed{1200}$\n\nQuestion:\nA right triangle has legs measuring 20 inches and 48 inches. What is the area of the triangle, in square inches?\n output: To find the area of a right triangle, we use the formula:\n\nArea = (1/2) * base * height\n\nIn this case, the legs of the triangle are the base and height. So, we can substitute the given values into the formula: Area = (1/2) * 20 inch"
+  }
+ ],
+ "R": 4,
+ "P": 115,
+ "n_content": 83,
+ "gold": "+56000=95200>>95200\n#### 95200",
+ "elapsed_s": 99.4669508934021,
+ "peak_gpu_bytes": 9022258688
+}

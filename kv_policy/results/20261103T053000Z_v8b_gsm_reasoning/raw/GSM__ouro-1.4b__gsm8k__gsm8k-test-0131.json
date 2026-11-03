@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0131",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0131",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0131",
+ "split": "gsm",
+ "sha": "e21f652f58418380dcfe6f12c56c76f3720bd13c",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "940",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total expenditure for Joseph in May and June, we need to calculate his expenditure for each month and then add them together.\n\nFirst, we know that Joseph's expenditure in May was $500.\n\nNext, we are told that in June, his expenditure was $60 less than in May. Therefore, we can calculate his expenditure in June as follows:\n\\[\n\\text{Expenditure in June} = \\text{Expenditure in May} - 60 ="
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 82,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "940",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total expenditure for Joseph in May and June, we need to calculate his expenditure for each month and then add them together.\n\nFirst, we know that Joseph's expenditure in May was $500.\n\nNext, we are told that in June, his expenditure was $60 less than in May. Therefore, we can calculate his expenditure in June as follows:\n\\[ \\text{Expenditure in June} = \\text{Expenditure in May} - 60 ="
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total expenditure for the two months, we need to add the expenditure in May and June.\nExpenditure in May = $500\nExpenditure in June = $500 - $600 = $440\nTotal expenditure for the two months = $500 + $440 = $940\nFinal Answer:\nThe total expenditure for the two months is $940.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nuser"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine Joseph's total expenditure for May and June, we can follow these steps:\n\n1. **Identify the Expenditure for May:**\n   - Joseph's expenditure in May was given as $500.\n\n2. **Determine the Expenditure for June:**:**\n   - In June, Joseph's expenditure was $60 less than in May.\n   - Therefore, Joseph's expenditure in June was:\n     \\[\n     500 - 60 = 440 \\\n     {\\text{dollars}}\n     \\\n    "
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 17,
+   "identical_to_full": false,
+   "first_divergence": 5,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "42",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total expenditure of Joseph in the two months, we need to add the expenditure for each month.\n\nExpenditure in the first month: $5\nExpenditure in the second month: $6\n\nTotal expenditure = Expenditure in the first month + Expenditure in the second month\nTotal expenditure = $5 + $6\nTotal expenditure = $11\n\nTherefore, the total expenditure of Joseph in the two months is $11.\n\nFinal Answer:"
+  }
+ ],
+ "R": 4,
+ "P": 66,
+ "n_content": 34,
+ "gold": " $<<500+440=940>>940.\n#### 940",
+ "elapsed_s": 118.03260278701782,
+ "peak_gpu_bytes": 9668445696
+}

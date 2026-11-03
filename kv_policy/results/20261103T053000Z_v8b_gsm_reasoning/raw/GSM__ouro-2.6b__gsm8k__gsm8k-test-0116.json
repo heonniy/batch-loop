@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0116",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0116",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0116",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the number of teaspoonfuls of sugar Katy used, we start by defining the variables based on the given ratio. Let \\( s \\) represent the number of teaspoonfuls of sugar and \\( w \\) represent the number of cups of water. According to the problem, the ratio of sugar to water is 7:13, which can be written as:\n\n\\[\n\\frac{s}{w} = \\frac{7}{13}\n\\]\n\nThis implies that we can express \\( s \\) in ter"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 154,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the number of teaspoonfuls of sugar Katy used, we start by defining the variables based on the given ratio. Let \\( s \\) represent the number of teaspoonfuls of sugar and \\( w \\) represent the number of cups of water. According to the problem, the ratio of sugar to water is 7:13, which can be written as:\n\n\\[\n\\frac{s}{w} = \\frac{7}{13}\n\\]\n\nThis implies that we can express \\( s \\) in ter"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 36,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the number of teaspoonfuls of sugar Katy used, we start by defining the variables based on the given ratio. Let \\( s \\) represent the number of teaspoons of sugar and \\( w \\) represent the number of cups of water. According to the problem, the ratio of sugar to water is 7:13, which can be written as:\n\\[\n\\frac{s}{w} = \\frac{7}{13}\n\\]\n\nThis implies that we can express \\( s \\) in terms o"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 10,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the number of teaspoonfuls of sugar sugar used by Katy, we need to understand the ratio of sugar sugar to water in her coffee. The ratio given is 7 parts sugar sugar to 13 parts water water.\n\nFirst, let's define the variables:\n- Let \\( S\\) represent the number teaspoons of sugar sugar.\n- Let \\( W\\) represent the number teaspoons of water.\n\nAccording to the ratio, the ratio of sugar su"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 26,
+   "identical_to_full": false,
+   "first_divergence": 20,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "13/2",
+   "n_tokens": 236,
+   "finish": "stop",
+   "text": "To determine the number of teaspoonfuls of sugar Katy used, we start by defining the variables and setting up the equation based on the given ratio and total amount of ingredients.\n\nLet \\( x \\) be the number of teaspoonfuls of sugar Katy used. According to the problem, the ratio of sugar to water is 13:13, which simplifies to 1:1. This means that the number of teaspoonfuls of water used is also \\("
+  }
+ ],
+ "R": 4,
+ "P": 84,
+ "n_content": 52,
+ "gold": "20 = <<7/20*120=42>>42\n#### 42",
+ "elapsed_s": 204.76174664497375,
+ "peak_gpu_bytes": 18987668480
+}

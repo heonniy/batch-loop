@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0133",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0133",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0133",
+ "split": "gsm",
+ "sha": "e21f652f58418380dcfe6f12c56c76f3720bd13c",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "13",
+   "n_tokens": 301,
+   "finish": "stop",
+   "text": "To determine how many miles Walt walked on Wednesday, we need to follow these steps:\n\n1. Calculate the distance Walt walked on Tuesday.\n2. Determine the total distance Walt walked on Monday and Tuesday.\n3. Subtract the total distance walked on Monday and Tuesday from the total distance walked from Monday through Wednesday to find the distance walked on Wednesday.\n\nLet's start with the first step:\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 74,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "13",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many miles Walt walked on Wednesday, we need to follow these steps:\n\n1. Calculate the distance Walt walked on Tuesday.\n2. Determine the total distance Walt walked on Monday and Tuesday.\n3. Subtract the total distance walked on Monday and Tuesday from the total distance walked from Monday through Wednesday to find the distance walked on Wednesday.\n\nFirst, we know that Walt walked 4"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 110,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "13",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many miles Walt walked on Wednesday, we need to follow these steps:\n\n1. Calculate the distance Walt walked on Tuesday.\n2. Determine the total distance Walt walked on Monday and Tuesday.\n3. Subtract the total distance walked on Monday and Tuesday from the total distance walked from Monday through Wednesday to find the distance walked on Wednesday.\n\nLet's start with the first step:\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 13,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many miles Walt walked on Wednesday, we need to break down the information given and perform the necessary calculations step by step.\n\n1. **Miles Walked on Monday:**\n   Walt walked 4 miles on Monday.\n\n2. **Miles Walked on Tuesday:**\n   On Tuesday, Walt walked 6 times as many miles as he walked on Monday. Since one mile is 5-and-a-quarter-thousandths of a mile, we need to convert t"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 23,
+   "identical_to_full": false,
+   "first_divergence": 5,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "4",
+   "n_tokens": 298,
+   "finish": "stop",
+   "text": "To determine how many miles Alex walked on Wednesday, we need to follow these steps:\n\n1. Identify the distance Alex walked on Monday.\n2. Calculate the distance Alex walked on Tuesday.\n3. Use the total mileage for Monday through Wednesday to find the distance walked on Wednesday.\n\nFirst, we know that Alex walked 4 miles on Monday.\n\nNext, we know that Alex walked 3 times as many miles on Tuesday as "
+  }
+ ],
+ "R": 4,
+ "P": 78,
+ "n_content": 46,
+ "gold": " <<41-28=13>>13 miles.\n#### 13",
+ "elapsed_s": 207.93497705459595,
+ "peak_gpu_bytes": 23371470336
+}

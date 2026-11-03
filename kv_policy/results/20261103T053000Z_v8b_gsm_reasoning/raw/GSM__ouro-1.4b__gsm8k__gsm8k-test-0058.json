@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0058",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0058",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0058",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The final price of Stephen's groceries is $47.00.\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 9,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The final price of Stephen's groceries is $51.00.\n"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 17,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The final price of Stephen's groceries is $47.00.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nQuestion\n\n: let's\n\n\n:\n\n\n\n:\n\n:\n\n:\n\n:\n\n:\n\n:\n\n:\n\n:\n\n:\n\n\n:\n\n:\n\n:\n\n:\n\n:\n:\n:\n:\n:\n:\n:\n:\n:\n:\n:\n:\n:\n:\n:\n:\n:\n:\n1.\n2\n:\n2\n:\n:\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 10,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The final price of Stephen's groceries is $40.00 + $3.00 + $4.00 = $47.00.\n\nReasoning:\nThe original price of the groceries was $40.00.  The 25% delivery fee was calculated by multiplying the original price by 0.25: $40.00 x 0.25 = = $10.00.  The $4.00 tip was added to the original price: $40.00 + $4.00 = = $44.00.  The total price with the delivery fee and tip was calculated by adding the original"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 42,
+   "identical_to_full": false,
+   "first_divergence": 2,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "17",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The final answer is \\boxed{10.00}.\nReasoning:\nThe total cost of the order is $10.00.\nThe delivery fee is $3.00.\nThe tip is $4.00.\nThe total cost of the order is $10.00 + $3.00 + $4.00 = $17.00.\nThe final answer is \\boxed{17.00}.\nReasoning:\nThe total cost of the order is $10.00.\nThe delivery fee is $3.00.\nThe tip is $4.00.\nThe total cost of the order is $10.00 + $3.00 + $4.00 = $17.00.\nThe final an"
+  }
+ ],
+ "R": 4,
+ "P": 116,
+ "n_content": 84,
+ "gold": "<<40+10+7=57.00>>57.00\n#### 57",
+ "elapsed_s": 106.55558967590332,
+ "peak_gpu_bytes": 9008253440
+}

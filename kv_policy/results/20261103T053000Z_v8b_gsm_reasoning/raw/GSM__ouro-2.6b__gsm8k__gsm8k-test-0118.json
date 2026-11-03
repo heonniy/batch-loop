@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0118",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0118",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0118",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the number of containers imported on the second day, we need to follow these steps:\n\n1. Calculate the total number of vehicles imported on the first day.\n2. Determine the total number of vehicles imported on the second day.\n3. Calculate the number of containers imported on the second day.\n\n**Step 1: Calculate the total number of vehicles imported on the first day.**\n\nThe customs offic"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 28,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the number of containers imported on the second day, we need to follow these steps:\n\n1. Calculate the total number of vehicles in the containers imported on the first day.\n2. Determine the total number of vehicles imported on the second day.\n3. Calculate the number of containers imported on the second day.\n\n**Step 1: Calculate the total number of vehicles in the containers imported on"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 28,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the number of containers imported on the second day, we need to follow these steps:\n\n1. Calculate the total number of vehicles in the containers imported on the first day.\n2. Determine the total number of vehicles imported on the second day.\n3. Calculate the number of containers imported on the second day.\n\n**Step 1: Calculate the total number of vehicles in the containers imported on"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 28,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the number of containers imported on the second day, we need to follow these steps:\n\n1. Calculate the total number of vehicles in the containers on the first day.\n2. Determine the total number of vehicles at the port after the second day.\n3. Find the number of additional containers imported on the second day.\n\nStep-by-step reasoning:\n\n1. **First Day:**\n   - On the first day, there wer"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 36,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the number of containers that were imported on the second day, we need to follow these steps:\n\n1. Calculate the total number of containers imported on the first day.\n2. Determine the total number of containers imported on the second day.\n3. Calculate the total number of containers imported over the two days.\n4. Use the information given to find the number of containers imported on the"
+  }
+ ],
+ "R": 4,
+ "P": 105,
+ "n_content": 73,
+ "gold": "<<20/5=4>>4 containers.\n#### 4",
+ "elapsed_s": 228.49249458312988,
+ "peak_gpu_bytes": 19009316352
+}

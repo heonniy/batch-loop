@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0074",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0074",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0074",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Artie sells three types of flowers: marigolds, petunias, and begonias. He has to round each price to the nearest dollar because he doesn't have change. The original prices are $2.74 for marigolds, $1.87 for petunias, and $2.12 for begonias. He sold 12 marigolds, 9 petunias, and 17 begonias. I need to calculate the total money he made after rounding each price.\n\nFirst, "
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 35,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Artie sells three types of flowers: marigolds, petunias, and begonias. He rounds the prices to the nearest dollar because he doesn't have change. The original prices are $2.74 for marigolds, $1.87 for petunias, and $2.12 for begonias. He sells 12 marigolds, 9 petunias, and 17 begonias. I need to calculate how much he makes in total after rounding each price to the near"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "1",
+   "n_tokens": 276,
+   "finish": "stop",
+   "text": "\nAssistant\nTo find out how much Artie will make from selling his flowers, we need to calculate the total revenue from each type of flower and then add them together.\n\nFirst, let's round the prices to the nearest dollar:\n- Marigolds: $2.74 per pot rounds up to $3 per pot.\n- Petunias: $1.87 per pot rounds up to $2 per pot.\n- Begonias: $2.12 per pot rounds up to $3 per pot.\n\nNow, let's calculate the "
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 61,
+   "identical_to_full": false,
+   "first_divergence": 20,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Artie sells three types of plants: marigolds, petunias, and begonias. Each has a different price per pot. The problem is asking how much he makes if he sells a certain number of each, but he doesn't have change, so he has to round the prices to the nearest dollar. Hmm, right, so first I need to figure out the rounded prices for each plant.\n\nMarigolds are $2.77 each. Ro"
+  }
+ ],
+ "R": 4,
+ "P": 155,
+ "n_content": 123,
+ "gold": "4 = $<<36+18+34=88>>88\n#### 88",
+ "elapsed_s": 216.7524356842041,
+ "peak_gpu_bytes": 12955774976
+}

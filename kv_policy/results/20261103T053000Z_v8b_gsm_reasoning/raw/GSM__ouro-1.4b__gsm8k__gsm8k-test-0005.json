@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0005",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0005",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0005",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "64",
+   "n_tokens": 286,
+   "finish": "stop",
+   "text": "To solve this problem, we need to calculate the total cost of 16 glasses, considering the discount on every second glass.\n\nFirst, let's break down the cost for each type of glass:\n- The first glass costs $5.\n- The second glass costs 60% of $5, which is $3.\n- The third glass costs $5.\n- The fourth glass costs 60% of $5, which is $3.\n- This pattern continues for all 16 glasses.\n\nSince every second g"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "64",
+   "n_tokens": 269,
+   "finish": "stop",
+   "text": "To determine how much Kylar needs to pay for 16 glasses, we need to consider the pricing structure: the first glass costs $5, and every second glass costs 60% of the price of the first glass.\n\nLet's break down the cost for the glasses:\n- The first glass costs $5.\n- The second glass costs 60% of $5, which is $3.\n- The third glass costs $5.\n- The fourth glass costs 60% of $5, which is $3.\n- This pat"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much Kylar needs to pay for 16 glasses, we need to calculate the cost of the glasses based on the given pricing structure.\n\nThe pricing structure is as follows:\n- The first glass costs $5.\n- Every second glass costs 60% of the price of the first glass.\n\nSince Kylar wants to buy 16 glasses, we can break down the cost calculation as follows:\n- The first glass costs $5.\n- The second "
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much Kylar needs to pay for 16 glasses of glasses, we can break down the cost as follows:\n\n1. **First 15 Regular Glasses:**:**\n   - Each regular-priced glass costs $5.\n   - For 15 regular-priced glasses:\n     \\[\n     15 \\times 5 = 75 \\ \\(\\text{dollars}\\)}\n     \\ \\(\\text{(15 \\ \\text{regular glasses} \\ \\text{cost} \\ \\ \\text{75 \\ \\ \\text{dollars}} \\ \\ \\text{)} \\ \\ \\ \\text{)} \\ \\ \\ \\t"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 28,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "3",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total cost of the glasses, we need to calculate the cost of the first glass and the cost of the remaining glasses, considering the discount for every second glass.\n\n1. **Cost of the first glass:**\n   The first glass costs $1.\n\n2. **Cost of the remaining glasses:**\n   - Kyle needs to buy a total of 10 glasses.\n   - After the first glass, there are \\(10 - 1 = 9\\) glasses left.\n   - "
+  }
+ ],
+ "R": 4,
+ "P": 88,
+ "n_content": 56,
+ "gold": "asses he wants to buy.\n#### 64",
+ "elapsed_s": 99.36700415611267,
+ "peak_gpu_bytes": 3613662720
+}

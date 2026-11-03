@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0078",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0078",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0078",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "6",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much money Vincent saves by buying 18 flowers at the better price, we need to calculate the cost of buying 18 flowers in both package options and then find the difference between these costs.\n\nFirst, let's calculate the cost of buying 18 flowers in packages of 3:\n- Each package of 3 flowers costs $2.50.\n- To find out how many packages Vincent needs, we divide 18 by 3:\n  \\[\n  \\frac"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 40,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much money Vincent saves by buying 18 flowers at the better price, we need to calculate the cost of buying 18 flowers in both package options and then find the difference between the two costs.\n\nFirst, let's calculate the cost of buying 18 flowers in packages of 3:\n- Each package of 3 flowers costs $2.50.\n- To find out how many packages Vincent needs, we divide 18 by 3:\n  \\[\n  \\fr"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 40,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much money Vincent saves by buying 18 flowers at the better price, we need to calculate the cost of buying 18 flowers in both package options and then find the difference between the two costs.\nFirst, let's calculate the cost of buying 18 flowers in packages of 3:\n- Each package of 3 flowers costs $2.50.\n- To find out how many packages of 3 flowers Vincent needs, we divide 18 by 3"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 21,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much money Vincent saves by buying 18 flowers at the better price, we need to compare the total cost of buying 18 flowers in packages of 3 versus in packages of 2.\n\n**Step 1: Calculate the cost of buying 18 flowers in packages of 3.**\n\n- The price for a package of 3 flowers is $2.50.\n- Since Vincent needs 18 flowers flowers, he needs \\(\\frac{18}{3}} = 6\\ packages.\n- The total cost"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 22,
+   "identical_to_full": false,
+   "first_divergence": 13,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much money Vincent saves by buying 18 flowers in packages of 3 instead of packages of 3, we need to calculate the cost of 18 flowers in both scenarios and then find the difference.\n\nFirst, let's calculate the cost of 18 flowers if Vincent buys them in packages of 3:\n- Each package of 3 flowers costs $2.00.\n- To find out how many packages Vincent needs, we divide 18 by 3:\n  \\[\n  \\f"
+  }
+ ],
+ "R": 4,
+ "P": 76,
+ "n_content": 44,
+ "gold": "15 - $9 = $<<15-9=6>>6.\n#### 6",
+ "elapsed_s": 225.90290069580078,
+ "peak_gpu_bytes": 12703987200
+}

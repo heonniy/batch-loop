@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0040",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0040",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0040",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Brandon's iPhone is 8 years old.\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 12,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Brandon's iPhone is 8 years old.\n\n"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 12,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Brandon's iPhone is 8 years old.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n:\n\n\n\n\n:\n, true\n, false\n, true,\\ false\n, false,\\ false\n, false,\\ false\n, true,\\ false\n\n, false,\\ false\n, false,\\ false\n, false,\\ false,\\ false,\\ false,\\ false,\\ false"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "2",
+   "n_tokens": 186,
+   "finish": "stop",
+   "text": "Brandon's iPhone is 4 times as old as Ben's iPhone. Ben's iPhone is two times older than Suzy's iPhone. If Suzy\u2019s iPhone is 1 year old, then Ben's iPhone is 2 years old.\nBen's iPhone is 2 times older than Suzy's iPhone. If Suzy\u2019s iPhone is 1 year old, then Ben's iPhone is 2 times 1 year old, which is 2 years old.\nBrand on's iPhone is 4 times as old as Ben's iPhone. If Ben's iPhone is 2 years old, "
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 24,
+   "identical_to_full": false,
+   "first_divergence": 15,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Brandon's iPhone is 8 years old.\n"
+  }
+ ],
+ "R": 4,
+ "P": 80,
+ "n_content": 48,
+ "gold": "= <<4*2=8>>8 years old.\n#### 8",
+ "elapsed_s": 97.26130390167236,
+ "peak_gpu_bytes": 7638308864
+}

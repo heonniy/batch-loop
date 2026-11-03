@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0121",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0121",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0121",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "27",
+   "n_tokens": 301,
+   "finish": "stop",
+   "text": "To determine the total number of fruits Morisette and Kael brought, we need to calculate the number of apples and oranges each person brought and then sum them up.\n\nFirst, let's find out how many apples and oranges Kael brought:\n- Kael brought twice the amount of apples that Morisette brought. Since Morisette brought 5 apples, Kael brought \\(2 \\times 5 = 10\\) apples.\n- Kael brought half the number"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 45,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "27",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of fruits Morisette and Kael brought, we need to calculate the number of apples and oranges each person brought and then sum them up.\n\nFirst, let's find out how many apples Kael brought. Morisette brought 5 apples, and Kael brought twice that amount:\n\\[\n2 \\times 5 = 10 \\text{ apples}\n\\]\n\nNext, let's find out how many oranges Kael brought. Morisette brought 8 oranges, "
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 31,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "27",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of fruits Morisette and Kael brought, we need to calculate the number of apples and oranges each person brought and then sum these amounts.\n\nFirst, let's find out how many apples and oranges Kael brought:\n- Kael brought twice the amount of apples that Morisette brought. Since Morisette brought 5 apples, Kael brought:\n  \\[\n  2 \\times 5 = 10 \\text{ apples}\n  \\]\n- Kael b"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 7,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "27",
+   "n_tokens": 264,
+   "finish": "stop",
+   "text": "To determine the total number of fruits brought by Morisette and Kael, we need to calculate the number of apples and oranges each person brought and then sum them up.\n\nFirst, let's find out how many apples and oranges Kael brought.\n\nMorisette brought 5 apples and 8 oranges.\n\nKael brought twice the amount of apples apples as Morisette:\n\\[ 2 \\times 5 = 10 \\apples \\\n\nKael brought half the number of o"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 26,
+   "identical_to_full": false,
+   "first_divergence": 12,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "21",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of fruits Morisette and K brought, we need to calculate the number of apples and oranges each person brought and then sum them up.\n\nFirst, let's find out how many apples K brought. Morisette brought 3 apples, and K brought twice the amount of apples that Morisette brought. Therefore, the number of apples K brought is:\n\\[ 2 \\times 3 = 6 \\]\n\nNext, let's find out how man"
+  }
+ ],
+ "R": 4,
+ "P": 85,
+ "n_content": 53,
+ "gold": "7>>27 fruits in total.\n#### 27",
+ "elapsed_s": 215.35078835487366,
+ "peak_gpu_bytes": 20234948096
+}

@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0063",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0063",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0063",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To calculate the total amount Aleena paid for the streaming service by the end of the year, we need to break down the payments into two parts: the first half of the year and the second half of the year.\n\n1. **First Half of the Year:**\n   - The streaming service charges $140 per month.\n   - There are 6 months in the first half of the year.\n   - Total payment for the first half of the year:\n     \\[\n"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total amount Aleena paid for the streaming service by the end of the year, we need to break down the payments into two parts: the first half of the year and the second half of the year.\n\n1. **Calculate the payment for the first half of the year:**\n   - The streaming service charges $140 per month.\n   - There are 6 months in the first half of the year.\n   - Therefore, the total pay"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total amount Aleena paid for the streaming service by the end of the year, we need to break down the payments into two parts: the first half of the year and the second half of the year.\n\n1. **First Half of the Year:**\n   - The streaming service charges $140 per month.\n   - There are 6 months in the first half of the year.\n   - Total payment for the first half of the year:\n     \\[\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 28,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To calculate the total amount Aleena paid for the streaming service by the end of the year, we need to break down the payments into two halves of the year and then sum them up.\n\n1. **First Half of the Year (6 Months):**\n   - Monthly subscription fee: $140\n   - Number of months in the first half: 6 months\n   - Total payment for the first half: \\( 140 \\ \\ dollars \\times 6 \\ months = 840 \\ \\ dollars "
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 35,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To calculate the total amount Ale paid for the streaming service, we need to break down the payments into two parts: the initial amount for the first half of the year and the reduced amount for the second half of the year.\n\nFirst, let's determine the number of months in each half of the year. Since there are 12 months in a year, each half of the year consists of:\n\\[ \\frac{12}{2} = 6 \\text{ months}"
+  }
+ ],
+ "R": 4,
+ "P": 103,
+ "n_content": 71,
+ "gold": "<<840+756=1596>>1596\n#### 1596",
+ "elapsed_s": 228.38589358329773,
+ "peak_gpu_bytes": 11485497344
+}

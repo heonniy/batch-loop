@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0118",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0118",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0118",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to determine the number of containers imported on the second day. Let's break it down step by step.\n\n1. **Initial Information:**\n   - On the first day, 2 containers were imported, each containing 5 vehicles.\n   - Total vehicles on the first day: \\( 2 \\text{ containers} \\times 5 \\text{ vehicles/container} = 10 \\text{ vehicles} \\).\n\n2. **Total Vehicles on the Second Da"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 2,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "4",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve the mathematical question given in the Content section, we need to determine the number of containers imported on the second day.\n\nLet's break down the problem step by step:\n\n1. **First Day:**\n   - Number of containers: 2\n   - Number of vehicles per container: 5\n   - Total number of vehicles on the first day: \\( 2 \\times 5 = 10 \\)\n\n2. **Second Day:**\n   - Let \\( x \\) be the number of cont"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 19,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to determine the number of containers imported on the second day.\nLet's denote the number of containers imported on the second day as x.\nWe know that on the first day, 2 containers were imported, each containing 5 vehicles.\nSo, the total number of vehicles imported on the first day is 2 * 5 = c10.\nOn the second day, the total number of vehicles at the port became 30."
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 9,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to determine how many containers were imported on the second day, given that the total number of vehicles at the port increased from 10 to 30.\n\nFirst, let's define the variables:\n- Let \\( x \\) be the number of containers imported on the first day.\n- Let \\( y \\) be the number of containers imported on the second day.\n\nFrom the information given:\n1. On the first day, 2"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 36,
+   "identical_to_full": false,
+   "first_divergence": 2,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve the problem, we need to determine the number of containers that were brought in the next day. Let's break it down step by step.\n\n1. **Initial Count of Vehicles:**\n   - The customs officer counted 2 containers with 2 vehicles each.\n   - Total vehicles initially = \\(2 \\text{ containers} \\times 2 \\text{ vehicles per container} = 4 \\text{ vehicles}\\).\n\n2. **Total Vehicles After the Next Day:*"
+  }
+ ],
+ "R": 4,
+ "P": 105,
+ "n_content": 73,
+ "gold": "<<20/5=4>>4 containers.\n#### 4",
+ "elapsed_s": 106.23506307601929,
+ "peak_gpu_bytes": 8334756352
+}

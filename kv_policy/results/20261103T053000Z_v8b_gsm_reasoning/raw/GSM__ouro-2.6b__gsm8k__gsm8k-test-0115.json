@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0115",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0115",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0115",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine Sasha's profit from selling her leftover lumber, we need to follow these steps:\n\n1. Calculate the total cost of the lumber Sasha originally bought.\n2. Determine the new selling price of the lumber after the price increase.\n3. Calculate the total revenue from selling the lumber.\n4. Subtract the total cost from the total revenue to find the profit.\n\n**Step 1: Calculate the total cost of"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 8,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine Sasha's profit from selling the lumber, we need to follow these steps:\n\n1. Calculate the total cost of the lumber Sasha originally bought.\n2. Determine the new selling price of the lumber after the price increase.\n3. Calculate the total revenue from selling the lumber.\n4. Subtract the total cost from the total revenue to find the profit.\n\n**Step 1: Calculate the total cost of the lumb"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 8,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine Sasha's profit from selling the lumber, we need to follow these steps:\n\n1. Calculate the total cost of the lumber Sasha originally bought.\n2. Determine the new selling price of the lumber.\n3. Calculate the total revenue from selling the lumber.\n4. Subtract the total cost from the total revenue to find the profit.\n\n**Step 1: Calculate the total cost of the lumber Sasha originally bough"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 9,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine Sasha's profit from selling her lumber, we need to calculate the total revenue she would have earned if she sold all her lumber and then subtract the cost of the lumber she bought.\n\nStep-by-step reasoning:\n\n1. Calculate the revenue from selling the 2 x 4 x 10 boards:\n   - Each board costs $10.\n   - There are ten boards.\n   - Revenue from 2 x 4s: \\( 10 \\ \\boards \\times \\$10\\ per\\ board"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 46,
+   "identical_to_full": false,
+   "first_divergence": 60,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine Sasha's profit from selling her leftover lumber, we need to follow these steps:\n\n1. Calculate the total cost of the lumber Sasha originally bought.\n2. Determine the new selling price of the lumber after the price increase.\n3. Calculate the total revenue from selling the leftover lumber.\n4. Subtract the original cost of the leftover lumber from the total revenue to find the profit.\n\n**"
+  }
+ ],
+ "R": 4,
+ "P": 125,
+ "n_content": 93,
+ "gold": "180 = <<270-180=90>>90\n#### 90",
+ "elapsed_s": 230.6551194190979,
+ "peak_gpu_bytes": 17742518272
+}

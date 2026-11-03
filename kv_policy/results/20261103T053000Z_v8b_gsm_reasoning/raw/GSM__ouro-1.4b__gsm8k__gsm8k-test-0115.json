@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0115",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0115",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0115",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Sasha has some leftover lumber and wants to sell them to make a profit. The problem is asking how much profit she makes if she sells all of them. \n\nFirst, I need to figure out the cost price and the selling price for each type of board. The problem says that prices have gone up by 50% in the last few months. So, the original cost was $10 for the 2x4x10 boards and $16 f"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 24,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. Sasha has some leftover lumber and wants to sell it to make a profit. The problem is asking how much profit she makes if she sells all the leftover boards. \n\n\nFirst, I need to figure out the total cost she originally paid for the lumber and then the total revenue she gets from selling it. Profit is revenue minus cost, right?\n\n\nShe has two types of boards: ten 2x4x10 bo"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\n\nfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfrfr"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 7,
+   "finish": "stop",
+   "text": "\n\n\n"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 46,
+   "identical_to_full": false,
+   "first_divergence": 14,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "\nassistant\n\nOkay, let's see. The problem is about calculating how much money the person makes by selling leftover lumber after a 50% price increase. They have ten pieces of 2x10 lumber and five pieces of 4x10 lumber. The original prices were $10 and $16 respectively, but now they're up by 50%. So first, I need to find the new prices after the increase, then calculate the total revenue from selling"
+  }
+ ],
+ "R": 4,
+ "P": 125,
+ "n_content": 93,
+ "gold": "180 = <<270-180=90>>90\n#### 90",
+ "elapsed_s": 90.12051105499268,
+ "peak_gpu_bytes": 6993797120
+}

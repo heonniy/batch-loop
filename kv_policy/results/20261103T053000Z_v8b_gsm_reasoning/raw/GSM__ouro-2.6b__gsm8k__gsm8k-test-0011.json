@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0011",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0011",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0011",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "694",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total cost of the pastries Toula bought, we need to calculate the cost of each type of pastry separately and then sum these costs.\n\nFirst, let's calculate the cost of the donuts:\nToula bought 3 dozen donuts, and each dozen costs $68.\n\\[\n3 \\times 68 = 204\n\\]\nSo, the cost of the donuts is $204.\n\nNext, let's calculate the cost of the mini cupcakes:\nToula bought 2 dozen mini cupcakes, and "
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": true,
+   "first_divergence": 320,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "694",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total cost of the pastries Toula bought, we need to calculate the cost of each type of pastry separately and then sum these costs.\n\nFirst, let's calculate the cost of the donuts:\nToula bought 3 dozen donuts, and each dozen costs $68.\n\\[\n3 \\times 68 = 204\n\\]\nSo, the cost of the donuts is $204.\n\nNext, let's calculate the cost of the mini cupcakes:\nToula bought 2 dozen mini cupcakes, and "
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 67,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "694",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total cost of the pastries Toula bought, we need to calculate the cost of each type of pastry separately and then sum these costs.\n\nFirst, let's calculate the cost of the donuts:\nToula bought 3 dozen donuts, and each dozen costs $68.\n\\[\n\\text{Cost of donuts} = 3 \\times 68 = 204\n\\]\n\nNext, let's calculate the cost of the mini cupcakes:\nToula bought 2 dozen mini cupcakes, and each dozen c"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 27,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total cost of the pastries Toula bought, we need to calculate the cost of each type of pastry separately and then sum them up.\n\n1. **Donuts:**\n   - Toula bought 3 dozen donuts.\n   - Cost per dozen donuts: $68.\n   - Total cost for donuts: \\( 3 \\ \\dozen \\ \\times \\ \\68\\ \\ dollars\\ per\\ dozen = \\ 3 \\ \\times \\\\68 = \\264\\ \\dollars \\).\n\n2. **Mini Cupcakes:**\n   - Toula bought 2 dozen mini cup"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 33,
+   "identical_to_full": false,
+   "first_divergence": 7,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "444",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To find the total cost of the items Tula bought, we need to calculate the cost of each type of item separately and then sum these costs.\n\nFirst, let's calculate the cost of the donuts:\nTula bought 3 dozen donuts, and each dozen costs $68.\n\\[\n3 \\times 68 = 204\n\\]\nSo, the cost of the donuts is $204.\n\nNext, let's calculate the cost of the mini donuts:\nTula bought 2 dozen mini donuts, and each dozen c"
+  }
+ ],
+ "R": 4,
+ "P": 98,
+ "n_content": 66,
+ "gold": "204+160+330=694>>694.\n#### 694",
+ "elapsed_s": 214.52525925636292,
+ "peak_gpu_bytes": 7348681728
+}

@@ -210,3 +210,16 @@ different KV policy than a standard transformer because of the loop. Directions 
   the code-SHA check (HEAD had moved by report/analysis commits); the main run completed with its original workers (342/342,
   0 errors); for pool A the manifest SHA was advanced (recorded in run_manifest.json code_sha_history) and one extra Ouro
   worker relaunched; the HOR evaluate path is unchanged since 27f01835.
+
+## 2026-11-03 — E10: v8b (+2.5 h): Ouro-1.4B two-axis matrix and a GSM8K reasoning arm
+
+- Ouro-1.4B (results/20261103T051500Z_v8b_ouro14b_tax, 40 units, prompts shared with Ouro-2.6B after verifying identical
+  tokenization): same ordering as the other two looped models — last-1 plane at the floor on CR (−0.005, EM 1.0), +0.06 on
+  Hotpot; all prompt-time token policies catastrophic; most-attended-loop planes +0.09–0.15. K/V plane cosine to terminal:
+  K 0.84/0.96/0.99, V 0.62/0.84/0.95 (more redundant than 2.6B).
+- GSM8K reasoning arm (results/20261103T053000Z_v8b_gsm_reasoning; zero-shot Content/Instruction/Answer prompt, 32 problems,
+  greedy ≤320, 6 arms, paired): prompt-only last-plane conversion harmless in all three models; generated-token conversion
+  harmless for Huginn (1 of 32 planes: 0.31 → 0.31) and Ouro-2.6B at this length (0.34 → 0.38, wide CI), destroys
+  Ouro-1.4B (0.31 → 0.00). Negative controls (first plane, 50% question tokens evicted) catastrophic everywhere. Caveats:
+  zero-shot accuracy is low, 56–88% of Ouro generations hit the cap, generations are not token-identical to FULL.
+- Smoke (1 problem/model) kept as receipts; arm set trimmed before the main run for the time budget.

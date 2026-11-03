@@ -1,0 +1,258 @@
+[
+ {
+  "model": "huginn-0125",
+  "arm": "first1@prompt+generated",
+  "n": 32,
+  "acc": 0.0,
+  "full_acc": 0.3125,
+  "delta": -0.3125,
+  "ci": [
+   -0.46875,
+   -0.15625
+  ],
+  "flex": 0.0,
+  "identical": 0.0,
+  "first_div_median": 4.0,
+  "len": 181.0625
+ },
+ {
+  "model": "huginn-0125",
+  "arm": "full",
+  "n": 32,
+  "acc": 0.3125,
+  "full_acc": 0.3125,
+  "delta": 0.0,
+  "ci": [
+   0.0,
+   0.0
+  ],
+  "flex": 0.28125,
+  "identical": 1.0,
+  "first_div_median": NaN,
+  "len": 227.84375
+ },
+ {
+  "model": "huginn-0125",
+  "arm": "last1@prompt",
+  "n": 32,
+  "acc": 0.25,
+  "full_acc": 0.3125,
+  "delta": -0.0625,
+  "ci": [
+   -0.15625,
+   0.0
+  ],
+  "flex": 0.21875,
+  "identical": 0.0625,
+  "first_div_median": 149.5,
+  "len": 233.28125
+ },
+ {
+  "model": "huginn-0125",
+  "arm": "last1@prompt+generated",
+  "n": 32,
+  "acc": 0.3125,
+  "full_acc": 0.3125,
+  "delta": 0.0,
+  "ci": [
+   -0.125,
+   0.125
+  ],
+  "flex": 0.3125,
+  "identical": 0.03125,
+  "first_div_median": 120.5,
+  "len": 224.1875
+ },
+ {
+  "model": "huginn-0125",
+  "arm": "last3@prompt+generated",
+  "n": 32,
+  "acc": 0.34375,
+  "full_acc": 0.3125,
+  "delta": 0.03125,
+  "ci": [
+   0.0,
+   0.09375
+  ],
+  "flex": 0.3125,
+  "identical": 0.03125,
+  "first_div_median": 151.5,
+  "len": 228.71875
+ },
+ {
+  "model": "huginn-0125",
+  "arm": "token_random50@prompt",
+  "n": 32,
+  "acc": 0.03125,
+  "full_acc": 0.3125,
+  "delta": -0.28125,
+  "ci": [
+   -0.4375,
+   -0.125
+  ],
+  "flex": 0.03125,
+  "identical": 0.0,
+  "first_div_median": 3.0,
+  "len": 223.90625
+ },
+ {
+  "model": "ouro-1.4b",
+  "arm": "first1@prompt+generated",
+  "n": 32,
+  "acc": 0.09375,
+  "full_acc": 0.3125,
+  "delta": -0.21875,
+  "ci": [
+   -0.375,
+   -0.0625
+  ],
+  "flex": 0.125,
+  "identical": 0.0,
+  "first_div_median": 4.0,
+  "len": 279.125
+ },
+ {
+  "model": "ouro-1.4b",
+  "arm": "full",
+  "n": 32,
+  "acc": 0.3125,
+  "full_acc": 0.3125,
+  "delta": 0.0,
+  "ci": [
+   0.0,
+   0.0
+  ],
+  "flex": 0.28125,
+  "identical": 1.0,
+  "first_div_median": NaN,
+  "len": 317.5625
+ },
+ {
+  "model": "ouro-1.4b",
+  "arm": "last1@prompt",
+  "n": 32,
+  "acc": 0.375,
+  "full_acc": 0.3125,
+  "delta": 0.0625,
+  "ci": [
+   0.0,
+   0.15625
+  ],
+  "flex": 0.1875,
+  "identical": 0.0,
+  "first_div_median": 16.0,
+  "len": 313.9375
+ },
+ {
+  "model": "ouro-1.4b",
+  "arm": "last1@prompt+generated",
+  "n": 32,
+  "acc": 0.0,
+  "full_acc": 0.3125,
+  "delta": -0.3125,
+  "ci": [
+   -0.46875,
+   -0.15625
+  ],
+  "flex": 0.25,
+  "identical": 0.0,
+  "first_div_median": 9.0,
+  "len": 307.5625
+ },
+ {
+  "model": "ouro-1.4b",
+  "arm": "token_random50@prompt",
+  "n": 32,
+  "acc": 0.03125,
+  "full_acc": 0.3125,
+  "delta": -0.28125,
+  "ci": [
+   -0.46875,
+   -0.09375
+  ],
+  "flex": 0.0625,
+  "identical": 0.0,
+  "first_div_median": 4.0,
+  "len": 311.0625
+ },
+ {
+  "model": "ouro-2.6b",
+  "arm": "first1@prompt+generated",
+  "n": 32,
+  "acc": 0.125,
+  "full_acc": 0.34375,
+  "delta": -0.21875,
+  "ci": [
+   -0.40625,
+   -0.03125
+  ],
+  "flex": 0.25,
+  "identical": 0.0,
+  "first_div_median": 10.0,
+  "len": 288.6875
+ },
+ {
+  "model": "ouro-2.6b",
+  "arm": "full",
+  "n": 32,
+  "acc": 0.34375,
+  "full_acc": 0.34375,
+  "delta": 0.0,
+  "ci": [
+   0.0,
+   0.0
+  ],
+  "flex": 0.375,
+  "identical": 1.0,
+  "first_div_median": NaN,
+  "len": 309.21875
+ },
+ {
+  "model": "ouro-2.6b",
+  "arm": "last1@prompt",
+  "n": 32,
+  "acc": 0.375,
+  "full_acc": 0.34375,
+  "delta": 0.03125,
+  "ci": [
+   -0.09375,
+   0.1875
+  ],
+  "flex": 0.375,
+  "identical": 0.0625,
+  "first_div_median": 39.5,
+  "len": 315.125
+ },
+ {
+  "model": "ouro-2.6b",
+  "arm": "last1@prompt+generated",
+  "n": 32,
+  "acc": 0.375,
+  "full_acc": 0.34375,
+  "delta": 0.03125,
+  "ci": [
+   -0.15625,
+   0.21875
+  ],
+  "flex": 0.4375,
+  "identical": 0.0,
+  "first_div_median": 22.0,
+  "len": 306.125
+ },
+ {
+  "model": "ouro-2.6b",
+  "arm": "token_random50@prompt",
+  "n": 32,
+  "acc": 0.03125,
+  "full_acc": 0.34375,
+  "delta": -0.3125,
+  "ci": [
+   -0.46875,
+   -0.15625
+  ],
+  "flex": 0.03125,
+  "identical": 0.0,
+  "first_div_median": 9.5,
+  "len": 307.5
+ }
+]

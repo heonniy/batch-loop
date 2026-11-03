@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0104",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0104",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0104",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "500",
+   "n_tokens": 314,
+   "finish": "stop",
+   "text": "To determine how many jigsaw pieces are left to be placed, we will follow these steps:\n\n1. Calculate the number of pieces Poppy places on the board.\n2. Determine the number of pieces remaining after Poppy places her pieces.\n3. Calculate the number of pieces Poppy's mom places on the board.\n4. Determine the number of pieces left after Poppy's mom places her pieces.\n\nLet's start with the first step:"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 58,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "500",
+   "n_tokens": 308,
+   "finish": "stop",
+   "text": "To determine how many jigsaw pieces are left to be placed, we will follow these steps:\n\n1. Calculate the number of pieces Poppy places on the board.\n2. Determine the number of pieces remaining after Poppy places her pieces.\n3. Calculate the number of pieces her mom places on the board.\n4. Determine the number of pieces left after her mom places her pieces.\n\nLet's start with the first step:\n\n1. Pop"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 14,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "500",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many jigsaw pieces are left to be placed, we need to follow these steps:\n\n1. Calculate the number of pieces placed by Poppy.\n2. Calculate the number of pieces remaining after Poppy's placement.\n3. Calculate the number of pieces placed by Poppy's mom.\n4. Calculate the number of pieces remaining after Poppy's mom's placement.\n\nLet's start with the first step:\n\n1. Poppy places a quar"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 14,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 311,
+   "finish": "stop",
+   "text": "To determine how many jigsaw pieces are left to be placed, we need to follow the steps of placing the pieces on the board and then calculating the remaining pieces.\n\n1. **Initial Total Pieces:**\n   Poppy starts with a 1000-piece jigsaw puzzle.\n\n2. **First Placement:**\n   Poppy places a quarter of the pieces on the board.\n   \\\n   \\[\n   \\text{First placement pieces}} = \\\\frac{1}{4} \\times 1000 = 250"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 24,
+   "identical_to_full": false,
+   "first_divergence": 9,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how many jigsaw pieces are left after placing a quarter and then a quarter of the remaining pieces on the board, we can follow these steps:\n\n1. **Calculate the number of pieces placed by Poppy:**\n   Poppy places a quarter of the 100 pieces on the board.\n   \\[\n   \\text{Pieces placed by Poppy} = \\frac{1}{4} \\times 100 = 25\n   \\]\n\n2. **Calculate the number of pieces remaining after Poppy"
+  }
+ ],
+ "R": 4,
+ "P": 81,
+ "n_content": 49,
+ "gold": "es left to be placed.\n#### 500",
+ "elapsed_s": 210.13914155960083,
+ "peak_gpu_bytes": 17754716160
+}

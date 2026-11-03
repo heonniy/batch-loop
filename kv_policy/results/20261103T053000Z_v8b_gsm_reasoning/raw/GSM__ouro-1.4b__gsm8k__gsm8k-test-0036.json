@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0036",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0036",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0036",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "75",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much Terry spends on yogurt over 30 days, we need to follow these steps:\n\n1. **Calculate the total number of yogurts Terry eats in 30 days:**\n   Terry eats 2 yogurts per day.\n   \\[\n   2 \\text{ yogurts/day} \\times 30 \\text{ days} = 60 \\text{ yogurts}\n   \\]\n\n2. **Determine how many sets of 4 yogurts are needed to get 60 yogurts:**\n   Each set contains 4 yogurts.\n   \\[\n   \\frac{60 \\t"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 27,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "75",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much Terry spends on yogurt over 30 days, we need to follow these steps:\n\n1. **Calculate the number of yogurts Terry eats in 30 days:**\n   Terry eats 2 yogurts per day. Over 30 days, the total number of yogurts he eats is:\n   \\[\n   2 \\text{ yogurts/day} \\times 30 \\text{ days} = 60 \\text{ yogurts}\n   \\]\n\n2. **Determine the cost of 60 yogurts:**\n   The yogurts are sold in packs of 4"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 24,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much Terry spends on yogurt over 30 days, we need to follow these steps:\n\n1. Calculate the total number of yogurts Terry eats in 30 days.\n2. Determine how many yogurts Terry needs to buy to have enough for 30 days.\n3. Calculate the total cost of the yogurts.\n\n\n\n\nStep 1: Calculate the total number of yogurts Terry eats in 30 days.\nTerry eats      e e e e e e e e e e e e e e e e e e"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 34,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much Terry spends on yogurt over 30 days, we need to follow these steps:\n\n1. **Calculate the total number of yogurts Terry consumes in 30 days:**\n   - Terry eats 2 yogurts per day.\n   - In 30 days, he will consume:\n     \\ \\ 2 \\text{ (yogurts/day)} } \\times 30 \\text{ (days)})} = 60 \\text{ (or) } 6 \\text{ (since 60 \u00f7 10 = 6)} \\text{ yogurts} \\]\n\n2. **Determine the cost per 4 yogurts"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 22,
+   "identical_to_full": false,
+   "first_divergence": 4,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "60",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine how much John spends on yogurt over 30 days, we need to follow these steps:\n\n1. **Calculate the number of yogurts John eats in 30 days:**\n   John eats 2 yogurts per day. Over 30 days, the total number of yogurts he eats is:\n   \\[\n   2 \\text{ yogurts/day} \\times 30 \\text{ days} = 60 \\text{ yogurts}\n   \\]\n\n2. **Determine the cost per yogurt:**\n   The yogurts are on sale for 5 yogurts fo"
+  }
+ ],
+ "R": 4,
+ "P": 76,
+ "n_content": 44,
+ "gold": "75.00>>75.00 on yogurt\n#### 75",
+ "elapsed_s": 104.36983942985535,
+ "peak_gpu_bytes": 6980319744
+}

@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0044",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0044",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0044",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine Charlie's net profit, we need to calculate both his total revenue and his total costs. Let's break it down step by step.\n\n1. **Calculate the total revenue:**\n   Charlie sells each candle for $2.00. If he sells 20 candles, his total revenue is:\n   \\[\n   \\text{Total Revenue} = 20 \\text{ candles} \\times \\$2.00 \\text{ per candle} = \\$40.00\n   \\]\n\n2. **Calculate the total cost:**\n   Charli"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine Charlie's net profit from selling 20 beeswax candles, we need to follow these steps:\n\n1. **Calculate the total revenue from selling the candles:**\n   - Each candle is sold for $2.00.\n   - Charlie sells 20 candles.\n   \\[\n   \\text{Total Revenue} = 20 \\text{ candles} \\times \\$2.00 \\text{ per candle} = \\$40.00\n   \\]\n\n2. **Determine the cost of supplies for making the candles:**\n   - One p"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 10,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine Charlie's net profit, we need to follow these steps:\n\n1. Calculate the total revenue from selling the candles.\n2. Calculate the total cost of the supplies.\n3. Subtract the total cost from the total revenue to find the net profit.\n\n**Step 1: Calculate the total revenue from selling the candles.**\n\nCharlie sells each candle for $2.00. If he sells 20 candles, the total revenue is:\n\\[ \\te"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 318,
+   "finish": "stop",
+   "text": "To determine Charlie's net profit from selling beeswax candles, we need to calculate both his total revenue and his total costs, and then find the difference between them.\n\n**Step 1: Calculate the total revenue from selling candles.**\nCharlie sells each candle for $2.00. If he sells 20 candles, the total revenue is:\n\\[ 20 \\text{ candles}} \\times \\\\$2.00 \\text{ per candle}} = \\\\ \\24.00 \\text dollar"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 38,
+   "identical_to_full": false,
+   "first_divergence": 2,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "30",
+   "n_tokens": 320,
+   "finish": "stop",
+   "text": "To determine the net profit for making and selling 20 beeswax candles, we need to follow these steps:\n\n1. **Calculate the total revenue from selling the candles:**\n   - Each candle is sold for $2.00.\n   - If he makes 20 candles, the total revenue is:\n     \\[\n     20 \\text{ candles} \\times \\$2.00 \\text{ per candle} = \\$40.00\n     \\]\n\n2. **Determine the cost of supplies:**\n   - The cost of supplies "
+  }
+ ],
+ "R": 4,
+ "P": 108,
+ "n_content": 76,
+ "gold": " $<<40-20=20.00>>20.00\n#### 20",
+ "elapsed_s": 228.69745421409607,
+ "peak_gpu_bytes": 10218025472
+}

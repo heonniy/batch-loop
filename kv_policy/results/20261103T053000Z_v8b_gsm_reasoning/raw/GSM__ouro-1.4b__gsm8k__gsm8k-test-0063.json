@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0063",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0063",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0063",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To calculate the total amount Aleena paid for the streaming service by the end of the year, we need to break down the payments for the first half and the second half of the year.\n\nFirst, let's calculate the amount paid for the first half of the year:\n- The streaming service charges $140 per month.\n- There are 6 months in the first half of the year.\n- Therefore, the total amount paid for the first "
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 55,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To calculate the total amount Aleena paid for the streaming service by the end of the year, we need to break down the payments for the first half and the second half of the year.\n\nFirst, let's calculate the amount paid for the first half of the year. Since the streaming service charges $140 per month, for 6 months (half of the year), the total amount paid is:\n\\[ 140 \\text{ dollars/month} \\times 6 "
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 25,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To calculate the total amount Aleena paid for the streaming service by the end of the year, we need to break down the problem into smaller steps.\n\nFirst, let's calculate the amount she paid for the first half of the year. The streaming service charges $140 per month, so for 6 months, the total amount would be:\n$140/month x 6 months = $840\n\n\nNext, let's calculate the amount she paid for the second "
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 7,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To calculate the total amount Aleena subscribed to the streaming service by the end of the year, we need to break down the charges for the first and second halves of the year.\n\nFirst, let's determine the number of months in each half of the year:\n- There are 12 months in a year.\n- Half of the year is 6 months (12 months / 2 = 6 months).\n\nNext, we need to calculate the total charges for Aleena's su"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 35,
+   "identical_to_full": false,
+   "first_divergence": 12,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "168",
+   "n_tokens": 259,
+   "finish": "stop",
+   "text": "To calculate the total amount Aleena paid for the streaming service over the course of a year, we need to break down the problem into smaller steps.\n\nFirst, let's determine the cost for the first half of the year. The streaming service charges $14 per month, and there are 6 months in the first half of the year.\n\nCost for the first half of the year = $14/month * 6 months = $84\n\nNext, let's determin"
+  }
+ ],
+ "R": 4,
+ "P": 103,
+ "n_content": 71,
+ "gold": "<<840+756=1596>>1596\n#### 1596",
+ "elapsed_s": 102.62716913223267,
+ "peak_gpu_bytes": 9687736320
+}

@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-2.6b__gsm8k__gsm8k-test-0128",
+ "kind": "GSM",
+ "model": "ouro-2.6b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0128",
+ "unit": "ouro-2.6b__gsm8k__gsm8k-test-0128",
+ "split": "gsm",
+ "sha": "e21f652f58418380dcfe6f12c56c76f3720bd13c",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "880",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The cost of a pepper is $15.\nThe cost of a watermelon is 3 times the cost of a pepper, so it is 3 * $15 = $45.\nThe cost of an orange is 5 less than the cost of a watermelon, so it is $45 - 5 = $40.\nDillon buys 4 watermelons, 20 peppers, and 10 oranges.\nThe total cost of the watermelons is 4 * $45 = $180.\nThe total cost of the peppers is 20 * $15 = $300.\nThe total cost of the oranges is 10 * $40 = "
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 4,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The cost of a watermelon is 3 times the cost of a pepper, so it is 3 * 15 = 45$. The cost of an orange is 5 less than the cost of a watermelon, so it is 45 - 5 = 40$. The total cost of 4 watermelons is 4 * 45 = 180$. The total cost of 20 peppers is 20 * 15 = 300$. The total cost of 10 oranges is 10 * 40 = 400$. The total amount of money Dillon will spend is 180 + 300 + 400 = 880$.\n\nQuestion:\nA 100"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 64,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The cost of a pepper is $15.\nThe cost of a watermelon is 3 times the cost of a pepper, so it is 3 * $15 = $45.\nThe cost of an orange is 5 less than the cost of a watermelon, so it is $45 - $5 = $40.\nDillon buys 4 watermelons, 20 peppers, and 10 oranges.\nThe total cost of the watermelons is 4 * $45 = $180.\nThe total cost of the peppers is 20 * $15 = $300.\nThe total cost of the oranges is 10 * $40 ="
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 6,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The cost of a pepper is 15$. Since a watermelon costs three times what each pepper costs, the cost of a watermelon is 3 * 15$ = 45$. An orange costs 5 less than what a watermelon cost, so the cost of an orange is 45$ - 5 = = 40 dollars. Dillon is sent to the store to buy 4 watermelons, 20 peppers, and 10 oranges. The total cost for watermelons is 4 * 45 dollars = 180 dollars. The total cost for pe"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 42,
+   "identical_to_full": false,
+   "first_divergence": 3,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "3450",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The cost of each pepper is 15$. The cost of each watermelon is 3 * 15$ = 45$. The cost of each orange is 5 * 45$ = 225$.\n\nDillon buys 20 watermelons, 20 peppers, and 10 oranges. The total cost is:\n\nCost of watermelons = 20 * 45$ = 900$\nCost of peppers = 20 * 15$ = 300$\nCost of oranges = 10 * 225$ = 2250$\n\nTotal cost = 900$ + 300$ + 2250$ = 3450$\n\nFinal answer: \\boxed{3450$}\n\nassistant\n\nOkay, let's"
+  }
+ ],
+ "R": 4,
+ "P": 116,
+ "n_content": 84,
+ "gold": "400+300+180=880>>880.\n#### 880",
+ "elapsed_s": 217.8098464012146,
+ "peak_gpu_bytes": 22819502592
+}

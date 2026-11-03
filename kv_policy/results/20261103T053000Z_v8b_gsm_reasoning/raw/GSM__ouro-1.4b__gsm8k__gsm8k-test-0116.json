@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0116",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0116",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0116",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "42",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to use the given ratio of sugar to water and the total amount of sugar and water used.\n\nThe ratio of sugar to water is 7:13. This means that for every 7 parts of sugar, there are 13 parts of water.\n\nLet's denote the number of parts of sugar as \\(7x\\) and the number of parts of water as \\(13x\\). The total amount of sugar and water used is 120 teaspoons and cups, so we"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 43,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "42",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to use the given ratio of sugar to water and the total amount of sugar and water used.\n\nThe ratio of sugar to water is 7:13. This means for every 7 parts of sugar, there are 13 parts of water.\n\nLet's denote the number of parts of sugar as \\(7x\\) and the number of parts of water as \\(13x\\).\n\nThe total amount of sugar and water used is 120. Therefore, we can write the "
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 8,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to find the number of teaspoonfuls of sugar Katy used.\nLet's denote the number of teaspoonfuls of sugar as S and the number of cups of water as W.\nWe know that the ratio of sugar to water is 7:13, which means that for every 7 teaspoonfuls of sugar, there are 13 cups of water.\nWe also know that the total number of teaspoonfuls of sugar and cups of water is  total of  "
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 8,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to determine the number of teaspoonfuls of sugar Kat uses based on the given ratio and total amounts.\n\n### Step-by-Step Solution:\n\n1. **Identify the Ratio and Total Amounts:**\n   - The ratio of teaspoons of sugar to cups of water is given as 7:13.\n   - Kat used a total of 120 teaspoons of sugar and cups of water.\n\n2. **Set Up the Proportion:**:**\n   - Let \\( S \\ \\tex"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 26,
+   "identical_to_full": false,
+   "first_divergence": 8,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "50",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to set up a system of equations based on the information given. Let's denote the number of teaspoons of sugar used as \\( S \\) and the number of teaspoons of water used as \\( W \\).\n\nWe are given two pieces of information:\n1. The total number of teaspoons of sugar and water used is 100.\n2. The ratio of sugar to water is 1:1 (since she uses teaspoons of sugar and teaspo"
+  }
+ ],
+ "R": 4,
+ "P": 84,
+ "n_content": 52,
+ "gold": "20 = <<7/20*120=42>>42\n#### 42",
+ "elapsed_s": 105.31131076812744,
+ "peak_gpu_bytes": 7655160832
+}

@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0091",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0091",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0091",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": true,
+   "flex": true,
+   "parse_ok": true,
+   "pred": "28",
+   "n_tokens": 276,
+   "finish": "stop",
+   "text": "To solve this problem, we need to determine the number of pets each person has and then add them together.\n\nFirst, we know that Cindy has 4 pets.\n\nNext, we are told that Marcia has two more pets than Cindy. So, we can calculate the number of pets Marcia has by adding 2 to the number of pets Cindy has:\n\\[ \\text{Number of pets Marcia has} = 4 + 2 = 6 \\]\n\nThen, we are told that Jan has three times th"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 18,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "28",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to determine the number of pets each person has and then find the total number of pets.\n\n1. **Determine the number of pets Cindy has:**\n   Cindy has 4 pets.\n\n2. **Determine the number of pets Marcia has:**\n   Marcia has 2 more pets than Cindy.\n   \\[\n   \\text{Number of pets Marcia has} = 4 + 2 = 6\n   \\]\n\n3. **Determine the number of pets Jan has:**\n   Jan has 3 times "
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 24,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve this problem, we need to determine the number of pets each person has and then add them together.\n\n1. Cindy has 4 pets.\n2. Marcia has 2 more pets than Cindy, so Marcia has 4 + 2 = 6 pets.\n3. Jan has 3 times the number of pets as Marcia, so Jan has 3 * 6 = 18 pets.\n4. The total number of pets is  sum of the pets each person has: 4 (Cindy) + 6 (Marcia) + 18 (Jan)) = e28 pets.\nFinal Answer:\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "28",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To determine the total number of pets that Jan, Marcia, and Cindy have together, we need to follow these steps:\n\n1. **Determine Cindy's Pets:**\n   Cindy has 4 pets.\n\n2. **Determine Marcia's Pets:**:**\n   Marcia has 2 more pets than Cindy.\n   \\:\n   \\text{Cindy's pets}} = 4 \\\n   \\text{Cindy's pets} + 2 = 4 + 2 = 6 \\\n   \\text{Marcia's pets}} = 6 \\\n\n3. **Determine Jan's Pets:**:**\n   \\text{Jan's pets}"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 19,
+   "identical_to_full": false,
+   "first_divergence": 2,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "16",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "To solve the problem, we need to determine the number of pets each person has and then find the total number of pets.\n\n1. **Determine the number of pets Marcia has:**\n   - We know that Marcia has four pets.\n   \\[\n   \\text{Pets of Marcia} = 4\n   \\]\n\n2. **Determine the number of pets Jan has:**\n   - Jan has three times the number of pets as Marcia.\n   \\[\n   \\text{Pets of Jan} = 3 \\times \\text{Pets o"
+  }
+ ],
+ "R": 4,
+ "P": 70,
+ "n_content": 38,
+ "gold": " <<4+6+18=28>>28 pets.\n#### 28",
+ "elapsed_s": 100.7872486114502,
+ "peak_gpu_bytes": 12662218240
+}

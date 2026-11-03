@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0010",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0010",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0010",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The program had 60 downloads in the first month.\nThe number of downloads in the second month was three times as many as the downloads in the first month, which is 3 * 60 = 180 downloads.\nThe number of downloads in the third month was reduced by 30% from the second month, which is 180 * 0.7 = 126 downloads.\nThe total number of downloads over the three months is 60 + 180 + 126 = 366 downloads.\nFinal"
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 120,
+   "correct": false,
+   "flex": true,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The program had 60 downloads in the first month.\nThe number of downloads in the second month was three times as many as the downloads in the first month, which is 3 * 60 = 180 downloads.\nThe number of downloads in the third month was reduced by 30% from the second month, which is 180 * 0.7 = 126 downloads.\nThe total number of downloads over the three months is 60 + 180 + 126 = 366 downloads.\nThe p"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 44,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "111",
+   "n_tokens": 319,
+   "finish": "stop",
+   "text": "The program had 60 downloads in the first month.\nThe number of downloads in the second month was three times as many as the downloads in the first month, which is 3 * 60 = 30.\nThe number of downloads in the third month was reduced by 30% from the second month, which is 30 * 0.7 = c21.\nThe total number of downloads over the three months is 60 + 30 + c21 = c111.\nThe final answer is 111.\n\n\n\n\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The number of downloads in the second month was three times as many as the downloads in the first month, but then reduced by 30% in the third month.\n\nFirst, we need to calculate the number of downloads in the second month. Since the number of downloads in the second month was three times as many as the downloads in the first month, we can calculate the number of downloads in the second month as fo"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 30,
+   "identical_to_full": false,
+   "first_divergence": 1,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "The number of downloads in the first month is 100.\nThe number of downloads in the second month is 300.\nThe number of downloads in the third month is 270.\nThe total number of downloads over the three months is 670.\n"
+  }
+ ],
+ "R": 4,
+ "P": 92,
+ "n_content": 60,
+ "gold": " = <<126+240=366>>366\n#### 366",
+ "elapsed_s": 105.52150821685791,
+ "peak_gpu_bytes": 4300596224
+}

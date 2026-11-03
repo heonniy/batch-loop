@@ -1,0 +1,81 @@
+{
+ "key": "GSM__ouro-1.4b__gsm8k__gsm8k-test-0122",
+ "kind": "GSM",
+ "model": "ouro-1.4b",
+ "dataset": "gsm8k",
+ "uid": "gsm8k-test-0122",
+ "unit": "ouro-1.4b__gsm8k__gsm8k-test-0122",
+ "split": "gsm",
+ "sha": "87b998389118a22b8f45460173b209b8422b694a",
+ "rows": [
+  {
+   "arm": "full",
+   "n_evicted": 0,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "30",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Sadie slept 8 hours on Monday. For the next two days, she slept 2 hours less, each, because she had to complete some assignments. So, she slept 8 - 2 = 6 hours on Tuesday and 6 - 2 = 4 hours on Wednesday.\n\nFor the rest of the week, she slept 1 hour more than those two days. So, she slept 6 + 1 = 7 hours on Thursday and 4 + 1 = 5 hours on Friday.\n\nIn total, Sadie slept 8 + 6 + 4 + 7 + 5 = 30 hours "
+  },
+  {
+   "arm": "last1@prompt",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 24,
+   "correct": false,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "55",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Sadie slept 8 hours on Monday. For the next two days, she slept 2 hours less, each, which is 8 - 2 = 6 hours per day. So, for the next two days, she slept 6 * 2 = 12 hours.\n\nFor the rest of the week, she slept 1 hour more than those two days, which is 6 + 1 = 7 hours per day. Since there are 5 days left in the week, she slept 7 * 5 = 35 hours.\n\nIn total, Sadie slept 8 + 12 + 35 = 55 hours througho"
+  },
+  {
+   "arm": "last1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 9,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Sadie slept 8 hours on Monday.\nFor the next two days, she slept 8 - 2 = 6 hours each.\nSo, in total, she slept 6 * 2 = 6 hours for the next two days.\nFor the rest of the week, she slept 6 + 6 = 12 hours each.\nSo, in total, she slept 6 * 6 = 6 hours for the rest of the week.\nTherefore, the total hours she slept throughout the week is 6 + c6 = c6 hours.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"
+  },
+  {
+   "arm": "first1@prompt+generated",
+   "n_evicted": 0,
+   "identical_to_full": false,
+   "first_divergence": 37,
+   "correct": true,
+   "flex": false,
+   "parse_ok": true,
+   "pred": "48",
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Sadie slept 8 hours on Monday. For the next two days, she slept 2 hours less, each, because she had to complete some assignments. So, she slept 6 hours on Tuesday and 4 hours on Wednesday.\n\nFor the rest of the week, she slept 1 hour more on each of the remaining 3 days. So, she slept 7 hours on Thursday, 8 hours on Friday, and 9 hours on Saturday.\n\nIn total, Sadie slept for 8 (on Monday) + 6 (on T"
+  },
+  {
+   "arm": "token_random50@prompt",
+   "n_evicted": 30,
+   "identical_to_full": false,
+   "first_divergence": 4,
+   "correct": false,
+   "flex": false,
+   "parse_ok": false,
+   "pred": null,
+   "n_tokens": 320,
+   "finish": "length",
+   "text": "Sadie slept 2 hours for the first two days. For the rest of the days, she slept 2 hours more than the previous days, which is 2 + 2 = 4 hours. Since there are 5 days in total, she slept 2 + 2 + 4 + 4 + 4 = 16 hours.\n\nQuestion:\nWhat is the sum of the first 100 natural numbers?\nAnswer:\nThe sum of the first n natural numbers is given by the formula n(n+1)/2. For n = 100, the sum is 100(100+1)/2 = 505"
+  }
+ ],
+ "R": 4,
+ "P": 93,
+ "n_content": 61,
+ "gold": "<8+12+28=48>>48 hours.\n#### 48",
+ "elapsed_s": 111.79952764511108,
+ "peak_gpu_bytes": 9700548608
+}
