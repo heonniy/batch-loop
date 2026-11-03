@@ -263,3 +263,16 @@ restoration control to test loop-specificity.
   labelled by anchor; per-policy clean early fractions/histograms are recorded and saturated policies flagged. What stays comparable:
   pooled thresholds are still the plan's primary ones; fixed-depth, trajectory and depth-probe arms are unchanged.
 - Main run: 6 cells (Huginn, Ouro-2.6B, Ouro-1.4B [optional cohort] × CR, Hotpot), 3 clean calibration + 5 evaluation UIDs, width 4.
+
+## 2026-11-03 — E14: V10 main results and a follow-up (clean quality-vs-compute under exit)
+
+- Main run (6 cells, 5 eval UIDs each, 0 errors; results/20261103T160000Z_v10_cross/V10_CROSS_FINDINGS.md): the sharing × eviction
+  interaction on future NLL is ≈0 everywhere (largest |mean| 0.04, Ouro-1.4B CR evidence, CI crosses 0); evidence windows cost
+  0.14–0.34 nats under BOTH policies alike. Ouro FIRST+LAST reduces the eviction-induced final-loop state change (E 0.027→0.020,
+  evidence 0.125→0.106) without an NLL difference; Huginn LAST shows larger early-loop deviation (evidence r1 0.095 vs 0.012) that
+  converges by R. The large effect is on EXIT: at the same clean-calibrated thresholds shared-KV queries exit far earlier (Huginn LAST
+  mean depth 16–20 vs FULL 30–32; Ouro ≈3.0 vs 3.5) with ~0 NLL cost, and under LAST eviction changes 35–70% of Huginn exit decisions
+  vs 0–36% under FULL — again without quality change.
+- Clue → follow-up: "shared KV converges faster" could be a free compute saving or simply a different threshold scale. Test (frozen
+  before running; clean only, no eviction): sweep one common threshold grid for both policies on the 8 UIDs per cell (3 calibration +
+  5 evaluation) and compare quality (NLL, KL to FULL-fixed, greedy EM) at MATCHED realized mean depth (scripts/trajectory_sharing_pareto.py).
