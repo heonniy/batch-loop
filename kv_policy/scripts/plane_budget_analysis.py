@@ -24,7 +24,7 @@ def completeness(run: Path) -> dict:
     jobs = json.loads((run / "jobs.json").read_text())
     raw = run / "raw"
     missing = [j["key"] for j in jobs if not (raw / f"{j['key']}.json").exists()
-               or (j["kind"] in ("REF", "PLN") and not (raw / f"{j['key']}.npz").exists())]
+               or (j["kind"] in ("REF", "PLN", "HOR") and not (raw / f"{j['key']}.npz").exists())]
     errs = sorted(p.stem for p in (run / "errors").glob("*.json")) if (run / "errors").exists() else []
     problems = []
     cov = defaultdict(set)
@@ -294,6 +294,46 @@ def kv_similarity(run: Path, out: Path, md: list):
     _json(out / "kv_plane_similarity.json", res)
 
 
+def gsm_summary(run: Path, out: Path, md: list):
+    """Reasoning arm: paired greedy GSM8K accuracy under plane policies (prompt-only vs prompt+generated)."""
+    jobs = json.loads((run / "jobs.json").read_text())
+    rows = []
+    for j in (x for x in jobs if x["kind"] == "GSM"):
+        f = run / "raw" / f"{j['key']}.json"
+        if not f.exists():
+            continue
+        d = json.loads(f.read_text())
+        full = next(r for r in d["rows"] if r["arm"] == "full")
+        for r in d["rows"]:
+            rows.append({"model": j["model"], "uid": j["uid"], "arm": r["arm"], "correct": float(r["correct"]), "flex": float(r["flex"]),
+                         "full_correct": float(full["correct"]), "n_tokens": r["n_tokens"], "finish": r["finish"],
+                         "identical": float(bool(r.get("identical_to_full", r["arm"] == "full"))),
+                         "first_div": r.get("first_divergence", np.nan), "R": d["R"]})
+    if not rows:
+        return None
+    df = pd.DataFrame(rows)
+    df.to_csv(out / "gsm_long.csv", index=False)
+    md += ["## Reasoning arm: zero-shot GSM8K greedy accuracy under plane policies (paired with the model's FULL generation)", "",
+           "lastK@prompt = prompt tokens keep their last K planes; @prompt+generated = every generated token is also converted to its "
+           "last K planes after it finishes (what a real cache would hold); first1 = first plane only (negative control); "
+           "token_random50 = half of the question tokens evicted (full planes). Δacc vs FULL [95% problem bootstrap]; "
+           "'identical' = greedy token sequence identical to FULL.", "",
+           "| model | arm | n | acc | FULL acc | Δacc [CI] | flexible-extract acc | identical generations | median first divergence (tokens) | mean length |",
+           "|---|---|---|---|---|---|---|---|---|---|"]
+    res = []
+    for (m, arm), g in df.groupby(["model", "arm"]):
+        d = (g.correct - g.full_correct).tolist()
+        r = {"model": m, "arm": arm, "n": len(g), "acc": float(g.correct.mean()), "full_acc": float(g.full_correct.mean()),
+             "delta": float(np.mean(d)), "ci": _boot(d), "flex": float(g.flex.mean()), "identical": float(g.identical.mean()),
+             "first_div_median": float(np.nanmedian(g.first_div)) if g.first_div.notna().any() else np.nan, "len": float(g.n_tokens.mean())}
+        res.append(r)
+        md.append(f"| {m} | {arm} | {len(g)} | {_f(r['acc'], 2)} | {_f(r['full_acc'], 2)} | {_f(r['delta'], 2)}{_ci(r['ci'])} | {_f(r['flex'], 2)} | "
+                  f"{_f(r['identical'], 2)} | {_f(r['first_div_median'])} | {_f(r['len'])} |")
+    md.append("")
+    _json(out / "gsm_summary.json", res)
+    return res
+
+
 def settle_hist(run: Path, md: list):
     jobs = json.loads((run / "jobs.json").read_text())
     acc = defaultdict(lambda: None)
@@ -322,6 +362,7 @@ def analyze(run: Path) -> dict:
           f"complete={comp['complete']}", ""]
     settle_hist(run, md)
     kv_similarity(run, out, md)
+    gsm_summary(run, out, md)
     tax = tax_table(run)
     if len(tax):
         tax.to_csv(out / "tax_long.csv", index=False)
