@@ -98,6 +98,30 @@ keeping 10% of the tokens with all planes is not, under any label-free prompt-ti
   adds +0.02–0.03 (CI > 0 only for Huginn Hotpot) and the oracle future loop profile +0.036 for Ouro CR. The plane axis is
   uniformly cheap; the token axis is sparse and expensive.
 
+
+**1c. Third looped model — Ouro-1.4B (R=4; v5: total collapse under LAST-CONVERT on GSM8K/MATH).** Same two-axis matrix,
+same frozen prompts (identical tokenizer to Ouro-2.6B), 40 units (results/20261103T051500Z_v8b_ouro14b_tax); holdout 12 UIDs per dataset:
+
+| budget | arm | CR ΔNLL / EM (FULL EM 1.00) | Hotpot ΔNLL / EM (FULL EM 0.00) |
+|---|---|---|---|
+| 0.1 | plane:last | -0.005 / 1.00 | 0.059 / 0.00 |
+| 0.1 | plane:even | -0.005 / 1.00 | 0.059 / 0.00 |
+| 0.1 | plane:attn | 0.151 / 0.58 | 0.090 / 0.25 |
+| 0.1 | token:qa_rR | 2.471 / 0.00 | 1.071 / 0.00 |
+| 0.1 | token:la2_rR | 1.077 / 0.00 | 0.259 / 0.00 |
+| 0.1 | token:random_11 | 2.014 / 0.00 | 1.367 / 0.00 |
+| 0.1 | token:fut_oracle_rR | 0.005 / 1.00 | 0.003 / 0.00 |
+| 0.1 | mixed:def4_rR+last | 0.000 / 1.00 | 0.037 / 0.00 |
+| 0.3 | plane:last | -0.005 / 1.00 | 0.059 / 0.00 |
+| 0.3 | token:la2_rR | 0.334 / 0.58 | 0.133 / 0.00 |
+| 0.3 | token:random_11 | 1.239 / 0.00 | 0.921 / 0.08 |
+
+- Identical ordering to Ouro-2.6B: last-1 plane is at the floor on CR (−0.005, EM 1.0) and costs 0.06 nats on Hotpot; every
+  prompt-time token policy is catastrophic; keeping the most-attended (early) planes costs 0.09–0.15 nats. K/V plane cosine
+  to the terminal plane: K 0.84 / 0.96 / 0.99, V 0.62 / 0.84 / 0.95 at r=1/2/3 — *more* redundant than Ouro-2.6B's planes
+  (V 0.53 / 0.75 / 0.90), so the v5 LAST-CONVERT collapse of this model on long generations is not explained by prompt-plane
+  dissimilarity; §5/§1d locate it in the conversion of *generated* tokens.
+
 ## 2. Loop-wise attention is not one attention: the recurrence re-reads the prompt differently at each loop
 
 Source: results/20261102T093000Z_qc_v7_pilotA/analysis/LOOP_PHENOMENOLOGY.md (40 prompts per model, every generated
