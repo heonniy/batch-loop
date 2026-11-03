@@ -219,6 +219,9 @@ def evaluate_doc(bb,tok,eos,doc,m):
             clean_dyn[policy][q]={"live":live,"replay_max_gap":parity,
                                  "greedy":gg,"grade":gold_score(tok,doc["gold_answer"],gg["token_ids"])}
         clean[policy]["repeat_full_logits_floor"]=floor
+        clean[policy]["repeat_trajectory_floor"]=paired_trajectory(
+            clean[policy]["states"],clean_repeat["states"])[
+                "mean_relative_error_by_loop"]
         clean_depth_probe[policy]={}
         for d in depth_probe_values:
             arm=(clean[policy] if d==bb.R else
@@ -238,6 +241,7 @@ def evaluate_doc(bb,tok,eos,doc,m):
                      "fixed_greedy_ids":fixed_greedy[p],
                      "fixed_grade":gold_score(tok,doc["gold_answer"],fixed_greedy[p]),
                      "repeat_logprob_floor":clean[p]["repeat_full_logits_floor"],
+                     "repeat_trajectory_floor":clean[p]["repeat_trajectory_floor"],
                      "live":{str(q):{
                          "arm":_public_arm(clean_dyn[p][q]["live"]),
                          "replay_logit_max_gap":clean_dyn[p][q]["replay_max_gap"],
@@ -299,6 +303,13 @@ def evaluate_doc(bb,tok,eos,doc,m):
                     raise RuntimeError("Dynamic eviction changed first predicted token")
                 depthdiff=[b-a for a,b in zip(fl["depths"],live["depths"])]
                 would=compare_exit_stats(base["exit_stats"],ev["exit_stats"],bb.family,q)
+                ggrade=gold_score(tok,doc["gold_answer"],gd["token_ids"])
+                clean_grade=clean_dyn[policy][q]["grade"]
+                ev_fixed_grade=row["by_policy"][policy]["evicted_fixed_grade"]
+                full_fixed_grade=out["clean"][policy]["fixed_grade"]
+                correctness_interaction=(
+                    float(ggrade["exact_match"])-float(clean_grade["exact_match"])-
+                    (float(ev_fixed_grade["exact_match"])-float(full_fixed_grade["exact_match"])))
                 row["by_policy"][policy]["dynamic"][str(q)]={
                     "evicted_live":_public_arm(live),
                     "evicted_replay":_public_arm(replay),
@@ -315,13 +326,15 @@ def evaluate_doc(bb,tok,eos,doc,m):
                         -(ev["nll_future"]-base["nll_future"])),
                     "greedy_token_ids":gd["token_ids"],
                     "greedy_depths":gd["depths"],
-                    "greedy_grade":gold_score(tok,doc["gold_answer"],gd["token_ids"]),
-                    "clean_live_grade":clean_dyn[policy][q]["grade"],
-                    "answer_changed_vs_clean_live":(
+                    "greedy_grade":ggrade,
+                    "clean_live_grade":clean_grade,
+                    "token_sequence_changed_vs_clean_live":(
                         gd["token_ids"]!=clean_dyn[policy][q]["greedy"]["token_ids"]),
+                    "extracted_answer_changed_vs_clean_live":(
+                        ggrade["extracted_answer"]!=clean_grade["extracted_answer"]),
                     "correctness_changed_vs_clean_live":(
-                        gold_score(tok,doc["gold_answer"],gd["token_ids"])["exact_match"]
-                        !=clean_dyn[policy][q]["grade"]["exact_match"]),
+                        ggrade["exact_match"]!=clean_grade["exact_match"]),
+                    "fixed_vs_live_eviction_correctness_interaction":correctness_interaction,
                 }
         inter=same_depth_nll_interaction(
             clean["full"]["nll_future"],evfixed["full"]["nll_future"],
@@ -350,6 +363,8 @@ def execute(a):
         raise RuntimeError("Frozen model/dataset mismatch")
     if "thresholds" not in m:
         raise RuntimeError("Calibrate on separate clean prompts before execution")
+    if m.get("code_sha_at_calibration")!=_sha():
+        raise RuntimeError("Code SHA changed after clean-only calibration; start a new frozen run")
     if m.get("execution_code_sha") and m["execution_code_sha"]!=_sha():
         raise RuntimeError("Code changed during the run; freeze a new run directory")
     if "execution_code_sha" not in m:
@@ -408,6 +423,8 @@ def analyze(a):
                     row[f"{policy}_live_nll_penalty_{j}"]=x["live_nll_eviction_penalty"]
                     row[f"{policy}_live_replay_gap_{j}"]=x["live_minus_replay_nll_descriptive"]
                     row[f"{policy}_correctness_flip_{j}"]=float(x["correctness_changed_vs_clean_live"])
+                    row[f"{policy}_correctness_interaction_{j}"]=float(x["fixed_vs_live_eviction_correctness_interaction"])
+                    row[f"{policy}_extracted_answer_changed_{j}"]=float(x["extracted_answer_changed_vs_clean_live"])
                     row[f"{policy}_live_correct_{j}"]=float(x["greedy_grade"]["exact_match"])
             rows.append(row)
     missing=[x for x in m["evaluation_uids"] if
@@ -457,13 +474,13 @@ def analyze(a):
     report+=["","## Native exit conditions (clean-calibrated, same threshold for both policies)"]
     for j,th in enumerate(m["thresholds"]["selected"]):
         report+=["",f"Threshold {th['threshold']}; CLEAN pooled early fraction {th['early_fraction']:.3f}; saturated={th['saturated']}",
-                 "| Policy | Mean fraction query exits changed by eviction | Offline would-exit fraction | Mean live ΔNLL | Mean live−replay gap | Accuracy flips vs clean live |",
-                 "|---|---:|---:|---:|---:|---:|"]
+                 "| Policy | Mean fraction query exits changed by eviction | Offline would-exit fraction | Mean live ΔNLL | Mean live−replay gap | Correctness flips vs clean live | Exit×Eviction correctness interaction |",
+                 "|---|---:|---:|---:|---:|---:|---:|"]
         for pol in ("full",m["shared_policy"]):
             report.append(f"| {pol} | "+
                           " | ".join(f"{mean(rows,pol+'_'+k+'_'+str(j)):.4g}" for k in
                           ("exit_changed_fraction","would_exit_changed_fraction","live_nll_penalty",
-                           "live_replay_gap","correctness_flip"))+" |")
+                           "live_replay_gap","correctness_flip","correctness_interaction"))+" |")
     report+=["","Analysis is descriptive; use independent prompt bootstrap and nontrivial damage floor before paper claims.",
              "Dynamic exit alone does not prove quality repair; live vs replay includes altered generated KV history.",
              "Huginn's FP32 cosine is a diagnostic on BF16 states, not official BF16 arithmetic.",
