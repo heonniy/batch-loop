@@ -194,6 +194,7 @@ class GateCausalRunner(QueryConditionedRunner):
     def __init__(self, *args, **kwargs):
         self._ffn_hooks: RecurrentFFNHooks | None = None
         self._lp_capture: list[torch.Tensor] | None = None
+        self._exit_collect: list[dict] | None = None
         super().__init__(*args, **kwargs)
 
     def _step_dyn(self, col, tid, spec, forced):
@@ -205,6 +206,10 @@ class GateCausalRunner(QueryConditionedRunner):
             tracker.end_column(depth)
         if self._lp_capture is not None:
             self._lp_capture.append(F.log_softmax(logits[0, 0].float(), -1).detach().cpu())
+        if self._exit_collect is not None:
+            if depth != self.R:
+                raise RuntimeError("Clean exit calibration needs complete fixed-depth traces")
+            self._exit_collect.append(self.exit_stats(self.cap.take()))
         return logits, depth
 
     @torch.no_grad()
@@ -235,6 +240,23 @@ class GateCausalRunner(QueryConditionedRunner):
         return {**result, "logprobs": lps, "ffn_trace": h.trace,
                 "n_patched_components": h.patched, "patch_stats": dict(h.stats),
                 "ffn_mode": mode, "selected_loops": list(selected_loops) if selected_loops else None}
+
+    @torch.no_grad()
+    def clean_last_exit_observations(self, plane_map) -> list[dict]:
+        """Gather CLEAN full-depth per-query native exit signals with the actual
+        LAST-sharing cache read semantics. Thresholds are tuned only from these
+        untouched observations on disjoint calibration prompts."""
+        if self._exit_collect is not None or self._ffn_hooks is not None:
+            raise RuntimeError("Nested exit calibration not allowed")
+        self._exit_collect = []
+        try:
+            self.decode((), self.spec, plane_map=plane_map)
+            observations = list(self._exit_collect)
+        finally:
+            self._exit_collect = None
+        if len(observations) != len(self.ref_ids):
+            raise RuntimeError("Incomplete clean LAST-sharing exit measurements")
+        return observations
 
     @torch.no_grad()
     def greedy_dynamic(self, *, sources: Sequence[int], spec, max_new: int,
