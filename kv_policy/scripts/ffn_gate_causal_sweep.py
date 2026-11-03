@@ -311,6 +311,9 @@ def evaluate_doc(bb,tok,eos,doc,manifest):
                                 mode="restore_gate",reference=clean["ffn_trace"])
             gd=r.greedy_dynamic(sources=src,spec=spec,max_new=manifest["greedy_tokens"],
                                  eos_ids=eos,plane_map=last)
+            if (gd["token_ids"][0]!=ref_greedy[0] or
+                full_dyn[k]["greedy"]["token_ids"][0]!=ref_greedy[0]):
+                raise RuntimeError("Post-prefill eviction or exit changed the already predicted first token")
             # full_live and evicted_live may have different generated KV and
             # stop depths; recorded replay holds the depth schedule fixed.
             diff=[b-a for a,b in zip(fl["depths"],el["depths"])]
@@ -329,6 +332,10 @@ def evaluate_doc(bb,tok,eos,doc,manifest):
                 "evicted_live_kl_to_clean":paired_logit_kl(fl["logprobs"],el["logprobs"])["mean_future_kl"],
                 "full_live_grade":full_dyn[k]["grade"],
                 "evicted_live_grade":gold_score(tok,gold,gd["token_ids"]),
+                "evicted_live_greedy_ids":gd["token_ids"],
+                "full_live_greedy_ids":full_dyn[k]["greedy"]["token_ids"],
+                "evicted_fixed_correct":causal["evicted_fixed_grade"]["exact_match"],
+                "live_vs_fixed_correctness_changed":gold_score(tok,gold,gd["token_ids"])["exact_match"] != causal["evicted_fixed_grade"]["exact_match"],
                 "full_live_first_token":full_dyn[k]["greedy"]["token_ids"][0],
                 "evicted_live_first_token":gd["token_ids"][0],
                 "live_answer_changed":full_dyn[k]["grade"]["extracted_answer"] != gold_score(tok,gold,gd["token_ids"])["extracted_answer"],
@@ -385,6 +392,8 @@ def analyze(a):
             rec={"uid":uid,"model":manifest["model"],"dataset":manifest["dataset"],
                  "stratum":c["stratum"],"source":c["source"],
                  "eviction_penalty":c["evict_fixed"]["relative_nll_recovery"]["eviction_penalty"],
+                 "full_fixed_correct":d["full_fixed_grade"]["exact_match"],
+                 "evict_fixed_correct":c["evicted_fixed_grade"]["exact_match"],
                  "gate_trace_peak_relative":max((x.get("gate_max_relative_change",0.0)
                     for x in c.get("gate_trace",{}).get("by_loop",[])),default=0.0)}
             for name,x in c["restorations"].items():
@@ -399,6 +408,7 @@ def analyze(a):
                 rec[f"answer_changed_{j}"]=x["live_answer_changed"]
                 rec[f"full_live_correct_{j}"]=x["full_live_grade"]["exact_match"]
                 rec[f"evict_live_correct_{j}"]=x["evicted_live_grade"]["exact_match"]
+                rec[f"evict_live_vs_fixed_answer_flip_{j}"]=x["live_vs_fixed_correctness_changed"]
             rows.append(rec)
     done=len(set(x["uid"] for x in rows))
     errors=list((Path(a.run_dir)/"errors").glob("*.json")) if (Path(a.run_dir)/"errors").exists() else []
