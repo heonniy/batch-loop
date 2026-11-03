@@ -1,0 +1,37 @@
+# Clean quality-vs-compute under native exit: FULL vs shared KV (ouro-2.6b / hotpotqa_distractor, 8 prompts)
+
+Each row: one threshold, both policies; mean over prompts of realized mean depth (teacher-forced live), future NLL minus the FULL-fixed NLL of the same prompt, KL to FULL-fixed, greedy EM.
+
+| threshold | FULL depth | FULL ΔNLL | FULL KL | FULL EM | SHARED depth | SHARED ΔNLL | SHARED KL | SHARED EM |
+|---|---|---|---|---|---|---|---|---|
+| fixed R | 4.00 | +0.0000 | 0.00e+00 | 0.50 | 4.00 | +0.0671 | 2.90e-02 | 0.38 |
+| 0.995 | 4.00 | +0.0000 | 0.00e+00 | 0.50 | 4.00 | +0.0671 | 2.90e-02 | 0.38 |
+| 0.95 | 4.00 | +0.0000 | 0.00e+00 | 0.50 | 4.00 | +0.0671 | 2.90e-02 | 0.38 |
+| 0.9 | 4.00 | +0.0000 | 0.00e+00 | 0.50 | 4.00 | +0.0671 | 2.90e-02 | 0.38 |
+| 0.85 | 4.00 | +0.0000 | 0.00e+00 | 0.50 | 4.00 | +0.0671 | 2.90e-02 | 0.38 |
+| 0.8 | 4.00 | +0.0000 | 0.00e+00 | 0.50 | 3.88 | +0.0681 | 2.91e-02 | 0.38 |
+| 0.7 | 3.78 | -0.0015 | 1.56e-03 | 0.50 | 3.18 | +0.0235 | 2.21e-02 | 0.50 |
+| 0.6 | 3.61 | +0.0201 | 6.81e-03 | 0.50 | 3.04 | +0.0168 | 2.24e-02 | 0.50 |
+| 0.5 | 3.57 | +0.0202 | 6.83e-03 | 0.50 | 2.55 | +0.1626 | 6.67e-02 | 0.38 |
+| 0.4 | 3.16 | +0.0179 | 1.10e-02 | 0.50 | 2.27 | +0.1625 | 6.55e-02 | 0.38 |
+| 0.3 | 2.85 | +0.0895 | 3.33e-02 | 0.38 | 2.18 | +0.1743 | 6.66e-02 | 0.38 |
+| 0.2 | 2.75 | +0.1270 | 4.68e-02 | 0.38 | 2.16 | +0.2791 | 1.13e-01 | 0.38 |
+
+## Matched-depth comparison (FULL KL linearly interpolated at the SHARED point's realized mean depth)
+
+| SHARED threshold | depth | SHARED KL | FULL KL at same depth | SHARED ΔNLL | FULL ΔNLL at same depth |
+|---|---|---|---|---|---|
+| None | 4.00 | 2.90e-02 | 0.00e+00 | +0.0671 | +0.0000 |
+| 0.995 | 4.00 | 2.90e-02 | 0.00e+00 | +0.0671 | +0.0000 |
+| 0.95 | 4.00 | 2.90e-02 | 0.00e+00 | +0.0671 | +0.0000 |
+| 0.9 | 4.00 | 2.90e-02 | 0.00e+00 | +0.0671 | +0.0000 |
+| 0.85 | 4.00 | 2.90e-02 | 0.00e+00 | +0.0671 | +0.0000 |
+| 0.8 | 3.88 | 2.91e-02 | 8.37e-04 | +0.0681 | -0.0008 |
+| 0.7 | 3.18 | 2.21e-02 | 1.07e-02 | +0.0235 | +0.0181 |
+| 0.6 | 3.04 | 2.24e-02 | 1.99e-02 | +0.0168 | +0.0465 |
+| 0.5 | 2.55 | 6.67e-02 | out of FULL range | +0.1626 | — |
+| 0.4 | 2.27 | 6.55e-02 | out of FULL range | +0.1625 | — |
+| 0.3 | 2.18 | 6.66e-02 | out of FULL range | +0.1743 | — |
+| 0.2 | 2.16 | 1.13e-01 | out of FULL range | +0.2791 | — |
+
+R = 4. FULL depth range covered: 2.75–4.00.

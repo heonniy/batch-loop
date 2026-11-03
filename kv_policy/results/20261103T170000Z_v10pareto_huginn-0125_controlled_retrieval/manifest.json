@@ -1,0 +1,32 @@
+{
+  "model": "huginn-0125",
+  "dataset": "controlled_retrieval",
+  "code_sha": "696cb8316449d202902113e2b303178614eff2cd",
+  "grid": [
+    1e-05,
+    3e-05,
+    6e-05,
+    0.0001,
+    0.0002,
+    0.0003,
+    0.0005,
+    0.001,
+    0.002,
+    0.004,
+    0.008,
+    0.016,
+    0.032
+  ],
+  "uids": [
+    "controlled-20261031-00000",
+    "controlled-20261031-00001",
+    "controlled-20261031-00002",
+    "controlled-20261031-00003",
+    "controlled-20261031-00004",
+    "controlled-20261031-00005",
+    "controlled-20261031-00006",
+    "controlled-20261031-00007"
+  ],
+  "greedy_tokens": 24,
+  "note": "clean only (no eviction); same grid for both KV policies"
+}

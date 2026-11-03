@@ -1,0 +1,47 @@
+/home/irteam/ddn/envs/kvp/lib/python3.11/site-packages/torch/cuda/__init__.py:61: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+done controlled-20261031-00000
+done controlled-20261031-00001
+done controlled-20261031-00002
+done controlled-20261031-00003
+done controlled-20261031-00004
+done controlled-20261031-00005
+done controlled-20261031-00006
+done controlled-20261031-00007
+# Clean quality-vs-compute under native exit: FULL vs shared KV (ouro-1.4b / controlled_retrieval, 8 prompts)
+
+Each row: one threshold, both policies; mean over prompts of realized mean depth (teacher-forced live), future NLL minus the FULL-fixed NLL of the same prompt, KL to FULL-fixed, greedy EM.
+
+| threshold | FULL depth | FULL ΔNLL | FULL KL | FULL EM | SHARED depth | SHARED ΔNLL | SHARED KL | SHARED EM |
+|---|---|---|---|---|---|---|---|---|
+| fixed R | 4.00 | +0.0000 | 0.00e+00 | 1.00 | 4.00 | +0.0064 | 1.23e-02 | 1.00 |
+| 0.995 | 4.00 | +0.0000 | 0.00e+00 | 1.00 | 4.00 | +0.0064 | 1.23e-02 | 1.00 |
+| 0.95 | 4.00 | +0.0000 | 0.00e+00 | 1.00 | 4.00 | +0.0064 | 1.23e-02 | 1.00 |
+| 0.9 | 4.00 | +0.0000 | 0.00e+00 | 1.00 | 4.00 | +0.0064 | 1.23e-02 | 1.00 |
+| 0.85 | 4.00 | +0.0000 | 0.00e+00 | 1.00 | 4.00 | +0.0064 | 1.23e-02 | 1.00 |
+| 0.8 | 4.00 | +0.0000 | 0.00e+00 | 1.00 | 3.93 | +0.0058 | 1.21e-02 | 1.00 |
+| 0.7 | 3.50 | +0.0013 | 2.98e-04 | 1.00 | 3.00 | +0.0038 | 8.57e-03 | 1.00 |
+| 0.6 | 3.33 | +0.0099 | 3.42e-03 | 1.00 | 2.70 | +0.0029 | 8.59e-03 | 1.00 |
+| 0.5 | 3.27 | +0.0101 | 3.49e-03 | 1.00 | 2.31 | +0.0217 | 1.88e-02 | 1.00 |
+| 0.4 | 2.68 | +0.0122 | 4.38e-03 | 1.00 | 2.07 | +0.0160 | 1.29e-02 | 1.00 |
+| 0.3 | 2.55 | +0.0401 | 2.05e-02 | 1.00 | 2.00 | +0.0135 | 1.01e-02 | 1.00 |
+| 0.2 | 2.38 | +0.0338 | 1.92e-02 | 1.00 | 2.00 | +0.0135 | 1.01e-02 | 1.00 |
+
+## Matched-depth comparison (FULL KL linearly interpolated at the SHARED point's realized mean depth)
+
+| SHARED threshold | depth | SHARED KL | FULL KL at same depth | SHARED ΔNLL | FULL ΔNLL at same depth |
+|---|---|---|---|---|---|
+| None | 4.00 | 1.23e-02 | 0.00e+00 | +0.0064 | +0.0000 |
+| 0.995 | 4.00 | 1.23e-02 | 0.00e+00 | +0.0064 | +0.0000 |
+| 0.95 | 4.00 | 1.23e-02 | 0.00e+00 | +0.0064 | +0.0000 |
+| 0.9 | 4.00 | 1.23e-02 | 0.00e+00 | +0.0064 | +0.0000 |
+| 0.85 | 4.00 | 1.23e-02 | 0.00e+00 | +0.0064 | +0.0000 |
+| 0.8 | 3.93 | 1.21e-02 | 4.07e-05 | +0.0058 | +0.0002 |
+| 0.7 | 3.00 | 8.57e-03 | 3.90e-03 | +0.0038 | +0.0111 |
+| 0.6 | 2.70 | 8.59e-03 | 4.35e-03 | +0.0029 | +0.0121 |
+| 0.5 | 2.31 | 1.88e-02 | out of FULL range | +0.0217 | — |
+| 0.4 | 2.07 | 1.29e-02 | out of FULL range | +0.0160 | — |
+| 0.3 | 2.00 | 1.01e-02 | out of FULL range | +0.0135 | — |
+| 0.2 | 2.00 | 1.01e-02 | out of FULL range | +0.0135 | — |
+
+R = 4. FULL depth range covered: 2.38–4.00.

@@ -276,3 +276,8 @@ restoration control to test loop-specificity.
 - Clue → follow-up: "shared KV converges faster" could be a free compute saving or simply a different threshold scale. Test (frozen
   before running; clean only, no eviction): sweep one common threshold grid for both policies on the 8 UIDs per cell (3 calibration +
   5 evaluation) and compare quality (NLL, KL to FULL-fixed, greedy EM) at MATCHED realized mean depth (scripts/trajectory_sharing_pareto.py).
+
+## 2026-11-03 — E15: V10 follow-up result → TRAJECTORY_SHARING_RESULTS.md
+- Pareto (clean, 8 UIDs × 6 cells): Huginn LAST+exit beats FULL+exit at matched realized depth in 96–97% of points (median KL ratio
+  25–34×); Ouro FIRST+LAST does not (0–25%, ratio 0.2–0.65). H2 interaction null in all cells. Next if continued: confirm the Huginn
+  LAST+exit frontier on new UIDs and long free-form generations (v6 W1/W2), and with a real compact LAST cache (memory/latency).

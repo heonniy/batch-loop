@@ -1,0 +1,30 @@
+{
+  "model": "ouro-2.6b",
+  "dataset": "controlled_retrieval",
+  "code_sha": "696cb8316449d202902113e2b303178614eff2cd",
+  "grid": [
+    0.995,
+    0.95,
+    0.9,
+    0.85,
+    0.8,
+    0.7,
+    0.6,
+    0.5,
+    0.4,
+    0.3,
+    0.2
+  ],
+  "uids": [
+    "controlled-20261031-00000",
+    "controlled-20261031-00001",
+    "controlled-20261031-00002",
+    "controlled-20261031-00003",
+    "controlled-20261031-00004",
+    "controlled-20261031-00005",
+    "controlled-20261031-00006",
+    "controlled-20261031-00007"
+  ],
+  "greedy_tokens": 24,
+  "note": "clean only (no eviction); same grid for both KV policies"
+}
