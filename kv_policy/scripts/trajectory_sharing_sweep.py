@@ -38,7 +38,7 @@ from ffn_gate_causal_sweep import (load_backbone, load_v5_jobs,
 from kvp.depth_eviction_probe import DepthProbeSpec
 from kvp.trajectory_sharing_probe import TrajectorySharingRunner
 from kvp.trajectory_sharing_policy import (
-    choose_clean_thresholds, compare_exit_stats, make_read_map,
+    choose_clean_thresholds, compare_exit_stats, exit_at, make_read_map,
     paired_trajectory, policy_planes, same_depth_nll_interaction,
     sharing_name,
 )
@@ -155,6 +155,7 @@ def calibrate(a):
         raise RuntimeError("Calibration dataset mutated")
     bb,tok,eos=load_backbone(a.model)
     obs=[]
+    by_policy={}
     policy_counts={}
     for doc in cal:
         r=_runner(bb,doc,m["greedy_tokens"])
@@ -164,8 +165,32 @@ def calibrate(a):
             if p=="full":
                 r.check_baseline_reference(arm)
             obs+=arm["exit_stats"]
+            by_policy.setdefault(p,[]).extend(arm["exit_stats"])
             policy_counts[p]=policy_counts.get(p,0)+len(arm["exit_stats"])
-    m["thresholds"]=choose_clean_thresholds(obs,bb.family)
+    pooled=choose_clean_thresholds(obs,bb.family)
+    # V10-smoke clue (journal E13): pooled clean statistics are dominated by the shared policy, whose
+    # queries converge much further (Huginn LAST: distances ~1e-5), so pooled thresholds can leave the
+    # FULL policy saturated at R. A second, separately labelled pair is anchored on the FULL-policy clean
+    # distribution only (still clean-only, frozen before eviction). Both pairs are applied to BOTH policies.
+    full_only=choose_clean_thresholds(by_policy["full"],bb.family)
+    selected=[]
+    for anchor,cal_res in (("pooled",pooled),("full_only",full_only)):
+        for row in cal_res["selected"]:
+            if any(abs(row["threshold"]-x["threshold"])<=1e-12 for x in selected):
+                continue
+            selected.append({**row,"anchor":anchor})
+    for row in selected:
+        row["clean_early_fraction_by_policy"]={}
+        row["clean_hist_by_policy"]={}
+        for p,st in by_policy.items():
+            ds=[exit_at(x,bb.family,row["threshold"]) for x in st]
+            R=len(st[0]["cumulative" if bb.family=="ouro" else "distance_fp32"])
+            row["clean_early_fraction_by_policy"][p]=sum(d<R for d in ds)/len(ds)
+            row["clean_hist_by_policy"][p]={str(k):ds.count(k) for k in sorted(set(ds))}
+            if row["clean_early_fraction_by_policy"][p] in (0.0,1.0):
+                row.setdefault("saturated_policies",[]).append(p)
+    m["thresholds"]={**pooled,"selected":selected,"full_only_candidates":full_only["candidates"],
+                     "selection_note":"pooled Full+Shared 25/60% targets (plan) + Full-anchored 25/60% targets (E13); same thresholds for both policies"}
     m["calibration_observations_by_policy"]=policy_counts
     m["code_sha_at_calibration"]=_sha()
     _write(run/"manifest.json",m)
@@ -473,7 +498,8 @@ def analyze(a):
                       f"{mean(rows,'depth'+str(d)+'_interaction'):.4g} |")
     report+=["","## Native exit conditions (clean-calibrated, same threshold for both policies)"]
     for j,th in enumerate(m["thresholds"]["selected"]):
-        report+=["",f"Threshold {th['threshold']}; CLEAN pooled early fraction {th['early_fraction']:.3f}; saturated={th['saturated']}",
+        report+=["",f"Threshold {th['threshold']} (anchor={th.get('anchor','pooled')}); CLEAN early fraction pooled {th['early_fraction']:.3f}, by policy "
+                 +str({k:round(v,3) for k,v in th.get('clean_early_fraction_by_policy',{}).items()})+f"; saturated policies={th.get('saturated_policies',[])}",
                  "| Policy | Mean fraction query exits changed by eviction | Offline would-exit fraction | Mean live ΔNLL | Mean live−replay gap | Correctness flips vs clean live | Exit×Eviction correctness interaction |",
                  "|---|---:|---:|---:|---:|---:|---:|"]
         for pol in ("full",m["shared_policy"]):

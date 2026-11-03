@@ -246,3 +246,20 @@ restoration control to test loop-specificity.
   observation = instability of activation restoration under recurrence. Huginn exit thresholds saturated on the plan's grid.
 - Autonomous additions this session: standard-transformer control (scripts/std_ffn_gate_control.py), cross-cell pooling, stability
   diagnostics (scripts/diag/v9_*). Not done: 20-UID expansion (no robust signal to confirm), width-8 windows.
+
+## 2026-11-03 — E13: V10 (branch research/full-vs-architecture-sharing-trajectory-exit-20261103) smoke and one protocol addition
+
+- Plan: TRAJECTORY_SHARING_EXIT_PLAN.md (FULL vs Huginn-LAST / Ouro-FIRST+LAST read maps; Context eviction; query trajectories,
+  would-exit, live/replay exit, greedy answers). CPU tests 29 pass. Smoke (1 eval + 2 cal prompts, CR) on both models: parity 0
+  (FULL map == independent reference, clean repeat floor 0, live == replay), ~7 min per model incl. load and calibration.
+- Clue: pooled clean calibration chose Huginn thresholds 5.9e-5 / 1.07e-4. Under them the FULL policy NEVER exits early
+  (all 11 queries depth 32) while LAST exits at 16–32. Shared-LAST queries converge far deeper (cos-distance ~1e-5) than FULL queries
+  — itself a sharing×recurrence phenomenon — but it makes every FULL dynamic arm identical to FULL-fixed (degenerate). Ouro: q=0.8
+  leaves FULL at depth 4 for all queries; q=0.7 is informative for both.
+- Alternative explanation: not a bug (FULL live == replay == fixed exactly, and v8 found FULL Huginn generated-query mean exit 24.8 at
+  1e-3) — simply the pooled distribution is dominated by the more-convergent shared policy.
+- Change (clean-only, before any eviction outcome of the main run): calibration additionally selects a Full-anchored 25%/60% pair from
+  the FULL-policy clean statistics; all selected thresholds (pooled + Full-anchored, deduplicated) are applied to BOTH policies and
+  labelled by anchor; per-policy clean early fractions/histograms are recorded and saturated policies flagged. What stays comparable:
+  pooled thresholds are still the plan's primary ones; fixed-depth, trajectory and depth-probe arms are unchanged.
+- Main run: 6 cells (Huginn, Ouro-2.6B, Ouro-1.4B [optional cohort] × CR, Hotpot), 3 clean calibration + 5 evaluation UIDs, width 4.
