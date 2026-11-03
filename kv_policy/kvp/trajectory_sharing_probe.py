@@ -77,8 +77,10 @@ class TrajectorySharingRunner(GateCausalRunner):
         ref=self.ref_lp
         if len(ref)!=len(arm["logprobs"]):
             raise RuntimeError("Reference length differs")
-        diff=max(float((x.float()-y.float()).abs().max()) for x,y in zip(
-            ref,arm["logprobs"]))
+        # The untouched reference logits live on the model GPU; the new
+        # policy observation stores logprobs on CPU for bounded-memory analysis.
+        diff=max(float((x.detach().float().cpu()-y.float().cpu()).abs().max())
+                 for x,y in zip(ref,arm["logprobs"]))
         if diff>tol:
             raise RuntimeError(f"Full historical KV reference parity failed: {diff}")
         return diff
