@@ -225,7 +225,7 @@ def calibrate(a):
     for doc in cal:
         r,p=make_runner(bb,doc,max(len(doc["target_ids"])+2,a.greedy_tokens+2))
         r.reference(eos,frozen_ids=list(doc["target_ids"]))
-        observations+=r.ref_exit
+        observations+=r.clean_last_exit_observations(last_plane_map(r))
     selected=choose_thresholds(observations,bb.family)
     manifest={"protocol":PROTOCOL,"model":a.model,"dataset":a.dataset,
               "code_sha_at_calibration":git_sha(),
@@ -235,7 +235,7 @@ def calibrate(a):
               "n_cal":a.n_cal,"n_eval":a.n_eval,
               "sharing":"last-bank-for-all-prompt-and-generated-histories",
               "thresholds":selected,
-              "note":"calibrated on CLEAN full-bank fixed-depth reference; dynamic evaluated under shared last-bank reads; no eviction outcomes used"}
+              "note":"calibrated on CLEAN full-depth LAST-sharing reference; dynamic evaluated under SAME shared last-bank reads; no eviction outcomes used"}
     dump(run/"manifest.json",manifest)
     print(json.dumps(selected,indent=2))
 
