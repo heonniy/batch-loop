@@ -424,6 +424,9 @@ def analyze(a):
         cols=list(dict.fromkeys(k for r in rows for k in r))
         with (Path(a.run_dir)/"analysis"/"per_window.csv").open("w",newline="") as f:
             w=csv.DictWriter(f,fieldnames=cols);w.writeheader();w.writerows(rows)
+    from ffn_gate_causal_report import write_findings
+    report=write_findings(Path(a.run_dir),rows,manifest,summary["complete"])
+    summary["report"]=str(report)
     print(json.dumps(summary,indent=2))
 
 
