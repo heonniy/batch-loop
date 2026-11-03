@@ -39,7 +39,8 @@ sys.path.insert(0, str(HERE))
 from query_conditioned_sweep import V5_RUN, UnitCache, _json, _load, _v5_job, git_dirty, git_sha  # noqa: E402
 
 PROTOCOL = "plane-budget-v8-v1"
-MODELS = ("ouro-2.6b", "huginn-0125")
+MODELS = ("ouro-2.6b", "huginn-0125", "ouro-1.4b")
+V5_PROMPT_SOURCE = {"ouro-1.4b": "ouro-2.6b"}   # identical tokenizer (verified: all 40 v5 prompts re-tokenize identically)
 DATASETS = ("controlled_retrieval", "hotpotqa_distractor")
 SETTLE_TOL = 0.10
 
@@ -55,7 +56,8 @@ def prepare(run: Path, cfg: dict):
     jobs, units = [], []
     for model in cfg["models"]:
         for ds in cfg["datasets"]:
-            rows = sorted((j for j in v5 if j["model"] == model and j["dataset"] == ds), key=lambda j: j["uid"])
+            src_model = V5_PROMPT_SOURCE.get(model, model)
+            rows = sorted((j for j in v5 if j["model"] == src_model and j["dataset"] == ds), key=lambda j: j["uid"])
             for split, (lo, hi) in cfg["splits"].items():
                 for j in rows[lo:hi]:
                     unit = f"{model}__{ds}__{j['uid']}"
@@ -72,6 +74,15 @@ def prepare(run: Path, cfg: dict):
                         for k in range(0, len(content), cs):
                             jobs.append(base | {"kind": "PLN", "key": f"PLN__{unit}__{k // cs:03d}", "depends": refk,
                                                 "sources": content[k:k + cs], "variants": variants})
+    if cfg.get("gsm_n"):
+        from kvp.data import load_subset
+        docs, meta = load_subset("gsm8k")
+        for d in docs[:cfg["gsm_n"]]:
+            for model in cfg["models"]:
+                unit = f"{model}__gsm8k__{d['uid']}"
+                base = {"model": model, "dataset": "gsm8k", "uid": d["uid"], "unit": unit, "split": "gsm", "prompt_len": None}
+                units.append(base)
+                jobs.append(base | {"kind": "GSM", "key": f"GSM__{unit}"})
     if cfg.get("v6_pool"):
         from query_conditioned_sweep import V6_RUN
         v6 = json.loads((V6_RUN / "jobs.json").read_text())
@@ -190,6 +201,8 @@ def evaluate(bb, tok, eos, job, cfg, run: Path, cache: UnitCache):
     from kvp.role_generation import score_free_answer
     raw = run / "raw"
     meta = {k: job[k] for k in ("key", "kind", "model", "dataset", "uid", "unit", "split")} | {"sha": git_sha()}
+    if job["kind"] == "GSM":
+        return _evaluate_gsm(bb, tok, eos, job, cfg, raw, meta)
     r, p, targets = cache.get(bb, tok, eos, job, cfg, cfg["horizon"])
     R, P, n = bb.R, r.P, len(r.ref_ids)
     dig = float(r.ref_H.norm(dim=-1).sum())
@@ -382,6 +395,66 @@ def _evaluate_horizon(bb, job, cfg, raw, meta, r, p, content, qa, recv, ga, sett
                                               "peak_gpu_bytes": torch.cuda.max_memory_allocated()})
 
 
+def _evaluate_gsm(bb, tok, eos, job, cfg, raw, meta):
+    """Reasoning arm: zero-shot GSM8K (Content/Instruction/Answer format, no few-shot), greedy up to gsm_max_new tokens.
+    Plane policies applied to the prompt only vs prompt + every generated token (converted after it finishes);
+    paired against the FULL greedy generation of the same model. Accuracy = kvp.grading.grade_gsm8k."""
+    import torch
+    from kvp.data import load_subset
+    from kvp.grading import grade_gsm8k, truncate_at_stops
+    from kvp.plane_policies import plane_map_from_sets, plane_sets
+    from kvp.query_conditioned_probe import QueryConditionedRunner
+    from kvp.role_data import build_role_prompt
+    doc = next(d for d in load_subset("gsm8k")[0] if d["uid"] == job["uid"])
+    p = build_role_prompt(tok, bb.family, doc["question"], dataset="gsm8k", use_distractor=False)
+    max_new = int(cfg["gsm_max_new"])
+    t0 = time.time()
+    r = QueryConditionedRunner(bb, p, job["uid"], horizon=max_new, record_prefill_attention=False)
+    r.reference(eos, frozen_ids=None)                      # FULL greedy continuation (EOS or horizon)
+    R, P, T = bb.R, r.P, r.T
+    content = [int(c) for c in p.content_positions]
+    gen_cols = list(range(P, T))
+    until = ("Q:", "</s>", "<|im_end|>", "\nContent:", "<|end_turn|>")
+
+    def judge(ids):
+        text = tok.decode(ids, skip_special_tokens=True)
+        finish = "stop" if (ids and ids[-1] in eos) or len(ids) < max_new else "length"
+        text = truncate_at_stops(text, until)
+        g = grade_gsm8k(text, doc, finish)
+        return {"correct": bool(g["correct"]), "flex": bool(g["lm_eval_flexible_extract"]), "parse_ok": g["parse_ok"],
+                "pred": g["pred"], "n_tokens": len(ids), "finish": finish, "text": text[:400]}
+
+    ident = np.tile(np.arange(R)[:, None], (1, T))
+
+    def pmap(sets_prompt, sets_gen=None):
+        m = ident.copy()
+        m[:, :P] = plane_map_from_sets(sets_prompt, R, P)
+        if sets_gen:
+            m[:, P:] = plane_map_from_sets({c - P: v for c, v in sets_gen.items()}, R, T - P)
+        return m
+
+    ks = sorted({max(1, int(round(0.1 * R))), 1, max(1, R // 2)})
+    arms = []
+    for k in ks:
+        arms.append((f"last{k}@prompt", [], pmap(plane_sets("last", content, R, k))))
+        arms.append((f"last{k}@prompt+generated", [], pmap(plane_sets("last", content, R, k), plane_sets("last", gen_cols, R, k))))
+    arms.append(("first1@prompt+generated", [], pmap({c: np.array([0]) for c in content},
+                                                   {c: np.array([0]) for c in gen_cols})))
+    import hashlib
+    rng = np.random.default_rng(int(hashlib.sha256(job["unit"].encode()).hexdigest()[:8], 16))
+    perm = rng.permutation(len(content))
+    arms.append(("token_random50@prompt", sorted(int(content[i]) for i in perm[: len(content) // 2]), None))
+    rows = [{"arm": "full", "n_evicted": 0} | judge(list(r.ref_ids))]
+    full_ids = list(r.ref_ids)
+    for name, ev, m in arms:
+        ids = r.greedy(ev, max_new, eos, plane_map=m)
+        j = judge(ids)
+        rows.append({"arm": name, "n_evicted": len(ev), "identical_to_full": ids == full_ids,
+                     "first_divergence": next((i for i, (a, b) in enumerate(zip(ids, full_ids)) if a != b), min(len(ids), len(full_ids)))} | j)
+    _json(raw / f"{job['key']}.json", meta | {"rows": rows, "R": R, "P": P, "n_content": len(content), "gold": doc["answer"][-30:],
+                                              "elapsed_s": time.time() - t0, "peak_gpu_bytes": torch.cuda.max_memory_allocated()})
+
+
 def worker(run: Path, idx: int, model_filter: str | None):
     import torch
     m = json.loads((run / "run_manifest.json").read_text())
@@ -395,7 +468,7 @@ def worker(run: Path, idx: int, model_filter: str | None):
         d.mkdir(exist_ok=True)
     cur = tok = bb = eos = None
     cache = UnitCache()
-    order = {"REF": 0, "TAX": 1, "PLN": 2, "HOR": 0}
+    order = {"REF": 0, "TAX": 1, "PLN": 2, "HOR": 0, "GSM": 0}
     while True:
         pend = [j for j in jobs if not (raw / f"{j['key']}.json").exists() and not (claims / f"{j['key']}.lock").exists()]
         if not pend:
@@ -452,6 +525,8 @@ def main():
     ap.add_argument("--greedy-tokens", type=int, default=24)
     ap.add_argument("--v6-pool", default="", help="v6 manifest pools for the HOR (decode-horizon) units, e.g. B or A,B")
     ap.add_argument("--v6-per-pool-limit", type=int, default=0, help="max HOR units per (model, workload, pool); 0 = all")
+    ap.add_argument("--gsm-n", type=int, default=0, help="GSM8K reasoning units per model (first n of the frozen 200-subset)")
+    ap.add_argument("--gsm-max-new", type=int, default=256)
     ap.add_argument("--gpu-ids", default="0")
     ap.add_argument("--gpu-models", default="")
     a = ap.parse_args()
@@ -462,8 +537,9 @@ def main():
         cfg = {"models": sp(a.models), "datasets": sp(a.datasets), "splits": {"dev": rng(a.dev), "holdout": rng(a.holdout)},
                "budgets": [float(x) for x in sp(a.budgets)], "semantics": a.semantics,
                "pln_variants": {"dev": sp(a.pln_dev), "holdout": sp(a.pln_holdout)},
-               "chunk_size": {"ouro-2.6b": a.chunk_ouro, "huginn-0125": a.chunk_huginn}, "horizon": a.horizon,
-               "greedy_tokens": a.greedy_tokens, "v6_pool": sp(a.v6_pool), "v6_per_pool_limit": a.v6_per_pool_limit}
+               "chunk_size": {"ouro-2.6b": a.chunk_ouro, "huginn-0125": a.chunk_huginn, "ouro-1.4b": a.chunk_ouro}, "horizon": a.horizon,
+               "greedy_tokens": a.greedy_tokens, "v6_pool": sp(a.v6_pool), "v6_per_pool_limit": a.v6_per_pool_limit,
+               "gsm_n": a.gsm_n, "gsm_max_new": a.gsm_max_new}
         print(json.dumps(prepare(run, cfg), indent=2))
     elif a.worker is not None:
         worker(run, a.worker, a.model_filter)
