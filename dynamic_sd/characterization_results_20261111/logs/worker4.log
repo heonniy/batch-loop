@@ -1,0 +1,23 @@
+23:13:27 START 1: --model huginn-3.5b --dataset gsm8k --T-total 32 --limit 16 --exit observe --dtype float32 --max-new-tokens 256 --out results/smoke/obs_huginn_gsm8k_fp32.json
+23:20:53 DONE 1 rc=0
+23:28:53 START 2: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 2 --exit fixed --out results/smoke/huginn_gsm8k_fixed_d2.json
+23:58:15 DONE 2 rc=0
+23:58:15 START 3: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 2 --exit live --eps 0.1 --out results/smoke/huginn_gsm8k_live_eps0.1_d2.json
+00:15:04 DONE 3 rc=0
+00:15:04 START 4: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 8 --exit fixed --out results/smoke/huginn_gsm8k_fixed_d8.json
+00:37:03 DONE 4 rc=0
+00:37:03 START 5: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 8 --exit live --eps 0.1 --out results/smoke/huginn_gsm8k_live_eps0.1_d8.json
+00:52:55 DONE 5 rc=0
+00:52:55 START 6: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 8 --exit live --eps 0.05 --out results/smoke/huginn_gsm8k_live_eps0.05_d8.json
+01:11:48 DONE 6 rc=0
+01:11:48 START 7: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 4 --exit replay --replay-from results/smoke/trace_huginn_eps0.1_shuffle.json --out results/smoke/huginn_gsm8k_synth_shuffle_eps0.1_d4.json
+01:26:11 DONE 7 rc=0
+01:26:11 START 8: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 4 --exit replay --replay-from results/smoke/trace_huginn_eps0.1_bimodal.json --out results/smoke/huginn_gsm8k_synth_bimodal_eps0.1_d4.json
+01:41:04 DONE 8 rc=0
+01:41:04 START 9: --model huginn-3.5b --T-total 32 --dataset gsm8k --limit 100 --offset 32 --T-draft 8 --exit live --eps 0.1 --out results/pilot/huginn_gsm8k_live_eps0.1_d8.json
+02:26:40 DONE 9 rc=0
+02:26:40 START 10: --model huginn-3.5b --T-total 32 --dataset gsm8k --limit 100 --offset 32 --T-draft 8 --exit fixed --out results/pilot/huginn_gsm8k_fixed_d8.json
+03:29:54 DONE 10 rc=0
+03:29:54 START 11: -h >/dev/null; cd /home1/irteam/lm_pretrain && (env -u CUDA_VISIBLE_DEVICES -u PYTORCH_CUDA_ALLOC_CONF CUDA_DEVICE_ORDER=PCI_BUS_ID setsid nohup /home/irteam/ddn/envs/kvp/bin/python train_lm.py --gpu 4 --hours 24 --util_min 0.80 --util_max 0.95 > logs/gpu4.log 2>&1 < /dev/null &) ; echo burner_gpu4 >> /home1/irteam/dsd_work/logs/watchdog.log
+03:30:00 DONE 11 rc=0
+03:30:00 burner on gpu4, worker exit

@@ -1,0 +1,25 @@
+23:13:27 START 1: --model huginn-3.5b --dataset gsm8k --T-total 32 --T-draft 4 --K 4 --limit 32 --exit fixed --out results/smoke/huginn_gsm8k_fixed_d4.json
+23:35:31 DONE 1 rc=0
+23:35:31 START 2: --model huginn-3.5b --T-total 32 --limit 8 --dataset gsm8k --T-draft 4 --dtype float32 --exit fixed --out results/smoke/huginn_gsm8k_fixed_d4_fp32.json
+23:44:13 DONE 2 rc=0
+23:44:13 START 3: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 4 --exit replay --replay-from results/smoke/huginn_gsm8k_live_eps0.1_d4.json --out results/smoke/huginn_gsm8k_replay_eps0.1_d4.json
+00:09:59 DONE 3 rc=0
+00:09:59 START 4: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 4 --K 2 --arms ar,dtv --exit live --eps 0.1 --out results/smoke/huginn_gsm8k_live_eps0.1_d4_K2.json
+00:21:09 DONE 4 rc=0
+00:21:09 START 5: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 4 --K 8 --arms ar,dtv --exit live --eps 0.1 --out results/smoke/huginn_gsm8k_live_eps0.1_d4_K8.json
+00:32:07 DONE 5 rc=0
+00:32:08 START 6: -h >/dev/null; $PY bench_r.py --model huginn-3.5b --T-total 32 --out results/smoke/bench_r_huginn.json
+00:32:31 DONE 6 rc=0
+00:32:31 START 7: --model huginn-3.5b --T-total 32 --limit 100 --offset 32 --dataset gsm8k --T-draft 4 --exit fixed --out results/pilot/huginn_gsm8k_fixed_d4.json
+01:37:41 DONE 7 rc=0
+01:37:41 START 8: --model ouro-1.4b --T-total 4 --dataset gsm8k --T-draft 1 --limit 32 --exit live --tau 0.4 --sampling temperature --temperature 0.7 --seed 0 --out results/smoke/ouro14_gsm8k_live_tau0.4_d1_temp0.7_seed0.json
+01:48:59 DONE 8 rc=0
+01:48:59 START 9: --model ouro-1.4b --T-total 4 --dataset gsm8k --T-draft 1 --limit 32 --exit live --tau 0.4 --sampling temperature --temperature 0.7 --seed 1 --out results/smoke/ouro14_gsm8k_live_tau0.4_d1_temp0.7_seed1.json
+02:00:28 DONE 9 rc=0
+02:00:28 START 10: --model ouro-1.4b --T-total 4 --dataset gsm8k --T-draft 1 --limit 32 --exit fixed --sampling temperature --temperature 0.7 --seed 0 --out results/smoke/ouro14_gsm8k_fixed_d1_temp0.7_seed0.json
+02:14:00 DONE 10 rc=0
+02:14:00 START 11: -h >/dev/null; $PY dsd_batch.py --B 16 64 --tau -1 0.1 0.4 --d 1 --K 4 --max-new 128 --n-batches 1 --L 512 --out results/smoke/batch_ouro14_d1_B16_64.json
+02:16:16 DONE 11 rc=0
+02:16:16 START 12: -h >/dev/null; cd /home1/irteam/lm_pretrain && (env -u CUDA_VISIBLE_DEVICES -u PYTORCH_CUDA_ALLOC_CONF CUDA_DEVICE_ORDER=PCI_BUS_ID setsid nohup /home/irteam/ddn/envs/kvp/bin/python train_lm.py --gpu 7 --hours 24 --util_min 0.80 --util_max 0.95 > logs/gpu7.log 2>&1 < /dev/null &) ; echo burner_gpu7 >> /home1/irteam/dsd_work/logs/watchdog.log
+02:16:23 DONE 12 rc=0
+02:16:23 burner on gpu7, worker exit

@@ -1,0 +1,19 @@
+23:13:27 START 1: --model huginn-3.5b --dataset gsm8k --T-total 32 --limit 32 --exit observe --max-new-tokens 256 --out results/smoke/obs_huginn_gsm8k.json
+23:25:58 DONE 1 rc=0
+23:28:58 START 2: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 4 --exit live --eps 0.2 --out results/smoke/huginn_gsm8k_live_eps0.2_d4.json
+23:40:35 DONE 2 rc=0
+23:40:35 START 3: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 4 --exit live --eps 0.1 --out results/smoke/huginn_gsm8k_live_eps0.1_d4.json
+23:55:17 DONE 3 rc=0
+23:55:17 START 4: --model huginn-3.5b --T-total 32 --limit 32 --dataset gsm8k --T-draft 4 --exit live --eps 0.05 --out results/smoke/huginn_gsm8k_live_eps0.05_d4.json
+00:12:50 DONE 4 rc=0
+00:12:50 START 5: --model ouro-1.4b --T-total 4 --limit 100 --offset 32 --dataset gsm8k --T-draft 1 --exit fixed --out results/pilot/ouro14_gsm8k_fixed_d1.json
+00:52:50 DONE 5 rc=0
+00:52:50 START 6: --model huginn-3.5b --T-total 32 --limit 100 --offset 32 --dataset gsm8k --T-draft 4 --exit live --eps 0.1 --out results/pilot/huginn_gsm8k_live_eps0.1_d4.json
+01:35:20 DONE 6 rc=0
+01:35:20 START 7: --model huginn-3.5b --T-total 32 --dataset gsm8k --T-draft 8 --limit 32 --exit live --eps 0.2 --out results/smoke/huginn_gsm8k_live_eps0.2_d8.json
+01:49:22 DONE 7 rc=0
+01:49:22 START 8: --model huginn-3.5b --T-total 32 --dataset gsm8k --T-draft 4 --limit 200 --offset 132 --exit live --eps 0.2 --out results/main/huginn_gsm8k_live_eps0.2_d4.json
+02:58:04 DONE 8 rc=0
+02:58:04 START 9: -h >/dev/null; cd /home1/irteam/lm_pretrain && (env -u CUDA_VISIBLE_DEVICES -u PYTORCH_CUDA_ALLOC_CONF CUDA_DEVICE_ORDER=PCI_BUS_ID setsid nohup /home/irteam/ddn/envs/kvp/bin/python train_lm.py --gpu 2 --hours 24 --util_min 0.80 --util_max 0.95 > logs/gpu2.log 2>&1 < /dev/null &) ; echo burner_gpu2 >> /home1/irteam/dsd_work/logs/watchdog.log
+02:58:10 DONE 9 rc=0
+02:58:10 burner on gpu2, worker exit

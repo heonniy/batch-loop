@@ -1,0 +1,13 @@
+--model ouro-1.4b --dataset gsm8k --T-total 4 --limit 32 --exit observe --max-new-tokens 256 --out results/smoke/obs_ouro14_gsm8k.json
+--model ouro-1.4b --dataset gsm8k --T-total 4 --T-draft 1 --K 4 --limit 32 --exit live --tau 0.1 --out results/smoke/ouro14_gsm8k_live_tau0.1_d1.json
+--model ouro-1.4b --dataset gsm8k --T-total 4 --T-draft 1 --K 4 --limit 32 --exit live --tau 0.4 --out results/smoke/ouro14_gsm8k_live_tau0.4_d1.json
+--model ouro-1.4b --dataset gsm8k --T-total 4 --T-draft 1 --K 4 --limit 32 --exit live --tau 0.7 --out results/smoke/ouro14_gsm8k_live_tau0.7_d1.json
+--model ouro-1.4b --T-total 4 --limit 32 --dataset gsm8k --T-draft 1 --exit replay --replay-from results/smoke/ouro14_gsm8k_live_tau0.4_d1.json --out results/smoke/ouro14_gsm8k_replay_tau0.4_d1.json
+--model ouro-1.4b --T-total 4 --limit 32 --dataset gsm8k --T-draft 1 --exit replay --replay-from results/smoke/ouro14_gsm8k_live_tau0.1_d1.json --out results/smoke/ouro14_gsm8k_replay_tau0.1_d1.json
+--model ouro-2.6b --T-total 4 --limit 32 --dataset gsm8k --T-draft 1 --exit fixed --out results/smoke/ouro26_gsm8k_fixed_d1.json
+--model ouro-2.6b --T-total 4 --limit 32 --dataset gsm8k --T-draft 1 --exit live --tau 0.4 --out results/smoke/ouro26_gsm8k_live_tau0.4_d1.json
+--model ouro-1.4b --T-total 4 --limit 100 --offset 32 --dataset gsm8k --T-draft 1 --exit live --tau 0.1 --out results/pilot/ouro14_gsm8k_live_tau0.1_d1.json
+--model ouro-2.6b --T-total 4 --dataset gsm8k --T-draft 1 --limit 32 --exit live --tau 0.1 --out results/smoke/ouro26_gsm8k_live_tau0.1_d1.json
+--model ouro-2.6b --T-total 4 --dataset gsm8k --T-draft 1 --limit 32 --exit live --tau 0.7 --out results/smoke/ouro26_gsm8k_live_tau0.7_d1.json
+--model ouro-1.4b --T-total 4 --dataset gsm8k --T-draft 1 --limit 200 --offset 132 --exit live --tau 0.1 --out results/main/ouro14_gsm8k_live_tau0.1_d1.json
+-h >/dev/null; cd /home1/irteam/lm_pretrain && (env -u CUDA_VISIBLE_DEVICES -u PYTORCH_CUDA_ALLOC_CONF CUDA_DEVICE_ORDER=PCI_BUS_ID setsid nohup /home/irteam/ddn/envs/kvp/bin/python train_lm.py --gpu 0 --hours 24 --util_min 0.80 --util_max 0.95 > logs/gpu0.log 2>&1 < /dev/null &) ; echo burner_gpu0 >> /home1/irteam/dsd_work/logs/watchdog.log

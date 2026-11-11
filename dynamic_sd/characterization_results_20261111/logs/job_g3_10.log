@@ -1,0 +1,11 @@
+[dsd] huginn-3.5b gsm8k n=8 T=32 d=4 K=4 exit=live tau=None eps=0.1 arms=['ar', 'wfd', 'dtv']
+/home/irteam/dsd_work/wavefront-decoding/src/decoding/fa4_attention.py:362: UserWarning: aten._flash_attention_forward unavailable (RuntimeError: FlashAttention only support fp16 and bf16 data type); falling back to the per-sequence SDPA loop for varlen attention.
+  [1/8] ar:28.5t/s wfd:34.6t/s dtv:35.4t/s (24s)
+  [2/8] ar:28.5t/s wfd:34.6t/s dtv:35.2t/s (47s)
+  [3/8] ar:28.2t/s wfd:34.3t/s dtv:34.6t/s (72s)
+  [4/8] ar:28.3t/s wfd:34.4t/s dtv:34.9t/s (95s)
+  [5/8] ar:28.1t/s wfd:34.0t/s dtv:34.1t/s (121s)
+  [6/8] ar:28.1t/s wfd:34.1t/s dtv:34.3t/s (144s)
+  [7/8] ar:28.1t/s wfd:34.1t/s dtv:34.4t/s (168s)
+  [8/8] ar:28.1t/s wfd:34.1t/s dtv:34.2t/s (193s)
+[dsd] SUMMARY {"ar": {"tok_per_s": 28.11856641851122, "acc": 0.125, "rcalls_per_tok": 10.04345703125, "rows_per_tok": 10.04345703125, "tokens": 2048, "wall": 72.83443862386048, "exact_match_frac": 1.0, "speedup_vs_ar": 1.0}, "wfd": {"tok_per_s": 34.08270775521872, "acc": 0.25, "rcalls_per_tok": 4.166015625, "rows_per_tok": 10.35302734375, "tokens": 2048, "wall": 60.08912245789543, "exact_match_frac": 0.75, "speedup_vs_ar": 1.2121068779943611}, "dtv": {"tok_per_s": 34.229625746182215, "acc": 0.125, "rcalls_per_tok": 6.0703125, "rows_per_tok": 11.53759765625, "tokens": 2048, "wall": 59.831212154822424, "exact_match_frac": 0.375, "speedup_vs_ar": 1.2173318239882924}}

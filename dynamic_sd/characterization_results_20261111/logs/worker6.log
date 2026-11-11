@@ -1,0 +1,29 @@
+23:13:27 START 1: --model ouro-1.4b --dataset gsm8k --T-total 4 --T-draft 1 --K 4 --limit 32 --exit fixed --out results/smoke/ouro14_gsm8k_fixed_d1.json
+23:28:14 DONE 1 rc=0
+23:28:14 START 2: --model ouro-1.4b --dataset gsm8k --T-total 4 --T-draft 2 --K 4 --limit 32 --exit fixed --out results/smoke/ouro14_gsm8k_fixed_d2.json
+23:44:22 DONE 2 rc=0
+23:44:22 START 3: --model ouro-1.4b --T-total 4 --limit 8 --dataset gsm8k --T-draft 1 --dtype float32 --exit fixed --out results/smoke/ouro14_gsm8k_fixed_d1_fp32.json
+23:48:13 DONE 3 rc=0
+23:48:13 START 4: --model ouro-1.4b --T-total 4 --limit 8 --dataset gsm8k --T-draft 1 --dtype float32 --exit live --tau 0.4 --out results/smoke/ouro14_gsm8k_live_tau0.4_d1_fp32.json
+23:51:17 DONE 4 rc=0
+23:51:17 START 5: --model ouro-1.4b --T-total 4 --limit 32 --dataset gsm8k --T-draft 1 --K 1 --arms ar,dtv --exit live --tau 0.4 --out results/smoke/ouro14_gsm8k_live_tau0.4_d1_K1.json
+23:59:24 DONE 5 rc=0
+23:59:24 START 6: --model ouro-1.4b --T-total 4 --limit 32 --dataset gsm8k --T-draft 1 --K 2 --arms ar,dtv --exit live --tau 0.4 --out results/smoke/ouro14_gsm8k_live_tau0.4_d1_K2.json
+00:07:15 DONE 6 rc=0
+00:07:15 START 7: --model ouro-1.4b --T-total 4 --limit 32 --dataset gsm8k --T-draft 1 --K 8 --arms ar,dtv --exit live --tau 0.4 --out results/smoke/ouro14_gsm8k_live_tau0.4_d1_K8.json
+00:15:13 DONE 7 rc=0
+00:15:13 START 8: --model ouro-1.4b --T-total 4 --limit 32 --dataset gsm8k --T-draft 2 --exit replay --replay-from results/smoke/ouro14_gsm8k_live_tau0.4_d1.json --out results/smoke/ouro14_gsm8k_replay_tau0.4_d2.json
+00:28:28 DONE 8 rc=0
+00:28:28 START 9: -h >/dev/null; $PY bench_r.py --model ouro-1.4b --T-total 4 --out results/smoke/bench_r_ouro14.json
+00:28:57 DONE 9 rc=0
+00:28:57 START 10: --model ouro-1.4b --T-total 4 --limit 100 --offset 32 --dataset gsm8k --T-draft 1 --exit live --tau 0.4 --out results/pilot/ouro14_gsm8k_live_tau0.4_d1.json
+01:01:40 DONE 10 rc=0
+01:01:40 START 11: --model huginn-3.5b --T-total 32 --limit 100 --offset 32 --dataset gsm8k --T-draft 4 --exit live --eps 0.2 --out results/pilot/huginn_gsm8k_live_eps0.2_d4.json
+01:36:12 DONE 11 rc=0
+01:36:12 START 12: --model ouro-1.4b --T-total 4 --dataset gsm8k --T-draft 1 --limit 200 --offset 132 --exit live --tau 0.4 --out results/main/ouro14_gsm8k_live_tau0.4_d1.json
+02:44:18 DONE 12 rc=0
+02:44:18 START 13: --model huginn-3.5b --T-total 32 --dataset math500 --max-new-tokens 512 --T-draft 4 --limit 100 --offset 32 --exit live --eps 0.1 --out results/pilot/huginn_math_live_eps0.1_d4.json
+04:04:01 DONE 13 rc=0
+04:04:01 START 14: -h >/dev/null; cd /home1/irteam/lm_pretrain && (env -u CUDA_VISIBLE_DEVICES -u PYTORCH_CUDA_ALLOC_CONF CUDA_DEVICE_ORDER=PCI_BUS_ID setsid nohup /home/irteam/ddn/envs/kvp/bin/python train_lm.py --gpu 6 --hours 24 --util_min 0.80 --util_max 0.95 > logs/gpu6.log 2>&1 < /dev/null &) ; echo burner_gpu6 >> /home1/irteam/dsd_work/logs/watchdog.log
+04:04:09 DONE 14 rc=0
+04:04:09 burner on gpu6, worker exit
