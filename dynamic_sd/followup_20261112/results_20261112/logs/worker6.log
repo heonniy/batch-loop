@@ -1,0 +1,6 @@
+20:21:09 START 1: $PY followup_20261112/counterfactual_actions.py --model ouro-1.4b --T-total 4 --dataset gsm8k --offset 600 --limit 32 --actions AR,DtV:d1:K1,DtV:d1:K2,DtV:d1:K4,DtV:d1:K8,DtV:d2:K1,DtV:d2:K2,DtV:d2:K4,DtV:d2:K8 --exit fixed --out results/followup_20261112/cf/ouro_fixed.jsonl
+20:56:21 DONE 1 rc=0
+20:56:21 START 2: $PY followup_20261112/counterfactual_actions.py --model huginn-3.5b --T-total 32 --dataset gsm8k --offset 600 --limit 24 --actions AR,DtV:d2:K2,DtV:d2:K4,DtV:d2:K8,DtV:d4:K2,DtV:d4:K4,DtV:d4:K8,DtV:d8:K2,DtV:d8:K4,DtV:d8:K8 --exit fixed --out results/followup_20261112/cf/huginn_fixed.jsonl
+21:55:08 DONE 2 rc=0
+21:55:08 END
+2026-11-12 21:55:08 burner restored gpu6

@@ -1,0 +1,19 @@
+[dsd] huginn-3.5b gsm8k n=16 T=32 d=4 K=4 exit=fixed tau=None eps=None arms=['ar', 'wfd', 'dtv']
+/home1/irteam/dsd_work/wavefront-decoding/src/decoding/fa4_attention.py:362: UserWarning: aten._flash_attention_forward unavailable (RuntimeError: FlashAttention only support fp16 and bf16 data type); falling back to the per-sequence SDPA loop for varlen attention.
+  [1/16] ar:11.6t/s wfd:17.5t/s dtv:18.6t/s (50s)
+  [2/16] ar:11.4t/s wfd:17.6t/s dtv:19.0t/s (101s)
+  [3/16] ar:11.5t/s wfd:17.1t/s dtv:18.8t/s (153s)
+  [4/16] ar:11.5t/s wfd:17.5t/s dtv:19.0t/s (201s)
+  [5/16] ar:11.5t/s wfd:17.2t/s dtv:18.9t/s (253s)
+  [6/16] ar:11.5t/s wfd:17.3t/s dtv:19.0t/s (303s)
+  [7/16] ar:11.5t/s wfd:17.3t/s dtv:19.0t/s (353s)
+  [8/16] ar:11.6t/s wfd:17.4t/s dtv:19.0t/s (403s)
+  [9/16] ar:11.5t/s wfd:17.1t/s dtv:18.8t/s (456s)
+  [10/16] ar:11.6t/s wfd:17.0t/s dtv:18.8t/s (508s)
+  [11/16] ar:11.6t/s wfd:16.8t/s dtv:18.6t/s (563s)
+  [12/16] ar:11.6t/s wfd:16.9t/s dtv:18.7t/s (612s)
+  [13/16] ar:11.6t/s wfd:16.7t/s dtv:18.5t/s (668s)
+  [14/16] ar:11.6t/s wfd:16.5t/s dtv:18.4t/s (722s)
+  [15/16] ar:11.6t/s wfd:16.5t/s dtv:18.3t/s (774s)
+  [16/16] ar:11.6t/s wfd:16.5t/s dtv:18.3t/s (826s)
+[dsd] SUMMARY {"ar": {"tok_per_s": 11.562028556503558, "acc": 0.25, "rcalls_per_tok": 31.875, "rows_per_tok": 31.875, "tokens": 4096, "wall": 354.2630931918975, "exact_match_frac": 1.0, "speedup_vs_ar": 1.0}, "wfd": {"tok_per_s": 16.50769338701086, "acc": 0.25, "rcalls_per_tok": 7.3544921875, "rows_per_tok": 45.35546875, "tokens": 4096, "wall": 248.1267312138807, "exact_match_frac": 1.0, "speedup_vs_ar": 1.4277506154164792}, "dtv": {"tok_per_s": 18.331956971715517, "acc": 0.25, "rcalls_per_tok": 12.3212890625, "rows_per_tok": 40.984375, "tokens": 4096, "wall": 223.4349560344126, "exact_match_frac": 1.0, "speedup_vs_ar": 1.5855311965480248}}

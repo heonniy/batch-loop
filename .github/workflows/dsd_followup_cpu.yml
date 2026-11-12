@@ -1,0 +1,26 @@
+name: Dynamic SD Follow-up CPU checks
+
+on:
+  push:
+    paths:
+      - "dynamic_sd/followup_20261112/**"
+      - ".github/workflows/dsd_followup_cpu.yml"
+  pull_request:
+    paths:
+      - "dynamic_sd/followup_20261112/**"
+      - ".github/workflows/dsd_followup_cpu.yml"
+
+jobs:
+  offline-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Syntax compilation (does not import torch)
+        run: |
+          python -m py_compile dynamic_sd/followup_20261112/gate_shadow.py dynamic_sd/followup_20261112/compare_shadow.py dynamic_sd/followup_20261112/oracle_frontier.py dynamic_sd/followup_20261112/tests/test_cpu.py
+      - name: CPU-only contract tests (no model download or GPU)
+        run: |
+          python -m unittest discover -s dynamic_sd/followup_20261112/tests -v
