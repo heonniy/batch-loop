@@ -1,0 +1,20 @@
+[dsd] huginn-3.5b gsm8k n=16 T=32 d=4 K=4 exit=replay tau=None eps=None arms=['ar', 'wfd', 'dtv']
+/home1/irteam/dsd_work/wavefront-decoding/src/decoding/fa4_attention.py:362: UserWarning: aten._flash_attention_forward unavailable (RuntimeError: FlashAttention only support fp16 and bf16 data type); falling back to the per-sequence SDPA loop for varlen attention.
+  [1/16] ar:19.5t/s wfd:26.9t/s dtv:25.7t/s (33s)
+  [2/16] ar:19.5t/s wfd:28.0t/s dtv:27.1t/s (63s)
+  [3/16] ar:19.5t/s wfd:27.2t/s dtv:26.8t/s (96s)
+  [4/16] ar:19.5t/s wfd:27.4t/s dtv:26.9t/s (128s)
+  [5/16] ar:19.5t/s wfd:27.0t/s dtv:26.7t/s (161s)
+  [6/16] ar:19.5t/s wfd:26.5t/s dtv:26.2t/s (195s)
+  [7/16] ar:19.5t/s wfd:26.4t/s dtv:26.1t/s (229s)
+  [8/16] ar:19.4t/s wfd:26.7t/s dtv:26.3t/s (260s)
+  [9/16] ar:19.4t/s wfd:26.5t/s dtv:26.1t/s (294s)
+  [10/16] ar:19.4t/s wfd:26.3t/s dtv:25.7t/s (329s)
+  [11/16] ar:19.4t/s wfd:25.8t/s dtv:24.8t/s (368s)
+  [12/16] ar:19.4t/s wfd:25.9t/s dtv:24.9t/s (400s)
+  [13/16] ar:19.4t/s wfd:25.8t/s dtv:24.8t/s (435s)
+  [14/16] ar:19.4t/s wfd:25.6t/s dtv:24.6t/s (470s)
+  [15/16] ar:19.3t/s wfd:25.6t/s dtv:24.6t/s (505s)
+  [16/16] ar:19.2t/s wfd:25.4t/s dtv:24.3t/s (543s)
+[dsd] SUMMARY {"ar": {"tok_per_s": 19.233974626461926, "acc": 0.4375, "rcalls_per_tok": 16.1640625, "rows_per_tok": 16.1640625, "tokens": 4096, "wall": 212.9565042871982, "exact_match_frac": 1.0, "speedup_vs_ar": 1.0}, "wfd": {"tok_per_s": 25.353332189626876, "acc": 0.4375, "rcalls_per_tok": 5.38720703125, "rows_per_tok": 19.106201171875, "tokens": 4096, "wall": 161.55667307809927, "exact_match_frac": 1.0, "speedup_vs_ar": 1.3181535632653896}, "dtv": {"tok_per_s": 24.331464133377356, "acc": 0.4375, "rcalls_per_tok": 8.717529296875, "rows_per_tok": 20.925537109375, "tokens": 4096, "wall": 168.34169853269123, "exact_match_frac": 1.0, "speedup_vs_ar": 1.2650252797933066}}
+[shadow] {"mode": "cpu", "claim_scope": "eager matched-replay geometry; wall includes prefill; no native live gate decisions", "calls": 150029, "rows": 289378, "shadow_wall_s": 100.81648642290384, "shadow_readback_wall_s": 89.20881616231054}

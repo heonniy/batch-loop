@@ -1,0 +1,19 @@
+[dsd] huginn-3.5b gsm8k n=16 T=32 d=4 K=4 exit=replay tau=None eps=None arms=['ar', 'wfd', 'dtv']
+  [1/16] ar:23.6t/s wfd:43.5t/s dtv:34.2t/s (24s)
+  [2/16] ar:23.6t/s wfd:45.5t/s dtv:37.6t/s (47s)
+  [3/16] ar:23.6t/s wfd:42.2t/s dtv:37.4t/s (71s)
+  [4/16] ar:23.7t/s wfd:43.0t/s dtv:37.8t/s (94s)
+  [5/16] ar:23.7t/s wfd:43.3t/s dtv:37.7t/s (118s)
+  [6/16] ar:23.6t/s wfd:41.8t/s dtv:37.0t/s (143s)
+  [7/16] ar:23.5t/s wfd:41.8t/s dtv:37.0t/s (168s)
+  [8/16] ar:23.5t/s wfd:42.4t/s dtv:37.0t/s (191s)
+  [9/16] ar:23.5t/s wfd:41.7t/s dtv:36.3t/s (217s)
+  [10/16] ar:23.4t/s wfd:41.8t/s dtv:36.4t/s (241s)
+  [11/16] ar:23.5t/s wfd:41.7t/s dtv:36.3t/s (265s)
+  [12/16] ar:23.5t/s wfd:41.9t/s dtv:36.4t/s (289s)
+  [13/16] ar:23.5t/s wfd:41.6t/s dtv:36.0t/s (314s)
+  [14/16] ar:23.4t/s wfd:41.4t/s dtv:35.5t/s (340s)
+  [15/16] ar:23.5t/s wfd:41.6t/s dtv:35.6t/s (364s)
+  [16/16] ar:23.4t/s wfd:41.3t/s dtv:35.3t/s (391s)
+[dsd] SUMMARY {"ar": {"tok_per_s": 23.369046556686435, "acc": 0.375, "rcalls_per_tok": 16.33544921875, "rows_per_tok": 16.33544921875, "tokens": 4096, "wall": 175.2745876929257, "exact_match_frac": 1.0, "speedup_vs_ar": 1.0}, "wfd": {"tok_per_s": 41.26315337794233, "acc": 0.375, "rcalls_per_tok": 5.35693359375, "rows_per_tok": 19.2548828125, "tokens": 4096, "wall": 99.26531698834151, "exact_match_frac": 0.6875, "speedup_vs_ar": 1.7657183093820303}, "dtv": {"tok_per_s": 35.299017881783556, "acc": 0.4375, "rcalls_per_tok": 8.710693359375, "rows_per_tok": 21.005615234375, "tokens": 4096, "wall": 116.03722272720188, "exact_match_frac": 0.5625, "speedup_vs_ar": 1.5105031262682678}}
+[shadow] {"mode": "cpu", "claim_scope": "eager matched-replay geometry; wall includes prefill; no native live gate decisions", "calls": 151299, "rows": 293641, "shadow_wall_s": 15.967883029021323, "shadow_readback_wall_s": 3.806608276674524}

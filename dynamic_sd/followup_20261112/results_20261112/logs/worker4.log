@@ -1,0 +1,22 @@
+20:21:09 START 1: $PY dsd_run.py --model ouro-1.4b --dataset gsm8k --T-total 4 --T-draft 1 --K 4 --dtype float32 --kv-s 0 --warmup 2 --limit 16 --exit live --tau 0.1 --arms ar,wfd,dtv --out results/followup_20261112/parity/ouro_live_tau0.1_float32.json
+20:26:10 DONE 1 rc=0
+20:26:10 START 2: $PY dsd_run.py --model ouro-1.4b --dataset gsm8k --T-total 4 --T-draft 1 --K 4 --dtype float32 --kv-s 0 --warmup 2 --limit 16 --exit fixed --arms ar,wfd,dtv --out results/followup_20261112/parity/ouro_fixed_float32.json
+20:32:58 DONE 2 rc=0
+20:32:58 START 3: $PY dsd_run.py --model huginn-3.5b --dataset gsm8k --T-total 32 --T-draft 4 --K 4 --dtype float32 --kv-s 0 --warmup 2 --limit 16 --exit fixed --arms ar,wfd,dtv --out results/followup_20261112/parity/huginn_fixed_float32.json
+20:48:38 DONE 3 rc=0
+20:48:38 START 4: $PY dsd_run.py --model huginn-3.5b --dataset gsm8k --T-total 32 --T-draft 4 --K 4 --dtype float32 --kv-s 0 --warmup 2 --limit 16 --exit live --eps 0.2 --arms ar,wfd,dtv --out results/followup_20261112/parity/huginn_live_eps0.2_float32.json
+20:57:40 DONE 4 rc=0
+20:57:40 START 6: $PY followup_20261112/gate_shadow.py --shadow-mode cpu --model huginn-3.5b --dataset gsm8k --T-total 32 --T-draft 4 --K 4 --dtype float32 --kv-s 0 --warmup 2 --limit 16 --exit replay --replay-from results/followup_20261112/ref/huginn_live_eps0.1_float32_n32.json --arms ar,wfd,dtv --out results/followup_20261112/shadow/huginn_float32_r3_cpu.json
+21:08:45 DONE 6 rc=0
+21:08:45 START 7: $PY followup_20261112/gate_shadow.py --shadow-mode gpu --model huginn-3.5b --dataset gsm8k --T-total 32 --T-draft 4 --K 4 --dtype float32 --kv-s 0 --warmup 2 --limit 16 --exit replay --replay-from results/followup_20261112/ref/huginn_live_eps0.1_float32_n32.json --arms ar,wfd,dtv --out results/followup_20261112/shadow/huginn_float32_r3_gpu.json
+21:19:24 DONE 7 rc=0
+21:19:24 START 8: $PY followup_20261112/gate_shadow.py --shadow-mode off --model huginn-3.5b --dataset gsm8k --T-total 32 --T-draft 4 --K 4 --dtype float32 --kv-s 0 --warmup 2 --limit 16 --exit replay --replay-from results/followup_20261112/ref/huginn_live_eps0.1_float32_n32.json --arms ar,wfd,dtv --out results/followup_20261112/shadow/huginn_float32_r3_off.json
+21:30:21 DONE 8 rc=0
+21:30:21 START 9: $PY followup_20261112/gate_shadow.py --shadow-mode cpu --model huginn-3.5b --dataset gsm8k --T-total 32 --T-draft 4 --K 4 --dtype float32 --kv-s 0 --warmup 2 --limit 16 --exit replay --replay-from results/followup_20261112/ref/huginn_live_eps0.1_float32_n32.json --arms ar,wfd,dtv --out results/followup_20261112/shadow/huginn_float32_r4_cpu.json
+21:41:24 DONE 9 rc=0
+21:41:24 START 10: $PY followup_20261112/gate_shadow.py --shadow-mode gpu --model huginn-3.5b --dataset gsm8k --T-total 32 --T-draft 4 --K 4 --dtype float32 --kv-s 0 --warmup 2 --limit 16 --exit replay --replay-from results/followup_20261112/ref/huginn_live_eps0.1_float32_n32.json --arms ar,wfd,dtv --out results/followup_20261112/shadow/huginn_float32_r4_gpu.json
+21:52:00 DONE 10 rc=0
+21:52:00 START 11: $PY followup_20261112/gate_shadow.py --shadow-mode off --model huginn-3.5b --dataset gsm8k --T-total 32 --T-draft 4 --K 4 --dtype float32 --kv-s 0 --warmup 2 --limit 16 --exit replay --replay-from results/followup_20261112/ref/huginn_live_eps0.1_float32_n32.json --arms ar,wfd,dtv --out results/followup_20261112/shadow/huginn_float32_r4_off.json
+22:02:35 DONE 11 rc=0
+22:02:35 END
+2026-11-12 22:02:35 burner restored gpu4

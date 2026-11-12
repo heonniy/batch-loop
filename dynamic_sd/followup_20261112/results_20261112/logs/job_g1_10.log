@@ -1,0 +1,19 @@
+[dsd] ouro-1.4b gsm8k n=16 T=4 d=1 K=4 exit=replay tau=None eps=None arms=['ar', 'wfd', 'dtv']
+  [1/16] ar:32.4t/s wfd:52.8t/s dtv:47.5t/s (18s)
+  [2/16] ar:30.9t/s wfd:47.5t/s dtv:47.7t/s (38s)
+  [3/16] ar:31.0t/s wfd:48.7t/s dtv:46.0t/s (57s)
+  [4/16] ar:30.8t/s wfd:48.7t/s dtv:44.7t/s (77s)
+  [5/16] ar:30.7t/s wfd:49.3t/s dtv:44.6t/s (96s)
+  [6/16] ar:30.8t/s wfd:49.5t/s dtv:42.4t/s (117s)
+  [7/16] ar:31.1t/s wfd:49.9t/s dtv:43.3t/s (135s)
+  [8/16] ar:31.0t/s wfd:49.7t/s dtv:42.6t/s (155s)
+  [9/16] ar:30.8t/s wfd:49.7t/s dtv:42.2t/s (176s)
+  [10/16] ar:30.9t/s wfd:50.1t/s dtv:42.3t/s (194s)
+  [11/16] ar:31.3t/s wfd:50.5t/s dtv:43.1t/s (211s)
+  [12/16] ar:31.5t/s wfd:50.9t/s dtv:43.7t/s (228s)
+  [13/16] ar:31.5t/s wfd:50.9t/s dtv:43.6t/s (248s)
+  [14/16] ar:31.5t/s wfd:50.8t/s dtv:43.5t/s (267s)
+  [15/16] ar:31.5t/s wfd:51.0t/s dtv:43.4t/s (286s)
+  [16/16] ar:31.7t/s wfd:51.3t/s dtv:43.8t/s (303s)
+[dsd] SUMMARY {"ar": {"tok_per_s": 31.74258573215613, "acc": 0.375, "rcalls_per_tok": 2.54296875, "rows_per_tok": 2.54296875, "tokens": 4096, "wall": 129.03800700302236, "exact_match_frac": 1.0, "speedup_vs_ar": 1.0}, "wfd": {"tok_per_s": 51.31414009850639, "acc": 0.375, "rcalls_per_tok": 1.19091796875, "rows_per_tok": 2.8681640625, "tokens": 4096, "wall": 79.82205279357731, "exact_match_frac": 0.25, "speedup_vs_ar": 1.6165708909631684}, "dtv": {"tok_per_s": 43.754350832286015, "acc": 0.375, "rcalls_per_tok": 1.708251953125, "rows_per_tok": 3.16748046875, "tokens": 4096, "wall": 93.61354750068858, "exact_match_frac": 0.375, "speedup_vs_ar": 1.378411677028618}}
+[shadow] {"mode": "gpu", "claim_scope": "eager matched-replay geometry; wall includes prefill; no native live gate decisions", "calls": 25915, "rows": 41834, "shadow_wall_s": 1.745950706070289, "shadow_readback_wall_s": 0.0}

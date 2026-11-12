@@ -1,0 +1,20 @@
+[dsd] huginn-3.5b gsm8k n=16 T=32 d=4 K=4 exit=replay tau=None eps=None arms=['ar', 'wfd', 'dtv']
+/home1/irteam/dsd_work/wavefront-decoding/src/decoding/fa4_attention.py:362: UserWarning: aten._flash_attention_forward unavailable (RuntimeError: FlashAttention only support fp16 and bf16 data type); falling back to the per-sequence SDPA loop for varlen attention.
+  [1/16] ar:20.6t/s wfd:27.9t/s dtv:26.5t/s (31s)
+  [2/16] ar:20.7t/s wfd:29.0t/s dtv:28.0t/s (61s)
+  [3/16] ar:20.7t/s wfd:28.2t/s dtv:27.7t/s (92s)
+  [4/16] ar:20.8t/s wfd:28.4t/s dtv:27.8t/s (122s)
+  [5/16] ar:20.7t/s wfd:28.0t/s dtv:27.6t/s (154s)
+  [6/16] ar:20.7t/s wfd:27.5t/s dtv:26.9t/s (187s)
+  [7/16] ar:20.7t/s wfd:27.4t/s dtv:26.9t/s (219s)
+  [8/16] ar:20.7t/s wfd:27.7t/s dtv:27.1t/s (249s)
+  [9/16] ar:20.6t/s wfd:27.5t/s dtv:26.9t/s (281s)
+  [10/16] ar:20.6t/s wfd:27.3t/s dtv:26.5t/s (314s)
+  [11/16] ar:20.6t/s wfd:26.8t/s dtv:25.9t/s (350s)
+  [12/16] ar:20.6t/s wfd:26.9t/s dtv:26.0t/s (381s)
+  [13/16] ar:20.6t/s wfd:26.8t/s dtv:25.8t/s (415s)
+  [14/16] ar:20.6t/s wfd:26.6t/s dtv:25.7t/s (448s)
+  [15/16] ar:20.6t/s wfd:26.5t/s dtv:25.6t/s (481s)
+  [16/16] ar:20.5t/s wfd:26.3t/s dtv:25.4t/s (517s)
+[dsd] SUMMARY {"ar": {"tok_per_s": 20.51783342529383, "acc": 0.4375, "rcalls_per_tok": 16.1640625, "rows_per_tok": 16.1640625, "tokens": 4096, "wall": 199.63121422706172, "exact_match_frac": 1.0, "speedup_vs_ar": 1.0}, "wfd": {"tok_per_s": 26.325952632852584, "acc": 0.4375, "rcalls_per_tok": 5.38720703125, "rows_per_tok": 19.106201171875, "tokens": 4096, "wall": 155.58791194087826, "exact_match_frac": 1.0, "speedup_vs_ar": 1.283076633247186}, "dtv": {"tok_per_s": 25.37301803780437, "acc": 0.4375, "rcalls_per_tok": 8.717529296875, "rows_per_tok": 20.925537109375, "tokens": 4096, "wall": 161.4313281099312, "exact_match_frac": 1.0, "speedup_vs_ar": 1.2366324217509828}}
+[shadow] {"mode": "off", "claim_scope": "eager matched-replay geometry; wall includes prefill; no native live gate decisions", "calls": 0, "rows": 0, "shadow_wall_s": 0.0, "shadow_readback_wall_s": 0.0}
