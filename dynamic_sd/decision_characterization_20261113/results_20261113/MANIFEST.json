@@ -1,0 +1,120 @@
+{
+ "run": "dynamic SD decision characterization Stage A/B (CPU only) 2026-11-13",
+ "source_receipts_commit": "5c6bbea3",
+ "code_commit": "52a1e6a6a7a9b40f98350302dab1424d6a587c81",
+ "python": "3.11.18",
+ "inputs": [
+  {
+   "path": "../followup_20261112/results_20261112/cf/huginn_eps0.1.exact.jsonl.gz",
+   "sha256": "a732837e6703e74dbe699b90ba3bbc1839fbeeb4a4125d6e316d2b07202a3ad3"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/huginn_eps0.1.jsonl.gz",
+   "sha256": "dc8844df344df87aa9a4b2f81c3e9be29b0543717009ae56174aa73d89d6cc0a"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/huginn_eps0.1.jsonl.meta.json.gz",
+   "sha256": "b56904af68a7f70d9278195b1c8adec098d193c28f36401d6f96c1d00fe84b8d"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/huginn_fixed.exact.jsonl.gz",
+   "sha256": "f39b80397031217dddb87b071d66ee4a8a9bcbf27ffd6e1d6d17c0a89a208e07"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/huginn_fixed.jsonl.gz",
+   "sha256": "3979f7db7f576cdd17d291aabd703c1b59cf58291210a3353cafdfc93de73ed6"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/huginn_fixed.jsonl.meta.json.gz",
+   "sha256": "94cac21efa74886dd6a60adea0749bd25993ae119b62ccc7bbe59a0b5ef78a51"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_fixed.exact.jsonl.gz",
+   "sha256": "c377a1516ab1572f79dfc5f95af5cf35879184ab5c25d72e2dd6f925544e8ac7"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_fixed.jsonl.gz",
+   "sha256": "178c50196361d657826e3370be144ea7e7b949d4180b73592e8dc10b955e1d4e"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_fixed.jsonl.meta.json.gz",
+   "sha256": "5ea0c786306dfe5f4d8a113af20d9a835ef7136c2a6c723593c9f5376a7becf5"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_tau0.1.exact.jsonl.gz",
+   "sha256": "1427d38c28c7ad3cf771a561618d4eb67a3d678253844230d506862fb8daccc5"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_tau0.1.jsonl.gz",
+   "sha256": "163726236c86b4aa452084c3ae4350c519e9bb1c07cc13467a8112a6cbba11b4"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_tau0.1.jsonl.meta.json.gz",
+   "sha256": "8f497154530bb719ce5f9bd96ee7368f1a87728b5c7795ee5c95eafe91892bdd"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_tau0.4.exact.jsonl.gz",
+   "sha256": "520b1c3f10a0638f6c8bae62193e2a0490d3d7583cffb1be5f4421d0f9e6d9fc"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_tau0.4.jsonl.gz",
+   "sha256": "f2166aa92c6801a9ae6553ef579d5cfa3fd7da1617503af7152aebf59d41a1d5"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_tau0.4.jsonl.meta.json.gz",
+   "sha256": "58ee6eb4a0562562fda4c84da12e3a6a5a57a5bacf71df9349f4170356c4304c"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_tau0.4_bf16.exact.jsonl.gz",
+   "sha256": "f291e39694a2cb9937e7d8efe1ab37cdab9a0bca7b9653b2a9f17241439eb0d0"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_tau0.4_bf16.jsonl.gz",
+   "sha256": "018ab1491c5d6b1753e1b4b089adff451f4cc423783e23add640293b335f3b94"
+  },
+  {
+   "path": "../followup_20261112/results_20261112/cf/ouro_tau0.4_bf16.jsonl.meta.json.gz",
+   "sha256": "c533e223b596f77e0557ebb932642050336bf181d47d2f35f60db4fd90bc1645"
+  }
+ ],
+ "code": [
+  {
+   "path": "cf_receipts.py",
+   "sha256": "65a55ba08d59a50ee354c2c9caeefe8eb4bf4f2934e2bf99c0af9410f0ada44e"
+  },
+  {
+   "path": "decision_decompose.py",
+   "sha256": "a016b9acb83e3103a4601f3be0b5dee39a4b933e2951d93084a0471f05995e4f"
+  },
+  {
+   "path": "conditioned_crossover.py",
+   "sha256": "58495364958f821f7c1192dfaf53874dd73529c0100ba5ea19ebbaa4f58bc266"
+  },
+  {
+   "path": "tests/test_cpu.py",
+   "sha256": "bbcaa5410d1a70d164e2607d5ce72568c3b5de7dc53bac42426eaa617f8c4317"
+  }
+ ],
+ "outputs": [
+  {
+   "path": "results_20261113/crossover.json",
+   "sha256": "963efb186244750041850e0c0a249478deaa7d050f3818c5424785bd3e5614d3"
+  },
+  {
+   "path": "results_20261113/crossover.md",
+   "sha256": "4dc99f0cb1284b095d04a03bc7718e13d70f501b4209c5b793988ab607a79884"
+  },
+  {
+   "path": "results_20261113/decomposition.json",
+   "sha256": "7e60be95e628c3bef1f7ab69a1404c2b496d89241368af2e88d1828e35e2e010"
+  },
+  {
+   "path": "results_20261113/decomposition.md",
+   "sha256": "378ac28f49dc52423547e0a39a098c0b548854b22ae7d0ac17dc7acd7146c3b8"
+  }
+ ],
+ "commands": [
+  "python decision_decompose.py --cf-dir ../followup_20261112/results_20261112/cf --manifest ../followup_20261112/results_20261112/MANIFEST.sha256 --out-dir results_20261113",
+  "python conditioned_crossover.py --cf-dir ../followup_20261112/results_20261112/cf --out-dir results_20261113"
+ ]
+}
