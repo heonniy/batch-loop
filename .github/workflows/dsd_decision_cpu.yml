@@ -1,0 +1,31 @@
+name: Dynamic SD decision characterization CPU checks
+
+on:
+  push:
+    paths:
+      - "dynamic_sd/decision_characterization_20261113/**"
+      - ".github/workflows/dsd_decision_cpu.yml"
+  pull_request:
+    paths:
+      - "dynamic_sd/decision_characterization_20261113/**"
+      - ".github/workflows/dsd_decision_cpu.yml"
+
+jobs:
+  offline-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: CPU-only contract tests (stdlib only, no torch / GPU)
+        run: |
+          python -m unittest discover -s dynamic_sd/decision_characterization_20261113/tests -v
+      - name: Re-derive Stage A/B from committed receipts and diff against committed outputs
+        run: |
+          cd dynamic_sd/decision_characterization_20261113
+          python decision_decompose.py --cf-dir ../followup_20261112/results_20261112/cf \
+            --manifest ../followup_20261112/results_20261112/MANIFEST.sha256 --out-dir /tmp/dc > /dev/null
+          python conditioned_crossover.py --cf-dir ../followup_20261112/results_20261112/cf --out-dir /tmp/dc > /dev/null
+          diff /tmp/dc/decomposition.md results_20261113/decomposition.md
+          diff /tmp/dc/crossover.md results_20261113/crossover.md
