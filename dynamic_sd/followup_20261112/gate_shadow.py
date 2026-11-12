@@ -30,6 +30,7 @@ def _hook_init(self, blocks, T_total, model_kind):
     def advance_with_shadow(toks, cache):
         # This is invoked INSIDE the original Instr._wrapped, so the original
         # trace replay / freeze is still performed *after* this callback.
+        pre_steps = [t.step for t in toks]
         native_advance(toks, cache)
         if SHADOW_MODE == "off" or not toks:
             return
@@ -39,15 +40,21 @@ def _hook_init(self, blocks, T_total, model_kind):
             probabilities = torch.sigmoid(blocks.inner.early_exit_gate(x)[0, :, 0].float())
             if SHADOW_MODE == "cpu":
                 b0 = time.perf_counter()
-                values = probabilities.tolist()
+                # Match OuroBlocks._advance_one_ut: it reads ONE scalar
+                # per token only when pre-increment depth < T_total - 1.
+                # This may cause multiple device synchronizations in a wave.
+                for i, token in enumerate(toks):
+                    if pre_steps[i] < T_total - 1:
+                        value = float(probabilities[i])
+                        token._shadow_remaining = getattr(token, "_shadow_remaining", 1.0) * (1.0 - value)
                 COUNTERS["shadow_readback_wall_s"] += time.perf_counter() - b0
-                for token, value in zip(toks, values):
-                    token._shadow_remaining = getattr(token, "_shadow_remaining", 1.0) * (1.0 - value)
         else:
             # With the native exit rule disabled in replay mode, native
             # _advance_core never updates .prev_hidden. Keep an independent
             # per-ActiveToken shadow history instead.
-            cur = torch.stack([t.hidden for t in toks], 0).float()
+            # Native Huginn computes the relative norm in the current
+            # hidden dtype; do not silently convert BF16 to FP32.
+            cur = torch.stack([t.hidden for t in toks], 0)
             previous = torch.stack(
                 [getattr(t, "_shadow_prev", None) if getattr(t, "_shadow_prev", None) is not None else cur[i]
                  for i, t in enumerate(toks)], 0

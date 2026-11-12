@@ -35,8 +35,9 @@ def compare(reports):
         for k in locked:
             if r["meta"]["args"].get(k) != args.get(k):
                 raise ValueError(f"configuration mismatch for {mode}: {k}")
-        if r["meta"].get("wf_commit") != reference["meta"].get("wf_commit"):
-            raise ValueError("different WaveFront revision")
+        for field in ("wf_commit", "torch", "gpu"):
+            if r["meta"].get(field) != reference["meta"].get(field):
+                raise ValueError(f"different runtime identity: {field}")
         if len(r["per_sample"]) != len(reference["per_sample"]):
             raise ValueError("different prompt sample count")
         for a, b in zip(reference["per_sample"], r["per_sample"]):
