@@ -1,0 +1,23 @@
+name: Dynamic SD CPU validation
+on:
+  pull_request:
+    paths:
+      - "dynamic_sd/**"
+      - ".github/workflows/dynamic-sd-cpu.yml"
+  push:
+    paths:
+      - "dynamic_sd/**"
+      - ".github/workflows/dynamic-sd-cpu.yml"
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Syntax check, no model download or CUDA
+        run: python3 -m py_compile dynamic_sd/e3_gate_probe.py dynamic_sd/gate_probe_common.py dynamic_sd/decision_oracle.py
+      - name: CPU unit tests
+        run: python3 -m unittest discover -s dynamic_sd/tests -v
