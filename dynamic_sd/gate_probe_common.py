@@ -67,6 +67,13 @@ def summarize(trials):
         if any(a.get(k) != b.get(k) or b.get(k) != c.get(k) for k in must_match):
             rejected.append({"idx": idx, "repeat": rep, "reason": "A/B/C path diverged"})
             continue
+        if any(not x.get("depths_match_reference", False)
+               or not x.get("prefill_first_match_reference", False)
+               or x.get("prediction_match_fraction_to_reference") != 1.0
+               for x in (a, b, c)):
+            rejected.append({"idx": idx, "repeat": rep,
+                             "reason": "source AR depth/prefill/continuation mismatch"})
+            continue
         n = a["decode_positions"]
         if n <= 0:
             rejected.append({"idx": idx, "repeat": rep, "reason": "zero decode positions"})

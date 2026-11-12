@@ -135,6 +135,9 @@ def main():
         if state.prefix_len != sample["prefix_len"]:
             raise ValueError("Source/current prefix lengths disagree; stop timing")
         cache = state.kv_cache
+        # A source-AR continuity gate: a tokenizer/model mismatch must not be
+        # mistaken for a controlled gate-overhead experiment.
+        prefill_first_match = int(first_logits.argmax().item()) == sample["tokens_ar"][0]
         n = validate_trace(sample, a.max_decode_positions, T)
         tokens = sample["tokens_ar"][:n]
         expected_next = sample["tokens_ar"][1:n+1]
@@ -176,6 +179,7 @@ def main():
                 "input_digest": sha_json(tokens), "predicted_digest": sha_json(computed),
                 "prediction_match_fraction_to_reference": sum(x == y for x, y in zip(
                     computed, expected_next)) / n,
+                "prefill_first_match_reference": prefill_first_match,
                 "depths": depths, "depths_match_reference": depths == sample["depths_ar"][:n],
                 "gate_calls": len(events), "gate_event_ms": gate_event_ms,
                 "readback_wait_ms": blocked_ms}

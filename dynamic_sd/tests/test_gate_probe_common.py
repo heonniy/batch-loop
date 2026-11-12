@@ -29,7 +29,9 @@ class GateCommonTest(unittest.TestCase):
 
     def test_paired_deltas(self):
         base = dict(idx=1, repeat=0, input_digest="same", predicted_digest="same",
-                    depths=[2, 2], decode_positions=2)
+                    depths=[2, 2], decode_positions=2, depths_match_reference=True,
+                    prefill_first_match_reference=True,
+                    prediction_match_fraction_to_reference=1.0)
         data = [
             dict(base, mode="replay", decode_wall_ms=10.),
             dict(base, mode="shadow_gpu", decode_wall_ms=12., gate_event_ms=1.),
@@ -44,6 +46,10 @@ class GateCommonTest(unittest.TestCase):
         data[2]["predicted_digest"] = "different"
         self.assertEqual(summarize(data)["valid_triplets"], 0)
         self.assertEqual(len(summarize(data)["excluded_triplets"]), 1)
+        data[2]["predicted_digest"] = "same"
+        data[2]["prediction_match_fraction_to_reference"] = 0.5
+        self.assertEqual(summarize(data)["valid_triplets"], 0)
+        self.assertIn("source AR", summarize(data)["excluded_triplets"][0]["reason"])
 
     def test_duplicate_trial_rejected(self):
         row = dict(idx=1, repeat=0, mode="replay")
