@@ -1,0 +1,28 @@
+name: Dynamic SD full-rollout frontier CPU checks
+
+on:
+  push:
+    paths:
+      - "dynamic_sd/full_rollout_frontier_20261113/**"
+      - ".github/workflows/dsd_frontier_cpu.yml"
+  pull_request:
+    paths:
+      - "dynamic_sd/full_rollout_frontier_20261113/**"
+      - ".github/workflows/dsd_frontier_cpu.yml"
+
+jobs:
+  offline-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Syntax (run_frontier imports torch, compile only)
+        run: python -m py_compile dynamic_sd/full_rollout_frontier_20261113/*.py
+      - name: CPU-only validator / analyzer tests
+        run: python -m unittest discover -s dynamic_sd/full_rollout_frontier_20261113/tests -v
+      - name: Dry-run job matrix is reproducible
+        run: |
+          cd dynamic_sd/full_rollout_frontier_20261113
+          python make_jobs.py | diff - jobs_20261113.txt
