@@ -1,0 +1,56 @@
+{
+ "args": {
+  "model": "huginn-3.5b",
+  "dataset": "gsm8k",
+  "num_fewshot": 3,
+  "spec_ids": null,
+  "offset": 50,
+  "limit": 25,
+  "T_total": 32,
+  "d": 4,
+  "Ks": "1,2,4,8,16",
+  "wfd": 1,
+  "exit": "live",
+  "tau": null,
+  "eps": 0.2,
+  "dtype": "bfloat16",
+  "max_new_tokens": 512,
+  "max_prompt_tokens": 2048,
+  "max_seq_len": 4096,
+  "stops": 1,
+  "repeats": 1,
+  "seed": 100,
+  "warmup": 2,
+  "protocol": "",
+  "out": "full_rollout_frontier_20261113/results_20261113/raw/s1/huginn_eps0.2_gsm8k3_o50n25.jsonl"
+ },
+ "arms": [
+  "AR",
+  "DtV:d4:K1",
+  "DtV:d4:K2",
+  "DtV:d4:K4",
+  "DtV:d4:K8",
+  "DtV:d4:K16",
+  "WFD:d4"
+ ],
+ "target_exit_rule": {
+  "rule": "WaveFront relative-L2 ||h_t-h_{t-1}||/||h_{t-1}|| < eps (NOT Huginn's own LatentDiffExitEvaluator normalisation)",
+  "eps": 0.2
+ },
+ "kv_policy": "FULL",
+ "batch_size": 1,
+ "backend": "wavefront-eager (FA varlen)",
+ "torch": "2.8.0+cu128",
+ "gpu": "NVIDIA H200",
+ "wf_commit": "434520932897fcc1e26898891c7e2feaa6ab099f",
+ "source_commit": "484f51aa8ff385db98c2ebd946d247140f6e2be6",
+ "eos_compare_mismatch_rollouts": 0,
+ "missing_fields": [
+  "draft_ms",
+  "verifier_ms",
+  "coda_ms",
+  "exit_gate_ms",
+  "host_sync_ms"
+ ],
+ "claim_scope": "B=1 eager free-running full rollouts; same target per arm"
+}

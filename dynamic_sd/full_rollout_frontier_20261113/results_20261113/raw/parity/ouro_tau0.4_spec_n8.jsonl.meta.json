@@ -1,0 +1,54 @@
+{
+ "args": {
+  "model": "ouro-1.4b",
+  "dataset": "spec_bench",
+  "num_fewshot": null,
+  "spec_ids": "81,141,201,261,321,381,441,501",
+  "offset": 0,
+  "limit": 32,
+  "T_total": 4,
+  "d": 1,
+  "Ks": "2,4,8",
+  "wfd": 1,
+  "exit": "live",
+  "tau": 0.4,
+  "eps": null,
+  "dtype": "float32",
+  "max_new_tokens": 256,
+  "max_prompt_tokens": 512,
+  "max_seq_len": 4096,
+  "stops": 1,
+  "repeats": 1,
+  "seed": 100,
+  "warmup": 2,
+  "protocol": "parity",
+  "out": "full_rollout_frontier_20261113/results_20261113/raw/parity/ouro_tau0.4_spec_n8.jsonl"
+ },
+ "arms": [
+  "AR",
+  "DtV:d1:K2",
+  "DtV:d1:K4",
+  "DtV:d1:K8",
+  "WFD:d1"
+ ],
+ "target_exit_rule": {
+  "rule": "ouro early_exit_gate cumulative hazard >= tau",
+  "tau": 0.4
+ },
+ "kv_policy": "FULL",
+ "batch_size": 1,
+ "backend": "wavefront-eager (SDPA-fallback varlen)",
+ "torch": "2.8.0+cu128",
+ "gpu": "NVIDIA H200",
+ "wf_commit": "434520932897fcc1e26898891c7e2feaa6ab099f",
+ "source_commit": "484f51aa8ff385db98c2ebd946d247140f6e2be6",
+ "eos_compare_mismatch_rollouts": 0,
+ "missing_fields": [
+  "draft_ms",
+  "verifier_ms",
+  "coda_ms",
+  "exit_gate_ms",
+  "host_sync_ms"
+ ],
+ "claim_scope": "B=1 eager free-running full rollouts; same target per arm"
+}
