@@ -1,0 +1,51 @@
+The repository tomg-group-umd/huginn-0125 contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/tomg-group-umd/huginn-0125 .
+ You can inspect the repository content at https://hf.co/tomg-group-umd/huginn-0125.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `huginn_raven` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at /home/irteam/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Wed Nov 11 23:10:45 2026).
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+parity/huginn_eps0.1_gsm8k3 {'AR': 0.312, 'DtV:d4:K2': 0.312, 'DtV:d4:K4': 0.312, 'DtV:d4:K8': 0.312, 'WFD:d4': 0.312}
+Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/irteam/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Thu Oct 22 23:44:27 2026).
+/home/irteam/ddn/envs/wfd/lib/python3.11/site-packages/sympy/parsing/latex/_parse_latex_antlr.py:23: UserWarning: antlr4.error.ErrorListener module is not installed
+  ErrorListener = import_module('antlr4.error.ErrorListener',
+parity/huginn_eps0.1_math500 {'AR': 0.125, 'DtV:d4:K2': 0.125, 'DtV:d4:K4': 0.125, 'DtV:d4:K8': 0.125, 'WFD:d4': 0.125}
+parity/huginn_eps0.2_gsm8k3 {'AR': 0.062, 'DtV:d4:K2': 0.062, 'DtV:d4:K4': 0.062, 'DtV:d4:K8': 0.062, 'WFD:d4': 0.062}
+parity/huginn_eps0.2_math500 {'AR': 0.125, 'DtV:d4:K2': 0.125, 'DtV:d4:K4': 0.125, 'DtV:d4:K8': 0.125, 'WFD:d4': 0.125}
+parity/huginn_fixed_gsm8k3 {'AR': 0.25, 'DtV:d4:K2': 0.25, 'DtV:d4:K4': 0.25, 'DtV:d4:K8': 0.25, 'WFD:d4': 0.25}
+parity/huginn_fixed_math500 {'AR': 0.125, 'DtV:d4:K2': 0.125, 'DtV:d4:K4': 0.125, 'DtV:d4:K8': 0.125, 'WFD:d4': 0.125}
+The repository ByteDance/Ouro-1.4B contains custom code which must be executed to correctly load the model. You can inspect the repository content at https://hf.co/ByteDance/Ouro-1.4B .
+ You can inspect the repository content at https://hf.co/ByteDance/Ouro-1.4B.
+You can avoid this prompt in future by passing the argument `trust_remote_code=True`.
+
+Do you wish to run the custom code? [y/N] [transformers] You are using a model of type `ouro` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+/home/irteam/ddn/envs/wfd/lib/python3.11/site-packages/transformers/configuration_utils.py:723: FutureWarning: `rope_scaling` is deprecated and will be removed in a future version. Set `rope_parameters` instead, with `rope_type` and `rope_theta` included.
+  warnings.warn(
+parity/ouro_fixed_gsm8k3 {'AR': 0.562, 'DtV:d1:K2': 0.562, 'DtV:d1:K4': 0.562, 'DtV:d1:K8': 0.562, 'WFD:d1': 0.562}
+parity/ouro_fixed_math500 {'AR': 0.125, 'DtV:d1:K2': 0.125, 'DtV:d1:K4': 0.125, 'DtV:d1:K8': 0.125, 'WFD:d1': 0.125}
+parity/ouro_tau0.1_gsm8k3 {'AR': 0.5, 'DtV:d1:K2': 0.5, 'DtV:d1:K4': 0.5, 'DtV:d1:K8': 0.5, 'WFD:d1': 0.5}
+parity/ouro_tau0.1_math500 {'AR': 0.0, 'DtV:d1:K2': 0.0, 'DtV:d1:K4': 0.0, 'DtV:d1:K8': 0.0, 'WFD:d1': 0.0}
+parity/ouro_tau0.4_gsm8k3 {'AR': 0.562, 'DtV:d1:K2': 0.562, 'DtV:d1:K4': 0.562, 'DtV:d1:K8': 0.562, 'WFD:d1': 0.562}
+parity/ouro_tau0.4_math500 {'AR': 0.125, 'DtV:d1:K2': 0.125, 'DtV:d1:K4': 0.125, 'DtV:d1:K8': 0.125, 'WFD:d1': 0.125}
+rep/huginn_eps0.1_gsm8k3 {'AR': 0.312, 'DtV:d4:K1': 0.312, 'DtV:d4:K16': 0.312, 'DtV:d4:K2': 0.312, 'DtV:d4:K4': 0.312, 'DtV:d4:K8': 0.312, 'WFD:d4': 0.312}
+rep/ouro_tau0.4_gsm8k3 {'AR': 0.562, 'DtV:d1:K1': 0.562, 'DtV:d1:K16': 0.562, 'DtV:d1:K2': 0.562, 'DtV:d1:K4': 0.562, 'DtV:d1:K8': 0.562, 'WFD:d1': 0.562}
+s1/huginn_eps0.1_gsm8k3 {'AR': 0.34, 'DtV:d4:K1': 0.32, 'DtV:d4:K16': 0.327, 'DtV:d4:K2': 0.32, 'DtV:d4:K4': 0.323, 'DtV:d4:K8': 0.32, 'WFD:d4': 0.333}
+Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'main' at /home/irteam/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Wed Nov 11 23:10:45 2026).
+s1/huginn_eps0.1_gsm8k8 {'AR': 0.36, 'DtV:d4:K1': 0.38, 'DtV:d4:K16': 0.36, 'DtV:d4:K2': 0.36, 'DtV:d4:K4': 0.38, 'DtV:d4:K8': 0.38, 'WFD:d4': 0.36}
+s1/huginn_eps0.1_math500 {'AR': 0.14, 'DtV:d4:K1': 0.16, 'DtV:d4:K16': 0.16, 'DtV:d4:K2': 0.14, 'DtV:d4:K4': 0.14, 'DtV:d4:K8': 0.14, 'WFD:d4': 0.14}
+s1/huginn_eps0.2_gsm8k3 {'AR': 0.243, 'DtV:d4:K1': 0.257, 'DtV:d4:K16': 0.25, 'DtV:d4:K2': 0.237, 'DtV:d4:K4': 0.257, 'DtV:d4:K8': 0.25, 'WFD:d4': 0.263}
+s1/huginn_eps0.2_math500 {'AR': 0.08, 'DtV:d4:K1': 0.04, 'DtV:d4:K16': 0.04, 'DtV:d4:K2': 0.04, 'DtV:d4:K4': 0.04, 'DtV:d4:K8': 0.04, 'WFD:d4': 0.06}
+s1/huginn_fixed_gsm8k3 {'AR': 0.36, 'DtV:d4:K1': 0.36, 'DtV:d4:K16': 0.36, 'DtV:d4:K2': 0.36, 'DtV:d4:K4': 0.353, 'DtV:d4:K8': 0.35, 'WFD:d4': 0.36}
+s1/huginn_fixed_gsm8k8 {'AR': 0.32, 'DtV:d4:K1': 0.32, 'DtV:d4:K16': 0.34, 'DtV:d4:K2': 0.32, 'DtV:d4:K4': 0.34, 'DtV:d4:K8': 0.32, 'WFD:d4': 0.3}
+s1/huginn_fixed_math500 {'AR': 0.12, 'DtV:d4:K1': 0.16, 'DtV:d4:K16': 0.16, 'DtV:d4:K2': 0.16, 'DtV:d4:K4': 0.12, 'DtV:d4:K8': 0.16, 'WFD:d4': 0.16}
+s1/ouro_fixed_gsm8k3 {'AR': 0.777, 'DtV:d1:K1': 0.78, 'DtV:d1:K16': 0.773, 'DtV:d1:K2': 0.78, 'DtV:d1:K4': 0.78, 'DtV:d1:K8': 0.777, 'WFD:d1': 0.777}
+s1/ouro_fixed_gsm8k8 {'AR': 0.7, 'DtV:d1:K1': 0.7, 'DtV:d1:K16': 0.7, 'DtV:d1:K2': 0.7, 'DtV:d1:K4': 0.7, 'DtV:d1:K8': 0.7, 'WFD:d1': 0.68}
+s1/ouro_fixed_math500 {'AR': 0.64, 'DtV:d1:K1': 0.64, 'DtV:d1:K16': 0.64, 'DtV:d1:K2': 0.64, 'DtV:d1:K4': 0.66, 'DtV:d1:K8': 0.62, 'WFD:d1': 0.7}
+s1/ouro_tau0.1_gsm8k3 {'AR': 0.583, 'DtV:d1:K1': 0.59, 'DtV:d1:K16': 0.573, 'DtV:d1:K2': 0.567, 'DtV:d1:K4': 0.577, 'DtV:d1:K8': 0.573, 'WFD:d1': 0.587}
+s1/ouro_tau0.1_math500 {'AR': 0.34, 'DtV:d1:K1': 0.3, 'DtV:d1:K16': 0.36, 'DtV:d1:K2': 0.36, 'DtV:d1:K4': 0.34, 'DtV:d1:K8': 0.36, 'WFD:d1': 0.36}
+s1/ouro_tau0.4_gsm8k3 {'AR': 0.75, 'DtV:d1:K1': 0.757, 'DtV:d1:K16': 0.76, 'DtV:d1:K2': 0.757, 'DtV:d1:K4': 0.75, 'DtV:d1:K8': 0.753, 'WFD:d1': 0.75}
+s1/ouro_tau0.4_gsm8k8 {'AR': 0.64, 'DtV:d1:K1': 0.62, 'DtV:d1:K16': 0.68, 'DtV:d1:K2': 0.68, 'DtV:d1:K4': 0.66, 'DtV:d1:K8': 0.66, 'WFD:d1': 0.66}
+s1/ouro_tau0.4_math500 {'AR': 0.58, 'DtV:d1:K1': 0.64, 'DtV:d1:K16': 0.62, 'DtV:d1:K2': 0.62, 'DtV:d1:K4': 0.64, 'DtV:d1:K8': 0.64, 'WFD:d1': 0.68}

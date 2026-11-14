@@ -59,10 +59,40 @@ Held-out K (gsm8k3: K chosen on idx<100, evaluated on idx 100–299): the calibr
 5. **WFD(d) is above every DtV K in every cell** (1.10–2.96×), with the same parity guarantee in FP32.
 6. Speedups are unchanged by few-shot format (gsm8k3 vs gsm8k8 within CIs) and are stable across repeats (CV <0.5%).
 
+## Accuracy re-score (post-hoc, 2026-11-14)
+
+The recorded `correct` is the task's primary lm-eval metric as replicated in WaveFront exp3 `tasks.py`:
+gsm8k strict-match, math500 minerva `exact_match`. Minerva exact_match only accepts the literal
+"Final Answer: The final answer is X. I hope it is correct.". Base Ouro ends with `\boxed{X}` or
+"Final Answer: The answer is \boxed{X}", so almost every answer was scored `[invalidanswer]`
+(Ouro MATH-500 0.00–0.04). The upstream secondary metric (math_verify) was None because the package
+is not installed in the run env.
+
+`rescore_accuracy.py` decodes the stored token ids (CPU, receipts unchanged) and adds:
+- for math500, the last `\boxed{}` with the same minerva normalization and is_equiv;
+- for gsm8k, the lm-eval flexible-extract.
+
+Recomputing the strict metric reproduces the recorded value in all 30 cells, so nothing was wrong
+with the run itself. Full per-arm table: `results_20261113/accuracy_rescore.{md,json}`.
+
+| cell (AR arm) | strict (recorded) | added metric |
+|---|---:|---:|
+| ouro fixed math500 / gsm8k3 / gsm8k8 | 0.04 / 0.62 / 0.62 | **0.64 / 0.78 / 0.70** |
+| ouro τ0.4 math500 / gsm8k3 / gsm8k8 | 0.00 / 0.59 / 0.54 | **0.58 / 0.75 / 0.64** |
+| ouro τ0.1 math500 / gsm8k3 | 0.00 / 0.46 | **0.34 / 0.58** |
+| huginn fixed math500 / gsm8k3 / gsm8k8 | 0.16 / 0.27 / 0.30 | 0.12 / 0.36 / 0.32 |
+| huginn ε0.1 math500 / gsm8k3 / gsm8k8 | 0.14 / 0.26 / 0.36 | 0.14 / 0.34 / 0.36 |
+| huginn ε0.2 math500 / gsm8k3 | 0.10 / 0.18 | 0.08 / 0.24 |
+
+- Huginn's MATH-500 accuracy is low under both metrics (0.08–0.16).
+- The live exit costs accuracy, more at the shallower setting: on Ouro MATH-500, fixed 0.64 → τ0.4 0.58 → τ0.1 0.34.
+- Across arms in the same cell, accuracy differs by ≤0.1 (BF16 drift, n=50). In FP32 parity the arms are identical.
+- The parity lane uses max_new 256, so MATH answers are often truncated there (0.125).
+
 ## Caveats / deviations (pre-declared)
 
 - **BF16 is not token-exact to AR** (per-arm exact_to_AR 0.12–0.86, mostly 0.6–0.7; FA varlen numerics with different query widths). Exactness is established only in the FP32 SDPA-fallback parity lane. BF16 accuracy differences between arms are numerical drift, not an SD effect.
-- **Ouro MATH-500 accuracy is 0.00–0.06** under our minerva-4-shot scoring with in-generation stop strings; this is suspiciously low and should be checked before quoting accuracy. Speed results do not depend on it.
+- **Accuracy: use the post-hoc re-score, not the recorded `correct` field, for MATH-500** (see below). Speed results do not depend on it.
 - Stop strings are applied during generation (lm-eval `until` semantics); WaveFront exp3 truncates only at scoring.
 - Huginn exit rule = WaveFront relative-L2 ‖h_t−h_{t−1}‖/‖h_{t−1}‖ < ε (not Huginn's own normalization).
 - One timing repeat per rollout outside the `rep` lane; MATH n=50 (not 100/200); Spec-Bench 48/480 stratified (8 per task).
