@@ -7,3 +7,7 @@
 - [AGENT_TASK.md](AGENT_TASK.md): implementation + testing order.
 
 Comes **after** `4f6e9c50` Stage A/B CPU-derived one-round oracle, which is *not* an online execution result. The new measured results directory is absent by design until valid execution is performed. No changes to earlier receipts or algorithms in this PR.
+
+## Results (2026-11-13 run)
+
+See [RESULTS.md](RESULTS.md) — RUN_STATUS, S1 frontier table, findings, caveats. Raw receipts and derived tables in `results_20261113/`.
