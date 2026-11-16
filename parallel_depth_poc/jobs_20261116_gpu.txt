@@ -1,0 +1,36 @@
+$PY -m parallel_depth_poc.depth_diag --model huginn-3.5b --depth 32 --batch 16 --prompt-len 1024 --cohort long --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L1024/h_D32 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L256/h_D32 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model huginn-3.5b --depth 32 --batch 1 --prompt-len 256 --offset 0 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/h_D32_p0 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model huginn-3.5b --depth 32 --batch 1 --prompt-len 256 --offset 1 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/h_D32_p1 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model huginn-3.5b --depth 32 --batch 1 --prompt-len 256 --offset 2 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/h_D32_p2 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model huginn-3.5b --depth 32 --batch 1 --prompt-len 256 --offset 3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/h_D32_p3 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model huginn-3.5b --depth 16 --batch 16 --prompt-len 256 --cohort gsm8k3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L256/h_D16 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model huginn-3.5b --depth 32 --batch 4 --prompt-len 256 --decode-steps 16 --dtype float32 --out parallel_depth_poc/results/20261116_gpu/raw/diag/fp32_b4_L256/h_D32 --allow-gpu
+$PY -m parallel_depth_poc.e1_oracle_width --model huginn-3.5b --depth 32 --prompt-lens 1024 --out parallel_depth_poc/results/20261116_gpu/raw/e1/h_D32_L1024.json --allow-gpu
+$PY -m parallel_depth_poc.e1_oracle_width --model huginn-3.5b --depth 32 --prompt-lens 256 --out parallel_depth_poc/results/20261116_gpu/raw/e1/h_D32_L256.json --allow-gpu
+$PY -m parallel_depth_poc.e0_native_parity --model huginn-3.5b --depths 8,16,32 --out parallel_depth_poc/results/20261116_gpu/raw/e0/h.json --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model huginn-3.5b --depth 8 --batch 16 --prompt-len 256 --cohort gsm8k3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L256/h_D8 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-1.4b --depth 4 --batch 16 --prompt-len 1024 --cohort long --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L1024/o14_D4 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-2.6b --depth 4 --batch 16 --prompt-len 1024 --cohort long --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L1024/o26_D4 --allow-gpu
+$PY -m parallel_depth_poc.e1_oracle_width --model ouro-1.4b --depth 4 --prompt-lens 1024 --out parallel_depth_poc/results/20261116_gpu/raw/e1/o14_D4_L1024.json --allow-gpu
+$PY -m parallel_depth_poc.e1_oracle_width --model ouro-1.4b --depth 4 --prompt-lens 256 --out parallel_depth_poc/results/20261116_gpu/raw/e1/o14_D4_L256.json --allow-gpu
+$PY -m parallel_depth_poc.e1_oracle_width --model ouro-2.6b --depth 4 --prompt-lens 1024 --out parallel_depth_poc/results/20261116_gpu/raw/e1/o26_D4_L1024.json --allow-gpu
+$PY -m parallel_depth_poc.e1_oracle_width --model ouro-2.6b --depth 4 --prompt-lens 256 --out parallel_depth_poc/results/20261116_gpu/raw/e1/o26_D4_L256.json --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-1.4b --depth 2 --batch 16 --prompt-len 256 --cohort gsm8k3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L256/o14_D2 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-1.4b --depth 3 --batch 16 --prompt-len 256 --cohort gsm8k3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L256/o14_D3 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L256/o14_D4 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-2.6b --depth 2 --batch 16 --prompt-len 256 --cohort gsm8k3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L256/o26_D2 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-2.6b --depth 3 --batch 16 --prompt-len 256 --cohort gsm8k3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L256/o26_D3 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b16_L256/o26_D4 --allow-gpu
+$PY -m parallel_depth_poc.e0_native_parity --model ouro-1.4b --depths 2,3,4 --out parallel_depth_poc/results/20261116_gpu/raw/e0/o14.json --allow-gpu
+$PY -m parallel_depth_poc.e0_native_parity --model ouro-2.6b --depths 2,3,4 --out parallel_depth_poc/results/20261116_gpu/raw/e0/o26.json --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-1.4b --depth 4 --batch 1 --prompt-len 256 --offset 0 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/o14_D4_p0 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-1.4b --depth 4 --batch 1 --prompt-len 256 --offset 1 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/o14_D4_p1 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-1.4b --depth 4 --batch 1 --prompt-len 256 --offset 2 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/o14_D4_p2 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-1.4b --depth 4 --batch 1 --prompt-len 256 --offset 3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/o14_D4_p3 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-1.4b --depth 4 --batch 4 --prompt-len 256 --decode-steps 16 --dtype float32 --out parallel_depth_poc/results/20261116_gpu/raw/diag/fp32_b4_L256/o14_D4 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-2.6b --depth 4 --batch 1 --prompt-len 256 --offset 0 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/o26_D4_p0 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-2.6b --depth 4 --batch 1 --prompt-len 256 --offset 1 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/o26_D4_p1 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-2.6b --depth 4 --batch 1 --prompt-len 256 --offset 2 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/o26_D4_p2 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-2.6b --depth 4 --batch 1 --prompt-len 256 --offset 3 --out parallel_depth_poc/results/20261116_gpu/raw/diag/bf16_b1_L256/o26_D4_p3 --allow-gpu
+$PY -m parallel_depth_poc.depth_diag --model ouro-2.6b --depth 4 --batch 4 --prompt-len 256 --decode-steps 16 --dtype float32 --out parallel_depth_poc/results/20261116_gpu/raw/diag/fp32_b4_L256/o26_D4 --allow-gpu
