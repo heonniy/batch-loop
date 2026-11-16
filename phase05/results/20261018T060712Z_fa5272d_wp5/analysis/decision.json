@@ -1,0 +1,120 @@
+{
+  "rule": "phase05/WP5_PREREGISTRATION.md",
+  "gate0": {
+    "lane_A_ouro_alpaca": "PASS",
+    "lane_B_huginn_alpaca": "PASS",
+    "lane_C_ouro_sharegpt": "PASS",
+    "lane_D_huginn_sharegpt": "PASS"
+  },
+  "verdict": {
+    "ouro": {
+      "practical_ranker": "GO",
+      "winning_B_per_block": {
+        "alpaca/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "huginn": {
+      "practical_ranker": "NO-GO",
+      "winning_B_per_block": {
+        "alpaca/cohort0": [],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [],
+        "sharegpt/cohort1": []
+      }
+    }
+  },
+  "stronger_ranker_hypothesis": {
+    "ranker_faster_than_predictor_fraction": 1.0,
+    "offline_test_better_in_all_lanes": true,
+    "status": "supported"
+  },
+  "offline_test_recovery": {
+    "lane_A_ouro_alpaca": {
+      "ranker": {
+        "8": 0.3948170731707317,
+        "16": 0.34193998604326586,
+        "32": 0.26605504587155965,
+        "64": 0.16822429906542055
+      },
+      "ranker_mean": 0.29275910103774444,
+      "wp3_predictor": {
+        "8": 0.2839176829268293,
+        "16": 0.22086531751570132,
+        "32": 0.15172900494001412,
+        "64": 0.07165109034267912
+      },
+      "wp3_predictor_mean": 0.182040773931306,
+      "wp3_predictor_name": "C7"
+    },
+    "lane_B_huginn_alpaca": {
+      "ranker": {
+        "8": 0.3571523619427811,
+        "16": 0.3793103448275862,
+        "32": 0.384257602862254,
+        "64": 0.37420269312544296
+      },
+      "ranker_mean": 0.37373075068951606,
+      "wp3_predictor": {
+        "8": 0.28023952095808385,
+        "16": 0.3072842277086309,
+        "32": 0.3076923076923077,
+        "64": 0.29128277817150955
+      },
+      "wp3_predictor_mean": 0.296624708632633,
+      "wp3_predictor_name": "C8"
+    },
+    "lane_C_ouro_sharegpt": {
+      "ranker": {
+        "8": 0.36059860598605986,
+        "16": 0.31077147016011647,
+        "32": 0.22913616398243045,
+        "64": 0.14675767918088736
+      },
+      "ranker_mean": 0.26181597982737354,
+      "wp3_predictor": {
+        "8": 0.23677736777367775,
+        "16": 0.2121542940320233,
+        "32": 0.15226939970717424,
+        "64": 0.09385665529010238
+      },
+      "wp3_predictor_mean": 0.17376442920074442,
+      "wp3_predictor_name": "C9"
+    },
+    "lane_D_huginn_sharegpt": {
+      "ranker": {
+        "8": 0.32474496468741826,
+        "16": 0.33734215273601925,
+        "32": 0.3547619047619048,
+        "64": 0.36577400391900716
+      },
+      "ranker_mean": 0.3456557565260874,
+      "wp3_predictor": {
+        "8": 0.25869735809573635,
+        "16": 0.25816796953297255,
+        "32": 0.28537414965986396,
+        "64": 0.2991508817766166
+      },
+      "wp3_predictor_mean": 0.27534758976629736,
+      "wp3_predictor_name": "C8"
+    }
+  }
+}

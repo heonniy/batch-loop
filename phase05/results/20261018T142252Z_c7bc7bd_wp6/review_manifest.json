@@ -1,0 +1,223 @@
+{
+  "source_commits": {
+    "preregistration_code": "313291f",
+    "drivers": [
+      "c7bc7bd",
+      "1f33f82",
+      "c8fd0e0"
+    ]
+  },
+  "raw_result_commit": "808c3d869741565da1d21fc05a6b96e8a5752e00",
+  "preregistration": "phase05/WP6_PREREGISTRATION.md",
+  "authorization": "user 2026-10-18: run all proposed next experiments",
+  "fresh_splits": {
+    "wp6_test": [
+      3328,
+      3840
+    ],
+    "wp6_q_test": [
+      3840,
+      4352
+    ],
+    "wp6_eos_test": [
+      4352,
+      4864
+    ]
+  },
+  "runs": {
+    "total": 1016,
+    "ok": 1016,
+    "hard_check_fail": 0
+  },
+  "gate0": {
+    "audit/eos/lane_A_ouro_alpaca/ranker_audit.json": "PASS",
+    "audit/eos/lane_C_ouro_sharegpt/ranker_audit.json": "PASS",
+    "audit/notraj/lane_A_ouro_alpaca/ranker_audit.json": "PASS",
+    "audit/notraj/lane_B_huginn_alpaca/ranker_audit.json": "PASS",
+    "audit/notraj/lane_C_ouro_sharegpt/ranker_audit.json": "PASS",
+    "audit/notraj/lane_D_huginn_sharegpt/ranker_audit.json": "PASS",
+    "audit/q04/lane_A_ouro_alpaca/ranker_audit.json": "PASS",
+    "audit/q04/lane_C_ouro_sharegpt/ranker_audit.json": "PASS"
+  },
+  "verdicts": {
+    "eos/ouro/ranker_same": {
+      "GO": {
+        "alpaca/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "threshold/ouro/ranker_q02": {
+      "GO": {
+        "alpaca/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "threshold/ouro/ranker_q04": {
+      "GO": {
+        "alpaca/cohort0": [
+          8,
+          16,
+          32,
+          64
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "transfer_notraj/huginn/ranker_cross": {
+      "NO-GO": {
+        "alpaca/cohort0": [],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [],
+        "sharegpt/cohort1": []
+      }
+    },
+    "transfer_notraj/huginn/ranker_notraj": {
+      "NO-GO": {
+        "alpaca/cohort0": [
+          8,
+          64
+        ],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [
+          32
+        ],
+        "sharegpt/cohort1": []
+      }
+    },
+    "transfer_notraj/huginn/ranker_same": {
+      "NO-GO": {
+        "alpaca/cohort0": [
+          8
+        ],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [],
+        "sharegpt/cohort1": []
+      }
+    },
+    "transfer_notraj/ouro/ranker_cross": {
+      "GO": {
+        "alpaca/cohort0": [
+          16,
+          32
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "transfer_notraj/ouro/ranker_notraj": {
+      "GO": {
+        "alpaca/cohort0": [
+          8,
+          16
+        ],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    },
+    "transfer_notraj/ouro/ranker_same": {
+      "NO-GO": {
+        "alpaca/cohort0": [],
+        "alpaca/cohort1": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16,
+          32
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16,
+          32
+        ]
+      }
+    }
+  },
+  "transfer_retention": {
+    "ouro": 0.899372535927235,
+    "huginn": 0.8760867582248246
+  },
+  "trajectory_cost_hypothesis": "supported",
+  "deviations": [
+    "new rankers committed with results (808c3d8) rather than before physical runs; SHA-256 recorded in run manifests; trained on validation only",
+    "GPU1 lanes show one ~10-15% slow repeat per cell group across all policies; retained"
+  ],
+  "scoped_out": "upstream optimized CDB engine (single cohort per wave; different Ouro checkpoint; torch 2.11/FA3)"
+}

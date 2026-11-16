@@ -1,0 +1,130 @@
+{
+  "execution_kind": "UNTIMED Gate-0 ranker audit",
+  "preregistration": "phase05/WP6_PREREGISTRATION.md",
+  "study": "threshold",
+  "source_sha": "c8fd0e0b3352e858e2cbd8098d02991cf164fcf5",
+  "argv": [
+    "/home/hwlee/batch-loop-worktrees/phase05_no_refill/phase05/wp6_runner.py",
+    "--model",
+    "ouro",
+    "--role",
+    "gpu2",
+    "--dataset",
+    "sharegpt",
+    "--split",
+    "wp3_validation",
+    "--study",
+    "threshold",
+    "--threshold",
+    "0.4",
+    "--feature-root",
+    "phase05/results/20261018T142252Z_c7bc7bd_wp6/features/q04/lane_C_ouro_sharegpt",
+    "--ranker",
+    "q04=phase05/results/20261018T142252Z_c7bc7bd_wp6/ranker/q04/lane_C_ouro_sharegpt",
+    "--audit-ranker",
+    "q04",
+    "--output-dir",
+    "phase05/results/20261018T142252Z_c7bc7bd_wp6/audit/q04/lane_C_ouro_sharegpt"
+  ],
+  "gpu": {
+    "role": "ouro_gpu2",
+    "lane": "gpu2",
+    "physical_index": 2,
+    "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "memory_used_at_start": "0 MiB",
+    "CUDA_VISIBLE_DEVICES": "2",
+    "assignment_sha256": "27e07a27fc5ba70a21d62707c2c6179affa98cc19ebca99f3db8848521b0eaa4"
+  },
+  "cpu_affinity": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+  ],
+  "model": "ouro",
+  "dataset": "sharegpt",
+  "split": "wp3_validation",
+  "threshold": 0.4,
+  "eos_lengths": false,
+  "rankers": {
+    "q04": {
+      "root": "phase05/results/20261018T142252Z_c7bc7bd_wp6/ranker/q04/lane_C_ouro_sharegpt",
+      "model": "ouro",
+      "dataset": "sharegpt",
+      "grid": [
+        {
+          "proj": 64,
+          "width": 256,
+          "lr": 0.001,
+          "best_epoch": 2,
+          "validation_mean_recovery": 0.3317854865685278,
+          "ablate_full": false
+        },
+        {
+          "proj": 128,
+          "width": 256,
+          "lr": 0.0003,
+          "best_epoch": 3,
+          "validation_mean_recovery": 0.3219009182475128,
+          "ablate_full": false
+        },
+        {
+          "proj": 256,
+          "width": 512,
+          "lr": 0.0003,
+          "best_epoch": 3,
+          "validation_mean_recovery": 0.3314899709469039,
+          "ablate_full": false
+        }
+      ],
+      "selected": {
+        "proj": 64,
+        "width": 256,
+        "lr": 0.001,
+        "best_epoch": 2,
+        "validation_mean_recovery": 0.3317854865685278,
+        "ablate_full": false
+      },
+      "validation_recovery_by_B": {
+        "8": 0.4035860333438188,
+        "16": 0.38041815400305967,
+        "32": 0.31676413255360625,
+        "64": 0.22637362637362637
+      },
+      "ablation_without_full_dim_states": {
+        "proj": 64,
+        "width": 256,
+        "lr": 0.001,
+        "best_epoch": 6,
+        "validation_mean_recovery": 0.22881177362635874,
+        "ablate_full": true
+      },
+      "selection_rule": "max mean validation lockstep RIC recovery over B in {8,16,32,64}",
+      "test_arrays_opened": false,
+      "seed": 1,
+      "epochs_max": 20,
+      "drop_trajectory": false,
+      "feature_root": "phase05/results/20261018T142252Z_c7bc7bd_wp6/features/q04/lane_C_ouro_sharegpt",
+      "train_wall_s": 26.641791317611933,
+      "source_sha": "c8fd0e0b3352e858e2cbd8098d02991cf164fcf5",
+      "checkpoint_sha256": "aab9a71797daf8ee9621d55fae7a6ce6aee57e2425aac38bcf6c32f5a8851e66"
+    }
+  },
+  "label_manifest_sha256": "f65ed69cc37526d410cc82c5667c1e434b6f446b50fe0512a6e63cead0d39cb3",
+  "torch": "2.6.0+cu124",
+  "audit_ranker": "q04",
+  "random_lengths": false,
+  "B": 8,
+  "steps_compared": 64,
+  "n_hard_errors": 0,
+  "hard_errors": [],
+  "mean_spearman_live_vs_offline": 0.9988719127303157,
+  "min_spearman": 0.9929982547493704,
+  "status": "PASS"
+}

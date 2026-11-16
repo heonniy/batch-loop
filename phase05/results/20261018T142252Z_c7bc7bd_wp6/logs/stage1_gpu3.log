@@ -1,0 +1,55 @@
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"event": "grid", "proj": 64, "width": 256, "lr": 0.001, "best_epoch": 3, "validation_mean_recovery": 0.26501306587394646, "ablate_full": false}
+{"event": "grid", "proj": 64, "width": 256, "lr": 0.001, "best_epoch": 6, "validation_mean_recovery": 0.29052668299964657, "ablate_full": false}
+{"event": "grid", "proj": 128, "width": 256, "lr": 0.0003, "best_epoch": 4, "validation_mean_recovery": 0.26895913500303886, "ablate_full": false}
+{"event": "grid", "proj": 128, "width": 256, "lr": 0.0003, "best_epoch": 6, "validation_mean_recovery": 0.296747387104476, "ablate_full": false}
+{"event": "grid", "proj": 256, "width": 512, "lr": 0.0003, "best_epoch": 4, "validation_mean_recovery": 0.2678312049787018, "ablate_full": false}
+{"event": "ablation_no_full_dim", "proj": 128, "width": 256, "lr": 0.0003, "best_epoch": 2, "validation_mean_recovery": 0.15384561601548166, "ablate_full": true}
+{"event": "selected", "validation_mean_recovery": 0.26895913500303886, "by_B": {"8": 0.36451084731887023, "16": 0.31336238198983296, "32": 0.24347826086956523, "64": 0.15448504983388706}}
+{"event": "grid", "proj": 256, "width": 512, "lr": 0.0003, "best_epoch": 6, "validation_mean_recovery": 0.30102203332139676, "ablate_full": false}
+{"event": "ablation_no_full_dim", "proj": 256, "width": 512, "lr": 0.0003, "best_epoch": 13, "validation_mean_recovery": 0.17602185109310062, "ablate_full": true}
+{"event": "selected", "validation_mean_recovery": 0.30102203332139676, "by_B": {"8": 0.40568524096385544, "16": 0.3509134781109962, "32": 0.276536312849162, "64": 0.17095310136157338}}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 64, "of": 512, "elapsed_s": 264.1}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 128, "of": 512, "elapsed_s": 506.6}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 192, "of": 512, "elapsed_s": 743.6}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 256, "of": 512, "elapsed_s": 980.5}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 320, "of": 512, "elapsed_s": 1214.3}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 384, "of": 512, "elapsed_s": 1455.5}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 448, "of": 512, "elapsed_s": 1711.6}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 512, "of": 512, "elapsed_s": 1990.3}
+{"event": "split_done", "split": "wp6_test", "elapsed_s": 2002.0}
+Using the latest cached version of the dataset since ewof/sharegpt-instruct-unfiltered-deduped couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/ewof___sharegpt-instruct-unfiltered-deduped/default/0.0.0/d4b3c8d85e6b9e0dd4e3ba85f046a9517a847d0c (last modified on Wed Sep 16 10:33:34 2026).
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 64, "of": 512, "elapsed_s": 250.4}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 128, "of": 512, "elapsed_s": 496.7}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 192, "of": 512, "elapsed_s": 760.3}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 256, "of": 512, "elapsed_s": 1020.9}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 320, "of": 512, "elapsed_s": 1273.2}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 384, "of": 512, "elapsed_s": 1524.7}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 448, "of": 512, "elapsed_s": 1776.8}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 512, "of": 512, "elapsed_s": 2041.5}
+{"event": "split_done", "split": "wp6_test", "elapsed_s": 2043.0}
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 64, "of": 512, "elapsed_s": 163.9}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 128, "of": 512, "elapsed_s": 343.4}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 192, "of": 512, "elapsed_s": 514.8}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 256, "of": 512, "elapsed_s": 694.4}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 320, "of": 512, "elapsed_s": 851.0}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 384, "of": 512, "elapsed_s": 1041.3}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 448, "of": 512, "elapsed_s": 1203.0}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 512, "of": 512, "elapsed_s": 1357.1}
+{"event": "split_done", "split": "wp6_eos_test", "elapsed_s": 1357.7}
+Using the latest cached version of the dataset since ewof/sharegpt-instruct-unfiltered-deduped couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/ewof___sharegpt-instruct-unfiltered-deduped/default/0.0.0/d4b3c8d85e6b9e0dd4e3ba85f046a9517a847d0c (last modified on Wed Sep 16 10:33:34 2026).
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 64, "of": 512, "elapsed_s": 189.1}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 128, "of": 512, "elapsed_s": 390.5}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 192, "of": 512, "elapsed_s": 563.3}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 256, "of": 512, "elapsed_s": 738.7}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 320, "of": 512, "elapsed_s": 939.6}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 384, "of": 512, "elapsed_s": 1147.6}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 448, "of": 512, "elapsed_s": 1342.4}
+{"event": "collect_progress", "split_dir": "wp6_eos_test", "done": 512, "of": 512, "elapsed_s": 1541.6}
+{"event": "split_done", "split": "wp6_eos_test", "elapsed_s": 1545.2}
+stage_exit=stage1:3

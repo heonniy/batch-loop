@@ -1,0 +1,61 @@
+{
+  "model": "ouro",
+  "dataset": "sharegpt",
+  "grid": [
+    {
+      "proj": 64,
+      "width": 256,
+      "lr": 0.001,
+      "best_epoch": 2,
+      "validation_mean_recovery": 0.3317854865685278,
+      "ablate_full": false
+    },
+    {
+      "proj": 128,
+      "width": 256,
+      "lr": 0.0003,
+      "best_epoch": 3,
+      "validation_mean_recovery": 0.3219009182475128,
+      "ablate_full": false
+    },
+    {
+      "proj": 256,
+      "width": 512,
+      "lr": 0.0003,
+      "best_epoch": 3,
+      "validation_mean_recovery": 0.3314899709469039,
+      "ablate_full": false
+    }
+  ],
+  "selected": {
+    "proj": 64,
+    "width": 256,
+    "lr": 0.001,
+    "best_epoch": 2,
+    "validation_mean_recovery": 0.3317854865685278,
+    "ablate_full": false
+  },
+  "validation_recovery_by_B": {
+    "8": 0.4035860333438188,
+    "16": 0.38041815400305967,
+    "32": 0.31676413255360625,
+    "64": 0.22637362637362637
+  },
+  "ablation_without_full_dim_states": {
+    "proj": 64,
+    "width": 256,
+    "lr": 0.001,
+    "best_epoch": 6,
+    "validation_mean_recovery": 0.22881177362635874,
+    "ablate_full": true
+  },
+  "selection_rule": "max mean validation lockstep RIC recovery over B in {8,16,32,64}",
+  "test_arrays_opened": false,
+  "seed": 1,
+  "epochs_max": 20,
+  "drop_trajectory": false,
+  "feature_root": "phase05/results/20261018T142252Z_c7bc7bd_wp6/features/q04/lane_C_ouro_sharegpt",
+  "train_wall_s": 26.641791317611933,
+  "source_sha": "c8fd0e0b3352e858e2cbd8098d02991cf164fcf5",
+  "checkpoint_sha256": "aab9a71797daf8ee9621d55fae7a6ce6aee57e2425aac38bcf6c32f5a8851e66"
+}

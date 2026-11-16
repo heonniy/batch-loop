@@ -1,0 +1,62 @@
+{
+  "source_commits": {
+    "preregistration_code_analysis": "e18e02a",
+    "lane_driver": "d4714b5"
+  },
+  "raw_result_commit": "82ce02fafc41e645396cf26cb533e1d63edf4d86",
+  "preregistration": "phase05/WP4_PREREGISTRATION.md",
+  "authorization": "user 2026-10-18: try host-sync-free on-GPU feature computation",
+  "predictors_reused_from": "phase05/results/20261017T124526Z_79d0e8f_wp3/selection (SHA-verified)",
+  "fresh_split": "wp4_confirm [2304,2816)",
+  "runs": {
+    "total": 484,
+    "ok": 484,
+    "hard_check_fail": 0
+  },
+  "gate0_equivalence": {
+    "lane_A_ouro_alpaca": "PASS",
+    "lane_B_huginn_alpaca": "PASS",
+    "lane_C_ouro_sharegpt": "PASS",
+    "lane_D_huginn_sharegpt": "PASS"
+  },
+  "decision": {
+    "ouro": {
+      "practical_predictor": "NO-GO",
+      "winning_B_per_block": {
+        "alpaca/cohort0": [
+          8
+        ],
+        "alpaca/cohort1": [
+          16
+        ],
+        "sharegpt/cohort0": [
+          8,
+          16
+        ],
+        "sharegpt/cohort1": [
+          8,
+          16
+        ]
+      }
+    },
+    "huginn": {
+      "practical_predictor": "NO-GO",
+      "winning_B_per_block": {
+        "alpaca/cohort0": [],
+        "alpaca/cohort1": [],
+        "sharegpt/cohort0": [],
+        "sharegpt/cohort1": []
+      }
+    }
+  },
+  "serving_cost_hypothesis": {
+    "gpu_faster_than_host_fraction": 0.84375,
+    "mean_translation_host": -0.11309582890910846,
+    "mean_translation_gpu": 0.16858306635390158,
+    "status": "supported"
+  },
+  "measurement_flags": [
+    "lane_A_ouro_alpaca: unexplained 1.05-1.34x slowdowns across all policies in reps 0-1; retained"
+  ],
+  "go_no_go": "practical predictor NO-GO (both); serving-cost hypothesis supported"
+}

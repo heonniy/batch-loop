@@ -1,0 +1,30 @@
+[
+  {
+    "primary": "phase05/results/20261017T052501Z_b82d7ed_wp1/lane_A_ouro_gpu0",
+    "replica": "phase05/results/20261017T052501Z_b82d7ed_wp1/lane_C_ouro_gpu2",
+    "positions": 1024,
+    "bit_identical_fraction": {
+      "reference_depth": 1.0,
+      "live_depth": 1.0,
+      "reference_next_token": 1.0,
+      "live_next_token": 1.0,
+      "reference_scores": 1.0,
+      "live_scores": 1.0,
+      "live_logits_sha256": 1.0
+    }
+  },
+  {
+    "primary": "phase05/results/20261017T052501Z_b82d7ed_wp1/lane_B_huginn_gpu1",
+    "replica": "phase05/results/20261017T052501Z_b82d7ed_wp1/lane_D_huginn_gpu3",
+    "positions": 1024,
+    "bit_identical_fraction": {
+      "reference_depth": 1.0,
+      "live_depth": 1.0,
+      "reference_next_token": 1.0,
+      "live_next_token": 1.0,
+      "reference_scores": 1.0,
+      "live_scores": 1.0,
+      "live_logits_sha256": 1.0
+    }
+  }
+]

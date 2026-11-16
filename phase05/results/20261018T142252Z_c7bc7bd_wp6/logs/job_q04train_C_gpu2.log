@@ -1,0 +1,6 @@
+{"event": "grid", "proj": 64, "width": 256, "lr": 0.001, "best_epoch": 2, "validation_mean_recovery": 0.3317854865685278, "ablate_full": false}
+{"event": "grid", "proj": 128, "width": 256, "lr": 0.0003, "best_epoch": 3, "validation_mean_recovery": 0.3219009182475128, "ablate_full": false}
+{"event": "grid", "proj": 256, "width": 512, "lr": 0.0003, "best_epoch": 3, "validation_mean_recovery": 0.3314899709469039, "ablate_full": false}
+{"event": "ablation_no_full_dim", "proj": 64, "width": 256, "lr": 0.001, "best_epoch": 6, "validation_mean_recovery": 0.22881177362635874, "ablate_full": true}
+{"event": "selected", "validation_mean_recovery": 0.3317854865685278, "by_B": {"8": 0.4035860333438188, "16": 0.38041815400305967, "32": 0.31676413255360625, "64": 0.22637362637362637}}
+job_exit=q04train_C:0

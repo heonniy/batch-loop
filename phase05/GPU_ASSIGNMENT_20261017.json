@@ -1,0 +1,68 @@
+{
+  "authorization": "User message 2026-10-17 explicitly assigns physical H100 GPUs 0, 1, 2 and 3 to the Phase-05 experiment; WP1 only",
+  "device_map": {
+    "ouro_primary": {
+      "lane": "A",
+      "physical_index": 0,
+      "uuid": "GPU-f217c8a0-1142-20f4-d84b-af29f3a47a0d"
+    },
+    "huginn_primary": {
+      "lane": "B",
+      "physical_index": 1,
+      "uuid": "GPU-a77f3471-67d4-20b0-9fab-e502d4de5adb"
+    },
+    "ouro_replication": {
+      "lane": "C",
+      "physical_index": 2,
+      "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e"
+    },
+    "huginn_replication": {
+      "lane": "D",
+      "physical_index": 3,
+      "uuid": "GPU-17488c15-2d4c-5d9e-d503-29b0d959a8a8"
+    },
+    "ouro_gpu0": {
+      "lane": "gpu0",
+      "physical_index": 0,
+      "uuid": "GPU-f217c8a0-1142-20f4-d84b-af29f3a47a0d"
+    },
+    "ouro_gpu1": {
+      "lane": "gpu1",
+      "physical_index": 1,
+      "uuid": "GPU-a77f3471-67d4-20b0-9fab-e502d4de5adb"
+    },
+    "ouro_gpu2": {
+      "lane": "gpu2",
+      "physical_index": 2,
+      "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e"
+    },
+    "ouro_gpu3": {
+      "lane": "gpu3",
+      "physical_index": 3,
+      "uuid": "GPU-17488c15-2d4c-5d9e-d503-29b0d959a8a8"
+    },
+    "huginn_gpu0": {
+      "lane": "gpu0",
+      "physical_index": 0,
+      "uuid": "GPU-f217c8a0-1142-20f4-d84b-af29f3a47a0d"
+    },
+    "huginn_gpu1": {
+      "lane": "gpu1",
+      "physical_index": 1,
+      "uuid": "GPU-a77f3471-67d4-20b0-9fab-e502d4de5adb"
+    },
+    "huginn_gpu2": {
+      "lane": "gpu2",
+      "physical_index": 2,
+      "uuid": "GPU-24200107-8a7f-de46-1bc8-b81f8d3af13e"
+    },
+    "huginn_gpu3": {
+      "lane": "gpu3",
+      "physical_index": 3,
+      "uuid": "GPU-17488c15-2d4c-5d9e-d503-29b0d959a8a8"
+    }
+  },
+  "launch_rule": "Each runner must match one listed model-specific physical index and UUID, expose exactly one CUDA ordinal, and leave all other devices (4-7 are occupied by other users) untouched",
+  "pre_launch_observation": "2026-10-17: GPUs 0-3 had 0 MiB used and no compute processes",
+  "wp6_note": "2026-10-18: user asked to run all proposed next experiments on GPUs 0-3; model-agnostic <model>_gpu<i> roles added"
+}

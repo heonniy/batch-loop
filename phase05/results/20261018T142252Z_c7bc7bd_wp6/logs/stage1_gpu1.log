@@ -1,0 +1,35 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:04,  1.65s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.64s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.71s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.18s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.36s/it]
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"event": "grid", "proj": 64, "width": 256, "lr": 0.001, "best_epoch": 3, "validation_mean_recovery": 0.3239873717264503, "ablate_full": false}
+{"event": "grid", "proj": 128, "width": 256, "lr": 0.0003, "best_epoch": 2, "validation_mean_recovery": 0.3245537793779163, "ablate_full": false}
+{"event": "grid", "proj": 64, "width": 256, "lr": 0.001, "best_epoch": 3, "validation_mean_recovery": 0.3556741634510659, "ablate_full": false}
+{"event": "grid", "proj": 256, "width": 512, "lr": 0.0003, "best_epoch": 2, "validation_mean_recovery": 0.32482685030127706, "ablate_full": false}
+{"event": "grid", "proj": 128, "width": 256, "lr": 0.0003, "best_epoch": 3, "validation_mean_recovery": 0.3623589887045113, "ablate_full": false}
+{"event": "ablation_no_full_dim", "proj": 256, "width": 512, "lr": 0.0003, "best_epoch": 6, "validation_mean_recovery": 0.2528521723707724, "ablate_full": true}
+{"event": "grid", "proj": 256, "width": 512, "lr": 0.0003, "best_epoch": 3, "validation_mean_recovery": 0.36074531099170837, "ablate_full": false}
+{"event": "selected", "validation_mean_recovery": 0.32482685030127706, "by_B": {"8": 0.30012216641780914, "16": 0.30354166666666665, "32": 0.331333803810868, "64": 0.3643097643097643}}
+{"event": "ablation_no_full_dim", "proj": 128, "width": 256, "lr": 0.0003, "best_epoch": 7, "validation_mean_recovery": 0.28180924814164876, "ablate_full": true}
+{"event": "selected", "validation_mean_recovery": 0.3623589887045113, "by_B": {"8": 0.3486868153622806, "16": 0.3556605711937538, "32": 0.3698235505941664, "64": 0.37526501766784454}}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 64, "of": 512, "elapsed_s": 321.0}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 128, "of": 512, "elapsed_s": 593.7}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 192, "of": 512, "elapsed_s": 863.2}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 256, "of": 512, "elapsed_s": 1126.4}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 320, "of": 512, "elapsed_s": 1402.9}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 384, "of": 512, "elapsed_s": 1682.9}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 448, "of": 512, "elapsed_s": 1963.2}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 512, "of": 512, "elapsed_s": 2239.7}
+{"event": "split_done", "split": "wp6_test", "elapsed_s": 2241.6}
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.32s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.23s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.20s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.24s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.24s/it]
+Using the latest cached version of the dataset since ewof/sharegpt-instruct-unfiltered-deduped couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/ewof___sharegpt-instruct-unfiltered-deduped/default/0.0.0/d4b3c8d85e6b9e0dd4e3ba85f046a9517a847d0c (last modified on Wed Sep 16 10:33:34 2026).
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 64, "of": 512, "elapsed_s": 279.0}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 128, "of": 512, "elapsed_s": 561.9}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 192, "of": 512, "elapsed_s": 854.9}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 256, "of": 512, "elapsed_s": 1142.0}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 320, "of": 512, "elapsed_s": 1427.6}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 384, "of": 512, "elapsed_s": 1707.5}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 448, "of": 512, "elapsed_s": 1998.2}
+{"event": "collect_progress", "split_dir": "wp6_test", "done": 512, "of": 512, "elapsed_s": 2281.1}
+{"event": "split_done", "split": "wp6_test", "elapsed_s": 2283.2}
+stage_exit=stage1:1

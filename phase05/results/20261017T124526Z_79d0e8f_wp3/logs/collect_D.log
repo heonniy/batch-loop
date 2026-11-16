@@ -1,0 +1,38 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.26s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.18s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.15s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.05it/s]
+Using the latest cached version of the dataset since ewof/sharegpt-instruct-unfiltered-deduped couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/ewof___sharegpt-instruct-unfiltered-deduped/default/0.0.0/d4b3c8d85e6b9e0dd4e3ba85f046a9517a847d0c (last modified on Wed Sep 16 10:33:34 2026).
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 64, "of": 1024, "elapsed_s": 262.7}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 128, "of": 1024, "elapsed_s": 521.8}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 192, "of": 1024, "elapsed_s": 782.9}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 256, "of": 1024, "elapsed_s": 1046.1}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 320, "of": 1024, "elapsed_s": 1308.2}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 384, "of": 1024, "elapsed_s": 1570.6}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 448, "of": 1024, "elapsed_s": 1833.7}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 512, "of": 1024, "elapsed_s": 2098.7}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 576, "of": 1024, "elapsed_s": 2363.9}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 640, "of": 1024, "elapsed_s": 2661.1}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 704, "of": 1024, "elapsed_s": 2946.6}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 768, "of": 1024, "elapsed_s": 3212.6}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 832, "of": 1024, "elapsed_s": 3478.2}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 896, "of": 1024, "elapsed_s": 3770.3}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 960, "of": 1024, "elapsed_s": 4056.7}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 1024, "of": 1024, "elapsed_s": 4350.3}
+{"event": "split_done", "split": "wp3_train", "elapsed_s": 4350.3}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 64, "of": 512, "elapsed_s": 264.9}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 128, "of": 512, "elapsed_s": 533.0}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 192, "of": 512, "elapsed_s": 794.1}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 256, "of": 512, "elapsed_s": 1049.4}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 320, "of": 512, "elapsed_s": 1307.6}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 384, "of": 512, "elapsed_s": 1568.8}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 448, "of": 512, "elapsed_s": 1835.7}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 512, "of": 512, "elapsed_s": 2100.7}
+{"event": "split_done", "split": "wp3_validation", "elapsed_s": 2100.8}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 64, "of": 512, "elapsed_s": 270.9}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 128, "of": 512, "elapsed_s": 545.1}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 192, "of": 512, "elapsed_s": 815.0}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 256, "of": 512, "elapsed_s": 1081.5}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 320, "of": 512, "elapsed_s": 1360.0}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 384, "of": 512, "elapsed_s": 1639.8}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 448, "of": 512, "elapsed_s": 1911.0}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 512, "of": 512, "elapsed_s": 2179.9}
+{"event": "split_done", "split": "wp3_test", "elapsed_s": 2181.4}

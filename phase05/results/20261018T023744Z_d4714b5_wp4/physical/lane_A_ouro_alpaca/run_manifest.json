@@ -1,0 +1,97 @@
+{
+  "execution_kind": "fresh-cohort physical no-refill, live BF16 exits",
+  "preregistration": "phase05/WP4_PREREGISTRATION.md",
+  "source_sha": "d4714b5d7ee2221638245f88cf2fdc4d2d7296f6",
+  "argv": [
+    "/home/hwlee/batch-loop-worktrees/phase05_no_refill/phase05/wp4_gpu_serving.py",
+    "--model",
+    "ouro",
+    "--role",
+    "primary",
+    "--dataset",
+    "alpaca",
+    "--feature-root",
+    "phase05/results/20261017T124526Z_79d0e8f_wp3/features/lane_A_ouro_alpaca",
+    "--confirm-root",
+    "phase05/results/20261018T023744Z_d4714b5_wp4/confirm/lane_A_ouro_alpaca",
+    "--selection-root",
+    "phase05/results/20261017T124526Z_79d0e8f_wp3/selection/lane_A_ouro_alpaca",
+    "--output-dir",
+    "phase05/results/20261018T023744Z_d4714b5_wp4/physical/lane_A_ouro_alpaca"
+  ],
+  "gpu": {
+    "role": "ouro_primary",
+    "lane": "A",
+    "physical_index": 0,
+    "uuid": "GPU-f217c8a0-1142-20f4-d84b-af29f3a47a0d",
+    "name": "NVIDIA H100 80GB HBM3",
+    "memory_total": "81559 MiB",
+    "memory_used_at_start": "0 MiB",
+    "CUDA_VISIBLE_DEVICES": "0",
+    "assignment_sha256": "21003243aeb6ef1393735b7d2e761a7e2a1da0c6cbb098abe71f93b2b45104f3"
+  },
+  "cpu_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "model": "ouro",
+  "dataset": "alpaca",
+  "predictor": "C7",
+  "selection": {
+    "winner": "C7",
+    "winner_mean_validation_recovery": 0.18961493092805345,
+    "rule": "max mean frozen-label lockstep RIC recovery over B in {8,16,32,64} on wp3_validation; tie -> fewer params",
+    "test_arrays_opened": false,
+    "seed": 1,
+    "epochs_max": 20,
+    "source_sha": "79d0e8fd7449ea04e250b23f841f3f3fe11f7fc1",
+    "checkpoint_sha256": {
+      "C1_checkpoint.pt": "71189351ea130080d290e43d06699674b16d94905e06d6dde44a7401b1329179",
+      "C2_checkpoint.pt": "a8caa573874bc1b3dc817397210a27c888fa853a5f61776ae6b67a06a9e5aff5",
+      "C3_checkpoint.pt": "3e738e9064a6ceccd6663de45dde19f51611d01a37993d4c7d662d84d9dd4bce",
+      "C4_checkpoint.pt": "9a8e4782e1103fc22956e7c11120fcbc63369f76632b70ac98c09d5e33ae2209",
+      "C5_checkpoint.pt": "1de278316706787b28841c3956a5f95d16ba699b3ad7b9d2b8917f501ebc6ab8",
+      "C6_checkpoint.pt": "888627afe04768dbb3948d26af2be0014b8cbd7c0549ba1a03d265176f50261c",
+      "C7_checkpoint.pt": "073df2fe46cbdc5ec47e91c6a7d7713cf46e6e0b47a22ffbf014ba0ee6092b03",
+      "C8_checkpoint.pt": "d059c10b23d47dc9dc4ae11d0d409e8befc942dd9e1dfb78155efd578d99eeb7",
+      "C9_checkpoint.pt": "397b8e454a2bd5d0c3e40703803f75517872f4fd3fbe1ec259dfb44ab6085aef"
+    },
+    "feature_manifest_sha256": {
+      "wp3_train": "fa7aeda8d22a929944563879f72444e1c16e52ad92989fdffd7caa0b4d26fa41",
+      "wp3_validation": "b384d37dc02e22a7d792e924441ef98107f334306b8bd4b153a885e8f3b1fa57"
+    }
+  },
+  "confirm_manifest_sha256": "5430d7412650b6f8d6cc0e3a36bcb60b2095a9a695f68a482fc803dd8bbaa17f",
+  "torch": "2.6.0+cu124",
+  "cohorts": [
+    [
+      0,
+      256
+    ],
+    [
+      256,
+      512
+    ]
+  ],
+  "policies": [
+    "fifo",
+    "history_last",
+    "predictor_gpu",
+    "predictor_host",
+    "oracle_b1"
+  ],
+  "B": [
+    8,
+    16,
+    32,
+    64
+  ],
+  "repeats": 3,
+  "T": 64
+}

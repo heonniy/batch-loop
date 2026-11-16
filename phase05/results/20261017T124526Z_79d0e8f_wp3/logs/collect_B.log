@@ -1,0 +1,38 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.24s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.17s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.15s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.21it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:03<00:00,  1.05it/s]
+Using the latest cached version of the dataset since tatsu-lab/alpaca couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /home/hwlee/.cache/huggingface/datasets/tatsu-lab___alpaca/default/0.0.0/dce01c9b08f87459cf36a430d809084718273017 (last modified on Tue Sep 15 18:00:23 2026).
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 64, "of": 1024, "elapsed_s": 269.2}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 128, "of": 1024, "elapsed_s": 536.2}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 192, "of": 1024, "elapsed_s": 802.0}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 256, "of": 1024, "elapsed_s": 1065.3}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 320, "of": 1024, "elapsed_s": 1336.3}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 384, "of": 1024, "elapsed_s": 1605.7}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 448, "of": 1024, "elapsed_s": 1872.9}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 512, "of": 1024, "elapsed_s": 2141.9}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 576, "of": 1024, "elapsed_s": 2405.3}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 640, "of": 1024, "elapsed_s": 2676.2}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 704, "of": 1024, "elapsed_s": 2940.7}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 768, "of": 1024, "elapsed_s": 3205.4}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 832, "of": 1024, "elapsed_s": 3469.8}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 896, "of": 1024, "elapsed_s": 3737.8}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 960, "of": 1024, "elapsed_s": 4009.1}
+{"event": "collect_progress", "split_dir": "wp3_train", "done": 1024, "of": 1024, "elapsed_s": 4280.5}
+{"event": "split_done", "split": "wp3_train", "elapsed_s": 4280.6}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 64, "of": 512, "elapsed_s": 270.9}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 128, "of": 512, "elapsed_s": 540.4}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 192, "of": 512, "elapsed_s": 813.6}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 256, "of": 512, "elapsed_s": 1078.2}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 320, "of": 512, "elapsed_s": 1342.7}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 384, "of": 512, "elapsed_s": 1624.0}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 448, "of": 512, "elapsed_s": 1889.2}
+{"event": "collect_progress", "split_dir": "wp3_validation", "done": 512, "of": 512, "elapsed_s": 2158.2}
+{"event": "split_done", "split": "wp3_validation", "elapsed_s": 2161.2}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 64, "of": 512, "elapsed_s": 267.3}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 128, "of": 512, "elapsed_s": 532.8}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 192, "of": 512, "elapsed_s": 798.2}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 256, "of": 512, "elapsed_s": 1066.3}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 320, "of": 512, "elapsed_s": 1355.1}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 384, "of": 512, "elapsed_s": 1651.2}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 448, "of": 512, "elapsed_s": 1945.1}
+{"event": "collect_progress", "split_dir": "wp3_test", "done": 512, "of": 512, "elapsed_s": 2230.5}
+{"event": "split_done", "split": "wp3_test", "elapsed_s": 2230.6}
