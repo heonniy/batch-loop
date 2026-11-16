@@ -70,21 +70,10 @@ def evaluate_states(states: torch.Tensor) -> dict[str, Any]:
         previous = states[:-1]
         current = states[1:]
         prev_shift = current[:, 0] - previous[:, 0]
-        candidates["previous_token"] = torch.cat(
-            [
-                current[:1],  # placeholder, excluded from metric below
-                torch.stack(
-                    [
-                        current[:, 0],
-                        *[
-                            previous[:, r] + prev_shift
-                            for r in range(1, d + 1)
-                        ],
-                    ],
-                    dim=1,
-                ),
-            ],
-            dim=0,
+        candidates["previous_token"] = torch.stack(
+            [current[:, 0]] +
+            [previous[:, r] + prev_shift for r in range(1, d + 1)],
+            dim=1,
         )
 
     results: dict[str, Any] = {
@@ -100,7 +89,6 @@ def evaluate_states(states: torch.Tensor) -> dict[str, Any]:
     for name, candidate in candidates.items():
         ref = states
         if name == "previous_token":
-            candidate = candidate[1:]
             ref = states[1:]
         records = []
         for r in range(2, d + 1):
