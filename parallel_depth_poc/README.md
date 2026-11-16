@@ -15,6 +15,8 @@ new branch does not silently authorize using a GPU or altering existing jobs.
   with explicit coarse function and batched core interface.
 - `trace_analysis.py` — relative-state-error and cosine measurements for
   constant, linear and causal previous-token predictors on recorded trajectories.
+- `collect_states.py` — opt-in CUDA-only fixed-depth trace collection with the
+  existing Phase-02 Huginn/Ouro adapters; no latency measurement.
 - `demo.py` — deterministic small CPU mathematical illustration; never report
   its error/speed as a model result.
 - `tests/` — reference mathematical tests (CPU only).
@@ -63,14 +65,38 @@ torch.save({"states": states, "metadata": {"kind": "toy"}}, "/tmp/toy_states.pt"
 **Do not** use an exact future depth state as an inference-time predictor;
 the file is only available after running a full sequential reference.
 
+## Optional real-model trace collection (NOT run by this commit)
+
+The new `collect_states.py` uses the existing Phase-02 Huginn or Ouro-1.4B
+adapter and records depth-by-depth hidden states. Supply a JSONL file with
+`{"prompt":"Question ..."}` for greedy continuation, or exact token IDs via
+`{"prompt":"Question ...","decode_token_ids":[123,456,...]}`.
+Use one mode across all rows. Confirm GPU availability and permissions first.
+
+```bash
+CUDA_VISIBLE_DEVICES=0 python -m parallel_depth_poc.collect_states \
+  --family ouro14 --input-jsonl /path/to/2_prompts.jsonl \
+  --batch 2 --decode-steps 8 --prompt-cap 256 \
+  --output /path/to/ouro14_b2_states.pt --allow-gpu
+python -m parallel_depth_poc.trace_analysis \
+  --trace /path/to/ouro14_b2_states.pt \
+  --output /path/to/ouro14_b2_state_errors.json
+```
+
+Use `--family huginn` for the corresponding pinned adapter. This is **E2**
+trace collection only, not a GPU speed experiment. Reference parity is still
+**UNVALIDATED**. Huginn uses identity-keyed recurrent initialization and
+shared physical-layer KV; Ouro-1.4B uses last-exited depth-indexed KV.
+Predicted branches must fork KV before E1/E3 speed claims are possible.
+
 ## Next GPU integration milestone (not yet done)
 
 1. Pin Huginn and Ouro model revisions and document the exact author-native
    fixed-depth decode semantics. Obtain 16-prompt reference parity **before**
    any new numerical solver measurements.
-2. Add `capture_fixed_depth_states.py` using model adapter step hooks with
-   fixed input IDs and separate full/native KV policy. Verify `h_0` and all
-   depth indices. Keep one position and one batch shape per record; pin RNG.
+2. Validate `collect_states.py` against the model author-native fixed-depth
+   decode and verify its exact/approximate KV policy. Keep one decode position
+   and one batch shape per record; pin RNG.
 3. Implement candidate-KV fork / rollback and a genuinely batched
    `step_many(states[R,B,H], depth_ids[R])` that handles depth-indexed
    histories, RoPE, masks, prelude embedding, and current-token KV writes.
