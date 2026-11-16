@@ -5,7 +5,7 @@
 # command as lm_pretrain/run_all.sh) and exits. Never runs on top of a burner.
 # The burner keep-alive must be paused (BURNER_PAUSE file) while workers run.
 G=$1; J=$2
-LOGD=/home1/irteam/dsd_work/logs_pd
+LOGD=${LOGD:-/home1/irteam/dsd_work/logs_pd}
 mkdir -p $LOGD
 export CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=$G PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_DATASETS_OFFLINE=1

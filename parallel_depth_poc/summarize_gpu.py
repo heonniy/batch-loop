@@ -130,6 +130,41 @@ def diag_cell(prefix):
     return out
 
 
+def summarize_e5(d: Path, n_boot: int = 2000) -> dict:
+    """E5: per model cell, per arm: throughput ratio vs AR = (sum tok/sum wall)_arm / (..)_AR with a
+    paired prompt bootstrap 95% CI; TPOT p50; mean core rounds/token; exact-to-AR rate; accuracy."""
+    import random
+    out = {}
+    cells = defaultdict(list)
+    for f in sorted(glob.glob(str(d / "*.jsonl"))):
+        cells[Path(f).stem.rsplit("_o", 1)[0]].extend(json.loads(l) for l in open(f))
+    for cell, rows in cells.items():
+        by = defaultdict(dict)
+        for r in rows:
+            by[r["prompt_idx"]][r["arm"]] = r
+        prompts = sorted(p for p, a in by.items() if "AR" in a)
+        arms = sorted({a for p in prompts for a in by[p]})
+        rng = random.Random(0)
+        res = {}
+        for arm in arms:
+            ps = [p for p in prompts if arm in by[p]]
+            def ratio(sample):
+                ta = sum(by[p][arm]["n_tokens"] for p in sample) / sum(by[p][arm]["wall_s"] for p in sample)
+                tb = sum(by[p]["AR"]["n_tokens"] for p in sample) / sum(by[p]["AR"]["wall_s"] for p in sample)
+                return ta / tb
+            boots = sorted(ratio([rng.choice(ps) for _ in ps]) for _ in range(n_boot))
+            rs = [by[p][arm] for p in ps]
+            res[arm] = dict(n=len(ps), speed_vs_AR=ratio(ps), ci95=[boots[int(.025 * n_boot)], boots[int(.975 * n_boot)]],
+                            tok_per_s=sum(r["n_tokens"] for r in rs) / sum(r["wall_s"] for r in rs),
+                            tpot_p50_ms=st.median(r["tpot_p50_ms"] for r in rs if r["tpot_p50_ms"]),
+                            rounds_mean=mean([r["rounds_mean"] for r in rs if r["rounds_mean"]]),
+                            exact_to_AR=mean([bool(r.get("exact_to_AR")) for r in rs]),
+                            acc_strict=mean([r["correct_strict"] for r in rs]), acc_flex=mean([r["correct_flex"] for r in rs]),
+                            hbm_peak_gb=max(r["hbm_peak_gb"] for r in rs))
+        out[cell] = res
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--raw", required=True)
@@ -190,6 +225,7 @@ def main():
                                for t, g in j["gate"].items()})
         proj[key] = dict(T_F1_ms=t1, T_FD_ms=tD, serial_ms=serial, jacobi=pj)
     res["projection_upper_bound"] = proj
+    res["E5"] = summarize_e5(raw / "e5")
     for v in res["diag"].values():
         v.pop("_tokens", None)
     Path(a.out).mkdir(parents=True, exist_ok=True)

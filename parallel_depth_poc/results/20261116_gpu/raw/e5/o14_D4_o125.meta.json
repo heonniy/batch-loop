@@ -1,0 +1,22 @@
+{
+ "model": "ouro-1.4b",
+ "depth": 4,
+ "arms": "AR,jac_exact,jac_g0.1,jac_g0.03,trunc3,trunc2",
+ "init": "constant",
+ "n": 25,
+ "offset": 125,
+ "max_new": 256,
+ "seed": 20261116,
+ "out": "parallel_depth_poc/results/20261116_gpu/raw/e5/o14_D4_o125",
+ "allow_gpu": true,
+ "gpu": "NVIDIA H200",
+ "driver": "580.126.16",
+ "torch": "2.8.0+cu128",
+ "cuda": "12.8",
+ "python": "3.11.18",
+ "source_commit": "e568ea2d4476719310c407a3f9110bd9211e5e1d",
+ "wf_commit": "434520932897fcc1e26898891c7e2feaa6ab099f",
+ "model_id": "ByteDance/Ouro-1.4B",
+ "kv_policy": "FULL depth-indexed (one KV slot per recurrent depth; author-native per-step cache)",
+ "attention_backend": "FA varlen (bf16) / SDPA fallback (fp32), WaveFront fa4_attention"
+}
