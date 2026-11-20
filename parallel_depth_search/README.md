@@ -18,6 +18,9 @@ This folder adds independent **methodology, adaptive controller, source-backed b
 - `python -m parallel_depth_search.gpu_diagnostic --help`: CUDA-only teacher-forced, **non-serving** predictor/corrector probe, explicitly opt-in with `--allow-gpu`.
 - `python -m unittest discover -s parallel_depth_search/tests -v`: offline control-plane tests (no GPU).
 - `python -m parallel_depth_search.make_jobs --help`: deterministic diagnostic job commands and 8-GPU slot manifest; **does not start them**.
+- `python -m parallel_depth_search.run_jobs --help`: opt-in host-only 8-GPU executor; refuses occupied devices and never preempts unrelated processes.
+- `python -m parallel_depth_search.paired_metrics --help`: paired bootstrap on genuine free-running per-prompt decoder records; exposes output length and KV-correctness caveats.
+- `python -m parallel_depth_search.rank_candidates --help`: source-backed conservative, context-matched Pareto shortlist, preserving method-diverse alternatives.
 
 ## Critical deployment boundary
 The reference `parallel_depth_poc/wf_engine.py` can batch independent depth rows, but E5 `e5_decoder.py` uses candidate KV without an exact `commit()`. Teacher-forced diagnostic corrector measurements with a subsequent exact `commit` **must not be sold as end-to-end acceleration**. Exact KV commit cost must count in real output speed, and `jac_exact` may differ from BF16 AR due to row-shape floating-point effects. Full integrated multi-request decode with optimized AR + correct cache is an explicit **blocked until implemented and parity proven** gate, not a missing checkbox silently assumed passed.

@@ -15,6 +15,8 @@ jobs:
         run: python -m compileall -q parallel_depth_search
       - name: Run all control-plane tests
         run: python -m unittest parallel_depth_search.tests.test_control -v
+      - name: Validate paired statistics and conservative adaptive ranking
+        run: python -m unittest parallel_depth_search.tests.test_metrics -v
       - name: Validate preregistered hypothesis graph
         run: python -m parallel_depth_search.control validate
   numerical-cpu:
