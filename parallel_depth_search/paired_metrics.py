@@ -58,7 +58,9 @@ def aggregate(pairs):
     req_speedup = wt_b / wt_c
     acc_delta = (sum(bool(x["correct_strict"]) for x in ca) -
                  sum(bool(x["correct_strict"]) for x in ba)) / n
-    seq_exact = sum(a.get("tokens") == b.get("tokens") for a, b in pairs) / n
+    if any("tokens" not in a or "tokens" not in b for a, b in pairs):
+        raise ValueError("cannot compute sequence exactness without generated token IDs")
+    seq_exact = sum(a["tokens"] == b["tokens"] for a, b in pairs) / n
     return {
         "sample_count": n, "speedup": speedup,
         "requests_per_sec_speedup": req_speedup,

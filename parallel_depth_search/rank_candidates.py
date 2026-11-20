@@ -47,6 +47,8 @@ def assess(r, cfg):
         return {"rankable": False, "reason": "held-out test or hardware only, not adaptive selection"}
     if n < cfg["screen_min_samples"]:
         return {"rankable": False, "reason": "insufficient sample count"}
+    if any(x is None for x in context_key(r)):
+        return {"rankable": False, "reason": "missing matched benchmark context"}
     if m.get("full_e2e_measured"):
         if r["data_split"] != "dev" or n < cfg["dev_min_samples"]:
             return {"rankable": False, "reason": "screen only: require dev>=200 for E2E promotion"}
