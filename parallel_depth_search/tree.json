@@ -1,0 +1,435 @@
+{
+  "schema_version": 1,
+  "title": "20261121 frozen-depth-adaptive-search",
+  "source_commit": "829076bb743fc6d33f8700ee8b086847a9d3ba26",
+  "wiki_index": "https://github.com/heonniy/research-wiki/blob/main/references/by-target/C-PAR-001.md",
+  "max_gpu_hours": 384,
+  "planned_gpu_hours": 384,
+  "max_wall_hours": 48,
+  "gpu_count": 8,
+  "holdout_rule": "Never use final/test examples to calibrate predictor, correction, threshold or adaptive selection.",
+  "max_false_stop_rate_dev": 0.01,
+  "noninferiority_margin_accuracy": 0.03,
+  "minimum_speedup_lower_ci": 1.03,
+  "screen_min_samples": 20,
+  "dev_min_samples": 200,
+  "final_min_samples": 500,
+  "nodes": [
+    {
+      "id": "G0_NATIVE",
+      "phase": "foundation",
+      "requires_all": [],
+      "requires_any": [],
+      "question": "Does the pinned engine reproduce model-native exact fixed-depth forward and BF16 batch-order behavior?",
+      "method": "FP32 and BF16 parity, 16 prompts/32-token run, row permutation, Vary B1/B16; persist per-depth bank checks.",
+      "refs": [
+        "P-2610-35556"
+      ],
+      "planned_gpu_hours": 15,
+      "evidence_kind": "correctness",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "G0_KV",
+      "phase": "foundation",
+      "requires_all": [
+        "G0_NATIVE"
+      ],
+      "requires_any": [],
+      "question": "Can isolated candidate per-position KV be committed consistently, including Coda?",
+      "method": "Reject E5 no-commit approximate carry for exact label; audit candidate/commit/rollback; fail closed.",
+      "refs": [
+        "P-2610-35556"
+      ],
+      "planned_gpu_hours": 15,
+      "evidence_kind": "correctness",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "G0_DATA",
+      "phase": "foundation",
+      "requires_all": [],
+      "requires_any": [],
+      "question": "Are task splits, baselines and all numerical rules frozen before adaptation?",
+      "method": "Deduplicate prompt IDs; freeze source & SHA; n200 dev/n>=500 final where possible, alternate seeds.",
+      "refs": [
+        "P-2510-24824"
+      ],
+      "planned_gpu_hours": 10,
+      "evidence_kind": "correctness",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "G1_WIDTH",
+      "phase": "characterize",
+      "requires_all": [
+        "G0_NATIVE"
+      ],
+      "requires_any": [],
+      "question": "What is B-dependent real hardware width and HBM headroom?",
+      "method": "Core CUDA events and full AR costs at B1/16/64/128, L256/1024, repeats30.",
+      "refs": [
+        "P-2002-03629"
+      ],
+      "planned_gpu_hours": 20,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "G1_DYNAMICS",
+      "phase": "characterize",
+      "requires_all": [
+        "G0_KV",
+        "G0_DATA"
+      ],
+      "requires_any": [],
+      "question": "Do future delta trajectories exhibit predictability, low-rank or directional contractivity?",
+      "method": "Per-depth delta/cosine, perturbation ladder, JVP, logit stability, fixed-KV.",
+      "refs": [
+        "P-2508-16817",
+        "P-2609-01924"
+      ],
+      "planned_gpu_hours": 24,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "P1_BASELINE",
+      "phase": "predict",
+      "requires_all": [
+        "G1_DYNAMICS"
+      ],
+      "requires_any": [],
+      "question": "Can h1/prev-shift future depth prediction reduce correction work?",
+      "method": "Constant, linear, previous, prev-shift with prefix warmup 1; equal data.",
+      "refs": [
+        "P-2610-35556"
+      ],
+      "planned_gpu_hours": 10,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "P2_WARMUP",
+      "phase": "predict",
+      "requires_all": [
+        "P1_BASELINE"
+      ],
+      "requires_any": [],
+      "question": "Is extra exact depth warmup worthwhile?",
+      "method": "Anchor 1,2,3,4,8; count exact warmup overhead and first corrected token.",
+      "refs": [
+        "P-2610-35556"
+      ],
+      "planned_gpu_hours": 14,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "P3_GEOMETRIC",
+      "phase": "predict",
+      "requires_all": [
+        "P1_BASELINE",
+        "G1_DYNAMICS"
+      ],
+      "requires_any": [],
+      "question": "Do geometric/secant future increments forecast correctable trajectory?",
+      "method": "Geometric ratio and clipped damped secant; depth-delta spectral and trend control.",
+      "refs": [
+        "P-2508-16817"
+      ],
+      "planned_gpu_hours": 16,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "P4_HISTORY",
+      "phase": "predict",
+      "requires_all": [
+        "P1_BASELINE"
+      ],
+      "requires_any": [],
+      "question": "Can prior token/correction history aid current token?",
+      "method": "Prev shift, history align, Anderson extrapolation with no future-token leakage.",
+      "refs": [
+        "P-2402-09970",
+        "P-2512-14681"
+      ],
+      "planned_gpu_hours": 14,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "P5_LOW_RANK",
+      "phase": "predict",
+      "requires_all": [
+        "P2_WARMUP",
+        "G1_DYNAMICS"
+      ],
+      "requires_any": [],
+      "question": "Is low-dimensional future trajectory forecasting stable?",
+      "method": "Ridge/DMD/rank-r delta subspace, training/dev split, runtime cost.",
+      "refs": [
+        "P-2508-16817",
+        "P-2309-12252"
+      ],
+      "planned_gpu_hours": 10,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "C1_JACOBI",
+      "phase": "correct",
+      "requires_all": [
+        "G0_KV",
+        "P1_BASELINE"
+      ],
+      "requires_any": [],
+      "question": "Does physical full Jacobi with oracle vs online criteria reproduce PoC?",
+      "method": "Jacobi, damped Jacobi, FP32/BF16, exact baseline and active mask.",
+      "refs": [
+        "P-2002-03629",
+        "P-2305-16317"
+      ],
+      "planned_gpu_hours": 14,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "C2_ANDERSON",
+      "phase": "correct",
+      "requires_all": [
+        "C1_JACOBI"
+      ],
+      "requires_any": [],
+      "question": "Can residual history reduce actual expensive full depth sweeps?",
+      "method": "Anderson with ridge, memory2/4/8, damping; compare triangular variant with paper.",
+      "refs": [
+        "P-2402-09970"
+      ],
+      "planned_gpu_hours": 16,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "C3_NEWTON",
+      "phase": "correct",
+      "requires_all": [
+        "C1_JACOBI",
+        "G1_DYNAMICS"
+      ],
+      "requires_any": [],
+      "question": "Can structured Jacobian surrogate cheaply transmit predecessor corrections?",
+      "method": "Triangular Identity, scalar/diagonal Newton, independent JVP error.",
+      "refs": [
+        "P-2605-17842",
+        "P-2309-12252"
+      ],
+      "planned_gpu_hours": 22,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "C4_SCAN_LOW_RANK",
+      "phase": "correct",
+      "requires_all": [
+        "C3_NEWTON"
+      ],
+      "requires_any": [],
+      "question": "Can low-rank Jacobian scan/parallel cyclic reduction beat sequential correction?",
+      "method": "Rank8/16/32 surrogate on train only, inspect JVPs, full kernel wall.",
+      "refs": [
+        "P-2309-16318",
+        "P-2511-01465"
+      ],
+      "planned_gpu_hours": 10,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "C5_PARAREAL",
+      "phase": "correct",
+      "requires_all": [
+        "C1_JACOBI"
+      ],
+      "requires_any": [],
+      "question": "Can stronger cheap coarse solvers rescue block Parareal?",
+      "method": "Identity/one-step controls plus geometric and learned/frozen coarse G, blocks2/4/8.",
+      "refs": [
+        "P-2412-08292"
+      ],
+      "planned_gpu_hours": 10,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "A1_FULL_VS_SPARSE",
+      "phase": "allocate",
+      "requires_all": [
+        "C1_JACOBI",
+        "G1_WIDTH"
+      ],
+      "requires_any": [],
+      "question": "Where is expensive depth evaluation necessary?",
+      "method": "Full depth versus uniform prefix/suffix windows and equal-row random controls.",
+      "refs": [
+        "P-2505-24791"
+      ],
+      "planned_gpu_hours": 18,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "A2_INFLUENCE",
+      "phase": "allocate",
+      "requires_all": [
+        "A1_FULL_VS_SPARSE",
+        "G1_DYNAMICS"
+      ],
+      "requires_any": [],
+      "question": "Can cheap residual/influence select depth rows?",
+      "method": "Per-depth residual and JVP sensitivity, stratum match same FLOPs & width.",
+      "refs": [
+        "P-2508-16817",
+        "P-2505-24791"
+      ],
+      "planned_gpu_hours": 18,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "A3_BLOCKS",
+      "phase": "allocate",
+      "requires_all": [
+        "A1_FULL_VS_SPARSE"
+      ],
+      "requires_any": [],
+      "question": "Can a block schedule improve width/HBM balance?",
+      "method": "Adaptive overlapping windows, coarse-fine anchors, independent B and per-example widths.",
+      "refs": [
+        "P-2412-08292",
+        "P-2610-35556"
+      ],
+      "planned_gpu_hours": 12,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "V1_ONLINE",
+      "phase": "verify",
+      "requires_all": [
+        "C1_JACOBI",
+        "G0_DATA"
+      ],
+      "requires_any": [],
+      "question": "Can online stopping approach post-hoc oracle without increased false stops?",
+      "method": "Fixed rounds, residual, token stable, logit margin/calibrated held-out error.",
+      "refs": [
+        "P-2402-02057"
+      ],
+      "planned_gpu_hours": 15,
+      "evidence_kind": "diagnostic",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "V2_KV",
+      "phase": "verify",
+      "requires_all": [
+        "G0_KV",
+        "V1_ONLINE"
+      ],
+      "requires_any": [],
+      "question": "Which cache commit policy is actually quality preserving and efficient?",
+      "method": "Candidate carry, serial exact commit, selective repair, per-depth bank hash checks.",
+      "refs": [
+        "P-2610-35556"
+      ],
+      "planned_gpu_hours": 17,
+      "evidence_kind": "correctness",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "J1_PARETO",
+      "phase": "joint",
+      "requires_all": [
+        "G1_WIDTH",
+        "V1_ONLINE",
+        "A1_FULL_VS_SPARSE"
+      ],
+      "requires_any": [
+        "P3_GEOMETRIC",
+        "P4_HISTORY",
+        "C2_ANDERSON",
+        "C3_NEWTON",
+        "C5_PARAREAL"
+      ],
+      "question": "Which method-diverse combinations jointly improve measured quality-latency Pareto?",
+      "method": "Frozen dev Pareto champion + 2 mechanism-diverse alternatives with 2x2x2 factorial.",
+      "refs": [
+        "P-2610-35556",
+        "P-2605-17842",
+        "P-2402-09970"
+      ],
+      "planned_gpu_hours": 40,
+      "evidence_kind": "performance",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "F1_FULL_ROLLOUT",
+      "phase": "final",
+      "requires_all": [
+        "J1_PARETO",
+        "V2_KV"
+      ],
+      "requires_any": [],
+      "question": "Do candidate solutions beat optimized AR and depth truncation at held-out matched quality?",
+      "method": "Exact-vs-approx, batch B1/16/64/128, context/output sweeps, n>=500, confidence intervals.",
+      "refs": [
+        "P-2610-35556",
+        "P-2510-24824"
+      ],
+      "planned_gpu_hours": 28,
+      "evidence_kind": "performance",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    },
+    {
+      "id": "F2_STRESS",
+      "phase": "final",
+      "requires_all": [
+        "F1_FULL_ROLLOUT"
+      ],
+      "requires_any": [],
+      "question": "Are gains robust across architectures, workloads, seeds and GPU row ordering?",
+      "method": "GSM8K/MATH500/HotpotQA/RULER, two runs, adversarial prompt, BF16 vs FP32, HBM OOM analysis.",
+      "refs": [
+        "P-2508-16817"
+      ],
+      "planned_gpu_hours": 16,
+      "evidence_kind": "performance",
+      "not_run_reason": "Must be executed on authorized H200 host with recorded data split, pinned revisions and independent baseline.",
+      "state": "planned"
+    }
+  ]
+}
