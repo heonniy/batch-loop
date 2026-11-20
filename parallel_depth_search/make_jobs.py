@@ -135,6 +135,21 @@ def jobs_for(n, preset="pilot"):
             for pol,w in configs:
                 append(model,D,corrector="jacobi",rounds=4,allocation=pol,width=w)
         return jobs
+    if id_ == "A3_BLOCKS":
+        # Block/window schedules: A1 showed only suffix windows move the final depth; test
+        # suffix widths 2/8/16 with long round budgets (Huginn; Ouro D4 is covered by A1).
+        for w in (2, 8, 16):
+            append("huginn-3.5b", 32, corrector="jacobi", rounds=16, allocation="suffix", width=w)
+        return jobs
+    if id_ == "P5_LOW_RANK":
+        for model, D in machines:
+            argv = [sys.executable, "-m", "parallel_depth_search.p5_lowrank", "--model", model,
+                    "--depth", str(D), "--out", f"__OUT__/p5_{model}", "--allow-gpu"]
+            jid = hashlib.sha256((" ".join(argv)).encode()).hexdigest()[:16]
+            jobs.append({"job_id": jid, "node_id": id_, "argv": argv, "timeout_s": 10800,
+                         "reference_mode": "teacher_forced_diagnostic", "metrics_status": "NOT_RUN",
+                         "fields": {"model": model, "depth": D}})
+        return jobs
     # Correct numerical implementations must be added before emitting jobs for
     # C4_SCAN_LOW_RANK, C5_PARAREAL variants, A3_BLOCKS, V1, V2, J1, F1, F2.
     return []

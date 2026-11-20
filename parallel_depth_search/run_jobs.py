@@ -67,7 +67,22 @@ def check_devices(indices, require_h200=True):
     return [inv[i] for i in indices]
 
 
-def run_manifest(plan_path, run_dir, gpu_ids, wall_limit_hours, *, allowed):
+def claim_next(jobs, claim_file):
+    """Cross-process job claim: several executors (disjoint GPU sets) may share one plan."""
+    import fcntl
+    with open(claim_file, "a+", encoding="utf-8") as f:
+        fcntl.flock(f.fileno(), fcntl.LOCK_EX)
+        f.seek(0)
+        taken = {x.strip() for x in f.read().splitlines() if x.strip()}
+        for job in jobs:
+            if job["job_id"] not in taken:
+                f.write(job["job_id"] + "\n")
+                f.flush()
+                return job
+    return None
+
+
+def run_manifest(plan_path, run_dir, gpu_ids, wall_limit_hours, *, allowed, claim_file=None):
     if not allowed:
         raise RuntimeError("GPU host execution explicitly gated; pass --allow-gpu --authorized")
     if wall_limit_hours <= 0 or wall_limit_hours > 48:
@@ -92,7 +107,8 @@ def run_manifest(plan_path, run_dir, gpu_ids, wall_limit_hours, *, allowed):
             "parallel_depth_poc.e1_oracle_width",
             "parallel_depth_poc.depth_diag",
             "parallel_depth_search.g0_checks",
-            "parallel_depth_search.e2e_decoder"}):
+            "parallel_depth_search.e2e_decoder",
+            "parallel_depth_search.p5_lowrank"}):
             raise ValueError("unreviewed job module; refuse to run")
         if not all(isinstance(s, str) for s in job["argv"]):
             raise ValueError("argv must be literal string list")
@@ -108,7 +124,7 @@ def run_manifest(plan_path, run_dir, gpu_ids, wall_limit_hours, *, allowed):
             with lock:
                 if time.monotonic() > deadline:
                     break
-                job = next(pending, None)
+                job = claim_next(jobs, claim_file) if claim_file else next(pending, None)
             if job is None:
                 break
             jid = job["job_id"]
@@ -184,10 +200,11 @@ def main():
     p.add_argument("--allow-gpu", action="store_true")
     p.add_argument("--authorized", action="store_true",
                    help="confirm these idle GPUs are assigned to this experiment")
+    p.add_argument("--claim-file", default="", help="shared claim ledger (multi-executor)")
     a = p.parse_args()
     ids = [int(t.strip()) for t in a.gpu_ids.split(",") if t.strip()]
     result = run_manifest(a.plan, a.run_dir, ids, a.wall_hours,
-                          allowed=a.allow_gpu and a.authorized)
+                          allowed=a.allow_gpu and a.authorized, claim_file=a.claim_file or None)
     print(json.dumps(result, indent=2))
 
 

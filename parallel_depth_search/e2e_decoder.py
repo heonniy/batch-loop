@@ -18,6 +18,15 @@ Arms (comma list):
                      this token): per-example adaptive width (allocation lane A7).
   jac_g{tau}_rep     gated token, then exact serial repair of the depth KV (rows > k+1 recomputed
                      serially): cache-exact, token from the candidate (V2 lane).
+  jac_k{K}[_s{W}]    fixed K corrector sweeps, no gate, one coda (APPROXIMATE unless K>=D-1);
+                     _s{W}: each sweep only evaluates the last W depths (suffix window, lane A1/A3).
+  skip{a}_{b}        depth-skip chain: prefill at full D (exact prompt KV in every depth slot), each
+                     decode token runs ONLY depths 1..a then D-b+1..D serially (a+b width-n calls).
+                     Cache-self-consistent approximate model: decode positions are only written and
+                     read in the evaluated slots. Equals the constant-init k-sweep Jacobi output
+                     (a=1, b=k) in real arithmetic without the wasted intermediate rows.
+  jac_m{M}[_f]       logit-margin gate from round 1: accept when top1-top2 logit margin >= M for
+                     every active row (_f: per-row freeze); fallback D-1 sweeps (lane V1).
 Options: --init {linear,constant,prev_shift}, --corrector {jacobi,damped,anderson,newton_scaled,
 newton_identity} (non-Jacobi correctors via numerics.CorrectionStepper, full allocation).
 Writes <out>.jsonl (one row per (prompt, arm)) and <out>.meta.json.
@@ -53,10 +62,33 @@ class Arm:
         self.kind = "AR"
         self.tau = 0.0
         self.freeze = self.repair = False
+        self.fixed_k = None
+        self.window = 0
+        self.margin = None
+        self.depth_list = list(range(1, D + 1))
         if name.startswith("trunc"):
             self.kind, self.depth = "AR", int(name[5:])
+            self.depth_list = list(range(1, self.depth + 1))
+        elif name.startswith("skip"):
+            lo, hi = (int(x) for x in name[4:].split("_"))
+            assert 1 <= lo and 1 <= hi and lo + hi <= D, name
+            self.kind = "AR"
+            self.depth_list = list(range(1, lo + 1)) + list(range(D - hi + 1, D + 1))
         elif name == "jac_exact":
             self.kind = "jac"
+        elif name.startswith("jac_k"):
+            self.kind = "jac"
+            body = name[5:]
+            if "_s" in body:
+                body, w = body.split("_s")
+                self.window = int(w)
+            self.fixed_k = int(body)
+        elif name.startswith("jac_m"):
+            self.kind = "jac"
+            body = name[5:]
+            if body.endswith("_f"):
+                self.freeze, body = True, body[:-2]
+            self.margin = float(body)
         elif name.startswith("jac_g"):
             self.kind = "jac"
             body = name[5:]
@@ -75,9 +107,9 @@ def token_step(eng: VarEngine, arm: Arm, a, rows, cur, prev_traj, stats):
     h0 = eng.prelude(rows, cur)
     if arm.kind == "AR":
         h = h0
-        for r in range(1, D + 1):
+        for r in arm.depth_list:
             h = eng.step_many(h.unsqueeze(0), [r])[0]
-        stats["rounds"].append(D)
+        stats["rounds"].append(len(arm.depth_list))
         return eng.logits(h), None
     n = len(rows)
     h1 = eng.step_many(h0.unsqueeze(0), [1])[0]
@@ -96,9 +128,13 @@ def token_step(eng: VarEngine, arm: Arm, a, rows, cur, prev_traj, stats):
                                     scale=a.scale, history=a.history, damping=a.damping)
     active = torch.ones(n, dtype=torch.bool, device=h0.device)
     prev_arg = None
-    k_used = D - 1
+    kmax = D - 1 if arm.fixed_k is None else min(arm.fixed_k, D - 1)
+    k_used = kmax
+    gated = arm.tau > 0 or arm.margin is not None
+    if arm.window:
+        ds = list(range(max(2, D - arm.window + 1), D + 1))
     lg = None
-    for k in range(1, D):
+    for k in range(1, kmax + 1):
         if stepper is not None:
             new, _ = stepper.step(z, policy="full")
         elif arm.freeze and not bool(active.all()):
@@ -112,15 +148,24 @@ def token_step(eng: VarEngine, arm: Arm, a, rows, cur, prev_traj, stats):
             eng.rows, eng.tok_ids, eng.e = keep_rows, keep_tok, keep_e
             new = z.clone()
             new[1:, idx] = out
+        elif arm.window:
+            new = z.clone()
+            new[ds] = eng.step_many(z[[d - 1 for d in ds]], ds)
         else:
             new = torch.cat([h0.unsqueeze(0), eng.step_many(z[:-1], ds)])
         res = rel_rows(new[1:], z[1:]) if arm.tau > 0 else None
         z = new
-        if arm.tau > 0:
+        if gated:
             lg = eng.logits(z[D])
             arg = lg.argmax(-1)
-            if prev_arg is not None:
+            if arm.margin is not None:
+                top2 = lg.topk(2, dim=-1).values
+                ok = (top2[:, 0] - top2[:, 1]) >= arm.margin
+            elif prev_arg is not None:
                 ok = (res < arm.tau) & (arg == prev_arg)
+            else:
+                ok = None
+            if ok is not None:
                 if arm.freeze:
                     active &= ~ok
                     if not bool(active.any()):
@@ -130,7 +175,7 @@ def token_step(eng: VarEngine, arm: Arm, a, rows, cur, prev_traj, stats):
                     k_used = k
                     break
             prev_arg = arg
-    if arm.tau == 0:
+    if not gated:
         lg = eng.logits(z[D])
     stats["rounds"].append(1 + k_used)
     if arm.repair and k_used < D - 1:
