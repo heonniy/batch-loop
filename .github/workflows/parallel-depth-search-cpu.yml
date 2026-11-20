@@ -1,0 +1,30 @@
+name: Depth-parallel research control and CPU numerical tests
+on:
+  push:
+    branches: ['research/parallel-depth-adaptive-*']
+  pull_request:
+jobs:
+  science-control:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Parse all new Python modules
+        run: python -m compileall -q parallel_depth_search
+      - name: Run all control-plane tests
+        run: python -m unittest parallel_depth_search.tests.test_control -v
+      - name: Validate preregistered hypothesis graph
+        run: python -m parallel_depth_search.control validate
+  numerical-cpu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU-only PyTorch
+        run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Run controlled numerical identities
+        run: python -m unittest parallel_depth_search.tests.test_numerics -v
