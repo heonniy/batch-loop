@@ -13,7 +13,7 @@ import torch
 
 PREDICTORS = ("constant", "linear", "geometric", "secant", "prev_shift")
 CORRECTORS = ("jacobi", "damped", "newton_identity", "newton_scaled", "anderson")
-ALLOCATIONS = ("full", "suffix", "prefix", "alternating", "residual_topk")
+ALLOCATIONS = ("full", "suffix", "prefix", "alternating", "residual_topk", "random")
 
 
 def predict(prefix, depth, method, prev=None, clip=1.5):
@@ -83,6 +83,10 @@ def select_depths(depth, anchor, policy="full", width=0, iteration=0, activity=N
         chosen = eligible[:w]
     elif policy == "alternating":
         chosen = eligible[(iteration % 2)::2][:w]
+    elif policy == "random":
+        # equal-row random control (seeded by iteration; same width as the compared policy)
+        import random as _random
+        chosen = sorted(_random.Random(1000003 * depth + iteration).sample(eligible, w))
     else:
         if activity is None or len(activity) != depth + 1:
             raise ValueError("residual_topk requires activity [D+1]")

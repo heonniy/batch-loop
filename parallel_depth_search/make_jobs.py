@@ -16,7 +16,7 @@ from .control import init_run, program, propose
 
 def job_spec(node, model, depth, B, L, *, cohort="gsm8k3", offset=0, steps=32,
              warmup=1, predictor="constant", corrector="jacobi", rounds=4,
-             allocation="full", width=0, scale=1.0, seed=20261121):
+             allocation="full", width=0, scale=1.0, seed=20261121, extra=()):
     argv = [sys.executable, "-m", "parallel_depth_search.gpu_diagnostic",
             "--model", model, "--depth", str(depth), "--batch", str(B),
             "--prompt-len", str(L), "--cohort", cohort, "--offset", str(offset),
@@ -24,11 +24,11 @@ def job_spec(node, model, depth, B, L, *, cohort="gsm8k3", offset=0, steps=32,
             "--predictor", predictor, "--corrector", corrector,
             "--rounds", str(rounds), "--allocation", allocation,
             "--width", str(width), "--scale", str(scale),
-            "--seed", str(seed), "--allow-gpu"]
+            "--seed", str(seed), "--allow-gpu"] + list(extra)
     fields = dict(node=node, model=model, depth=depth, batch=B, length=L,
                   offset=offset, steps=steps, warmup=warmup, predictor=predictor,
                   corrector=corrector, rounds=rounds, allocation=allocation,
-                  width=width, scale=scale, seed=seed)
+                  width=width, scale=scale, seed=seed, extra=list(extra))
     id_ = hashlib.sha256(json.dumps(fields, sort_keys=True).encode()).hexdigest()[:16]
     return {"job_id": id_, "node_id": node, "argv": argv,
             "timeout_s": 10800 if depth >= 16 else 5400,
@@ -48,37 +48,54 @@ def jobs_for(n, preset="pilot"):
         if D < opts.get("warmup", 1):
             return
         jobs.append(job_spec(id_, model, D, b, L, **opts))
-    if id_ in ("G0_NATIVE", "G1_WIDTH"):
+    if id_ == "G0_NATIVE":
+        # FP32 engine-vs-HF parity (PoC E0) + VarEngine-vs-DepthEngine and BF16 batch-order checks.
         for model, D in machines:
-            if id_ == "G0_NATIVE":
-                depths = "8,16,32" if model == "huginn-3.5b" else "2,3,4"
-                argv = [sys.executable, "-m", "parallel_depth_poc.e0_native_parity",
-                        "--model", model, "--depths", depths,
-                        "--out", f"__OUT__/e0_{model}.json", "--allow-gpu"]
-            else:
-                argv = [sys.executable, "-m", "parallel_depth_poc.e1_oracle_width",
-                        "--model", model, "--depth", str(D),
-                        "--prompt-lens", "256", "--out", f"__OUT__/e1_{model}.json",
-                        "--allow-gpu"]
+            depths = "8,16,24,32" if model == "huginn-3.5b" else "2,3,4"
+            for argv in ([sys.executable, "-m", "parallel_depth_poc.e0_native_parity", "--model", model,
+                          "--depths", depths, "--out", f"__OUT__/e0_{model}.json", "--allow-gpu"],
+                         [sys.executable, "-m", "parallel_depth_search.g0_checks", "--check", "native",
+                          "--model", model, "--depths", "8,32" if model == "huginn-3.5b" else "2,4",
+                          "--new", "32", "--offset", "0", "--out", f"__OUT__/native_{model}.json", "--allow-gpu"]):
+                jid = hashlib.sha256((" ".join(argv)).encode()).hexdigest()[:16]
+                jobs.append({"job_id": jid, "node_id": id_, "argv": argv, "timeout_s": 10800,
+                             "metrics_status": "NOT_RUN", "reference_mode": "native_parity",
+                             "fields": {"model": model, "depths": depths}})
+        return jobs
+    if id_ == "G0_KV":
+        for model, D in machines:
+            for dt in ("float32", "bfloat16"):
+                argv = [sys.executable, "-m", "parallel_depth_search.g0_checks", "--check", "kv",
+                        "--model", model, "--depths", "8,32" if model == "huginn-3.5b" else "2,4",
+                        "--dtype", dt, "--batch", "8", "--new", "24", "--offset", "0",
+                        "--out", f"__OUT__/kv_{model}_{dt}.json", "--allow-gpu"]
+                jid = hashlib.sha256((" ".join(argv)).encode()).hexdigest()[:16]
+                jobs.append({"job_id": jid, "node_id": id_, "argv": argv, "timeout_s": 10800,
+                             "metrics_status": "NOT_RUN", "reference_mode": "kv_commit_audit",
+                             "fields": {"model": model, "dtype": dt}})
+        return jobs
+    if id_ == "G1_WIDTH":
+        for model, D in machines:
+            argv = [sys.executable, "-m", "parallel_depth_poc.e1_oracle_width",
+                    "--model", model, "--depth", str(D),
+                    "--prompt-lens", "256,1024", "--out", f"__OUT__/e1_{model}.json",
+                    "--allow-gpu"]
             jid = hashlib.sha256((" ".join(argv)).encode()).hexdigest()[:16]
             jobs.append({"job_id": jid, "node_id": id_, "argv": argv,
                          "timeout_s": 10800, "metrics_status": "NOT_RUN",
-                         "reference_mode": "native_parity_or_oracle_hardware",
-                         "fields": {"model": model, "depth": D, "baseline": id_}})
+                         "reference_mode": "oracle_hardware",
+                         "fields": {"model": model, "depth": D}})
         return jobs
-    if id_ in ("G0_KV", "G1_DYNAMICS"):
+    if id_ == "G1_DYNAMICS":
         for model, D in machines:
-            if id_ == "G1_DYNAMICS":
-                argv = [sys.executable, "-m", "parallel_depth_poc.depth_diag",
-                        "--model", model, "--depth", str(D), "--batch", "16",
-                        "--prompt-len", "256", "--decode-steps", "64",
-                        "--out", f"__OUT__/dynamics_{model}", "--allow-gpu"]
-                jid = hashlib.sha256((" ".join(argv)).encode()).hexdigest()[:16]
-                jobs.append({"job_id": jid, "node_id": id_, "argv": argv, "timeout_s": 10800,
-                             "reference_mode": "oracle_teacher_forced",
-                             "metrics_status": "NOT_RUN", "fields": {"model": model, "depth": D}})
-            else:
-                append(model, D, predictor="constant", corrector="jacobi", rounds=2)
+            argv = [sys.executable, "-m", "parallel_depth_poc.depth_diag",
+                    "--model", model, "--depth", str(D), "--batch", "16",
+                    "--prompt-len", "256", "--decode-steps", "64",
+                    "--out", f"__OUT__/dynamics_{model}", "--allow-gpu"]
+            jid = hashlib.sha256((" ".join(argv)).encode()).hexdigest()[:16]
+            jobs.append({"job_id": jid, "node_id": id_, "argv": argv, "timeout_s": 14400,
+                         "reference_mode": "oracle_teacher_forced",
+                         "metrics_status": "NOT_RUN", "fields": {"model": model, "depth": D}})
         return jobs
     if id_ == "G0_DATA":
         return []
@@ -98,19 +115,21 @@ def jobs_for(n, preset="pilot"):
     if id_ in ("C1_JACOBI","C2_ANDERSON","C3_NEWTON"):
         for model,D in machines:
             if id_ == "C1_JACOBI":
-                configs = [("jacobi",x,1.0) for x in (1,2,4,8) if x < D] + [("damped",4,1.0)]
+                configs = [("jacobi",x,1.0) for x in (1,2,4,8,16) if x < D] + [("damped",4,1.0)]
             elif id_ == "C2_ANDERSON":
                 configs = [("anderson",k,1.0) for k in (2,4,8) if k < D]
             else:
                 configs = [("newton_identity",k,1.0) for k in (2,4)] + [
                     ("newton_scaled",4,a) for a in (0.0,0.5,0.75,1.25)]
             for cor,k,a in configs:
-                append(model,D,corrector=cor,rounds=k,scale=a,predictor="constant")
+                append(model,D,corrector=cor,rounds=k,scale=a,predictor="constant",
+                       extra=("--jvp-probe",) if id_ == "C3_NEWTON" else ())
         return jobs
     if id_ in ("A1_FULL_VS_SPARSE","A2_INFLUENCE"):
         for model,D in machines:
             if id_ == "A1_FULL_VS_SPARSE":
-                configs = [("full",0),("prefix",min(4,D-1)),("suffix",min(4,D-1)),("alternating",min(8,D-1))]
+                configs = [("full",0),("prefix",min(4,D-1)),("suffix",min(4,D-1)),("alternating",min(8,D-1)),
+                           ("random",min(4,D-1)),("random",min(8,D-1))]
             else:
                 configs = [("residual_topk",min(w,D-1)) for w in (4,8,16)]
             for pol,w in configs:

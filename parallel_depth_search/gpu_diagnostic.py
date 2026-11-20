@@ -145,6 +145,32 @@ def run(a):
             results.append({"t": t, "status": "skip_no_previous_token", "commit_ms": commit_ms})
             continue
         z, init_ms = elapsed_ms(lambda: predict(prefix, D, a.predictor, prior_exact))
+        jvp = None
+        if a.jvp_probe:
+            # C3 milestone: is A_r = alpha*I a usable Jacobian surrogate? Perturb the EXACT input of
+            # every depth by the predictor's actual error direction delta_r = z[r-1]-ref[r-1] and
+            # compare the true response F_r(ref+delta)-F_r(ref) with alpha*delta (one physical call;
+            # its candidate KV is overwritten by the exact commit below).
+            dsd = list(range(a.warmup + 1, D + 1))
+            dl = torch.stack([z[d - 1] - ref[d - 1] for d in dsd])
+            ok = dl.float().flatten(1).norm(dim=-1) > 0
+            if bool(ok.any()):
+                ids_t = torch.tensor(dsd, device=z.device)
+                out_p = eng.step_many(torch.stack([ref[d - 1] for d in dsd]) + dl, ids_t)
+                resp = (out_p.float() - torch.stack([ref[d] for d in dsd]).float())
+                dlf = dl.float()
+                nrm = lambda x: x.norm(dim=-1)
+                alpha_opt = (resp * dlf).sum(-1) / dlf.square().sum(-1).clamp_min(1e-12)   # [R,B]
+                err_id = nrm(resp - dlf) / nrm(resp).clamp_min(1e-12)
+                err_sc = nrm(resp - a.scale * dlf) / nrm(resp).clamp_min(1e-12)
+                err_opt = nrm(resp - alpha_opt[..., None] * dlf) / nrm(resp).clamp_min(1e-12)
+                gain = nrm(resp) / nrm(dlf).clamp_min(1e-12)
+                q = lambda x: [float(v) for v in torch.quantile(x.flatten().float(), torch.tensor([.1, .5, .9], device=x.device))]
+                jvp = dict(depths=dsd, gain_q10_50_90=q(gain), alpha_opt_q10_50_90=q(alpha_opt),
+                           rel_err_identity_q=q(err_id), rel_err_scaled_q=q(err_sc), rel_err_best_scalar_q=q(err_opt),
+                           cos_resp_delta_q=q((resp * dlf).sum(-1) / (nrm(resp) * nrm(dlf)).clamp_min(1e-12)),
+                           per_depth_gain_median=[float(x) for x in gain.median(-1).values],
+                           per_depth_alpha_median=[float(x) for x in alpha_opt.median(-1).values])
         stepper = CorrectionStepper(D, a.warmup, a.corrector, eng.step_many,
                                     omega=a.omega, scale=a.scale, history=a.history,
                                     damping=a.damping, ridge=a.ridge)
@@ -192,7 +218,7 @@ def run(a):
             "final_hidden_rel_l2_mean": float(rel(z[D], ref[D]).mean()),
             "exact_commit_trajectory_bitwise": same_state, "exact_commit_logits_bitwise": same_logit,
             "total_solver_fine_calls": stepper.calls, "total_solver_fine_rows": stepper.eval_rows,
-            "rounds": rounds
+            "rounds": rounds, "jvp_probe": jvp
         })
         prior_exact = committed
         # Advance with original exact AR, never with approximate candidate.
@@ -239,6 +265,7 @@ def main():
     p.add_argument("--history", type=int, default=4)
     p.add_argument("--damping", type=float, default=0.8)
     p.add_argument("--ridge", type=float, default=1e-3)
+    p.add_argument("--jvp-probe", action="store_true", help="C3: directional response vs scalar-Jacobian surrogate")
     p.add_argument("--seed", type=int, default=20261121)
     p.add_argument("--out", required=True, help="output stem, writes .json and .meta.json")
     p.add_argument("--allow-gpu", action="store_true")

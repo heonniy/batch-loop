@@ -90,7 +90,9 @@ def run_manifest(plan_path, run_dir, gpu_ids, wall_limit_hours, *, allowed):
            job["argv"][1] == "-m" and job["argv"][2] in {
             "parallel_depth_poc.e0_native_parity",
             "parallel_depth_poc.e1_oracle_width",
-            "parallel_depth_poc.depth_diag"}):
+            "parallel_depth_poc.depth_diag",
+            "parallel_depth_search.g0_checks",
+            "parallel_depth_search.e2e_decoder"}):
             raise ValueError("unreviewed job module; refuse to run")
         if not all(isinstance(s, str) for s in job["argv"]):
             raise ValueError("argv must be literal string list")
