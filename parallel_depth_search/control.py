@@ -186,6 +186,7 @@ def ingest(directory, receipt_path):
 
 
 def classify(r, cfg):
+    """Interpret one real, auditable receipt. Do not equate exact and approximate."""
     if r["state"] == "not_run":
         return "not_run"
     if r["state"] in ("failed_infrastructure", "failed_correctness"):
@@ -195,7 +196,20 @@ def classify(r, cfg):
     n = next(x for x in cfg["nodes"] if x["id"] == r["node_id"])
     m = r["metrics"]
     if n["id"] in FOUNDATION_KEYS:
-        return "completed" if m.get(FOUNDATION_KEYS[n["id"]]) is True else "investigate_correctness"
+        passed = m.get(FOUNDATION_KEYS[n["id"]]) is True
+        if n["id"] == "G0_NATIVE":
+            passed = passed and set(m.get("models_verified", [])) >= {
+                "huginn-3.5b", "ouro-1.4b", "ouro-2.6b"}
+            passed = passed and m.get("fp32_native_parity") is True
+            passed = passed and m.get("bf16_batch_order_tested") is True
+        elif n["id"] == "G0_KV":
+            passed = passed and all(m.get(k) is True for k in (
+                "candidate_cache_isolated", "coda_cache_parity",
+                "per_depth_bank_parity", "native_rollout_match"))
+        elif n["id"] == "G0_DATA":
+            passed = passed and bool(m.get("split_manifest_sha256"))
+            passed = passed and m.get("cross_split_duplicates", 1) == 0
+        return "completed" if passed else "investigate_correctness"
     count = int(m.get("sample_count", 0))
     if n["phase"] == "final":
         if count < cfg["final_min_samples"]:
@@ -214,12 +228,19 @@ def classify(r, cfg):
         return "inconclusive_missing_ci"
     if m["accuracy_delta_ci_low"] < -cfg["noninferiority_margin_accuracy"]:
         return "contradicted_quality"
-    if m.get("unverified_kv_fidelity") is True:
-        return "investigate_kv_fidelity"
+    tier = m.get("fidelity_tier", "approximate")
+    if tier not in ("exact", "quality_noninferior", "approximate"):
+        return "investigate_fidelity_definition"
+    if tier == "exact":
+        if m.get("unverified_kv_fidelity") is not False or m.get("sequence_exact_rate", 0) < 1.0:
+            return "investigate_exactness_claim"
     if m["speedup_ci_low"] > cfg["minimum_speedup_lower_ci"]:
-        return "promising_candidate" if n["phase"] != "final" else "supported_heldout"
+        if tier == "exact":
+            return "promising_exact" if n["phase"] != "final" else "supported_heldout_exact"
+        if tier == "quality_noninferior":
+            return "promising_quality_matched_approx" if n["phase"] != "final" else "supported_heldout_quality_matched"
+        return "promising_unmatched_approx" if n["phase"] != "final" else "supported_heldout_unmatched_approx"
     return "inconclusive_or_no_speedup"
-
 
 def state_for(directory):
     cfg = program()
@@ -235,8 +256,11 @@ def state_for(directory):
 
 def propose(directory):
     cfg, rows, state = state_for(directory)
-    finished = {"completed", "completed_diagnostic", "promising_candidate",
-                "supported_heldout", "contradicted_quality", "inconclusive_or_no_speedup"}
+    finished = {"completed", "completed_diagnostic",
+                "promising_exact", "promising_quality_matched_approx",
+                "promising_unmatched_approx", "supported_heldout_exact",
+                "supported_heldout_quality_matched", "supported_heldout_unmatched_approx",
+                "contradicted_quality", "inconclusive_or_no_speedup"}
     ready, investigate, blocked = [], [], []
     for n in cfg["nodes"]:
         id_, current = n["id"], state.get(n["id"])

@@ -55,8 +55,14 @@ def assess(r, cfg):
         lo, acc = m.get("speedup_ci_low"), m.get("accuracy_delta_ci_low")
         if lo is None or acc is None:
             return {"rankable": False, "reason": "missing paired speed/accuracy CI"}
-        if m.get("unverified_kv_fidelity") is True:
-            return {"rankable": False, "reason": "candidate KV not independently verified"}
+        tier = m.get("fidelity_tier")
+        if tier not in ("exact", "quality_noninferior"):
+            return {"rankable": False, "reason": "not matched-quality claim"}
+        if tier == "exact" and (
+            m.get("unverified_kv_fidelity") is not False
+            or m.get("sequence_exact_rate", 0) < 1.0
+        ):
+            return {"rankable": False, "reason": "exact claim lacks sequence + KV verification"}
         if acc < -cfg["noninferiority_margin_accuracy"]:
             return {"rankable": False, "reason": "fails preregistered quality noninferiority"}
         if lo <= cfg["minimum_speedup_lower_ci"]:
