@@ -201,7 +201,7 @@ def e2e_summary(rows, baseline="AR", n_boot=2000, seed=0):
     return out
 
 
-def e2e_node(res):
+def e2e_node(res, baseline="AR"):
     rows = []
     for f in sorted(res.glob("*.jsonl")):
         rs = load_e2e([f])
@@ -209,10 +209,12 @@ def e2e_node(res):
         for r in rs:
             r["_cell"] = (f"D{meta['depth']}|init={meta['init']}|corr={meta['corrector']}|{meta.get('fewshot_used')}shot"
                           f"|{meta.get('dtype', 'bfloat16')}|seed{meta.get('seed')}")
+            for k in ("model", "task", "split"):
+                r.setdefault(k, meta[k])
             r["B_actual"] = r.get("B")
             r["B"] = meta["batch"]                 # nominal batch: a trailing partial cohort stays in its cell
         rows += rs
-    s = e2e_summary(rows)
+    s = e2e_summary(rows, baseline=baseline)
     ooms = sorted({f"{r['model']}|B{r['B']}|{r['arm']}" for r in rows if r.get("oom")})
     return dict(cells=s, oom=ooms, sample_count=len({(r["model"], r["prompt_idx"]) for r in rows if not r.get("oom")}),
                 full_e2e_measured=True)
@@ -226,12 +228,13 @@ def main():
     p.add_argument("--run-dir", required=True)
     p.add_argument("--node", required=True)
     p.add_argument("--out", required=True)
+    p.add_argument("--baseline", default="AR", help="e2e reference arm (e.g. trunc3 for candidate-vs-truncation)")
     a = p.parse_args()
     res = Path(a.run_dir) / "results" / a.node
     if a.node in NODE_FN:
         m = NODE_FN[a.node](res)
     elif list(res.glob("*.jsonl")):
-        m = e2e_node(res)
+        m = e2e_node(res, a.baseline)
     else:
         m = diag_jobs(res)
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
