@@ -1,0 +1,74 @@
+{
+ "node_id": "G0_DATA",
+ "trial_id": "G0_DATA-52d5fdb427c6",
+ "state": "executed",
+ "source_git_sha": "09f2008dbdc7fbd81f3019c2bbcd4e2fd8ee1261",
+ "command": [
+  "(cpu) see metrics.provenance"
+ ],
+ "data_split": "pilot",
+ "model": "n/a",
+ "seed": 20261121,
+ "method": "Deduplicate prompt IDs; freeze source & SHA; n200 dev/n>=500 final where possible, alternate seeds.",
+ "literature_checks": [
+  {
+   "paper_id": "P-2510-24824",
+   "url": "https://arxiv.org/abs/2510.24824",
+   "version": "v1",
+   "claim": "The Parallel Loop Transformer evaluates different loop iterations for different tokens concurrently (shared first-loop KV plus gated sliding-window attention), reportedly matching looped accuracy with little added latency/memory over a non-looped model.",
+   "transfer_caveat": "It changes which token states are available at each depth and is trained with that architecture (shared first-loop KV is not a drop-in policy for existing Huginn/Ouro checkpoints), and FLOPs still grow with loop count.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2510-24824.md"
+  }
+ ],
+ "metrics": {
+  "frozen_split_pass": true,
+  "split_manifest_sha256": "30961d459b96d870573bfec498a4a25e91269f4ad1313391a99fd5383e3699fd",
+  "cross_split_duplicates": 0,
+  "fewshot_leaks": 0,
+  "splits": {
+   "gsm8k": {
+    "pilot": [
+     0,
+     128
+    ],
+    "dev": [
+     200,
+     400
+    ],
+    "test": [
+     700,
+     1200
+    ]
+   },
+   "math500": {
+    "dev": [
+     0,
+     200
+    ],
+    "test": [
+     200,
+     500
+    ]
+   }
+  },
+  "sample_count": 1819,
+  "provenance": "python -m parallel_depth_search.g0_data (CPU)",
+  "cpu_only_nominal_gpu_hours": true
+ },
+ "hardware": {
+  "gpu_name": "CPU",
+  "gpu_names": [],
+  "gpu_indices": [],
+  "jobs_ok": 0,
+  "jobs_failed": 0
+ },
+ "artifacts": {
+  "sha256": "5667492c3c5cbb1dbdf166b6e779e1e23571e4808725e4c4066d705f00613a35",
+  "files": {
+   "results/G0_DATA/split_manifest.json": "7a873d832d0502cb71db9454bb15aa46d7de4f552340fadfe6342c6a7085b983"
+  },
+  "failed_jobs": []
+ },
+ "gpu_hours": 0.0001
+}

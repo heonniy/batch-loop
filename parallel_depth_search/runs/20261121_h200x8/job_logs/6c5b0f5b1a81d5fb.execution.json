@@ -1,0 +1,28 @@
+{
+  "job_id": "6c5b0f5b1a81d5fb",
+  "node_id": "G1_WIDTH",
+  "gpu_index": 0,
+  "gpu_name": "NVIDIA H200",
+  "gpu_uuid": "GPU-6b56b49e-2472-9e55-7d0a-74a087b4132e",
+  "started": "2026-11-20T17:29:37.267632+00:00",
+  "elapsed_seconds": 64.96251449687406,
+  "exit_code": 0,
+  "error": null,
+  "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_poc.e1_oracle_width",
+    "--model",
+    "ouro-1.4b",
+    "--depth",
+    "4",
+    "--prompt-lens",
+    "256,1024",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G1_WIDTH/e1_ouro-1.4b.json",
+    "--allow-gpu"
+  ],
+  "log": "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/job_logs/6c5b0f5b1a81d5fb.log",
+  "research_status": "EXECUTION_ONLY_NOT_SCIENTIFICALLY_VALIDATED",
+  "ingested_into_research_ledger": false
+}

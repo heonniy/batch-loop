@@ -1,0 +1,547 @@
+{
+ "node_id": "P2_WARMUP",
+ "trial_id": "P2_WARMUP-c90e5b644bff",
+ "state": "executed",
+ "source_git_sha": "09f2008dbdc7fbd81f3019c2bbcd4e2fd8ee1261",
+ "command": [
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 4 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/011222bd9657a108",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/11577bfef198e24f",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 3 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/14078609c644187a",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 3 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/2a48e136b0c7ac59",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 3 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/5d95fb2269a37156",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/6cc2d865f028d5ac",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 4 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/805ab6f8a23e4121",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/89e2f0fbd57dd78c",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 2 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/949b5635c9ba6c1c",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 2 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/96f2d2f80a5ac8b4",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 8 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/d04ea4e8aabdc4fe",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 2 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/d1101f6e4eb5b5dc",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 4 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P2_WARMUP/f4f8ff09ce0e0f8c"
+ ],
+ "data_split": "pilot",
+ "model": "huginn-3.5b,ouro-1.4b,ouro-2.6b",
+ "seed": 20261121,
+ "method": "Anchor 1,2,3,4,8; count exact warmup overhead and first corrected token.",
+ "literature_checks": [
+  {
+   "paper_id": "P-2610-35556",
+   "url": "https://arxiv.org/abs/2610.35556",
+   "version": "v1",
+   "claim": "LoopFold trains a predictor and corrector so later recurrent depths of the same token prefix run in parallel stages, reporting 46% lower decoding latency and higher accuracy than a nine-loop vanilla 1.4B model.",
+   "transfer_caveat": "The predictor, corrector and backbone are jointly trained, and no unchanged Huginn/Ouro checkpoint is evaluated, so it does not show training-free parallel-in-depth works.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2610-35556.md"
+  }
+ ],
+ "metrics": {
+  "cells": {
+   "huginn-3.5b|D32|linear|m4|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 4,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.068359375,
+      "kl": 5.578198805451393,
+      "rel": 1.2622355334460735,
+      "rows": 28.0,
+      "solver_ms": 37.105035327840596
+     },
+     {
+      "k": 2,
+      "top1": 0.490234375,
+      "kl": 1.5728539414703846,
+      "rel": 1.1331664472818375,
+      "rows": 56.0,
+      "solver_ms": 61.064700144925155
+     }
+    ],
+    "serial_ref_ms": 118.59861521224957,
+    "warmup_ms": 14.655398510512896,
+    "predictor_ms": 0.5191169329918921,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "huginn-3.5b|D32|linear|m1|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.283203125,
+      "kl": 2.8378664515912533,
+      "rel": 1.2412092760205269,
+      "rows": 31.0,
+      "solver_ms": 35.59747093822807
+     },
+     {
+      "k": 2,
+      "top1": 0.66796875,
+      "kl": 0.762478269636631,
+      "rel": 1.034321740269661,
+      "rows": 62.0,
+      "solver_ms": 63.970746559789404
+     }
+    ],
+    "serial_ref_ms": 138.58677349344362,
+    "warmup_ms": 4.671971983043477,
+    "predictor_ms": 0.5864759295945987,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "ouro-1.4b|D4|linear|m3|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 3,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 1.0,
+      "solver_ms": 20.19175939494744
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 2.0,
+      "solver_ms": 39.30185333592817
+     }
+    ],
+    "serial_ref_ms": 75.3246720705647,
+    "warmup_ms": 55.278885120060295,
+    "predictor_ms": 0.0720348471077159,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-2.6b|D4|linear|m3|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 3,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 1.0,
+      "solver_ms": 35.048493795329705
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 2.0,
+      "solver_ms": 68.35754156054463
+     }
+    ],
+    "serial_ref_ms": 134.58286529930774,
+    "warmup_ms": 98.91212634101976,
+    "predictor_ms": 0.07021505734883249,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "huginn-3.5b|D32|linear|m3|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 3,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.080078125,
+      "kl": 5.683225214481354,
+      "rel": 1.2677398435771465,
+      "rows": 29.0,
+      "solver_ms": 36.93533381738234
+     },
+     {
+      "k": 2,
+      "top1": 0.53515625,
+      "kl": 1.3936764355748892,
+      "rel": 1.1316052228212357,
+      "rows": 58.0,
+      "solver_ms": 60.14130158291664
+     }
+    ],
+    "serial_ref_ms": 116.0102189751342,
+    "warmup_ms": 10.932462799246423,
+    "predictor_ms": 0.5138825654285029,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "ouro-1.4b|D4|linear|m1|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.841796875,
+      "kl": 0.29513869201764464,
+      "rel": 0.7941732574254274,
+      "rows": 3.0,
+      "solver_ms": 21.275961786159314
+     },
+     {
+      "k": 2,
+      "top1": 0.974609375,
+      "kl": 0.01808521269413177,
+      "rel": 0.27918725134804845,
+      "rows": 6.0,
+      "solver_ms": 40.60786585614551
+     }
+    ],
+    "serial_ref_ms": 73.01594589080196,
+    "warmup_ms": 17.65600935323164,
+    "predictor_ms": 0.10360832675360143,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-1.4b|D4|linear|m4|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 4,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 0.0,
+      "solver_ms": 0.14026896678842604
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 0.0,
+      "solver_ms": 0.2701755292946473
+     }
+    ],
+    "serial_ref_ms": 68.25200541061349,
+    "warmup_ms": 66.2499914469663,
+    "predictor_ms": 0.038033511373214424,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-2.6b|D4|linear|m1|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.876953125,
+      "kl": 0.21442158019635826,
+      "rel": 0.9179073125123978,
+      "rows": 3.0,
+      "solver_ms": 38.36378673440777
+     },
+     {
+      "k": 2,
+      "top1": 0.95703125,
+      "kl": 0.026772769168019295,
+      "rel": 0.2999773034825921,
+      "rows": 6.0,
+      "solver_ms": 74.98623436549678
+     }
+    ],
+    "serial_ref_ms": 136.32947651785798,
+    "warmup_ms": 33.394699479686096,
+    "predictor_ms": 0.10352117533329874,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-2.6b|D4|linear|m2|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 2,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.9609375,
+      "kl": 0.041064768040087074,
+      "rel": 0.3020332329906523,
+      "rows": 2.0,
+      "solver_ms": 36.56316903652623
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 4.0,
+      "solver_ms": 71.45206347922795
+     }
+    ],
+    "serial_ref_ms": 135.93704834056552,
+    "warmup_ms": 66.42938278673682,
+    "predictor_ms": 0.08673264528624713,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "huginn-3.5b|D32|linear|m2|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 2,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.08203125,
+      "kl": 5.449870184063911,
+      "rel": 1.3116967417299747,
+      "rows": 30.0,
+      "solver_ms": 32.68883243435994
+     },
+     {
+      "k": 2,
+      "top1": 0.552734375,
+      "kl": 1.3275284301489592,
+      "rel": 1.1373267248272896,
+      "rows": 60.0,
+      "solver_ms": 60.79065945232287
+     }
+    ],
+    "serial_ref_ms": 138.90097124385647,
+    "warmup_ms": 10.146689470275305,
+    "predictor_ms": 0.6308453303063288,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "huginn-3.5b|D32|linear|m8|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 8,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.12109375,
+      "kl": 4.813252188265324,
+      "rel": 1.2664609029889107,
+      "rows": 24.0,
+      "solver_ms": 31.93706925958395
+     },
+     {
+      "k": 2,
+      "top1": 0.5234375,
+      "kl": 1.313044710084796,
+      "rel": 1.126560851931572,
+      "rows": 48.0,
+      "solver_ms": 52.10902546241414
+     }
+    ],
+    "serial_ref_ms": 121.1785953346407,
+    "warmup_ms": 31.389100913656875,
+    "predictor_ms": 0.456915280665271,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "ouro-1.4b|D4|linear|m2|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 2,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.94921875,
+      "kl": 0.046729092427995056,
+      "rel": 0.33890832774341106,
+      "rows": 2.0,
+      "solver_ms": 18.940342459245585
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 4.0,
+      "solver_ms": 36.04503322276287
+     }
+    ],
+    "serial_ref_ms": 69.27775760414079,
+    "warmup_ms": 32.44565660133958,
+    "predictor_ms": 0.08292573329526931,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-2.6b|D4|linear|m4|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 4,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 0.0,
+      "solver_ms": 0.1490741124143824
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 0.0,
+      "solver_ms": 0.28167870186734945
+     }
+    ],
+    "serial_ref_ms": 141.9040138280252,
+    "warmup_ms": 139.25327494507656,
+    "predictor_ms": 0.042150437366217375,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   }
+  },
+  "sample_count": 6656,
+  "label": "teacher-forced diagnostic (exact AR advances; exact commit each token); not serving speed"
+ },
+ "hardware": {
+  "gpu_name": "NVIDIA H200",
+  "gpu_names": [
+   "NVIDIA H200"
+  ],
+  "gpu_indices": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "jobs_ok": 13,
+  "jobs_failed": 0
+ },
+ "artifacts": {
+  "sha256": "cd17dd5f83255d093f8f2e638b177fabbefb1e1b824be8500113fbe953060374",
+  "files": {
+   "results/P2_WARMUP/011222bd9657a108.json": "7bf36ad9417591760834f566ede77800d8394548241751059ca40b8777a443f2",
+   "results/P2_WARMUP/011222bd9657a108.meta.json": "d4c274438d5a8cf8085c8f9da78d35a28872a2049bad6646b02cfe1b03a9a1fb",
+   "results/P2_WARMUP/11577bfef198e24f.json": "773351e46e3cfd900118c16ea7105b26c9ce057215614d878afe7d2c287ea20e",
+   "results/P2_WARMUP/11577bfef198e24f.meta.json": "307a72b8049b66e83a259bbcbaafb69f5c42f123a775d605a2aa22eacf6f1424",
+   "results/P2_WARMUP/14078609c644187a.json": "1b960035a5a6809e766488b9a02a3cb37984a171d74308f13b1528cc55c833d1",
+   "results/P2_WARMUP/14078609c644187a.meta.json": "719edb094e3307bbf01072910fbe274c3aaa4b09d342b53aebf62c59cce6a3a4",
+   "results/P2_WARMUP/2a48e136b0c7ac59.json": "3868cf6d644dfad1856f0d9e1a1dd1e5b8b9bc6432521f184ecdf68b26bd47e4",
+   "results/P2_WARMUP/2a48e136b0c7ac59.meta.json": "dcd07657a5b5d5eacc343e84e892a2404734d379a89422030e0f6933ca68a870",
+   "results/P2_WARMUP/5d95fb2269a37156.json": "59c91db7097cdae696ec96662cc6b6543933c637f419f313a6718b8f2e8b5b27",
+   "results/P2_WARMUP/5d95fb2269a37156.meta.json": "f9164930f2bde20d39b47e142b650eb26c8540921d70dcb7422db1dd569b84b4",
+   "results/P2_WARMUP/6cc2d865f028d5ac.json": "986ea0d7a22c8fe7b9d6e8b90cba813cabc8eb753b5ce49649072ece691008b0",
+   "results/P2_WARMUP/6cc2d865f028d5ac.meta.json": "266a4dfba48e1429745d82094b78ceae164cd537e15a2c02a7c9605b812e9ed3",
+   "results/P2_WARMUP/805ab6f8a23e4121.json": "d16771b1840e6753dbaa0724bf775c0ae8a5347652fd9428a788dfde608a207f",
+   "results/P2_WARMUP/805ab6f8a23e4121.meta.json": "248621e269dcbf78a7ba4fd16ab93d13030480cd06783e8d313d0bdd14d2d4c9",
+   "results/P2_WARMUP/89e2f0fbd57dd78c.json": "77e5b1edaf6cf58868236169869cca3592a8cff592aa7a629ddb23d148153eeb",
+   "results/P2_WARMUP/89e2f0fbd57dd78c.meta.json": "58b076e961db4ff10391619264d7c3f0b652e7c01882a93554b56559bda4f550",
+   "results/P2_WARMUP/949b5635c9ba6c1c.json": "a5102fb060ceedc38d590bed78652cc9cd4139de05ff0d82d539899e2a30c1a6",
+   "results/P2_WARMUP/949b5635c9ba6c1c.meta.json": "21f9cd60ab1e440e9bc3b1eebf5c23d0ac50b2cc40e3c6355e6963101052f46c",
+   "results/P2_WARMUP/96f2d2f80a5ac8b4.json": "ed56caaa8fa268120ecdad59897d425243a53d1d8658340a345ffd2b5d35137e",
+   "results/P2_WARMUP/96f2d2f80a5ac8b4.meta.json": "1020b8addeec5905eef5fce1bd71d1ce705c6f4d43d44c4765ee19716c94fba7",
+   "results/P2_WARMUP/d04ea4e8aabdc4fe.json": "c7c88c0b91c43a5879e939c972eda3eb13f87a6430edc50fa42f91ccbb3cffb8",
+   "results/P2_WARMUP/d04ea4e8aabdc4fe.meta.json": "362e51e35187b3b8b6f990b3f31539930ac4685c18d9da6d1dacb62906d0b757",
+   "results/P2_WARMUP/d1101f6e4eb5b5dc.json": "ad6fb689cf3eea6ba699db58689650ab642d69e29493d8cdd4ce8be9b475827a",
+   "results/P2_WARMUP/d1101f6e4eb5b5dc.meta.json": "6ea1a2271104a8a10468f2be29d0533654927e8c69dcb2959605aa41064944ee",
+   "results/P2_WARMUP/f4f8ff09ce0e0f8c.json": "f3fb4d639b44f0e7ce2fbf3b4b681846ac1115404ff69683b26ad877c97c0f42",
+   "results/P2_WARMUP/f4f8ff09ce0e0f8c.meta.json": "7b0aa0d8e90c026b43eef6f0198340b346866186b5c6a0566310559526e2435c"
+  },
+  "failed_jobs": []
+ },
+ "gpu_hours": 0.0943
+}

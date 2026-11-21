@@ -1,0 +1,114 @@
+{
+ "status": "PLANNED_ONLY_NO_GPU_JOB_LAUNCHED",
+ "run_dir": "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8",
+ "jobs": [
+  {
+   "job_id": "8e15c8a4362705cc",
+   "node_id": "J1_PARETO",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.e2e_decoder",
+    "--model",
+    "huginn-3.5b",
+    "--depth",
+    "32",
+    "--arms",
+    "AR,trunc8,trunc16,trunc24,skip1_7,skip1_15,skip1_23,skip8_8",
+    "--init",
+    "constant",
+    "--task",
+    "gsm8k",
+    "--split",
+    "dev",
+    "--idx-start",
+    "200",
+    "--n",
+    "100",
+    "--batch",
+    "16",
+    "--max-new",
+    "256",
+    "--allow-gpu",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/J1_PARETO/8e15c8a4362705cc"
+   ],
+   "timeout_s": 28800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "e2e_free_running",
+   "fields": {
+    "model": "huginn-3.5b",
+    "B": 16,
+    "arms": "AR,trunc8,trunc16,trunc24,skip1_7,skip1_15,skip1_23,skip8_8",
+    "init": "constant",
+    "idx": 200,
+    "n": 100,
+    "split": "dev",
+    "task": "gsm8k"
+   },
+   "papers_to_check": [
+    "P-2610-35556",
+    "P-2605-17842",
+    "P-2402-09970"
+   ]
+  },
+  {
+   "job_id": "d84440a73a2fa128",
+   "node_id": "J1_PARETO",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.e2e_decoder",
+    "--model",
+    "huginn-3.5b",
+    "--depth",
+    "32",
+    "--arms",
+    "AR,trunc8,trunc16,trunc24,skip1_7,skip1_15,skip1_23,skip8_8",
+    "--init",
+    "constant",
+    "--task",
+    "gsm8k",
+    "--split",
+    "dev",
+    "--idx-start",
+    "300",
+    "--n",
+    "100",
+    "--batch",
+    "16",
+    "--max-new",
+    "256",
+    "--allow-gpu",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/J1_PARETO/d84440a73a2fa128"
+   ],
+   "timeout_s": 28800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "e2e_free_running",
+   "fields": {
+    "model": "huginn-3.5b",
+    "B": 16,
+    "arms": "AR,trunc8,trunc16,trunc24,skip1_7,skip1_15,skip1_23,skip8_8",
+    "init": "constant",
+    "idx": 300,
+    "n": 100,
+    "split": "dev",
+    "task": "gsm8k"
+   },
+   "papers_to_check": [
+    "P-2610-35556",
+    "P-2605-17842",
+    "P-2402-09970"
+   ]
+  }
+ ],
+ "nodes": [
+  "J1_PARETO",
+  "J1_PARETO"
+ ],
+ "concurrent_with_prerequisites": [
+  "J1_PARETO"
+ ],
+ "dropped_as_round_prefix_of_kept_job": []
+}

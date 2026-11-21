@@ -1,0 +1,509 @@
+{
+ "node_id": "P3_GEOMETRIC",
+ "trial_id": "P3_GEOMETRIC-28b0a069322f",
+ "state": "executed",
+ "source_git_sha": "09f2008dbdc7fbd81f3019c2bbcd4e2fd8ee1261",
+ "command": [
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 2 --predictor secant --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/08b5dac1031726a1",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 3 --predictor secant --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/1573efd532c99348",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 2 --predictor secant --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/32e3dcebec82e6e5",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 2 --predictor geometric --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/4ed748a376cbaf1d",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 3 --predictor secant --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/85d75f92eff6b54a",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 3 --predictor geometric --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/88db3c6205f3ae26",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 2 --predictor geometric --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/8c33aed15fab6a11",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 3 --predictor geometric --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/9aa7359312790652",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 2 --predictor secant --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/d77b6390dc62e464",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 3 --predictor geometric --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/fb218e1a08e187c2",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 3 --predictor secant --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/fb22b9124ba2ab1b",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 2 --predictor geometric --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P3_GEOMETRIC/fdadd86a447ab7cf"
+ ],
+ "data_split": "pilot",
+ "model": "huginn-3.5b,ouro-1.4b,ouro-2.6b",
+ "seed": 20261121,
+ "method": "Geometric ratio and clipped damped secant; depth-delta spectral and trend control.",
+ "literature_checks": [
+  {
+   "paper_id": "P-2508-16817",
+   "url": "https://arxiv.org/abs/2508.16817",
+   "version": "v4",
+   "claim": "The authors tie the largest Lyapunov exponent (predictability) to the conditioning of parallel Newton-style evaluation, showing predictable systems parallelize in at worst O((log T)^2) while unpredictable ones converge too slowly.",
+   "transfer_caveat": "The theory's assumptions and global Lyapunov exponents are not established for Huginn, where only local perturbation ratios have been measured.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2508-16817.md"
+  }
+ ],
+ "metrics": {
+  "cells": {
+   "ouro-1.4b|D4|secant|m2|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "secant",
+    "warmup": 2,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.94921875,
+      "kl": 0.046729092427995056,
+      "rel": 0.33890832774341106,
+      "rows": 2.0,
+      "solver_ms": 19.205470191081986
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 4.0,
+      "solver_ms": 36.48538689594716
+     }
+    ],
+    "serial_ref_ms": 68.8251998508349,
+    "warmup_ms": 32.87096798885614,
+    "predictor_ms": 0.08088028698693961,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-1.4b|D4|secant|m3|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "secant",
+    "warmup": 3,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 1.0,
+      "solver_ms": 19.441923272097483
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 2.0,
+      "solver_ms": 37.60016329761129
+     }
+    ],
+    "serial_ref_ms": 75.85849532915745,
+    "warmup_ms": 52.83291845989879,
+    "predictor_ms": 0.07592156180180609,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-2.6b|D4|secant|m2|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "secant",
+    "warmup": 2,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.9609375,
+      "kl": 0.041064768040087074,
+      "rel": 0.3020332329906523,
+      "rows": 2.0,
+      "solver_ms": 38.075421820394695
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 4.0,
+      "solver_ms": 75.49941810430028
+     }
+    ],
+    "serial_ref_ms": 142.40376072120853,
+    "warmup_ms": 70.57722991157789,
+    "predictor_ms": 0.09187741670757532,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-2.6b|D4|geometric|m2|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "geometric",
+    "warmup": 2,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.978515625,
+      "kl": 0.008240410563303158,
+      "rel": 0.13093546335585415,
+      "rows": 2.0,
+      "solver_ms": 36.092581911361776
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 4.0,
+      "solver_ms": 70.88596357789356
+     }
+    ],
+    "serial_ref_ms": 134.7958471160382,
+    "warmup_ms": 66.56953733181581,
+    "predictor_ms": 1.1093335633631796,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "huginn-3.5b|D32|secant|m3|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "secant",
+    "warmup": 3,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.080078125,
+      "kl": 5.683225214481354,
+      "rel": 1.2677398435771465,
+      "rows": 29.0,
+      "solver_ms": 37.0582923933398
+     },
+     {
+      "k": 2,
+      "top1": 0.53515625,
+      "kl": 1.3936764355748892,
+      "rel": 1.1316052228212357,
+      "rows": 58.0,
+      "solver_ms": 60.43986110307742
+     }
+    ],
+    "serial_ref_ms": 121.69154913863167,
+    "warmup_ms": 11.642563928035088,
+    "predictor_ms": 0.551924982573837,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "ouro-2.6b|D4|geometric|m3|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "geometric",
+    "warmup": 3,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 1.0,
+      "solver_ms": 34.41881467006169
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 2.0,
+      "solver_ms": 67.70219863392413
+     }
+    ],
+    "serial_ref_ms": 134.23775392584503,
+    "warmup_ms": 99.01221173640806,
+    "predictor_ms": 1.099580549634993,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "huginn-3.5b|D32|geometric|m2|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "geometric",
+    "warmup": 2,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.783203125,
+      "kl": 0.35746022732928395,
+      "rel": 0.8876346834003925,
+      "rows": 30.0,
+      "solver_ms": 31.265901954611763
+     },
+     {
+      "k": 2,
+      "top1": 0.83203125,
+      "kl": 0.1826989280525595,
+      "rel": 0.68097741343081,
+      "rows": 60.0,
+      "solver_ms": 56.78763128526043
+     }
+    ],
+    "serial_ref_ms": 149.62085949082393,
+    "warmup_ms": 10.505674581509084,
+    "predictor_ms": 9.207210197928362,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "huginn-3.5b|D32|geometric|m3|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "geometric",
+    "warmup": 3,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.80859375,
+      "kl": 0.24832544452510774,
+      "rel": 0.7642003819346428,
+      "rows": 29.0,
+      "solver_ms": 36.233381484635174
+     },
+     {
+      "k": 2,
+      "top1": 0.8671875,
+      "kl": 0.12852722429670393,
+      "rel": 0.5797370579093695,
+      "rows": 58.0,
+      "solver_ms": 60.44654391007498
+     }
+    ],
+    "serial_ref_ms": 132.52455834299326,
+    "warmup_ms": 13.34554461936932,
+    "predictor_ms": 9.495375255937688,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "huginn-3.5b|D32|secant|m2|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "secant",
+    "warmup": 2,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.08203125,
+      "kl": 5.449870184063911,
+      "rel": 1.3116967417299747,
+      "rows": 30.0,
+      "solver_ms": 35.49246191687416
+     },
+     {
+      "k": 2,
+      "top1": 0.552734375,
+      "kl": 1.3275284301489592,
+      "rel": 1.1373267248272896,
+      "rows": 60.0,
+      "solver_ms": 60.20754834753461
+     }
+    ],
+    "serial_ref_ms": 145.85059689125046,
+    "warmup_ms": 10.797796567203477,
+    "predictor_ms": 0.5669237143592909,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "ouro-1.4b|D4|geometric|m3|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "geometric",
+    "warmup": 3,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 1.0,
+      "solver_ms": 17.980291828280315
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 2.0,
+      "solver_ms": 34.69091031001881
+     }
+    ],
+    "serial_ref_ms": 68.95157841790933,
+    "warmup_ms": 49.12551947927568,
+    "predictor_ms": 1.0702932777348906,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-2.6b|D4|secant|m3|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "secant",
+    "warmup": 3,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 1.0,
+      "solver_ms": 34.843317422200926
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 2.0,
+      "solver_ms": 68.25284882506821
+     }
+    ],
+    "serial_ref_ms": 134.98430635081604,
+    "warmup_ms": 100.16134682518896,
+    "predictor_ms": 0.06974970165174454,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-1.4b|D4|geometric|m2|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "geometric",
+    "warmup": 2,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.978515625,
+      "kl": 0.014962008826842066,
+      "rel": 0.16759686986915767,
+      "rows": 2.0,
+      "solver_ms": 18.45491885615047
+     },
+     {
+      "k": 2,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 4.0,
+      "solver_ms": 35.72472445375752
+     }
+    ],
+    "serial_ref_ms": 67.07075326994527,
+    "warmup_ms": 32.51264145364985,
+    "predictor_ms": 1.0845887009054422,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   }
+  },
+  "sample_count": 6144,
+  "label": "teacher-forced diagnostic (exact AR advances; exact commit each token); not serving speed"
+ },
+ "hardware": {
+  "gpu_name": "NVIDIA H200",
+  "gpu_names": [
+   "NVIDIA H200"
+  ],
+  "gpu_indices": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "jobs_ok": 12,
+  "jobs_failed": 0
+ },
+ "artifacts": {
+  "sha256": "bc61e3d66c97c0564162fd572379779d75522b1ef9f24def339e6c0b12da29e1",
+  "files": {
+   "results/P3_GEOMETRIC/08b5dac1031726a1.json": "4ade46930909cf29fd90ccf87ee9878a7685646da9a38b4146564b0c84c6330a",
+   "results/P3_GEOMETRIC/08b5dac1031726a1.meta.json": "31b5cc1d32d508681d97c7780ae1a269a6b82bdb19597cb9648843d91d01de6e",
+   "results/P3_GEOMETRIC/1573efd532c99348.json": "87377aa00d97fb84fd70df533b3905b6dde59018257835010ce7c2ecd9cd7733",
+   "results/P3_GEOMETRIC/1573efd532c99348.meta.json": "e64e35e074ebda13a10c898ad6d54800fc5dfade2b0b7157784613aa0a888829",
+   "results/P3_GEOMETRIC/32e3dcebec82e6e5.json": "22fd12afda4f19073847d4a4ddc73ce7b81889fb00a270b4f4aecd0f5ee02f65",
+   "results/P3_GEOMETRIC/32e3dcebec82e6e5.meta.json": "ec13f41ab35a391a5e3964a0222f34e0f0249c22e09197a8b51314c5cefa8266",
+   "results/P3_GEOMETRIC/4ed748a376cbaf1d.json": "cb48bdfb944dd1f49d987c96134e4b72d9bc18a6275c3443131d4e1d11b04333",
+   "results/P3_GEOMETRIC/4ed748a376cbaf1d.meta.json": "3e68bb8db959b60754264d86ff97f83416b77b0c8b456340202b19ebe9fb7759",
+   "results/P3_GEOMETRIC/85d75f92eff6b54a.json": "368cea2ab4c09f5b8963b13110e61724c00dec389ffaf3a49944283f9647240e",
+   "results/P3_GEOMETRIC/85d75f92eff6b54a.meta.json": "22199d412e73c93dce4eb676ea5b2b9ed869308003cbcf0fcb0eda3f87e03f56",
+   "results/P3_GEOMETRIC/88db3c6205f3ae26.json": "d7c3d1c308a91e3b899bf668398596d8a00911a11a34f909db8f93e1e3dfc94a",
+   "results/P3_GEOMETRIC/88db3c6205f3ae26.meta.json": "66bff96c28b5453fe5aa18b9e01951412684756b5b48807f7a0166db8c9fc4d1",
+   "results/P3_GEOMETRIC/8c33aed15fab6a11.json": "96f35976ba890ba0b2e533c540635daf0f171a3263392f4620d9974e3df0e6d9",
+   "results/P3_GEOMETRIC/8c33aed15fab6a11.meta.json": "e4607044be82adc23f19365b684b143f44aca776d3e0d9e19b0f17132b624cbe",
+   "results/P3_GEOMETRIC/9aa7359312790652.json": "d5421cc2776b05d0283f10b5c132c1878792a99b9cff04e916c603a1dc5740eb",
+   "results/P3_GEOMETRIC/9aa7359312790652.meta.json": "099c3f3d452aa68c9cefb998968b2c9f8439cc348bc6f12a202e735d2e992863",
+   "results/P3_GEOMETRIC/d77b6390dc62e464.json": "ea8aef68b2845004a4b6f4f67ef835dc5ae51a79996172371750b9637fa48aed",
+   "results/P3_GEOMETRIC/d77b6390dc62e464.meta.json": "f9c4405346ab83fb4765e764dfc9a1124567278873d8ce8dbae6f63b9b6e3ebb",
+   "results/P3_GEOMETRIC/fb218e1a08e187c2.json": "890129c7d1586790bd2dacbef077d57945d1453ebfa764a150e497f0522b9fb2",
+   "results/P3_GEOMETRIC/fb218e1a08e187c2.meta.json": "b6f2bb541ee741cf7c809c26fafa748a314c21169501d99cf99df960c93067a7",
+   "results/P3_GEOMETRIC/fb22b9124ba2ab1b.json": "242e6d9cddb275c5b358b3fd905700001616e0ee6f23dcc90f9f86a2cc59fce9",
+   "results/P3_GEOMETRIC/fb22b9124ba2ab1b.meta.json": "8a57ecf7b199eda67ffceed731214e6c6474981548787c4aa0f0e343158aedbb",
+   "results/P3_GEOMETRIC/fdadd86a447ab7cf.json": "5cd0816e2e6e0e0e301133fad01861f32b318f281c2d2e56f3a0164957752f26",
+   "results/P3_GEOMETRIC/fdadd86a447ab7cf.meta.json": "62e16587f84d096bdfa9b4c354e2677aa202458f2bdca730e86078080ddca688"
+  },
+  "failed_jobs": []
+ },
+ "gpu_hours": 0.0826
+}

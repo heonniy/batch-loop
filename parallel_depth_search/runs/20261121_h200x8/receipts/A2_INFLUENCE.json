@@ -1,0 +1,329 @@
+{
+ "node_id": "A2_INFLUENCE",
+ "trial_id": "A2_INFLUENCE-7fd1801b859d",
+ "state": "executed",
+ "source_git_sha": "09f2008dbdc7fbd81f3019c2bbcd4e2fd8ee1261",
+ "command": [
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 4 --allocation residual_topk --width 8 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/A2_INFLUENCE/08d2b4570635ee40",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 4 --allocation residual_topk --width 16 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/A2_INFLUENCE/5f072c50ef9cd88f",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 4 --allocation residual_topk --width 4 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/A2_INFLUENCE/8616327111fe8948",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 4 --allocation residual_topk --width 3 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/A2_INFLUENCE/99250be28e09cc6f",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 4 --allocation residual_topk --width 3 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/A2_INFLUENCE/f1360c710466ff67"
+ ],
+ "data_split": "pilot",
+ "model": "huginn-3.5b,ouro-1.4b,ouro-2.6b",
+ "seed": 20261121,
+ "method": "Per-depth residual and JVP sensitivity, stratum match same FLOPs & width.",
+ "literature_checks": [
+  {
+   "paper_id": "P-2508-16817",
+   "url": "https://arxiv.org/abs/2508.16817",
+   "version": "v4",
+   "claim": "The authors tie the largest Lyapunov exponent (predictability) to the conditioning of parallel Newton-style evaluation, showing predictable systems parallelize in at worst O((log T)^2) while unpredictable ones converge too slowly.",
+   "transfer_caveat": "The theory's assumptions and global Lyapunov exponents are not established for Huginn, where only local perturbation ratios have been measured.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2508-16817.md"
+  },
+  {
+   "paper_id": "P-2505-24791",
+   "url": "https://arxiv.org/abs/2505.24791",
+   "version": "v2",
+   "claim": "The authors apply Jacobi decoding selectively to layers of discrete autoregressive normalizing flows with redundant dependencies, reporting superlinear convergence and up to 4.7x faster inference without quality loss.",
+   "transfer_caveat": "Autoregressive normalizing flows are not looped Transformers and have different convergence constraints.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2505-24791.md"
+  }
+ ],
+ "metrics": {
+  "cells": {
+   "huginn-3.5b|D32|constant|m1|jacobi|residual_topk8|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "residual_topk",
+    "width": 8,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.728515625,
+      "kl": 0.5803280994296074,
+      "rel": 1.0242310799658298,
+      "rows": 31.0,
+      "solver_ms": 29.090130410622805
+     },
+     {
+      "k": 2,
+      "top1": 0.828125,
+      "kl": 0.2393464285414666,
+      "rel": 0.7741660978645086,
+      "rows": 39.0,
+      "solver_ms": 39.08575179229956
+     },
+     {
+      "k": 3,
+      "top1": 0.845703125,
+      "kl": 0.16506592137739062,
+      "rel": 0.6456880643963814,
+      "rows": 47.0,
+      "solver_ms": 48.66714557283558
+     },
+     {
+      "k": 4,
+      "top1": 0.86328125,
+      "kl": 0.13111393142025918,
+      "rel": 0.5586693659424782,
+      "rows": 55.0,
+      "solver_ms": 58.34154064359609
+     }
+    ],
+    "serial_ref_ms": 108.84207587514538,
+    "warmup_ms": 3.490509741823189,
+    "predictor_ms": 0.31916201987769455,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "huginn-3.5b|D32|constant|m1|jacobi|residual_topk16|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "residual_topk",
+    "width": 16,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.728515625,
+      "kl": 0.5803280994296074,
+      "rel": 1.0242310799658298,
+      "rows": 31.0,
+      "solver_ms": 26.25180642644409
+     },
+     {
+      "k": 2,
+      "top1": 0.828125,
+      "kl": 0.23958863783627748,
+      "rel": 0.7741539180278778,
+      "rows": 47.0,
+      "solver_ms": 40.43968454061542
+     },
+     {
+      "k": 3,
+      "top1": 0.8671875,
+      "kl": 0.13726443576160818,
+      "rel": 0.6034247148782015,
+      "rows": 63.0,
+      "solver_ms": 54.28415272035636
+     },
+     {
+      "k": 4,
+      "top1": 0.880859375,
+      "kl": 0.09030907147098333,
+      "rel": 0.4794970229268074,
+      "rows": 79.0,
+      "solver_ms": 72.28174929332454
+     }
+    ],
+    "serial_ref_ms": 108.6966057337122,
+    "warmup_ms": 3.4734236978692934,
+    "predictor_ms": 0.21782614930998534,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "huginn-3.5b|D32|constant|m1|jacobi|residual_topk4|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "residual_topk",
+    "width": 4,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.728515625,
+      "kl": 0.5803280994296074,
+      "rel": 1.0242310799658298,
+      "rows": 31.0,
+      "solver_ms": 28.977372392546386
+     },
+     {
+      "k": 2,
+      "top1": 0.828125,
+      "kl": 0.2393464285414666,
+      "rel": 0.7741660978645086,
+      "rows": 35.0,
+      "solver_ms": 36.87239107966889
+     },
+     {
+      "k": 3,
+      "top1": 0.84375,
+      "kl": 0.17398467124439776,
+      "rel": 0.6702013574540615,
+      "rows": 39.0,
+      "solver_ms": 44.42027835466433
+     },
+     {
+      "k": 4,
+      "top1": 0.853515625,
+      "kl": 0.15120188822038472,
+      "rel": 0.614887747913599,
+      "rows": 43.0,
+      "solver_ms": 51.97005023364909
+     }
+    ],
+    "serial_ref_ms": 113.93796559423208,
+    "warmup_ms": 3.6330039001768455,
+    "predictor_ms": 0.22800166334491223,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "ouro-1.4b|D4|constant|m1|jacobi|residual_topk3|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "residual_topk",
+    "width": 3,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.9765625,
+      "kl": 0.012064802314853296,
+      "rel": 0.24207637691870332,
+      "rows": 3.0,
+      "solver_ms": 19.739576426218264
+     },
+     {
+      "k": 2,
+      "top1": 0.994140625,
+      "kl": 0.00234488572277769,
+      "rel": 0.11697620642371476,
+      "rows": 6.0,
+      "solver_ms": 37.73500834358856
+     },
+     {
+      "k": 3,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 9.0,
+      "solver_ms": 55.60631684784312
+     },
+     {
+      "k": 4,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 12.0,
+      "solver_ms": 73.5547993099317
+     }
+    ],
+    "serial_ref_ms": 66.9198643299751,
+    "warmup_ms": 16.48624977678992,
+    "predictor_ms": 0.05892464832868427,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-2.6b|D4|constant|m1|jacobi|residual_topk3|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "residual_topk",
+    "width": 3,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.97265625,
+      "kl": 0.008814555796561763,
+      "rel": 0.2027504639700055,
+      "rows": 3.0,
+      "solver_ms": 41.615938491304405
+     },
+     {
+      "k": 2,
+      "top1": 0.978515625,
+      "kl": 0.0020409901680977782,
+      "rel": 0.1085425220662728,
+      "rows": 6.0,
+      "solver_ms": 81.19337375683244
+     },
+     {
+      "k": 3,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 9.0,
+      "solver_ms": 121.23884909669869
+     },
+     {
+      "k": 4,
+      "top1": 1.0,
+      "kl": 0.0,
+      "rel": 0.0,
+      "rows": 12.0,
+      "solver_ms": 161.42338182544336
+     }
+    ],
+    "serial_ref_ms": 148.5534577659564,
+    "warmup_ms": 36.62970232835505,
+    "predictor_ms": 0.06573022983502597,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   }
+  },
+  "sample_count": 2560,
+  "label": "teacher-forced diagnostic (exact AR advances; exact commit each token); not serving speed"
+ },
+ "hardware": {
+  "gpu_name": "NVIDIA H200",
+  "gpu_names": [
+   "NVIDIA H200"
+  ],
+  "gpu_indices": [
+   1,
+   3,
+   5,
+   6
+  ],
+  "jobs_ok": 5,
+  "jobs_failed": 0
+ },
+ "artifacts": {
+  "sha256": "dddac020f9312c113ff813c97bfba2420b59761387d07f6b1b35e13df2977c3c",
+  "files": {
+   "results/A2_INFLUENCE/08d2b4570635ee40.json": "251f194c940737da9b3503720552ffcd6b248a0044dcc702e7fb4f4365acfb1d",
+   "results/A2_INFLUENCE/08d2b4570635ee40.meta.json": "7a9f8ccea74df3cdc7c5a6a0fb8dd6c42107d9a6911602f1eb259b24640943c9",
+   "results/A2_INFLUENCE/5f072c50ef9cd88f.json": "7243c55210f4345cf207bd805e87f40254350856713c40bee2d62b897bd17f17",
+   "results/A2_INFLUENCE/5f072c50ef9cd88f.meta.json": "53646d33583e27f8b6366c3e96368758d5f18504d82e64d32ee8bd83b50ee5ef",
+   "results/A2_INFLUENCE/8616327111fe8948.json": "ee422e7a30307aaae0f69e0a687054ac59219a08d1ce20e9e0ef75f09b109b55",
+   "results/A2_INFLUENCE/8616327111fe8948.meta.json": "ca8804a106b20983aed43edb31a785f8de7aa2049eadf30989413a79c4082e8e",
+   "results/A2_INFLUENCE/99250be28e09cc6f.json": "a554d85add16e7c3e6973fe4c65c0e23b854a42b83cae429a387f1dcdbc110cd",
+   "results/A2_INFLUENCE/99250be28e09cc6f.meta.json": "09a116ba570f74e9e9d2fe36d3d275a11aaf901eba2c55253dc772da544731f7",
+   "results/A2_INFLUENCE/f1360c710466ff67.json": "7a613dee76784e92e8f76b93baba487bfcfcba54eb4d29b49f177a99757adcee",
+   "results/A2_INFLUENCE/f1360c710466ff67.meta.json": "3af9e67e0459120d789e0b6785377fbaeee05953687cbb5de5e36f85adb134db"
+  },
+  "failed_jobs": []
+ },
+ "gpu_hours": 0.0399
+}

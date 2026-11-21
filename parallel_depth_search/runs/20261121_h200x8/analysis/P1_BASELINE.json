@@ -1,0 +1,321 @@
+{
+ "cells": {
+  "ouro-1.4b|D4|constant|m1|jacobi|full|a1.0": {
+   "model": "ouro-1.4b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.9765625,
+     "kl": 0.012064802314853296,
+     "rel": 0.24207637691870332,
+     "rows": 3.0,
+     "solver_ms": 20.033364882692695
+    },
+    {
+     "k": 2,
+     "top1": 0.994140625,
+     "kl": 0.00234488572277769,
+     "rel": 0.11697620642371476,
+     "rows": 6.0,
+     "solver_ms": 38.470720770419575
+    }
+   ],
+   "serial_ref_ms": 68.42692574718967,
+   "warmup_ms": 16.59306464716792,
+   "predictor_ms": 0.06106047658249736,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "ouro-1.4b|D4|linear|m1|jacobi|full|a1.0": {
+   "model": "ouro-1.4b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "linear",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.841796875,
+     "kl": 0.29513869201764464,
+     "rel": 0.7941732574254274,
+     "rows": 3.0,
+     "solver_ms": 21.76635891373735
+    },
+    {
+     "k": 2,
+     "top1": 0.974609375,
+     "kl": 0.01808521269413177,
+     "rel": 0.27918725134804845,
+     "rows": 6.0,
+     "solver_ms": 41.525336884660646
+    }
+   ],
+   "serial_ref_ms": 74.5463069761172,
+   "warmup_ms": 17.788494064006954,
+   "predictor_ms": 0.10508490959182382,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "ouro-1.4b|D4|prev_shift|m1|jacobi|full|a1.0": {
+   "model": "ouro-1.4b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "prev_shift",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 31,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.8971774193548387,
+     "kl": 0.14647192640169973,
+     "rel": 0.3793832919289989,
+     "rows": 3.0,
+     "solver_ms": 20.827984993135736
+    },
+    {
+     "k": 2,
+     "top1": 0.9778225806451613,
+     "kl": 0.014363487836934866,
+     "rel": 0.1926794568857839,
+     "rows": 6.0,
+     "solver_ms": 39.80235803511835
+    }
+   ],
+   "serial_ref_ms": 68.23821947158825,
+   "warmup_ms": 17.22236898457331,
+   "predictor_ms": 0.10361232524437289,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "ouro-2.6b|D4|prev_shift|m1|jacobi|full|a1.0": {
+   "model": "ouro-2.6b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "prev_shift",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 31,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.9435483870967742,
+     "kl": 0.05163404929842199,
+     "rel": 0.30264895529516284,
+     "rows": 3.0,
+     "solver_ms": 38.005509443821445
+    },
+    {
+     "k": 2,
+     "top1": 0.969758064516129,
+     "kl": 0.009713735544092713,
+     "rel": 0.1715451183338319,
+     "rows": 6.0,
+     "solver_ms": 74.19127518791825
+    }
+   ],
+   "serial_ref_ms": 129.8966601250633,
+   "warmup_ms": 32.24492119625211,
+   "predictor_ms": 0.10169312478073182,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "ouro-2.6b|D4|constant|m1|jacobi|full|a1.0": {
+   "model": "ouro-2.6b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.97265625,
+     "kl": 0.008814555796561763,
+     "rel": 0.2027504639700055,
+     "rows": 3.0,
+     "solver_ms": 37.2788218955975
+    },
+    {
+     "k": 2,
+     "top1": 0.978515625,
+     "kl": 0.0020409901680977782,
+     "rel": 0.1085425220662728,
+     "rows": 6.0,
+     "solver_ms": 73.02544311096426
+    }
+   ],
+   "serial_ref_ms": 132.46164107113145,
+   "warmup_ms": 32.43221504089888,
+   "predictor_ms": 0.06282798130996525,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "huginn-3.5b|D32|constant|m1|jacobi|full|a1.0": {
+   "model": "huginn-3.5b",
+   "depth": 32,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.728515625,
+     "kl": 0.5803280994296074,
+     "rel": 1.0242310799658298,
+     "rows": 31.0,
+     "solver_ms": 24.107919467496686
+    },
+    {
+     "k": 2,
+     "top1": 0.82421875,
+     "kl": 0.23976618517190218,
+     "rel": 0.7741635888814926,
+     "rows": 62.0,
+     "solver_ms": 46.24327663623262
+    }
+   ],
+   "serial_ref_ms": 107.27565234992653,
+   "warmup_ms": 3.450976117164828,
+   "predictor_ms": 0.219243680476211,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 32
+  },
+  "huginn-3.5b|D32|prev_shift|m1|jacobi|full|a1.0": {
+   "model": "huginn-3.5b",
+   "depth": 32,
+   "B": 16,
+   "predictor": "prev_shift",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 31,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.7399193548387096,
+     "kl": 0.5143524331431235,
+     "rel": 0.9167496004412251,
+     "rows": 31.0,
+     "solver_ms": 24.098929213059524
+    },
+    {
+     "k": 2,
+     "top1": 0.8407258064516129,
+     "kl": 0.2398426669739908,
+     "rel": 0.716621050911565,
+     "rows": 62.0,
+     "solver_ms": 46.37799485616626
+    }
+   ],
+   "serial_ref_ms": 107.21510454952237,
+   "warmup_ms": 3.445289428195646,
+   "predictor_ms": 0.5574706010520458,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 32
+  },
+  "ouro-2.6b|D4|linear|m1|jacobi|full|a1.0": {
+   "model": "ouro-2.6b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "linear",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.876953125,
+     "kl": 0.21442158019635826,
+     "rel": 0.9179073125123978,
+     "rows": 3.0,
+     "solver_ms": 36.62790720409248
+    },
+    {
+     "k": 2,
+     "top1": 0.95703125,
+     "kl": 0.026772769168019295,
+     "rel": 0.2999773034825921,
+     "rows": 6.0,
+     "solver_ms": 71.85667140583973
+    }
+   ],
+   "serial_ref_ms": 129.6675491903443,
+   "warmup_ms": 32.0764429634437,
+   "predictor_ms": 0.10303864837624133,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "huginn-3.5b|D32|linear|m1|jacobi|full|a1.0": {
+   "model": "huginn-3.5b",
+   "depth": 32,
+   "B": 16,
+   "predictor": "linear",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.283203125,
+     "kl": 2.8378664515912533,
+     "rel": 1.2412092760205269,
+     "rows": 31.0,
+     "solver_ms": 24.813660100335255
+    },
+    {
+     "k": 2,
+     "top1": 0.66796875,
+     "kl": 0.762478269636631,
+     "rel": 1.034321740269661,
+     "rows": 62.0,
+     "solver_ms": 47.07480075012427
+    }
+   ],
+   "serial_ref_ms": 109.05235388781875,
+   "warmup_ms": 3.49910459772218,
+   "predictor_ms": 0.527426935150288,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 32
+  }
+ },
+ "sample_count": 4560,
+ "label": "teacher-forced diagnostic (exact AR advances; exact commit each token); not serving speed"
+}
