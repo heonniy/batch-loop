@@ -1,0 +1,80 @@
+[
+ {
+  "node_id": "J1_PARETO",
+  "argv": [
+   "-m",
+   "parallel_depth_search.e2e_decoder",
+   "--model",
+   "ouro-1.4b",
+   "--depth",
+   "4",
+   "--arms",
+   "AR,trunc2,trunc3,skip1_1,skip1_2,skip2_1,jac_k1",
+   "--init",
+   "constant",
+   "--task",
+   "gsm8k",
+   "--split",
+   "dev",
+   "--idx-start",
+   "200",
+   "--n",
+   "200",
+   "--batch",
+   "16",
+   "--max-new",
+   "256",
+   "--allow-gpu"
+  ],
+  "timeout_s": 21600,
+  "fields": {
+   "model": "ouro-1.4b",
+   "B": 16,
+   "arms": "AR,trunc2,trunc3,skip1_1,skip1_2,skip2_1,jac_k1",
+   "init": "constant",
+   "idx": 200,
+   "n": 200,
+   "split": "dev",
+   "task": "gsm8k"
+  }
+ },
+ {
+  "node_id": "J1_PARETO",
+  "argv": [
+   "-m",
+   "parallel_depth_search.e2e_decoder",
+   "--model",
+   "ouro-2.6b",
+   "--depth",
+   "4",
+   "--arms",
+   "AR,trunc2,trunc3,skip1_1,skip1_2,skip2_1,jac_k1",
+   "--init",
+   "constant",
+   "--task",
+   "gsm8k",
+   "--split",
+   "dev",
+   "--idx-start",
+   "200",
+   "--n",
+   "200",
+   "--batch",
+   "16",
+   "--max-new",
+   "256",
+   "--allow-gpu"
+  ],
+  "timeout_s": 21600,
+  "fields": {
+   "model": "ouro-2.6b",
+   "B": 16,
+   "arms": "AR,trunc2,trunc3,skip1_1,skip1_2,skip2_1,jac_k1",
+   "init": "constant",
+   "idx": 200,
+   "n": 200,
+   "split": "dev",
+   "task": "gsm8k"
+  }
+ }
+]

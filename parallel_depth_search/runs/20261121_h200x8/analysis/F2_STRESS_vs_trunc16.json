@@ -1,0 +1,174 @@
+{
+ "cells": {
+  "huginn-3.5b|B16|math500|test|D32|init=prev_shift|corr=jacobi|4shot|bfloat16|seed20261121": {
+   "AR": {
+    "n_prompts": 300,
+    "n_cohorts": 7,
+    "speedup": 0.5300625232218548,
+    "speedup_ci": [
+     0.5035067300081915,
+     0.5678714122504164
+    ],
+    "decode_speedup": 0.5304597081592574,
+    "request_wall_speedup": 0.5166490990158792,
+    "tok_per_s": 71.65903244595641,
+    "tpot_p50_ms": 131.21829541133982,
+    "tpot_p90_ms": 137.7910228579172,
+    "ttft_s": 2.903956299980304,
+    "rounds_mean": 32.0,
+    "core_rows_per_token": 31.824724763104562,
+    "hbm_peak_gb": 62.01716232299805,
+    "acc_strict": 0.1,
+    "acc_secondary": 0.0,
+    "secondary_metric": "correct_boxed",
+    "acc_delta": 0.006666666666666667,
+    "acc_delta_ci": [
+     -0.02,
+     0.03666666666666667
+    ],
+    "acc2_delta": 0.0,
+    "acc2_delta_ci": [
+     0.0,
+     0.0
+    ],
+    "seq_exact_rate": 1.0,
+    "mean_tokens": 175.15666666666667
+   },
+   "trunc16": {
+    "n_prompts": 300,
+    "n_cohorts": 7,
+    "speedup": 1.0,
+    "speedup_ci": [
+     1.0,
+     1.0
+    ],
+    "decode_speedup": 1.0,
+    "request_wall_speedup": 1.0,
+    "tok_per_s": 135.18977348255936,
+    "tpot_p50_ms": 67.55966872775129,
+    "tpot_p90_ms": 70.95952272149069,
+    "ttft_s": 1.4873602762153106,
+    "rounds_mean": 16.0,
+    "core_rows_per_token": 15.910087103118853,
+    "hbm_peak_gb": 35.30939865112305,
+    "acc_strict": 0.09333333333333334,
+    "acc_secondary": 0.0,
+    "secondary_metric": "correct_boxed",
+    "acc_delta": 0.0,
+    "acc_delta_ci": [
+     0.0,
+     0.0
+    ],
+    "acc2_delta": 0.0,
+    "acc2_delta_ci": [
+     0.0,
+     0.0
+    ],
+    "seq_exact_rate": 0.10666666666666667,
+    "mean_tokens": 177.21333333333334
+   },
+   "trunc24": {
+    "n_prompts": 300,
+    "n_cohorts": 7,
+    "speedup": 0.6936119886926313,
+    "speedup_ci": [
+     0.6614224106664504,
+     0.7313433202040184
+    ],
+    "decode_speedup": 0.6942486593414474,
+    "request_wall_speedup": 0.6829050204041924,
+    "tok_per_s": 93.76924763614434,
+    "tpot_p50_ms": 98.87115537588086,
+    "tpot_p90_ms": 103.95573571856532,
+    "ttft_s": 2.201244589140905,
+    "rounds_mean": 24.0,
+    "core_rows_per_token": 23.867212570543323,
+    "hbm_peak_gb": 48.66328048706055,
+    "acc_strict": 0.08666666666666667,
+    "acc_secondary": 0.0,
+    "secondary_metric": "correct_boxed",
+    "acc_delta": -0.006666666666666667,
+    "acc_delta_ci": [
+     -0.03333333333333333,
+     0.02
+    ],
+    "acc2_delta": 0.0,
+    "acc2_delta_ci": [
+     0.0,
+     0.0
+    ],
+    "seq_exact_rate": 0.3933333333333333,
+    "mean_tokens": 176.33
+   },
+   "skip1_15": {
+    "n_prompts": 300,
+    "n_cohorts": 7,
+    "speedup": 0.9592760419682375,
+    "speedup_ci": [
+     0.9210482261054292,
+     1.0099440953659566
+    ],
+    "decode_speedup": 1.0305742438741845,
+    "request_wall_speedup": 0.9278859143786914,
+    "tok_per_s": 129.68431082093213,
+    "tpot_p50_ms": 67.966278642416,
+    "tpot_p90_ms": 70.63179715935674,
+    "ttft_s": 2.8941000542337343,
+    "rounds_mean": 16.0,
+    "core_rows_per_token": 15.91302929825515,
+    "hbm_peak_gb": 62.01716232299805,
+    "acc_strict": 0.09666666666666666,
+    "acc_secondary": 0.0,
+    "secondary_metric": "correct_boxed",
+    "acc_delta": 0.0033333333333333335,
+    "acc_delta_ci": [
+     -0.023333333333333334,
+     0.03
+    ],
+    "acc2_delta": 0.0,
+    "acc2_delta_ci": [
+     0.0,
+     0.0
+    ],
+    "seq_exact_rate": 0.19333333333333333,
+    "mean_tokens": 177.07666666666665
+   },
+   "jac_g0.1": {
+    "n_prompts": 300,
+    "n_cohorts": 7,
+    "speedup": 0.18345904750368341,
+    "speedup_ci": [
+     0.1577120524692025,
+     0.2320971744461963
+    ],
+    "decode_speedup": 0.17367252023516708,
+    "request_wall_speedup": 0.17584044761004236,
+    "tok_per_s": 24.801787075349058,
+    "tpot_p50_ms": 397.23567238875796,
+    "tpot_p90_ms": 530.0395714917353,
+    "ttft_s": 2.9091444105309034,
+    "rounds_mean": 13.242577030812326,
+    "core_rows_per_token": 398.75223526877085,
+    "hbm_peak_gb": 66.64891052246094,
+    "acc_strict": 0.09,
+    "acc_secondary": 0.0,
+    "secondary_metric": "correct_boxed",
+    "acc_delta": -0.0033333333333333335,
+    "acc_delta_ci": [
+     -0.03,
+     0.023333333333333334
+    ],
+    "acc2_delta": 0.0,
+    "acc2_delta_ci": [
+     0.0,
+     0.0
+    ],
+    "seq_exact_rate": 0.30666666666666664,
+    "mean_tokens": 178.60666666666665
+   }
+  }
+ },
+ "oom": [],
+ "sample_count": 1400,
+ "full_e2e_measured": true
+}

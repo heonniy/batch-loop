@@ -1,0 +1,34 @@
+{
+ "frozen_split_pass": true,
+ "split_manifest_sha256": "30961d459b96d870573bfec498a4a25e91269f4ad1313391a99fd5383e3699fd",
+ "cross_split_duplicates": 0,
+ "fewshot_leaks": 0,
+ "splits": {
+  "gsm8k": {
+   "pilot": [
+    0,
+    128
+   ],
+   "dev": [
+    200,
+    400
+   ],
+   "test": [
+    700,
+    1200
+   ]
+  },
+  "math500": {
+   "dev": [
+    0,
+    200
+   ],
+   "test": [
+    200,
+    500
+   ]
+  }
+ },
+ "sample_count": 1819,
+ "provenance": "python -m parallel_depth_search.g0_data (CPU)"
+}

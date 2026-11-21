@@ -1,0 +1,211 @@
+{
+ "node_id": "C2_ANDERSON",
+ "trial_id": "C2_ANDERSON-1d3fbdfe6837",
+ "state": "executed",
+ "source_git_sha": "09f2008dbdc7fbd81f3019c2bbcd4e2fd8ee1261",
+ "command": [
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector anderson --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/C2_ANDERSON/02d5208e1dbbbfab",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector anderson --rounds 8 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/C2_ANDERSON/573bb2c72bcdc17f",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector anderson --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/C2_ANDERSON/823c1537ef7b471d"
+ ],
+ "data_split": "pilot",
+ "model": "huginn-3.5b,ouro-1.4b,ouro-2.6b",
+ "seed": 20261121,
+ "method": "Anderson with ridge, memory2/4/8, damping; compare triangular variant with paper.",
+ "literature_checks": [
+  {
+   "paper_id": "P-2402-09970",
+   "url": "https://arxiv.org/abs/2402.09970",
+   "version": "v2",
+   "claim": "ParaTAA recasts diffusion sampling as triangular nonlinear equations solved with a training-free accelerated (Anderson-like) fixed-point iteration, cutting inference steps 4-14x, and matching a 100-step DDIM Stable Diffusion sample in 7 steps.",
+   "transfer_caveat": "Diffusion sampling consistency differs from BF16 causal recurrent KV and long rollouts.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2402-09970.md"
+  }
+ ],
+ "metrics": {
+  "cells": {
+   "ouro-1.4b|D4|constant|m1|anderson|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "anderson",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.9765625,
+      "kl": 0.012064802314853296,
+      "rel": 0.24207637691870332,
+      "rows": 3.0,
+      "solver_ms": 20.535724965156987
+     },
+     {
+      "k": 2,
+      "top1": 0.994140625,
+      "kl": 0.0024378336802328704,
+      "rel": 0.11751452973112464,
+      "rows": 6.0,
+      "solver_ms": 40.365847176872194
+     }
+    ],
+    "serial_ref_ms": 69.65614575892687,
+    "warmup_ms": 16.96581677242648,
+    "predictor_ms": 0.06028900679666549,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "huginn-3.5b|D32|constant|m1|anderson|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "anderson",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.728515625,
+      "kl": 0.5803280994296074,
+      "rel": 1.0242310799658298,
+      "rows": 31.0,
+      "solver_ms": 33.33215277234558
+     },
+     {
+      "k": 2,
+      "top1": 0.8125,
+      "kl": 0.24614730826579034,
+      "rel": 0.7599831931293011,
+      "rows": 62.0,
+      "solver_ms": 61.88253816799261
+     },
+     {
+      "k": 3,
+      "top1": 0.85546875,
+      "kl": 0.13416910078376532,
+      "rel": 0.5864594615995884,
+      "rows": 93.0,
+      "solver_ms": 88.08514226984698
+     },
+     {
+      "k": 4,
+      "top1": 0.880859375,
+      "kl": 0.07436795649118721,
+      "rel": 0.4515581550076604,
+      "rows": 124.0,
+      "solver_ms": 112.46709401893895
+     },
+     {
+      "k": 5,
+      "top1": 0.90625,
+      "kl": 0.043802204716484994,
+      "rel": 0.342110900208354,
+      "rows": 155.0,
+      "solver_ms": 141.3203634438105
+     },
+     {
+      "k": 6,
+      "top1": 0.923828125,
+      "kl": 0.029253560045617633,
+      "rel": 0.2624867167323828,
+      "rows": 186.0,
+      "solver_ms": 169.82259281212464
+     },
+     {
+      "k": 7,
+      "top1": 0.93359375,
+      "kl": 0.018931783619336784,
+      "rel": 0.20080442167818546,
+      "rows": 217.0,
+      "solver_ms": 198.05718470888678
+     },
+     {
+      "k": 8,
+      "top1": 0.953125,
+      "kl": 0.01175748845707858,
+      "rel": 0.15384344826452434,
+      "rows": 248.0,
+      "solver_ms": 230.41227551584598
+     }
+    ],
+    "serial_ref_ms": 129.28257012390532,
+    "warmup_ms": 4.275983927072957,
+    "predictor_ms": 0.23129094915930182,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "ouro-2.6b|D4|constant|m1|anderson|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "anderson",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.97265625,
+      "kl": 0.008814555796561763,
+      "rel": 0.2027504639700055,
+      "rows": 3.0,
+      "solver_ms": 37.506532738916576
+     },
+     {
+      "k": 2,
+      "top1": 0.978515625,
+      "kl": 0.0020980350018362515,
+      "rel": 0.10910333169158548,
+      "rows": 6.0,
+      "solver_ms": 74.34335771540646
+     }
+    ],
+    "serial_ref_ms": 134.7306789830327,
+    "warmup_ms": 32.78226446127519,
+    "predictor_ms": 0.060485603171400726,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   }
+  },
+  "sample_count": 1536,
+  "label": "teacher-forced diagnostic (exact AR advances; exact commit each token); not serving speed"
+ },
+ "hardware": {
+  "gpu_name": "NVIDIA H200",
+  "gpu_names": [
+   "NVIDIA H200"
+  ],
+  "gpu_indices": [
+   1,
+   5,
+   7
+  ],
+  "jobs_ok": 3,
+  "jobs_failed": 0
+ },
+ "artifacts": {
+  "sha256": "9b76d24233af2bd13bffde289bcc4717563c940ec32a315f3807b371a05b3697",
+  "files": {
+   "results/C2_ANDERSON/02d5208e1dbbbfab.json": "2827ac23fcbf02727ee1dfe390c65e66589e0e89b6c1bbbf1f732900d60ad7ea",
+   "results/C2_ANDERSON/02d5208e1dbbbfab.meta.json": "327c1c1e95a7807cb56db2da5630f777941e36d96c8a662844cc274fdfc9cdb2",
+   "results/C2_ANDERSON/573bb2c72bcdc17f.json": "64ee1814ddfc354bd7a1199c02192dc4c290a179c46a03382e37ec43b6117139",
+   "results/C2_ANDERSON/573bb2c72bcdc17f.meta.json": "3b15aadb19cbcd026e922d79b7c24025bf1bf7438d9a1dddff15a965b595fb00",
+   "results/C2_ANDERSON/823c1537ef7b471d.json": "45d494711ce21ccf090858d10e9bf00caa5211c42994d43ca8f5c642c7fac56d",
+   "results/C2_ANDERSON/823c1537ef7b471d.meta.json": "ab765cdaa3b31e040c9aa725720ec05a8802ea5a95f2958ba53c36fa96cc0f00"
+  },
+  "failed_jobs": []
+ },
+ "gpu_hours": 0.0221
+}

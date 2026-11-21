@@ -1,0 +1,228 @@
+{
+ "node_id": "G0_NATIVE",
+ "trial_id": "G0_NATIVE-ef1b2166dcf3",
+ "state": "executed",
+ "source_git_sha": "09f2008dbdc7fbd81f3019c2bbcd4e2fd8ee1261",
+ "command": [
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_poc.e0_native_parity --model ouro-2.6b --depths 2,3,4 --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/e0_ouro-2.6b.json --allow-gpu",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.g0_checks --check native --model ouro-2.6b --depths 2,4 --new 32 --offset 0 --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/native_ouro-2.6b.json --allow-gpu",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_poc.e0_native_parity --model ouro-1.4b --depths 2,3,4 --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/e0_ouro-1.4b.json --allow-gpu",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.g0_checks --check native --model huginn-3.5b --depths 8,32 --new 32 --offset 0 --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/native_huginn-3.5b.json --allow-gpu",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.g0_checks --check native --model ouro-1.4b --depths 2,4 --new 32 --offset 0 --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/native_ouro-1.4b.json --allow-gpu",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_poc.e0_native_parity --model huginn-3.5b --depths 8,16,24,32 --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/e0_huginn-3.5b.json --allow-gpu"
+ ],
+ "data_split": "hardware",
+ "model": "huginn-3.5b,ouro-1.4b,ouro-2.6b",
+ "seed": 20261121,
+ "method": "FP32 and BF16 parity, 16 prompts/32-token run, row permutation, Vary B1/B16; persist per-depth bank checks.",
+ "literature_checks": [
+  {
+   "paper_id": "P-2610-35556",
+   "url": "https://arxiv.org/abs/2610.35556",
+   "version": "v1",
+   "claim": "LoopFold trains a predictor and corrector so later recurrent depths of the same token prefix run in parallel stages, reporting 46% lower decoding latency and higher accuracy than a nine-loop vanilla 1.4B model.",
+   "transfer_caveat": "The predictor, corrector and backbone are jointly trained, and no unchanged Huginn/Ouro checkpoint is evaluated, so it does not show training-free parallel-in-depth works.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2610-35556.md"
+  }
+ ],
+ "metrics": {
+  "models_verified": [
+   "huginn-3.5b",
+   "ouro-1.4b",
+   "ouro-2.6b"
+  ],
+  "fp32_cells": {
+   "huginn-3.5b": {
+    "D8": {
+     "greedy_agree": 1.0,
+     "max_abs_logit_diff": 6.580352783203125e-05,
+     "positions": 512
+    },
+    "D16": {
+     "greedy_agree": 1.0,
+     "max_abs_logit_diff": 9.822845458984375e-05,
+     "positions": 512
+    },
+    "D24": {
+     "greedy_agree": 1.0,
+     "max_abs_logit_diff": 9.059906005859375e-05,
+     "positions": 512
+    },
+    "D32": {
+     "greedy_agree": 1.0,
+     "max_abs_logit_diff": 9.822845458984375e-05,
+     "positions": 512
+    }
+   },
+   "ouro-1.4b": {
+    "D2": {
+     "greedy_agree": 1.0,
+     "max_abs_logit_diff": 0.000186920166015625,
+     "positions": 512
+    },
+    "D3": {
+     "greedy_agree": 1.0,
+     "max_abs_logit_diff": 0.00019216537475585938,
+     "positions": 512
+    },
+    "D4": {
+     "greedy_agree": 1.0,
+     "max_abs_logit_diff": 0.0008950233459472656,
+     "positions": 512
+    }
+   },
+   "ouro-2.6b": {
+    "D2": {
+     "greedy_agree": 1.0,
+     "max_abs_logit_diff": 0.00019741058349609375,
+     "positions": 512
+    },
+    "D3": {
+     "greedy_agree": 1.0,
+     "max_abs_logit_diff": 0.00028312206268310547,
+     "positions": 512
+    },
+    "D4": {
+     "greedy_agree": 1.0,
+     "max_abs_logit_diff": 0.0014522075653076172,
+     "positions": 512
+    }
+   }
+  },
+  "varengine": {
+   "huginn-3.5b": {
+    "depth": 32,
+    "tokens_identical": true,
+    "max_abs_logit_diff": 0.00010728836059570312,
+    "positions": 256
+   },
+   "ouro-1.4b": {
+    "depth": 4,
+    "tokens_identical": true,
+    "max_abs_logit_diff": 0.00031936168670654297,
+    "positions": 256
+   },
+   "ouro-2.6b": {
+    "depth": 4,
+    "tokens_identical": true,
+    "max_abs_logit_diff": 0.0009570121765136719,
+    "positions": 256
+   }
+  },
+  "bf16_batch_order": {
+   "huginn-3.5b": {
+    "D8": {
+     "b1_vs_b16": {
+      "seq_exact_rate": 0.875,
+      "token_agree": 0.970703125,
+      "max_logit_drift_common_prefix": 0.140625
+     },
+     "b16_vs_permuted": {
+      "seq_exact_rate": 1.0,
+      "token_agree": 1.0,
+      "max_logit_drift_common_prefix": 0.0
+     }
+    },
+    "D32": {
+     "b1_vs_b16": {
+      "seq_exact_rate": 1.0,
+      "token_agree": 1.0,
+      "max_logit_drift_common_prefix": 0.25
+     },
+     "b16_vs_permuted": {
+      "seq_exact_rate": 1.0,
+      "token_agree": 1.0,
+      "max_logit_drift_common_prefix": 0.0
+     }
+    }
+   },
+   "ouro-1.4b": {
+    "D2": {
+     "b1_vs_b16": {
+      "seq_exact_rate": 0.875,
+      "token_agree": 0.9765625,
+      "max_logit_drift_common_prefix": 0.28125
+     },
+     "b16_vs_permuted": {
+      "seq_exact_rate": 1.0,
+      "token_agree": 1.0,
+      "max_logit_drift_common_prefix": 0.0
+     }
+    },
+    "D4": {
+     "b1_vs_b16": {
+      "seq_exact_rate": 0.9375,
+      "token_agree": 0.994140625,
+      "max_logit_drift_common_prefix": 1.35546875
+     },
+     "b16_vs_permuted": {
+      "seq_exact_rate": 1.0,
+      "token_agree": 1.0,
+      "max_logit_drift_common_prefix": 0.0
+     }
+    }
+   },
+   "ouro-2.6b": {
+    "D2": {
+     "b1_vs_b16": {
+      "seq_exact_rate": 0.875,
+      "token_agree": 0.923828125,
+      "max_logit_drift_common_prefix": 0.34375
+     },
+     "b16_vs_permuted": {
+      "seq_exact_rate": 1.0,
+      "token_agree": 1.0,
+      "max_logit_drift_common_prefix": 0.0
+     }
+    },
+    "D4": {
+     "b1_vs_b16": {
+      "seq_exact_rate": 0.875,
+      "token_agree": 0.94140625,
+      "max_logit_drift_common_prefix": 3.412109375
+     },
+     "b16_vs_permuted": {
+      "seq_exact_rate": 1.0,
+      "token_agree": 1.0,
+      "max_logit_drift_common_prefix": 0.0
+     }
+    }
+   }
+  },
+  "native_parity_pass": true,
+  "fp32_native_parity": true,
+  "bf16_batch_order_tested": true,
+  "sample_count": 5120,
+  "parity_tolerance": "FP32 greedy agreement 1.0 and max|dlogit|<=1e-2 vs HF-native forward and PoC engine"
+ },
+ "hardware": {
+  "gpu_name": "NVIDIA H200",
+  "gpu_names": [
+   "NVIDIA H200"
+  ],
+  "gpu_indices": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "jobs_ok": 6,
+  "jobs_failed": 0
+ },
+ "artifacts": {
+  "sha256": "31ab7c6cbff4c71a067c5ce2a3c06af335bf75d70535b31870151294d83eb38f",
+  "files": {
+   "results/G0_NATIVE/e0_huginn-3.5b.json": "ad2e3272a4578effa678079f9189387916d217751568d7bb9a2a5482479ad875",
+   "results/G0_NATIVE/e0_ouro-1.4b.json": "8829f77eb22277733f428b502ee98317b9c946c3262c47c5eccc833567fbcd40",
+   "results/G0_NATIVE/e0_ouro-2.6b.json": "ad6be83aa75db26c5a6ad87316fe2150caaa895c06048df6795979310e1097a4",
+   "results/G0_NATIVE/native_huginn-3.5b.json": "e8d6ed7f1ec66a2aa8b63dfe8114d611f8e3a5961cfa5d507daa3f79f455bbb6",
+   "results/G0_NATIVE/native_ouro-1.4b.json": "27e3963cc387648af68ea2cbbe81f62df053b2c9c3a9e936ca61589dd526118a",
+   "results/G0_NATIVE/native_ouro-2.6b.json": "9722be97fbd970d47fbd9b7892df49a59c1903adf1b5642cdc3aaffdfd1e54a6"
+  },
+  "failed_jobs": []
+ },
+ "gpu_hours": 0.2171
+}

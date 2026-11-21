@@ -1,0 +1,489 @@
+{
+ "status": "PLANNED_ONLY_NO_GPU_JOB_LAUNCHED",
+ "run_dir": "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8",
+ "jobs": [
+  {
+   "job_id": "cc306f7d408a61e5",
+   "node_id": "G0_NATIVE",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_poc.e0_native_parity",
+    "--model",
+    "huginn-3.5b",
+    "--depths",
+    "8,16,24,32",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/e0_huginn-3.5b.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "native_parity",
+   "fields": {
+    "model": "huginn-3.5b",
+    "depths": "8,16,24,32"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "835e1a39483f9254",
+   "node_id": "G0_NATIVE",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.g0_checks",
+    "--check",
+    "native",
+    "--model",
+    "huginn-3.5b",
+    "--depths",
+    "8,32",
+    "--new",
+    "32",
+    "--offset",
+    "0",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/native_huginn-3.5b.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "native_parity",
+   "fields": {
+    "model": "huginn-3.5b",
+    "depths": "8,16,24,32"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "7a385dd4308fb20a",
+   "node_id": "G0_NATIVE",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_poc.e0_native_parity",
+    "--model",
+    "ouro-1.4b",
+    "--depths",
+    "2,3,4",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/e0_ouro-1.4b.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "native_parity",
+   "fields": {
+    "model": "ouro-1.4b",
+    "depths": "2,3,4"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "87225acc81c48440",
+   "node_id": "G0_NATIVE",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.g0_checks",
+    "--check",
+    "native",
+    "--model",
+    "ouro-1.4b",
+    "--depths",
+    "2,4",
+    "--new",
+    "32",
+    "--offset",
+    "0",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/native_ouro-1.4b.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "native_parity",
+   "fields": {
+    "model": "ouro-1.4b",
+    "depths": "2,3,4"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "0c18237cdbc22a35",
+   "node_id": "G0_NATIVE",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_poc.e0_native_parity",
+    "--model",
+    "ouro-2.6b",
+    "--depths",
+    "2,3,4",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/e0_ouro-2.6b.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "native_parity",
+   "fields": {
+    "model": "ouro-2.6b",
+    "depths": "2,3,4"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "1111e1ec8dbbbe9c",
+   "node_id": "G0_NATIVE",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.g0_checks",
+    "--check",
+    "native",
+    "--model",
+    "ouro-2.6b",
+    "--depths",
+    "2,4",
+    "--new",
+    "32",
+    "--offset",
+    "0",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_NATIVE/native_ouro-2.6b.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "native_parity",
+   "fields": {
+    "model": "ouro-2.6b",
+    "depths": "2,3,4"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "ff0c298f39c8df3b",
+   "node_id": "G0_KV",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.g0_checks",
+    "--check",
+    "kv",
+    "--model",
+    "huginn-3.5b",
+    "--depths",
+    "8,32",
+    "--dtype",
+    "float32",
+    "--batch",
+    "8",
+    "--new",
+    "24",
+    "--offset",
+    "0",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_KV/kv_huginn-3.5b_float32.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "kv_commit_audit",
+   "fields": {
+    "model": "huginn-3.5b",
+    "dtype": "float32"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "4d9fe0fd2248df76",
+   "node_id": "G0_KV",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.g0_checks",
+    "--check",
+    "kv",
+    "--model",
+    "huginn-3.5b",
+    "--depths",
+    "8,32",
+    "--dtype",
+    "bfloat16",
+    "--batch",
+    "8",
+    "--new",
+    "24",
+    "--offset",
+    "0",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_KV/kv_huginn-3.5b_bfloat16.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "kv_commit_audit",
+   "fields": {
+    "model": "huginn-3.5b",
+    "dtype": "bfloat16"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "5e176e54c0538e57",
+   "node_id": "G0_KV",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.g0_checks",
+    "--check",
+    "kv",
+    "--model",
+    "ouro-1.4b",
+    "--depths",
+    "2,4",
+    "--dtype",
+    "float32",
+    "--batch",
+    "8",
+    "--new",
+    "24",
+    "--offset",
+    "0",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_KV/kv_ouro-1.4b_float32.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "kv_commit_audit",
+   "fields": {
+    "model": "ouro-1.4b",
+    "dtype": "float32"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "1c30e9fc842467e9",
+   "node_id": "G0_KV",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.g0_checks",
+    "--check",
+    "kv",
+    "--model",
+    "ouro-1.4b",
+    "--depths",
+    "2,4",
+    "--dtype",
+    "bfloat16",
+    "--batch",
+    "8",
+    "--new",
+    "24",
+    "--offset",
+    "0",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_KV/kv_ouro-1.4b_bfloat16.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "kv_commit_audit",
+   "fields": {
+    "model": "ouro-1.4b",
+    "dtype": "bfloat16"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "1fc708e7073ab7e8",
+   "node_id": "G0_KV",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.g0_checks",
+    "--check",
+    "kv",
+    "--model",
+    "ouro-2.6b",
+    "--depths",
+    "2,4",
+    "--dtype",
+    "float32",
+    "--batch",
+    "8",
+    "--new",
+    "24",
+    "--offset",
+    "0",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_KV/kv_ouro-2.6b_float32.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "kv_commit_audit",
+   "fields": {
+    "model": "ouro-2.6b",
+    "dtype": "float32"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "e71371c3ef7aedea",
+   "node_id": "G0_KV",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_search.g0_checks",
+    "--check",
+    "kv",
+    "--model",
+    "ouro-2.6b",
+    "--depths",
+    "2,4",
+    "--dtype",
+    "bfloat16",
+    "--batch",
+    "8",
+    "--new",
+    "24",
+    "--offset",
+    "0",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G0_KV/kv_ouro-2.6b_bfloat16.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "kv_commit_audit",
+   "fields": {
+    "model": "ouro-2.6b",
+    "dtype": "bfloat16"
+   },
+   "papers_to_check": [
+    "P-2610-35556"
+   ]
+  },
+  {
+   "job_id": "a98400fcd7589206",
+   "node_id": "G1_WIDTH",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_poc.e1_oracle_width",
+    "--model",
+    "huginn-3.5b",
+    "--depth",
+    "32",
+    "--prompt-lens",
+    "256,1024",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G1_WIDTH/e1_huginn-3.5b.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "oracle_hardware",
+   "fields": {
+    "model": "huginn-3.5b",
+    "depth": 32
+   },
+   "papers_to_check": [
+    "P-2002-03629"
+   ]
+  },
+  {
+   "job_id": "6c5b0f5b1a81d5fb",
+   "node_id": "G1_WIDTH",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_poc.e1_oracle_width",
+    "--model",
+    "ouro-1.4b",
+    "--depth",
+    "4",
+    "--prompt-lens",
+    "256,1024",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G1_WIDTH/e1_ouro-1.4b.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "oracle_hardware",
+   "fields": {
+    "model": "ouro-1.4b",
+    "depth": 4
+   },
+   "papers_to_check": [
+    "P-2002-03629"
+   ]
+  },
+  {
+   "job_id": "96c82cbec7bca624",
+   "node_id": "G1_WIDTH",
+   "argv": [
+    "/home/irteam/ddn/envs/wfd/bin/python",
+    "-m",
+    "parallel_depth_poc.e1_oracle_width",
+    "--model",
+    "ouro-2.6b",
+    "--depth",
+    "4",
+    "--prompt-lens",
+    "256,1024",
+    "--out",
+    "/home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/G1_WIDTH/e1_ouro-2.6b.json",
+    "--allow-gpu"
+   ],
+   "timeout_s": 10800,
+   "metrics_status": "NOT_RUN",
+   "reference_mode": "oracle_hardware",
+   "fields": {
+    "model": "ouro-2.6b",
+    "depth": 4
+   },
+   "papers_to_check": [
+    "P-2002-03629"
+   ]
+  }
+ ],
+ "nodes": [
+  "G0_NATIVE",
+  "G0_KV",
+  "G1_WIDTH"
+ ],
+ "concurrent_with_prerequisites": [
+  "G0_KV",
+  "G1_WIDTH"
+ ]
+}

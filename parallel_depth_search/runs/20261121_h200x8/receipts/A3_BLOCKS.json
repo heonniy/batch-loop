@@ -1,0 +1,506 @@
+{
+ "node_id": "A3_BLOCKS",
+ "trial_id": "A3_BLOCKS-a0ce0e958ebf",
+ "state": "executed",
+ "source_git_sha": "a6577118df494c2da53faff1378d9cc62c522fc2",
+ "command": [
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 16 --allocation suffix --width 16 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/A3_BLOCKS/2beef7d461f02db9",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 16 --allocation suffix --width 8 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/A3_BLOCKS/38d9971c99426b1b",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 16 --allocation suffix --width 2 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/A3_BLOCKS/4ed592286868957f"
+ ],
+ "data_split": "pilot",
+ "model": "huginn-3.5b",
+ "seed": 20261121,
+ "method": "Adaptive overlapping windows, coarse-fine anchors, independent B and per-example widths.",
+ "literature_checks": [
+  {
+   "paper_id": "P-2412-08292",
+   "url": "https://arxiv.org/abs/2412.08292",
+   "version": "v1",
+   "claim": "SRDS applies Parareal (coarse solve refined by parallel fine solves) to pretrained diffusion samplers, converging to the serial solution with up to 1.7x speedup at 25 steps and 4.3x on longer trajectories.",
+   "transfer_caveat": "Parareal needs a cheap yet accurate coarse propagator, and none is yet known for pretrained Huginn.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2412-08292.md"
+  },
+  {
+   "paper_id": "P-2610-35556",
+   "url": "https://arxiv.org/abs/2610.35556",
+   "version": "v1",
+   "claim": "LoopFold trains a predictor and corrector so later recurrent depths of the same token prefix run in parallel stages, reporting 46% lower decoding latency and higher accuracy than a nine-loop vanilla 1.4B model.",
+   "transfer_caveat": "The predictor, corrector and backbone are jointly trained, and no unchanged Huginn/Ouro checkpoint is evaluated, so it does not show training-free parallel-in-depth works.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2610-35556.md"
+  }
+ ],
+ "metrics": {
+  "cells": {
+   "huginn-3.5b|D32|constant|m1|jacobi|suffix16|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "suffix",
+    "width": 16,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.72265625,
+      "kl": 0.5804342376068234,
+      "rel": 1.0242340601980686,
+      "rows": 16.0,
+      "solver_ms": 15.22351658786647
+     },
+     {
+      "k": 2,
+      "top1": 0.826171875,
+      "kl": 0.24001803412102163,
+      "rel": 0.7741849031299353,
+      "rows": 32.0,
+      "solver_ms": 28.83300109533593
+     },
+     {
+      "k": 3,
+      "top1": 0.861328125,
+      "kl": 0.12597886775620282,
+      "rel": 0.5792185422033072,
+      "rows": 48.0,
+      "solver_ms": 42.44531142467167
+     },
+     {
+      "k": 4,
+      "top1": 0.89453125,
+      "kl": 0.06979351700283587,
+      "rel": 0.43187052942812443,
+      "rows": 64.0,
+      "solver_ms": 55.98572392773349
+     },
+     {
+      "k": 5,
+      "top1": 0.921875,
+      "kl": 0.04137599145178683,
+      "rel": 0.3229527845978737,
+      "rows": 80.0,
+      "solver_ms": 69.51605502399616
+     },
+     {
+      "k": 6,
+      "top1": 0.93359375,
+      "kl": 0.02625335959601216,
+      "rel": 0.24224333930760622,
+      "rows": 96.0,
+      "solver_ms": 83.04512839822564
+     },
+     {
+      "k": 7,
+      "top1": 0.9453125,
+      "kl": 0.013999027039972134,
+      "rel": 0.1825937470421195,
+      "rows": 112.0,
+      "solver_ms": 96.57337929820642
+     },
+     {
+      "k": 8,
+      "top1": 0.95703125,
+      "kl": 0.009242356092727277,
+      "rel": 0.13844379945658147,
+      "rows": 128.0,
+      "solver_ms": 110.13167783676181
+     },
+     {
+      "k": 9,
+      "top1": 0.96875,
+      "kl": 0.006843732262495905,
+      "rel": 0.10601948271505535,
+      "rows": 144.0,
+      "solver_ms": 123.67142405128106
+     },
+     {
+      "k": 10,
+      "top1": 0.98046875,
+      "kl": 0.00490513042677776,
+      "rel": 0.0815302049741149,
+      "rows": 160.0,
+      "solver_ms": 137.19554638373666
+     },
+     {
+      "k": 11,
+      "top1": 0.986328125,
+      "kl": 0.0030629326356574893,
+      "rel": 0.06414230435620993,
+      "rows": 176.0,
+      "solver_ms": 150.7202724169474
+     },
+     {
+      "k": 12,
+      "top1": 0.98828125,
+      "kl": 0.002006971271839575,
+      "rel": 0.050626122392714024,
+      "rows": 192.0,
+      "solver_ms": 164.2475204571383
+     },
+     {
+      "k": 13,
+      "top1": 0.990234375,
+      "kl": 0.0014940525466045074,
+      "rel": 0.04129436408402398,
+      "rows": 208.0,
+      "solver_ms": 181.45843452657573
+     },
+     {
+      "k": 14,
+      "top1": 0.99609375,
+      "kl": 0.0010900603792833863,
+      "rel": 0.03383218962699175,
+      "rows": 224.0,
+      "solver_ms": 194.99786489177495
+     },
+     {
+      "k": 15,
+      "top1": 0.99609375,
+      "kl": 0.000777707661200111,
+      "rel": 0.028916932235006243,
+      "rows": 240.0,
+      "solver_ms": 208.61637583584525
+     },
+     {
+      "k": 16,
+      "top1": 0.9921875,
+      "kl": 0.0006721228103288013,
+      "rel": 0.024738010251894593,
+      "rows": 256.0,
+      "solver_ms": 222.16690810455475
+     }
+    ],
+    "serial_ref_ms": 106.66595750080887,
+    "warmup_ms": 3.4347961336607113,
+    "predictor_ms": 0.2110639907186851,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "huginn-3.5b|D32|constant|m1|jacobi|suffix8|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "suffix",
+    "width": 8,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.724609375,
+      "kl": 0.5802340507507324,
+      "rel": 1.0242277681827545,
+      "rows": 8.0,
+      "solver_ms": 10.619671884342097
+     },
+     {
+      "k": 2,
+      "top1": 0.826171875,
+      "kl": 0.23933308734558523,
+      "rel": 0.7741714995354414,
+      "rows": 16.0,
+      "solver_ms": 19.722785757039674
+     },
+     {
+      "k": 3,
+      "top1": 0.861328125,
+      "kl": 0.12662795034702867,
+      "rel": 0.579213997349143,
+      "rows": 24.0,
+      "solver_ms": 28.81418883043807
+     },
+     {
+      "k": 4,
+      "top1": 0.896484375,
+      "kl": 0.06977757188724354,
+      "rel": 0.4318795008584857,
+      "rows": 32.0,
+      "solver_ms": 37.927708734059706
+     },
+     {
+      "k": 5,
+      "top1": 0.923828125,
+      "kl": 0.04143456960446201,
+      "rel": 0.32302023004740477,
+      "rows": 40.0,
+      "solver_ms": 47.061013799975626
+     },
+     {
+      "k": 6,
+      "top1": 0.935546875,
+      "kl": 0.025939526996808127,
+      "rel": 0.2422438357025385,
+      "rows": 48.0,
+      "solver_ms": 56.16143936640583
+     },
+     {
+      "k": 7,
+      "top1": 0.9453125,
+      "kl": 0.014051466438104399,
+      "rel": 0.1825480363331735,
+      "rows": 56.0,
+      "solver_ms": 65.25173448608257
+     },
+     {
+      "k": 8,
+      "top1": 0.958984375,
+      "kl": 0.009324145685241092,
+      "rel": 0.13848403235897422,
+      "rows": 64.0,
+      "solver_ms": 74.34748980449513
+     },
+     {
+      "k": 9,
+      "top1": 0.958984375,
+      "kl": 0.009324145685241092,
+      "rel": 0.13848403235897422,
+      "rows": 72.0,
+      "solver_ms": 83.43173188040964
+     },
+     {
+      "k": 10,
+      "top1": 0.958984375,
+      "kl": 0.009324145685241092,
+      "rel": 0.13848403235897422,
+      "rows": 80.0,
+      "solver_ms": 92.52188436221331
+     },
+     {
+      "k": 11,
+      "top1": 0.958984375,
+      "kl": 0.009324145685241092,
+      "rel": 0.13848403235897422,
+      "rows": 88.0,
+      "solver_ms": 101.61711274122354
+     },
+     {
+      "k": 12,
+      "top1": 0.958984375,
+      "kl": 0.009324145685241092,
+      "rel": 0.13848403235897422,
+      "rows": 96.0,
+      "solver_ms": 110.72912020608783
+     },
+     {
+      "k": 13,
+      "top1": 0.958984375,
+      "kl": 0.009324145685241092,
+      "rel": 0.13848403235897422,
+      "rows": 104.0,
+      "solver_ms": 119.84834083705209
+     },
+     {
+      "k": 14,
+      "top1": 0.958984375,
+      "kl": 0.009324145685241092,
+      "rel": 0.13848403235897422,
+      "rows": 112.0,
+      "solver_ms": 128.94845601113047
+     },
+     {
+      "k": 15,
+      "top1": 0.958984375,
+      "kl": 0.009324145685241092,
+      "rel": 0.13848403235897422,
+      "rows": 120.0,
+      "solver_ms": 138.0342487973394
+     },
+     {
+      "k": 16,
+      "top1": 0.958984375,
+      "kl": 0.009324145685241092,
+      "rel": 0.13848403235897422,
+      "rows": 128.0,
+      "solver_ms": 147.1387475176016
+     }
+    ],
+    "serial_ref_ms": 106.43176976009272,
+    "warmup_ms": 3.421944536967203,
+    "predictor_ms": 0.20986259914934635,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "huginn-3.5b|D32|constant|m1|jacobi|suffix2|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "suffix",
+    "width": 2,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.724609375,
+      "kl": 0.5809404663741589,
+      "rel": 1.0242304429411888,
+      "rows": 2.0,
+      "solver_ms": 7.353214343311265
+     },
+     {
+      "k": 2,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 4.0,
+      "solver_ms": 13.289899245137349
+     },
+     {
+      "k": 3,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 6.0,
+      "solver_ms": 19.229274679673836
+     },
+     {
+      "k": 4,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 8.0,
+      "solver_ms": 25.194183748681098
+     },
+     {
+      "k": 5,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 10.0,
+      "solver_ms": 31.107432121643797
+     },
+     {
+      "k": 6,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 12.0,
+      "solver_ms": 37.01483775512315
+     },
+     {
+      "k": 7,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 14.0,
+      "solver_ms": 42.923998887999915
+     },
+     {
+      "k": 8,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 16.0,
+      "solver_ms": 48.838669928954914
+     },
+     {
+      "k": 9,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 18.0,
+      "solver_ms": 54.735778117901646
+     },
+     {
+      "k": 10,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 20.0,
+      "solver_ms": 60.67242712015286
+     },
+     {
+      "k": 11,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 22.0,
+      "solver_ms": 66.7051711352542
+     },
+     {
+      "k": 12,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 24.0,
+      "solver_ms": 72.60764478996862
+     },
+     {
+      "k": 13,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 26.0,
+      "solver_ms": 78.51072345511056
+     },
+     {
+      "k": 14,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 28.0,
+      "solver_ms": 84.43056953547057
+     },
+     {
+      "k": 15,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 30.0,
+      "solver_ms": 90.33947174611967
+     },
+     {
+      "k": 16,
+      "top1": 0.822265625,
+      "kl": 0.2400208180770278,
+      "rel": 0.7741665076464415,
+      "rows": 32.0,
+      "solver_ms": 96.37058063526638
+     }
+    ],
+    "serial_ref_ms": 106.00889254419599,
+    "warmup_ms": 3.4086420491803437,
+    "predictor_ms": 0.21140558237675577,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   }
+  },
+  "sample_count": 1536,
+  "label": "teacher-forced diagnostic (exact AR advances; exact commit each token); not serving speed"
+ },
+ "hardware": {
+  "gpu_name": "NVIDIA H200",
+  "gpu_names": [
+   "NVIDIA H200"
+  ],
+  "gpu_indices": [
+   6
+  ],
+  "jobs_ok": 3,
+  "jobs_failed": 0
+ },
+ "artifacts": {
+  "sha256": "690d378fb6eb7af941ee1b229e25f49416ff3d0e1cfe061afe518862158362e6",
+  "files": {
+   "results/A3_BLOCKS/2beef7d461f02db9.json": "5140539e3b001879b4eefaabbce73784fb883fc47274eb193c4d3f8b329d1fe2",
+   "results/A3_BLOCKS/2beef7d461f02db9.meta.json": "7b017ab58188ee7b12e1965e3e7042d0a5ebaf26af7634c8fb82211750afd473",
+   "results/A3_BLOCKS/38d9971c99426b1b.json": "d41c4abf02bad5cd7bec5ee0322776fc224cf23db0bb1f6884a29e0efc3a9935",
+   "results/A3_BLOCKS/38d9971c99426b1b.meta.json": "39f178e8778bf119e0fa68add77719417fc46d42413dbe87aecd11b8b1595dc2",
+   "results/A3_BLOCKS/4ed592286868957f.json": "97cf317b28c986884e7216b58be610d47819f61273ce9e81efbcc1dedcf6537a",
+   "results/A3_BLOCKS/4ed592286868957f.meta.json": "02c87f48d0d8a742b543a48cc19e0bcd74964f314a057ed49501761851dd94dd"
+  },
+  "failed_jobs": []
+ },
+ "gpu_hours": 0.0223
+}

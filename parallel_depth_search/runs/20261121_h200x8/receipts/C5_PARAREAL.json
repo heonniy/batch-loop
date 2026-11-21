@@ -1,0 +1,320 @@
+{
+ "node_id": "C5_PARAREAL",
+ "trial_id": "C5_PARAREAL-673494791cee",
+ "state": "executed",
+ "source_git_sha": "09f2008dbdc7fbd81f3019c2bbcd4e2fd8ee1261",
+ "command": [
+  "(cpu) see metrics.provenance"
+ ],
+ "data_split": "pilot",
+ "model": "n/a",
+ "seed": 20261121,
+ "method": "Identity/one-step controls plus geometric and learned/frozen coarse G, blocks2/4/8.",
+ "literature_checks": [
+  {
+   "paper_id": "P-2412-08292",
+   "url": "https://arxiv.org/abs/2412.08292",
+   "version": "v1",
+   "claim": "SRDS applies Parareal (coarse solve refined by parallel fine solves) to pretrained diffusion samplers, converging to the serial solution with up to 1.7x speedup at 25 steps and 4.3x on longer trajectories.",
+   "transfer_caveat": "Parareal needs a cheap yet accurate coarse propagator, and none is yet known for pretrained Huginn.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2412-08292.md"
+  }
+ ],
+ "metrics": {
+  "cells": {
+   "dynamics_huginn-3.5b": {
+    "b2_identity": {
+     "block": 2,
+     "n_blocks": 16,
+     "seq_calls_per_round": 2,
+     "init_seq_calls": 0,
+     "k_stable_mean": 15.859375,
+     "k_stable_p90": 16,
+     "seq_calls_to_stable_mean": 31.71875,
+     "top1_by_round": [
+      0.8076171875,
+      0.0185546875,
+      0.7607421875,
+      0.01171875,
+      0.705078125,
+      0.0078125,
+      0.6142578125,
+      0.0029296875,
+      0.5078125,
+      0.0029296875,
+      0.375,
+      0.0087890625,
+      0.1943359375,
+      0.0283203125,
+      0.1259765625,
+      0.998046875
+     ],
+     "kl_by_round": [
+      0.40923825195312474,
+      12.01931477539063,
+      0.5815613281249998,
+      11.882533583984362,
+      0.7915510742187498,
+      11.65530853515625,
+      1.11703361328125,
+      11.305504296875005,
+      1.6204245800781267,
+      10.727776259765632,
+      2.4348134179687486,
+      9.686392421874999,
+      3.851317695312505,
+      7.729097656249999,
+      5.0176509765625035,
+      0.00019561523437500086
+     ]
+    },
+    "b2_onestep": {
+     "block": 2,
+     "n_blocks": 16,
+     "seq_calls_per_round": 19,
+     "init_seq_calls": 16,
+     "k_stable_mean": 9.5087890625,
+     "k_stable_p90": 15,
+     "seq_calls_to_stable_mean": 196.6669921875,
+     "top1_by_round": [
+      0.9619140625,
+      0.8974609375,
+      0.724609375,
+      0.66015625,
+      0.6552734375,
+      0.6611328125,
+      0.6396484375,
+      0.6318359375,
+      0.6669921875,
+      0.638671875,
+      0.6982421875,
+      0.7490234375,
+      0.814453125,
+      0.8994140625,
+      0.943359375,
+      0.9951171875
+     ],
+     "kl_by_round": [
+      0.014995615234374976,
+      0.15622247070312495,
+      0.796183544921875,
+      1.1043397656250005,
+      1.067565019531248,
+      1.143483193359373,
+      1.2415270019531246,
+      1.2263578515625004,
+      1.21276341796875,
+      1.167802275390625,
+      1.0082693457031249,
+      0.7239612109375,
+      0.47531805664062493,
+      0.16363487304687502,
+      0.045158378906250025,
+      0.0002157519531250007
+     ]
+    },
+    "b4_identity": {
+     "block": 4,
+     "n_blocks": 8,
+     "seq_calls_per_round": 4,
+     "init_seq_calls": 0,
+     "k_stable_mean": 7.2490234375,
+     "k_stable_p90": 8,
+     "seq_calls_to_stable_mean": 28.99609375,
+     "top1_by_round": [
+      0.888671875,
+      0.0244140625,
+      0.8173828125,
+      0.0205078125,
+      0.7275390625,
+      0.005859375,
+      0.7373046875,
+      0.9970703125
+     ],
+     "kl_by_round": [
+      0.1408404003906251,
+      12.423173144531232,
+      0.3205744042968752,
+      12.058056240234373,
+      0.639146103515625,
+      10.503627060546886,
+      0.6505944238281258,
+      0.00018886718750000077
+     ]
+    },
+    "b4_onestep": {
+     "block": 4,
+     "n_blocks": 8,
+     "seq_calls_per_round": 13,
+     "init_seq_calls": 8,
+     "k_stable_mean": 3.619140625,
+     "k_stable_p90": 7,
+     "seq_calls_to_stable_mean": 55.048828125,
+     "top1_by_round": [
+      0.8544921875,
+      0.5322265625,
+      0.69140625,
+      0.7587890625,
+      0.7841796875,
+      0.8701171875,
+      0.947265625,
+      0.99609375
+     ],
+     "kl_by_round": [
+      0.24877770507812488,
+      1.7186222363281225,
+      0.9480910839843747,
+      0.6919824804687492,
+      0.5343508398437491,
+      0.19723912109375,
+      0.036477119140624986,
+      0.00022221679687500068
+     ]
+    },
+    "b8_identity": {
+     "block": 8,
+     "n_blocks": 4,
+     "seq_calls_per_round": 8,
+     "init_seq_calls": 0,
+     "k_stable_mean": 3.03515625,
+     "k_stable_p90": 3,
+     "seq_calls_to_stable_mean": 24.28125,
+     "top1_by_round": [
+      0.935546875,
+      0.021484375,
+      0.92578125,
+      0.9970703125
+     ],
+     "kl_by_round": [
+      0.04853494140624997,
+      11.967347910156237,
+      0.05405175781249995,
+      0.00018886718750000077
+     ]
+    },
+    "b8_onestep": {
+     "block": 8,
+     "n_blocks": 4,
+     "seq_calls_per_round": 13,
+     "init_seq_calls": 4,
+     "k_stable_mean": 1.6025390625,
+     "k_stable_p90": 3,
+     "seq_calls_to_stable_mean": 24.8330078125,
+     "top1_by_round": [
+      0.7421875,
+      0.8447265625,
+      0.943359375,
+      0.99609375
+     ],
+     "kl_by_round": [
+      0.76751908203125,
+      0.3131817089843754,
+      0.034747802734374986,
+      0.00021568359375000068
+     ]
+    }
+   },
+   "dynamics_ouro-1.4b": {
+    "b2_identity": {
+     "block": 2,
+     "n_blocks": 2,
+     "seq_calls_per_round": 2,
+     "init_seq_calls": 0,
+     "k_stable_mean": 1.0498046875,
+     "k_stable_p90": 1,
+     "seq_calls_to_stable_mean": 2.099609375,
+     "top1_by_round": [
+      0.9501953125,
+      1.0
+     ],
+     "kl_by_round": [
+      0.22170893554687493,
+      0.0
+     ]
+    },
+    "b2_onestep": {
+     "block": 2,
+     "n_blocks": 2,
+     "seq_calls_per_round": 5,
+     "init_seq_calls": 2,
+     "k_stable_mean": 1.0185546875,
+     "k_stable_p90": 1,
+     "seq_calls_to_stable_mean": 7.0927734375,
+     "top1_by_round": [
+      0.9814453125,
+      1.0
+     ],
+     "kl_by_round": [
+      0.006959824218749995,
+      0.0
+     ]
+    }
+   },
+   "dynamics_ouro-2.6b": {
+    "b2_identity": {
+     "block": 2,
+     "n_blocks": 2,
+     "seq_calls_per_round": 2,
+     "init_seq_calls": 0,
+     "k_stable_mean": 1.0498046875,
+     "k_stable_p90": 1,
+     "seq_calls_to_stable_mean": 2.099609375,
+     "top1_by_round": [
+      0.9501953125,
+      1.0
+     ],
+     "kl_by_round": [
+      0.19945043945312496,
+      0.0
+     ]
+    },
+    "b2_onestep": {
+     "block": 2,
+     "n_blocks": 2,
+     "seq_calls_per_round": 5,
+     "init_seq_calls": 2,
+     "k_stable_mean": 1.0185546875,
+     "k_stable_p90": 1,
+     "seq_calls_to_stable_mean": 7.0927734375,
+     "top1_by_round": [
+      0.9814453125,
+      1.0
+     ],
+     "kl_by_round": [
+      0.005167539062500004,
+      0.0
+     ]
+    }
+   }
+  },
+  "sample_count": 3072,
+  "derived_from": "G1_DYNAMICS depth_diag jobs (block Parareal identity/onestep coarse G, FP32-accumulated correction)",
+  "not_tested": "geometric / learned coarse G (not implemented)",
+  "serial_calls_D": {
+   "huginn": 32,
+   "ouro": 4
+  },
+  "cpu_only_nominal_gpu_hours": true
+ },
+ "hardware": {
+  "gpu_name": "CPU",
+  "gpu_names": [],
+  "gpu_indices": [],
+  "jobs_ok": 0,
+  "jobs_failed": 0
+ },
+ "artifacts": {
+  "sha256": "1dfc7a7ae1675db1cc20944f10ed35484a4e26c38e09528dac881d4644c51eca",
+  "files": {
+   "results/C5_PARAREAL/dynamics_huginn-3.5b.config.json": "baef20ff22979530876e186a674c1e43a3165387b281da6e24825cee83e35d92",
+   "results/C5_PARAREAL/dynamics_huginn-3.5b.summary.json": "067f912f736951dfa0367b17edb4c413ff25b0727efac0c0fdb62d7fb70ca1ed",
+   "results/C5_PARAREAL/dynamics_ouro-1.4b.config.json": "eb7e886cf7f16844a14ea00ddfa8a7117d2d51aca95e5ced1cbe3606a9874f3f",
+   "results/C5_PARAREAL/dynamics_ouro-1.4b.summary.json": "26577593488e7a5e4c194bd69f4a53de5fcd91e02a3d76ff131634bee138b04c",
+   "results/C5_PARAREAL/dynamics_ouro-2.6b.config.json": "a575e52911e20df07e9d98eaa92ecf28315302aebe4d7066ae87c05d23a1321b",
+   "results/C5_PARAREAL/dynamics_ouro-2.6b.summary.json": "b21fdb19a9c296282bee9a798ff997e16ac561348b1207337facda22b188eba4"
+  },
+  "failed_jobs": []
+ },
+ "gpu_hours": 0.0001
+}

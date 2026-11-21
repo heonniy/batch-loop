@@ -1,11 +1,13 @@
 # Experimental execution status — 2026-11-21
 
-**NOT_RUN (new campaign).** This branch contains an extended research protocol, machine-readable adaptive DAG, offline tests, and opt-in CUDA diagnostic runner. There is NO new H200 measurement or server-side execution claim associated with these commits. Prior PoC GPU results remain at [batch-loop@829076bb](https://github.com/heonniy/batch-loop/blob/829076bb/parallel_depth_poc/RESULTS.md).
+**EXECUTED on 8× H200 (run `runs/20261121_h200x8`).** All 23 DAG nodes have ledger receipts: 22 executed and C4 `not_run` with a reason. Total 50.9 / 384 GPU-hours. Results and limitations: [RESULTS.md](RESULTS.md).
 
-- Current run: none initialized on an H200 host by this assistant.
-- Physical hardware access in the current session: unavailable.
-- Next safely executable step: coding agent on allocated H200 server follows [AGENT_RUNBOOK.md](AGENT_RUNBOOK.md), initializes run manifest, runs G0 native parity and cache gate, ingests verified receipts; repeats adaptive selection until user-authorized time budget or safety stop.
-- Implemented diagnostic arms: Constant/Linear/Geometric/Secant/Prev-Shift × Jacobi/Damped/Anderson/Identity-Newton/Scaled-Newton × Full/Suffix/Prefix/Alternating/Residual-TopK; not all combinations have sound theoretical meaning and **none yet demonstrate serving gains**.
-- Deferred implementation gates: genuine ParaTAA triangular formulation, low-rank/diagonal JVP-corrector, physical Parareal with rich coarse G, native full B>1 E2E cache-safe decoder, online calibration, final held-out tests.
+- **Final verdicts:**
+  - F1_FULL_ROLLOUT = `supported_heldout_quality_matched`. This is one cell: Ouro-2.6B B=16 `jac_m1`, 1.29× vs AR. It **ties** depth truncation.
+  - F2_STRESS = `contradicted_quality` by controller rules (inconclusive by FREEZE wording). The gain does not transfer to MATH-500 or to FP32.
+- **Exact depth-parallel decoding:** no speedup in any cell.
+- **Ledger:** `runs/20261121_h200x8/evidence.jsonl`, with per-node `receipts/` and `analysis/`.
+- **Raw per-prompt outputs:** kept on the H200 host and gitignored; sha256 values are in the receipts.
+- **Test freeze:** [FREEZE_20261121.md](FREEZE_20261121.md), committed in `a6577118` before any test-split decode.
 
 **Never replace `NOT_RUN` with `completed` based solely on successful CPU CI or generated job manifests.**

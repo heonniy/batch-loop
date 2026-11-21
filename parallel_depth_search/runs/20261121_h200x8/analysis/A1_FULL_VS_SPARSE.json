@@ -1,0 +1,822 @@
+{
+ "cells": {
+  "ouro-2.6b|D4|constant|m1|jacobi|prefix3|a1.0": {
+   "model": "ouro-2.6b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "prefix",
+   "width": 3,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.97265625,
+     "kl": 0.008814555796561763,
+     "rel": 0.2027504639700055,
+     "rows": 3.0,
+     "solver_ms": 37.60765701008495
+    },
+    {
+     "k": 2,
+     "top1": 0.978515625,
+     "kl": 0.0020409901680977782,
+     "rel": 0.1085425220662728,
+     "rows": 6.0,
+     "solver_ms": 73.506632092176
+    },
+    {
+     "k": 3,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 9.0,
+     "solver_ms": 109.36948528978974
+    },
+    {
+     "k": 4,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 12.0,
+     "solver_ms": 145.2296826755628
+    }
+   ],
+   "serial_ref_ms": 136.0880111460574,
+   "warmup_ms": 32.97528093389701,
+   "predictor_ms": 0.06359731196425855,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "ouro-2.6b|D4|constant|m1|jacobi|random3|a1.0": {
+   "model": "ouro-2.6b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "random",
+   "width": 3,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.97265625,
+     "kl": 0.008814555796561763,
+     "rel": 0.2027504639700055,
+     "rows": 3.0,
+     "solver_ms": 36.96342936018482
+    },
+    {
+     "k": 2,
+     "top1": 0.978515625,
+     "kl": 0.0020409901680977782,
+     "rel": 0.1085425220662728,
+     "rows": 6.0,
+     "solver_ms": 72.82162016781513
+    },
+    {
+     "k": 3,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 9.0,
+     "solver_ms": 107.70087823038921
+    },
+    {
+     "k": 4,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 12.0,
+     "solver_ms": 142.7664850052679
+    }
+   ],
+   "serial_ref_ms": 130.39497140562162,
+   "warmup_ms": 32.24471627618186,
+   "predictor_ms": 0.06288030999712646,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "ouro-1.4b|D4|constant|m1|jacobi|suffix3|a1.0": {
+   "model": "ouro-1.4b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "suffix",
+   "width": 3,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.9765625,
+     "kl": 0.012064802314853296,
+     "rel": 0.24207637691870332,
+     "rows": 3.0,
+     "solver_ms": 20.027994003612548
+    },
+    {
+     "k": 2,
+     "top1": 0.994140625,
+     "kl": 0.00234488572277769,
+     "rel": 0.11697620642371476,
+     "rows": 6.0,
+     "solver_ms": 38.00439367478248
+    },
+    {
+     "k": 3,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 9.0,
+     "solver_ms": 56.18362527457066
+    },
+    {
+     "k": 4,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 12.0,
+     "solver_ms": 74.64186155993957
+    }
+   ],
+   "serial_ref_ms": 68.79152906185482,
+   "warmup_ms": 16.991782700642943,
+   "predictor_ms": 0.0607555266469717,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "ouro-2.6b|D4|constant|m1|jacobi|suffix3|a1.0": {
+   "model": "ouro-2.6b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "suffix",
+   "width": 3,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.97265625,
+     "kl": 0.008814555796561763,
+     "rel": 0.2027504639700055,
+     "rows": 3.0,
+     "solver_ms": 37.78982604853809
+    },
+    {
+     "k": 2,
+     "top1": 0.978515625,
+     "kl": 0.0020409901680977782,
+     "rel": 0.1085425220662728,
+     "rows": 6.0,
+     "solver_ms": 73.94599587132689
+    },
+    {
+     "k": 3,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 9.0,
+     "solver_ms": 109.76906618452631
+    },
+    {
+     "k": 4,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 12.0,
+     "solver_ms": 145.58705018134788
+    }
+   ],
+   "serial_ref_ms": 135.1130121765891,
+   "warmup_ms": 32.99387340666726,
+   "predictor_ms": 0.06351509364321828,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "huginn-3.5b|D32|constant|m1|jacobi|alternating8|a1.0": {
+   "model": "huginn-3.5b",
+   "depth": 32,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "alternating",
+   "width": 8,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 8.0,
+     "solver_ms": 13.27180145017337
+    },
+    {
+     "k": 2,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 16.0,
+     "solver_ms": 23.588862735778093
+    },
+    {
+     "k": 3,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 24.0,
+     "solver_ms": 35.46500421361998
+    },
+    {
+     "k": 4,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 32.0,
+     "solver_ms": 46.934333513490856
+    }
+   ],
+   "serial_ref_ms": 132.83222999598365,
+   "warmup_ms": 4.213422638713382,
+   "predictor_ms": 0.24529622169211507,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 32
+  },
+  "huginn-3.5b|D32|constant|m1|jacobi|suffix4|a1.0": {
+   "model": "huginn-3.5b",
+   "depth": 32,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "suffix",
+   "width": 4,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 4.0,
+     "solver_ms": 9.29601289681159
+    },
+    {
+     "k": 2,
+     "top1": 0.826171875,
+     "kl": 0.23933308734558523,
+     "rel": 0.7741714995354414,
+     "rows": 8.0,
+     "solver_ms": 17.652158669079654
+    },
+    {
+     "k": 3,
+     "top1": 0.861328125,
+     "kl": 0.12662795034702867,
+     "rel": 0.579213997349143,
+     "rows": 12.0,
+     "solver_ms": 25.801043331739493
+    },
+    {
+     "k": 4,
+     "top1": 0.896484375,
+     "kl": 0.06977757188724354,
+     "rel": 0.4318795008584857,
+     "rows": 16.0,
+     "solver_ms": 33.37882718187757
+    }
+   ],
+   "serial_ref_ms": 140.02836677536834,
+   "warmup_ms": 4.047376598464325,
+   "predictor_ms": 0.9257861238438636,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 32
+  },
+  "huginn-3.5b|D32|constant|m1|jacobi|random4|a1.0": {
+   "model": "huginn-3.5b",
+   "depth": 32,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "random",
+   "width": 4,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 4.0,
+     "solver_ms": 14.654435217380524
+    },
+    {
+     "k": 2,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 8.0,
+     "solver_ms": 26.104704636964016
+    },
+    {
+     "k": 3,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 12.0,
+     "solver_ms": 36.39053514052648
+    },
+    {
+     "k": 4,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 16.0,
+     "solver_ms": 47.86754568340257
+    }
+   ],
+   "serial_ref_ms": 175.95401033759117,
+   "warmup_ms": 5.172672186745331,
+   "predictor_ms": 0.3997309977421537,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 32
+  },
+  "ouro-1.4b|D4|constant|m1|jacobi|full|a1.0": {
+   "model": "ouro-1.4b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.9765625,
+     "kl": 0.012064802314853296,
+     "rel": 0.24207637691870332,
+     "rows": 3.0,
+     "solver_ms": 19.809484685538337
+    },
+    {
+     "k": 2,
+     "top1": 0.994140625,
+     "kl": 0.00234488572277769,
+     "rel": 0.11697620642371476,
+     "rows": 6.0,
+     "solver_ms": 37.9186701902654
+    },
+    {
+     "k": 3,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 9.0,
+     "solver_ms": 55.97971998213325
+    },
+    {
+     "k": 4,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 12.0,
+     "solver_ms": 74.17840378184337
+    }
+   ],
+   "serial_ref_ms": 67.77377214166336,
+   "warmup_ms": 16.495515825226903,
+   "predictor_ms": 0.05964352749288082,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "huginn-3.5b|D32|constant|m1|jacobi|random8|a1.0": {
+   "model": "huginn-3.5b",
+   "depth": 32,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "random",
+   "width": 8,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 8.0,
+     "solver_ms": 10.694116630475037
+    },
+    {
+     "k": 2,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 16.0,
+     "solver_ms": 19.860114189214073
+    },
+    {
+     "k": 3,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 24.0,
+     "solver_ms": 29.02657382946927
+    },
+    {
+     "k": 4,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 32.0,
+     "solver_ms": 38.11521563329734
+    }
+   ],
+   "serial_ref_ms": 106.63416828901973,
+   "warmup_ms": 3.3980501029873267,
+   "predictor_ms": 0.21344622655306011,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 32
+  },
+  "huginn-3.5b|D32|constant|m1|jacobi|prefix4|a1.0": {
+   "model": "huginn-3.5b",
+   "depth": 32,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "prefix",
+   "width": 4,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 4.0,
+     "solver_ms": 9.047872750670649
+    },
+    {
+     "k": 2,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 8.0,
+     "solver_ms": 17.476773922680877
+    },
+    {
+     "k": 3,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 12.0,
+     "solver_ms": 25.19126389233861
+    },
+    {
+     "k": 4,
+     "top1": 0.724609375,
+     "kl": 0.5802340507507324,
+     "rel": 1.0242277681827545,
+     "rows": 16.0,
+     "solver_ms": 33.87171038775705
+    }
+   ],
+   "serial_ref_ms": 122.33547639334574,
+   "warmup_ms": 3.6435337824514136,
+   "predictor_ms": 0.23134970979299396,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 32
+  },
+  "ouro-2.6b|D4|constant|m1|jacobi|full|a1.0": {
+   "model": "ouro-2.6b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.97265625,
+     "kl": 0.008814555796561763,
+     "rel": 0.2027504639700055,
+     "rows": 3.0,
+     "solver_ms": 37.63298306148499
+    },
+    {
+     "k": 2,
+     "top1": 0.978515625,
+     "kl": 0.0020409901680977782,
+     "rel": 0.1085425220662728,
+     "rows": 6.0,
+     "solver_ms": 73.4066111035645
+    },
+    {
+     "k": 3,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 9.0,
+     "solver_ms": 109.03162436443381
+    },
+    {
+     "k": 4,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 12.0,
+     "solver_ms": 144.8478742968291
+    }
+   ],
+   "serial_ref_ms": 132.01402842241805,
+   "warmup_ms": 32.61138504603878,
+   "predictor_ms": 0.0616105244262144,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "ouro-1.4b|D4|constant|m1|jacobi|prefix3|a1.0": {
+   "model": "ouro-1.4b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "prefix",
+   "width": 3,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.9765625,
+     "kl": 0.012064802314853296,
+     "rel": 0.24207637691870332,
+     "rows": 3.0,
+     "solver_ms": 22.06090667459648
+    },
+    {
+     "k": 2,
+     "top1": 0.994140625,
+     "kl": 0.00234488572277769,
+     "rel": 0.11697620642371476,
+     "rows": 6.0,
+     "solver_ms": 41.89784410118591
+    },
+    {
+     "k": 3,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 9.0,
+     "solver_ms": 62.06940893025603
+    },
+    {
+     "k": 4,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 12.0,
+     "solver_ms": 81.96178371144924
+    }
+   ],
+   "serial_ref_ms": 75.16181012033485,
+   "warmup_ms": 18.676679028430954,
+   "predictor_ms": 0.06589955592062324,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "ouro-2.6b|D4|constant|m1|jacobi|alternating3|a1.0": {
+   "model": "ouro-2.6b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "alternating",
+   "width": 3,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.97265625,
+     "kl": 0.008814555796561763,
+     "rel": 0.2027504639700055,
+     "rows": 2.0,
+     "solver_ms": 36.50050958094653
+    },
+    {
+     "k": 2,
+     "top1": 0.97265625,
+     "kl": 0.008814555796561763,
+     "rel": 0.2027504639700055,
+     "rows": 4.0,
+     "solver_ms": 70.6124450371135
+    },
+    {
+     "k": 3,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 6.0,
+     "solver_ms": 104.63884921045974
+    },
+    {
+     "k": 4,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 8.0,
+     "solver_ms": 138.7253909779247
+    }
+   ],
+   "serial_ref_ms": 131.53223696281202,
+   "warmup_ms": 32.624249361106195,
+   "predictor_ms": 0.062119768699631095,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "huginn-3.5b|D32|constant|m1|jacobi|full|a1.0": {
+   "model": "huginn-3.5b",
+   "depth": 32,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "full",
+   "width": 0,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.728515625,
+     "kl": 0.5803280994296074,
+     "rel": 1.0242310799658298,
+     "rows": 31.0,
+     "solver_ms": 38.529523997567594
+    },
+    {
+     "k": 2,
+     "top1": 0.82421875,
+     "kl": 0.23976618517190218,
+     "rel": 0.7741635888814926,
+     "rows": 62.0,
+     "solver_ms": 64.44574170745909
+    },
+    {
+     "k": 3,
+     "top1": 0.8671875,
+     "kl": 0.12604674068279564,
+     "rel": 0.5791913494467735,
+     "rows": 93.0,
+     "solver_ms": 90.6879229733022
+    },
+    {
+     "k": 4,
+     "top1": 0.8984375,
+     "kl": 0.06949990458087996,
+     "rel": 0.43185895308852196,
+     "rows": 124.0,
+     "solver_ms": 121.78527463402133
+    }
+   ],
+   "serial_ref_ms": 144.10101939574815,
+   "warmup_ms": 4.373969888547435,
+   "predictor_ms": 0.26345391233917326,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 32
+  },
+  "ouro-1.4b|D4|constant|m1|jacobi|random3|a1.0": {
+   "model": "ouro-1.4b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "random",
+   "width": 3,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.9765625,
+     "kl": 0.012064802314853296,
+     "rel": 0.24207637691870332,
+     "rows": 3.0,
+     "solver_ms": 20.56443454057444
+    },
+    {
+     "k": 2,
+     "top1": 0.994140625,
+     "kl": 0.00234488572277769,
+     "rel": 0.11697620642371476,
+     "rows": 6.0,
+     "solver_ms": 39.54380252980627
+    },
+    {
+     "k": 3,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 9.0,
+     "solver_ms": 58.49319820117671
+    },
+    {
+     "k": 4,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 12.0,
+     "solver_ms": 77.15557483606972
+    }
+   ],
+   "serial_ref_ms": 70.58297963521909,
+   "warmup_ms": 17.335905708023347,
+   "predictor_ms": 0.07913158333394676,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  },
+  "ouro-1.4b|D4|constant|m1|jacobi|alternating3|a1.0": {
+   "model": "ouro-1.4b",
+   "depth": 4,
+   "B": 16,
+   "predictor": "constant",
+   "warmup": 1,
+   "corrector": "jacobi",
+   "allocation": "alternating",
+   "width": 3,
+   "scale": 1.0,
+   "n_tokens": 32,
+   "curve": [
+    {
+     "k": 1,
+     "top1": 0.9765625,
+     "kl": 0.012064802314853296,
+     "rel": 0.24207637691870332,
+     "rows": 2.0,
+     "solver_ms": 19.462947457213886
+    },
+    {
+     "k": 2,
+     "top1": 0.9765625,
+     "kl": 0.012064802314853296,
+     "rel": 0.24207637691870332,
+     "rows": 4.0,
+     "solver_ms": 37.00173851393629
+    },
+    {
+     "k": 3,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 6.0,
+     "solver_ms": 54.44614161388017
+    },
+    {
+     "k": 4,
+     "top1": 1.0,
+     "kl": 0.0,
+     "rel": 0.0,
+     "rows": 8.0,
+     "solver_ms": 71.91319995035883
+    }
+   ],
+   "serial_ref_ms": 68.2567475741962,
+   "warmup_ms": 16.56868023565039,
+   "predictor_ms": 0.06226121331565082,
+   "commit_mismatch": 0,
+   "rows_per_serial_token": 4
+  }
+ },
+ "sample_count": 8192,
+ "label": "teacher-forced diagnostic (exact AR advances; exact commit each token); not serving speed"
+}

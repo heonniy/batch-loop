@@ -1,0 +1,51 @@
+{
+ "node_id": "C4_SCAN_LOW_RANK",
+ "trial_id": "C4_SCAN_LOW_RANK-4f53cda18c2b",
+ "state": "not_run",
+ "source_git_sha": "09f2008dbdc7fbd81f3019c2bbcd4e2fd8ee1261",
+ "command": [
+  "(cpu) see metrics.provenance"
+ ],
+ "data_split": "pilot",
+ "model": "n/a",
+ "seed": 20261121,
+ "method": "Rank8/16/32 surrogate on train only, inspect JVPs, full kernel wall.",
+ "literature_checks": [
+  {
+   "paper_id": "P-2309-16318",
+   "url": "https://arxiv.org/abs/2309.16318",
+   "version": "v2",
+   "claim": "DeepPCR casts a sequence of neural operations as an equation system solved by Parallel Cyclic Reduction, reducing cost from O(L) to O(log L) and reporting up to ~30x forward / ~200x backward MLP speedups.",
+   "transfer_caveat": "Parallel reduction requires an exploitable operator system; there is no pretrained looped-Transformer KV benchmark.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2309-16318.md"
+  },
+  {
+   "paper_id": "P-2511-01465",
+   "url": "https://arxiv.org/abs/2511.01465",
+   "version": "v2",
+   "claim": "The authors solve nonlinear ODEs as a root-finding problem via Newton's method and parallelize the linearized recursion with parallel scans, claiming logarithmic span and runtime gains over Parareal.",
+   "transfer_caveat": "General ODE dynamics lack attention-KV semantics, and the linearized operator cost may dominate on a GPU decoder.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2511-01465.md"
+  }
+ ],
+ "metrics": {
+  "sample_count": 0,
+  "evidence_basis": "C3_NEWTON jvp probe"
+ },
+ "hardware": {
+  "gpu_name": "",
+  "gpu_names": [],
+  "gpu_indices": [],
+  "jobs_ok": 0,
+  "jobs_failed": 0
+ },
+ "artifacts": {
+  "sha256": "",
+  "files": {},
+  "failed_jobs": []
+ },
+ "gpu_hours": 0,
+ "reason": "Deprioritised (not NO-GO) on measured prerequisite evidence: C3 directional probe on Huginn D32 BF16 gives median relative error 0.82 even for the best per-row scalar Jacobian surrogate (identity 1.04; response/delta cosine low), and Ouro gain 0.2 with alpha*~0.01. A rank-r JVP scan needs >= r extra core evaluations per depth per token to estimate the operator, which already exceeds the serial D-call budget at the batch sizes where width is not free (G1_WIDTH: Huginn T_F(32)/T_F(1) = 5.5x at B16, 15x at B64). Re-open if a cheap accurate operator surrogate appears."
+}

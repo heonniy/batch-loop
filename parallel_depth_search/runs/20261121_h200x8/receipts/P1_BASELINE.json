@@ -1,0 +1,394 @@
+{
+ "node_id": "P1_BASELINE",
+ "trial_id": "P1_BASELINE-7bc10ceee2f2",
+ "state": "executed",
+ "source_git_sha": "09f2008dbdc7fbd81f3019c2bbcd4e2fd8ee1261",
+ "command": [
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P1_BASELINE/1344f4f7259a8bf3",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P1_BASELINE/13e73f18319d888c",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-1.4b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor prev_shift --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P1_BASELINE/148cd983873d7276",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor prev_shift --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P1_BASELINE/455061ba09012dee",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P1_BASELINE/66c50267fcee3f8b",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor constant --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P1_BASELINE/85b8667b67a30c44",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor prev_shift --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P1_BASELINE/c177e8e17fbdf773",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model ouro-2.6b --depth 4 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P1_BASELINE/d48625cf46b31b68",
+  "/home/irteam/ddn/envs/wfd/bin/python -m parallel_depth_search.gpu_diagnostic --model huginn-3.5b --depth 32 --batch 16 --prompt-len 256 --cohort gsm8k3 --offset 0 --decode-steps 32 --warmup 1 --predictor linear --corrector jacobi --rounds 2 --allocation full --width 0 --scale 1.0 --seed 20261121 --allow-gpu --out /home1/irteam/dsd_work/ad/parallel_depth_search/runs/20261121_h200x8/results/P1_BASELINE/f1d22c9686341c8b"
+ ],
+ "data_split": "pilot",
+ "model": "huginn-3.5b,ouro-1.4b,ouro-2.6b",
+ "seed": 20261121,
+ "method": "Constant, linear, previous, prev-shift with prefix warmup 1; equal data.",
+ "literature_checks": [
+  {
+   "paper_id": "P-2610-35556",
+   "url": "https://arxiv.org/abs/2610.35556",
+   "version": "v1",
+   "claim": "LoopFold trains a predictor and corrector so later recurrent depths of the same token prefix run in parallel stages, reporting 46% lower decoding latency and higher accuracy than a nine-loop vanilla 1.4B model.",
+   "transfer_caveat": "The predictor, corrector and backbone are jointly trained, and no unchanged Huginn/Ouro checkpoint is evaluated, so it does not show training-free parallel-in-depth works.",
+   "verification_depth": "wiki_card+abstract",
+   "wiki_card": "references/papers/P-2610-35556.md"
+  }
+ ],
+ "metrics": {
+  "cells": {
+   "ouro-1.4b|D4|constant|m1|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.9765625,
+      "kl": 0.012064802314853296,
+      "rel": 0.24207637691870332,
+      "rows": 3.0,
+      "solver_ms": 20.033364882692695
+     },
+     {
+      "k": 2,
+      "top1": 0.994140625,
+      "kl": 0.00234488572277769,
+      "rel": 0.11697620642371476,
+      "rows": 6.0,
+      "solver_ms": 38.470720770419575
+     }
+    ],
+    "serial_ref_ms": 68.42692574718967,
+    "warmup_ms": 16.59306464716792,
+    "predictor_ms": 0.06106047658249736,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-1.4b|D4|linear|m1|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.841796875,
+      "kl": 0.29513869201764464,
+      "rel": 0.7941732574254274,
+      "rows": 3.0,
+      "solver_ms": 21.76635891373735
+     },
+     {
+      "k": 2,
+      "top1": 0.974609375,
+      "kl": 0.01808521269413177,
+      "rel": 0.27918725134804845,
+      "rows": 6.0,
+      "solver_ms": 41.525336884660646
+     }
+    ],
+    "serial_ref_ms": 74.5463069761172,
+    "warmup_ms": 17.788494064006954,
+    "predictor_ms": 0.10508490959182382,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-1.4b|D4|prev_shift|m1|jacobi|full|a1.0": {
+    "model": "ouro-1.4b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "prev_shift",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 31,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.8971774193548387,
+      "kl": 0.14647192640169973,
+      "rel": 0.3793832919289989,
+      "rows": 3.0,
+      "solver_ms": 20.827984993135736
+     },
+     {
+      "k": 2,
+      "top1": 0.9778225806451613,
+      "kl": 0.014363487836934866,
+      "rel": 0.1926794568857839,
+      "rows": 6.0,
+      "solver_ms": 39.80235803511835
+     }
+    ],
+    "serial_ref_ms": 68.23821947158825,
+    "warmup_ms": 17.22236898457331,
+    "predictor_ms": 0.10361232524437289,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-2.6b|D4|prev_shift|m1|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "prev_shift",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 31,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.9435483870967742,
+      "kl": 0.05163404929842199,
+      "rel": 0.30264895529516284,
+      "rows": 3.0,
+      "solver_ms": 38.005509443821445
+     },
+     {
+      "k": 2,
+      "top1": 0.969758064516129,
+      "kl": 0.009713735544092713,
+      "rel": 0.1715451183338319,
+      "rows": 6.0,
+      "solver_ms": 74.19127518791825
+     }
+    ],
+    "serial_ref_ms": 129.8966601250633,
+    "warmup_ms": 32.24492119625211,
+    "predictor_ms": 0.10169312478073182,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "ouro-2.6b|D4|constant|m1|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.97265625,
+      "kl": 0.008814555796561763,
+      "rel": 0.2027504639700055,
+      "rows": 3.0,
+      "solver_ms": 37.2788218955975
+     },
+     {
+      "k": 2,
+      "top1": 0.978515625,
+      "kl": 0.0020409901680977782,
+      "rel": 0.1085425220662728,
+      "rows": 6.0,
+      "solver_ms": 73.02544311096426
+     }
+    ],
+    "serial_ref_ms": 132.46164107113145,
+    "warmup_ms": 32.43221504089888,
+    "predictor_ms": 0.06282798130996525,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "huginn-3.5b|D32|constant|m1|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "constant",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.728515625,
+      "kl": 0.5803280994296074,
+      "rel": 1.0242310799658298,
+      "rows": 31.0,
+      "solver_ms": 24.107919467496686
+     },
+     {
+      "k": 2,
+      "top1": 0.82421875,
+      "kl": 0.23976618517190218,
+      "rel": 0.7741635888814926,
+      "rows": 62.0,
+      "solver_ms": 46.24327663623262
+     }
+    ],
+    "serial_ref_ms": 107.27565234992653,
+    "warmup_ms": 3.450976117164828,
+    "predictor_ms": 0.219243680476211,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "huginn-3.5b|D32|prev_shift|m1|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "prev_shift",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 31,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.7399193548387096,
+      "kl": 0.5143524331431235,
+      "rel": 0.9167496004412251,
+      "rows": 31.0,
+      "solver_ms": 24.098929213059524
+     },
+     {
+      "k": 2,
+      "top1": 0.8407258064516129,
+      "kl": 0.2398426669739908,
+      "rel": 0.716621050911565,
+      "rows": 62.0,
+      "solver_ms": 46.37799485616626
+     }
+    ],
+    "serial_ref_ms": 107.21510454952237,
+    "warmup_ms": 3.445289428195646,
+    "predictor_ms": 0.5574706010520458,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   },
+   "ouro-2.6b|D4|linear|m1|jacobi|full|a1.0": {
+    "model": "ouro-2.6b",
+    "depth": 4,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.876953125,
+      "kl": 0.21442158019635826,
+      "rel": 0.9179073125123978,
+      "rows": 3.0,
+      "solver_ms": 36.62790720409248
+     },
+     {
+      "k": 2,
+      "top1": 0.95703125,
+      "kl": 0.026772769168019295,
+      "rel": 0.2999773034825921,
+      "rows": 6.0,
+      "solver_ms": 71.85667140583973
+     }
+    ],
+    "serial_ref_ms": 129.6675491903443,
+    "warmup_ms": 32.0764429634437,
+    "predictor_ms": 0.10303864837624133,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 4
+   },
+   "huginn-3.5b|D32|linear|m1|jacobi|full|a1.0": {
+    "model": "huginn-3.5b",
+    "depth": 32,
+    "B": 16,
+    "predictor": "linear",
+    "warmup": 1,
+    "corrector": "jacobi",
+    "allocation": "full",
+    "width": 0,
+    "scale": 1.0,
+    "n_tokens": 32,
+    "curve": [
+     {
+      "k": 1,
+      "top1": 0.283203125,
+      "kl": 2.8378664515912533,
+      "rel": 1.2412092760205269,
+      "rows": 31.0,
+      "solver_ms": 24.813660100335255
+     },
+     {
+      "k": 2,
+      "top1": 0.66796875,
+      "kl": 0.762478269636631,
+      "rel": 1.034321740269661,
+      "rows": 62.0,
+      "solver_ms": 47.07480075012427
+     }
+    ],
+    "serial_ref_ms": 109.05235388781875,
+    "warmup_ms": 3.49910459772218,
+    "predictor_ms": 0.527426935150288,
+    "commit_mismatch": 0,
+    "rows_per_serial_token": 32
+   }
+  },
+  "sample_count": 4560,
+  "label": "teacher-forced diagnostic (exact AR advances; exact commit each token); not serving speed"
+ },
+ "hardware": {
+  "gpu_name": "NVIDIA H200",
+  "gpu_names": [
+   "NVIDIA H200"
+  ],
+  "gpu_indices": [
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "jobs_ok": 9,
+  "jobs_failed": 0
+ },
+ "artifacts": {
+  "sha256": "e87117f8fd665fac90e35f7bb980ad897755aa579a0fa252fc48dbcec11bdc96",
+  "files": {
+   "results/P1_BASELINE/1344f4f7259a8bf3.json": "8b847171d2fd73e676617ba62969aab51993b24e5fd6e56b9204dcf8eaf37be4",
+   "results/P1_BASELINE/1344f4f7259a8bf3.meta.json": "65ee6da57f8e738ee4ef13d857a6cdaf1d25d77803fab0bc43064452f0776632",
+   "results/P1_BASELINE/13e73f18319d888c.json": "bd08a442a326d1b48952fd258ace0beea0f0eced6841016b3028c36949fe8d2d",
+   "results/P1_BASELINE/13e73f18319d888c.meta.json": "266a4dfba48e1429745d82094b78ceae164cd537e15a2c02a7c9605b812e9ed3",
+   "results/P1_BASELINE/148cd983873d7276.json": "3ba533d2e7228c05ffce60a878f752379a2c53b9441446aabee1138ede35babd",
+   "results/P1_BASELINE/148cd983873d7276.meta.json": "30babc70f86da427b4cf0726642f2807080990c83f606a2d9a2c8b9dd0e1ec9c",
+   "results/P1_BASELINE/455061ba09012dee.json": "ee48ac108b35cd26626594cfcccedb04905d2173b6ceb436eb96c266c7aeda64",
+   "results/P1_BASELINE/455061ba09012dee.meta.json": "7e30c05d62785905b371add828328f50365d796e504b8cce0e8688eed0ace25f",
+   "results/P1_BASELINE/66c50267fcee3f8b.json": "3f0dfdd44d13aebb1154bdc91cf49b25da0989d23ed342ba793aae6be59b692b",
+   "results/P1_BASELINE/66c50267fcee3f8b.meta.json": "fc3a374a82b4476fe8cd123eeaa0b9ff547e4d472c9735940e969d38de0715c4",
+   "results/P1_BASELINE/85b8667b67a30c44.json": "3b8a38c85cde4936e9f01bcdd6d0ea9a3f612e5ff3c8caa38333df833927adf6",
+   "results/P1_BASELINE/85b8667b67a30c44.meta.json": "8172d5dc6d032fca61580c4919ff5859e5670b1d3e8f2db0d4e21dcb10ca1c13",
+   "results/P1_BASELINE/c177e8e17fbdf773.json": "69ec215c58dd8e9524a6458a5cd9938a6f8f48b01d4e205b3fdaf27b08d398a2",
+   "results/P1_BASELINE/c177e8e17fbdf773.meta.json": "471fe54d80675192f1fbbd1a5640f7bc8a32604f4ef191d4ab5fa20815e3b99b",
+   "results/P1_BASELINE/d48625cf46b31b68.json": "08a5b4da88304b15e6cd035a511f3ea5127b5407159390b6c38edce02c6e0c5b",
+   "results/P1_BASELINE/d48625cf46b31b68.meta.json": "58b076e961db4ff10391619264d7c3f0b652e7c01882a93554b56559bda4f550",
+   "results/P1_BASELINE/f1d22c9686341c8b.json": "4ee425c075b9223cf558919a0e2571cc2a78f2f1f8930928476b2eaabc1e638b",
+   "results/P1_BASELINE/f1d22c9686341c8b.meta.json": "307a72b8049b66e83a259bbcbaafb69f5c42f123a775d605a2aa22eacf6f1424"
+  },
+  "failed_jobs": []
+ },
+ "gpu_hours": 0.0632
+}
